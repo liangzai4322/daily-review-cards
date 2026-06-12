@@ -1,0 +1,1366 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026-06-08 日省认知卡片 · Mistral 风格重制</title>
+<style>
+:root {
+  --m-primary: #fa520f;
+  --m-primary-deep: #cc3a05;
+  --m-on-primary: #ffffff;
+  --m-sun-300: #ffd06a;
+  --m-sun-500: #ffb83e;
+  --m-sun-700: #ffa110;
+  --m-sun-800: #ff8105;
+  --m-sun-900: #ff8a00;
+  --m-yellow: #ffd900;
+  --m-cream: #fff8e0;
+  --m-cream-light: #fffaeb;
+  --m-cream-deeper: #fff0c2;
+  --m-beige-deep: #e6d5a8;
+  --m-block-5: #ffe295;
+  --m-block-6: #ffd900;
+  --m-block-7: #ff8105;
+  --m-ink: #1f1f1f;
+  --m-ink-tint: #3d3d3d;
+  --m-charcoal: #2c2c2c;
+  --m-slate: #4a4a4a;
+  --m-steel: #6a6a6a;
+  --m-stone: #8a8a8a;
+  --m-muted: #a8a8a8;
+  --m-hairline: #e5e5e5;
+  --m-hairline-soft: #ededed;
+  --m-hairline-strong: #c7c7c7;
+  --m-canvas: #ffffff;
+  --m-surface: #fafafa;
+  --m-surface-cream: #fff8e0;
+  --m-surface-cream-soft: #fffaeb;
+  --m-surface-code: #1c1c1e;
+  --m-on-dark: #ffffff;
+  --m-on-dark-muted: #a8a8a8;
+  --m-footer-cream: #fff8e0;
+  --m-link: #fa520f;
+  --m-shadow-1: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --m-shadow-2: 0 4px 12px rgba(0, 0, 0, 0.04);
+  --m-shadow-3: 0 12px 24px -4px rgba(0, 0, 0, 0.08);
+  --m-shadow-4: 0 16px 48px -8px rgba(0, 0, 0, 0.12);
+  --space-xxs: 4px;
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 20px;
+  --space-xl: 24px;
+  --space-xxl: 32px;
+  --space-xxxl: 40px;
+  --space-section-sm: 48px;
+  --space-section: 64px;
+  --space-section-lg: 96px;
+  --space-hero: 120px;
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-xxl: 20px;
+  --radius-full: 9999px;
+  --font-display: "PP Editorial Old", "Songti SC", "Noto Serif CJK SC", "SimSun", Georgia, serif;
+  --font-ui: Inter, "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", "Noto Sans CJK SC", system-ui, sans-serif;
+  --font-code: "JetBrains Mono", "SF Mono", Consolas, Menlo, monospace;
+  --type-hero: 84px;
+  --type-display: 64px;
+  --type-h1: 52px;
+  --type-h2: 36px;
+  --type-h3: 28px;
+  --type-h4: 22px;
+  --type-h5: 18px;
+  --type-subtitle: 18px;
+  --type-body: 16px;
+  --type-body-sm: 14px;
+  --type-caption: 13px;
+  --type-micro: 12px;
+  --type-micro-up: 11px;
+  --type-stat: 56px;
+  --type-code: 14px;
+  --line-hero: 1.05;
+  --line-display: 1.1;
+  --line-heading: 1.2;
+  --line-tight: 1.3;
+  --line-body: 1.55;
+  --line-caption: 1.4;
+  --weight-light: 300;
+  --weight-regular: 400;
+  --weight-medium: 500;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+  --container: 1280px;
+  --card-width: 1040px;
+  --measure-wide: 760px;
+  --measure-text: 680px;
+  --measure-tight: 520px;
+  --stripe-1: var(--m-primary);
+  --stripe-2: var(--m-sun-800);
+  --stripe-3: var(--m-sun-500);
+  --stripe-4: var(--m-yellow);
+  --stripe-5: var(--m-cream);
+  --mountain-1: #3b2a22;
+  --mountain-2: #5c3526;
+  --mountain-3: #8b4524;
+  --sky-a: #fff0c2;
+  --sky-b: #ffd06a;
+  --sky-c: #ff8a00;
+  --sky-d: #cc3a05;
+  --focus-a: #fa520f;
+  --focus-b: #ff8105;
+  --focus-c: #ffd900;
+  --focus-d: #fff8e0;
+  --cream-alpha-92: rgba(255, 248, 224, 0.92);
+  --cream-alpha-76: rgba(255, 248, 224, 0.76);
+  --canvas-alpha-92: rgba(255, 255, 255, 0.92);
+  --ink-alpha-04: rgba(31, 31, 31, 0.04);
+  --ink-alpha-06: rgba(31, 31, 31, 0.06);
+  --ink-alpha-08: rgba(31, 31, 31, 0.08);
+  --ink-alpha-12: rgba(31, 31, 31, 0.12);
+  --ink-alpha-16: rgba(31, 31, 31, 0.16);
+  --ink-alpha-24: rgba(31, 31, 31, 0.24);
+  --white-alpha-08: rgba(255, 255, 255, 0.08);
+  --white-alpha-14: rgba(255, 255, 255, 0.14);
+  --white-alpha-22: rgba(255, 255, 255, 0.22);
+  --white-alpha-72: rgba(255, 255, 255, 0.72);
+}
+* {
+  box-sizing: border-box;
+}
+html {
+  color: var(--m-ink);
+  background: var(--m-cream-light);
+  font-family: var(--font-ui);
+  letter-spacing: 0;
+}
+body {
+  min-height: 100vh;
+  margin: 0;
+  background:
+    linear-gradient(180deg, var(--m-cream-light) 0, var(--m-canvas) 38%, var(--m-footer-cream) 100%),
+    repeating-linear-gradient(90deg, transparent 0, transparent 63px, var(--ink-alpha-04) 63px, var(--ink-alpha-04) 64px);
+}
+.page-shell {
+  width: 100%;
+  overflow: hidden;
+}
+.top-nav {
+  min-height: 64px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: var(--space-xl);
+  align-items: center;
+  padding: var(--space-md) var(--space-xxl);
+  background: var(--m-canvas);
+  border-bottom: 1px solid var(--m-hairline-soft);
+}
+.brand-lockup {
+  display: grid;
+  grid-template-columns: 34px auto;
+  gap: var(--space-sm);
+  align-items: center;
+  color: var(--m-ink);
+}
+.brand-mark {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 2px;
+}
+.brand-mark span {
+  display: block;
+  background: var(--m-primary);
+}
+.brand-mark span:nth-child(2),
+.brand-mark span:nth-child(4),
+.brand-mark span:nth-child(6) {
+  background: var(--m-yellow);
+}
+.brand-mark span:nth-child(5),
+.brand-mark span:nth-child(8) {
+  background: var(--m-ink);
+}
+.brand-name {
+  font-size: var(--type-body-sm);
+  font-weight: var(--weight-semibold);
+  line-height: var(--line-tight);
+}
+.nav-links {
+  display: flex;
+  gap: var(--space-xl);
+  justify-content: center;
+  color: var(--m-steel);
+  font-size: var(--type-body-sm);
+  font-weight: var(--weight-medium);
+}
+.nav-action {
+  display: inline-grid;
+  min-height: 40px;
+  align-items: center;
+  padding: 10px 20px;
+  color: var(--m-on-dark);
+  background: var(--m-ink);
+  border-radius: var(--radius-md);
+  font-size: var(--type-body-sm);
+  font-weight: var(--weight-medium);
+  line-height: var(--line-tight);
+}
+.hero-band {
+  position: relative;
+  isolation: isolate;
+  min-height: 640px;
+  display: grid;
+  grid-template-columns: minmax(0, 0.98fr) minmax(420px, 1.02fr);
+  gap: var(--space-section);
+  align-items: stretch;
+  padding: var(--space-hero) max(var(--space-xxl), calc((100vw - var(--container)) / 2 + var(--space-xxl))) var(--space-section-lg);
+  background:
+    linear-gradient(135deg, var(--sky-a) 0%, var(--sky-b) 24%, var(--sky-c) 58%, var(--sky-d) 100%);
+}
+.hero-band::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(circle at 73% 31%, rgba(255, 248, 224, 0.9) 0, rgba(255, 208, 106, 0.6) 18%, transparent 35%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.34), transparent 52%);
+}
+.hero-copy {
+  align-self: center;
+  max-width: var(--measure-text);
+}
+.eyebrow {
+  display: inline-grid;
+  grid-auto-flow: column;
+  gap: var(--space-xs);
+  align-items: center;
+  margin-bottom: var(--space-lg);
+  color: var(--m-ink);
+  font-size: var(--type-micro-up);
+  font-weight: var(--weight-semibold);
+  line-height: var(--line-caption);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.eyebrow::before {
+  content: "";
+  width: 40px;
+  height: 4px;
+  background: var(--m-ink);
+}
+.hero-title {
+  margin: 0;
+  color: var(--m-ink);
+  font-family: var(--font-display);
+  font-size: var(--type-hero);
+  font-weight: var(--weight-regular);
+  line-height: var(--line-hero);
+  letter-spacing: 0;
+}
+.hero-subtitle {
+  max-width: var(--measure-tight);
+  margin: var(--space-xl) 0 0;
+  color: var(--m-ink-tint);
+  font-size: var(--type-subtitle);
+  font-weight: var(--weight-regular);
+  line-height: 1.5;
+}
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-xxl);
+}
+.label-dark,
+.label-cream,
+.label-outline {
+  min-height: 40px;
+  display: inline-grid;
+  align-items: center;
+  padding: 10px 20px;
+  border-radius: var(--radius-md);
+  font-size: var(--type-body-sm);
+  font-weight: var(--weight-medium);
+  line-height: var(--line-tight);
+}
+.label-dark {
+  color: var(--m-on-dark);
+  background: var(--m-ink);
+}
+.label-cream {
+  color: var(--m-ink);
+  background: var(--m-cream);
+  border: 1px solid var(--m-beige-deep);
+}
+.label-outline {
+  color: var(--m-ink);
+  background: transparent;
+  border: 1px solid var(--m-hairline-strong);
+}
+.mountain-scene {
+  position: relative;
+  min-height: 400px;
+  align-self: end;
+  overflow: hidden;
+  border-radius: var(--radius-lg);
+  background:
+    linear-gradient(180deg, rgba(255, 248, 224, 0.1) 0, rgba(250, 82, 15, 0.12) 50%, rgba(31, 31, 31, 0.28) 100%),
+    linear-gradient(145deg, var(--m-cream-deeper) 0%, var(--m-sun-500) 28%, var(--m-primary) 76%, var(--m-primary-deep) 100%);
+  box-shadow: var(--m-shadow-3);
+}
+.mountain-scene::before,
+.mountain-scene::after,
+.ridge-a,
+.ridge-b,
+.ridge-c,
+.sun-disc {
+  position: absolute;
+  display: block;
+  content: "";
+}
+.sun-disc {
+  width: 154px;
+  height: 154px;
+  top: 64px;
+  right: 110px;
+  border-radius: 50%;
+  background: rgba(255, 248, 224, 0.84);
+  box-shadow: 0 0 90px rgba(255, 217, 0, 0.42);
+}
+.mountain-scene::before {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 58%;
+  background: var(--mountain-1);
+  clip-path: polygon(0 72%, 12% 48%, 21% 61%, 35% 28%, 50% 62%, 64% 34%, 78% 66%, 89% 42%, 100% 70%, 100% 100%, 0 100%);
+  opacity: 0.92;
+}
+.mountain-scene::after {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 44%;
+  background: var(--mountain-2);
+  clip-path: polygon(0 74%, 9% 51%, 22% 73%, 37% 44%, 52% 70%, 65% 46%, 78% 76%, 92% 55%, 100% 75%, 100% 100%, 0 100%);
+  opacity: 0.92;
+}
+.ridge-a {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 33%;
+  background: var(--mountain-3);
+  clip-path: polygon(0 70%, 18% 43%, 30% 72%, 45% 39%, 59% 66%, 73% 45%, 86% 73%, 100% 50%, 100% 100%, 0 100%);
+}
+.ridge-b {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 20%;
+  background: rgba(31, 31, 31, 0.82);
+  clip-path: polygon(0 56%, 16% 40%, 29% 63%, 43% 36%, 58% 64%, 72% 42%, 88% 68%, 100% 46%, 100% 100%, 0 100%);
+}
+.ridge-c {
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 10%;
+  background: var(--m-surface-code);
+}
+.content-wrap {
+  width: min(100%, calc(var(--card-width) + var(--space-xxl) * 2));
+  margin: 0 auto;
+  padding: var(--space-section-lg) var(--space-xxl);
+}
+.deck-note {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--space-xl);
+  align-items: end;
+  margin-bottom: var(--space-section-sm);
+}
+.deck-note h2 {
+  max-width: var(--measure-text);
+  margin: 0;
+  color: var(--m-ink);
+  font-family: var(--font-display);
+  font-size: var(--type-display);
+  font-weight: var(--weight-regular);
+  line-height: var(--line-display);
+  letter-spacing: 0;
+}
+.deck-note p {
+  max-width: 360px;
+  margin: 0;
+  color: var(--m-steel);
+  font-size: var(--type-body-sm);
+  line-height: 1.5;
+  text-align: right;
+}
+.mistral-card {
+  position: relative;
+  display: grid;
+  gap: var(--space-xxl);
+  margin-bottom: var(--space-section);
+  padding: var(--space-xxl);
+  background: var(--m-canvas);
+  border: 1px solid var(--m-hairline-soft);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--m-shadow-2);
+}
+.mistral-card.is-cream {
+  background: var(--m-cream);
+  border-color: var(--m-beige-deep);
+}
+.card-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 240px;
+  gap: var(--space-xxl);
+  align-items: start;
+}
+.card-kicker {
+  display: inline-grid;
+  grid-auto-flow: column;
+  align-items: center;
+  gap: var(--space-xs);
+  color: var(--m-primary);
+  font-size: var(--type-micro-up);
+  font-weight: var(--weight-semibold);
+  line-height: var(--line-caption);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.card-kicker::before {
+  content: "";
+  width: 28px;
+  height: 3px;
+  background: var(--m-primary);
+}
+.card-title {
+  max-width: 720px;
+  margin: var(--space-md) 0 0;
+  color: var(--m-ink);
+  font-family: var(--font-display);
+  font-size: var(--type-h1);
+  font-weight: var(--weight-regular);
+  line-height: 1.15;
+  letter-spacing: 0;
+}
+.card-lead {
+  max-width: var(--measure-text);
+  margin: var(--space-lg) 0 0;
+  color: var(--m-slate);
+  font-size: var(--type-subtitle);
+  font-weight: var(--weight-regular);
+  line-height: 1.5;
+}
+.stat-panel {
+  min-height: 180px;
+  display: grid;
+  align-content: center;
+  gap: var(--space-xs);
+  padding: var(--space-xl);
+  background: var(--m-surface-cream-soft);
+  border: 1px solid var(--m-beige-deep);
+  border-radius: var(--radius-lg);
+}
+.stat-panel strong {
+  color: var(--m-primary);
+  font-family: var(--font-display);
+  font-size: var(--type-stat);
+  font-weight: var(--weight-regular);
+  line-height: 1.1;
+  letter-spacing: 0;
+}
+.stat-panel span {
+  color: var(--m-steel);
+  font-size: var(--type-caption);
+  font-weight: var(--weight-medium);
+  line-height: var(--line-caption);
+}
+.summary-block {
+  display: grid;
+  grid-template-columns: 170px minmax(0, 1fr);
+  gap: var(--space-xl);
+  padding: var(--space-xxl);
+  background: var(--m-surface-cream-soft);
+  border: 1px solid var(--m-beige-deep);
+  border-radius: var(--radius-lg);
+}
+.summary-label {
+  color: var(--m-ink);
+  font-size: var(--type-h5);
+  font-weight: var(--weight-medium);
+  line-height: 1.4;
+}
+.summary-text {
+  margin: 0;
+  color: var(--m-charcoal);
+  font-size: var(--type-body);
+  font-weight: var(--weight-regular);
+  line-height: 1.72;
+}
+.section-block {
+  display: grid;
+  gap: var(--space-xl);
+}
+.section-heading {
+  display: grid;
+  grid-template-columns: minmax(0, auto) 1fr;
+  gap: var(--space-lg);
+  align-items: end;
+}
+.section-heading h3 {
+  margin: 0;
+  color: var(--m-ink);
+  font-size: var(--type-h2);
+  font-weight: var(--weight-medium);
+  line-height: var(--line-heading);
+}
+.section-heading span {
+  color: var(--m-stone);
+  font-size: var(--type-caption);
+  font-weight: var(--weight-medium);
+  line-height: var(--line-caption);
+}
+.section-line {
+  height: 1px;
+  background: linear-gradient(90deg, var(--m-hairline-strong), transparent);
+}
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-lg);
+}
+.feature-card {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: var(--space-md);
+  min-height: 232px;
+  padding: var(--space-xl);
+  background: var(--m-canvas);
+  border: 1px solid var(--m-hairline-soft);
+  border-radius: var(--radius-lg);
+}
+.feature-card.cream {
+  background: var(--m-cream);
+  border-color: var(--m-beige-deep);
+}
+.feature-index {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  color: var(--m-on-primary);
+  background: var(--m-primary);
+  border-radius: var(--radius-md);
+  font-family: var(--font-code);
+  font-size: var(--type-caption);
+}
+.feature-card h4 {
+  margin: 0;
+  color: var(--m-ink);
+  font-size: var(--type-h4);
+  font-weight: var(--weight-medium);
+  line-height: 1.3;
+}
+.feature-card p {
+  margin: 0;
+  color: var(--m-slate);
+  font-size: var(--type-body-sm);
+  line-height: 1.58;
+}
+.feature-tag {
+  color: var(--m-primary);
+  font-size: var(--type-caption);
+  font-weight: var(--weight-semibold);
+  line-height: var(--line-caption);
+}
+.process-strip {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  overflow: hidden;
+  background: var(--m-surface-code);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--m-shadow-3);
+}
+.process-step {
+  min-height: 154px;
+  display: grid;
+  align-content: start;
+  gap: var(--space-sm);
+  padding: var(--space-lg);
+  color: var(--m-on-dark);
+  border-right: 1px solid var(--white-alpha-14);
+}
+.process-step:last-child {
+  border-right: 0;
+}
+.process-step b {
+  color: var(--m-on-dark);
+  font-size: var(--type-body);
+  font-weight: var(--weight-medium);
+  line-height: var(--line-tight);
+}
+.process-step span {
+  color: var(--m-on-dark-muted);
+  font-size: var(--type-caption);
+  line-height: 1.48;
+}
+.quote-panel {
+  display: grid;
+  grid-template-columns: 110px minmax(0, 1fr);
+  gap: var(--space-xl);
+  align-items: center;
+  padding: var(--space-xxl);
+  color: var(--m-ink);
+  background:
+    linear-gradient(90deg, var(--m-primary) 0, var(--m-sun-800) 12px, transparent 12px),
+    var(--m-cream-deeper);
+  border: 1px solid var(--m-beige-deep);
+  border-radius: var(--radius-lg);
+}
+.quote-number {
+  color: var(--m-primary);
+  font-family: var(--font-display);
+  font-size: var(--type-stat);
+  font-weight: var(--weight-regular);
+  line-height: 1.1;
+  letter-spacing: 0;
+}
+.quote-panel p {
+  margin: 0;
+  color: var(--m-ink);
+  font-size: var(--type-h3);
+  font-weight: var(--weight-medium);
+  line-height: 1.25;
+}
+.level-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: var(--space-lg);
+}
+.level-list {
+  display: grid;
+  gap: var(--space-xs);
+}
+.level-row {
+  display: grid;
+  grid-template-columns: 64px minmax(0, 1fr);
+  align-items: center;
+  min-height: 52px;
+  overflow: hidden;
+  background: var(--m-canvas);
+  border: 1px solid var(--m-hairline-soft);
+  border-radius: var(--radius-md);
+}
+.level-row b {
+  height: 100%;
+  display: grid;
+  place-items: center;
+  color: var(--m-on-primary);
+  background: var(--m-primary);
+  font-family: var(--font-code);
+  font-size: var(--type-caption);
+  font-weight: var(--weight-regular);
+}
+.level-row:nth-child(2) b {
+  background: var(--m-sun-800);
+}
+.level-row:nth-child(3) b {
+  color: var(--m-ink);
+  background: var(--m-yellow);
+}
+.level-row:nth-child(4) b,
+.level-row:nth-child(5) b,
+.level-row:nth-child(6) b,
+.level-row:nth-child(7) b {
+  color: var(--m-ink);
+  background: var(--m-cream-deeper);
+}
+.level-row span {
+  padding: var(--space-sm) var(--space-md);
+  color: var(--m-charcoal);
+  font-size: var(--type-body-sm);
+  line-height: 1.5;
+}
+.anchor-wall {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-sm);
+  align-content: start;
+  padding: var(--space-lg);
+  background: var(--m-surface-code);
+  border-radius: var(--radius-lg);
+}
+.anchor-chip {
+  min-height: 84px;
+  display: grid;
+  align-content: center;
+  gap: var(--space-xxs);
+  padding: var(--space-md);
+  color: var(--m-on-dark);
+  background: var(--white-alpha-08);
+  border: 1px solid var(--white-alpha-14);
+  border-radius: var(--radius-md);
+}
+.anchor-chip b {
+  color: var(--m-sun-300);
+  font-size: var(--type-body-sm);
+  font-weight: var(--weight-semibold);
+  line-height: var(--line-caption);
+}
+.anchor-chip span {
+  color: var(--m-on-dark-muted);
+  font-size: var(--type-micro);
+  line-height: var(--line-caption);
+}
+.action-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-lg);
+}
+.action-card {
+  min-height: 188px;
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  gap: var(--space-sm);
+  padding: var(--space-xl);
+  background: var(--m-canvas);
+  border: 1px solid var(--m-hairline-soft);
+  border-radius: var(--radius-lg);
+}
+.action-card b {
+  color: var(--m-primary);
+  font-family: var(--font-display);
+  font-size: var(--type-h3);
+  font-weight: var(--weight-regular);
+  line-height: 1.1;
+  letter-spacing: 0;
+}
+.action-card strong {
+  color: var(--m-ink);
+  font-size: var(--type-body);
+  font-weight: var(--weight-medium);
+  line-height: 1.4;
+}
+.action-card span {
+  color: var(--m-slate);
+  font-size: var(--type-body-sm);
+  line-height: 1.5;
+}
+.compare-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+}
+.compare-card {
+  display: grid;
+  gap: var(--space-lg);
+  padding: var(--space-xxl);
+  background: var(--m-canvas);
+  border: 1px solid var(--m-hairline-soft);
+  border-radius: var(--radius-lg);
+}
+.compare-card.dark {
+  color: var(--m-on-dark);
+  background: var(--m-surface-code);
+  box-shadow: var(--m-shadow-3);
+}
+.compare-card h4 {
+  margin: 0;
+  color: inherit;
+  font-size: var(--type-h3);
+  font-weight: var(--weight-medium);
+  line-height: 1.25;
+}
+.compare-card ul {
+  display: grid;
+  gap: var(--space-md);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.compare-card li {
+  display: grid;
+  grid-template-columns: 18px minmax(0, 1fr);
+  gap: var(--space-sm);
+  color: var(--m-slate);
+  font-size: var(--type-body-sm);
+  line-height: 1.55;
+}
+.compare-card.dark li {
+  color: var(--m-on-dark-muted);
+}
+.compare-card li::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  margin-top: 6px;
+  background: var(--m-primary);
+  border-radius: var(--radius-xs);
+}
+.asset-matrix {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: var(--space-sm);
+}
+.asset-cell {
+  min-height: 116px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: var(--space-xs);
+  padding: var(--space-md);
+  text-align: center;
+  background: var(--m-canvas);
+  border: 1px solid var(--m-hairline-soft);
+  border-radius: var(--radius-lg);
+}
+.asset-cell b {
+  color: var(--m-ink);
+  font-size: var(--type-h5);
+  font-weight: var(--weight-medium);
+  line-height: 1.35;
+}
+.asset-cell span {
+  color: var(--m-steel);
+  font-size: var(--type-caption);
+  line-height: var(--line-caption);
+}
+.radar-timeline {
+  display: grid;
+  gap: var(--space-md);
+  padding: var(--space-xl);
+  background: var(--m-cream);
+  border: 1px solid var(--m-beige-deep);
+  border-radius: var(--radius-lg);
+}
+.radar-item {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: var(--space-xl);
+  align-items: start;
+}
+.radar-item b {
+  color: var(--m-primary);
+  font-size: var(--type-body-sm);
+  font-weight: var(--weight-semibold);
+  line-height: 1.5;
+}
+.radar-item span {
+  color: var(--m-charcoal);
+  font-size: var(--type-body-sm);
+  line-height: 1.58;
+}
+.footer-region {
+  background: var(--m-footer-cream);
+  border-top: 1px solid var(--m-beige-deep);
+}
+.footer-inner {
+  width: min(100%, var(--container));
+  margin: 0 auto;
+  padding: var(--space-section) var(--space-xxl);
+  display: grid;
+  grid-template-columns: 1.1fr repeat(3, 0.8fr);
+  gap: var(--space-xxl);
+}
+.footer-inner h2 {
+  margin: 0;
+  color: var(--m-ink);
+  font-family: var(--font-display);
+  font-size: var(--type-h1);
+  font-weight: var(--weight-regular);
+  line-height: 1.15;
+  letter-spacing: 0;
+}
+.footer-col {
+  display: grid;
+  align-content: start;
+  gap: var(--space-sm);
+  color: var(--m-steel);
+  font-size: var(--type-body-sm);
+  line-height: 1.5;
+}
+.footer-col b {
+  color: var(--m-ink);
+  font-size: var(--type-caption);
+  font-weight: var(--weight-semibold);
+  line-height: var(--line-caption);
+}
+.footer-col span {
+  color: var(--m-primary);
+}
+.sunset-stripe {
+  height: 46px;
+  background: linear-gradient(90deg, var(--stripe-1) 0%, var(--stripe-2) 24%, var(--stripe-3) 48%, var(--stripe-4) 72%, var(--stripe-5) 100%);
+}
+@media (min-width: 1280px) {
+  .hero-title {
+    font-size: var(--type-hero);
+  }
+}
+@media (max-width: 1279px) {
+  .hero-title {
+    font-size: 76px;
+  }
+  .deck-note h2 {
+    font-size: 58px;
+  }
+}
+@media (max-width: 1023px) {
+  .top-nav {
+    grid-template-columns: 1fr auto;
+  }
+  .nav-links {
+    display: none;
+  }
+  .hero-band {
+    grid-template-columns: 1fr;
+    padding-top: var(--space-section-lg);
+  }
+  .hero-title {
+    font-size: var(--type-display);
+  }
+  .mountain-scene {
+    min-height: 340px;
+  }
+  .deck-note,
+  .card-hero,
+  .level-grid,
+  .compare-grid {
+    grid-template-columns: 1fr;
+  }
+  .deck-note p {
+    text-align: left;
+  }
+  .feature-grid,
+  .process-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .process-step:nth-child(2n) {
+    border-right: 0;
+  }
+  .action-grid,
+  .asset-matrix {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+  .footer-inner {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 767px) {
+  .top-nav,
+  .content-wrap,
+  .footer-inner {
+    padding-left: var(--space-lg);
+    padding-right: var(--space-lg);
+  }
+  .hero-band {
+    padding: var(--space-section) var(--space-lg);
+  }
+  .hero-title,
+  .deck-note h2 {
+    font-size: var(--type-h1);
+  }
+  .card-title,
+  .footer-inner h2 {
+    font-size: 44px;
+  }
+  .summary-block,
+  .quote-panel,
+  .radar-item {
+    grid-template-columns: 1fr;
+  }
+  .feature-grid,
+  .process-strip,
+  .action-grid,
+  .asset-matrix,
+  .footer-inner {
+    grid-template-columns: 1fr;
+  }
+  .process-step {
+    border-right: 0;
+    border-bottom: 1px solid var(--white-alpha-14);
+  }
+  .process-step:last-child {
+    border-bottom: 0;
+  }
+}
+@media (max-width: 479px) {
+  .nav-action {
+    display: none;
+  }
+  .hero-title,
+  .deck-note h2,
+  .card-title,
+  .footer-inner h2 {
+    font-size: 40px;
+  }
+  .hero-subtitle,
+  .card-lead {
+    font-size: var(--type-body);
+  }
+  .mistral-card {
+    padding: var(--space-lg);
+  }
+  .summary-block,
+  .quote-panel,
+  .compare-card {
+    padding: var(--space-lg);
+  }
+  .section-heading {
+    grid-template-columns: 1fr;
+  }
+  .anchor-wall {
+    grid-template-columns: 1fr;
+  }
+}
+@media print {
+  body {
+    background: var(--m-canvas);
+  }
+  .top-nav,
+  .hero-band,
+  .footer-region {
+    break-inside: avoid;
+  }
+  .mistral-card {
+    box-shadow: none;
+    break-inside: avoid;
+  }
+}
+</style>
+</head>
+<body>
+<div class="page-shell">
+  <header class="top-nav" aria-label="品牌风格栏">
+    <div class="brand-lockup">
+      <div class="brand-mark" aria-hidden="true">
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+        <span></span><span></span><span></span>
+      </div>
+      <div class="brand-name">MISTRAL STYLE · 日省认知卡片</div>
+    </div>
+    <nav class="nav-links" aria-label="静态章节提示">
+      <span>系统复盘</span>
+      <span>AI × Skill</span>
+      <span>信息源雷达</span>
+      <span>行动闭环</span>
+    </nav>
+    <div class="nav-action">2026-06-08</div>
+  </header>
+
+  <section class="hero-band" aria-label="落日山脉风格封面">
+    <div class="hero-copy">
+      <div class="eyebrow">COGNITIVE CARD SYSTEM</div>
+      <h1 class="hero-title">把日省，重制成一张可调用的认知地图。</h1>
+      <p class="hero-subtitle">根据两个 Markdown 文件重新提炼：从执行力、AI、Skill、信息源和风控中，找到真正能进入长期复利系统的关键 20%。</p>
+      <div class="hero-actions" aria-label="静态标签">
+        <span class="label-dark">输出倒逼输入</span>
+        <span class="label-cream">20% 深挖</span>
+        <span class="label-outline">风控计入成本</span>
+      </div>
+    </div>
+    <div class="mountain-scene" aria-hidden="true">
+      <span class="sun-disc"></span>
+      <span class="ridge-a"></span>
+      <span class="ridge-b"></span>
+      <span class="ridge-c"></span>
+    </div>
+  </section>
+
+  <main class="content-wrap">
+    <section class="deck-note" aria-label="设计说明">
+      <h2>两张卡，两个系统。</h2>
+      <p>采用 Mistral AI 的奶油黄底、橙色强调、近衬线大标题、深色代码面板和 sunset stripe 视觉签名。</p>
+    </section>
+
+    <article class="mistral-card is-cream" aria-label="卡片一：把执行力还给早晨">
+      <header class="card-hero">
+        <div>
+          <div class="card-kicker">CARD 01 · SYSTEM REVIEW</div>
+          <h2 class="card-title">把执行力还给早晨</h2>
+          <p class="card-lead">问题不是不努力，而是规划系统太重；任务一旦拆到原子级，执行力会自然释放。</p>
+        </div>
+        <aside class="stat-panel">
+          <strong>20%</strong>
+          <span>不是终点，而是继续深挖的入口。</span>
+        </aside>
+      </header>
+
+      <section class="summary-block" aria-label="卡片一深度摘要">
+        <div class="summary-label">深度咀嚼摘要</div>
+        <p class="summary-text">这篇日省的核心不是“今天做了多少事”，而是多个系统同时露出瓶颈：任务规划太耗能，信息源仍靠手动，AI 输出容易停留在震撼感，自动化采集没有把封号风险计入成本。文章真正的命脉有三条：第一，执行力并不是主要问题，真正消耗发生在把大任务拆成可执行清单之前，所以要把规划夜间化、模板化，把早晨保护为纯执行窗口。第二，20% 提炼不是少学，而是找到命脉后继续追问，把关键 20% 拆成多个 2%，直到能在真实问题里调用。第三，AI、Skill、信息源和风控都必须进入产物闭环：没有文章、页面、脚本、工具、销售素材或业务动作，再多总结也只是“勤奋的懒惰”。</p>
+      </section>
+
+      <section class="section-block" aria-label="三个关键认知">
+        <div class="section-heading">
+          <div>
+            <span>L2 · MAIN FRAME</span>
+            <h3>暴露的是系统负荷，不是单点失败</h3>
+          </div>
+          <div class="section-line"></div>
+        </div>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-index">01</div>
+            <h4>规划耗能</h4>
+            <p>早上 30 多分钟用于拆任务，侵占了最值钱的执行窗口。解决方向不是继续喊“提高执行力”，而是把规划前置到晚上。</p>
+            <span class="feature-tag">记忆锚点：早晨只执行</span>
+          </div>
+          <div class="feature-card cream">
+            <div class="feature-index">02</div>
+            <h4>20% 深挖</h4>
+            <p>提炼 20% 不是终点，而是入口。要对这 20% 使用 80% 篇幅和时间继续追问，拆成多个 2% 逐个验证。</p>
+            <span class="feature-tag">记忆锚点：20% 再拆 2%</span>
+          </div>
+          <div class="feature-card">
+            <div class="feature-index">03</div>
+            <h4>风控入账</h4>
+            <p>账号被封说明效率不等于性价比。自动化采集必须同时计算平台风控、采集时机、人工审核窗口和手动替代方案。</p>
+            <span class="feature-tag">记忆锚点：能爬不等于值得爬</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block" aria-label="闭环路径">
+        <div class="section-heading">
+          <div>
+            <span>L3 · FLOW</span>
+            <h3>从散点忙碌变成闭环生产</h3>
+          </div>
+          <div class="section-line"></div>
+        </div>
+        <div class="process-strip">
+          <div class="process-step"><b>输入</b><span>风向标、众包、博客、访谈、X、豆包数据库。</span></div>
+          <div class="process-step"><b>拆解</b><span>把大任务拆到看见就能做的原子颗粒。</span></div>
+          <div class="process-step"><b>输出</b><span>文章、网页、脚本、工具、销售素材。</span></div>
+          <div class="process-step"><b>沉淀</b><span>进入 Obsidian、飞书、Skill 和方法论碳片。</span></div>
+          <div class="process-step"><b>分发</b><span>公众号、朋友圈、私域、项目页面和客户触点。</span></div>
+          <div class="process-step"><b>复盘</b><span>日省、结算、gap、待办和下一轮计划。</span></div>
+        </div>
+      </section>
+
+      <section class="quote-panel" aria-label="关键金句">
+        <div class="quote-number">20%</div>
+        <p>攫取 20%，并对这 20% 展开追问；不是只学 20%，而是用 80% 的时间把关键处学透。</p>
+      </section>
+
+      <section class="section-block" aria-label="七层信息模型">
+        <div class="section-heading">
+          <div>
+            <span>L4-L7 · STRUCTURE</span>
+            <h3>七层信息模型</h3>
+          </div>
+          <div class="section-line"></div>
+        </div>
+        <div class="level-grid">
+          <div class="level-list">
+            <div class="level-row"><b>L1</b><span>核心理念：早晨执行，夜里规划，让执行力离开决策泥潭。</span></div>
+            <div class="level-row"><b>L2</b><span>主论点：规划耗能、20% 深挖、AI 生产、风控成本、能量恢复。</span></div>
+            <div class="level-row"><b>L3</b><span>关键机制：原子任务、输出倒逼输入、信息源雷达、Skill 固化流程。</span></div>
+            <div class="level-row"><b>L4</b><span>重要例证：早上规划 30 分钟、账号被封、AI 文章决定重写。</span></div>
+            <div class="level-row"><b>L5</b><span>业务承接：高客单、闲鱼铺单、小红书虚拟产品、案例资产。</span></div>
+            <div class="level-row"><b>L6</b><span>节奏调整：日省、结算、gap、高质量阅读，固定为睡前流程。</span></div>
+            <div class="level-row"><b>L7</b><span>辅助边界：待核估算、合规疑点、谷爱凌作息只作参考。</span></div>
+          </div>
+          <div class="anchor-wall">
+            <div class="anchor-chip"><b>12 分精力</b><span>高脑力窗口避免消息打断。</span></div>
+            <div class="anchor-chip"><b>10 分墙</b><span>精力低于任务难度时，再努力也打不穿。</span></div>
+            <div class="anchor-chip"><b>周四周五</b><span>风控敏感平台不做高频采集。</span></div>
+            <div class="anchor-chip"><b>看见就做</b><span>原子任务必须低到无须再想。</span></div>
+            <div class="anchor-chip"><b>夜里拆解</b><span>把规划从早晨保护区移走。</span></div>
+            <div class="anchor-chip"><b>自然恢复</b><span>恢复是长期输出成本。</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block" aria-label="行动锚点">
+        <div class="section-heading">
+          <div>
+            <span>ACTION</span>
+            <h3>下一步只保留四个动作</h3>
+          </div>
+          <div class="section-line"></div>
+        </div>
+        <div class="action-grid">
+          <div class="action-card"><b>01</b><strong>睡前完成拆解</strong><span>日省、结算、gap、明日第一任务，在睡前打包完成。</span></div>
+          <div class="action-card"><b>02</b><strong>重写 AI 文章</strong><span>AI 只做框架和盲区补全，核心判断、案例和表达回到自己。</span></div>
+          <div class="action-card"><b>03</b><strong>先做信息源雷达</strong><span>风向标和众包优先自动化，少量精华帖短期手动处理。</span></div>
+          <div class="action-card"><b>04</b><strong>把风控写进成本</strong><span>采集前先判断收益、封号代价、人工审核窗口和备用路径。</span></div>
+        </div>
+      </section>
+    </article>
+
+    <article class="mistral-card" aria-label="卡片二：AI 的价值只在产物里兑现">
+      <header class="card-hero">
+        <div>
+          <div class="card-kicker">CARD 02 · AI × SKILL</div>
+          <h2 class="card-title">AI 的价值只在产物里兑现</h2>
+          <p class="card-lead">从“拉平认知差”转向“建立认知优势”：用 Skill 固化流程，用输出倒逼输入，用信息源系统喂给长期资产。</p>
+        </div>
+        <aside class="stat-panel">
+          <strong>80%</strong>
+          <span>Skill 把临场口喷变成稳定流程。</span>
+        </aside>
+      </header>
+
+      <section class="summary-block" aria-label="卡片二深度摘要">
+        <div class="summary-label">深度咀嚼摘要</div>
+        <p class="summary-text">Claude 合并版把 2026-06-06 到 06-08 的多段记录压成了更清晰的方法论：用户已经确认自己不是没有方向，而是需要把 AI、信息源、输出和业务承接串成系统。最大洞察是“输出先于输入”：只看总结、刷信息、做战略分析，会制造努力感，却不会形成复利；真正有效的是把 AI 用在可交付产物上。Skill 是第二个关键杠杆，它把上下文、步骤和标准固定下来，让 AI 能力从 50% 到 60% 提升到 70% 到 80%。第三个关键是信息源：风向标、访谈、博客、X、豆包和抖音数据库不能继续散着，要进入采集、提炼、推送、沉淀、再输出的雷达链路。最终目标不是追赶大佬，而是在具体领域用 AI 更快形成判断、案例和资产，建立认知优势。</p>
+      </section>
+
+      <section class="section-block" aria-label="正反路径对比">
+        <div class="section-heading">
+          <div>
+            <span>COMPARISON</span>
+            <h3>信息消费会变重，产物闭环会变强</h3>
+          </div>
+          <div class="section-line"></div>
+        </div>
+        <div class="compare-grid">
+          <div class="compare-card">
+            <h4>勤奋的懒惰</h4>
+            <ul>
+              <li>用大量 AI 总结制造充实感，却没有文章、工具或业务动作。</li>
+              <li>把信息源当收藏夹，链接越存越多，调用能力没有增长。</li>
+              <li>让 AI 生成完整文章，选题是自己的，框架和表达却不是。</li>
+              <li>高精力窗口处理消息，精力从 12 分被拉回 8 分。</li>
+            </ul>
+          </div>
+          <div class="compare-card dark">
+            <h4>输出倒逼输入</h4>
+            <ul>
+              <li>先定义产物，再决定输入：文章、页面、脚本、表格、销售素材。</li>
+              <li>把重复三次的 AI 流程沉淀成 Skill，减少重复决策。</li>
+              <li>信息源自动采集、AI 提炼、飞书推送、Obsidian 沉淀。</li>
+              <li>高脑力窗口只攻最难问题，低精力窗口处理可委托任务。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="quote-panel" aria-label="Skill 金句">
+        <div class="quote-number">Skill</div>
+        <p>Skill 的作用不是让提示词更漂亮，而是给工具插上翅膀：稳定上下文，固定流程，减少重复决策。</p>
+      </section>
+
+      <section class="section-block" aria-label="三大复利位置">
+        <div class="section-heading">
+          <div>
+            <span>METHOD</span>
+            <h3>把 AI 用在三个真正能复利的位置</h3>
+          </div>
+          <div class="section-line"></div>
+        </div>
+        <div class="feature-grid">
+          <div class="feature-card cream">
+            <div class="feature-index">01</div>
+            <h4>Skill 武器库</h4>
+            <p>做任何 AI 任务前先问：有没有相关 Skill？这个流程是否重复三次？是否值得沉淀为标准工具？</p>
+            <span class="feature-tag">50%-60% → 70%-80%</span>
+          </div>
+          <div class="feature-card">
+            <div class="feature-index">02</div>
+            <h4>信息源雷达</h4>
+            <p>风向标、众包、大佬博客、访谈、X、豆包和抖音数据库，要从散点浏览变成稳定供给。</p>
+            <span class="feature-tag">采集 → 提炼 → 推送 → 沉淀</span>
+          </div>
+          <div class="feature-card cream">
+            <div class="feature-index">03</div>
+            <h4>产物化输出</h4>
+            <p>AI 的真实杠杆在生产：代码、工具、网站、文章、视频脚本、朋友圈、业务模型和工作流。</p>
+            <span class="feature-tag">没有产物，就是消费</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block" aria-label="资产矩阵">
+        <div class="section-heading">
+          <div>
+            <span>ASSET MATRIX</span>
+            <h3>判断 AI 使用是否有效，只看是否生成资产</h3>
+          </div>
+          <div class="section-line"></div>
+        </div>
+        <div class="asset-matrix">
+          <div class="asset-cell"><b>文章</b><span>判断和案例</span></div>
+          <div class="asset-cell"><b>工具</b><span>可重复流程</span></div>
+          <div class="asset-cell"><b>页面</b><span>可展示资产</span></div>
+          <div class="asset-cell"><b>脚本</b><span>自动化动作</span></div>
+          <div class="asset-cell"><b>表格</b><span>结构化判断</span></div>
+          <div class="asset-cell"><b>销售素材</b><span>成交承接</span></div>
+        </div>
+      </section>
+
+      <section class="section-block" aria-label="信息源雷达">
+        <div class="section-heading">
+          <div>
+            <span>RADAR</span>
+            <h3>高价值信息源应该像雷达一样持续进站</h3>
+          </div>
+          <div class="section-line"></div>
+        </div>
+        <div class="radar-timeline">
+          <div class="radar-item"><b>入口</b><span>生财风向标、众包、精华帖、大佬博客、访谈、X、豆包/抖音数据库、AI 通知系统。</span></div>
+          <div class="radar-item"><b>处理</b><span>定时采集后由 AI 提炼，过滤低价值内容，提取观点、样本、选题、客户需求和可执行动作。</span></div>
+          <div class="radar-item"><b>推送</b><span>优先飞书 CLI，必要时企微触达；推送不是终点，还要进入本地知识库。</span></div>
+          <div class="radar-item"><b>沉淀</b><span>进入 Obsidian、Skill、方法论卡片、选题库和业务素材库，形成下一轮输出燃料。</span></div>
+        </div>
+      </section>
+
+      <section class="section-block" aria-label="行动卡">
+        <div class="section-heading">
+          <div>
+            <span>NEXT</span>
+            <h3>用四个动作把震撼感变成资产</h3>
+          </div>
+          <div class="section-line"></div>
+        </div>
+        <div class="action-grid">
+          <div class="action-card"><b>01</b><strong>写自己的文章</strong><span>保留 AI 的框架辅助，但判断、案例、表达必须回到自己。</span></div>
+          <div class="action-card"><b>02</b><strong>做封面工作流</strong><span>同行封面拆解、多模态改版、卖点生成、多版测试点击。</span></div>
+          <div class="action-card"><b>03</b><strong>建信息源 Skill</strong><span>优先把风向标和众包采集沉淀成自动化 Skill。</span></div>
+          <div class="action-card"><b>04</b><strong>做高客单承接</strong><span>案例资产、销售问题库、信任背书和后端分层先建立标准。</span></div>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer class="footer-region" aria-label="底部品牌区">
+    <div class="footer-inner">
+      <h2>The next chapter of your system is yours.</h2>
+      <div class="footer-col">
+        <b>Content</b>
+        <span>任务规划</span>
+        <span>20% 深挖</span>
+        <span>AI 生产</span>
+      </div>
+      <div class="footer-col">
+        <b>Workflow</b>
+        <span>采集</span>
+        <span>提炼</span>
+        <span>沉淀</span>
+      </div>
+      <div class="footer-col">
+        <b>Source</b>
+        <span>2026-06-08.md</span>
+        <span>2026-06-08_claude.md</span>
+        <span>DESIGN.md · mistral.ai</span>
+      </div>
+    </div>
+    <div class="sunset-stripe" aria-hidden="true"></div>
+  </footer>
+</div>
+</body>
+</html>
