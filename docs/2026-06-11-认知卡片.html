@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light">
+  <title>认知卡片 · 2026-06-12</title>
+  <style>
+    :root {
+      --ink-950: #111318;
+      --ink-900: #191d25;
+      --ink-850: #242936;
+      --ink-800: #303746;
+      --ink-700: #454f62;
+      --ink-600: #5e687a;
+      --ink-500: #778192;
+      --ink-400: #99a1af;
+      --ink-300: #b8bec8;
+      --ink-200: #d6d9df;
+      --ink-100: #eceef2;
+      --paper-000: #fffefd;
+      --paper-050: #fbfaf7;
+      --paper-100: #f5f2ec;
+      --paper-150: #eee9df;
+      --paper-200: #e5dfd3;
+      --blue-900: #10365c;
+      --blue-700: #195b90;
+      --blue-500: #2479b8;
+      --blue-100: #e5f2fb;
+      --green-900: #194a3a;
+      --green-700: #227158;
+      --green-500: #31a179;
+      --green-100: #e4f5ee;
+      --amber-900: #684511;
+      --amber-700: #9a6718;
+      --amber-500: #d19122;
+      --amber-100: #fbf0d9;
+      --red-900: #662019;
+      --red-700: #9a3329;
+      --red-500: #cc4b3e;
+      --red-100: #fbe8e5;
+      --violet-900: #45315f;
+      --violet-700: #654894;
+      --violet-500: #8862c4;
+      --violet-100: #f0e9fb;
+      --cyan-900: #164756;
+      --cyan-700: #1f6d82;
+      --cyan-500: #2d9bb6;
+      --cyan-100: #e3f5f8;
+      --line-strong: #171b22;
+      --line-mid: #c9c2b5;
+      --line-soft: #e7e1d6;
+      --shadow-paper: 0 24px 70px rgba(17, 19, 24, 0.14);
+      --shadow-quiet: 0 10px 28px rgba(17, 19, 24, 0.08);
+      --fs-hero: 36px;
+      --fs-title: 28px;
+      --fs-subtitle: 22px;
+      --fs-section: 19px;
+      --fs-card: 17px;
+      --fs-body: 15px;
+      --fs-small: 13px;
+      --fs-micro: 11px;
+      --lh-tight: 1.12;
+      --lh-title: 1.26;
+      --lh-body: 1.72;
+      --lh-list: 1.62;
+      --fw-black: 900;
+      --fw-bold: 800;
+      --fw-strong: 700;
+      --fw-medium: 600;
+      --fw-regular: 500;
+      --fw-light: 400;
+      --sp-1: 4px;
+      --sp-2: 6px;
+      --sp-3: 8px;
+      --sp-4: 10px;
+      --sp-5: 12px;
+      --sp-6: 16px;
+      --sp-7: 20px;
+      --sp-8: 24px;
+      --sp-9: 28px;
+      --sp-10: 32px;
+      --sp-11: 40px;
+      --sp-12: 48px;
+      --safe-top: 40px;
+      --safe-bottom: 40px;
+      --mark-wide: 8px;
+      --mark-thin: 2px;
+      --card-max: 980px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      background: var(--paper-100);
+      color: var(--ink-950);
+      font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", Arial, sans-serif;
+      text-size-adjust: 100%;
+    }
+
+    body {
+      margin: 0;
+      background:
+        linear-gradient(90deg, rgba(25, 91, 144, 0.08) 0 1px, transparent 1px 100%),
+        linear-gradient(0deg, rgba(25, 91, 144, 0.06) 0 1px, transparent 1px 100%),
+        var(--paper-100);
+      background-size: 42px 42px;
+    }
+
+    .card-shell {
+      width: 100%;
+      min-height: 100vh;
+      padding: var(--sp-11) var(--sp-7);
+    }
+
+    .cognitive-card {
+      width: min(100%, var(--card-max));
+      margin: 0 auto;
+      background: var(--paper-000);
+      border: 3px solid var(--line-strong);
+      box-shadow: var(--shadow-paper);
+    }
+
+    .card-header {
+      padding: var(--safe-top) var(--sp-11) var(--sp-10);
+      background:
+        linear-gradient(90deg, var(--blue-900) 0, var(--blue-900) 18px, transparent 18px),
+        linear-gradient(180deg, var(--paper-000) 0, var(--paper-050) 100%);
+      border-bottom: 2px solid var(--line-strong);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: var(--sp-2) var(--sp-4);
+      background: var(--ink-950);
+      color: var(--paper-000);
+      font-size: var(--fs-micro);
+      font-weight: var(--fw-bold);
+      letter-spacing: 0;
+    }
+
+    .date-line {
+      margin-top: var(--sp-5);
+      color: var(--ink-600);
+      font-size: var(--fs-small);
+      font-weight: var(--fw-medium);
+    }
+
+    h1 {
+      margin: var(--sp-7) 0 0;
+      max-width: 760px;
+      color: var(--ink-950);
+      font-size: var(--fs-hero);
+      line-height: var(--lh-tight);
+      font-weight: var(--fw-black);
+      letter-spacing: 0;
+    }
+
+    .lead {
+      margin: var(--sp-7) 0 0;
+      max-width: 760px;
+      color: var(--ink-700);
+      font-size: var(--fs-card);
+      line-height: var(--lh-body);
+      font-weight: var(--fw-medium);
+    }
+
+    .signal-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--sp-5);
+      margin-top: var(--sp-8);
+    }
+
+    .signal {
+      border: 1px solid var(--line-mid);
+      background: var(--paper-050);
+      padding: var(--sp-5);
+    }
+
+    .signal b {
+      display: block;
+      color: var(--blue-900);
+      font-size: var(--fs-small);
+      line-height: var(--lh-title);
+      font-weight: var(--fw-bold);
+    }
+
+    .signal span {
+      display: block;
+      margin-top: var(--sp-2);
+      color: var(--ink-600);
+      font-size: var(--fs-micro);
+      line-height: 1.5;
+      font-weight: var(--fw-medium);
+    }
+
+    .section {
+      padding: var(--sp-10) var(--sp-11);
+      border-bottom: 1px solid var(--line-soft);
+    }
+
+    .section:last-child {
+      border-bottom: 0;
+      padding-bottom: var(--safe-bottom);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: var(--sp-5);
+      align-items: start;
+      margin-bottom: var(--sp-7);
+    }
+
+    .section-num {
+      display: grid;
+      place-items: center;
+      height: 48px;
+      border: 2px solid var(--line-strong);
+      color: var(--paper-000);
+      background: var(--ink-950);
+      font-size: var(--fs-card);
+      font-weight: var(--fw-black);
+    }
+
+    .section-title {
+      margin: 0;
+      color: var(--ink-950);
+      font-size: var(--fs-title);
+      line-height: var(--lh-title);
+      font-weight: var(--fw-black);
+      letter-spacing: 0;
+    }
+
+    .section-kicker {
+      margin-top: var(--sp-2);
+      color: var(--ink-500);
+      font-size: var(--fs-small);
+      line-height: 1.5;
+      font-weight: var(--fw-medium);
+    }
+
+    .core-box {
+      display: grid;
+      grid-template-columns: 13px 1fr;
+      border: 2px solid var(--blue-900);
+      background: var(--blue-100);
+      box-shadow: var(--shadow-quiet);
+    }
+
+    .core-stripe {
+      background: var(--blue-900);
+    }
+
+    .core-content {
+      padding: var(--sp-8);
+    }
+
+    .core-label {
+      color: var(--blue-900);
+      font-size: var(--fs-small);
+      font-weight: var(--fw-black);
+    }
+
+    .core-sentence {
+      margin: var(--sp-4) 0 0;
+      color: var(--ink-950);
+      font-size: var(--fs-subtitle);
+      line-height: var(--lh-title);
+      font-weight: var(--fw-black);
+    }
+
+    .core-note {
+      margin: var(--sp-5) 0 0;
+      color: var(--ink-700);
+      font-size: var(--fs-body);
+      line-height: var(--lh-body);
+      font-weight: var(--fw-medium);
+    }
+
+    .logic-stack {
+      display: grid;
+      gap: var(--sp-5);
+    }
+
+    .logic-item {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: var(--sp-5);
+      padding: var(--sp-6);
+      background: var(--paper-050);
+      border: 1px solid var(--line-mid);
+    }
+
+    .logic-code {
+      display: grid;
+      place-items: center;
+      height: 42px;
+      background: var(--green-900);
+      color: var(--paper-000);
+      font-size: var(--fs-small);
+      font-weight: var(--fw-black);
+    }
+
+    .logic-item h3 {
+      margin: 0;
+      color: var(--ink-900);
+      font-size: var(--fs-section);
+      line-height: var(--lh-title);
+      font-weight: var(--fw-bold);
+    }
+
+    .logic-item p {
+      margin: var(--sp-3) 0 0;
+      color: var(--ink-700);
+      font-size: var(--fs-body);
+      line-height: var(--lh-body);
+      font-weight: var(--fw-light);
+    }
+
+    .pathway {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: var(--sp-3);
+      margin-top: var(--sp-7);
+    }
+
+    .path-step {
+      min-height: 100px;
+      padding: var(--sp-5);
+      border: 1px solid var(--green-700);
+      background: var(--green-100);
+    }
+
+    .path-step strong {
+      display: block;
+      color: var(--green-900);
+      font-size: var(--fs-small);
+      line-height: var(--lh-title);
+      font-weight: var(--fw-black);
+    }
+
+    .path-step span {
+      display: block;
+      margin-top: var(--sp-3);
+      color: var(--ink-700);
+      font-size: var(--fs-micro);
+      line-height: 1.55;
+      font-weight: var(--fw-medium);
+    }
+
+    .quote-band {
+      padding: var(--sp-8);
+      background:
+        linear-gradient(90deg, var(--amber-500) 0 10px, transparent 10px),
+        var(--amber-100);
+      border: 2px solid var(--amber-700);
+    }
+
+    .quote-main {
+      margin: 0;
+      color: var(--amber-900);
+      font-size: var(--fs-subtitle);
+      line-height: var(--lh-title);
+      font-weight: var(--fw-black);
+    }
+
+    .quote-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--sp-5);
+      margin-top: var(--sp-6);
+    }
+
+    .quote-chip {
+      padding: var(--sp-5);
+      background: var(--paper-000);
+      border: 1px solid rgba(104, 69, 17, 0.32);
+      color: var(--ink-800);
+      font-size: var(--fs-body);
+      line-height: var(--lh-body);
+      font-weight: var(--fw-medium);
+    }
+
+    .map-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--sp-5);
+    }
+
+    .map-card {
+      padding: var(--sp-6);
+      border-left: var(--mark-wide) solid var(--violet-700);
+      background: var(--violet-100);
+    }
+
+    .map-card h3 {
+      margin: 0;
+      color: var(--violet-900);
+      font-size: var(--fs-section);
+      line-height: var(--lh-title);
+      font-weight: var(--fw-black);
+    }
+
+    .map-card p {
+      margin: var(--sp-3) 0 0;
+      color: var(--ink-700);
+      font-size: var(--fs-body);
+      line-height: var(--lh-body);
+      font-weight: var(--fw-light);
+    }
+
+    .dual-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-6);
+    }
+
+    .action-box,
+    .risk-box {
+      padding: var(--sp-6);
+      border: 2px solid var(--line-strong);
+      background: var(--paper-050);
+    }
+
+    .action-box {
+      border-top: 10px solid var(--green-500);
+    }
+
+    .risk-box {
+      border-top: 10px solid var(--red-500);
+    }
+
+    .action-box h3,
+    .risk-box h3 {
+      margin: 0 0 var(--sp-5);
+      font-size: var(--fs-section);
+      line-height: var(--lh-title);
+      font-weight: var(--fw-black);
+    }
+
+    .action-box h3 {
+      color: var(--green-900);
+    }
+
+    .risk-box h3 {
+      color: var(--red-900);
+    }
+
+    .plain-list {
+      display: grid;
+      gap: var(--sp-4);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .plain-list li {
+      position: relative;
+      padding-left: var(--sp-7);
+      color: var(--ink-700);
+      font-size: var(--fs-body);
+      line-height: var(--lh-list);
+      font-weight: var(--fw-light);
+    }
+
+    .plain-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.72em;
+      width: 10px;
+      height: 10px;
+      background: var(--ink-950);
+    }
+
+    .platform-table {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 2px solid var(--cyan-900);
+    }
+
+    .platform-cell {
+      padding: var(--sp-6);
+      background: var(--cyan-100);
+      border-right: 1px solid var(--cyan-700);
+    }
+
+    .platform-cell:last-child {
+      border-right: 0;
+    }
+
+    .platform-cell h3 {
+      margin: 0;
+      color: var(--cyan-900);
+      font-size: var(--fs-section);
+      line-height: var(--lh-title);
+      font-weight: var(--fw-black);
+    }
+
+    .platform-cell p {
+      margin: var(--sp-3) 0 0;
+      color: var(--ink-700);
+      font-size: var(--fs-body);
+      line-height: var(--lh-body);
+      font-weight: var(--fw-light);
+    }
+
+    .footer {
+      padding: var(--sp-8) var(--sp-11) var(--safe-bottom);
+      background: var(--ink-950);
+      color: var(--paper-000);
+    }
+
+    .footer-title {
+      margin: 0;
+      font-size: var(--fs-section);
+      line-height: var(--lh-title);
+      font-weight: var(--fw-black);
+    }
+
+    .footer-text {
+      margin: var(--sp-4) 0 0;
+      color: var(--ink-200);
+      font-size: var(--fs-small);
+      line-height: var(--lh-body);
+      font-weight: var(--fw-medium);
+    }
+
+    @media (max-width: 520px) {
+      :root {
+        --fs-hero: 28px;
+        --fs-title: 23px;
+        --fs-subtitle: 19px;
+        --fs-section: 17px;
+        --fs-card: 16px;
+        --safe-top: 40px;
+        --safe-bottom: 40px;
+      }
+      .card-shell {
+        padding: var(--sp-5);
+      }
+      .card-header,
+      .section,
+      .footer {
+        padding-left: var(--sp-6);
+        padding-right: var(--sp-6);
+      }
+      .signal-row,
+      .pathway,
+      .quote-grid,
+      .dual-grid,
+      .platform-table {
+        grid-template-columns: 1fr;
+      }
+      .platform-cell {
+        border-right: 0;
+        border-bottom: 1px solid var(--cyan-700);
+      }
+      .platform-cell:last-child {
+        border-bottom: 0;
+      }
+    }
+
+    @media (min-width: 521px) and (max-width: 760px) {
+      .signal-row,
+      .quote-grid,
+      .dual-grid,
+      .platform-table {
+        grid-template-columns: 1fr;
+      }
+      .pathway {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .platform-cell {
+        border-right: 0;
+        border-bottom: 1px solid var(--cyan-700);
+      }
+      .platform-cell:last-child {
+        border-bottom: 0;
+      }
+    }
+
+    @media (min-width: 761px) and (max-width: 1080px) {
+      .cognitive-card {
+        width: min(94vw, var(--card-max));
+      }
+      .pathway {
+        grid-template-columns: repeat(5, 1fr);
+      }
+    }
+
+    @media (min-width: 1081px) {
+      .card-shell {
+        padding-top: var(--sp-12);
+        padding-bottom: var(--sp-12);
+      }
+      .cognitive-card {
+        width: var(--card-max);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="card-shell">
+    <article class="cognitive-card">
+      <header class="card-header">
+        <span class="eyebrow">今日复盘 · 认知卡片</span>
+        <div class="date-line">2026-06-12 · AI执行力 / 复利生态位 / 内容分发</div>
+        <h1>先做后学：用 AI 降低阻力，用复盘放大迭代</h1>
+        <p class="lead">今天的核心不是多学了几个方法，而是把执行力拆成一套系统：模糊任务先文件化，再交给 AI 拆路径，马上做出第一版，用复盘把反馈变成下一轮动作。</p>
+        <div class="signal-row">
+          <div class="signal"><b>远看核心</b><span>AI 不是替代器，是任务启动器。</span></div>
+          <div class="signal"><b>中看框架</b><span>先做后学、生态位选择、平台调性。</span></div>
+          <div class="signal"><b>近看动作</b><span>小红书发品、SEO 部署、日省结算。</span></div>
+        </div>
+      </header>
+
+      <section class="section">
+        <div class="section-head">
+          <div class="section-num">01</div>
+          <div>
+            <h2 class="section-title">核心命题</h2>
+            <div class="section-kicker">最高层级信息：今天必须被记住的一句话</div>
+          </div>
+        </div>
+        <div class="core-box">
+          <div class="core-stripe"></div>
+          <div class="core-content">
+            <div class="core-label">认知主线</div>
+            <p class="core-sentence">执行力不是硬扛出来的，而是把未知任务拆到大脑不再排斥。</p>
+            <p class="core-note">不想做，常常不是懒，而是路径不清、反馈不明、失败概率太高。正确动作是让 AI 先提问、拆解、写第一版，再由人执行、判断和复盘。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div class="section-num">02</div>
+          <div>
+            <h2 class="section-title">执行系统升级</h2>
+            <div class="section-kicker">从“我应该自律”改成“我先让系统降低阻力”</div>
+          </div>
+        </div>
+        <div class="logic-stack">
+          <div class="logic-item">
+            <div class="logic-code">A1</div>
+            <div><h3>万事先问 AI</h3><p>所有增加认知负荷、有压力、没想清楚的任务，先让 AI 问问题、补上下文、给第一版方案。</p></div>
+          </div>
+          <div class="logic-item">
+            <div class="logic-code">A2</div>
+            <div><h3>任务原子化</h3><p>把任务拆到 15 分钟内能启动。启动之后靠正反馈滚动，而不是在启动前追求完美。</p></div>
+          </div>
+          <div class="logic-item">
+            <div class="logic-code">A3</div>
+            <div><h3>先做后学</h3><p>AI 时代先做的成本已经足够低。先发、先写、先部署，遇到具体问题再学习，提问会更锋利。</p></div>
+          </div>
+        </div>
+        <div class="pathway">
+          <div class="path-step"><strong>想法</strong><span>捕捉模糊念头，不在脑内打转。</span></div>
+          <div class="path-step"><strong>提问</strong><span>让 AI 追问直到信息足够。</span></div>
+          <div class="path-step"><strong>拆解</strong><span>生成路径、清单、第一版。</span></div>
+          <div class="path-step"><strong>执行</strong><span>人做判断，跑出结果物。</span></div>
+          <div class="path-step"><strong>复盘</strong><span>把反馈变成下一轮迭代。</span></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div class="section-num">03</div>
+          <div>
+            <h2 class="section-title">关键金句</h2>
+            <div class="section-kicker">记忆锚点：能直接进入弹药库的表达</div>
+          </div>
+        </div>
+        <div class="quote-band">
+          <p class="quote-main">“快速成长的核心是快速迭代，快速迭代的核心是快速复盘，快速复盘的核心是快速行动。”</p>
+          <div class="quote-grid">
+            <div class="quote-chip">想不明白？问问 AI。搞不定？问问 AI。</div>
+            <div class="quote-chip">做选择前写一句：如果不做这件事，空出来的时间能换来什么。</div>
+            <div class="quote-chip">粉丝未必记住你的文章，但会记住你的成长。</div>
+            <div class="quote-chip">平台为什么推你，不推别人？</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div class="section-num">04</div>
+          <div>
+            <h2 class="section-title">业务判断</h2>
+            <div class="section-kicker">从单次赚钱转向可积累生态位</div>
+          </div>
+        </div>
+        <div class="map-grid">
+          <div class="map-card"><h3>复利生态位</h3><p>小鹅路径真正值得研究的是培训、私域、流量、SOP、带人赚钱这些可迁移能力，而不是某个单独项目。</p></div>
+          <div class="map-card"><h3>SEO + GEO 获客</h3><p>网站要成为技术服务入口：SEO 负责搜索流，GEO 负责让 AI 回答用户问题时带出你的内容和联系方式。</p></div>
+          <div class="map-card"><h3>小红书虚拟</h3><p>不要继续卡在选品研究。先上工具类，先发一个品，边发边找爆款对标，先有结果物再谈优化。</p></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div class="section-num">05</div>
+          <div>
+            <h2 class="section-title">平台调性</h2>
+            <div class="section-kicker">同一内容不能无脑矩阵分发</div>
+          </div>
+        </div>
+        <div class="platform-table">
+          <div class="platform-cell"><h3>公众号</h3><p>适合高信息密度长文。复杂 HTML 样式会被官方排版系统限制，不能硬搬网页卡片。</p></div>
+          <div class="platform-cell"><h3>小红书</h3><p>更吃生活感、人味儿、场景焦虑和即时需求。轻内容也要贴近用户正在经历的状态。</p></div>
+          <div class="platform-cell"><h3>抖音</h3><p>适合视觉卡片、书籍知识点和快速消费内容。核心仍是爆款和平台愿意推的理由。</p></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div class="section-num">06</div>
+          <div>
+            <h2 class="section-title">行动与风险</h2>
+            <div class="section-kicker">把复盘落到明天的硬结果</div>
+          </div>
+        </div>
+        <div class="dual-grid">
+          <div class="action-box">
+            <h3>明天必须推进</h3>
+            <ul class="plain-list">
+              <li>发一条小红书虚拟笔记，先随便找一个品跑通发布。</li>
+              <li>推进 SEO 网站部署，把内容、域名、Cloudflare Pages 串起来。</li>
+              <li>完成日省、结算和 GAP，不再把结账当作一天收尾。</li>
+              <li>早上读一篇高质量文章，用 AI 浓缩后吸收。</li>
+            </ul>
+          </div>
+          <div class="risk-box">
+            <h3>需要警惕</h3>
+            <ul class="plain-list">
+              <li>“不知道发什么”已经在变成小红书虚拟的借口。</li>
+              <li>研究大佬路径会带来压力，但不能停在情绪层。</li>
+              <li>认知卡片适合自用学习，公开分发要避开洗稿风险。</li>
+              <li>健身任务未完成，需要判断是真的忘还是回避。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <p class="footer-title">今日结论</p>
+        <p class="footer-text">不要再用“我还没想清楚”保护拖延。想不清楚，交给 AI 拆；拆完，立刻做第一版；做完，用日省把反馈固化。结果物会比情绪更诚实。</p>
+      </footer>
+    </article>
+  </main>
+</body>
+</html>
