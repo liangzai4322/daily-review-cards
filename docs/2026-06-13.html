@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>认知卡片 · 2026-06-13</title>
+  <style>
+    :root {
+      --miro-black: #1c1c1e;
+      --miro-ink-deep: #050038;
+      --miro-charcoal: #2c2c34;
+      --miro-slate: #555a6a;
+      --miro-steel: #6b6f7e;
+      --miro-muted: #8e91a0;
+      --miro-yellow: #ffd02f;
+      --miro-yellow-deep: #fcb900;
+      --miro-yellow-light: #fff4c4;
+      --miro-blue: #4262ff;
+      --miro-blue-soft: #dce3ff;
+      --miro-coral: #ffc6c6;
+      --miro-rose: #fde0f0;
+      --miro-teal: #c3faf5;
+      --miro-orange: #ffe6cd;
+      --miro-mint: #d8f7df;
+      --miro-lavender: #f5f3ff;
+      --canvas: #ffffff;
+      --surface: #f7f8fa;
+      --surface-soft: #fafbfc;
+      --hairline: #e0e2e8;
+      --hairline-soft: #eef0f3;
+      --hairline-strong: #c7cad5;
+      --success: #00b473;
+      --danger-soft: #fbd4d4;
+      --danger-text: #600000;
+      --font-main: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", Arial, sans-serif;
+      --fs-11: 11px;
+      --fs-12: 12px;
+      --fs-13: 13px;
+      --fs-14: 14px;
+      --fs-16: 16px;
+      --fs-18: 18px;
+      --fs-22: 22px;
+      --fs-28: 28px;
+      --fs-36: 36px;
+      --fs-48: 48px;
+      --fs-60: 60px;
+      --lh-tight: 1.1;
+      --lh-title: 1.18;
+      --lh-body: 1.58;
+      --w-regular: 400;
+      --w-medium: 500;
+      --w-bold: 600;
+      --space-4: 4px;
+      --space-8: 8px;
+      --space-12: 12px;
+      --space-16: 16px;
+      --space-20: 20px;
+      --space-24: 24px;
+      --space-32: 32px;
+      --space-40: 40px;
+      --space-48: 48px;
+      --space-64: 64px;
+      --max-card: 1120px;
+      --note-radius: 28px;
+      --small-radius: 8px;
+      --shadow-board: rgba(5, 0, 56, .08) 0 12px 32px -4px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      background: var(--surface);
+      color: var(--miro-ink-deep);
+      font-family: var(--font-main);
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at 12% 10%, rgba(255, 208, 47, .18), transparent 28%),
+        radial-gradient(circle at 88% 16%, rgba(195, 250, 245, .45), transparent 32%),
+        linear-gradient(90deg, rgba(224, 226, 232, .45) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(224, 226, 232, .45) 1px, transparent 1px),
+        var(--surface-soft);
+      background-size: auto, auto, 32px 32px, 32px 32px;
+    }
+
+    .card-shell {
+      width: min(100%, var(--max-card));
+      margin: 0 auto;
+      padding: var(--space-40) var(--space-20);
+    }
+
+    .cognitive-card {
+      border-radius: 0;
+      background: var(--canvas);
+      border: 1px solid var(--hairline);
+      box-shadow: var(--shadow-board);
+      overflow: hidden;
+    }
+
+    .top-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--space-16);
+      min-height: 64px;
+      padding: var(--space-16) var(--space-32);
+      border-bottom: 1px solid var(--hairline-soft);
+      background: var(--canvas);
+    }
+
+    .brand-mark {
+      display: inline-grid;
+      place-items: center;
+      width: 44px;
+      height: 44px;
+      background: var(--miro-yellow);
+      color: var(--miro-black);
+      border-radius: var(--small-radius);
+      font-size: var(--fs-22);
+      font-weight: var(--w-bold);
+    }
+
+    .date-pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 40px;
+      padding: 0 var(--space-20);
+      border-radius: 999px;
+      background: var(--miro-black);
+      color: var(--canvas);
+      font-size: var(--fs-14);
+      font-weight: var(--w-medium);
+    }
+
+    .hero {
+      padding: var(--space-64) var(--space-40) var(--space-48);
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(260px, .8fr);
+      gap: var(--space-40);
+      align-items: start;
+    }
+
+    .hero-copy {
+      display: grid;
+      gap: var(--space-20);
+    }
+
+    .eyebrow {
+      width: fit-content;
+      padding: var(--space-8) var(--space-12);
+      border-radius: 999px;
+      background: var(--miro-yellow-light);
+      color: #746019;
+      font-size: var(--fs-13);
+      font-weight: var(--w-bold);
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--miro-ink-deep);
+      font-size: var(--fs-60);
+      line-height: var(--lh-tight);
+      font-weight: var(--w-medium);
+      letter-spacing: 0;
+    }
+
+    .hero-summary {
+      margin: 0;
+      max-width: 680px;
+      color: var(--miro-charcoal);
+      font-size: var(--fs-18);
+      line-height: var(--lh-body);
+      font-weight: var(--w-regular);
+    }
+
+    .hero-board {
+      display: grid;
+      gap: var(--space-16);
+      padding: var(--space-24);
+      border: 1px solid var(--hairline-soft);
+      border-radius: 16px;
+      background: var(--canvas);
+      box-shadow: var(--shadow-board);
+    }
+
+    .board-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-12);
+      color: var(--miro-slate);
+      font-size: var(--fs-13);
+      font-weight: var(--w-medium);
+    }
+
+    .mini-dot-row {
+      display: flex;
+      gap: var(--space-4);
+    }
+
+    .mini-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: var(--miro-yellow);
+    }
+
+    .mini-dot.teal {
+      background: var(--miro-teal);
+    }
+
+    .mini-dot.coral {
+      background: var(--miro-coral);
+    }
+
+    .board-note {
+      padding: var(--space-16);
+      border-radius: 20px;
+      color: var(--miro-black);
+      font-size: var(--fs-16);
+      line-height: var(--lh-body);
+      font-weight: var(--w-medium);
+    }
+
+    .board-note.yellow {
+      background: var(--miro-yellow);
+    }
+
+    .board-note.teal {
+      background: var(--miro-teal);
+    }
+
+    .board-note.rose {
+      background: var(--miro-rose);
+    }
+
+    .insight-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-20);
+      padding: 0 var(--space-40) var(--space-48);
+    }
+
+    .sticky {
+      min-height: 220px;
+      padding: var(--space-24);
+      border-radius: var(--note-radius);
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      gap: var(--space-16);
+      color: var(--miro-black);
+      border: 1px solid rgba(5, 0, 56, .06);
+    }
+
+    .sticky.yellow {
+      background: var(--miro-yellow);
+    }
+
+    .sticky.coral {
+      background: var(--miro-coral);
+    }
+
+    .sticky.teal {
+      background: var(--miro-teal);
+    }
+
+    .sticky.orange {
+      background: var(--miro-orange);
+    }
+
+    .sticky.rose {
+      background: var(--miro-rose);
+    }
+
+    .sticky.blue {
+      background: var(--miro-blue-soft);
+    }
+
+    .sticky-label {
+      font-size: var(--fs-12);
+      font-weight: var(--w-bold);
+      color: var(--miro-slate);
+    }
+
+    .sticky h2,
+    .sticky h3 {
+      margin: 0;
+      font-size: var(--fs-28);
+      line-height: var(--lh-title);
+      font-weight: var(--w-medium);
+      letter-spacing: 0;
+    }
+
+    .sticky p {
+      margin: 0;
+      color: var(--miro-charcoal);
+      font-size: var(--fs-16);
+      line-height: var(--lh-body);
+    }
+
+    .sticky-foot {
+      font-size: var(--fs-13);
+      line-height: 1.45;
+      color: var(--miro-slate);
+      font-weight: var(--w-medium);
+    }
+
+    .dark-band {
+      margin: 0 var(--space-40) var(--space-48);
+      padding: var(--space-40);
+      border-radius: 0;
+      background: var(--miro-black);
+      color: var(--canvas);
+      display: grid;
+      gap: var(--space-24);
+    }
+
+    .dark-band h2 {
+      margin: 0;
+      max-width: 720px;
+      font-size: var(--fs-36);
+      line-height: var(--lh-title);
+      font-weight: var(--w-medium);
+      letter-spacing: 0;
+    }
+
+    .quote-list {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-16);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .quote-list li {
+      padding: var(--space-16);
+      border-radius: 16px;
+      background: rgba(255, 255, 255, .08);
+      color: var(--canvas);
+      font-size: var(--fs-16);
+      line-height: var(--lh-body);
+      font-weight: var(--w-medium);
+    }
+
+    .section-block {
+      padding: 0 var(--space-40) var(--space-48);
+      display: grid;
+      gap: var(--space-20);
+    }
+
+    .section-heading {
+      display: grid;
+      gap: var(--space-8);
+    }
+
+    .section-kicker {
+      color: var(--miro-blue);
+      font-size: var(--fs-13);
+      font-weight: var(--w-bold);
+    }
+
+    .section-heading h2 {
+      margin: 0;
+      color: var(--miro-ink-deep);
+      font-size: var(--fs-36);
+      line-height: var(--lh-title);
+      font-weight: var(--w-medium);
+      letter-spacing: 0;
+    }
+
+    .method-board {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-16);
+    }
+
+    .method-card {
+      padding: var(--space-20);
+      border-radius: 16px;
+      background: var(--canvas);
+      border: 1px solid var(--hairline);
+      display: grid;
+      gap: var(--space-8);
+    }
+
+    .method-card b {
+      color: var(--miro-ink-deep);
+      font-size: var(--fs-18);
+      line-height: var(--lh-title);
+      font-weight: var(--w-medium);
+    }
+
+    .method-card span {
+      color: var(--miro-slate);
+      font-size: var(--fs-14);
+      line-height: var(--lh-body);
+    }
+
+    .action-risk {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-20);
+    }
+
+    .panel {
+      border-radius: 20px;
+      padding: var(--space-24);
+      display: grid;
+      gap: var(--space-16);
+      border: 1px solid var(--hairline);
+    }
+
+    .panel.action {
+      background: var(--miro-lavender);
+    }
+
+    .panel.risk {
+      background: var(--danger-soft);
+      color: var(--danger-text);
+    }
+
+    .panel h3 {
+      margin: 0;
+      font-size: var(--fs-22);
+      line-height: var(--lh-title);
+      font-weight: var(--w-medium);
+    }
+
+    .task-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: var(--space-12);
+    }
+
+    .task-list li {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: var(--space-12);
+      align-items: start;
+      font-size: var(--fs-14);
+      line-height: var(--lh-body);
+    }
+
+    .box {
+      width: 22px;
+      height: 22px;
+      border: 2px solid currentColor;
+      border-radius: 6px;
+      margin-top: 2px;
+    }
+
+    .footer {
+      padding: var(--space-32) var(--space-40) var(--space-40);
+      background: var(--miro-black);
+      color: rgba(255, 255, 255, .72);
+      display: grid;
+      gap: var(--space-8);
+      font-size: var(--fs-13);
+      line-height: var(--lh-body);
+    }
+
+    .footer strong {
+      color: var(--canvas);
+      font-weight: var(--w-medium);
+    }
+
+    @media (max-width: 980px) {
+      .hero {
+        grid-template-columns: 1fr;
+      }
+
+      .insight-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .card-shell {
+        padding: var(--space-20) var(--space-12);
+      }
+
+      .top-strip,
+      .hero,
+      .section-block,
+      .footer {
+        padding-left: var(--space-20);
+        padding-right: var(--space-20);
+      }
+
+      .insight-grid {
+        padding-left: var(--space-20);
+        padding-right: var(--space-20);
+      }
+
+      .dark-band {
+        margin-left: var(--space-20);
+        margin-right: var(--space-20);
+        padding: var(--space-24);
+      }
+
+      h1 {
+        font-size: var(--fs-48);
+      }
+
+      .method-board,
+      .quote-list,
+      .action-risk {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .top-strip {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      h1 {
+        font-size: var(--fs-36);
+      }
+
+      .hero {
+        padding-top: var(--space-40);
+      }
+
+      .sticky h2,
+      .sticky h3 {
+        font-size: var(--fs-22);
+      }
+    }
+
+    @media (min-width: 1280px) {
+      .card-shell {
+        padding-top: var(--space-64);
+        padding-bottom: var(--space-64);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="card-shell">
+    <article class="cognitive-card">
+      <header class="top-strip">
+        <div class="brand-mark">M</div>
+        <div class="date-pill">日省认知卡片 · 2026-06-13</div>
+      </header>
+
+      <section class="hero">
+        <div class="hero-copy">
+          <div class="eyebrow">Miro 白板风格 · 随机抽中</div>
+          <h1>IP 不是去做 IP，是持续帮到别人。</h1>
+          <p class="hero-summary">这一天的主线不是单纯爬山、打球、吃饭和刷视频，而是把运动体验、Token 额度、AI 使用、Web 产品、利他分享和个人第二曲线串成一张白板。真正的结论很硬，影响力不是包装出来的，是你公开解决问题、持续给别人反馈之后自然长出来的。</p>
+        </div>
+        <aside class="hero-board">
+          <div class="board-title">
+            <span>今日白板</span>
+            <span class="mini-dot-row">
+              <span class="mini-dot"></span>
+              <span class="mini-dot teal"></span>
+              <span class="mini-dot coral"></span>
+            </span>
+          </div>
+          <div class="board-note yellow">运动量达标，爬山 3 到 5 小时，晚上篮球约 1 小时。</div>
+          <div class="board-note teal">复盘把早中晚串起来，日省不是记录，是叙事连接器。</div>
+          <div class="board-note rose">Token 不能再用到见底，额度也是生产资料。</div>
+        </aside>
+      </section>
+
+      <section class="insight-grid">
+        <div class="sticky yellow">
+          <div class="sticky-label">核心认知 01</div>
+          <h2>复盘要串联，不是堆记录。</h2>
+          <p>早中晚的复盘本来是断开的，日省真正有价值的地方，是把一天串成完整叙事，看到早上的原因如何影响全天状态。</p>
+          <div class="sticky-foot">可迁移到周复盘、月复盘、年复盘。</div>
+        </div>
+        <div class="sticky teal">
+          <div class="sticky-label">核心认知 02</div>
+          <h2>AI 要像团购一样用。</h2>
+          <p>做任何事都先问，哪个环节能让 AI 辅助。几百块的 AI 助手，应该被用到生活、复盘、项目和业务里。</p>
+          <div class="sticky-foot">重点不是省钱，是形成默认调用意识。</div>
+        </div>
+        <div class="sticky coral">
+          <div class="sticky-label">核心认知 03</div>
+          <h2>利他是 IP 的底层动作。</h2>
+          <p>不要去做 IP，要去做一个帮助别人的人。公开分享挫折、经历和解决方案，信任才会自然积累。</p>
+          <div class="sticky-foot">IP 是结果，不是过程。</div>
+        </div>
+      </section>
+
+      <section class="dark-band">
+        <h2>今天值得留下的原话</h2>
+        <ul class="quote-list">
+          <li>你首先是一个个体，是一个独立的人，其次你才是别人的朋友。</li>
+          <li>把这个便宜的助手榨干到极致。</li>
+          <li>要像用团购一样用 AI。</li>
+          <li>IP 是一个结果，它不是一个过程。</li>
+          <li>错误、失败、挫折都是最快的反馈。</li>
+          <li>体验至上，体验是最重要的。</li>
+        </ul>
+      </section>
+
+      <section class="section-block">
+        <div class="section-heading">
+          <div class="section-kicker">METHOD BOARD</div>
+          <h2>今天沉淀下来的方法论</h2>
+        </div>
+        <div class="method-board">
+          <div class="method-card">
+            <b>Token 错峰管理法</b>
+            <span>白天保留 30% 到 40% 余量，睡觉时跑后台任务，每 5 小时用定时消息触发重置，避免关键任务时无额度可用。</span>
+          </div>
+          <div class="method-card">
+            <b>克隆 + 优化 1%</b>
+            <span>不要迷信从零原创。找到已有小爆款，复刻基础形态，做 1% 功能优化，用投流和 SEO 验证需求。</span>
+          </div>
+          <div class="method-card">
+            <b>复盘串联法</b>
+            <span>日复盘串一日，周复盘串一周，月复盘串一月。复盘不是存档，是把因果链重新拉直。</span>
+          </div>
+          <div class="method-card">
+            <b>感官极值法</b>
+            <span>身体被压到一定程度后再满足，体验会被放大。爬山后吃桃子的甜，就是身体渴望被激发后的回报。</span>
+          </div>
+          <div class="method-card">
+            <b>课题分离</b>
+            <span>朋友抱怨和不耐烦，不等于你要替他承担情绪。户外运动里尤其要守住自己的边界和节奏。</span>
+          </div>
+          <div class="method-card">
+            <b>海外付费优先</b>
+            <span>订阅制 Web 产品先看海外用户。国内用户长期被免费策略训练，付费习惯和美元市场完全不同。</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <div class="section-heading">
+          <div class="section-kicker">NEXT MOVES</div>
+          <h2>下一步动作与待核风险</h2>
+        </div>
+        <div class="action-risk">
+          <div class="panel action">
+            <h3>待执行</h3>
+            <ul class="task-list">
+              <li><span class="box"></span><span>推进 SEO 站和正常业务，在有限重置次数内完善到可发布状态。</span></li>
+              <li><span class="box"></span><span>配置 Token 定时任务，每 5 小时发一次消息，保持额度滚动重置。</span></li>
+              <li><span class="box"></span><span>日常 Token 使用保留 30% 到 40% 余量，至少留 5% 到 10% 给定时任务。</span></li>
+              <li><span class="box"></span><span>公开平台开始发文章，分享挫折、经历和解决方案，积累个人 IP 势能。</span></li>
+              <li><span class="box"></span><span>每周至少安排 2 次长途运动，同时补力量训练和蛋白质。</span></li>
+            </ul>
+          </div>
+          <div class="panel risk">
+            <h3>待核查</h3>
+            <ul class="task-list">
+              <li><span class="box"></span><span>自调百香果奶茶是否真的更好喝，糖浆比例还没验证。</span></li>
+              <li><span class="box"></span><span>王者荣耀卸载后 5 积分未返还，可能是规则理解错误或系统问题。</span></li>
+              <li><span class="box"></span><span>全球旅居社群“看房换住宿”模式，找人路径和安全保障还不清楚。</span></li>
+              <li><span class="box"></span><span>小爆款复刻打法要满足自己喜欢、真实需求、可维护，不是盲目抄。</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div><strong>内容来源：</strong>D:\note_new\06-日常输入_输出\10-日省\2026-06-13.md</div>
+        <div><strong>随机设计风格：</strong>D:\page\2026\awesome-design-md\design-md\miro\DESIGN.md</div>
+        <div><strong>设计转译：</strong>白板画布、黄色品牌锚点、彩色便签块、黑色重点区；保留主卡片直角、无脚本、无交互、无跳转。</div>
+      </footer>
+    </article>
+  </main>
+</body>
+</html>
