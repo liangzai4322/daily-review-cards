@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ADHD + ENTP 结果系统认知卡片</title>
+<style>
+:root {
+  --primary: #1b1938;
+  --primary-deep: #0e0c1f;
+  --on-primary: #ffffff;
+  --ink: #292827;
+  --ink-mute: #73706d;
+  --ink-faint: #9a9794;
+  --canvas: #ffffff;
+  --canvas-soft: #fafaf8;
+  --violet-soft: #c9b4fa;
+  --teal-deep: #0e3030;
+  --teal-mid: #155555;
+  --hairline: #e8e4dd;
+  --hairline-dark: #3f3a52;
+  --on-dark-mute: #bcbac9;
+  --on-dark-faint: #5a5772;
+  --shadow-soft: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-panel: 0 8px 24px rgba(0, 0, 0, 0.12);
+  --font-main: "Inter Variable", Inter, "Microsoft YaHei", "PingFang SC", "Hiragino Sans GB", system-ui, sans-serif;
+  --space-xxs: 2px;
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 12px;
+  --space-lg: 16px;
+  --space-xl: 24px;
+  --space-xxl: 32px;
+  --space-huge: 64px;
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 9999px;
+  --container: 1120px;
+  --measure: 760px;
+}
+* {
+  box-sizing: border-box;
+}
+html {
+  background: var(--canvas);
+  color: var(--ink);
+  font-family: var(--font-main);
+  letter-spacing: 0;
+}
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--canvas);
+}
+.page {
+  overflow: hidden;
+}
+.hero {
+  position: relative;
+  min-height: 690px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(320px, 430px);
+  gap: var(--space-huge);
+  align-items: stretch;
+  padding: var(--space-xxl) max(var(--space-xl), calc((100vw - var(--container)) / 2 + var(--space-xl))) var(--space-huge);
+  color: var(--on-primary);
+  background:
+    radial-gradient(circle at 78% 20%, rgba(201, 180, 250, 0.72) 0, rgba(201, 180, 250, 0.08) 30%, transparent 56%),
+    radial-gradient(circle at 70% 82%, rgba(21, 85, 85, 0.74) 0, rgba(21, 85, 85, 0.08) 28%, transparent 58%),
+    linear-gradient(145deg, var(--primary-deep), var(--primary) 52%, #27234c);
+}
+.nav {
+  grid-column: 1 / -1;
+  min-height: 54px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: var(--space-xl);
+  align-items: center;
+}
+.mark {
+  display: inline-grid;
+  grid-template-columns: 28px auto;
+  gap: var(--space-sm);
+  align-items: center;
+  color: var(--on-primary);
+  font-size: 14px;
+  font-weight: 600;
+}
+.mark-icon {
+  width: 28px;
+  height: 28px;
+  border: 2px solid var(--violet-soft);
+  border-radius: var(--radius-md);
+  background: linear-gradient(135deg, var(--violet-soft), transparent 58%);
+}
+.nav-pills {
+  display: flex;
+  justify-content: center;
+  gap: var(--space-sm);
+}
+.nav-pills span,
+.hero-pill {
+  display: inline-grid;
+  align-items: center;
+  min-height: 36px;
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: var(--radius-full);
+  color: var(--primary);
+  background: var(--violet-soft);
+  font-size: 12px;
+  font-weight: 700;
+}
+.nav-date {
+  color: var(--on-dark-mute);
+  font-size: 14px;
+  font-weight: 540;
+}
+.hero-copy {
+  align-self: center;
+  max-width: 680px;
+}
+.eyebrow {
+  margin: 0 0 var(--space-xl);
+  color: var(--violet-soft);
+  font-size: 12px;
+  font-weight: 540;
+  line-height: 1.4;
+}
+.hero-title {
+  margin: 0;
+  max-width: 680px;
+  color: var(--on-primary);
+  font-size: 64px;
+  font-weight: 540;
+  line-height: 0.96;
+  letter-spacing: 0;
+}
+.hero-lead {
+  max-width: 590px;
+  margin: var(--space-xl) 0 0;
+  color: var(--on-dark-mute);
+  font-size: 18px;
+  font-weight: 540;
+  line-height: 1.5;
+  letter-spacing: -0.135px;
+}
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-top: var(--space-xxl);
+}
+.portrait-panel {
+  position: relative;
+  align-self: end;
+  min-height: 510px;
+  overflow: hidden;
+  border: 1px solid var(--hairline-dark);
+  border-radius: var(--radius-xl);
+  background:
+    radial-gradient(circle at 50% 22%, rgba(255, 255, 255, 0.38), transparent 20%),
+    linear-gradient(180deg, rgba(201, 180, 250, 0.5), rgba(27, 25, 56, 0.2) 38%, rgba(14, 12, 31, 0.8)),
+    var(--primary-deep);
+  box-shadow: var(--shadow-panel);
+}
+.portrait-panel::before,
+.portrait-panel::after,
+.portrait-head,
+.portrait-body,
+.signal-orbit {
+  content: "";
+  position: absolute;
+  display: block;
+}
+.portrait-head {
+  width: 118px;
+  height: 118px;
+  top: 118px;
+  left: calc(50% - 26px);
+  border-radius: 44% 44% 48% 48%;
+  background: #dfc8b9;
+  box-shadow: 22px 10px 0 rgba(14, 12, 31, 0.28);
+}
+.portrait-body {
+  width: 270px;
+  height: 250px;
+  left: calc(50% - 96px);
+  bottom: -26px;
+  border-radius: 48% 48% 0 0;
+  background: linear-gradient(150deg, var(--teal-mid), var(--primary) 72%);
+}
+.signal-orbit {
+  width: 220px;
+  height: 220px;
+  right: 18px;
+  top: 54px;
+  border: 1px solid rgba(201, 180, 250, 0.34);
+  border-radius: 50%;
+}
+.portrait-panel::before {
+  width: 88%;
+  height: 120px;
+  left: 6%;
+  bottom: 46px;
+  border-top: 1px solid rgba(201, 180, 250, 0.22);
+  border-bottom: 1px solid rgba(201, 180, 250, 0.12);
+}
+.portrait-panel::after {
+  inset: auto 0 0;
+  height: 46%;
+  background: linear-gradient(180deg, transparent, rgba(14, 12, 31, 0.76));
+}
+.content {
+  width: min(100%, calc(var(--container) + var(--space-xl) * 2));
+  margin: 0 auto;
+  padding: 92px var(--space-xl);
+}
+.intro-grid {
+  display: grid;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: var(--space-huge);
+  align-items: start;
+  margin-bottom: 88px;
+}
+.section-title {
+  margin: 0;
+  color: var(--ink);
+  font-size: 48px;
+  font-weight: 460;
+  line-height: 0.96;
+  letter-spacing: -1.32px;
+}
+.section-lead {
+  margin: 0;
+  color: var(--ink-mute);
+  font-size: 18px;
+  font-weight: 540;
+  line-height: 1.5;
+  letter-spacing: -0.135px;
+}
+.principle {
+  display: grid;
+  grid-template-columns: 90px minmax(0, 1fr);
+  gap: var(--space-xl);
+  align-items: start;
+  padding: var(--space-xxl) 0;
+  border-top: 1px solid var(--hairline);
+}
+.principle:last-child {
+  border-bottom: 1px solid var(--hairline);
+}
+.number {
+  color: var(--primary);
+  font-size: 48px;
+  font-weight: 460;
+  line-height: 0.96;
+  letter-spacing: -1.32px;
+}
+.principle-body {
+  display: grid;
+  gap: var(--space-xl);
+}
+.principle h3 {
+  margin: 0;
+  color: var(--ink);
+  font-size: 28px;
+  font-weight: 540;
+  line-height: 1.14;
+  letter-spacing: -0.63px;
+}
+.principle p {
+  margin: 0;
+  color: var(--ink-mute);
+  font-size: 16px;
+  font-weight: 460;
+  line-height: 1.65;
+}
+.callout {
+  display: grid;
+  gap: var(--space-md);
+  padding: var(--space-xl);
+  color: var(--on-primary);
+  background: var(--primary);
+  border-radius: var(--radius-lg);
+}
+.callout strong {
+  font-size: 22px;
+  font-weight: 540;
+  line-height: 1.1;
+  letter-spacing: -0.315px;
+}
+.callout span {
+  color: var(--on-dark-mute);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.pair-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-lg);
+}
+.mini-card {
+  min-height: 148px;
+  display: grid;
+  gap: var(--space-sm);
+  padding: var(--space-xl);
+  background: var(--canvas-soft);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-md);
+}
+.mini-card b {
+  color: var(--ink);
+  font-size: 20px;
+  font-weight: 460;
+  line-height: 1.2;
+  letter-spacing: -0.4px;
+}
+.mini-card span {
+  color: var(--ink-mute);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.question-panel {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-lg);
+  margin-top: var(--space-xl);
+}
+.question {
+  padding: var(--space-xl);
+  background: var(--canvas);
+  border: 1px solid var(--hairline);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-soft);
+}
+.question b {
+  display: block;
+  margin-bottom: var(--space-md);
+  color: var(--primary);
+  font-size: 22px;
+  font-weight: 460;
+  line-height: 1.1;
+}
+.question span {
+  color: var(--ink-mute);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.expression-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+}
+.expression-card {
+  padding: var(--space-xxl);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--hairline);
+  background: var(--canvas);
+}
+.expression-card.dark {
+  color: var(--on-primary);
+  background: var(--primary);
+  border-color: var(--hairline-dark);
+}
+.expression-card h4 {
+  margin: 0 0 var(--space-lg);
+  color: inherit;
+  font-size: 22px;
+  font-weight: 460;
+  line-height: 1.1;
+  letter-spacing: -0.315px;
+}
+.expression-card p {
+  color: var(--ink-mute);
+  font-size: 16px;
+  line-height: 1.6;
+}
+.expression-card.dark p {
+  color: var(--on-dark-mute);
+}
+.teal-band {
+  color: var(--on-primary);
+  background: var(--teal-deep);
+}
+.teal-inner {
+  width: min(100%, calc(var(--container) + var(--space-xl) * 2));
+  margin: 0 auto;
+  padding: 104px var(--space-xl);
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--space-xxl);
+  align-items: center;
+}
+.teal-title {
+  margin: 0;
+  max-width: 720px;
+  color: var(--on-primary);
+  font-size: 48px;
+  font-weight: 460;
+  line-height: 0.96;
+  letter-spacing: -1.32px;
+}
+.teal-copy {
+  margin: var(--space-xl) 0 0;
+  max-width: 650px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 18px;
+  font-weight: 540;
+  line-height: 1.5;
+}
+.white-button {
+  min-height: 44px;
+  display: inline-grid;
+  align-items: center;
+  padding: 12px 20px;
+  color: var(--teal-deep);
+  background: var(--canvas);
+  border-radius: var(--radius-md);
+  font-size: 16px;
+  font-weight: 700;
+}
+.footer {
+  padding: var(--space-huge) var(--space-xl);
+  color: var(--ink-mute);
+  background: var(--canvas);
+  text-align: center;
+  font-size: 14px;
+  line-height: 1.4;
+}
+@media (max-width: 1024px) {
+  .hero {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+  .portrait-panel {
+    min-height: 420px;
+  }
+  .intro-grid,
+  .teal-inner {
+    grid-template-columns: 1fr;
+  }
+  .teal-inner {
+    align-items: start;
+  }
+}
+@media (max-width: 768px) {
+  .hero {
+    padding: var(--space-xl) var(--space-lg) var(--space-huge);
+  }
+  .nav {
+    grid-template-columns: 1fr auto;
+  }
+  .nav-pills {
+    display: none;
+  }
+  .hero-title,
+  .section-title,
+  .teal-title {
+    font-size: 36px;
+  }
+  .content {
+    padding: var(--space-huge) var(--space-lg);
+  }
+  .principle,
+  .pair-grid,
+  .question-panel,
+  .expression-grid {
+    grid-template-columns: 1fr;
+  }
+  .number {
+    font-size: 36px;
+  }
+}
+@media (max-width: 480px) {
+  .hero-title,
+  .section-title,
+  .teal-title {
+    font-size: 32px;
+  }
+  .hero-lead,
+  .section-lead,
+  .teal-copy {
+    font-size: 16px;
+  }
+  .portrait-panel {
+    min-height: 350px;
+  }
+  .principle {
+    gap: var(--space-lg);
+  }
+  .principle h3 {
+    font-size: 24px;
+  }
+  .teal-inner {
+    padding-top: var(--space-huge);
+    padding-bottom: var(--space-huge);
+  }
+}
+@media print {
+  .hero,
+  .teal-band {
+    break-inside: avoid;
+  }
+}
+</style>
+</head>
+<body>
+<main class="page">
+  <section class="hero" aria-label="ADHD ENTP 结果系统封面">
+    <nav class="nav" aria-label="静态导航">
+      <div class="mark"><span class="mark-icon" aria-hidden="true"></span><span>RESULT SYSTEM</span></div>
+      <div class="nav-pills"><span>ADHD</span><span>ENTP</span><span>Energy Curve</span></div>
+      <div class="nav-date">2026.06.14</div>
+    </nav>
+    <div class="hero-copy">
+      <p class="eyebrow">SUPERHUMAN STYLE · RANDOM PICKED FROM DESIGN.MD</p>
+      <h1 class="hero-title">我最终拿到结果，靠的不是克服自己。</h1>
+      <p class="hero-lead">对一个典型 ADHD + ENTP 来说，稳定并不是唯一正确的生活方式。真正有效的策略，是承认能量曲线的波动，然后设计一套能在高峰留下结果、在低谷减少自责的工作系统。</p>
+      <div class="hero-meta"><span class="hero-pill">不再伪装成马拉松选手</span></div>
+    </div>
+    <div class="portrait-panel" aria-hidden="true">
+      <span class="signal-orbit"></span>
+      <span class="portrait-head"></span>
+      <span class="portrait-body"></span>
+    </div>
+  </section>
+
+  <section class="content" aria-label="正文卡片">
+    <div class="intro-grid">
+      <h2 class="section-title">不是变成另一个人，而是设计适合自己的系统。</h2>
+      <p class="section-lead">有些人的能量像稳定马拉松，有些人的能量像短跑冲刺。对后者来说，一味追求每天同样稳定，往往只会在高峰透支，然后迎来更长的报复性摆烂。新的原则是：不要求自己永远稳定，只要求每次爆发都留下结果。</p>
+    </div>
+
+    <article class="principle">
+      <div class="number">01</div>
+      <div class="principle-body">
+        <h3>不要再逼自己一次只做一件事</h3>
+        <p>安静、单调、完全无刺激的环境，未必能帮助 ADHD 大脑专注。更适合的组合是“一项主要任务 + 一项低认知负荷活动”：散步时构思内容，整理资料时听播客，重复性工作时播放熟悉音乐。</p>
+        <div class="pair-grid">
+          <div class="mini-card"><b>有效组合</b><span>主任务需要思考，副活动只提供背景刺激。</span></div>
+          <div class="mini-card"><b>危险组合</b><span>一边回复重要客户，一边写完整逻辑文章，两边都会被损坏。</span></div>
+        </div>
+        <div class="callout"><strong>碎片时间不是用来完成巨型任务，而是用来降低下一次启动成本。</strong><span>等车写标题，饭前记观点，聊天时捕捉选题。下一次坐下来时，面对的就不再是一张空白纸。</span></div>
+      </div>
+    </article>
+
+    <article class="principle">
+      <div class="number">02</div>
+      <div class="principle-body">
+        <h3>三分钟热度，也要有三分钟的结果</h3>
+        <p>三分钟热度并不可怕，真正浪费的是兴奋出现时只沉浸在想象里，却没有留下任何能够进入现实的结果。突然想做公众号，先写标题和开头；突然想做项目，先发布第一条内容；突然想学新领域，先用它解决一个具体问题。</p>
+        <div class="callout"><strong>判断它是不是结果，只看一个标准：热情消失以后，这个东西还能不能被继续使用。</strong><span>可以是一段文字、一条公开内容、一个客户反馈、一次真实测试，或者一份明确记录下一步的方案。</span></div>
+      </div>
+    </article>
+
+    <article class="principle">
+      <div class="number">03</div>
+      <div class="principle-body">
+        <h3>确保自己的所有动作，都是有效动作</h3>
+        <p>周期性摆烂的人往往并不是完全不做事，而是忙于看课程、整理笔记、研究工具、重新规划日程。忙碌只说明时间被消耗；有效动作必须让现实产生新的反馈。</p>
+        <div class="question-panel">
+          <div class="question"><b>1</b><span>这件事做完以后，现实会发生什么变化？</span></div>
+          <div class="question"><b>2</b><span>它能给我带来什么可以观察的反馈？</span></div>
+          <div class="question"><b>3</b><span>如果今天只能做一件事，它是不是最接近结果的那一件？</span></div>
+        </div>
+        <p>学习、规划和整理必须服务于下一步行动。如果计划无法告诉你今天具体做什么，课程没有立刻用于解决问题，工具没有提高真实产出，它们很可能只是披着努力外衣的高级拖延。</p>
+      </div>
+    </article>
+
+    <article class="principle">
+      <div class="number">04</div>
+      <div class="principle-body">
+        <h3>持续表达，不要把自己修剪得太正常</h3>
+        <p>ENTP 最大的优势可能不是稳定，而是好奇心、快速产生观点的能力和强烈表达欲。如果想法只停留在脑子里，它们很快会被下一批刺激覆盖；只有持续表达，灵感才会变成可以被看见、讨论、复用的个人资产。</p>
+        <div class="expression-grid">
+          <div class="expression-card"><h4>无力表达</h4><p>每个判断都补充大量例外，试图照顾所有人的感受，最后变成谁都不会反对、也没人会记住的正确废话。</p></div>
+          <div class="expression-card dark"><h4>可被记住</h4><p>真正让人留下印象的，是鲜明且持续的判断。你不一定认同一个人，但很难忽略她明确的欲望、逻辑和立场。</p></div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <section class="teal-band" aria-label="结尾">
+    <div class="teal-inner">
+      <div>
+        <h2 class="teal-title">不必稳定得像一台机器，但每次爆发都要留下可复用的东西。</h2>
+        <p class="teal-copy">状态好的时候，处理创造力和主动性工作；状态低的时候，减少自我攻击，回到已经留下的半成品。热情会消失，但结果可以累积。</p>
+      </div>
+      <div class="white-button">三分钟，也要有结果</div>
+    </div>
+  </section>
+</main>
+<footer class="footer">Style: superhuman · Source: ADHD + ENTP result system · Static HTML card</footer>
+</body>
+</html>
