@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI工具使用及项目变现讨论 · 2026-05-10</title>
+  <style>
+    :root {
+      --bg: #f6f3ec;
+      --paper: #fffdf8;
+      --ink: #24211d;
+      --muted: #766f63;
+      --line: #ded6c8;
+      --accent: #1f6f78;
+      --accent-2: #a04b2a;
+      --soft: #edf3f2;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+      line-height: 1.78;
+    }
+    .page {
+      max-width: 980px;
+      margin: 0 auto;
+      padding: 48px 22px 72px;
+    }
+    header {
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 22px;
+      margin-bottom: 30px;
+    }
+    .eyebrow {
+      color: var(--accent-2);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      margin-bottom: 8px;
+    }
+    h1 {
+      font-size: clamp(30px, 5vw, 52px);
+      line-height: 1.12;
+      margin: 0 0 14px;
+      letter-spacing: 0;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .meta span {
+      border: 1px solid var(--line);
+      background: var(--paper);
+      padding: 5px 10px;
+      border-radius: 4px;
+    }
+    .lead {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-left: 6px solid var(--accent);
+      padding: 18px 20px;
+      margin: 28px 0;
+      font-size: 17px;
+    }
+    nav {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+      margin: 28px 0 34px;
+    }
+    nav a {
+      color: var(--accent);
+      text-decoration: none;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      padding: 10px 12px;
+      border-radius: 4px;
+      font-weight: 650;
+    }
+    section {
+      margin: 38px 0;
+      padding-top: 8px;
+      border-top: 1px solid var(--line);
+    }
+    h2 {
+      font-size: 25px;
+      margin: 0 0 16px;
+      line-height: 1.28;
+    }
+    h3 {
+      font-size: 18px;
+      margin: 24px 0 8px;
+      color: var(--accent-2);
+    }
+    p { margin: 10px 0; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+    }
+    .card {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: 14px 16px;
+    }
+    .card strong {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--accent);
+    }
+    ul {
+      margin: 10px 0 0;
+      padding-left: 20px;
+    }
+    li { margin: 6px 0; }
+    .quote {
+      background: var(--soft);
+      border-left: 5px solid var(--accent);
+      padding: 14px 16px;
+      margin: 16px 0;
+      font-weight: 650;
+    }
+    .takeaways {
+      background: #20221f;
+      color: #fffdf8;
+      border-radius: 6px;
+      padding: 22px;
+      margin-top: 46px;
+    }
+    .takeaways h2 { color: #fffdf8; }
+    .takeaways li { color: #f3eee3; }
+    @media (max-width: 640px) {
+      .page { padding: 30px 16px 54px; }
+      .lead { font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <div class="eyebrow">聚会学习总结</div>
+      <h1>AI工具使用及项目变现讨论</h1>
+      <div class="meta">
+        <span>日期：2026-05-10</span>
+        <span>时间：14:00 - 17:45</span>
+        <span>主题：烧 Token、AI 编程、项目变现、业务自动化</span>
+      </div>
+    </header>
+
+    <div class="lead">
+      主讲人提到，这场讨论表面是在聊 Claude Code、Codex、账号池、Mission Mode 和各种 AI 工具，底层其实只问一个问题：Token 怎么烧才不是自嗨，工具怎么用才能变成产品、流量、客户和现金流。整场的主线很清晰：先找真实需求，再用 AI 提高生产速度，最后回到销售和流量，不然“战略分析完很充实”也只是幻觉。
+    </div>
+
+    <nav>
+      <a href="#people">参会画像</a>
+      <a href="#token">烧 Token 的底层逻辑</a>
+      <a href="#stack">工具栈与账号池</a>
+      <a href="#business">需求、产品、流量</a>
+      <a href="#video">视频号图书带货案例</a>
+      <a href="#software">软件对标与安全边界</a>
+      <a href="#mission">Mission Mode 长任务</a>
+      <a href="#prototype">原型先行</a>
+      <a href="#remote">手机远程调度</a>
+      <a href="#enterprise">企业 AI 服务</a>
+      <a href="#takeaways">沉淀结论</a>
+    </nav>
+
+    <section id="people">
+      <h2>一、参会画像：大家不是来听工具名，是来找变现抓手</h2>
+      <div class="grid">
+        <div class="card"><strong>丹雪</strong>丹雪提到，自己最想理解的是别人为什么能“每天烧很多 Token”，甚至让工具 24 小时跑起来。她手里有渠道和 Token，但真正缺的是高密度、多项目并行的工作流。</div>
+        <div class="card"><strong>大春</strong>大春提到，自己还是 TRAE 新手，经常需要人手动点下一步。他的问题非常直接：烧 Token 本质上是在花钱，那到底怎么把它赚回来。</div>
+        <div class="card"><strong>阿杰</strong>阿杰提到，自己原来做家居本地投放获客，房地产下行后获客成本变高。他已经做过一次 2000 元的企业 AI 定制服务，想把传统业务客户和 AI 服务结合起来。</div>
+        <div class="card"><strong>华春杰果</strong>华春杰果提到，自己在做 AI 出海和广告投放，工具使用还偏传统，卡点是需求发现太慢，不知道什么方向值得真正投入。</div>
+        <div class="card"><strong>龙伟</strong>龙伟提到，自己主要做计算机代写，来这里不是为了听“工具多强”，而是想看烧 Token 之后怎样产出真实价值，能不能反哺现有业务。</div>
+        <div class="card"><strong>小琴、袁奇、陈伟杰等</strong>小琴提到想学插件和权限点击；袁奇提到想让 AI 变成不停干活的“牛马”；陈伟杰提到自己有公众号矩阵和软件框架学习诉求。</div>
+      </div>
+    </section>
+
+    <section id="token">
+      <h2>二、烧 Token 的核心：不是烧得多，是烧完能不能回来</h2>
+      <p>主讲人提到，“烧 Token 不难，关键是烧完 Token 以后做出来的东西要有意义”。这里的意义不是技术炫耀，而是能不能沉淀资产、跑通产品、提高交付，最后赚回成本。</p>
+      <p>大春提到，自己担心烧 Token 是纯花钱。主讲人把问题拉回商业闭环：如果只是让 AI 一直跑、一直生成、一直分析，但没有需求、产品和流量，最后就只是更快地制造幻觉。</p>
+      <div class="quote">烧 Token 不能白烧，最后要落地到怎么赚回来。</div>
+      <p>主讲人提到，知识库也是一样，“沉淀知识库不是靠一两次学习就可以的，它一定要跑”。也就是知识库、Skill、工作流都不是摆设，只有持续被真实任务调用，才会逐渐变成资产。</p>
+    </section>
+
+    <section id="stack">
+      <h2>三、工具栈与账号池：先让生产力能跑起来</h2>
+      <p>主讲人提到，多项目并行时不要一上来把所有项目塞进 VS Code。更轻的方式是用终端分屏或竖向标签页，一个 Tab 对应一个项目，降低电脑资源占用，也降低切换成本。</p>
+      <p>主讲人提到，账号池和反代服务的逻辑是把多个账号额度接入本地路由，由服务自动分配请求。早期便宜账号更容易堆出池子，现在成本和稳定性都变差了，所以不能只看表面 Token 单价。</p>
+      <p>主讲人提到，中转站也有水深。有些平台会设置倍率，真实消耗 100 万 Token，账面可能显示 150 万。判断中转站不能只看价格，要看稳定性、倍率、封号风险和实际可用量。</p>
+      <p>主讲人提到，如果连 20 美元的基础工具成本都不愿意承担，就不适合一开始就学这类重工具工作流。不是鼓励乱花钱，而是工具成本要和产出预期放在一起算。</p>
+    </section>
+
+    <section id="business">
+      <h2>四、需求、产品、流量：最难的不是做出来</h2>
+      <p>主讲人提到，AI 项目可以拆成三段：找需求、做产品、卖产品。现在“做产品”反而是确定性最高的一段，真正难的是找真实需求和搞定销售/流量。</p>
+      <p>主讲人提到，如果没有高质量洞察，就先用数量补质量。方向没定时，不要空想“我要找痛点”，而是先明确自己到底追求赚钱、成就感、公益，还是长期资产。</p>
+      <p>主讲人提到，论坛、群聊、评论区里反复出现的抱怨，往往是需求线索。但如果一个需求已经被大量人卷到极致，就要谨慎，不要只因为“有人赚钱”就冲进去。</p>
+      <p>主讲人提到，网站和工具类产品赚钱慢、周期长，可能半年一年没有结果；但它和代写、接单的区别在于，一旦跑通，后续可以靠维护获得更高天花板。代写卖的是时间，产品卖的是系统。</p>
+      <div class="quote">做产品现在很简单，最难的是找需求和卖产品。</div>
+    </section>
+
+    <section>
+      <h2>五、合作方式：先项目制，不要一上来合伙</h2>
+      <p>主讲人提到，早期合作不要急着谈合伙。更稳的方式是先按项目制分钱，小项目合作一次，看看对方交付、沟通、责任心和利益分配是否靠谱。</p>
+      <p>主讲人提到，合伙关系的问题不在协议写得漂不漂亮，而在真实压力下能不能一起扛事。先用项目制测一轮，比直接绑定股权和长期承诺更理性。</p>
+    </section>
+
+    <section id="video">
+      <h2>六、视频号图书带货：自动化只是放大器，文案才是命门</h2>
+      <p>主讲人提到，视频号图书带货软件的典型方向有两类：历史人物类、老年生活/健康类。真正赚的钱不是广告分成，而是卖书佣金，有些品能做到 50% 以上利润。</p>
+      <p>主讲人提到，这类软件不是凭空创造需求，而是把已经验证过的爆款脚本、图片生成、剪辑草稿串起来。用户仍然要找对标、提取原视频文案、删除广告和无关内容。</p>
+      <p>主讲人提到，成本不能忽略。一个视频可能需要 30 到 50 张图，如果图片生成账号的免费额度或积分成本变化，单条视频成本会明显上升。工具是否划算，必须按每条视频核算。</p>
+      <p>主讲人提到，剪辑细节不适合完全交给 AI Agent 硬做，可能耗几个小时还不如人打开剪映手动处理。工具要卡在最适合的位置，不要让一个工具什么都干。</p>
+    </section>
+
+    <section id="software">
+      <h2>七、软件对标与安全边界：学 SOP，不碰不该碰的线</h2>
+      <p>主讲人提到，本地桌面应用如果用 Electron、Tauri 或 Python sidecar 做，部分前端逻辑、提示词、规则文件可能在本地暴露；但如果核心能力在服务端，本地只能看到请求，不可能拿到服务端逻辑。</p>
+      <p>主讲人提到，客户端和服务端是一组取舍。客户端能降低服务端成本、方便本地操作，但更容易暴露规则；服务端能保护核心逻辑，但成本、延迟和维护压力更高。</p>
+      <p>主讲人提到，真正值钱的常常不是代码本身，而是经过验证的 SOP、规则和提示词。合法授权下做对标分析，是为了理解产品结构和业务逻辑，不是为了绕过付费或破坏原软件。</p>
+      <div class="quote">软件最有价值的，很多时候是 SOP 和规则。</div>
+    </section>
+
+    <section id="mission">
+      <h2>八、Mission Mode 长任务：跑之前先把弹药装满</h2>
+      <p>主讲人提到，长任务模式不是“扔一句话让 AI 做完整项目”。它需要非常详细的 PRD、接口文档、API 地址、Key、请求参数、响应样例、技术栈选择和平台边界。</p>
+      <p>主讲人提到，链接本身通常不够，因为 AI 可能看不到登录后页面或 JS 渲染内容。关键文档要复制到本地项目文档里，让 Agent 能稳定读取。</p>
+      <p>主讲人提到，Mission Mode 启动前会有准备和确认阶段，一旦进入长时间运行，就不一定再频繁追问。需求没讲清楚就开跑，后面的修改成本通常大于重来。</p>
+      <p>主讲人提到，长任务会生成脚本、运行文档、agent 配置、里程碑、服务脚本、测试脚本，甚至根据需求生成多个 skill。它适合明确项目和批量改造，不适合模糊探索。</p>
+      <div class="quote">文档写好了，它就按照文档开发；文档没写清楚，它就按照自己的理解开发。</div>
+    </section>
+
+    <section id="prototype">
+      <h2>九、原型先行：先把看不见的需求变成看得见的交互</h2>
+      <p>主讲人提到，复杂产品最好先做可交互前端原型，不接后端，只用 HTML、CSS、JS 把页面、按钮、流程和状态跑出来。等交互 80% 到 90% 满意，再让 Agent 按原型实现正式版本。</p>
+      <p>主讲人提到，原型的价值是把抽象需求变成代码和界面。AI 能直接读原型代码，比读一堆口头描述更稳定，后续实现更不容易跑偏。</p>
+      <p>主讲人提到，视觉测试也要让 Agent 打开浏览器、截图、看按钮、点流程。只靠代码自测，很多 UI 问题看不出来。</p>
+    </section>
+
+    <section id="remote">
+      <h2>十、手机远程调度：碎片时间负责启动，不负责重活</h2>
+      <p>主讲人提到，BYOM 或类似远程能力可以让手机网页连接自己的电脑，选择项目路径和会话，远程给 Agent 派任务。</p>
+      <p>主讲人提到，手机更适合轻任务：把一个想法写进知识库、启动一个简单项目、让 Agent 先准备第一版。真正的验证、调试和复杂决策，仍然应该回到桌面端完成。</p>
+      <p>主讲人提到，一个典型场景是看到公众号文章后，直接转到知识库，让 Agent 根据文章建立项目文件夹和初版文档。手机在这里不是替代电脑，而是把启动成本降到最低。</p>
+    </section>
+
+    <section>
+      <h2>十一、平台发布与矩阵：流量不只由内容决定</h2>
+      <p>主讲人提到，第三方发帖 API 或调度器可能影响平台流量，尤其是做 IP 账号时，官方或原生发布路径更稳。矩阵号可以追求数量，IP 号更应该重视账号权重和长期信任。</p>
+      <p>主讲人提到，公众号有自然分发概率，但账号权重影响很大。同一内容换账号可能表现完全不同，所以不能把单次低数据直接解释成内容没价值。</p>
+    </section>
+
+    <section id="enterprise">
+      <h2>十二、企业 AI 服务：从熟悉业务的小痛点切入</h2>
+      <p>阿杰提到，自己做过一次 2000 元的企业 AI 定制服务，说明传统行业客户不是完全没有 AI 付费意愿，关键是能不能把 AI 放进对方真实业务痛点。</p>
+      <p>主讲人提到，企业 AI 服务不要一上来就做大而全的 ERP、CRM 或全公司 AI 改造。个人或小团队更适合从单一场景切入，比如知识库、资料整理、客户背调、流程自动化、销售辅助。</p>
+      <p>主讲人提到，收费不能只卖“我会用 AI”，而要卖业务结果。客户不关心你用了几个模型，客户关心成本有没有下降、交付有没有变快、获客有没有改善、员工有没有少做重复活。</p>
+    </section>
+
+    <section id="takeaways" class="takeaways">
+      <h2>可沉淀结论</h2>
+      <ul>
+        <li>烧 Token 要先绑定业务场景，否则只是更快地产生幻觉。</li>
+        <li>AI 项目三段里，生产最容易，需求和销售最难。</li>
+        <li>账号池、中转站和模型路由要按真实可用成本算，不按宣传单价算。</li>
+        <li>长任务模式启动前，PRD、接口样例、技术栈和平台边界必须先写清楚。</li>
+        <li>先做可交互原型，再让 Agent 实现正式版本，能明显降低返工。</li>
+        <li>工具要卡位使用，剪辑、审美、销售、需求判断不能幻想全部交给一个 Agent。</li>
+        <li>软件对标应学习 SOP、规则和产品结构，不碰绕过付费、破坏授权、侵犯权益的线。</li>
+        <li>企业 AI 服务从熟悉行业的小痛点切入，先跑单一场景，再考虑扩展。</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>
