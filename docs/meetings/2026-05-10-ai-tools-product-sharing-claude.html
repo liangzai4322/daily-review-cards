@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI工具使用心得与产品分享 · 2026年5月9日</title>
+  <style>
+    /* ===== Reset & Base ===== */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #0d0f14;
+      --surface: #13161e;
+      --card: #1a1e2a;
+      --border: #252a38;
+      --accent1: #6c63ff;
+      --accent2: #00d4aa;
+      --accent3: #ff6b6b;
+      --accent4: #ffd166;
+      --accent5: #4ecdc4;
+      --text-primary: #e8eaf0;
+      --text-secondary: #8b92a8;
+      --text-muted: #555c72;
+      --glow1: rgba(108, 99, 255, 0.15);
+      --glow2: rgba(0, 212, 170, 0.12);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text-primary);
+      line-height: 1.7;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ===== Noise Texture Overlay ===== */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ===== Ambient Glow ===== */
+    .ambient {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .ambient-1 {
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(108,99,255,0.18) 0%, transparent 70%);
+      top: -200px; left: -200px;
+    }
+    .ambient-2 {
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(0,212,170,0.12) 0%, transparent 70%);
+      bottom: 0; right: -150px;
+    }
+    .ambient-3 {
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(255,107,107,0.08) 0%, transparent 70%);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+    }
+
+    /* ===== Layout ===== */
+    .container {
+      position: relative;
+      z-index: 1;
+      max-width: 960px;
+      margin: 0 auto;
+      padding: 0 24px 80px;
+    }
+
+    /* ===== Header ===== */
+    header {
+      position: relative;
+      padding: 72px 0 56px;
+      text-align: center;
+    }
+
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(108,99,255,0.15);
+      border: 1px solid rgba(108,99,255,0.3);
+      border-radius: 100px;
+      padding: 6px 18px;
+      font-size: 13px;
+      color: #a09cff;
+      letter-spacing: 0.05em;
+      margin-bottom: 28px;
+    }
+
+    .header-badge .dot {
+      width: 6px; height: 6px;
+      background: var(--accent1);
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    h1 {
+      font-size: clamp(28px, 5vw, 48px);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+      background: linear-gradient(135deg, #e8eaf0 0%, #a09cff 40%, #00d4aa 80%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
+    }
+
+    .header-meta {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 14px;
+      color: var(--text-secondary);
+    }
+
+    .meta-icon {
+      width: 16px; height: 16px;
+      opacity: 0.7;
+    }
+
+    .header-divider {
+      width: 80px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--accent1), transparent);
+      margin: 40px auto 0;
+    }
+
+    /* ===== Participants ===== */
+    .participants-section {
+      margin-bottom: 48px;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    .participants-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 12px;
+    }
+
+    .participant-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 20px;
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .participant-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--glow1), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .participant-card:hover::before { opacity: 1; }
+    .participant-card:hover { border-color: rgba(108,99,255,0.4); transform: translateY(-2px); }
+
+    .participant-avatar {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .participant-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+
+    .participant-role {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.4;
+    }
+
+    /* ===== Section Title ===== */
+    .section-title {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-title-icon {
+      width: 36px; height: 36px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    /* ===== Speaker Cards ===== */
+    .speaker-section {
+      margin-bottom: 48px;
+    }
+
+    .speaker-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 28px;
+      margin-bottom: 20px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .speaker-card::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      border-radius: 20px 20px 0 0;
+    }
+
+    .speaker-card.color-1::after { background: linear-gradient(90deg, var(--accent1), transparent); }
+    .speaker-card.color-2::after { background: linear-gradient(90deg, var(--accent2), transparent); }
+    .speaker-card.color-3::after { background: linear-gradient(90deg, var(--accent3), transparent); }
+    .speaker-card.color-4::after { background: linear-gradient(90deg, var(--accent4), transparent); }
+    .speaker-card.color-5::after { background: linear-gradient(90deg, var(--accent5), transparent); }
+
+    .speaker-card:hover {
+      border-color: rgba(255,255,255,0.12);
+      transform: translateY(-2px);
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+    }
+
+    .speaker-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+
+    .speaker-avatar {
+      width: 48px; height: 48px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .speaker-info { flex: 1; }
+
+    .speaker-name {
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .speaker-desc {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-top: 2px;
+    }
+
+    .speaker-tag {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 100px;
+      letter-spacing: 0.05em;
+    }
+
+    .speaker-content {
+      font-size: 14.5px;
+      color: var(--text-secondary);
+      line-height: 1.8;
+    }
+
+    /* ===== Insight Items ===== */
+    .insights-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 14px;
+    }
+
+    .insight-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      border-radius: 12px;
+      padding: 12px 14px;
+    }
+
+    .insight-bullet {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      margin-top: 7px;
+      flex-shrink: 0;
+    }
+
+    .insight-text {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    .insight-text strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    /* ===== Key Takeaways ===== */
+    .takeaways-section {
+      margin-bottom: 48px;
+    }
+
+    .takeaways-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .takeaway-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 24px;
+      position: relative;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .takeaway-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 48px rgba(0,0,0,0.3);
+    }
+
+    .takeaway-number {
+      font-size: 48px;
+      font-weight: 900;
+      line-height: 1;
+      margin-bottom: 12px;
+      opacity: 0.12;
+      position: absolute;
+      top: 16px; right: 20px;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .takeaway-icon {
+      font-size: 28px;
+      margin-bottom: 12px;
+      display: block;
+    }
+
+    .takeaway-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 8px;
+    }
+
+    .takeaway-desc {
+      font-size: 13.5px;
+      color: var(--text-secondary);
+      line-height: 1.7;
+    }
+
+    /* ===== Tools Mentioned ===== */
+    .tools-section { margin-bottom: 48px; }
+
+    .tools-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .tool-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 500;
+      border: 1px solid;
+      transition: all 0.2s ease;
+      cursor: default;
+    }
+
+    .tool-chip:hover { transform: translateY(-1px); }
+
+    .tool-chip.purple {
+      background: rgba(108,99,255,0.1);
+      border-color: rgba(108,99,255,0.3);
+      color: #a09cff;
+    }
+    .tool-chip.teal {
+      background: rgba(0,212,170,0.1);
+      border-color: rgba(0,212,170,0.3);
+      color: #00d4aa;
+    }
+    .tool-chip.red {
+      background: rgba(255,107,107,0.1);
+      border-color: rgba(255,107,107,0.3);
+      color: #ff8e8e;
+    }
+    .tool-chip.yellow {
+      background: rgba(255,209,102,0.1);
+      border-color: rgba(255,209,102,0.3);
+      color: #ffd166;
+    }
+    .tool-chip.cyan {
+      background: rgba(78,205,196,0.1);
+      border-color: rgba(78,205,196,0.3);
+      color: #4ecdc4;
+    }
+
+    /* ===== Monetization ===== */
+    .monetization-section { margin-bottom: 48px; }
+
+    .monetization-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 14px;
+    }
+
+    .money-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 22px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .money-card:hover {
+      border-color: rgba(255,209,102,0.3);
+      transform: translateY(-2px);
+    }
+
+    .money-amount {
+      font-size: 26px;
+      font-weight: 800;
+      color: var(--accent4);
+      margin-bottom: 4px;
+    }
+
+    .money-label {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+
+    .money-desc {
+      font-size: 12px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* ===== Footer ===== */
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 40px 24px;
+      border-top: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    footer a {
+      color: var(--accent1);
+      text-decoration: none;
+    }
+
+    /* ===== Scrollbar ===== */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 600px) {
+      .participants-grid { grid-template-columns: 1fr 1fr; }
+      .takeaways-grid { grid-template-columns: 1fr; }
+      .monetization-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Glows -->
+  <div class="ambient ambient-1"></div>
+  <div class="ambient ambient-2"></div>
+  <div class="ambient ambient-3"></div>
+
+  <div class="container">
+
+    <!-- ===== Header ===== -->
+    <header>
+      <div class="header-badge">
+        <span class="dot"></span>
+        生财有数 · 深圳线下聚会纪要
+      </div>
+      <h1>AI工具使用心得<br>与产品分享</h1>
+      <div class="header-meta">
+        <div class="meta-item">
+          <svg class="meta-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"/>
+          </svg>
+          2026年5月9日（周六）
+        </div>
+        <div class="meta-item">
+          <svg class="meta-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+          </svg>
+          14:11 – 16:34（GMT+8）
+        </div>
+        <div class="meta-item">
+          <svg class="meta-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z"/>
+          </svg>
+          5位参与者
+        </div>
+      </div>
+      <div class="header-divider"></div>
+    </header>
+
+    <!-- ===== Participants ===== -->
+    <section class="participants-section">
+      <div class="section-label">参与者简介</div>
+      <div class="participants-grid">
+
+        <div class="participant-card">
+          <div class="participant-avatar" style="background:rgba(108,99,255,0.15);color:#a09cff;">主</div>
+          <div class="participant-name">主持人</div>
+          <div class="participant-role">YouTube 视频创作者 · AI 自动化工具开发者 · 企业知识库服务提供者</div>
+        </div>
+
+        <div class="participant-card">
+          <div class="participant-avatar" style="background:rgba(0,212,170,0.15);color:#00d4aa;">龙</div>
+          <div class="participant-name">龙伟</div>
+          <div class="participant-role">计算机代写 / 编程代做 · 闲鱼代写中介 · AI 爬虫应用探索者</div>
+        </div>
+
+        <div class="participant-card">
+          <div class="participant-avatar" style="background:rgba(255,107,107,0.15);color:#ff8e8e;">林</div>
+          <div class="participant-name">小林（林峰）</div>
+          <div class="participant-role">AI 视频工具公司 · 海外推广运营 · 刚毕业新人</div>
+        </div>
+
+        <div class="participant-card">
+          <div class="participant-avatar" style="background:rgba(255,209,102,0.15);color:#ffd166;">星</div>
+          <div class="participant-name">星辰（郭伟）</div>
+          <div class="participant-role">IT 架构师 / 项目经理 · 企业软件外包 · AI 工作流训练专家</div>
+        </div>
+
+        <div class="participant-card">
+          <div class="participant-avatar" style="background:rgba(78,205,196,0.15);color:#4ecdc4;">蔡</div>
+          <div class="participant-name">蔡一航</div>
+          <div class="participant-role">站外推广运营 · Code 自动化脚本开发者 · RPA 实践者</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== Speaker Shares ===== -->
+    <section class="speaker-section">
+      <div class="section-title">
+        <div class="section-title-icon" style="background:rgba(108,99,255,0.15);">💬</div>
+        各位分享精华
+      </div>
+
+      <!-- Speaker 1: Host -->
+      <div class="speaker-card color-1">
+        <div class="speaker-header">
+          <div class="speaker-avatar" style="background:rgba(108,99,255,0.2);color:#a09cff;">主</div>
+          <div class="speaker-info">
+            <div class="speaker-name">主持人 · AI 自动化全栈实践</div>
+            <div class="speaker-desc">从 YouTube 视频创作起步，逐步构建个人 AI 工作体系</div>
+          </div>
+          <span class="speaker-tag" style="background:rgba(108,99,255,0.15);color:#a09cff;border:1px solid rgba(108,99,255,0.3);">最丰富实践</span>
+        </div>
+        <div class="speaker-content">
+          从做油管视频起步接触 Claude Code，从零开始用 AI 构建了一整套个人工作流体系，涵盖内容获取、自动分析、知识沉淀三大方向。
+        </div>
+        <div class="insights-list">
+          <div class="insight-item">
+            <div class="insight-bullet" style="background:#a09cff;"></div>
+            <div class="insight-text"><strong>三维度每日日报系统：</strong>整合飞书妙记语音复盘 + Claude Code 对话记录 + 微信24小时聊天记录，自动生成每日行动建议与复盘分析</div>
+          </div>
+          <div class="insight-item">
+            <div class="insight-bullet" style="background:#a09cff;"></div>
+            <div class="insight-text"><strong>微信群聊智能摘要工具：</strong>开发桌面版工具，一键获取指定群聊内容，定时生成日报，已交付多位圈友使用</div>
+          </div>
+          <div class="insight-item">
+            <div class="insight-bullet" style="background:#a09cff;"></div>
+            <div class="insight-text"><strong>爆款视频追踪系统：</strong>自动抓取对标账号的高播放量视频，每日更新飞书多维表格，支持按播放量筛选与颜色标注</div>
+          </div>
+          <div class="insight-item">
+            <div class="insight-bullet" style="background:#a09cff;"></div>
+            <div class="insight-text"><strong>三层质检架构心得：</strong>AI 自我检查形同虚设，需设计独立第三方 Agent 做三层分离检查，才能有效提升代码质量</div>
+          </div>
+          <div class="insight-item">
+            <div class="insight-bullet" style="background:#a09cff;"></div>
+            <div class="insight-text"><strong>企业知识库落地：</strong>帮助企业搭建分权限知识库——老板端用 Claude Code 本地沉淀全量数据，员工端通过飞书访问对应部门知识，已实现变现咨询</div>
+          </div>
+          <div class="insight-item">
+            <div class="insight-bullet" style="background:#a09cff;"></div>
+            <div class="insight-text"><strong>Gemini 免费额度利用：</strong>通过多账号注册 Gemini 免费额度，实现零成本运行 AI 工具</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Speaker 2: 星辰 -->
+      <div class="speaker-card color-4">
+        <div class="speaker-header">
+          <div class="speaker-avatar" style="background:rgba(255,209,102,0.2);color:#ffd166;">星</div>
+          <div class="speaker-info">
+            <div class="speaker-name">星辰（郭伟）· 架构师视角的 AI 人机协同</div>
+            <div class="speaker-desc">10年 IT 架构经验 + AI 工具深度训练，打造企业级智能工作流</div>
+          </div>
+          <span class="speaker-tag" style="background:rgba(255,209,102,0.15);color:#ffd166;border:1px solid rgba(255,209,102,0.3);">最系统方法论</span>
+        </div>
+        <div class="speaker-content">
+          以架构师思维训练 AI，将 Workbody（腾讯国产 Agent 工具）打造成企业售前自动化神器，仅用7天固化了原本需要数天才能完成的客户分析流程。
+        </div>
+        <div class="insights-list">
+          <div class="insight-item">
+            <div class="insight-bullet" style="background:#ffd166;"></div>
+            <div class="insight-text"><strong>5节点 Business Flow：</strong>客户背调 → 需求理解 → 功能清单 → 架构图 → 业务流程图，全程 AI 自动推进，人工在节点确认后才继续</div>
+          </div>
+          <div class="insight-item">
+            <div class="insight-bullet" style="background:#ffd166;"></div>
+            <div class="insight-text"><strong>工具分工明确原则：</strong>Workbody 写 PPT、Hamas 写内容发飞书、Claude Code 写代码——每个工具只做一件事，防止上下文混乱</div>
+          </div>
+          <div class="insight-item">
+            <div class="insight-bullet" style="background:#ffd166;"></div>
+            <div class="insight-text"><strong>节点训练法：</strong>逐一测试每个执行节点，禁用无效工具插件，用日志验证真实执行情况，确保 AI 不"说谎"</div>
+          </div>
+          <div class="insight-item">
+            <div class="insight-bullet" style="background:#ffd166;"></div>
+            <div class="insight-text"><strong>30秒心跳机制：</strong>要求 AI 子进程监听对话，若30秒无回复则主动汇报"处理中"，解决长任务失联问题</div>
+          </div>
+          <div class="insight-item">
+            <div class="insight-bullet" style="background:#ffd166;"></div>
+            <div class="insight-text"><strong>云服务器部署：</strong>火山引擎服务器（约2000元/年）+ DeepSeek V4 API，实现随时随地手机控制 AI 干活</div>
+          </div>
+          <div class="insight-item">
+            <div class="insight-bullet" style="background:#ffd166;"></div>
+            <div class="insight-text"><strong>核心提示词原则：</strong>"不要跟模型说废话，描述要像手术刀一样精准"——废话越多，AI 理解越差</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Speaker 3: 龙伟 -->
+      <div class="speaker-card color-2">
+        <div class="speaker-header">
+          <div class="speaker-avatar" style="background:rgba(0,212,170,0.2);color:#00d4aa;">龙</div>
+          <div class="speaker-info">
+            <div class="speaker-name">龙伟 · Codex 爬虫与个人效率系统</div>
+            <div class="speaker-desc">计算机代写从业者，深度探索 Codex 的边界能力</div>
+          </div>
+          <span class="speaker-tag" style="background:rgba(0,212,170,0.15);color:#00d4aa;border:1px solid rgba(0,212,170,0.3);">最震撼实验</span>
+        </div>
+        <div class="speaker-content">
+          "目前为止我让 Codex 做的事情，只有我没有想到的，没有它做不到的。"——通过一系列让人意外的实验，展示了 AI 编程工具的真实上限。
+        </div>
+        <div class="insights-list">
+          <div class="insight-item">
+            <div class="insight-bullet" style="background:#00d4aa;"></div>
+            <div class="insight-text"><strong>百度网盘字幕批量导出：</strong>让 Codex 写脚本批量提取百度网盘视频字幕文件，再配合 NotebookLM 生成问答，实现课程高效内化</div>
+          </div>
+          <div class="insight-item">
+            <div class="insight-bullet" style="background:#00d4aa;"></div>
+            <div class="insight-text"><strong>付费网站爆款数据采集：</strong>抓取10万+爆款公众号标题，按27个领域分析规律，为内容创作建立标题素材库</div>
+          </div>
+          <div class="insight-item">
+            <div class="insight-bullet" style="background:#00d4aa;"></div>
+            <div class="insight-text"><strong>猫咪强制休息插件：</strong>复刻爆火谷歌插件，定时弹出猫咪遮挡全屏强制休息，部署为系统级开机自启任务</div>
+          </div>
+          <div class="insight-item">
+            <div class="insight-bullet" style="background:#00d4aa;"></div>
+            <div class="insight-text"><strong>微信语音笔记系统：</strong>发语音给 AI 助手，自动记录灵感到笔记系统，每日汇总发送笔记文件</div>
+          </div>
+          <div class="insight-item">
+            <div class="insight-bullet" style="background:#00d4aa;"></div>
+            <div class="insight-text"><strong>"日醒" Skill：</strong>将复盘文件、Flomo 笔记、飞书录音统一处理，按「选题 / 素材 / 弹药 / 人设 / 认知」五库分类归档</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Speaker 4: 小林 -->
+      <div class="speaker-card color-3">
+        <div class="speaker-header">
+          <div class="speaker-avatar" style="background:rgba(255,107,107,0.2);color:#ff8e8e;">林</div>
+          <div class="speaker-info">
+            <div class="speaker-name">小林（林峰）· AI 动画视频工具产品分享</div>
+            <div class="speaker-desc">就职于 AI 视频工具公司，负责海外推广运营</div>
+          </div>
+          <span class="speaker-tag" style="background:rgba(255,107,107,0.15);color:#ff8e8e;border:1px solid rgba(255,107,107,0.3);">产品演示</span>
+        </div>
+        <div class="speaker-content">
+          介绍公司旗下 AI 动画视频生成工具（海外版 + 国内白日梦版），主打卡通/动画风格长视频创作，最长可生成约14分钟连贯视频。
+        </div>
+        <div class="insights-list">
+          <div class="insight-item">
+            <div class="insight-bullet" style="background:#ff8e8e;"></div>
+            <div class="insight-text"><strong>核心优势：</strong>角色一致性较好，7~8分钟内人物不失真，支持分镜独立编辑与重新同步口型</div>
+          </div>
+          <div class="insight-item">
+            <div class="insight-bullet" style="background:#ff8e8e;"></div>
+            <div class="insight-text"><strong>成本参考：</strong>生成10分钟视频约消耗3万积分，折合约500元人民币（使用高级模型）</div>
+          </div>
+          <div class="insight-item">
+            <div class="insight-bullet" style="background:#ff8e8e;"></div>
+            <div class="insight-text"><strong>行业现状：</strong>AI 视频工具市场竞争激烈，每月新增约20个同类产品，"抽卡"随机性是行业共同痛点</div>
+          </div>
+          <div class="insight-item">
+            <div class="insight-bullet" style="background:#ff8e8e;"></div>
+            <div class="insight-text"><strong>市场策略：</strong>海外付费率显著高于国内，主要通过邮件联系 KOL 推广，用埋点链接追踪转化</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Speaker 5: 蔡一航 -->
+      <div class="speaker-card color-5">
+        <div class="speaker-header">
+          <div class="speaker-avatar" style="background:rgba(78,205,196,0.2);color:#4ecdc4;">蔡</div>
+          <div class="speaker-info">
+            <div class="speaker-name">蔡一航 · Code 自动化与站外推广 RPA</div>
+            <div class="speaker-desc">站外推广从业者，用 Code 叉解决大量重复性发帖工作</div>
+          </div>
+          <span class="speaker-tag" style="background:rgba(78,205,196,0.15);color:#4ecdc4;border:1px solid rgba(78,205,196,0.3);">效率工具</span>
+        </div>
+        <div class="speaker-content">
+          公司每天需要在多个网站发布70~80条帖子，人工操作耗时一两个小时，通过 Code 叉构建 RPA 自动化脚本，大幅降低重复劳动。
+        </div>
+        <div class="insights-list">
+          <div class="insight-item">
+            <div class="insight-bullet" style="background:#4ecdc4;"></div>
+            <div class="insight-text"><strong>RPA 自动发帖：</strong>脚本自动填写帖子信息并提交，支持 Windows 系统，已打包为可执行程序供公司电脑使用</div>
+          </div>
+          <div class="insight-item">
+            <div class="insight-bullet" style="background:#4ecdc4;"></div>
+            <div class="insight-text"><strong>工具组合构想：</strong>计划将 Windsurf（前端）+ Code 叉（后端）+ Claude Code（协调）三者联动，打造更完整的开发链路</div>
+          </div>
+          <div class="insight-item">
+            <div class="insight-bullet" style="background:#4ecdc4;"></div>
+            <div class="insight-text"><strong>飞书远程控制设想：</strong>受星辰启发，计划通过飞书聊天远程控制本地电脑完成代码编写任务</div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- ===== Key Takeaways ===== -->
+    <section class="takeaways-section">
+      <div class="section-title">
+        <div class="section-title-icon" style="background:rgba(255,209,102,0.15);">💡</div>
+        核心洞见与共识
+      </div>
+      <div class="takeaways-grid">
+
+        <div class="takeaway-card" style="border-color:rgba(108,99,255,0.2);">
+          <span class="takeaway-number" style="color:#a09cff;">01</span>
+          <span class="takeaway-icon">🔪</span>
+          <div class="takeaway-title">提示词要像手术刀</div>
+          <div class="takeaway-desc">跟 AI 说废话越多，它越理解不了你。精准、简洁的指令才能让模型真正高效执行。</div>
+        </div>
+
+        <div class="takeaway-card" style="border-color:rgba(0,212,170,0.2);">
+          <span class="takeaway-number" style="color:#00d4aa;">02</span>
+          <span class="takeaway-icon">🏗️</span>
+          <div class="takeaway-title">工具分工，各司其职</div>
+          <div class="takeaway-desc">不要让一个 AI 工具做所有事。Workbody 做 PPT、Hamas 写文章、Code 叉写代码，分工明确才不会乱。</div>
+        </div>
+
+        <div class="takeaway-card" style="border-color:rgba(255,107,107,0.2);">
+          <span class="takeaway-number" style="color:#ff8e8e;">03</span>
+          <span class="takeaway-icon">🕵️</span>
+          <div class="takeaway-title">AI 会"说谎"，需验证</div>
+          <div class="takeaway-desc">AI 告诉你"已完成"不代表真的完成了。必须设计独立验证机制，通过日志或第三方 Agent 检查实际执行结果。</div>
+        </div>
+
+        <div class="takeaway-card" style="border-color:rgba(255,209,102,0.2);">
+          <span class="takeaway-number" style="color:#ffd166;">04</span>
+          <span class="takeaway-icon">🧪</span>
+          <div class="takeaway-title">节点训练，逐步固化</div>
+          <div class="takeaway-desc">先单独测试每一个节点，确认可用后再组合成工作流。整体一起训练容易失控，逐节点打磨是正确路径。</div>
+        </div>
+
+        <div class="takeaway-card" style="border-color:rgba(78,205,196,0.2);">
+          <span class="takeaway-number" style="color:#4ecdc4;">05</span>
+          <span class="takeaway-icon">🌐</span>
+          <div class="takeaway-title">云端部署，随时随地</div>
+          <div class="takeaway-desc">本地部署受制于电脑开关机，云服务器（约2000元/年）可让 AI 7×24小时运行，手机即可远程指挥干活。</div>
+        </div>
+
+        <div class="takeaway-card" style="border-color:rgba(108,99,255,0.2);">
+          <span class="takeaway-number" style="color:#a09cff;">06</span>
+          <span class="takeaway-icon">🚀</span>
+          <div class="takeaway-title">新赛道，同一起跑线</div>
+          <div class="takeaway-desc">AI 工具领域大家都是新手，个人开发者与大公司站在同一起跑线。与其在旧业务上内卷，不如专注 AI 新场景。</div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== Tools Mentioned ===== -->
+    <section class="tools-section">
+      <div class="section-title">
+        <div class="section-title-icon" style="background:rgba(78,205,196,0.15);">🛠️</div>
+        会中提及工具
+      </div>
+      <div class="tools-grid">
+        <span class="tool-chip purple">Claude Code</span>
+        <span class="tool-chip purple">Workbody（腾讯）</span>
+        <span class="tool-chip teal">DeepSeek V4</span>
+        <span class="tool-chip teal">飞书 / 飞书妙记</span>
+        <span class="tool-chip yellow">Hamas（Hephaestus）</span>
+        <span class="tool-chip yellow">Code 叉（Cursor）</span>
+        <span class="tool-chip red">NotebookLM</span>
+        <span class="tool-chip red">Gemini（免费额度）</span>
+        <span class="tool-chip cyan">Flomo</span>
+        <span class="tool-chip cyan">火山引擎服务器</span>
+        <span class="tool-chip purple">Obsidian（OCD）</span>
+        <span class="tool-chip teal">Windsurf（Codium）</span>
+        <span class="tool-chip yellow">腾讯会议</span>
+        <span class="tool-chip red">百度网盘</span>
+        <span class="tool-chip cyan">PowerShell / XShell</span>
+        <span class="tool-chip purple">MCP</span>
+      </div>
+    </section>
+
+    <!-- ===== Monetization ===== -->
+    <section class="monetization-section">
+      <div class="section-title">
+        <div class="section-title-icon" style="background:rgba(255,209,102,0.15);">💰</div>
+        变现参考数据
+      </div>
+      <div class="monetization-grid">
+
+        <div class="money-card">
+          <div class="money-amount">¥500</div>
+          <div class="money-label">Workbody Skill 模板</div>
+          <div class="money-desc">将训练好的业务分析工作流打包，直接复制到客户本地部署</div>
+        </div>
+
+        <div class="money-card">
+          <div class="money-amount">¥2,000+</div>
+          <div class="money-label">AI Agent 搭建单次</div>
+          <div class="money-desc">为企业搭建 AI 客服 / 售前协同系统，已有实际成交案例</div>
+        </div>
+
+        <div class="money-card">
+          <div class="money-amount">¥20,000+</div>
+          <div class="money-label">企业知识库交付</div>
+          <div class="money-desc">圈内教练级别报价，含完整权限体系与多端接入</div>
+        </div>
+
+        <div class="money-card">
+          <div class="money-amount">¥1~2k</div>
+          <div class="money-label">AI 工具培训场次</div>
+          <div class="money-desc">线上入门培训，已组织40+人，无需讲很深，入门即可收费</div>
+        </div>
+
+        <div class="money-card">
+          <div class="money-amount">¥10w+</div>
+          <div class="money-label">个人开发者年收入</div>
+          <div class="money-label" style="font-size:11px;margin-top:-4px;">（参考值）</div>
+          <div class="money-desc">接企业小单、咨询、工具交付，无租金成本的自由职业上限</div>
+        </div>
+
+        <div class="money-card">
+          <div class="money-amount">3~5k</div>
+          <div class="money-label">闲鱼代写月流水</div>
+          <div class="money-label" style="font-size:11px;margin-top:-4px;">（贵州客服 2~3k/月）</div>
+          <div class="money-desc">5个闲鱼店铺 + 异地低成本客服，稳定分蛋糕模式</div>
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ===== Footer ===== -->
+  <footer>
+    <p>本页面由 AI 基于会议录音文字记录自动生成 · 仅供内部参考</p>
+    <p style="margin-top:8px;color:#3a4055;">生财有数 · 深圳 AI 实践者线下聚会 · 2026年5月9日</p>
+  </footer>
+
+</body>
+</html>
