@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>余佩宣组局 · AI 工具实战讨论</title>
+  <style>
+    :root {
+      --bg: #f7f6f1;
+      --paper: #fffdfa;
+      --ink: #1f2328;
+      --muted: #666a70;
+      --line: #ddd7cc;
+      --accent: #315f72;
+      --accent-2: #8a4b31;
+      --soft: #eef4f6;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.75;
+    }
+    .wrap {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+    header {
+      padding: 54px 0 30px;
+      border-bottom: 1px solid var(--line);
+    }
+    .eyebrow {
+      color: var(--accent);
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    h1 {
+      margin: 0;
+      font-size: clamp(32px, 5vw, 54px);
+      line-height: 1.12;
+      letter-spacing: 0;
+    }
+    .meta {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 18px;
+      color: var(--muted);
+    }
+    .lead {
+      margin-top: 26px;
+      max-width: 860px;
+      font-size: 18px;
+    }
+    nav {
+      padding: 22px 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 10px;
+    }
+    nav a {
+      text-decoration: none;
+      color: var(--ink);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 12px 14px;
+      background: rgba(255, 253, 250, .8);
+      font-weight: 650;
+    }
+    section {
+      margin: 18px 0;
+      padding: clamp(20px, 4vw, 34px);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--paper);
+    }
+    h2 {
+      margin: 0 0 12px;
+      color: var(--accent);
+      font-size: clamp(22px, 3vw, 30px);
+      letter-spacing: 0;
+    }
+    h3 {
+      margin: 22px 0 10px;
+      color: var(--accent-2);
+      font-size: 18px;
+      letter-spacing: 0;
+    }
+    p { margin: 10px 0; }
+    .points {
+      margin: 12px 0 18px;
+      padding: 14px 18px 14px 32px;
+      background: var(--soft);
+      border-radius: 8px;
+    }
+    .points li { margin: 4px 0; }
+    .quote {
+      margin: 14px 0;
+      padding: 12px 14px;
+      border-left: 4px solid var(--accent);
+      background: #eef4f6;
+      border-radius: 0 8px 8px 0;
+      color: #263b42;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+    .card {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 14px;
+      background: #fbf8f2;
+    }
+    .card strong {
+      display: block;
+      color: var(--accent);
+      margin-bottom: 6px;
+    }
+    footer {
+      padding: 22px 0 42px;
+      color: var(--muted);
+      border-top: 1px solid var(--line);
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="wrap">
+      <div class="eyebrow">组局学习整理 · 2026-04-28</div>
+      <h1>余佩宣组局 · AI 工具实战讨论</h1>
+      <div class="meta">
+        <span>来源：0423余佩宣组局.md</span>
+        <span>形式：多人实战交流</span>
+        <span>主题：Claude/Codex、知识库、自动化、小红书、出海与企业 AI 服务</span>
+      </div>
+      <p class="lead">这次组局的价值不在于单一结论，而在于多个人把自己正在做的 AI 工作流、业务卡点、工具选择和变现想法摊开讨论。核心线索是：AI 不只是模型选择问题，而是如何进入业务、进入知识库、进入内容生产、进入自动化和企业服务。</p>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <nav>
+      <a href="#people">参会者和业务地图</a>
+      <a href="#accounts">Claude 账号和工具接入</a>
+      <a href="#knowledge">日省知识库工作流</a>
+      <a href="#coding">AI 编程和本地工具</a>
+      <a href="#xiaohongshu">小红书业务与选品</a>
+      <a href="#image">AI 生图和珠宝场景</a>
+      <a href="#enterprise">企业 AI 服务</a>
+      <a href="#learning">AI 学习路径和培训机会</a>
+      <a href="#voice">语音入口和小龙虾</a>
+      <a href="#scrape">资料抓取和 IP 蒸馏</a>
+      <a href="#lessons">关键方法论</a>
+    </nav>
+
+    <main>
+      <section id="people">
+        <h2>参会者和业务地图</h2>
+        <ul class="points">
+          <li>余佩宣在做 ToB 客服 Agent、AI 小程序、职业迷茫咨询三条线。</li>
+          <li>小白做小红书运营，卡点是 Claude 账号、专线、注册和登录。</li>
+          <li>龙伟做计算机代写，主要用 Codex，关注 Codex 与 Claude Code 的差异。</li>
+          <li>泰做小红书电商和计算机/论文代写，有 7 到 8 个计算机博士资源。</li>
+          <li>陈伟杰做公众号矩阵和 YouTube，正在探索工作流与企业 AI 服务。</li>
+          <li>薛琼做跨境电商联盟推广，正在学习 Claude Code 并尝试用于公司工作流。</li>
+          <li>多位参会者涉及小红书电商、跨境电商、公众号、教育、品牌 IP、企业服务等场景。</li>
+        </ul>
+        <p>余佩宣提到，“我现在在做三条业务”，这奠定了本次讨论的基调：大家不是泛泛聊 AI，而是围绕具体业务怎么用 Claude Code、Codex、Obsidian、小龙虾、NotebookLM 和脚本去提效。现场的业务覆盖面很宽，正好让 AI 工具的适用边界暴露出来：有人更适合先跑业务，有人更适合先做工具，有人则已经能把工具嵌进内容生产和自我迭代。</p>
+      </section>
+
+      <section id="accounts">
+        <h2>Claude 账号、专线和模型选择</h2>
+        <ul class="points">
+          <li>Claude 账号被封、Google 登录、验证码、美国手机号、VPN 或专线，是很多人的第一卡点。</li>
+          <li>中转站稳定性、Token 成本、Poe 积分、官网 Pro/Max/Gift 方案都被反复讨论。</li>
+          <li>文本写作更偏 Claude，编程和工具开发可以用 Codex 或 GPT 系列。</li>
+          <li>国内模型和中转模型便宜，但上下文、稳定性和代码质量可能需要权衡。</li>
+        </ul>
+        <p>小白提到，“我连 Claude 平台都没有登上去”，这个问题很典型：很多人的 AI 使用还没到业务层，就卡在账号和网络环境。讨论里没有给出唯一答案，反而形成了一个现实判断：如果 Claude 是核心生产力，就要重视账号稳定性、网络环境和数据导出风险；如果只是做编程，Codex 可能已经足够强。</p>
+        <p>龙伟提到，“我用 Codex 能用的东西，我扣在一起也能弄”，说明模型选择要回到任务本身。写文案和长文本处理时，Claude 的优势更明显；做代码、脚本、本地工具时，Codex 的可用性和成本可能更合适。这里的关键不是“哪个模型最好”，而是按任务边界分工。</p>
+      </section>
+
+      <section id="knowledge">
+        <h2>Obsidian + Claude Code 的日省和内容工作流</h2>
+        <ul class="points">
+          <li>录音转文字后放入收件箱，由规则文件处理到不同库。</li>
+          <li>输出维度包括咨询对象、金句、销售话术、案例、选题、认知、信息差、方法论等。</li>
+          <li>日记和录音互相校验，通过 gap search 找遗漏、错位和可迭代点。</li>
+          <li>社交诊断可以找出该说没说、不该说却说了、让人尴尬的点。</li>
+          <li>内容输出基于真实录音提取选题，再生成视频日记和小红书内容。</li>
+        </ul>
+        <p>余佩宣提到，“我的 cc 主要用于内容创作以及自我迭代”，这部分是本次组局最完整的实战案例。他的做法是把每日录音放入 Obsidian 收件箱，再让 Claude Code 按规则分类到多个库里，形成内容选题、金句、销售话术、认知升级、信息差和方法论等资产。</p>
+        <p>他还提到，“我会让我的 cloud code 去帮我做一个 gap search”，这里的价值比普通日记更高。普通复盘只是记录今天发生了什么，而 gap search 会反过来检查：今天的录音里有没有我漏写的东西，有没有我没意识到但值得迭代的点，有没有社交中该表达但没表达的自我销售点。这让日省变成一个自我进化系统，而不是流水账。</p>
+      </section>
+
+      <section id="coding">
+        <h2>AI 编程、本地工具和颗粒度拆分</h2>
+        <ul class="points">
+          <li>录音笔接入电脑后，脚本自动导入音频、转文字、进入后续处理流程。</li>
+          <li>本地 ASR 省钱但慢，云端 ASR 快但有费用；中文识别模型需要实际测试。</li>
+          <li>AI 编程不能一句话让它做完整 App，最好拆成一个页面、一个模块、一个功能逐步做。</li>
+          <li>复杂需求要像产品经理写分镜脚本一样拆给 AI。</li>
+          <li>版本管理、依赖安装、跨系统打包，是把本地工具分享给别人时的真实难点。</li>
+        </ul>
+        <p>有参会者提到，“我不能把 AI 当成一个真正的人”，这是 AI 编程讨论里最值钱的判断。AI 可以写代码，但它不能天然理解整个产品上下文，也不会自动做好架构、依赖和版本管理。把需求拆成最小颗粒度，逐个列表、页面、转写、展示和处理流程去做，比一句话让它全包更稳定。</p>
+        <p>另一个参会者提到，他想把录音笔插到电脑后自动导入音频，再用本地或云端模型转成文字，最后进入 Obsidian 工作流。这个场景说明 AI 编程最适合从“自己每天真正在重复的动作”开始做：哪怕只是少点几步、少复制几次、少手动分类几份文件，都可以变成脚本或小工具。</p>
+      </section>
+
+      <section id="xiaohongshu">
+        <h2>小红书电商、搜索流量和选品</h2>
+        <ul class="points">
+          <li>小红书电商不强依赖粉丝，搜索流量更关键。</li>
+          <li>选品可以结合人工手感、爆款数据、付费工具和竞品账号分析。</li>
+          <li>爬取小红书笔记要控制频率和数量，过量容易触发反爬或异常。</li>
+          <li>账号同质化、图文素材同质化，是小红书实操里的重要风险。</li>
+          <li>IP 发专业内容获客，是小红书运营服务和品牌服务的一条路径。</li>
+        </ul>
+        <p>泰提到，“零到一还没跑通，就不用想着提效的问题”，这句话把小红书电商和 AI 提效的顺序讲清楚了。AI 可以做素材库、爆款分析、关键词优化、内容工厂，但如果业务本身的选品、出单和流量还没跑通，过早追求自动化可能会把精力从业务本体拉走。</p>
+        <p>另一位参会者提到，小红书“不是靠粉丝，他是搜索”，这个判断和之前多次复盘一致。小红书虚拟产品、电商和品牌运营，都要先理解搜索需求、关键词、长尾词和用户意图，再谈矩阵和工具化。图文同质化和视频素材同质化则要求后续在图片、封面和真实素材上做差异。</p>
+      </section>
+
+      <section id="image">
+        <h2>AI 生图和珠宝/黄金图片场景</h2>
+        <ul class="points">
+          <li>GPT 新生图能力触发了“珠宝产品图生成/优化”的机会判断。</li>
+          <li>水贝、黄金、项链、小红书产品图，是现场讨论出的具体场景。</li>
+          <li>潜在痛点是拍摄需要找景、找灯光、耗时，AI 可能替代部分产品图生产。</li>
+          <li>风险是如果客户图片量足够大，实拍效率可能仍高于 AI。</li>
+          <li>更可行的切入可能是“工具/流程服务”，而不是直接替客户卖图。</li>
+        </ul>
+        <p>龙伟提到，“给我一个产品图，然后你能做出来一个能发在小红书上的图片”，这是本次讨论里最具体的 AI 生图商业场景。珠宝和黄金卖家每天花大量时间拍图，如果 AI 能把产品图润色成适合小红书展示的图片，就可能解决找景、灯光、拍摄效率的问题。</p>
+        <p>但现场也提醒了一个关键约束：如果客户需求量很大，成熟实拍流程可能仍然更快，AI 生图不一定天然更高效。因此这个方向不能只看技术惊艳程度，还要验证客户愿意为哪一步付费，是批量生成、风格优化、封面图、模特图，还是小红书发布素材包。</p>
+      </section>
+
+      <section id="enterprise">
+        <h2>企业 AI 服务的切入点</h2>
+        <ul class="points">
+          <li>企业 AI 服务不能泛泛做，最好聚焦某个行业或某个明确痛点。</li>
+          <li>财税、产业园、品牌 IP、教育、计算机、跨境电商，都被提到可以作为场景入口。</li>
+          <li>客户有需求，不代表服务方懂行业；行业深度决定能否找到真正痛点。</li>
+          <li>可复用产品比单客户定制更容易做大。</li>
+          <li>用自己熟悉的传统职业路径拆出一个 AI 提效点，是更稳的起点。</li>
+        </ul>
+        <p>有人提到自己想做企业 AI 服务，但“还没有方向”，现场给出的建议是：不要从泛企业服务开始，而要从自己熟悉的行业和明确问题开始。比如品牌 IP 可以拆出智能体，计算机代写可以拆出交付或答疑工具，教育可以拆出题目和学员反馈工具。</p>
+        <p>现场还提到，“你要对某个行业有一定深度，才能知道痛点足够痛的地方在哪里”。这句话很重要。AI 企业服务的门槛不只是会用工具，而是知道某个行业里哪一步重复、哪一步费钱、哪一步客户愿意付费解决。没有行业深度，就容易变成给每个客户做一次性定制，难以复用。</p>
+      </section>
+
+      <section id="learning">
+        <h2>AI 学习路径和培训机会</h2>
+        <ul class="points">
+          <li>最快的学习方式之一是线下听分享，再请嘉宾吃饭深聊。</li>
+          <li>Claude Code 培训在跨境圈、B 端老板和企业内训里有明显信息差。</li>
+          <li>培训本身可能不是长期业务，但可以筛选出企业内训和顾问客户。</li>
+          <li>终端版 Claude Code 的价值在于更容易接外部工具、浏览器、飞书、多维表格。</li>
+          <li>TT Bridge、Agent Browser、Ghostty 等工具被提到可以提升终端和浏览器自动化体验。</li>
+        </ul>
+        <p>薛琼提到，“最快的方式就是在线下听嘉宾讲，然后中午和晚上请他吃饭”，这是本次组局里关于学习 AI 的真实经验。公开课程能提供入口，但更值钱的往往是课后深聊和具体问题的现场拆解。</p>
+        <p>他还提到 Claude Code 培训在跨境圈是蓝海，因为很多老板不是不会判断价值，而是连“打开 Claude Code 并跑起来”这一步都跨不过去。培训可以先解决入门和信任问题，再延伸到企业内训、AI 顾问、流程自动化和数字化转型服务。</p>
+      </section>
+
+      <section id="voice">
+        <h2>语音入口、小龙虾和碎片灵感捕捉</h2>
+        <ul class="points">
+          <li>微信接小龙虾，可以把语音转成文本后写入笔记或待办系统。</li>
+          <li>小龙虾更像入口，背后的模型和工作流才是真正执行者。</li>
+          <li>关键词可以触发不同业务，让一个入口分发到不同流程。</li>
+          <li>爱马仕相比小龙虾，优势在于有自我迭代和“记住你”的能力。</li>
+          <li>碎片灵感、待办事项、朋友圈感悟、公众号草稿都可以通过入口进入工作流。</li>
+        </ul>
+        <p>龙伟提到，“我直接手机里面接小龙虾，我直接录音”，这个思路把语音入口的重要性讲清楚了。很多灵感出现时，如果还要打开复杂软件、建文件、找目录，灵感就会流失。微信语音入口的价值，是把捕捉成本降到最低。</p>
+        <p>现场也澄清了一个关键点：小龙虾不是最终大脑，而是调动工作流的入口。它接收语音和文本，再转给背后的模型、接口或本地系统，让笔记进入 Flomo、知识库或待办盒。也就是说，入口要轻，后端流程要清楚。</p>
+      </section>
+
+      <section id="scrape">
+        <h2>资料抓取、IP 蒸馏和内容资产</h2>
+        <ul class="points">
+          <li>公众号文章可以找服务批量下载，再转成 Markdown 给 AI 读取。</li>
+          <li>YouTube、抖音、TikTok 等视频可以通过插件或工具批量下载，再转文字和分析。</li>
+          <li>NotebookLM 适合做资料检索和引用定位，但生成新内容能力不如 Claude。</li>
+          <li>对标博主的内容可以分析卖点、关键词、长尾词、笔记结构和产品表达。</li>
+          <li>IP 蒸馏不是简单复制，而是用大量公开内容形成知识库和风格参考。</li>
+        </ul>
+        <p>有参会者提到，把公众号博主文章下载后喂给 NotebookLM 或 Claude，可以做 IP 蒸馏和内容分析。另一个场景是把某个博主的视频批量下载，转成文字后分析他最近写了什么、产品卖点占比、用了哪些关键词和长尾词。</p>
+        <p>这类资料抓取的核心不是“扒内容”，而是把外部内容变成可分析的结构化资产。真正有价值的是后续问题：对方的选题机制是什么，卖点如何排列，关键词如何覆盖，用户需求在哪里，哪些表达可以学，哪些同质化风险必须避开。</p>
+      </section>
+
+      <section id="lessons">
+        <h2>关键方法论</h2>
+        <div class="grid">
+          <div class="card"><strong>先业务后提效</strong>0 到 1 没跑通时，不要把主要精力放在 AI 自动化上。</div>
+          <div class="card"><strong>按任务选模型</strong>文本偏 Claude，编程可用 Codex，便宜模型适合低价值批处理。</div>
+          <div class="card"><strong>拆小颗粒度</strong>AI 编程要按页面、模块、按钮、数据流逐步做。</div>
+          <div class="card"><strong>入口要轻</strong>语音、小龙虾、微信、脚本都可以成为低摩擦输入口。</div>
+          <div class="card"><strong>知识库要服务业务</strong>录音、日记、选题、社交诊断都要进入可行动流程。</div>
+          <div class="card"><strong>行业深度决定痛点</strong>做企业 AI 服务，先找自己懂的行业和明确痛点。</div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <p>处理说明：已按聚会 skill 要求，围绕有用话题整理，去掉大量闲聊、场地调整、重复确认和无效语气词。</p>
+    </footer>
+  </div>
+</body>
+</html>
