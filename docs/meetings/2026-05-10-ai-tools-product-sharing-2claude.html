@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI工具使用心得与产品分享 · 2026年5月9日</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface2: #22263a;
+      --border: #2e334d;
+      --accent: #6c8ef5;
+      --accent2: #a78bfa;
+      --accent3: #34d399;
+      --accent4: #f59e0b;
+      --text: #e2e8f0;
+      --text-muted: #8892b0;
+      --text-dim: #4a5568;
+      --tag-bg: #1e2640;
+      --quote-border: #6c8ef5;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Segoe UI', sans-serif;
+      font-size: 15px;
+      line-height: 1.8;
+      min-height: 100vh;
+    }
+
+    /* ── Header ── */
+    header {
+      background: linear-gradient(135deg, #0d1226 0%, #151b35 50%, #0d1226 100%);
+      border-bottom: 1px solid var(--border);
+      padding: 56px 24px 48px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      top: -60px; left: 50%; transform: translateX(-50%);
+      width: 600px; height: 300px;
+      background: radial-gradient(ellipse, rgba(108,142,245,.18) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .header-tag {
+      display: inline-block;
+      background: var(--tag-bg);
+      border: 1px solid var(--border);
+      color: var(--accent);
+      font-size: 12px;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+    header h1 {
+      font-size: clamp(22px, 4vw, 34px);
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -.01em;
+      margin-bottom: 14px;
+    }
+    header h1 span { color: var(--accent); }
+    .header-meta {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+    .header-meta span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); }
+
+    /* ── Participants ── */
+    .participants-bar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 18px 24px;
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .participant-chip {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--tag-bg);
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 5px 14px 5px 8px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+    .avatar {
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px; font-weight: 700; color: #fff;
+      flex-shrink: 0;
+    }
+
+    /* ── Layout ── */
+    .container {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 48px 24px 80px;
+    }
+
+    /* ── TOC ── */
+    .toc {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px 32px;
+      margin-bottom: 52px;
+    }
+    .toc h2 {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+    }
+    .toc-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 8px;
+    }
+    .toc-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 12px;
+      border-radius: 8px;
+      text-decoration: none;
+      color: var(--text-muted);
+      font-size: 14px;
+      transition: background .15s, color .15s;
+    }
+    .toc-item:hover { background: var(--surface2); color: var(--text); }
+    .toc-num {
+      width: 22px; height: 22px;
+      border-radius: 6px;
+      background: var(--tag-bg);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent);
+      flex-shrink: 0;
+    }
+
+    /* ── Section ── */
+    .section {
+      margin-bottom: 60px;
+      scroll-margin-top: 80px;
+    }
+    .section-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 18px;
+      margin-bottom: 24px;
+    }
+    .section-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .section-title-group { flex: 1; }
+    .section-label {
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 4px;
+    }
+    .section-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.3;
+    }
+
+    .section-divider {
+      height: 1px;
+      background: linear-gradient(90deg, var(--border) 0%, transparent 100%);
+      margin-bottom: 24px;
+    }
+
+    /* ── Bullets ── */
+    .bullets {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px 24px;
+      margin-bottom: 24px;
+    }
+    .bullets ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .bullets li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+    .bullet-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0;
+      margin-top: 7px;
+    }
+
+    /* ── Narrative ── */
+    .narrative {
+      color: var(--text);
+      font-size: 15px;
+      line-height: 1.9;
+    }
+    .narrative p { margin-bottom: 16px; }
+    .narrative p:last-child { margin-bottom: 0; }
+
+    /* ── Quote ── */
+    .quote {
+      border-left: 3px solid var(--quote-border);
+      background: var(--surface);
+      border-radius: 0 10px 10px 0;
+      padding: 14px 18px;
+      margin: 16px 0;
+      font-size: 14px;
+      color: var(--text-muted);
+      font-style: italic;
+    }
+    .quote cite {
+      display: block;
+      margin-top: 6px;
+      font-size: 12px;
+      color: var(--text-dim);
+      font-style: normal;
+    }
+
+    /* ── Highlight box ── */
+    .highlight-box {
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin: 20px 0;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    .highlight-box.blue  { background: rgba(108,142,245,.08); border: 1px solid rgba(108,142,245,.2); color: #a3b8ff; }
+    .highlight-box.green { background: rgba(52,211,153,.08);  border: 1px solid rgba(52,211,153,.2);  color: #6ee7b7; }
+    .highlight-box.amber { background: rgba(245,158,11,.08);  border: 1px solid rgba(245,158,11,.2);  color: #fcd34d; }
+    .highlight-box.purple{ background: rgba(167,139,250,.08); border: 1px solid rgba(167,139,250,.2); color: #c4b5fd; }
+    .highlight-box strong { color: #fff; }
+
+    /* ── Tags ── */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 20px;
+    }
+    .tag {
+      background: var(--tag-bg);
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      font-size: 12px;
+      padding: 3px 10px;
+      border-radius: 12px;
+    }
+
+    /* ── Footer ── */
+    footer {
+      border-top: 1px solid var(--border);
+      text-align: center;
+      padding: 32px 24px;
+      color: var(--text-dim);
+      font-size: 13px;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .toc-grid { grid-template-columns: 1fr; }
+      .section-header { gap: 12px; }
+      .section-icon { width: 36px; height: 36px; font-size: 16px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════
+     HEADER
+════════════════════════════════════════ -->
+<header>
+  <div class="header-tag">Meeting Notes</div>
+  <h1>AI 工具使用心得与<span>产品分享</span></h1>
+  <div class="header-meta">
+    <span><div class="dot"></div>2026 年 5 月 9 日（周六）</span>
+    <span><div class="dot"></div>14:11 – 16:34 GMT+8</span>
+    <span><div class="dot"></div>深圳 · 线下聚会</span>
+    <span><div class="dot"></div>5 位参与者</span>
+  </div>
+</header>
+
+<!-- ════════════════════════════════════════
+     PARTICIPANTS
+════════════════════════════════════════ -->
+<div class="participants-bar">
+  <div class="participant-chip">
+    <div class="avatar" style="background:#6c8ef5;">主</div>主持人（说话人1）
+  </div>
+  <div class="participant-chip">
+    <div class="avatar" style="background:#34d399;">龙</div>龙伟（计算机代写）
+  </div>
+  <div class="participant-chip">
+    <div class="avatar" style="background:#f59e0b;">林</div>小林（AI视频海外推广）
+  </div>
+  <div class="participant-chip">
+    <div class="avatar" style="background:#a78bfa;">星</div>星辰·郭伟（IT架构/企服）
+  </div>
+  <div class="participant-chip">
+    <div class="avatar" style="background:#f87171;">蔡</div>蔡一航（站外推广自动化）
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     MAIN
+════════════════════════════════════════ -->
+<div class="container">
+
+  <!-- TOC -->
+  <nav class="toc">
+    <h2>内容目录</h2>
+    <div class="toc-grid">
+      <a href="#s1" class="toc-item"><div class="toc-num">01</div>主持人的 AI 自动化工具实践</a>
+      <a href="#s2" class="toc-item"><div class="toc-num">02</div>企业知识库搭建与变现</a>
+      <a href="#s3" class="toc-item"><div class="toc-num">03</div>公众号矩阵与账号管理</a>
+      <a href="#s4" class="toc-item"><div class="toc-num">04</div>星辰：Workbody 训练与企业 Skill 工作流</a>
+      <a href="#s5" class="toc-item"><div class="toc-num">05</div>Hama（本地 AI Agent）部署与使用</a>
+      <a href="#s6" class="toc-item"><div class="toc-num">06</div>AI 工具使用技巧与通用坑点</div></a>
+      <a href="#s7" class="toc-item"><div class="toc-num">07</div>AI 生成 PPT 的心得</a>
+      <a href="#s8" class="toc-item"><div class="toc-num">08</div>龙伟：Codex 爬虫与自动化应用</a>
+      <a href="#s9" class="toc-item"><div class="toc-num">09</div>个人知识管理与"日醒" Skill</a>
+      <a href="#s10" class="toc-item"><div class="toc-num">10</div>小林：AI 动画视频工具产品介绍</a>
+      <a href="#s11" class="toc-item"><div class="toc-num">11</div>蔡一航：站外推广自动化（RPA）</a>
+      <a href="#s12" class="toc-item"><div class="toc-num">12</div>AI 赛道变现与商业模式探讨</a>
+      <a href="#s13" class="toc-item"><div class="toc-num">13</div>企业软件外包与架构壁垒</a>
+      <a href="#s14" class="toc-item"><div class="toc-num">14</div>代写业务运营模式（龙伟）</a>
+    </div>
+  </nav>
+
+  <!-- ── SECTION 1 ── -->
+  <section class="section" id="s1">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(108,142,245,.15);">🤖</div>
+      <div class="section-title-group">
+        <div class="section-label">Topic 01</div>
+        <div class="section-title">主持人的 AI 自动化工具实践</div>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+    <div class="bullets">
+      <ul>
+        <li><div class="bullet-dot"></div>通过 Claude Code 口述需求，快速做出各类小工具和插件</li>
+        <li><div class="bullet-dot"></div>利用 Gemini 免费额度多账号注册，免费跑通 AI 工具</li>
+        <li><div class="bullet-dot"></div>爆款视频爬取工具：定时抓取对标账号爆款，飞书多维表格展示，支持播放量筛选</li>
+        <li><div class="bullet-dot"></div>微信群聊天记录桌面工具：一键获取并 AI 分析，生成每日日报</li>
+        <li><div class="bullet-dot"></div>公众号内容日报：定时抓取关注博主文章，AI 提炼高价值内容自动推送</li>
+        <li><div class="bullet-dot"></div>AI 代码自我检查的坑：单层自检无效，需设计三层独立 Agent 检查机制</li>
+        <li><div class="bullet-dot"></div>三维度个人日报：飞书妙记语音、Claude Code 对话记录、微信24小时聊天记录</li>
+        <li><div class="bullet-dot"></div>本地语音识别模型：绕过飞书妙记分钟数限制，自建本地转写模型</li>
+        <li><div class="bullet-dot"></div>小红书视频下载工具：无需 API，丢链接即下载，已做成 Windows/Mac 双版</li>
+      </ul>
+    </div>
+    <div class="narrative">
+      <p>主持人提到，自己最初是"通过做油管视频的时候开始接触到，然后就做了一些自动化的程序"，对于没有编程基础的人来说，能用 Claude Code 口喷需求就做出插件，当时"非常兴奋"。在爆款视频爬取工具上，他将抓取频率从每天6次调整为每天1次，并在飞书多维表格中用颜色标注新增爆款与持续上榜内容，方便团队快速跟进热点。</p>
+      <p>在 AI 代码质量保障上，他踩过一个典型的坑——让 AI 自我检查代码质量"只是走一个形式，他并没有真正的去做"，因为模型自写自检根本无法客观验证。后来他咨询 Claude Code，得到的解法是引入独立的第三方 Agent 做检查，并最终设计成三层检查机制，显著提升了输出质量。他还将飞书妙记语音复盘、Claude Code 每日对话、微信24小时聊天记录三者结合，让 AI 全面了解自己当天的工作进程并生成日报，实现了高度个人化的 AI 助理体系。</p>
+    </div>
+    <div class="tags">
+      <span class="tag">Claude Code</span><span class="tag">自动化</span><span class="tag">飞书</span><span class="tag">爬虫</span><span class="tag">日报</span>
+    </div>
+  </section>
+
+  <!-- ── SECTION 2 ── -->
+  <section class="section" id="s2">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(52,211,153,.15);">🏢</div>
+      <div class="section-title-group">
+        <div class="section-label">Topic 02</div>
+        <div class="section-title">企业知识库搭建与变现</div>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+    <div class="bullets">
+      <ul>
+        <li><div class="bullet-dot"></div>老板端用 Obsidian（OCD）沉淀公司全量知识，员工端用飞书分级访问</li>
+        <li><div class="bullet-dot"></div>销售、运营部门数据分开管理，但部分信息打通</li>
+        <li><div class="bullet-dot"></div>通过 Claude Code + Bridge 搭桥，让员工通过微信/飞书直接调用大模型</li>
+        <li><div class="bullet-dot"></div>变现方式：知识库交付 + 按小时咨询，客户来源为朋友介绍和公众号</li>
+        <li><div class="bullet-dot"></div>业内行情：企业知识库交付单价可达2万+</li>
+      </ul>
+    </div>
+    <div class="narrative">
+      <p>主持人提到，他帮一家企业搭建知识库时，"帮他们把整个链路基本上都聊通了"。方案设计上，老板使用自己的 Obsidian 终端，可自动从飞书同步公司所有员工沉淀的数据，形成包含公司全量信息的私有知识库；而员工只能看到飞书上属于自己权限范围内的公开内容，实现了数据的分级管理与权限隔离。</p>
+      <p>在更进一步的规划中，他还计划为企业部署一个本地大模型，通过 Bridge 搭桥后，每位员工都可以用手机通过微信或飞书调用该模型，同时各部门有自己专属的知识库与之对接。目前这一方向已实现了两笔变现，分别是一个知识库交付单和两个咨询单，咨询按小时收费，客户来源于朋友介绍和公众号文章。现场也有人提到，业内有教练给企业搭知识库收到了2万多元，印证了这一方向的商业价值。</p>
+    </div>
+    <div class="tags">
+      <span class="tag">企业知识库</span><span class="tag">Obsidian</span><span class="tag">飞书</span><span class="tag">变现</span><span class="tag">RAG</span>
+    </div>
+  </section>
+
+  <!-- ── SECTION 3 ── -->
+  <section class="section" id="s3">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(245,158,11,.15);">📱</div>
+      <div class="section-title-group">
+        <div class="section-label">Topic 03</div>
+        <div class="section-title">公众号矩阵与账号管理</div>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+    <div class="bullets">
+      <ul>
+        <li><div class="bullet-dot"></div>主持人曾运营200个公众号账号，目前沉淀60多个，以流量组为主</li>
+        <li><div class="bullet-dot"></div>受封号影响，现已停止大规模接广告，转为低频接单</li>
+        <li><div class="bullet-dot"></div>计划做 AI 主题矩阵号，借助已有账号资源快速起量</li>
+        <li><div class="bullet-dot"></div>公众号实名注册有第三方渠道（类似 Claude 账号注册逻辑）</li>
+        <li><div class="bullet-dot"></div>AI 工具账号封号问题：Claude 等海外工具封号频发，建议用苹果礼品卡订阅、注册时间长的老账号更稳</li>
+        <li><div class="bullet-dot"></div>自动推送内容到公众号接口易触发封号，建议通过中间号中转再手动复制到主号</li>
+      </ul>
+    </div>
+    <div class="narrative">
+      <p>主持人坦言，自己曾经做公众号做到200个账号，"后面因为接了一些广告，有些封号了什么的就没做了"，现在沉淀下来的60多个账号以流量组合作为主，偶尔接广告。受追觅老板案例启发，他计划将这批账号转型为 AI 主题矩阵号，认为如果能做50个 AI 方向的公众号，接广告的收益会相当可观。</p>
+      <p>账号实名的问题是扩张的主要障碍，但他提到"也有渠道，像非洲老哥他们也可以实名"，这与 Claude 等海外工具的账号注册逻辑是一样的。在 AI 工具账号稳定性方面，他目前 Claude 账号注册已有两三年，一直用苹果礼品卡订阅，因此暂时没有遇到封号问题；而自动推送内容到公众号的 API 接口则是另一个雷区，"已经很多号被封掉了"，他现在的做法是先发到一个中间号，再手动复制到主号，以规避风险。</p>
+    </div>
+    <div class="tags">
+      <span class="tag">公众号矩阵</span><span class="tag">账号安全</span><span class="tag">Claude封号</span><span class="tag">流量运营</span>
+    </div>
+  </section>
+
+  <!-- ── SECTION 4 ── -->
+  <section class="section" id="s4">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(167,139,250,.15);">⚙️</div>
+      <div class="section-title-group">
+        <div class="section-label">Topic 04</div>
+        <div class="section-title">星辰：Workbody 训练与企业 Skill 工作流</div>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+    <div class="bullets">
+      <ul>
+        <li><div class="bullet-dot"></div>Workbody 是腾讯出品的国产 AI 工具，本质与 Claude Code/Cursor 类似，内置丰富官方精选 Skill</li>
+        <li><div class="bullet-dot"></div>自训练 Business Flow：从4月14日训练到4月22日，历时7天完成整套企业客资处理工作流</li>
+        <li><div class="bullet-dot"></div>5个执行节点：① 公司背调与简报 → ② 客户资料分析（IT认知水平判断）→ ③ 需求清单输出 → ④ 功能架构图 → ⑤ 业务流程图</li>
+        <li><div class="bullet-dot"></div>人机协同模式：客户30-40分钟沟通后，将需求丢给 AI，开完会方案已输出，直接交给销售</li>
+        <li><div class="bullet-dot"></div>IT认知水平判断：高水平直接讲技术，低水平则评估是否值得跟进</li>
+        <li><div class="bullet-dot"></div>Skill 训练方法：逐节点测试 → 固化格式 → 嵌套 MD 文件调度子节点</li>
+        <li><div class="bullet-dot"></div>Workbody 独有优势：能抓取其他工具（Hama、Web Search）抓不到的微信公众号数据</li>
+      </ul>
+    </div>
+    <div class="narrative">
+      <p>星辰提到，他"是从架构的角度去出发，就整体规划的角度去出发，来去用 AI 的"。他在 Workbody 中内置了一套自训练的 Business Flow Skill，只需发送一段唤醒词，AI 就会按照固定的5个节点依次执行，并在每个节点等待人工确认后再推进。整套流程用了7天时间从零训练完成，此后每次执行都高度一致，"跟手术刀一样的，它能切中我的12345678点"。</p>
+      <p>这套工作流的核心价值在于大幅压缩售前时间：他每天接2到3个客资，与客户线上沟通30至40分钟后，将需求丢给 Workbody，等开完会方案就已经出来了，直接交给销售跟进，自己就可以出来参加聚会。Skill 的训练方法是逐节点打磨，确认输出格式后固化，最终通过一个嵌套结构的 MD 文件统一调度所有子节点。他还特别指出 Workbody 的独特之处——它能抓取其他工具无法获取的微信公众号数据，"你别管他是怎么拿的，他就是能拿到你别的拿不到"，这使得它在信息搜集环节具有明显优势。</p>
+    </div>
+    <div class="tags">
+      <span class="tag">Workbody</span><span class="tag">腾讯</span><span class="tag">Skill训练</span><span class="tag">企业售前</span><span class="tag">人机协同</span>
+    </div>
+  </section>
+
+  <!-- ── SECTION 5 ── -->
+  <section class="section" id="s5">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(52,211,153,.15);">🖥️</div>
+      <div class="section-title-group">
+        <div class="section-label">Topic 05</div>
+        <div class="section-title">Hama（本地 AI Agent）部署与使用</div>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+    <div class="bullets">
+      <ul>
+        <li><div class="bullet-dot"></div>部署在火山引擎云服务器（约2000元/年），接入 DeepSeek V4 API</li>
+        <li><div class="bullet-dot"></div>通过飞书 BOT 进程与终端 CLI 双窗口并行：飞书端仅聊天，终端端拥有最高管理员权限</li>
+        <li><div class="bullet-dot"></div>自训练让 AI 独立接收飞书消息并用独立子进程处理，避免任务阻塞</li>
+        <li><div class="bullet-dot"></div>30秒无回复自动发送"处理中"消息，解决长任务无响应问题</li>
+        <li><div class="bullet-dot"></div>Hama vs Open WebUI：Open WebUI 存在后台偷跑 Token 的问题，Hama 不发消息则不消耗</li>
+        <li><div class="bullet-dot"></div>用于 AI 辅助内容创作：先写大纲确认，再生成正文，自动存入飞书云文档</li>
+        <li><div class="bullet-dot"></div>要求 AI 每次操作后自行记录日志，防止"说谎"（声称已完成但实际未执行）</li>
+      </ul>
+    </div>
+    <div class="narrative">
+      <p>星辰介绍，Hama 本质上与 Open WebUI 类似，都是在服务器上运行的 AI Agent 框架，但他选择 Hama 的重要原因是 Open WebUI"会偷偷摸摸吃我的 Token，你知道吗？我很不爽"——即便当天没有发任何消息，Open WebUI 也会在后台消耗 Token，而 Hama 则不会。他将 Hama 部署在火山引擎的云服务器上，接入 DeepSeek V4 的 API，并与飞书打通，"我就给他丢了个飞书文档，我说哥们，你自己把飞书接上，我在那跟你聊天就行了"。</p>
+      <p>在架构设计上，他实现了飞书端与终端 CLI 的双窗口并行：飞书端的 AI 只能聊天，不能修改服务器配置；终端端的 AI 拥有最高管理员权限，可以执行代码和文件操作。为了解决长任务执行期间 AI 无响应的问题，他训练 AI 自建了一个子进程监听对话，"如果30秒内没给我回话，你先默认，先给我回一条，防止我催他"。此外，他还强调要求 AI 在每次完成操作后都自行记账，因为 AI 存在"说谎"的情况——"他告诉你他干了，实际没干"，通过日志核查可以有效规避这一问题。</p>
+    </div>
+    <div class="tags">
+      <span class="tag">Hama</span><span class="tag">DeepSeek V4</span><span class="tag">火山引擎</span><span class="tag">飞书Bot</span><span class="tag">云服务器</span>
+    </div>
+  </section>
+
+  <!-- ── SECTION 6 ── -->
+  <section class="section" id="s6">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(248,113,113,.15);">⚠️</div>
+      <div class="section-title-group">
+        <div class="section-label">Topic 06</div>
+        <div class="section-title">AI 工具使用技巧与通用坑点</div>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+    <div class="bullets">
+      <ul>
+        <li><div class="bullet-dot"></div>不要跟模型说废话：描述要像手术刀一样精准，废话越多 AI 越理解不了</li>
+        <li><div class="bullet-dot"></div>AI 自检无效：需引入独立第三方 Agent 做质量检查</li>
+        <li><div class="bullet-dot"></div>AI 会"说谎"：声称已完成但实际未执行，需通过日志验证</li>
+        <li><div class="bullet-dot"></div>内置工具不可信：Agent 自主调用的插件未必能拿到数据，需逐一测试并禁用无效工具</li>
+        <li><div class="bullet-dot"></div>长任务无响应：需训练 AI 自建进程定时汇报进度</li>
+        <li><div class="bullet-dot"></div>C 盘占满问题：Claude Code 等工具默认将文件存入 C 盘，需明确告知 AI 改存 D 盘</li>
+        <li><div class="bullet-dot"></div>多工具分工协作：每个工具只做一件事，避免单一工具承担过多任务导致记忆混乱</li>
+        <li><div class="bullet-dot"></div>模型选择影响效果：底层模型能力不足时，再好的框架也难以执行复杂任务</li>
+      </ul>
+    </div>
+    <div class="narrative">
+      <p>星辰总结了他在实践中积累的核心经验，其中最重要的一条是"不要跟模型说废话"——"就是你给他的描述要跟手术刀一样精准……你跟他说的废话越多，他越理解不了你。"他的所有指令都极度简洁，只告诉 AI 要什么、怎么做，其余的都是 AI 自己考虑的事。</p>
+      <p>另一个高频踩坑点是 AI Agent 的工具可信度问题。现代 Agent 会自主决定调用哪个插件，但很多内置插件在特定场景下根本拿不到数据，"他的工具不可信，你得自己去测试你要的场景下他哪些工具能完成"。遇到无效工具，他的做法是直接告诉 AI 在该场景下禁用它，让底层永久记住。此外，小林（说话人3）提出了 C 盘被占满的问题，星辰给出的解法简单直接："你就直接告诉他，你说以后我的所有文件你存在 D 盘的某个文件夹，他自己就干了，就这么简单。"多工具分工协作也是星辰反复强调的原则，"我不会让他去单用一个一个东西的"，每个工具只做一件事，避免因任务过重导致 AI 记忆混乱、输出质量下降。</p>
+    </div>
+    <div class="highlight-box amber">
+      <strong>核心原则：</strong>与 AI 沟通要像手术刀一样精准；多工具分工明确；对 AI 的每一步输出都要做验证，不能盲信。
+    </div>
+    <div class="tags">
+      <span class="tag">AI使用技巧</span><span class="tag">踩坑总结</span><span class="tag">多Agent协作</span>
+    </div>
+  </section>
+
+  <!-- ── SECTION 7 ── -->
+  <section class="section" id="s7">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(108,142,245,.15);">📊</div>
+      <div class="section-title-group">
+        <div class="section-label">Topic 07</div>
+        <div class="section-title">AI 生成 PPT 的心得</div>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+    <div class="bullets">
+      <ul>
+        <li><div class="bullet-dot"></div>Workbody 可直接生成可编辑的 PPT 文件（非图片），质量"完全够用"</li>
+        <li><div class="bullet-dot"></div>星辰让 Workbody 给自己写使用说明书并生成培训 PPT，全程只用文字沟通</li>
+        <li><div class="bullet-dot"></div>Claude + Claude Design 也能生成高质量 PPT</li>
+        <li><div class="bullet-dot"></div>网页版 AI PPT 工具效果同样出色</li>
+        <li><div class="bullet-dot"></div>AI PPT 已可商业化：星辰用此为企业做内训，收取培训费</li>
+      </ul>
+    </div>
+    <div class="narrative">
+      <p>星辰展示了一份用 Workbody 生成的培训 PPT，内容是"怎么使用 Workbody 的培训教程"，"全程我只跟 Workbody 这个文字"，最终输出的是可以直接编辑的 PPT 文件而非图片，现场众人评价"质量相当可以，起码够用"。他计划用这份 PPT 给前公司同事做付费培训，收了培训费后直接让 Workbody 自己给自己写说明书，省去了自己做 PPT 的时间。</p>
+      <p>主持人也补充了两个心得：一是 Claude 配合 Claude Design 能做出质量很高的 PPT；二是现在有一些网页版的 AI PPT 工具效果也非常好。这一话题让大家意识到，AI 生成 PPT 已经具备了相当的商业落地价值，可以直接用于客户培训和内训交付场景。</p>
+    </div>
+    <div class="tags">
+      <span class="tag">AI PPT</span><span class="tag">Workbody</span><span class="tag">内容生产</span><span class="tag">培训变现</span>
+    </div>
+  </section>
+
+  <!-- ── SECTION 8 ── -->
+  <section class="section" id="s8">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(52,211,153,.15);">🕷️</div>
+      <div class="section-title-group">
+        <div class="section-label">Topic 08</div>
+        <div class="section-title">龙伟：Codex 爬虫与自动化应用</div>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+    <div class="bullets">
+      <ul>
+        <li><div class="bullet-dot"></div>百度网盘视频文稿批量导出：Codex 写脚本，发文件夹路径即可批量提取字幕文本</li>
+        <li><div class="bullet-dot"></div>付费网站数据采集：采集低粉爆款公众号标题，按27个领域分类，用于分析爆款规律</li>
+        <li><div class="bullet-dot"></div>爆款标题库 + AI 生成：将采集的爆款标题交给 AI 汇总规律，后续写文章时基于标题库生成</li>
+        <li><div class="bullet-dot"></div>猫咪休息提醒工具：参考 Chrome 插件创意，用 Codex 实现全平台定时弹窗强制休息</li>
+        <li><div class="bullet-dot"></div>Codex 能力上限高：龙伟表示"目前为止我让 Codex 做的事情只有我没有想到的，没有它做不到的"</li>
+      </ul>
+    </div>
+    <div class="narrative">
+      <p>龙伟分享了他用 Codex 实现的几个让他"特别震撼"的应用。第一个是百度网盘视频文稿的批量导出——他原本需要手动逐个点开客户端导出字幕，后来让 Codex 写了一个脚本，"我只要把一个文件夹的位置发给他，他直接就可以帮我导出"，拿到文本后再丢给 NotebookLM 配合 Claude 生成问题、定位原文，形成一套高效的课程学习工作流。</p>
+      <p>第二个应用是爬取付费网站的低粉爆款公众号数据，该网站按27个领域分类，月费仅10元，他让 Codex 将所有爆款标题采集出来，计划通过 AI 分析总结爆款标题的核心规律，未来写公众号时直接基于这个标题库生成内容。第三个则是一个有趣的"猫咪强制休息"工具——他参考了一个爆火的 Chrome 插件的创意，告诉 Codex 插件名称，Codex 自己找到插件、理解逻辑，并用 Utilities 工具将其实现为全平台定时弹窗，"我甚至都没有告诉他插件的地方在哪"，电脑启动后自动运行，每隔一段时间强制弹出猫咪画面提醒休息。</p>
+    </div>
+    <div class="tags">
+      <span class="tag">Codex</span><span class="tag">爬虫</span><span class="tag">百度网盘</span><span class="tag">公众号</span><span class="tag">自动化</span>
+    </div>
+  </section>
+
+  <!-- ── SECTION 9 ── -->
+  <section class="section" id="s9">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(167,139,250,.15);">📓</div>
+      <div class="section-title-group">
+        <div class="section-label">Topic 09</div>
+        <div class="section-title">个人知识管理与"日醒" Skill</div>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+    <div class="bullets">
+      <ul>
+        <li><div class="bullet-dot"></div>微信语音发给 Open WebUI（小龙虾）：实现语音记笔记、积分系统管理、灵感即时记录</div></li>
+        <li><div class="bullet-dot"></div>积分系统：做了某些事奖励积分（内啡肽），刷抖音等消耗积分（多巴胺），积分耗尽则禁止该行为</li>
+        <li><div class="bullet-dot"></div>课程学习工作流：视频文稿 → NotebookLM → Claude 生成问题 → 定位原文 → 掌握知识</li>
+        <li><div class="bullet-dot"></div>"日醒" Skill：每日收集复盘文件、Flomo 笔记、飞书录音，统一处理后分入5个库</li>
+        <li><div class="bullet-dot"></div>5个库：选题库、素材库、弹药库、人设库、认知库（源自俞飞轩分享的框架）</li>
+        <li><div class="bullet-dot"></div>全局 Skill vs 局部 Skill：日醒 Skill 为按需调用的局部 Skill，每晚11点左右手动启动</li>
+        <li><div class="bullet-dot"></div>最终配合 Claude 做深度复盘，基于当天所有内容生成洞察</li>
+      </ul>
+    </div>
+    <div class="narrative">
+      <p>龙伟分享了他围绕个人知识管理搭建的一套完整系统。日常输入端，他通过微信语音向 Open WebUI（小龙虾）发送笔记、记录灵感，后者还接入了他自建的积分系统——完成有益行为奖励积分，刷抖音等消耗积分，形成一套行为管理机制。在课程学习上，他将视频文稿导出后发给 NotebookLM，再让 Claude 生成问题，NotebookLM 能直接定位到原文位置，让他在得到 AI 浓缩答案的同时也能看到原始表述。</p>
+      <p>在输出端，他设计了一个名为"日醒"的 Codex Skill。每天晚上，他将当天的复盘文件、Flomo 笔记、飞书录音统一放入一个收件箱文件夹，然后调用日醒 Skill，它会自动将所有内容按"选题、素材、弹药、人设、认知"五个维度分类存入对应的库，这一框架来自此前参加的俞飞轩分享活动的启发。最后，他再与 Claude 进行深度对话，基于当天积累的所有内容做复盘，形成真正有深度的每日反思闭环。</p>
+    </div>
+    <div class="tags">
+      <span class="tag">个人知识管理</span><span class="tag">日醒Skill</span><span class="tag">NotebookLM</span><span class="tag">Flomo</span><span class="tag">复盘</span>
+    </div>
+  </section>
+
+  <!-- ── SECTION 10 ── -->
+  <section class="section" id="s10">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(245,158,11,.15);">🎬</div>
+      <div class="section-title-group">
+        <div class="section-label">Topic 10</div>
+        <div class="section-title">小林：AI 动画视频工具产品介绍</div>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+    <div class="bullets">
+      <ul>
+        <li><div class="bullet-dot"></div>产品定位：卡通/动画风格 AI 视频生成工具，主打长视频（10分钟以上）角色一致性</li>
+        <li><div class="bullet-dot"></div>海外版（英文站）主力运营，国内版（白日梦）已停止运营，因海外付费率更高</li>
+        <li><div class="bullet-dot"></div>定价：7000积分约15美元，5秒视频约1700积分，10分钟视频约3万积分（约500元人民币）</li>
+        <li><div class="bullet-dot"></div>生成逻辑：抽卡式随机，提示词不能保证效果，需多次抽卡筛选</li>
+        <li><div class="bullet-dot"></div>分镜编辑：支持对单个分镜重新同步口型（消耗积分），最后合成不扣分</li>
+        <li><div class="bullet-dot"></div>支持上传9张图片作为首尾帧参考，也支持外部平台抽卡后导入</li>
+        <li><div class="bullet-dot"></div>接入 CogVideoX 2.0 等主流视频模型，不同模型积分消耗不同</li>
+        <li><div class="bullet-dot"></div>推广方式：邮件联系海外 KOL，通过埋点链接追踪转化</li>
+        <li><div class="bullet-dot"></div>竞争现状：AI 视频工具赛道每月新增约20个产品，竞争激烈</li>
+      </ul>
+    </div>
+    <div class="narrative">
+      <p>小林（说话人3）介绍了他所在公司的主力产品——一款面向海外市场的 AI 动画视频生成工具，内容风格以卡通和动画为主。产品的核心差异化在于长视频的角色一致性，"如果做到10分钟以上，其实市面上很多产品他做不到"，在前七八分钟内能较好地保持角色外观一致。国内版"白日梦"已停止运营，原因是"国内喜欢白嫖"，海外用户的付费意愿和续费率明显更高。</p>
+      <p>在成本方面，以较低档模型生成10分钟视频约消耗3万积分，折合约500元人民币，星辰认为"如果是这种成本的话，实际上是还可以的"。生成逻辑上，AI 视频本质是"抽卡"，提示词再精准也无法完全控制输出，"所有的给你看的效果都是调过很多遍的，抽的卡里面的 S 级的卡"。如果某个分镜口型不对，可以单独对该分镜重新同步，消耗120积分，最终合成视频不额外扣分。推广方面，公司通过邮件联系海外 KOL，并通过带有埋点参数的专属链接追踪各渠道转化效果。</p>
+    </div>
+    <div class="tags">
+      <span class="tag">AI视频</span><span class="tag">动画生成</span><span class="tag">CogVideoX</span><span class="tag">海外推广</span><span class="tag">抽卡机制</span>
+    </div>
+  </section>
+
+  <!-- ── SECTION 11 ── -->
+  <section class="section" id="s11">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(108,142,245,.15);">🤖</div>
+      <div class="section-title-group">
+        <div class="section-label">Topic 11</div>
+        <div class="section-title">蔡一航：站外推广自动化（RPA）</div>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+    <div class="bullets">
+      <ul>
+        <li><div class="bullet-dot"></div>用 Code 叉（Cursor）编写 RPA 脚本，自动将帖子内容填入目标网站表单</li>
+        <li><div class="bullet-dot"></div>解决痛点：公司每天需上70-80个帖子，人工操作耗时1-2小时</li>
+        <li><div class="bullet-dot"></div>RPA 局限：无法抓取配图，需从后端直接读取；有机器人认证的网站无法使用</li>
+        <li><div class="bullet-dot"></div>工具组合构想：Cursor（后端）+ Minimax（前端）+ Claude Code（流程调度），三者结合</li>
+        <li><div class="bullet-dot"></div>本地部署方案：家里留一台电脑常开，出门用手机通过飞书控制</li>
+        <li><div class="bullet-dot"></div>计划接入 API 中转站（爱坤客），集中管理多种模型的 API 版本和消费</li>
+        <li><div class="bullet-dot"></div>受星辰启发，计划通过飞书聊天直接控制本地电脑写代码</li>
+      </ul>
+    </div>
+    <div class="narrative">
+      <p>蔡一航分享了他用 Code 叉为公司站外推广业务开发的 RPA 自动化工具。公司每天需要向目标网站发布70到80个帖子，人工操作耗时一两个小时，他用 Code 叉写了一个脚本，"它就会自动，它会把信息单自己填上去了"，从后端直接读取帖子内容并自动提交，大幅节省了重复操作时间。RPA 的局限在于无法处理需要机器人认证的网站，以及配图需要从后端直接抓取而非粘贴复制。</p>
+      <p>在工具组合上，他目前主要使用 Code 叉，但有一个更大的构想：将 Minimax（擅长前端）、Code 叉（擅长后端）和 Claude Code（流程调度）三者结合使用，实现更完整的开发能力覆盖。受星辰分享的启发，他还计划通过飞书直接与本地电脑上的 AI 对话，远程控制电脑写代码，并通过爱坤客 API 中转站统一管理多种大模型的调用。</p>
+    </div>
+    <div class="tags">
+      <span class="tag">RPA</span><span class="tag">Cursor</span><span class="tag">站外推广</span><span class="tag">自动化</span><span class="tag">飞书</span>
+    </div>
+  </section>
+
+  <!-- ── SECTION 12 ── -->
+  <section class="section" id="s12">
+    <div class="section-header">
+      <div class="section-icon" style="background:rgba(52,211,153,.15);">💰</div>
+      <div class="section-title-group">
+        <div class="section-label">Topic 12</div>
+        <div class="section-title">AI 赛道变现与商业模式探讨</div>
+      </div>
+    </div>
+    <div class="section-divider"></div>
+    <div class="bullets">
+      <ul>
+        <li><div class="bullet-dot"></div>AI 赛道主流变现路径：卖 Token（API 中转）、卖课/培训、企业知识库交付、咨询服务</li>
+        <li><div class="bullet-dot"></div>卖课收益：入门培训一场1000-2000元，企业知识库交付单价2万+</li>
+        <li><div class="bullet-dot"></div>星辰的 Workbody Skill 模板已以500元/份售出，直接复制文件到客户电脑即可交付</li>
+        <li><div class="bullet-dot"></div>API 中转站赛道：竞争激烈但仍值得做，"除了这个赛道，没别的赛道好挤了"</li>
+        <li><div class="bullet-dot"></div>个人开发者建议：放弃传统旧业务，专注 AI 新赛道，大家在同一起跑线</li>
+        <li><div class="bullet-dot"></div>不建议接复杂企业 AI 项目：中移动 AI 客服背后有3000个 Agent，个人开发者难以交付</li>
+        <li><div class="bullet-dot"></div>先发优势重要：AI 赛道中先入场者已占据大部分蛋糕，后来者增量有限</li>
+      </ul>
+    </div>
+    <div class="narrative">
+      <p>在自由交流环节，大家围绕 AI 变现的路径展开了深入讨论。主持人提到，"AI 要么就是卖 Token，要么就是卖课，这两个最赚钱"，星辰则补充说卖课确实赚钱，"我给人家做一场培训一两千块钱，也不用讲很深，就入个门就好了"。他还分享了一个极简的交付案例：把 Workbody 的 Skill 模板文件复制到客户电脑上，收500元，"就复制一下那个 skill 模板，丢到人家的那个本地去就好了"，因为客户根本不懂，只要能用就行。</p>
+      <p>对于个人开发者的方向选择，星辰给出了明确建议："不要去接旧业务的，放弃旧世界干新世界干 AI。"他认为在 AI 新赛道上，无论是公司还是个人，大家都在同一起跑线，不存在传统行业那种经验壁垒。但他也警告不要接太复杂的企业 AI 项目，以中移动 AI 客服为例——"背后有多少 Agent 吗？3000个，3000个 Agent 在服务器上
