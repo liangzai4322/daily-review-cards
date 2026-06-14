@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>读书分享与自媒体问题讨论 · 2026年5月9日</title>
+<style>
+  :root {
+    --bg: #f7f5f0;
+    --surface: #ffffff;
+    --surface-alt: #faf9f6;
+    --border: #e8e3da;
+    --accent: #5c6e58;
+    --accent-light: #eef2ed;
+    --accent-dark: #3d4f3a;
+    --text-primary: #2a2a2a;
+    --text-secondary: #5a5a5a;
+    --text-muted: #8a8a8a;
+    --highlight: #f0ebe0;
+    --tag-bg: #e8f0e6;
+    --tag-text: #3d5c39;
+    --quote-border: #b5c9b2;
+    --shadow: 0 2px 12px rgba(0,0,0,0.06);
+    --shadow-hover: 0 6px 24px rgba(0,0,0,0.1);
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Noto Sans SC", sans-serif;
+    background: var(--bg);
+    color: var(--text-primary);
+    line-height: 1.8;
+    font-size: 15px;
+  }
+
+  /* ── Header ── */
+  .site-header {
+    background: var(--accent-dark);
+    padding: 48px 24px 36px;
+    text-align: center;
+  }
+  .site-header .label {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.85);
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 16px;
+  }
+  .site-header h1 {
+    color: #ffffff;
+    font-size: clamp(22px, 4vw, 32px);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+  }
+  .site-header .meta {
+    color: rgba(255,255,255,0.6);
+    font-size: 13px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .site-header .meta span::before {
+    content: "·";
+    margin-right: 8px;
+    opacity: 0.5;
+  }
+  .site-header .meta span:first-child::before { content: ""; margin: 0; }
+
+  /* ── Layout ── */
+  .container {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+  }
+
+  /* ── TOC ── */
+  .toc {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    margin-bottom: 40px;
+    box-shadow: var(--shadow);
+  }
+  .toc h2 {
+    font-size: 13px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 14px;
+    font-weight: 600;
+  }
+  .toc ol {
+    padding-left: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4px 24px;
+  }
+  @media (max-width: 540px) { .toc ol { grid-template-columns: 1fr; } }
+  .toc li { font-size: 14px; }
+  .toc a {
+    color: var(--accent-dark);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .toc a:hover { color: var(--accent); text-decoration: underline; }
+
+  /* ── Section Card ── */
+  .section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 36px 36px 32px;
+    margin-bottom: 28px;
+    box-shadow: var(--shadow);
+    transition: box-shadow 0.2s;
+    scroll-margin-top: 20px;
+  }
+  .section:hover { box-shadow: var(--shadow-hover); }
+
+  .section-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 20px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--accent-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .section-title-wrap h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.4;
+  }
+  .section-title-wrap .section-sub {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 3px;
+  }
+
+  /* ── Bullets ── */
+  .bullets {
+    background: var(--surface-alt);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    padding: 16px 20px;
+    margin-bottom: 20px;
+  }
+  .bullets ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+  }
+  .bullets li {
+    font-size: 13.5px;
+    color: var(--text-secondary);
+    padding-left: 18px;
+    position: relative;
+    line-height: 1.6;
+  }
+  .bullets li::before {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 9px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    opacity: 0.6;
+  }
+
+  /* ── Prose ── */
+  .prose {
+    color: var(--text-primary);
+    font-size: 15px;
+    line-height: 1.9;
+  }
+  .prose p { margin-bottom: 14px; }
+  .prose p:last-child { margin-bottom: 0; }
+
+  /* ── Blockquote ── */
+  blockquote {
+    border-left: 3px solid var(--quote-border);
+    background: var(--highlight);
+    padding: 12px 18px;
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    margin: 16px 0;
+    font-size: 14px;
+    color: var(--text-secondary);
+    font-style: italic;
+  }
+
+  /* ── Book tag ── */
+  .book-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: var(--tag-bg);
+    color: var(--tag-text);
+    font-size: 12px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+  }
+
+  /* ── Divider ── */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 24px 0;
+  }
+
+  /* ── Footer ── */
+  footer {
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 13px;
+    padding: 24px;
+    border-top: 1px solid var(--border);
+    margin-top: 20px;
+  }
+
+  @media (max-width: 600px) {
+    .section { padding: 24px 18px 20px; }
+    .section-header { gap: 10px; }
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="label">Meeting Notes</div>
+  <h1>读书分享与自媒体问题讨论</h1>
+  <div class="meta">
+    <span>2026年5月9日（周六）</span>
+    <span>19:16 — 22:18 GMT+8</span>
+    <span>深圳 · 线下读书会</span>
+    <span>7位参与者</span>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- TOC -->
+  <nav class="toc">
+    <h2>目录</h2>
+    <ol>
+      <li><a href="#intro">参与者自我介绍</a></li>
+      <li><a href="#book1">《有钱人和你想的不一样》</a></li>
+      <li><a href="#book2">《小狗钱钱》</a></li>
+      <li><a href="#book3">《遥远的救世主》</a></li>
+      <li><a href="#book4">《纳瓦尔宝典》</a></li>
+      <li><a href="#book5">《悉达多》</a></li>
+      <li><a href="#book6">《埃隆之书》</a></li>
+      <li><a href="#q1">自媒体最大的卡点</a></li>
+      <li><a href="#q2">如果一个月后离世，你会做什么</a></li>
+      <li><a href="#q3">如何避免情绪大起大落</a></li>
+      <li><a href="#q4">自由职业如何建立自我秩序</a></li>
+      <li><a href="#q5">线下渠道开拓与商业闭环</a></li>
+      <li><a href="#q6">项目复盘：真实赚钱经历分享</a></li>
+      <li><a href="#opc">深圳 OPC 创业补贴政策</a></li>
+    </ol>
+  </nav>
+
+  <!-- 1. 参与者介绍 -->
+  <section class="section" id="intro">
+    <div class="section-header">
+      <div class="section-icon">👥</div>
+      <div class="section-title-wrap">
+        <h2>参与者自我介绍</h2>
+        <div class="section-sub">7位来自不同背景的自由职业者与创业者</div>
+      </div>
+    </div>
+    <div class="bullets">
+      <ul>
+        <li>依琳（说话人1）：跨境电商独立站，服务小B端企业老板出海建站</li>
+        <li>三三（说话人2）：自由职业1年余，学术代写转型小红书电商，已出单200+</li>
+        <li>龙伟（说话人3）：生财第四年，计算机代写中介，兼做小程序/APP开发</li>
+        <li>吴常（说话人4）：影视拍摄公司创始人，转型AI视频与企业SAAS开发</li>
+        <li>欧欧（说话人5）：前亚马逊运营，现外贸业务员，兼做公众号自媒体</li>
+        <li>思敏（说话人6）：外贸业务员，自主创业做SOCO，首次参加读书会</li>
+        <li>玉玲（说话人7）：贵州人，2024年来深圳，做公众号命理内容及AI企业服务招商</li>
+      </ul>
+    </div>
+    <div class="prose">
+      <p>本场读书会由依琳发起，在深圳某联合办公空间举行，场地由吴常的团队免费提供。参与者均来自"生财有术"社群，背景涵盖跨境电商、影视制作、代写服务、外贸业务及AI创业等多个领域，大多数人是自由职业者或正在创业的独立个体。</p>
+      <p>龙伟提到，"参加这个局一直是驱动我读书的一个事"，道出了许多人的心声——读书会本身成为了一种外部约束与驱动机制，让平时难以坚持阅读的人得以定期回归书本。多位参与者坦言，来之前临时用AI复习了书的内容，氛围轻松而真实。</p>
+    </div>
+  </section>
+
+  <!-- 2. 有钱人和你想的不一样 -->
+  <section class="section" id="book1">
+    <div class="section-header">
+      <div class="section-icon">📖</div>
+      <div class="section-title-wrap">
+        <h2>书籍分享：《有钱人和你想的不一样》</h2>
+        <div class="section-sub">分享者：欧欧（说话人5）</div>
+      </div>
+    </div>
+    <div class="book-tag">💰 财富思维</div>
+    <div class="bullets">
+      <ul>
+        <li>核心理论：财富蓝图——一个人能赚多少钱，取决于其内在对金钱的想法、感觉与行动</li>
+        <li>三种制约方式：语言设定（小时候听到了什么）、模仿（看到了什么）、特殊事件（经历了什么）</li>
+        <li>外在财富是内在思维的投影，改变果实必须从根上改变</li>
+        <li>书中对比了17组穷人思维与富人思维的行为差异</li>
+        <li>欧欧个人案例：母亲的匮乏感语言设定导致她成年后的月光族行为</li>
+        <li>改变路径：审视错误金钱观的来源 → 评估欲望的真实性 → 延迟享受 → 财务状况好转</li>
+      </ul>
+    </div>
+    <div class="prose">
+      <p>欧欧提到，"这本书特别好看"，核心观点是"想要改变果实，必须要从根上开始改变，想要改变我们看得见的东西，必须要改变我们看不见的东西"。她详细介绍了财富蓝图的形成机制：内心设定导致想法，想法产生感觉，感觉驱动行动，行动决定结果。</p>
+      <p>欧欧结合自身经历深入剖析：母亲长期重复"家里没钱"的语言设定，让她幼年形成了压缩欲望的习惯，成年独立后却走向了另一个极端——"我不要像我母亲一样老是说没钱，我有钱了我就要用掉"，由此成为月光族。读完这本书后，她开始主动追问每一次消费冲动背后的真实需求，学会延迟享受，财务状况与内心状态均有明显改善。</p>
+      <p>她推荐这本书的原因在于，它提供了一套分析框架，帮助人们找到金钱观中的卡点——"不会再掉进同一条河里两次"。对于那些赚到一定钱后反复陷入瓶颈、成功后又归零的人，这本书尤其值得一读。</p>
+    </div>
+  </section>
+
+  <!-- 3. 小狗钱钱 -->
+  <section class="section" id="book2">
+    <div class="section-header">
+      <div class="section-icon">📖</div>
+      <div class="section-title-wrap">
+        <h2>书籍分享：《小狗钱钱》</h2>
+        <div class="section-sub">分享者：思敏（说话人6）</div>
+      </div>
+    </div>
+    <div class="book-tag">🐾 理财入门</div>
+    <div class="bullets">
+      <ul>
+        <li>核心概念一：下金蛋的鹅——积累资产形成被动收入，覆盖日常支出，实现财务自由</li>
+        <li>核心概念二：笼子里的老鼠——被债务和固定支出逼迫不停奔跑，无法停下思考</li>
+        <li>"养鹅计划"三要素：主业（提高收入上限）、投资（钱生钱）、理财（资产增值）</li>
+        <li>投资心得：投资陌生行业有风险；投资本质上是投人，选择靠谱的人比选择项目更重要</li>
+        <li>赚钱的阶段论：0到1赚第一桶金 → 规模化 → 资产增倍（投资理财）</li>
+      </ul>
+    </div>
+    <div class="prose">
+      <p>思敏分享了这本儿童与成人皆宜的理财读物，重点围绕两个动物意象展开。"下金蛋的鹅"代表能持续产生被动收入的资产体系——"把你的钱，不管是父母留给你的还是自己赚来的，去掉日常开销以外，能够慢慢累积起来，有一定资产之后形成被动收入"，当这个被动收入能够覆盖日常支出，生活的从容感便会逐步建立。</p>
+      <p>"笼子里的老鼠"则是另一种现实的写照：被车贷、房贷等固定支出追着跑，只要停下来就意味着断粮，根本没有冗余时间去思考更大的可能性。思敏以男朋友为例，说明这种状态如何让人失去选择工作的自由度。</p>
+      <p>受这本书启发，思敏辞去工作开始创业，并尝试了民宿投资等多个项目，积累了宝贵心得："投资什么，其实你是在投资人"——在自己熟悉的领域深耕，交几个靠谱的朋友互相投资，是她认为成功概率最高的路径。她也坦言自己目前仍在0到1的阶段，但已开始为未来的资产增值阶段提前布局认知。</p>
+    </div>
+  </section>
+
+  <!-- 4. 遥远的救世主 -->
+  <section class="section" id="book3">
+    <div class="section-header">
+      <div class="section-icon">📖</div>
+      <div class="section-title-wrap">
+        <h2>书籍分享：《遥远的救世主》</h2>
+        <div class="section-sub">分享者：吴常（说话人4）</div>
+      </div>
+    </div>
+    <div class="book-tag">🎭 人生哲学</div>
+    <div class="bullets">
+      <ul>
+        <li>小说核心：丁元英帮助王庙村做格律诗音响，引发对商业规律与人性的深刻探讨</li>
+        <li>刘冰的悲剧：把丁元英当作救世主，抓着一个纸袋幻想找到了依靠，最终崩溃</li>
+        <li>丁元英的局限：只能给人进入市场的机会，却给不了承担市场风险的心智</li>
+        <li>核心启示：没有真正的救世主，路要靠自己走；给不了我的，我也拿不住</li>
+        <li>延伸思考：AI工具、优质社群、高人指点都可能成为人们寄托的"救世主"</li>
+        <li>关联：AlphaGo第37手——看似败笔却是神来之手，强化学习超越人类语言模型</li>
+      </ul>
+    </div>
+    <div class="prose">
+      <p>吴常分享了这部由豆豆所著、后被改编为电视剧《天道》的小说。他结合自身2008年从华为离职后的经历，谈到彼时"希望有一个高人指点，或者有个所谓的救世主，找到一个好的项目"的心理——这种心态其实在当下依然普遍，无论是加入某个社群、使用某款AI工具，还是跟随某位导师，人们往往在寻找一个"遥远的救世主"。</p>
+      <p>书中刘冰的悲剧最令吴常印象深刻：丁元英给了他一个纸袋，他便如同抓住了救命稻草，把这个袋子当作翻身的凭证。然而丁元英的本质是"只给进入市场的机会，却给不了承担市场风险的心智"，一旦遭遇商业风险，那些把他当神的人便感受到巨大的欺骗与恐惧。吴常由此感悟，"给不了我的，我也拿不住"，所有的经历最终都会成为自己要走的那条路，踏踏实实往前走才是根本。</p>
+    </div>
+  </section>
+
+  <!-- 5. 纳瓦尔宝典 -->
+  <section class="section" id="book4">
+    <div class="section-header">
+      <div class="section-icon">📖</div>
+      <div class="section-title-wrap">
+        <h2>书籍分享：《纳瓦尔宝典》</h2>
+        <div class="section-sub">分享者：依琳（说话人1）</div>
+      </div>
+    </div>
+    <div class="book-tag">⚡ 注意力与杠杆</div>
+    <div class="bullets">
+      <ul>
+        <li>核心观点：生命真正的财富是注意力，它取决于你选择关注什么以及如何对待它</li>
+        <li>注意力的敌人：通勤时间、疲惫感、碎片化信息、无止境的情绪内耗</li>
+        <li>普通人的杠杆：更近的住处、稳定的作息、定期锻炼——都是降低损耗的杠杆</li>
+        <li>核心原则：不要比拼时长，要比拼杠杆；靠意志力硬扛对抗人性的事情不长久</li>
+        <li>判断标准的转变：从"能不能省钱"到"能不能保护注意力、减少长期损耗"</li>
+        <li>直觉有时比算账更早知道答案</li>
+      </ul>
+    </div>
+    <div class="prose">
+      <p>依琳以一件生活小事引出这本书的精髓：她因公司离住处太远，每天通勤一个半小时，导致下班后精力全无，原本能做的短视频和私单都无法坚持。她"怒掏3000块押金"换了一套更近的房子，才发现多出来的不只是时间，更是"对一天的时间的掌控感"。正是这件事让她真正理解了书中那句话——"生命真正的财富是注意力"。</p>
+      <p>她进一步阐释了"杠杆"这个概念在普通人生活中的具体形态："一个离公司更近的住处是杠杆，一个稳定的作息是杠杆，一个每周能坚持一两次的锻炼，它也是杠杆。"很多时候我们努力的努力，却在路上被损耗抵消，靠意志力硬扛对抗人性的事情终究不长久。</p>
+      <p>依琳坦言，这本书没有帮她解决任何具体的现实问题，"房租依旧要付，生活的压力也不会因为几句话就消失"，但它改变了她的判断标准——从"这件事划不划算"，变成了"这件事能不能保护我的注意力、能不能让我每天多一点心力去做更重要的事情"。她最后引用书中的话送给大家："平静的接受生活中发生的一切，不带立场，不做评价，去找到那些最重要的人和事。"</p>
+    </div>
+  </section>
+
+  <!-- 6. 悉达多 -->
+  <section class="section" id="book5">
+    <div class="section-header">
+      <div class="section-icon">📖</div>
+      <div class="section-title-wrap">
+        <h2>书籍分享：《悉达多》</h2>
+        <div class="section-sub">分享者：三三（说话人2）</div>
+      </div>
+    </div>
+    <div class="book-tag">🌊 自我寻找</div>
+    <div class="bullets">
+      <ul>
+        <li>主角悉达多是与佛陀同时代的人，走的是自己的修行之路，而非追随任何导师</li>
+        <li>人生三阶段：求学求道 → 坠入红尘（经商、情欲、财富）→ 回归本心（河边船夫）</li>
+        <li>核心洞见："知识可以分享，智慧无法言传"——智慧只能靠亲身经历获得</li>
+        <li>别人的真理永远成为不了自己的真理；教义可传授知识，却不能替你活出人生</li>
+        <li>终极领悟：世间万物本就圆满，全然经历、全然接纳，活在当下即觉醒</li>
+        <li>对三三的影响：摆脱对间接经验的崇拜，勇于亲身尝试，接受所有弯路</li>
+      </ul>
+    </div>
+    <div class="prose">
+      <p>三三在快要毕业时读到这本书，彼时她"从小到大永远都是处在一种非常焦虑的生活中，好像你初中就想着中考，高中就想着高考，永远有一个关卡好像永远没有办法停止"。悉达多的故事让她意识到，这种"永远在赶社会时钟"的状态，正是大多数人的困境。</p>
+      <p>书中最打动她的是那句"知识可以分享，智慧无法言传"。悉达多明白了别人的真理无法成为自己的真理后，毅然转身离开佛陀，选择坠入红尘去亲身经历。他经历了财富、情欲、名利，却依然痛苦空洞，直到在河边做了一名船夫，安静地倾听河水，才悟到"不用抗拒苦难，也不用逃避欲望，只要全然经历，全然接纳，活在当下就是真正的觉醒"。</p>
+      <p>三三将这种领悟映射到自己做小红书电商的经历上：看再多的精华帖，"还不如自己发100篇来的痛苦和实在"。当那些关于封面重要性、标题技巧的口号变成切肤体验，"被捶打了之后就整个人就会 peace 很多"，不再被数据蒙蔽双眼。这本书给了她勇气，告诉她"一切的经历都是值得的，都是必然的，是获得智慧必要的考验"。</p>
+    </div>
+  </section>
+
+  <!-- 7. 埃隆之书 -->
+  <section class="section" id="book6">
+    <div class="section-header">
+      <div class="section-icon">📖</div>
+      <div class="section-title-wrap">
+        <h2>书籍分享：《埃隆之书》</h2>
+        <div class="section-sub">分享者：龙伟（说话人3）</div>
+      </div>
+    </div>
+    <div class="book-tag">🚀 使命与方法论</div>
+    <div class="bullets">
+      <ul>
+        <li>马斯克成长：南非被欺凌的自闭少年 → 9岁读完家中所有书 → 17岁出走加拿大</li>
+        <li>早期经历：锅炉工（时薪$18）→ 名校读书 → 创办Zip2卖出$3000万 → PayPal卖出$1.7亿</li>
+        <li>关键转折：被合伙人踢出PayPal董事会，平静接受，全押SpaceX与特斯拉</li>
+        <li>至暗时刻：1.7亿美元几乎耗尽，两家公司濒临倒闭，第四次火箭发射成功救活SpaceX</li>
+        <li>现有五条业务线：SpaceX、特斯拉、脑机接口（Neuralink）、X（推特）、隧道公司（Boring）</li>
+        <li>三大启发：热爱与使命感、第一性原理（不只知道怎么做，还要知道为什么）、五步算法（质疑→删除→优化→加速→自动化）</li>
+      </ul>
+    </div>
+    <div class="prose">
+      <p>龙伟以"压轴"身份分享了这本由纳瓦尔汇编马斯克公开言论而成的书，他用一句话概括马斯克："这是一个在物理学、银行学的范围内，把不可能变成可能的那么一个人。"他梳理了马斯克从南非被霸凌的少年、到锅炉工、到互联网创业者、再到火箭与电动车先驱的完整人生轨迹，尤其着重描述了那个"至暗时刻"——手里只剩4000万美元，两家公司都快死掉，却做出了"两个都不死"的决定，各投2000万。</p>
+      <p>龙伟最受触动的是三点：第一是热爱与使命感，马斯克在任何一个节点都可以放弃，但"让人类移民火星是我的责任，是我的热爱，是我的使命感"，这让他有了无限的动力；第二是第一性原理，"我不仅要知道怎么做，我还要知道为什么"，这也是他现在与AI对话时最常用的框架；第三是五步算法，尤其是"删除"这一步——"我发现我们大部分的时候东西太多了，但是我们需要把它删掉"。</p>
+      <p>他以纳瓦尔的话作结："你不必做埃隆做的事，也不必用他的方式去做。但是在你这短暂的一生中，最好花在竞技场上，花在某件超越自我的事情上面，拒绝舒适和认可，渴望回到年轻时的乐观，离开那些只会说话和制造分裂的人，走上学习和建造的道路。"</p>
+    </div>
+  </section>
+
+  <!-- 8. 自媒体卡点 -->
+  <section class="section" id="q1">
+    <div class="section-header">
+      <div class="section-icon">💬</div>
+      <div class="section-title-wrap">
+        <h2>问题讨论：做自媒体最大的卡点是什么？</h2>
+        <div class="section-sub">由吴常提出，全员参与讨论</div>
+      </div>
+    </div>
+    <div class="bullets">
+      <ul>
+        <li>最普遍的卡点：想得多，就是没有开始第一步</li>
+        <li>龙伟：完美主义——觉得内容必须足够好才发，导致一直没发；后来强迫自己发了一篇"垃圾"，跨过了那道坎</li>
+        <li>龙伟：选题困难，不知道写什么；方向是做着做出来的，不必提前想好垂直领域</li>
+        <li>欧欧：自媒体要从利他角度出发，想清楚能给目标受众提供什么，而非纯粹自我表达</li>
+        <li>欧欧：要有强大的心脏，不在乎负面评价；黑子也是帮你增加流量的机器</li>
+        <li>三三：公众号过100粉丝后有分成收益，哪怕几分钱也能形成正反馈，极大提升坚持动力</li>
+        <li>三三：成长日记式内容最容易做，每周复盘自己在做的项目，真实暴露数据，别人愿意看</li>
+        <li>依琳：ENFP特质导致账号多而不精，有正反馈的账号才能长期坚持</li>
+        <li>共识：自媒体是普通人最大的杠杆之一，开始比完美更重要</li>
+      </ul>
+    </div>
+    <div class="prose">
+      <p>吴常提出这个问题，是因为他认为"这个时代最大的红利就是自媒体"，只要开始做，多做少做都会有收获。讨论中最高频的答案是"还没开始"——龙伟的卡点尤为典型，他长期觉得内容必须做得非常好才值得发出去，结果一直没发；直到某天强迫自己发了一篇"垃圾"，才算真正跨过了那道心理门槛。欧欧指出，卡点的另一面是在发布之前就开始评判自己的内容，而没有经过市场验证，"你的想象只是想象而已"。</p>
+      <p>欧欧从2015年就注册了公众号，积累了丰富的自媒体经验。她强调，做自媒体的核心是从利他角度出发，想清楚能给受众提供什么，而不是站在自己的角度想表达什么。她还分享了心态建设的重要性：同样的内容发在小红书大家觉得有共鸣，发在公众号却可能招来一群喷子，"受众不一样，不要太在乎别人的评价，自己心脏大一点"，甚至可以把黑子当作增加热度的工具。三三则补充，公众号超过100粉丝后的分成收益虽然可能只有几分钱，但那种"只要写了就有钱"的感觉会让人上瘾，是坚持下去的重要正反馈。</p>
+    </div>
+  </section>
+
+  <!-- 9. 向死而生 -->
+  <section class="section" id="q2">
+    <div class="section-header">
+      <div class="section-icon">💬</div>
+      <div class="section-title-wrap">
+        <h2>问题讨论：如果一个月后离世，你会做什么？</h2>
+        <div class="section-sub">由吴常提出，引发关于"向死而生"的深度探讨</div>
+      </div>
+    </div>
+    <div class="bullets">
+      <ul>
+        <li>吴常：每天活得像明天就会死，这种心态已坚持10年，源于读《相约星期二》的感触</li>
+        <li>吴常：目前继续做AI视频与工具打造，生命无常，每天做好当下就是答案</li>
+        <li>三三：把这个问题当成游戏设计——一个月后游戏结束，现在怎么玩？</li>
+        <li>三三：会邀请10位家人/朋友/网友，每人分配1—3天，密集实现他们的愿望，录成视频留给世界</li>
+        <li>思敏：曾写过遗愿清单，更多是为了梳理"做了哪些事情不会留遗憾"</li>
+        <li>思敏：想写一部类似自传的东西，哪怕只影响到一个人也好</li>
+        <li>依琳：遗愿清单包括：探索世界、个人成长、找到志同道合的人、拥有自己的事业</li>
+        <li>玉玲：这个问题的本质是"向死而生"——思考死亡，是为了更清晰地知道自己真正要什么</li>
+      </ul>
+    </div>
+    <div class="prose">
+      <p>这道问题由吴常写出，被其他人调侃为"务虚"，却引发了全场最真实的一轮分享。吴常说他"每天不是想着一个月以后，我是想着明天就带的这种感受"，这种"随时可以死掉的感觉"已经伴随他超过十年，源于早年读《相约星期二》的触动。他认为每天把当天过充分，就不会后悔这一生，因此对于"一个月后会做什么"，他的答案是：继续做现在每天在做的事情。</p>
+      <p>三三的回答充满创意：她会邀请10位家人、朋友或征集网友，给每人分配一到三天，密集实现他们的愿望，并录成视频——"这就是我给这个世界最后的礼物"，类似 MrBeast 的精神，但以陪伴和体验为核心。玉玲则将这个问题提升到哲学高度，"向死而生"——正是因为思考了死亡，我们才能更清晰地审视自己到底要什么，当下的焦虑与迷茫也因此有了更清醒的出口。</p>
+    </div>
+  </section>
+
+  <!-- 10. 情绪管理 -->
+  <section class="section" id="q3">
+    <div class="section-header">
+      <div class="section-icon">💬</div>
+      <div class="section-title-wrap">
+        <h2>问题讨论：如何避免情绪大起大落，获得平静？</h2>
+        <div class="section-sub">由玉玲提出，多人补充</div>
+      </div>
+    </div>
+    <div class="bullets">
+      <ul>
+        <li>玉玲：情绪起落是正常的，不把它当问题，它就不是问题；时代压力是客观存在的</li>
+        <li>玉玲：增加掌控感是核心——运动、散步、见人聊天、做饭，调动身体而非在脑子里想</li>
+        <li>龙伟：情绪大起大落是能量过剩的表现，适合做自媒体来释放和对冲这种能量</li>
+        <li>三三补充：情绪有两层——一是双向情感障碍式的起落；二是因期待（如即将旅行）导致的分心</li>
+        <li>欧欧：把旅行前后的生活当作同一种状态，不把它们割裂，保持平常心，活在当下</li>
+        <li>欧欧：活在当下意味着对每个动作、念头保持觉知，不活在对未来的期待或对过去的执念里</li>
+        <li>思敏：辩证看待问题，同时保持"当局者"和"旁观者"两个视角，坏事也能转化成好的方向</li>
+        <li>吴常：情绪在告诉我们某件事还没准备好，一旦真正做好准备，情绪自然平息</li>
+      </ul>
+    </div>
+    <div class="prose">
+      <p>玉玲提出这个问题时，补充说明是"情绪变动让执行有了波动"。她首先给出了一个解放性的视角："你不把它认为是一个问题的话，其实它就不是一个问题。"她认为，现代人的焦虑很大程度上不是个人问题，而是整个时代压力的集体反映，靠一个人的意志力去抵抗这种外界压力本身就是为难自己。更实际的做法是接受情绪的存在，通过增加掌控感来降低其影响——去散步、运动、和人聊天，"一定要调动身体，让身体动起来"。</p>
+      <p>龙伟则提出了一个有趣的反转：情绪容易大起大落，说明这个人能量充沛，这恰恰是做自媒体的天然优势，"把这个能量冲发到网络上去做对冲"，既释放了能量，又产生了内容价值。欧欧的分享则更偏向日常修炼——她指出，很多人把旅行和工作状态割裂成两种截然不同的生活，由此产生强烈的期待和落差。解法是"保持生活始终情绪波动不要那么大，生活的差异不要那么大"，真正活在当下，"对自己当下的每一个动作、每个念头都保持觉知"。</p>
+    </div>
+  </section>
+
+  <!-- 11. 自由职业秩序 -->
+  <section class="section" id="q4">
+    <div class="section-header">
+      <div class="section-icon">💬</div>
+      <div class="section-title-wrap">
+        <h2>问题讨论：自由职业拥有大量可支配时间，如何建立自我秩序？</h2>
+        <div class="section-sub">由思敏提出，龙伟、三三、欧欧等人分享实践</div>
+      </div>
+    </div>
+    <div class="bullets">
+      <ul>
+        <li>三三（自由职业最久）：前一天晚上规划明天最重要的事；早上第一件事决定全天基调</li>
+        <li>三三：周一至周六压住能量，周日彻底释放；不要把自己憋坏了</li>
+        <li>三三：每周至少抽一天出门见人，打破孤独感和自我封闭</li>
+        <li>三三：按月、按周、按天拆解目标，提前把时间填满</li>
+        <li>三三：做电商每天固定节奏：早上整理素材/做笔记 → 下午拍照 → 晚上健身 → 自己做饭</li>
+        <li>三三：早起叠被子是启动仪式，帮助身体进入"该工作了"的状态</li>
+        <li>欧欧：把生活划分为健康、财务、交友等板块，按比例分配时间</li>
+        <li>吴常：找到热爱的事情，秩序自然形成；他的逆睡眠作息（深夜高效工作）是个人规律的探索</li>
+      </ul>
+    </div>
+    <div class="prose">
+      <p>思敏提出这个问题，是因为自由职业意味着7天的时间全部需要自己安排，既要建立秩序，还要维持它持续运转。三三是在场自由职业时间最长的人，从大学二年级就开始独立接单，从未上过班，因此最有发言权。她分享了自己的核心方法：每天晚上规划好明天最重要的事，早上第一件事就从它开始，"早上的基调决定了你这一天的基调"；同时提前把一天乃至一周的时间填满，避免无计划带来的拖延与刷视频。</p>
+      <p>三三还强调了能量管理的重要性——不要把自己一直压着，"周一到周六可以压一下，周日就随便造，把那种能量给释放出来，不要把自己憋坏了"。她也提到，自由职业最大的隐患之一是孤独和自我封闭，因此每周至少抽一天出门见人交流是必要的。欧欧则提供了一个更系统的框架：把生活划分为健康、财务、社交等不同板块，算清楚每天醒着的时间，按比例分配给各个板块，"不用规定得特别死，就把这个时间保证到就可以了"。吴常则从另一个角度切入：当你找到真正热爱的事情，秩序会自然形成，"除了吃饭睡觉，所有时间都在这里面，它已经是自成秩序了"。</p>
+    </div>
+  </section>
+
+  <!-- 12. 线下渠道与商业闭环 -->
+  <section class="section" id="q5">
+    <div class="section-header">
+      <div class="section-icon">💬</div>
+      <div class="section-title-wrap">
+        <h2>问题讨论：如何寻找线下渠道？是否一个人完成所有商业闭环？</h2>
+        <div class="section-sub">由玉玲提出，结合OPC招商实际需求</div>
+      </div>
+    </div>
+    <div class="bullets">
+      <li>玉玲的背景：正在为广东省AI产业协会孵化器做OPC招商，需要找线下渠道</li>
+      <li>思敏：不建议一个人完成所有环节；她只做内容和上架，客服外包，负责越少越容易做大</li>
+      <li>玉玲：做OPC的人往往想自己包揽所有，结果累死也做不大；一定要学会合作</li>
+      <li>线下渠道建议：参加深圳各类创业社团、局；与财税公司合作获取新注册企业名单</li>
+      <li>龙伟：多参加福田区活动，生财圈友中OPC比例很高</li>
+      <li>见过面的合作更稳定可靠，线上陌生人合作风险高</li>
+    </ul>
+    <div class="prose">
+      <p>玉玲提出这个问题，背后是她正在帮广东省人工智能产业协会做OPC（一人有限责任公司）孵化器的招商工作，需要寻找有意向注册OPC的个人创业者。三三分享了自己的商业闭环实践：她在小红书电商中只负责内容制作和商品上架，客服工作外包出去，"负责的东西越少越直接，越容易做大"。玉玲对此深有共鸣，她指出很多艺人公司的误区在于"什么都想自己搞"，结果既累又做不大，"一定要和别人合作，不然这个OPC不知道能活多久"。</p>
+      <p>关于如何开拓线下渠道，思敏从她做阿里国际站运营经理的经验出发，建议两条路径：一是参加深圳各类创业社团和线下局，让自媒体内容与目标人群匹配；二是直接与财税公司合作，获取新注册企业的名单，主动联系。吴常则补充，见过面的合作天然比线上陌生人合作更稳定，"被人坑多了，靠谱就反而成了第一要素"。</p>
+    </div>
+  </section>
+
+  <!-- 13. 项目复盘 -->
+  <section class="section" id="q6">
+    <div class="section-header">
+      <div class="section-icon">💬</div>
+      <div class="section-title-wrap">
+        <h2>问题讨论：复盘一个真实赚到钱的项目</h2>
+        <div class="section-sub">龙伟（计算机代写）、思敏（外贸独立站）、玉玲（视频号卖书）分享</div>
+      </div>
+    </div>
+    <div class="bullets">
+      <ul>
+        <li>龙伟·计算机代写：从写手起步 → 发现计算机赛道人少需求大 → 转型中介 → 前端做流量/后端搭写手群（7个群共约2800人）</li>
+        <li>龙伟：壁垒来自时间积累——老账号权重高、流量稳、封号风险低；后端资源越来越厚</li>
+        <li>思敏·外贸独立站：平台规则熟悉 + 找到有产品的合作伙伴补足短板 → 分工合作</li>
+        <li>思敏：选品/选赛道是核心，要找到小而真实的需求；大需求已被更有能力的人占领</li>
+        <li>玉玲·视频号卖书：赶上道德经热潮，口播带货，一条素材反复发，爆了就直播，赚了几万元</li>
+        <li>玉玲：第一个项目有运气成分，后续靠能力；做项目最大的问题是不了解用户真实需求</li>
+        <li>吴常·影视项目：靠谱口碑积累，朋友介绍了关键客户，一个项目维持至今十余年</li>
+        <li>共识：运气 + 靠谱 + 了解用户需求 = 项目做成的三要素</li>
+      </ul>
+    </div>
+    <div class="prose">
+      <p>这是全场最务实的一个环节。龙伟复盘了他的计算机代写项目：从大二当写手起步，发现计算机赛道"随便发一个帖子只有三五个爱心，100多个评论"，需求极度旺盛而供给稀缺，果断切入并转型为中介。他的模式是前端在闲鱼做流量、后端搭建写手群，两端都建立了壁垒——"你待的越久，你的壁垒越厚"，老账号权重高、对规则了解深，是时间积累出来的护城河。</p>
+      <p>思敏分享了她做外贸独立站的经历，核心是补足短板：自己熟悉阿里国际站规则，但不懂产品，于是找到一位有产品研发能力的合作伙伴，两人分工合作。她总结的选品逻辑是"找到小而真实的需求"，因为大的需求早已被更有能力的人占领，"你进去大概率完不成"。玉玲则坦言，她的第一个成功项目（视频号口播卖道德经）主要靠运气——赶上了一波热潮，"跟我有什么资源、有什么能力都没有关系，完全就是运气"，但她也指出，后续项目之所以做不起来，根本原因是"对人不了解，不知道别人要什么"，这也是她如今疯狂参加线下活动的原因。</p>
+    </div>
+  </section>
+
+  <!-- 14. OPC政策 -->
+  <section class="section" id="opc">
+    <div class="section-header">
+      <div class="section-icon">🏢</div>
+      <div class="section-title-wrap">
+        <h2>延伸话题：深圳 OPC 创业补贴政策</h2>
+        <div class="section-sub">玉玲介绍，多人讨论</div>
+      </div>
+    </div>
+    <div class="bullets">
+      <ul>
+        <li>OPC（一人有限责任公司）：一人即可注册，有限责任，无需两个股东</li>
+        <li>创业补贴：注册OPC后6个月可申请1万元补贴（人社局政策）</li>
+        <li>适用人群：在校大学生（无需交社保）、毕业5年内、退役军人、留学回国人员；社会人士可登记失业后申请</li>
+        <li>孵化器免租：各区竞争激烈，坂田（跨境电商为主）免租2年，光明最高免租3年</li>
+        <li>补贴来源：人社局（创业就业）+ 工信局（场地与运营补贴）双渠道</li>
+        <li>注册成本：代理记账 + 社保 + 场地，约3万元/年起</li>
+        <li>建议：注册前最好已有闭环业务；可通过参加深圳生财社群局找到有需求的圈友</li>
+      </ul>
+    </div>
+    <div class="prose">
+      <p>玉玲结合自己正在推进的OPC孵化器招商工作，详细介绍了深圳的创业补贴政策。OPC（一人有限责任公司）是近年政策放开后允许单人注册的有限责任公司形态，注册企业6个月后可向人社局申请1万元创业补贴。对于在校大学生而言门槛最低，无需缴纳社保；已工作的社会人士则可通过登记失业身份来满足申请条件。</p>
+      <p>各区孵化器为争夺入驻企业，纷纷提供不同年限的免租优惠，本质上是孵化器向工信局申请补贴后转让给创业者的政策红利。多位参与者对此表现出浓厚兴趣，并就如何在已有公司的情况下另行注册OPC、补贴是否与其他政策冲突等细节展开了讨论。吴常建议将这一资源放入生财AI技术群中，让有需求的圈友与玉玲直接对接，实现信息资源的有效流通。</p>
+    </div>
+  </section>
+
+</div>
+
+<footer>
+  <p>读书分享与自媒体问题讨论 · 2026年5月9日 · 深圳</p>
+  <p style="margin-top:6px; font-size:12px;">本文档由会议录音整理生成，内容仅供参与者参考</p>
+</footer>
+
+</body>
+</html>
