@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>认知卡片 · 2026-06-15</title>
+  <style>
+    :root {
+      --c-canvas: #eeefe9;
+      --c-card: #fffdf8;
+      --c-doc: #fcfcfa;
+      --c-soft: #e5e7e0;
+      --c-ink: #23251d;
+      --c-body: #4d4f46;
+      --c-charcoal: #33342d;
+      --c-muted: #6c6e63;
+      --c-ash: #9b9c92;
+      --c-stone: #b6b7af;
+      --c-hairline: #bfc1b7;
+      --c-hairline-soft: #dcdfd2;
+      --c-primary: #f7a501;
+      --c-primary-deep: #b17816;
+      --c-primary-soft: #fff1cc;
+      --c-blue: #2c84e0;
+      --c-blue-soft: #dceaf6;
+      --c-teal: #1078a3;
+      --c-teal-soft: #d7edf0;
+      --c-green: #2c8c66;
+      --c-green-soft: #d9eddf;
+      --c-red: #cd4239;
+      --c-red-soft: #f7d6d3;
+      --c-purple: #7c44a6;
+      --c-purple-soft: #e7d8ee;
+      --c-brown: #7a5c2e;
+      --c-brown-soft: #eadcc4;
+      --c-cream-1: #f8f6ee;
+      --c-cream-2: #f1efe5;
+      --c-cream-3: #e9e5d8;
+      --c-olive-1: #70725f;
+      --c-olive-2: #5a5c4e;
+      --c-olive-3: #414337;
+      --c-warning: #9a5d00;
+      --c-warning-soft: #ffe6a8;
+      --c-focus: #f4c34d;
+      --c-shadow: rgba(35, 37, 29, 0.14);
+      --c-shadow-soft: rgba(35, 37, 29, 0.07);
+      --c-white: #ffffff;
+      --c-black: #11120f;
+      --c-rule-dark: #23251d;
+      --c-rule-light: #d8d9cf;
+      --font-main: "IBM Plex Sans", "Microsoft YaHei", "PingFang SC", system-ui, sans-serif;
+      --fs-hero: 40px;
+      --fs-title: 30px;
+      --fs-subtitle: 22px;
+      --fs-section: 20px;
+      --fs-block: 18px;
+      --fs-body: 16px;
+      --fs-body-sm: 15px;
+      --fs-caption: 13px;
+      --fs-micro: 12px;
+      --lh-tight: 1.12;
+      --lh-title: 1.25;
+      --lh-mid: 1.45;
+      --lh-body: 1.72;
+      --lh-caption: 1.5;
+      --fw-regular: 400;
+      --fw-medium: 500;
+      --fw-semibold: 600;
+      --fw-bold: 700;
+      --fw-black: 800;
+      --tracking-flat: 0;
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 20px;
+      --space-6: 24px;
+      --space-7: 28px;
+      --space-8: 32px;
+      --space-9: 40px;
+      --space-10: 48px;
+      --space-11: 56px;
+      --space-12: 72px;
+      --marker-thick: 6px;
+      --marker-mid: 3px;
+      --marker-thin: 1px;
+      --marker-core: 18px;
+      --marker-step: 34px;
+      --marker-tag-h: 26px;
+      --marker-rail: 4px;
+      --marker-dot: 10px;
+      --marker-box: 46px;
+      --marker-gap: 14px;
+      --marker-shadow: 0 16px 44px var(--c-shadow-soft);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--c-canvas);
+      color: var(--c-body);
+      font-family: var(--font-main);
+      line-height: var(--lh-body);
+      letter-spacing: var(--tracking-flat);
+    }
+
+    .card-shell {
+      width: min(980px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: var(--space-10) 0 var(--space-12);
+    }
+
+    .cognitive-card {
+      background: var(--c-card);
+      border: var(--marker-thin) solid var(--c-hairline);
+      border-radius: 0;
+      box-shadow: var(--marker-shadow);
+      overflow: hidden;
+    }
+
+    .card-header {
+      padding: var(--space-10) var(--space-9) var(--space-8);
+      border-bottom: var(--marker-thick) solid var(--c-rule-dark);
+      background: linear-gradient(180deg, var(--c-cream-1), var(--c-card));
+    }
+
+    .kicker-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      margin-bottom: var(--space-5);
+    }
+
+    .kicker {
+      min-height: var(--marker-tag-h);
+      padding: 2px var(--space-3);
+      border: var(--marker-thin) solid var(--c-hairline);
+      background: var(--c-soft);
+      color: var(--c-olive-3);
+      font-size: var(--fs-micro);
+      line-height: var(--lh-caption);
+      font-weight: var(--fw-bold);
+    }
+
+    .kicker.primary {
+      background: var(--c-primary);
+      color: var(--c-ink);
+      border-color: var(--c-primary-deep);
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--c-ink);
+      font-size: var(--fs-hero);
+      line-height: var(--lh-tight);
+      font-weight: var(--fw-black);
+      letter-spacing: var(--tracking-flat);
+      max-width: 760px;
+    }
+
+    .lead {
+      margin: var(--space-5) 0 0;
+      max-width: 820px;
+      color: var(--c-charcoal);
+      font-size: var(--fs-block);
+      line-height: var(--lh-mid);
+      font-weight: var(--fw-semibold);
+    }
+
+    .section {
+      padding: var(--space-8) var(--space-9);
+      border-bottom: var(--marker-thin) solid var(--c-hairline-soft);
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      margin-bottom: var(--space-5);
+    }
+
+    .section-index {
+      width: var(--marker-step);
+      height: var(--marker-step);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--c-ink);
+      color: var(--c-white);
+      font-size: var(--fs-caption);
+      font-weight: var(--fw-bold);
+      line-height: 1;
+    }
+
+    h2 {
+      margin: 0;
+      color: var(--c-ink);
+      font-size: var(--fs-section);
+      line-height: var(--lh-title);
+      font-weight: var(--fw-bold);
+    }
+
+    .core-box {
+      display: grid;
+      gap: var(--space-4);
+      padding: var(--space-7);
+      background: var(--c-primary-soft);
+      border: var(--marker-mid) solid var(--c-primary-deep);
+    }
+
+    .core-line {
+      margin: 0;
+      color: var(--c-ink);
+      font-size: var(--fs-title);
+      line-height: var(--lh-title);
+      font-weight: var(--fw-black);
+    }
+
+    .core-note {
+      margin: 0;
+      color: var(--c-body);
+      font-size: var(--fs-body);
+      line-height: var(--lh-body);
+      font-weight: var(--fw-medium);
+    }
+
+    .map-stack {
+      display: grid;
+      gap: var(--space-4);
+    }
+
+    .map-item {
+      display: grid;
+      grid-template-columns: var(--marker-box) 1fr;
+      gap: var(--space-4);
+      align-items: start;
+      padding: var(--space-5);
+      background: var(--c-doc);
+      border: var(--marker-thin) solid var(--c-hairline);
+    }
+
+    .map-num {
+      width: var(--marker-box);
+      height: var(--marker-box);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--c-ink);
+      color: var(--c-primary);
+      font-size: var(--fs-block);
+      font-weight: var(--fw-black);
+    }
+
+    .map-item h3 {
+      margin: 0 0 var(--space-2);
+      color: var(--c-ink);
+      font-size: var(--fs-block);
+      line-height: var(--lh-title);
+      font-weight: var(--fw-bold);
+    }
+
+    .map-item p {
+      margin: 0;
+      color: var(--c-body);
+      font-size: var(--fs-body-sm);
+      line-height: var(--lh-body);
+    }
+
+    .quote-band {
+      background: var(--c-ink);
+      color: var(--c-white);
+      padding: var(--space-8) var(--space-9);
+    }
+
+    .quote-label {
+      color: var(--c-primary);
+      font-size: var(--fs-caption);
+      line-height: var(--lh-caption);
+      font-weight: var(--fw-bold);
+      margin-bottom: var(--space-4);
+    }
+
+    .quote-text {
+      margin: 0;
+      font-size: var(--fs-subtitle);
+      line-height: var(--lh-mid);
+      font-weight: var(--fw-bold);
+    }
+
+    .method-grid {
+      display: grid;
+      gap: var(--space-4);
+    }
+
+    .method-card {
+      padding: var(--space-5);
+      border-left: var(--marker-rail) solid var(--c-teal);
+      background: var(--c-teal-soft);
+    }
+
+    .method-card:nth-child(2) {
+      border-left-color: var(--c-green);
+      background: var(--c-green-soft);
+    }
+
+    .method-card:nth-child(3) {
+      border-left-color: var(--c-purple);
+      background: var(--c-purple-soft);
+    }
+
+    .method-card strong {
+      display: block;
+      color: var(--c-ink);
+      font-size: var(--fs-body);
+      line-height: var(--lh-mid);
+      font-weight: var(--fw-bold);
+      margin-bottom: var(--space-2);
+    }
+
+    .method-card span {
+      display: block;
+      color: var(--c-body);
+      font-size: var(--fs-body-sm);
+      line-height: var(--lh-body);
+    }
+
+    .action-risk {
+      display: grid;
+      gap: var(--space-4);
+    }
+
+    .panel {
+      padding: var(--space-5);
+      border: var(--marker-thin) solid var(--c-hairline);
+      background: var(--c-doc);
+    }
+
+    .panel.action {
+      border-top: var(--marker-thick) solid var(--c-green);
+    }
+
+    .panel.risk {
+      border-top: var(--marker-thick) solid var(--c-red);
+      background: var(--c-red-soft);
+    }
+
+    .panel h3 {
+      margin: 0 0 var(--space-3);
+      color: var(--c-ink);
+      font-size: var(--fs-block);
+      line-height: var(--lh-title);
+      font-weight: var(--fw-bold);
+    }
+
+    .plain-list {
+      display: grid;
+      gap: var(--space-3);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .plain-list li {
+      position: relative;
+      padding-left: var(--space-6);
+      color: var(--c-body);
+      font-size: var(--fs-body-sm);
+      line-height: var(--lh-body);
+    }
+
+    .plain-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.72em;
+      width: var(--marker-dot);
+      height: var(--marker-dot);
+      background: var(--c-primary);
+      border: var(--marker-thin) solid var(--c-primary-deep);
+    }
+
+    .risk .plain-list li::before {
+      background: var(--c-red);
+      border-color: var(--c-red);
+    }
+
+    .footer {
+      padding: var(--space-6) var(--space-9) var(--space-9);
+      background: var(--c-cream-2);
+      color: var(--c-muted);
+      font-size: var(--fs-caption);
+      line-height: var(--lh-caption);
+      border-top: var(--marker-thin) solid var(--c-hairline);
+    }
+
+    .footer strong {
+      color: var(--c-ink);
+      font-weight: var(--fw-bold);
+    }
+
+    @media (max-width: 430px) {
+      .card-shell {
+        width: min(100% - 16px, 980px);
+        padding: var(--space-5) 0 var(--space-7);
+      }
+
+      .card-header,
+      .section,
+      .quote-band,
+      .footer {
+        padding-left: var(--space-5);
+        padding-right: var(--space-5);
+      }
+
+      h1 {
+        font-size: 30px;
+      }
+
+      .core-line {
+        font-size: 24px;
+      }
+
+      .map-item {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (min-width: 431px) and (max-width: 640px) {
+      h1 {
+        font-size: 34px;
+      }
+
+      .core-line {
+        font-size: 26px;
+      }
+    }
+
+    @media (min-width: 641px) and (max-width: 860px) {
+      .card-shell {
+        width: min(92%, 980px);
+      }
+
+      h1 {
+        font-size: 38px;
+      }
+    }
+
+    @media (min-width: 1120px) {
+      .card-shell {
+        padding-top: var(--space-12);
+      }
+
+      .cognitive-card {
+        border-width: 2px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="card-shell">
+    <article class="cognitive-card">
+      <header class="card-header">
+        <div class="kicker-row">
+          <span class="kicker primary">2026-06-15</span>
+          <span class="kicker">今日复盘</span>
+          <span class="kicker">体验至上</span>
+          <span class="kicker">人生目标校正</span>
+        </div>
+        <h1>别再只靠“不想要”推着走</h1>
+        <p class="lead">今天不是已经找到人生答案，而是看清了一个更底层的问题：过去很多行动来自逃离，而不是来自一张足够具体的正向生活画面。</p>
+      </header>
+
+      <section class="section">
+        <div class="section-title">
+          <span class="section-index">01</span>
+          <h2>核心命题</h2>
+        </div>
+        <div class="core-box">
+          <p class="core-line">人生主线可以还不确定，但不能继续只靠反面推力活着。</p>
+          <p class="core-note">下一步不是立宏大目标，而是先写出一个粗糙但具体的画面：在哪里、跟谁、做什么内容、赚什么钱、过什么生活。</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-title">
+          <span class="section-index">02</span>
+          <h2>今天的三次校正</h2>
+        </div>
+        <div class="map-stack">
+          <div class="map-item">
+            <div class="map-num">A</div>
+            <div>
+              <h3>从反面推力，转向正向画面</h3>
+              <p>过去的动力多来自“不想上班、不想被困住、不想没钱”。这些能启动行动，但不能长期替代“我到底想过什么样的人生”。</p>
+            </div>
+          </div>
+          <div class="map-item">
+            <div class="map-num">B</div>
+            <div>
+              <h3>从平均值生活，转向异常值体验</h3>
+              <p>涠洲岛 5 天的密度高，是因为自然、关系、新奇经历和被照顾同时出现。改变人生走向的，往往不是平均值，而是主动引入的异常值。</p>
+            </div>
+          </div>
+          <div class="map-item">
+            <div class="map-num">C</div>
+            <div>
+              <h3>从一次性目标，转向循环校正</h3>
+              <p>人生目标不需要一次写对。更现实的系统是像 AI agent 一样，先有方向，再用复盘、新信息和行动反馈持续修正。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="quote-band">
+        <div class="quote-label">今日金句</div>
+        <p class="quote-text">“我一直都是被推着走，不是被我想要的东西推着走，而是被我不想要的东西推着走。”</p>
+      </section>
+
+      <section class="section">
+        <div class="section-title">
+          <span class="section-index">03</span>
+          <h2>可复用方法论</h2>
+        </div>
+        <div class="method-grid">
+          <div class="method-card">
+            <strong>最小阻力法则</strong>
+            <span>英语复盘先只记录单词、短语、语法，做满半个月再扩展。不要一开始就把新习惯设计成完整系统。</span>
+          </div>
+          <div class="method-card">
+            <strong>输出优先原则</strong>
+            <span>深度对话、录音、复盘和写作留下结构。刷内容带来的刺激很多，但不一定留下可复用记忆。</span>
+          </div>
+          <div class="method-card">
+            <strong>IP 阶段原则</strong>
+            <span>IP 是结果，不是过程。先卖整理能力和时间，再做服务陪伴，最后沉淀模型、课程和完整购买路径。</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-title">
+          <span class="section-index">04</span>
+          <h2>行动与待核</h2>
+        </div>
+        <div class="action-risk">
+          <div class="panel action">
+            <h3>明天必须落地的动作</h3>
+            <ul class="plain-list">
+              <li>写出一张足够具体的人生画面，先粗糙，不求完美。</li>
+              <li>开始英语每日复盘，只记录一个最小维度，先跑半个月。</li>
+              <li>把 AI 当日常助手用起来，不只在大任务里调用。</li>
+            </ul>
+          </div>
+          <div class="panel risk">
+            <h3>不能写死的结论</h3>
+            <ul class="plain-list">
+              <li>多语言缓解阿尔茨海默症仍需查证，当前不能当确定科普结论。</li>
+              <li>朋友自媒体闭环只是对话中的状态描述，实际进展尚未明确。</li>
+              <li>多激素混合体验可作为个人感受模型，不能直接包装成硬科普。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <strong>来源：</strong>2026-06-15 日省。风格参考 posthog，暖奶油底、橄榄色文字、黄橙强调；保留待做和待核状态，不把讨论写成已定。
+      </footer>
+    </article>
+  </main>
+</body>
+</html>
