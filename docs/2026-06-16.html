@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>认知卡片 · 2026-06-16</title>
+  <style>
+    :root {
+      --c-primary: #533afd;
+      --c-primary-deep: #4434d4;
+      --c-primary-press: #2e2b8c;
+      --c-primary-soft: #665efd;
+      --c-primary-faint: #b9b9f9;
+      --c-brand-dark: #1c1e54;
+      --c-ink: #0d253d;
+      --c-ink-2: #273951;
+      --c-ink-3: #40526b;
+      --c-muted: #64748d;
+      --c-muted-2: #61718a;
+      --c-canvas: #ffffff;
+      --c-canvas-soft: #f6f9fc;
+      --c-canvas-cream: #f5e9d4;
+      --c-hairline: #e3e8ee;
+      --c-hairline-2: #d5dee8;
+      --c-input: #a8c3de;
+      --c-ruby: #ea2261;
+      --c-ruby-soft: #ffe3ee;
+      --c-magenta: #f96bee;
+      --c-magenta-soft: #fde6fb;
+      --c-lemon: #9b6829;
+      --c-lemon-soft: #fff0cf;
+      --c-indigo-wash: #ecebff;
+      --c-blue-wash: #dceeff;
+      --c-orange-wash: #ffe0bd;
+      --c-green: #16865c;
+      --c-green-soft: #dff5ea;
+      --c-warning: #a45b00;
+      --c-warning-soft: #fff1d6;
+      --c-danger: #c51f4a;
+      --c-danger-soft: #ffe1e9;
+      --c-shadow: rgba(0, 55, 112, 0.08);
+      --c-shadow-deep: rgba(0, 55, 112, 0.18);
+      --c-white: #ffffff;
+      --c-black: #07111f;
+      --c-table-1: #f8fbff;
+      --c-table-2: #eef5ff;
+      --c-table-3: #e7ecff;
+      --c-panel-dark: #111849;
+      --c-panel-line: #384071;
+      --c-panel-text: #eef2ff;
+      --font-sans: "Inter", "SF Pro Display", "Microsoft YaHei", "PingFang SC", system-ui, sans-serif;
+      --fs-display: 44px;
+      --fs-title: 32px;
+      --fs-subtitle: 24px;
+      --fs-section: 21px;
+      --fs-card: 18px;
+      --fs-body: 16px;
+      --fs-body-sm: 15px;
+      --fs-caption: 13px;
+      --fs-micro: 11px;
+      --lh-tight: 1.08;
+      --lh-title: 1.2;
+      --lh-mid: 1.45;
+      --lh-body: 1.72;
+      --lh-caption: 1.4;
+      --fw-light: 300;
+      --fw-regular: 400;
+      --fw-medium: 500;
+      --fw-semibold: 600;
+      --fw-bold: 700;
+      --track: 0;
+      --space-1: 2px;
+      --space-2: 4px;
+      --space-3: 8px;
+      --space-4: 12px;
+      --space-5: 16px;
+      --space-6: 24px;
+      --space-7: 32px;
+      --space-8: 40px;
+      --space-9: 48px;
+      --space-10: 64px;
+      --space-11: 80px;
+      --space-12: 96px;
+      --mark-thin: 1px;
+      --mark-mid: 2px;
+      --mark-heavy: 6px;
+      --mark-dot: 9px;
+      --mark-step: 36px;
+      --mark-bar: 4px;
+      --mark-tag: 28px;
+      --mark-panel: 52px;
+      --shadow-card: 0 18px 42px var(--c-shadow);
+      --shadow-panel: 0 8px 24px var(--c-shadow);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at 12% 0%, var(--c-orange-wash), transparent 30%),
+        radial-gradient(circle at 52% 4%, var(--c-indigo-wash), transparent 34%),
+        radial-gradient(circle at 88% 0%, var(--c-magenta-soft), transparent 30%),
+        var(--c-canvas-soft);
+      color: var(--c-ink);
+      font-family: var(--font-sans);
+      font-feature-settings: "ss01";
+      letter-spacing: var(--track);
+      line-height: var(--lh-body);
+    }
+
+    .card-shell {
+      width: min(960px, calc(100% - 28px));
+      margin: 0 auto;
+      padding: var(--space-10) 0 var(--space-12);
+    }
+
+    .cognitive-card {
+      background: var(--c-canvas);
+      border: var(--mark-thin) solid var(--c-hairline);
+      border-radius: 0;
+      box-shadow: var(--shadow-card);
+      overflow: hidden;
+    }
+
+    .hero {
+      padding: var(--space-9) var(--space-8) var(--space-8);
+      background:
+        radial-gradient(circle at 12% 18%, var(--c-lemon-soft), transparent 26%),
+        radial-gradient(circle at 55% 8%, var(--c-primary-faint), transparent 30%),
+        radial-gradient(circle at 90% 0%, var(--c-ruby-soft), transparent 24%),
+        var(--c-canvas);
+      border-bottom: var(--mark-heavy) solid var(--c-brand-dark);
+    }
+
+    .eyebrow-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      margin-bottom: var(--space-6);
+    }
+
+    .eyebrow {
+      min-height: var(--mark-tag);
+      padding: var(--space-2) var(--space-4);
+      display: inline-flex;
+      align-items: center;
+      background: var(--c-canvas);
+      color: var(--c-primary-deep);
+      border: var(--mark-thin) solid var(--c-primary-faint);
+      font-size: var(--fs-micro);
+      line-height: var(--lh-caption);
+      font-weight: var(--fw-semibold);
+    }
+
+    .eyebrow.dark {
+      background: var(--c-brand-dark);
+      color: var(--c-white);
+      border-color: var(--c-brand-dark);
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 820px;
+      color: var(--c-ink);
+      font-size: var(--fs-display);
+      line-height: var(--lh-tight);
+      font-weight: var(--fw-light);
+      letter-spacing: var(--track);
+    }
+
+    .hero-lead {
+      margin: var(--space-5) 0 0;
+      max-width: 790px;
+      color: var(--c-ink-2);
+      font-size: var(--fs-card);
+      line-height: var(--lh-mid);
+      font-weight: var(--fw-regular);
+    }
+
+    .section {
+      padding: var(--space-8);
+      border-bottom: var(--mark-thin) solid var(--c-hairline);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      gap: var(--space-4);
+      margin-bottom: var(--space-6);
+    }
+
+    .section-num {
+      width: var(--mark-step);
+      height: var(--mark-step);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--c-primary);
+      color: var(--c-white);
+      font-size: var(--fs-caption);
+      line-height: 1;
+      font-weight: var(--fw-bold);
+      font-feature-settings: "tnum";
+    }
+
+    h2 {
+      margin: 0;
+      color: var(--c-ink);
+      font-size: var(--fs-section);
+      line-height: var(--lh-title);
+      font-weight: var(--fw-regular);
+      letter-spacing: var(--track);
+    }
+
+    .core-panel {
+      padding: var(--space-7);
+      background: var(--c-brand-dark);
+      color: var(--c-panel-text);
+      border-left: var(--mark-heavy) solid var(--c-primary);
+    }
+
+    .core-panel strong {
+      display: block;
+      margin-bottom: var(--space-4);
+      color: var(--c-white);
+      font-size: var(--fs-title);
+      line-height: var(--lh-title);
+      font-weight: var(--fw-light);
+    }
+
+    .core-panel span {
+      display: block;
+      color: var(--c-panel-text);
+      font-size: var(--fs-body);
+      line-height: var(--lh-body);
+    }
+
+    .stack {
+      display: grid;
+      gap: var(--space-5);
+    }
+
+    .insight {
+      display: grid;
+      grid-template-columns: var(--mark-panel) 1fr;
+      gap: var(--space-5);
+      padding: var(--space-6);
+      background: var(--c-canvas);
+      border: var(--mark-thin) solid var(--c-hairline);
+      box-shadow: var(--shadow-panel);
+    }
+
+    .insight-code {
+      height: var(--mark-panel);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--c-canvas-soft);
+      color: var(--c-primary);
+      border: var(--mark-thin) solid var(--c-hairline-2);
+      font-size: var(--fs-card);
+      font-weight: var(--fw-semibold);
+      font-feature-settings: "tnum";
+    }
+
+    .insight h3 {
+      margin: 0 0 var(--space-3);
+      color: var(--c-ink);
+      font-size: var(--fs-card);
+      line-height: var(--lh-title);
+      font-weight: var(--fw-medium);
+    }
+
+    .insight p {
+      margin: 0;
+      color: var(--c-muted);
+      font-size: var(--fs-body-sm);
+      line-height: var(--lh-body);
+    }
+
+    .quote-band {
+      padding: var(--space-8);
+      background:
+        linear-gradient(90deg, var(--c-primary), var(--c-magenta), var(--c-ruby));
+      color: var(--c-white);
+    }
+
+    .quote-label {
+      margin-bottom: var(--space-4);
+      font-size: var(--fs-caption);
+      line-height: var(--lh-caption);
+      font-weight: var(--fw-semibold);
+    }
+
+    .quote-text {
+      margin: 0;
+      font-size: var(--fs-subtitle);
+      line-height: var(--lh-mid);
+      font-weight: var(--fw-light);
+    }
+
+    .method {
+      padding: var(--space-6);
+      background: var(--c-canvas-cream);
+      border: var(--mark-thin) solid var(--c-hairline);
+      border-left: var(--mark-heavy) solid var(--c-lemon);
+    }
+
+    .method + .method {
+      margin-top: var(--space-5);
+    }
+
+    .method strong {
+      display: block;
+      margin-bottom: var(--space-3);
+      color: var(--c-ink);
+      font-size: var(--fs-body);
+      line-height: var(--lh-mid);
+      font-weight: var(--fw-semibold);
+    }
+
+    .method span {
+      display: block;
+      color: var(--c-ink-2);
+      font-size: var(--fs-body-sm);
+      line-height: var(--lh-body);
+    }
+
+    .table-panel {
+      background: var(--c-panel-dark);
+      color: var(--c-panel-text);
+      padding: var(--space-6);
+      border: var(--mark-thin) solid var(--c-panel-line);
+    }
+
+    .table-row {
+      display: grid;
+      grid-template-columns: 110px 1fr;
+      gap: var(--space-5);
+      padding: var(--space-4) 0;
+      border-bottom: var(--mark-thin) solid var(--c-panel-line);
+    }
+
+    .table-row:last-child {
+      border-bottom: 0;
+    }
+
+    .table-row b {
+      color: var(--c-primary-faint);
+      font-size: var(--fs-caption);
+      line-height: var(--lh-caption);
+      font-weight: var(--fw-semibold);
+      font-feature-settings: "tnum";
+    }
+
+    .table-row span {
+      color: var(--c-panel-text);
+      font-size: var(--fs-body-sm);
+      line-height: var(--lh-body);
+    }
+
+    .action-risk {
+      display: grid;
+      gap: var(--space-5);
+    }
+
+    .box {
+      padding: var(--space-6);
+      border: var(--mark-thin) solid var(--c-hairline);
+      background: var(--c-table-1);
+    }
+
+    .box.action {
+      border-top: var(--mark-heavy) solid var(--c-green);
+      background: var(--c-green-soft);
+    }
+
+    .box.risk {
+      border-top: var(--mark-heavy) solid var(--c-danger);
+      background: var(--c-danger-soft);
+    }
+
+    .box h3 {
+      margin: 0 0 var(--space-4);
+      color: var(--c-ink);
+      font-size: var(--fs-card);
+      line-height: var(--lh-title);
+      font-weight: var(--fw-medium);
+    }
+
+    .clean-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: var(--space-4);
+    }
+
+    .clean-list li {
+      position: relative;
+      padding-left: var(--space-6);
+      color: var(--c-ink-2);
+      font-size: var(--fs-body-sm);
+      line-height: var(--lh-body);
+    }
+
+    .clean-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.72em;
+      width: var(--mark-dot);
+      height: var(--mark-dot);
+      background: var(--c-primary);
+    }
+
+    .risk .clean-list li::before {
+      background: var(--c-danger);
+    }
+
+    .footer {
+      padding: var(--space-6) var(--space-8) var(--space-8);
+      background: var(--c-canvas-soft);
+      color: var(--c-muted);
+      font-size: var(--fs-caption);
+      line-height: var(--lh-caption);
+      border-top: var(--mark-thin) solid var(--c-hairline);
+    }
+
+    .footer strong {
+      color: var(--c-ink);
+      font-weight: var(--fw-semibold);
+    }
+
+    @media (max-width: 430px) {
+      .card-shell {
+        width: min(100% - 16px, 960px);
+        padding: var(--space-5) 0 var(--space-8);
+      }
+
+      .hero,
+      .section,
+      .quote-band,
+      .footer {
+        padding-left: var(--space-5);
+        padding-right: var(--space-5);
+      }
+
+      h1 {
+        font-size: 32px;
+      }
+
+      .core-panel strong {
+        font-size: 25px;
+      }
+
+      .insight {
+        grid-template-columns: 1fr;
+      }
+
+      .table-row {
+        grid-template-columns: 1fr;
+        gap: var(--space-2);
+      }
+    }
+
+    @media (min-width: 431px) and (max-width: 640px) {
+      h1 {
+        font-size: 36px;
+      }
+
+      .hero,
+      .section,
+      .quote-band,
+      .footer {
+        padding-left: var(--space-6);
+        padding-right: var(--space-6);
+      }
+    }
+
+    @media (min-width: 641px) and (max-width: 900px) {
+      .card-shell {
+        width: min(92%, 960px);
+      }
+
+      h1 {
+        font-size: 40px;
+      }
+    }
+
+    @media (min-width: 1200px) {
+      .card-shell {
+        padding-top: var(--space-12);
+      }
+
+      .cognitive-card {
+        border-width: 2px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="card-shell">
+    <article class="cognitive-card">
+      <header class="hero">
+        <div class="eyebrow-row">
+          <span class="eyebrow dark">2026-06-16</span>
+          <span class="eyebrow">Gap 教练</span>
+          <span class="eyebrow">习惯飞轮</span>
+          <span class="eyebrow">客服替代</span>
+        </div>
+        <h1>不是工具没用，是它真的戳到了你</h1>
+        <p class="hero-lead">今天的核心不是“没做什么”，而是看清了一个逃避机制：Gap 教练停用一个多月，是因为它把你不愿面对的那 60% 问题拖到了眼前。</p>
+      </header>
+
+      <section class="section">
+        <div class="section-head">
+          <span class="section-num">01</span>
+          <h2>核心判断</h2>
+        </div>
+        <div class="core-panel">
+          <strong>下一步不是换工具，而是把 Gap 教练重新接回日常。</strong>
+          <span>AI 的价值不只是整理内容，而是基于历史记录反问你：上次说要做的事为什么还没做，今天逃掉的地方到底是什么。</span>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <span class="section-num">02</span>
+          <h2>三条主线</h2>
+        </div>
+        <div class="stack">
+          <div class="insight">
+            <div class="insight-code">60%</div>
+            <div>
+              <h3>AI 会揭开你不愿揭开的部分</h3>
+              <p>你能看到 30% 到 40% 的问题，剩下的部分往往靠自己不愿碰。AI 把它拖出来，痛感不是失败，而是命中。</p>
+            </div>
+          </div>
+          <div class="insight">
+            <div class="insight-code">100</div>
+            <div>
+              <h3>业务还在赚钱，但你又回到了客服位</h3>
+              <p>今日 GMV 约 5000，利润约 1000 为粗算，但接近 100 条消息靠自己回。收入有了，杠杆没有。</p>
+            </div>
+          </div>
+          <div class="insight">
+            <div class="insight-code">365</div>
+            <div>
+              <h3>日省卡片可以反过来驱动复盘</h3>
+              <p>想要每天看到日省卡片，就必须每天复盘。习惯不是靠喊自律，而是把想要的结果和必须做的动作绑在一起。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="quote-band">
+        <div class="quote-label">今日金句</div>
+        <p class="quote-text">“AI 会揭开那 60% 的事实，你自己不愿意揭开，它揭开了你就会觉得痛。”</p>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <span class="section-num">03</span>
+          <h2>方法论沉淀</h2>
+        </div>
+        <div class="method">
+          <strong>日省蒸馏法</strong>
+          <span>把过往 5 年笔记和复盘逐年蒸馏成日省卡片，构建“日省版本的我”，让 Claude 能基于历史自我做反问式复盘。</span>
+        </div>
+        <div class="method">
+          <strong>好习惯飞轮</strong>
+          <span>不要靠意志力硬撑。想要 A，就绑定必须做 B。想要日省卡片，就必须每日复盘。</span>
+        </div>
+        <div class="method">
+          <strong>主线支线框架</strong>
+          <span>主线是赚钱和创造价值，支线是认识人、经历事、开拓视野。支线不是逃避主线，而是给主线补判断材料。</span>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <span class="section-num">04</span>
+          <h2>今日仪表盘</h2>
+        </div>
+        <div class="table-panel">
+          <div class="table-row">
+            <b>业务</b>
+            <span>GMV 约 5000，利润约 1000 为粗算；客服动作仍压在自己身上。</span>
+          </div>
+          <div class="table-row">
+            <b>状态</b>
+            <span>书店读书数小时是本周最宁静时段；睡到 12:30 原因不明，继续观察。</span>
+          </div>
+          <div class="table-row">
+            <b>学习</b>
+            <span>英文演讲稿阅读理解度有提升，但百分比仍是主观自估。</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <span class="section-num">05</span>
+          <h2>行动和待核</h2>
+        </div>
+        <div class="action-risk">
+          <div class="box action">
+            <h3>明天要推进</h3>
+            <ul class="clean-list">
+              <li>重新接入 Gap 教练，不要因为它刺痛就停用。</li>
+              <li>研究计算机代写客服兼职替代方案，解决期末季人力缺口。</li>
+              <li>继续设计“每日五件事 + 截止日期”，但当前还只是待落地。</li>
+            </ul>
+          </div>
+          <div class="box risk">
+            <h3>不能写死</h3>
+            <ul class="clean-list">
+              <li>利润、英文理解度、设备成本都是粗算或自估，不能当精确数据。</li>
+              <li>牛肉是否属于劣质蛋白与常规认知冲突，必须查证。</li>
+              <li>睡到 12:30 的原因不明，不能直接归因为懒或睡眠异常。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <strong>来源：</strong>2026-06-16 日省。视觉参考 stripe，白底、深蓝文字、靛蓝重点和静态渐变带；保留粗算、待核和待落地状态。
+      </footer>
+    </article>
+  </main>
+</body>
+</html>
