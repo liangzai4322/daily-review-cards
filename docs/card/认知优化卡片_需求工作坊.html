@@ -1,0 +1,3241 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>认知优化卡片系统：线下需求工作坊精华</title>
+<style>
+:root {
+--color-paper-01: #fffdf7;
+--color-paper-02: #f8f3e7;
+--color-paper-03: #efe8d8;
+--color-paper-04: #e4dcc8;
+--color-ink-01: #161817;
+--color-ink-02: #242825;
+--color-ink-03: #343a35;
+--color-ink-04: #4a514b;
+--color-ink-05: #687066;
+--color-ink-06: #879083;
+--color-ink-07: #a9b0a4;
+--color-ink-08: #c8cec1;
+--color-ink-09: #dde2d6;
+--color-ink-10: #eef1e8;
+--color-primary-01: #1f4d3a;
+--color-primary-02: #276347;
+--color-primary-03: #327c59;
+--color-primary-04: #4d9871;
+--color-primary-05: #6db48f;
+--color-blue-01: #123c69;
+--color-blue-02: #1d5d8d;
+--color-blue-03: #347ca7;
+--color-blue-04: #66a5bf;
+--color-blue-05: #a6d1da;
+--color-gold-01: #6d3f00;
+--color-gold-02: #9b6208;
+--color-gold-03: #c88719;
+--color-gold-04: #e4b757;
+--color-gold-05: #f3d88c;
+--color-red-01: #6d1d18;
+--color-red-02: #9b332c;
+--color-red-03: #c8584d;
+--color-red-04: #e58479;
+--color-red-05: #f2bbb2;
+--color-violet-01: #342260;
+--color-violet-02: #50388a;
+--color-violet-03: #7154ab;
+--color-violet-04: #9a83c8;
+--color-violet-05: #c7b9e0;
+--color-cyan-01: #0d4c55;
+--color-cyan-02: #14717a;
+--color-cyan-03: #2b97a2;
+--color-cyan-04: #72bec6;
+--color-cyan-05: #b5e0e3;
+--color-rose-01: #6b2440;
+--color-rose-02: #963c5c;
+--color-rose-03: #c05c7c;
+--color-rose-04: #df8fa7;
+--color-rose-05: #f1c7d3;
+--color-sage-01: #3b4b29;
+--color-sage-02: #5d733e;
+--color-sage-03: #829a5c;
+--color-sage-04: #b2c58d;
+--color-sage-05: #dbe7c5;
+--color-slate-01: #263238;
+--color-slate-02: #3e5058;
+--color-slate-03: #5f747d;
+--color-slate-04: #92a3aa;
+--color-slate-05: #c9d3d7;
+--color-memory-01: #214e34;
+--color-memory-02: #7a4f10;
+--color-memory-03: #823331;
+--color-memory-04: #284f73;
+--color-memory-05: #55427a;
+--color-memory-06: #29656a;
+--color-memory-07: #7a4260;
+--color-memory-08: #56652e;
+--color-memory-09: #59412b;
+--color-memory-10: #37565f;
+--color-memory-11: #a56c1a;
+--color-memory-12: #5c7d43;
+--space-01: 2px;
+--space-02: 4px;
+--space-03: 6px;
+--space-04: 8px;
+--space-05: 10px;
+--space-06: 12px;
+--space-07: 16px;
+--space-08: 20px;
+--space-09: 24px;
+--space-10: 28px;
+--space-11: 32px;
+--space-12: 36px;
+--space-13: 40px;
+--space-14: 48px;
+--space-15: 56px;
+--space-16: 64px;
+--type-01: 8px;
+--type-02: 9px;
+--type-03: 10px;
+--type-04: 11px;
+--type-05: 12px;
+--type-06: 13px;
+--type-07: 14px;
+--type-08: 15px;
+--type-09: 16px;
+--type-10: 17px;
+--type-11: 18px;
+--type-12: 19px;
+--type-13: 20px;
+--type-14: 22px;
+--type-15: 24px;
+--type-16: 26px;
+--type-17: 28px;
+--type-18: 30px;
+--type-19: 33px;
+--type-20: 36px;
+--line-compact: 1.28;
+--line-normal: 1.58;
+--line-loose: 1.86;
+--weight-light: 300;
+--weight-regular: 400;
+--weight-medium: 500;
+--weight-semibold: 650;
+--weight-bold: 800;
+--stroke-hair: 1px;
+--stroke-thin: 2px;
+--stroke-mid: 4px;
+--stroke-thick: 8px;
+--measure-tight: 56ch;
+--measure-reading: 70ch;
+--measure-wide: 86ch;
+--card-max: 1120px;
+--shadow-print: 0 18px 60px rgba(22,24,23,.13);
+--shadow-inner: inset 0 0 0 1px rgba(22,24,23,.08);
+--shadow-focus: inset 12px 0 0 rgba(31,77,58,.86);
+--radius-none: 0px;
+}
+html {
+font-size: 16px;
+background: var(--color-paper-03);
+color: var(--color-ink-02);
+letter-spacing: 0em;
+}
+body {
+margin: 0;
+min-width: 320px;
+font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', 'PingFang SC', Arial, sans-serif;
+background: linear-gradient(180deg, var(--color-paper-02) 0%, var(--color-paper-03) 52%, var(--color-ink-10) 100%);
+color: var(--color-ink-02);
+letter-spacing: 0em;
+line-height: var(--line-normal);
+}
+*, *::before, *::after {
+box-sizing: border-box;
+border-radius: var(--radius-none);
+}
+.page-frame {
+width: 100%;
+padding: var(--space-13) var(--space-09);
+background: radial-gradient(circle at 12% 8%, rgba(228,183,87,.28), transparent 34%), linear-gradient(90deg, rgba(31,77,58,.08), transparent 42%, rgba(52,124,167,.1));
+}
+.cognitive-card {
+width: min(100%, var(--card-max));
+margin: 0 auto;
+padding: var(--space-13) clamp(24px, 5vw, 72px) var(--space-13);
+background: var(--color-paper-01);
+border: var(--stroke-thick) solid var(--color-ink-01);
+box-shadow: var(--shadow-print);
+position: relative;
+overflow: hidden;
+}
+.cognitive-card::before {
+content: '';
+position: absolute;
+inset: 0 auto 0 0;
+width: 18px;
+background: linear-gradient(180deg, var(--color-primary-01), var(--color-gold-03) 42%, var(--color-blue-02) 72%, var(--color-red-02));
+}
+.cognitive-card::after {
+content: '';
+position: absolute;
+inset: auto 0 0 0;
+height: 12px;
+background: linear-gradient(90deg, var(--color-primary-02), var(--color-cyan-03), var(--color-gold-03), var(--color-rose-03));
+}
+.hero {
+display: grid;
+grid-template-columns: 1fr;
+gap: var(--space-09);
+padding: var(--space-11) 0 var(--space-10) var(--space-09);
+border-bottom: var(--stroke-mid) solid var(--color-ink-01);
+position: relative;
+}
+.hero-kicker {
+display: inline-flex;
+align-items: center;
+width: max-content;
+padding: var(--space-03) var(--space-06);
+background: var(--color-ink-01);
+color: var(--color-paper-01);
+font-size: var(--type-06);
+font-weight: var(--weight-semibold);
+line-height: var(--line-compact);
+letter-spacing: 0em;
+}
+.hero-title {
+max-width: 14em;
+margin: 0;
+color: var(--color-ink-01);
+font-size: clamp(32px, 6vw, 64px);
+font-weight: var(--weight-bold);
+line-height: .98;
+letter-spacing: 0em;
+}
+.hero-title strong {
+color: var(--color-primary-01);
+font-weight: var(--weight-bold);
+}
+.hero-core {
+max-width: var(--measure-wide);
+padding: var(--space-08) var(--space-09);
+background: linear-gradient(90deg, rgba(31,77,58,.12), rgba(228,183,87,.15));
+border-left: var(--stroke-thick) solid var(--color-primary-01);
+border-top: var(--stroke-thin) solid var(--color-primary-03);
+border-bottom: var(--stroke-thin) solid var(--color-gold-03);
+font-size: var(--type-15);
+font-weight: var(--weight-semibold);
+line-height: var(--line-normal);
+color: var(--color-ink-01);
+}
+.meta-grid {
+display: grid;
+grid-template-columns: repeat(4, minmax(0, 1fr));
+gap: var(--space-06);
+margin-top: var(--space-04);
+}
+.meta-cell {
+padding: var(--space-06) var(--space-07);
+border: var(--stroke-hair) solid var(--color-ink-08);
+background: var(--color-paper-02);
+}
+.meta-label {
+display: block;
+color: var(--color-ink-05);
+font-size: var(--type-05);
+font-weight: var(--weight-semibold);
+line-height: var(--line-compact);
+}
+.meta-value {
+display: block;
+margin-top: var(--space-02);
+color: var(--color-ink-01);
+font-size: var(--type-09);
+font-weight: var(--weight-semibold);
+line-height: var(--line-normal);
+}
+.section {
+padding: var(--space-13) 0 0 var(--space-09);
+position: relative;
+}
+.section-title {
+display: grid;
+grid-template-columns: auto 1fr;
+align-items: baseline;
+gap: var(--space-07);
+margin: 0 0 var(--space-08);
+color: var(--color-ink-01);
+font-size: var(--type-18);
+font-weight: var(--weight-bold);
+line-height: var(--line-compact);
+letter-spacing: 0em;
+}
+.section-title span {
+display: inline-block;
+padding: var(--space-03) var(--space-06);
+background: var(--color-primary-01);
+color: var(--color-paper-01);
+font-size: var(--type-07);
+font-weight: var(--weight-bold);
+line-height: var(--line-compact);
+}
+.section-subtitle {
+max-width: var(--measure-reading);
+margin: 0 0 var(--space-09);
+color: var(--color-ink-04);
+font-size: var(--type-10);
+font-weight: var(--weight-regular);
+line-height: var(--line-loose);
+}
+.summary-block {
+display: grid;
+gap: var(--space-07);
+max-width: var(--measure-wide);
+}
+.summary-paragraph {
+margin: 0;
+padding: var(--space-08) var(--space-09);
+background: var(--color-paper-02);
+border-left: var(--stroke-mid) solid var(--color-blue-02);
+box-shadow: var(--shadow-inner);
+color: var(--color-ink-02);
+font-size: var(--type-11);
+font-weight: var(--weight-regular);
+line-height: var(--line-loose);
+}
+.hierarchy-stack {
+display: grid;
+gap: var(--space-06);
+}
+.hierarchy-item {
+display: grid;
+grid-template-columns: minmax(130px, 180px) 1fr;
+gap: var(--space-07);
+padding: var(--space-07) var(--space-08);
+border-left: var(--stroke-thick) solid var(--color-primary-02);
+background: linear-gradient(90deg, rgba(31,77,58,.08), rgba(255,253,247,.86));
+box-shadow: var(--shadow-inner);
+}
+.hierarchy-level {
+color: var(--color-primary-01);
+font-size: var(--type-12);
+font-weight: var(--weight-bold);
+line-height: var(--line-compact);
+}
+.hierarchy-content {
+display: grid;
+gap: var(--space-03);
+}
+.hierarchy-main {
+margin: 0;
+color: var(--color-ink-01);
+font-size: var(--type-11);
+font-weight: var(--weight-semibold);
+line-height: var(--line-normal);
+}
+.hierarchy-detail {
+margin: 0;
+color: var(--color-ink-04);
+font-size: var(--type-08);
+font-weight: var(--weight-regular);
+line-height: var(--line-normal);
+}
+.reading-paths {
+display: grid;
+grid-template-columns: repeat(3, minmax(0, 1fr));
+gap: var(--space-07);
+}
+.path-card {
+padding: var(--space-08);
+border-top: var(--stroke-mid) solid var(--color-gold-03);
+background: var(--color-paper-02);
+box-shadow: var(--shadow-inner);
+}
+.path-card h3 {
+margin: 0 0 var(--space-05);
+color: var(--color-gold-01);
+font-size: var(--type-14);
+font-weight: var(--weight-bold);
+line-height: var(--line-compact);
+}
+.path-card p {
+margin: 0;
+color: var(--color-ink-03);
+font-size: var(--type-08);
+font-weight: var(--weight-regular);
+line-height: var(--line-loose);
+}
+.path-note {
+display: block;
+margin-top: var(--space-06);
+padding-top: var(--space-05);
+border-top: var(--stroke-hair) solid var(--color-ink-08);
+color: var(--color-ink-05);
+font-size: var(--type-06);
+font-weight: var(--weight-semibold);
+line-height: var(--line-normal);
+}
+.principle-grid {
+display: grid;
+grid-template-columns: repeat(4, minmax(0, 1fr));
+gap: var(--space-06);
+}
+.principle-card {
+padding: var(--space-07);
+background: var(--color-ink-10);
+border-left: var(--stroke-mid) solid var(--color-cyan-02);
+box-shadow: var(--shadow-inner);
+}
+.principle-card h3 {
+margin: 0 0 var(--space-04);
+color: var(--color-cyan-01);
+font-size: var(--type-11);
+font-weight: var(--weight-bold);
+line-height: var(--line-compact);
+}
+.principle-card p {
+margin: 0;
+color: var(--color-ink-03);
+font-size: var(--type-07);
+font-weight: var(--weight-regular);
+line-height: var(--line-normal);
+}
+.demand-grid {
+display: grid;
+grid-template-columns: repeat(2, minmax(0, 1fr));
+gap: var(--space-07);
+}
+.demand-card {
+display: grid;
+grid-template-rows: auto auto 1fr auto;
+gap: var(--space-05);
+padding: var(--space-08);
+min-height: 210px;
+background: var(--color-paper-02);
+border: var(--stroke-hair) solid var(--color-ink-08);
+box-shadow: var(--shadow-inner);
+}
+.demand-title {
+margin: 0;
+color: var(--color-ink-01);
+font-size: var(--type-14);
+font-weight: var(--weight-bold);
+line-height: var(--line-compact);
+}
+.demand-pain {
+margin: 0;
+color: var(--color-ink-03);
+font-size: var(--type-09);
+font-weight: var(--weight-medium);
+line-height: var(--line-normal);
+}
+.demand-user {
+margin: 0;
+padding: var(--space-04) var(--space-05);
+background: rgba(22,24,23,.06);
+color: var(--color-ink-04);
+font-size: var(--type-07);
+font-weight: var(--weight-semibold);
+line-height: var(--line-normal);
+}
+.demand-signal {
+margin: 0;
+color: var(--color-primary-01);
+font-size: var(--type-08);
+font-weight: var(--weight-semibold);
+line-height: var(--line-normal);
+}
+.process-list {
+display: grid;
+gap: var(--space-05);
+counter-reset: process;
+}
+.process-step {
+display: grid;
+grid-template-columns: 72px 1fr;
+gap: var(--space-07);
+align-items: start;
+padding: var(--space-07) var(--space-08);
+background: linear-gradient(90deg, rgba(20,113,122,.09), rgba(255,253,247,.95));
+border-left: var(--stroke-mid) solid var(--color-cyan-02);
+box-shadow: var(--shadow-inner);
+}
+.step-number {
+display: grid;
+place-items: center;
+height: 54px;
+background: var(--color-cyan-01);
+color: var(--color-paper-01);
+font-size: var(--type-13);
+font-weight: var(--weight-bold);
+line-height: 1;
+}
+.step-body h3 {
+margin: 0 0 var(--space-03);
+color: var(--color-ink-01);
+font-size: var(--type-12);
+font-weight: var(--weight-bold);
+line-height: var(--line-compact);
+}
+.step-body p {
+margin: 0;
+color: var(--color-ink-04);
+font-size: var(--type-08);
+font-weight: var(--weight-regular);
+line-height: var(--line-normal);
+}
+.quote-grid {
+display: grid;
+grid-template-columns: repeat(2, minmax(0, 1fr));
+gap: var(--space-06);
+}
+.quote-card {
+min-height: 124px;
+padding: var(--space-07) var(--space-08);
+background: var(--color-ink-01);
+color: var(--color-paper-01);
+display: grid;
+align-content: center;
+box-shadow: var(--shadow-inner);
+}
+.quote-card p {
+margin: 0;
+font-size: var(--type-12);
+font-weight: var(--weight-semibold);
+line-height: var(--line-normal);
+}
+.comparison-table {
+display: grid;
+gap: var(--space-04);
+}
+.comparison-row {
+display: grid;
+grid-template-columns: 1fr 1.4fr 1fr 1.4fr;
+gap: var(--space-04);
+align-items: stretch;
+}
+.comparison-cell {
+padding: var(--space-06) var(--space-07);
+background: var(--color-paper-02);
+border: var(--stroke-hair) solid var(--color-ink-08);
+font-size: var(--type-07);
+font-weight: var(--weight-regular);
+line-height: var(--line-normal);
+color: var(--color-ink-03);
+}
+.comparison-label-bad {
+background: rgba(200,88,77,.12);
+color: var(--color-red-01);
+font-weight: var(--weight-bold);
+}
+.comparison-label-good {
+background: rgba(50,124,89,.12);
+color: var(--color-primary-01);
+font-weight: var(--weight-bold);
+}
+.chunk-cloud {
+display: grid;
+grid-template-columns: repeat(5, minmax(0, 1fr));
+gap: var(--space-05);
+}
+.chunk-pill {
+padding: var(--space-05) var(--space-06);
+background: var(--color-paper-02);
+border-left: var(--stroke-thin) solid var(--color-violet-02);
+border-top: var(--stroke-hair) solid var(--color-violet-05);
+color: var(--color-violet-01);
+font-size: var(--type-07);
+font-weight: var(--weight-semibold);
+line-height: var(--line-normal);
+}
+.risk-grid {
+display: grid;
+grid-template-columns: repeat(2, minmax(0, 1fr));
+gap: var(--space-06);
+}
+.risk-card {
+padding: var(--space-07);
+background: rgba(200,88,77,.08);
+border-left: var(--stroke-mid) solid var(--color-red-02);
+box-shadow: var(--shadow-inner);
+}
+.risk-card h3 {
+margin: 0 0 var(--space-04);
+color: var(--color-red-01);
+font-size: var(--type-11);
+font-weight: var(--weight-bold);
+line-height: var(--line-compact);
+}
+.risk-card p {
+margin: 0;
+color: var(--color-ink-03);
+font-size: var(--type-08);
+font-weight: var(--weight-regular);
+line-height: var(--line-normal);
+}
+.action-list {
+display: grid;
+gap: var(--space-05);
+}
+.action-item {
+display: grid;
+grid-template-columns: 220px 1fr;
+gap: var(--space-07);
+padding: var(--space-07) var(--space-08);
+background: linear-gradient(90deg, rgba(228,183,87,.16), rgba(255,253,247,.96));
+border-left: var(--stroke-mid) solid var(--color-gold-02);
+box-shadow: var(--shadow-inner);
+}
+.action-title {
+color: var(--color-gold-01);
+font-size: var(--type-11);
+font-weight: var(--weight-bold);
+line-height: var(--line-compact);
+}
+.action-desc {
+color: var(--color-ink-03);
+font-size: var(--type-08);
+font-weight: var(--weight-regular);
+line-height: var(--line-normal);
+}
+.anchor-grid {
+display: grid;
+grid-template-columns: repeat(4, minmax(0, 1fr));
+gap: var(--space-06);
+}
+.anchor-card {
+padding: var(--space-06);
+background: var(--color-paper-02);
+border-top: var(--stroke-mid) solid var(--color-memory-01);
+box-shadow: var(--shadow-inner);
+}
+.anchor-word {
+display: block;
+color: var(--color-ink-01);
+font-size: var(--type-12);
+font-weight: var(--weight-bold);
+line-height: var(--line-compact);
+}
+.anchor-role {
+display: block;
+margin-top: var(--space-02);
+color: var(--color-memory-01);
+font-size: var(--type-07);
+font-weight: var(--weight-semibold);
+line-height: var(--line-compact);
+}
+.anchor-desc {
+margin: var(--space-04) 0 0;
+color: var(--color-ink-04);
+font-size: var(--type-07);
+font-weight: var(--weight-regular);
+line-height: var(--line-normal);
+}
+.text-system {
+display: grid;
+grid-template-columns: repeat(2, minmax(0, 1fr));
+gap: var(--space-04);
+}
+.text-layer {
+display: grid;
+grid-template-columns: 58px 1fr 86px 72px 120px;
+gap: var(--space-04);
+align-items: center;
+padding: var(--space-04) var(--space-05);
+background: var(--color-paper-02);
+border-left: var(--stroke-thin) solid var(--color-slate-02);
+box-shadow: var(--shadow-inner);
+}
+.text-layer span {
+color: var(--color-ink-03);
+font-size: var(--type-06);
+font-weight: var(--weight-medium);
+line-height: var(--line-normal);
+}
+.palette-grid {
+display: grid;
+grid-template-columns: repeat(5, minmax(0, 1fr));
+gap: var(--space-05);
+}
+.palette-card {
+padding: var(--space-05);
+background: var(--color-paper-02);
+border: var(--stroke-hair) solid var(--color-ink-08);
+box-shadow: var(--shadow-inner);
+}
+.palette-strip {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+height: 26px;
+margin-bottom: var(--space-04);
+border: var(--stroke-hair) solid rgba(22,24,23,.12);
+}
+.palette-card h3 {
+margin: 0 0 var(--space-02);
+color: var(--color-ink-01);
+font-size: var(--type-08);
+font-weight: var(--weight-bold);
+line-height: var(--line-compact);
+}
+.palette-card p {
+margin: 0;
+color: var(--color-ink-04);
+font-size: var(--type-06);
+font-weight: var(--weight-regular);
+line-height: var(--line-normal);
+}
+.swatch-ledger {
+display: grid;
+grid-template-columns: repeat(8, minmax(0, 1fr));
+gap: var(--space-03);
+margin-top: var(--space-07);
+}
+.swatch-chip {
+height: 18px;
+border: var(--stroke-hair) solid rgba(22,24,23,.18);
+box-shadow: inset 0 0 0 2px rgba(255,255,255,.28);
+}
+.correction-grid {
+display: grid;
+grid-template-columns: repeat(2, minmax(0, 1fr));
+gap: var(--space-06);
+}
+.correction-card {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: var(--space-04);
+padding: var(--space-06);
+background: var(--color-paper-02);
+border-left: var(--stroke-mid) solid var(--color-violet-02);
+box-shadow: var(--shadow-inner);
+}
+.correction-wrong {
+padding: var(--space-04) var(--space-05);
+background: rgba(200,88,77,.1);
+color: var(--color-red-01);
+font-size: var(--type-07);
+font-weight: var(--weight-bold);
+line-height: var(--line-normal);
+}
+.correction-right {
+padding: var(--space-04) var(--space-05);
+background: rgba(50,124,89,.12);
+color: var(--color-primary-01);
+font-size: var(--type-07);
+font-weight: var(--weight-bold);
+line-height: var(--line-normal);
+}
+.correction-note {
+grid-column: 1 / -1;
+margin: 0;
+color: var(--color-ink-04);
+font-size: var(--type-07);
+font-weight: var(--weight-regular);
+line-height: var(--line-normal);
+}
+.detail-ledger {
+display: grid;
+gap: var(--space-05);
+}
+.detail-card {
+display: grid;
+grid-template-columns: 220px 1fr 1fr;
+gap: var(--space-06);
+align-items: stretch;
+padding: var(--space-06);
+background: var(--color-paper-02);
+border-left: var(--stroke-mid) solid var(--color-blue-02);
+box-shadow: var(--shadow-inner);
+}
+.detail-title {
+display: grid;
+align-content: center;
+padding: var(--space-05);
+background: var(--color-ink-01);
+color: var(--color-paper-01);
+font-size: var(--type-09);
+font-weight: var(--weight-bold);
+line-height: var(--line-normal);
+}
+.detail-evidence {
+margin: 0;
+padding: var(--space-05);
+background: rgba(18,60,105,.07);
+color: var(--color-ink-03);
+font-size: var(--type-08);
+font-weight: var(--weight-regular);
+line-height: var(--line-loose);
+}
+.detail-move {
+margin: 0;
+padding: var(--space-05);
+background: rgba(109,63,0,.08);
+color: var(--color-gold-01);
+font-size: var(--type-08);
+font-weight: var(--weight-semibold);
+line-height: var(--line-loose);
+}
+.footer-check {
+margin-top: var(--space-13);
+padding: var(--space-10) 0 var(--space-13) var(--space-09);
+border-top: var(--stroke-mid) solid var(--color-ink-01);
+display: grid;
+gap: var(--space-06);
+}
+.check-grid {
+display: grid;
+grid-template-columns: repeat(3, minmax(0, 1fr));
+gap: var(--space-06);
+}
+.check-card {
+padding: var(--space-07);
+background: var(--color-ink-01);
+color: var(--color-paper-01);
+border-left: var(--stroke-mid) solid var(--color-gold-03);
+}
+.check-card strong {
+display: block;
+font-size: var(--type-10);
+font-weight: var(--weight-bold);
+line-height: var(--line-compact);
+}
+.check-card span {
+display: block;
+margin-top: var(--space-03);
+font-size: var(--type-07);
+font-weight: var(--weight-regular);
+line-height: var(--line-normal);
+color: var(--color-ink-09);
+}
+.text-level-01 {
+font-size: var(--type-20);
+font-weight: var(--weight-bold);
+line-height: var(--line-normal);
+letter-spacing: 0em;
+color: var(--color-ink-02);
+}
+.text-level-02 {
+font-size: var(--type-19);
+font-weight: var(--weight-bold);
+line-height: var(--line-normal);
+letter-spacing: 0em;
+color: var(--color-ink-03);
+}
+.text-level-03 {
+font-size: var(--type-18);
+font-weight: var(--weight-bold);
+line-height: var(--line-normal);
+letter-spacing: 0em;
+color: var(--color-ink-04);
+}
+.text-level-04 {
+font-size: var(--type-17);
+font-weight: var(--weight-bold);
+line-height: var(--line-normal);
+letter-spacing: 0em;
+color: var(--color-ink-05);
+}
+.text-level-05 {
+font-size: var(--type-16);
+font-weight: var(--weight-semibold);
+line-height: var(--line-normal);
+letter-spacing: 0em;
+color: var(--color-ink-06);
+}
+.text-level-06 {
+font-size: var(--type-15);
+font-weight: var(--weight-semibold);
+line-height: var(--line-normal);
+letter-spacing: 0em;
+color: var(--color-ink-07);
+}
+.text-level-07 {
+font-size: var(--type-14);
+font-weight: var(--weight-semibold);
+line-height: var(--line-normal);
+letter-spacing: 0em;
+color: var(--color-ink-08);
+}
+.text-level-08 {
+font-size: var(--type-13);
+font-weight: var(--weight-semibold);
+line-height: var(--line-normal);
+letter-spacing: 0em;
+color: var(--color-ink-09);
+}
+.text-level-09 {
+font-size: var(--type-12);
+font-weight: var(--weight-semibold);
+line-height: var(--line-normal);
+letter-spacing: 0em;
+color: var(--color-ink-10);
+}
+.text-level-10 {
+font-size: var(--type-11);
+font-weight: var(--weight-semibold);
+line-height: var(--line-normal);
+letter-spacing: 0em;
+color: var(--color-primary-01);
+}
+.text-level-11 {
+font-size: var(--type-10);
+font-weight: var(--weight-medium);
+line-height: var(--line-normal);
+letter-spacing: 0em;
+color: var(--color-primary-02);
+}
+.text-level-12 {
+font-size: var(--type-09);
+font-weight: var(--weight-medium);
+line-height: var(--line-normal);
+letter-spacing: 0em;
+color: var(--color-primary-03);
+}
+.text-level-13 {
+font-size: var(--type-08);
+font-weight: var(--weight-medium);
+line-height: var(--line-normal);
+letter-spacing: 0em;
+color: var(--color-primary-04);
+}
+.text-level-14 {
+font-size: var(--type-07);
+font-weight: var(--weight-medium);
+line-height: var(--line-normal);
+letter-spacing: 0em;
+color: var(--color-primary-05);
+}
+.text-level-15 {
+font-size: var(--type-06);
+font-weight: var(--weight-medium);
+line-height: var(--line-normal);
+letter-spacing: 0em;
+color: var(--color-blue-01);
+}
+.text-level-16 {
+font-size: var(--type-05);
+font-weight: var(--weight-medium);
+line-height: var(--line-normal);
+letter-spacing: 0em;
+color: var(--color-blue-02);
+}
+.text-level-17 {
+font-size: var(--type-04);
+font-weight: var(--weight-regular);
+line-height: var(--line-normal);
+letter-spacing: 0em;
+color: var(--color-blue-03);
+}
+.text-level-18 {
+font-size: var(--type-03);
+font-weight: var(--weight-regular);
+line-height: var(--line-normal);
+letter-spacing: 0em;
+color: var(--color-blue-04);
+}
+.text-level-19 {
+font-size: var(--type-02);
+font-weight: var(--weight-regular);
+line-height: var(--line-normal);
+letter-spacing: 0em;
+color: var(--color-blue-05);
+}
+.text-level-20 {
+font-size: var(--type-01);
+font-weight: var(--weight-regular);
+line-height: var(--line-normal);
+letter-spacing: 0em;
+color: var(--color-gold-01);
+}
+.demand-tone-01 {
+border-top: var(--stroke-mid) solid var(--color-ink-08);
+border-left: var(--stroke-thick) solid var(--color-primary-04);
+background: linear-gradient(135deg, rgba(255,253,247,.98), color-mix(in srgb, var(--color-blue-05) 13%, white));
+}
+.demand-tone-02 {
+border-top: var(--stroke-mid) solid var(--color-primary-01);
+border-left: var(--stroke-thick) solid var(--color-blue-04);
+background: linear-gradient(135deg, rgba(255,253,247,.98), color-mix(in srgb, var(--color-red-02) 13%, white));
+}
+.demand-tone-03 {
+border-top: var(--stroke-mid) solid var(--color-primary-04);
+border-left: var(--stroke-thick) solid var(--color-gold-04);
+background: linear-gradient(135deg, rgba(255,253,247,.98), color-mix(in srgb, var(--color-violet-04) 13%, white));
+}
+.demand-tone-04 {
+border-top: var(--stroke-mid) solid var(--color-blue-02);
+border-left: var(--stroke-thick) solid var(--color-red-04);
+background: linear-gradient(135deg, rgba(255,253,247,.98), color-mix(in srgb, var(--color-rose-01) 13%, white));
+}
+.demand-tone-05 {
+border-top: var(--stroke-mid) solid var(--color-blue-05);
+border-left: var(--stroke-thick) solid var(--color-violet-04);
+background: linear-gradient(135deg, rgba(255,253,247,.98), color-mix(in srgb, var(--color-sage-03) 13%, white));
+}
+.demand-tone-06 {
+border-top: var(--stroke-mid) solid var(--color-gold-03);
+border-left: var(--stroke-thick) solid var(--color-cyan-04);
+background: linear-gradient(135deg, rgba(255,253,247,.98), color-mix(in srgb, var(--color-slate-05) 13%, white));
+}
+.demand-tone-07 {
+border-top: var(--stroke-mid) solid var(--color-red-01);
+border-left: var(--stroke-thick) solid var(--color-rose-04);
+background: linear-gradient(135deg, rgba(255,253,247,.98), color-mix(in srgb, var(--color-memory-07) 13%, white));
+}
+.demand-tone-08 {
+border-top: var(--stroke-mid) solid var(--color-red-04);
+border-left: var(--stroke-thick) solid var(--color-sage-04);
+background: linear-gradient(135deg, rgba(255,253,247,.98), color-mix(in srgb, var(--color-paper-02) 13%, white));
+}
+.demand-tone-09 {
+border-top: var(--stroke-mid) solid var(--color-violet-02);
+border-left: var(--stroke-thick) solid var(--color-slate-04);
+background: linear-gradient(135deg, rgba(255,253,247,.98), color-mix(in srgb, var(--color-ink-05) 13%, white));
+}
+.demand-tone-10 {
+border-top: var(--stroke-mid) solid var(--color-violet-05);
+border-left: var(--stroke-thick) solid var(--color-memory-04);
+background: linear-gradient(135deg, rgba(255,253,247,.98), color-mix(in srgb, var(--color-primary-02) 13%, white));
+}
+.demand-tone-11 {
+border-top: var(--stroke-mid) solid var(--color-cyan-03);
+border-left: var(--stroke-thick) solid var(--color-memory-09);
+background: linear-gradient(135deg, rgba(255,253,247,.98), color-mix(in srgb, var(--color-blue-04) 13%, white));
+}
+.demand-tone-12 {
+border-top: var(--stroke-mid) solid var(--color-rose-01);
+border-left: var(--stroke-thick) solid var(--color-paper-02);
+background: linear-gradient(135deg, rgba(255,253,247,.98), color-mix(in srgb, var(--color-red-01) 13%, white));
+}
+.demand-tone-13 {
+border-top: var(--stroke-mid) solid var(--color-rose-04);
+border-left: var(--stroke-thick) solid var(--color-ink-03);
+background: linear-gradient(135deg, rgba(255,253,247,.98), color-mix(in srgb, var(--color-violet-03) 13%, white));
+}
+.demand-tone-14 {
+border-top: var(--stroke-mid) solid var(--color-sage-02);
+border-left: var(--stroke-thick) solid var(--color-ink-08);
+background: linear-gradient(135deg, rgba(255,253,247,.98), color-mix(in srgb, var(--color-cyan-05) 13%, white));
+}
+.quote-tone-01 {
+border-left: var(--stroke-mid) solid var(--color-blue-05);
+background: linear-gradient(135deg, var(--color-ink-01), color-mix(in srgb, var(--color-ink-08) 24%, var(--color-ink-01)));
+}
+.quote-tone-02 {
+border-left: var(--stroke-mid) solid var(--color-gold-02);
+background: linear-gradient(135deg, var(--color-ink-01), color-mix(in srgb, var(--color-primary-02) 24%, var(--color-ink-01)));
+}
+.quote-tone-03 {
+border-left: var(--stroke-mid) solid var(--color-gold-04);
+background: linear-gradient(135deg, var(--color-ink-01), color-mix(in srgb, var(--color-blue-01) 24%, var(--color-ink-01)));
+}
+.quote-tone-04 {
+border-left: var(--stroke-mid) solid var(--color-red-01);
+background: linear-gradient(135deg, var(--color-ink-01), color-mix(in srgb, var(--color-blue-05) 24%, var(--color-ink-01)));
+}
+.quote-tone-05 {
+border-left: var(--stroke-mid) solid var(--color-red-03);
+background: linear-gradient(135deg, var(--color-ink-01), color-mix(in srgb, var(--color-gold-04) 24%, var(--color-ink-01)));
+}
+.quote-tone-06 {
+border-left: var(--stroke-mid) solid var(--color-red-05);
+background: linear-gradient(135deg, var(--color-ink-01), color-mix(in srgb, var(--color-red-03) 24%, var(--color-ink-01)));
+}
+.quote-tone-07 {
+border-left: var(--stroke-mid) solid var(--color-violet-02);
+background: linear-gradient(135deg, var(--color-ink-01), color-mix(in srgb, var(--color-violet-02) 24%, var(--color-ink-01)));
+}
+.quote-tone-08 {
+border-left: var(--stroke-mid) solid var(--color-violet-04);
+background: linear-gradient(135deg, var(--color-ink-01), color-mix(in srgb, var(--color-cyan-01) 24%, var(--color-ink-01)));
+}
+.quote-tone-09 {
+border-left: var(--stroke-mid) solid var(--color-cyan-01);
+background: linear-gradient(135deg, var(--color-ink-01), color-mix(in srgb, var(--color-cyan-05) 24%, var(--color-ink-01)));
+}
+.quote-tone-10 {
+border-left: var(--stroke-mid) solid var(--color-cyan-03);
+background: linear-gradient(135deg, var(--color-ink-01), color-mix(in srgb, var(--color-rose-04) 24%, var(--color-ink-01)));
+}
+.quote-tone-11 {
+border-left: var(--stroke-mid) solid var(--color-cyan-05);
+background: linear-gradient(135deg, var(--color-ink-01), color-mix(in srgb, var(--color-sage-03) 24%, var(--color-ink-01)));
+}
+.quote-tone-12 {
+border-left: var(--stroke-mid) solid var(--color-rose-02);
+background: linear-gradient(135deg, var(--color-ink-01), color-mix(in srgb, var(--color-slate-02) 24%, var(--color-ink-01)));
+}
+.quote-tone-13 {
+border-left: var(--stroke-mid) solid var(--color-rose-04);
+background: linear-gradient(135deg, var(--color-ink-01), color-mix(in srgb, var(--color-memory-01) 24%, var(--color-ink-01)));
+}
+.quote-tone-14 {
+border-left: var(--stroke-mid) solid var(--color-sage-01);
+background: linear-gradient(135deg, var(--color-ink-01), color-mix(in srgb, var(--color-memory-05) 24%, var(--color-ink-01)));
+}
+.quote-tone-15 {
+border-left: var(--stroke-mid) solid var(--color-sage-03);
+background: linear-gradient(135deg, var(--color-ink-01), color-mix(in srgb, var(--color-memory-09) 24%, var(--color-ink-01)));
+}
+.quote-tone-16 {
+border-left: var(--stroke-mid) solid var(--color-sage-05);
+background: linear-gradient(135deg, var(--color-ink-01), color-mix(in srgb, var(--color-paper-01) 24%, var(--color-ink-01)));
+}
+.quote-tone-17 {
+border-left: var(--stroke-mid) solid var(--color-slate-02);
+background: linear-gradient(135deg, var(--color-ink-01), color-mix(in srgb, var(--color-ink-01) 24%, var(--color-ink-01)));
+}
+.quote-tone-18 {
+border-left: var(--stroke-mid) solid var(--color-slate-04);
+background: linear-gradient(135deg, var(--color-ink-01), color-mix(in srgb, var(--color-ink-05) 24%, var(--color-ink-01)));
+}
+.quote-tone-19 {
+border-left: var(--stroke-mid) solid var(--color-memory-01);
+background: linear-gradient(135deg, var(--color-ink-01), color-mix(in srgb, var(--color-ink-09) 24%, var(--color-ink-01)));
+}
+.quote-tone-20 {
+border-left: var(--stroke-mid) solid var(--color-memory-03);
+background: linear-gradient(135deg, var(--color-ink-01), color-mix(in srgb, var(--color-primary-03) 24%, var(--color-ink-01)));
+}
+.anchor-tone-01 {
+border-top-color: var(--color-ink-08);
+background: linear-gradient(180deg, color-mix(in srgb, var(--color-ink-08) 10%, white), var(--color-paper-01));
+}
+.anchor-tone-01 .anchor-role {
+color: var(--color-ink-07);
+}
+.anchor-tone-02 {
+border-top-color: var(--color-primary-04);
+background: linear-gradient(180deg, color-mix(in srgb, var(--color-blue-01) 10%, white), var(--color-paper-01));
+}
+.anchor-tone-02 .anchor-role {
+color: var(--color-blue-01);
+}
+.anchor-tone-03 {
+border-top-color: var(--color-blue-05);
+background: linear-gradient(180deg, color-mix(in srgb, var(--color-gold-04) 10%, white), var(--color-paper-01));
+}
+.anchor-tone-03 .anchor-role {
+color: var(--color-gold-05);
+}
+.anchor-tone-04 {
+border-top-color: var(--color-red-01);
+background: linear-gradient(180deg, color-mix(in srgb, var(--color-violet-02) 10%, white), var(--color-paper-01));
+}
+.anchor-tone-04 .anchor-role {
+color: var(--color-violet-04);
+}
+.anchor-tone-05 {
+border-top-color: var(--color-violet-02);
+background: linear-gradient(180deg, color-mix(in srgb, var(--color-cyan-05) 10%, white), var(--color-paper-01));
+}
+.anchor-tone-05 .anchor-role {
+color: var(--color-rose-03);
+}
+.anchor-tone-06 {
+border-top-color: var(--color-cyan-03);
+background: linear-gradient(180deg, color-mix(in srgb, var(--color-sage-03) 10%, white), var(--color-paper-01));
+}
+.anchor-tone-06 .anchor-role {
+color: var(--color-slate-02);
+}
+.anchor-tone-07 {
+border-top-color: var(--color-rose-04);
+background: linear-gradient(180deg, color-mix(in srgb, var(--color-memory-01) 10%, white), var(--color-paper-01));
+}
+.anchor-tone-07 .anchor-role {
+color: var(--color-memory-06);
+}
+.anchor-tone-08 {
+border-top-color: var(--color-sage-05);
+background: linear-gradient(180deg, color-mix(in srgb, var(--color-memory-09) 10%, white), var(--color-paper-01));
+}
+.anchor-tone-08 .anchor-role {
+color: var(--color-paper-03);
+}
+.anchor-tone-09 {
+border-top-color: var(--color-memory-01);
+background: linear-gradient(180deg, color-mix(in srgb, var(--color-ink-01) 10%, white), var(--color-paper-01));
+}
+.anchor-tone-09 .anchor-role {
+color: var(--color-ink-08);
+}
+.anchor-tone-10 {
+border-top-color: var(--color-memory-07);
+background: linear-gradient(180deg, color-mix(in srgb, var(--color-ink-09) 10%, white), var(--color-paper-01));
+}
+.anchor-tone-10 .anchor-role {
+color: var(--color-blue-02);
+}
+.anchor-tone-11 {
+border-top-color: var(--color-paper-01);
+background: linear-gradient(180deg, color-mix(in srgb, var(--color-blue-02) 10%, white), var(--color-paper-01));
+}
+.anchor-tone-11 .anchor-role {
+color: var(--color-red-01);
+}
+.anchor-tone-12 {
+border-top-color: var(--color-ink-03);
+background: linear-gradient(180deg, color-mix(in srgb, var(--color-gold-05) 10%, white), var(--color-paper-01));
+}
+.anchor-tone-12 .anchor-role {
+color: var(--color-violet-05);
+}
+.anchor-tone-13 {
+border-top-color: var(--color-ink-09);
+background: linear-gradient(180deg, color-mix(in srgb, var(--color-violet-03) 10%, white), var(--color-paper-01));
+}
+.anchor-tone-13 .anchor-role {
+color: var(--color-rose-04);
+}
+.anchor-tone-14 {
+border-top-color: var(--color-primary-05);
+background: linear-gradient(180deg, color-mix(in srgb, var(--color-rose-01) 10%, white), var(--color-paper-01));
+}
+.anchor-tone-14 .anchor-role {
+color: var(--color-slate-03);
+}
+.anchor-tone-15 {
+border-top-color: var(--color-gold-01);
+background: linear-gradient(180deg, color-mix(in srgb, var(--color-sage-04) 10%, white), var(--color-paper-01));
+}
+.anchor-tone-15 .anchor-role {
+color: var(--color-memory-07);
+}
+.anchor-tone-16 {
+border-top-color: var(--color-red-02);
+background: linear-gradient(180deg, color-mix(in srgb, var(--color-memory-02) 10%, white), var(--color-paper-01));
+}
+.anchor-tone-16 .anchor-role {
+color: var(--color-paper-04);
+}
+.anchor-tone-17 {
+border-top-color: var(--color-violet-03);
+background: linear-gradient(180deg, color-mix(in srgb, var(--color-memory-10) 10%, white), var(--color-paper-01));
+}
+.anchor-tone-17 .anchor-role {
+color: var(--color-ink-09);
+}
+.anchor-tone-18 {
+border-top-color: var(--color-cyan-04);
+background: linear-gradient(180deg, color-mix(in srgb, var(--color-ink-02) 10%, white), var(--color-paper-01));
+}
+.anchor-tone-18 .anchor-role {
+color: var(--color-blue-03);
+}
+.anchor-tone-19 {
+border-top-color: var(--color-rose-05);
+background: linear-gradient(180deg, color-mix(in srgb, var(--color-ink-10) 10%, white), var(--color-paper-01));
+}
+.anchor-tone-19 .anchor-role {
+color: var(--color-red-02);
+}
+.anchor-tone-20 {
+border-top-color: var(--color-slate-01);
+background: linear-gradient(180deg, color-mix(in srgb, var(--color-blue-03) 10%, white), var(--color-paper-01));
+}
+.anchor-tone-20 .anchor-role {
+color: var(--color-cyan-01);
+}
+.swatch-01 {
+background: var(--color-paper-01);
+}
+.swatch-02 {
+background: var(--color-paper-02);
+}
+.swatch-03 {
+background: var(--color-paper-03);
+}
+.swatch-04 {
+background: var(--color-paper-04);
+}
+.swatch-05 {
+background: var(--color-ink-01);
+}
+.swatch-06 {
+background: var(--color-ink-02);
+}
+.swatch-07 {
+background: var(--color-ink-03);
+}
+.swatch-08 {
+background: var(--color-ink-04);
+}
+.swatch-09 {
+background: var(--color-ink-05);
+}
+.swatch-10 {
+background: var(--color-ink-06);
+}
+.swatch-11 {
+background: var(--color-ink-07);
+}
+.swatch-12 {
+background: var(--color-ink-08);
+}
+.swatch-13 {
+background: var(--color-ink-09);
+}
+.swatch-14 {
+background: var(--color-ink-10);
+}
+.swatch-15 {
+background: var(--color-primary-01);
+}
+.swatch-16 {
+background: var(--color-primary-02);
+}
+.swatch-17 {
+background: var(--color-primary-03);
+}
+.swatch-18 {
+background: var(--color-primary-04);
+}
+.swatch-19 {
+background: var(--color-primary-05);
+}
+.swatch-20 {
+background: var(--color-blue-01);
+}
+.swatch-21 {
+background: var(--color-blue-02);
+}
+.swatch-22 {
+background: var(--color-blue-03);
+}
+.swatch-23 {
+background: var(--color-blue-04);
+}
+.swatch-24 {
+background: var(--color-blue-05);
+}
+.swatch-25 {
+background: var(--color-gold-01);
+}
+.swatch-26 {
+background: var(--color-gold-02);
+}
+.swatch-27 {
+background: var(--color-gold-03);
+}
+.swatch-28 {
+background: var(--color-gold-04);
+}
+.swatch-29 {
+background: var(--color-gold-05);
+}
+.swatch-30 {
+background: var(--color-red-01);
+}
+.swatch-31 {
+background: var(--color-red-02);
+}
+.swatch-32 {
+background: var(--color-red-03);
+}
+.swatch-33 {
+background: var(--color-red-04);
+}
+.swatch-34 {
+background: var(--color-red-05);
+}
+.swatch-35 {
+background: var(--color-violet-01);
+}
+.swatch-36 {
+background: var(--color-violet-02);
+}
+.swatch-37 {
+background: var(--color-violet-03);
+}
+.swatch-38 {
+background: var(--color-violet-04);
+}
+.swatch-39 {
+background: var(--color-violet-05);
+}
+.swatch-40 {
+background: var(--color-cyan-01);
+}
+.swatch-41 {
+background: var(--color-cyan-02);
+}
+.swatch-42 {
+background: var(--color-cyan-03);
+}
+.swatch-43 {
+background: var(--color-cyan-04);
+}
+.swatch-44 {
+background: var(--color-cyan-05);
+}
+.swatch-45 {
+background: var(--color-rose-01);
+}
+.swatch-46 {
+background: var(--color-rose-02);
+}
+.swatch-47 {
+background: var(--color-rose-03);
+}
+.swatch-48 {
+background: var(--color-rose-04);
+}
+.swatch-49 {
+background: var(--color-rose-05);
+}
+.swatch-50 {
+background: var(--color-sage-01);
+}
+.swatch-51 {
+background: var(--color-sage-02);
+}
+.swatch-52 {
+background: var(--color-sage-03);
+}
+.swatch-53 {
+background: var(--color-sage-04);
+}
+.swatch-54 {
+background: var(--color-sage-05);
+}
+.swatch-55 {
+background: var(--color-slate-01);
+}
+.swatch-56 {
+background: var(--color-slate-02);
+}
+.swatch-57 {
+background: var(--color-slate-03);
+}
+.swatch-58 {
+background: var(--color-slate-04);
+}
+.swatch-59 {
+background: var(--color-slate-05);
+}
+.swatch-60 {
+background: var(--color-memory-01);
+}
+.swatch-61 {
+background: var(--color-memory-02);
+}
+.swatch-62 {
+background: var(--color-memory-03);
+}
+.swatch-63 {
+background: var(--color-memory-04);
+}
+.swatch-64 {
+background: var(--color-memory-05);
+}
+.swatch-65 {
+background: var(--color-memory-06);
+}
+.swatch-66 {
+background: var(--color-memory-07);
+}
+.swatch-67 {
+background: var(--color-memory-08);
+}
+.swatch-68 {
+background: var(--color-memory-09);
+}
+.swatch-69 {
+background: var(--color-memory-10);
+}
+.swatch-70 {
+background: var(--color-memory-11);
+}
+.swatch-71 {
+background: var(--color-memory-12);
+}
+.detail-tone-01 {
+border-left-color: var(--color-ink-04);
+background: linear-gradient(90deg, color-mix(in srgb, var(--color-ink-10) 8%, white), var(--color-paper-01));
+}
+.detail-tone-01 .detail-title {
+background: var(--color-ink-10);
+}
+.detail-tone-02 {
+border-left-color: var(--color-ink-09);
+background: linear-gradient(90deg, color-mix(in srgb, var(--color-blue-02) 8%, white), var(--color-paper-01));
+}
+.detail-tone-02 .detail-title {
+background: var(--color-blue-04);
+}
+.detail-tone-03 {
+border-left-color: var(--color-primary-04);
+background: linear-gradient(90deg, color-mix(in srgb, var(--color-gold-04) 8%, white), var(--color-paper-01));
+}
+.detail-tone-03 .detail-title {
+background: var(--color-red-03);
+}
+.detail-tone-04 {
+border-left-color: var(--color-blue-04);
+background: linear-gradient(90deg, color-mix(in srgb, var(--color-violet-01) 8%, white), var(--color-paper-01));
+}
+.detail-tone-04 .detail-title {
+background: var(--color-cyan-02);
+}
+.detail-tone-05 {
+border-left-color: var(--color-gold-04);
+background: linear-gradient(90deg, color-mix(in srgb, var(--color-cyan-03) 8%, white), var(--color-paper-01));
+}
+.detail-tone-05 .detail-title {
+background: var(--color-sage-01);
+}
+.detail-tone-06 {
+border-left-color: var(--color-red-04);
+background: linear-gradient(90deg, color-mix(in srgb, var(--color-rose-05) 8%, white), var(--color-paper-01));
+}
+.detail-tone-06 .detail-title {
+background: var(--color-slate-05);
+}
+.detail-tone-07 {
+border-left-color: var(--color-violet-04);
+background: linear-gradient(90deg, color-mix(in srgb, var(--color-slate-02) 8%, white), var(--color-paper-01));
+}
+.detail-tone-07 .detail-title {
+background: var(--color-memory-09);
+}
+.detail-tone-08 {
+border-left-color: var(--color-cyan-04);
+background: linear-gradient(90deg, color-mix(in srgb, var(--color-memory-04) 8%, white), var(--color-paper-01));
+}
+.detail-tone-08 .detail-title {
+background: var(--color-ink-02);
+}
+.detail-tone-09 {
+border-left-color: var(--color-rose-04);
+background: linear-gradient(90deg, color-mix(in srgb, var(--color-memory-11) 8%, white), var(--color-paper-01));
+}
+.detail-tone-09 .detail-title {
+background: var(--color-primary-01);
+}
+.detail-tone-10 {
+border-left-color: var(--color-sage-04);
+background: linear-gradient(90deg, color-mix(in srgb, var(--color-ink-02) 8%, white), var(--color-paper-01));
+}
+.detail-tone-10 .detail-title {
+background: var(--color-blue-05);
+}
+.detail-tone-11 {
+border-left-color: var(--color-slate-04);
+background: linear-gradient(90deg, color-mix(in srgb, var(--color-ink-09) 8%, white), var(--color-paper-01));
+}
+.detail-tone-11 .detail-title {
+background: var(--color-red-04);
+}
+.detail-tone-12 {
+border-left-color: var(--color-memory-04);
+background: linear-gradient(90deg, color-mix(in srgb, var(--color-blue-01) 8%, white), var(--color-paper-01));
+}
+.detail-tone-12 .detail-title {
+background: var(--color-cyan-03);
+}
+.detail-tone-13 {
+border-left-color: var(--color-memory-09);
+background: linear-gradient(90deg, color-mix(in srgb, var(--color-gold-03) 8%, white), var(--color-paper-01));
+}
+.detail-tone-13 .detail-title {
+background: var(--color-sage-02);
+}
+.detail-tone-14 {
+border-left-color: var(--color-paper-02);
+background: linear-gradient(90deg, color-mix(in srgb, var(--color-red-05) 8%, white), var(--color-paper-01));
+}
+.detail-tone-14 .detail-title {
+background: var(--color-memory-01);
+}
+.detail-tone-15 {
+border-left-color: var(--color-ink-03);
+background: linear-gradient(90deg, color-mix(in srgb, var(--color-cyan-02) 8%, white), var(--color-paper-01));
+}
+.detail-tone-15 .detail-title {
+background: var(--color-memory-10);
+}
+.detail-tone-16 {
+border-left-color: var(--color-ink-08);
+background: linear-gradient(90deg, color-mix(in srgb, var(--color-rose-04) 8%, white), var(--color-paper-01));
+}
+.detail-tone-16 .detail-title {
+background: var(--color-ink-03);
+}
+.detail-tone-17 {
+border-left-color: var(--color-primary-03);
+background: linear-gradient(90deg, color-mix(in srgb, var(--color-slate-01) 8%, white), var(--color-paper-01));
+}
+.detail-tone-17 .detail-title {
+background: var(--color-primary-02);
+}
+.detail-tone-18 {
+border-left-color: var(--color-blue-03);
+background: linear-gradient(90deg, color-mix(in srgb, var(--color-memory-03) 8%, white), var(--color-paper-01));
+}
+.detail-tone-18 .detail-title {
+background: var(--color-gold-01);
+}
+.detail-tone-19 {
+border-left-color: var(--color-gold-03);
+background: linear-gradient(90deg, color-mix(in srgb, var(--color-memory-10) 8%, white), var(--color-paper-01));
+}
+.detail-tone-19 .detail-title {
+background: var(--color-red-05);
+}
+.detail-tone-20 {
+border-left-color: var(--color-red-03);
+background: linear-gradient(90deg, color-mix(in srgb, var(--color-ink-01) 8%, white), var(--color-paper-01));
+}
+.detail-tone-20 .detail-title {
+background: var(--color-cyan-04);
+}
+.detail-tone-21 {
+border-left-color: var(--color-violet-03);
+background: linear-gradient(90deg, color-mix(in srgb, var(--color-ink-08) 8%, white), var(--color-paper-01));
+}
+.detail-tone-21 .detail-title {
+background: var(--color-sage-03);
+}
+.detail-tone-22 {
+border-left-color: var(--color-cyan-03);
+background: linear-gradient(90deg, color-mix(in srgb, var(--color-primary-05) 8%, white), var(--color-paper-01));
+}
+.detail-tone-22 .detail-title {
+background: var(--color-memory-02);
+}
+.detail-tone-23 {
+border-left-color: var(--color-rose-03);
+background: linear-gradient(90deg, color-mix(in srgb, var(--color-gold-02) 8%, white), var(--color-paper-01));
+}
+.detail-tone-23 .detail-title {
+background: var(--color-memory-11);
+}
+.detail-tone-24 {
+border-left-color: var(--color-sage-03);
+background: linear-gradient(90deg, color-mix(in srgb, var(--color-red-04) 8%, white), var(--color-paper-01));
+}
+.detail-tone-24 .detail-title {
+background: var(--color-ink-04);
+}
+.detail-tone-25 {
+border-left-color: var(--color-slate-03);
+background: linear-gradient(90deg, color-mix(in srgb, var(--color-cyan-01) 8%, white), var(--color-paper-01));
+}
+.detail-tone-25 .detail-title {
+background: var(--color-primary-03);
+}
+.detail-tone-26 {
+border-left-color: var(--color-memory-03);
+background: linear-gradient(90deg, color-mix(in srgb, var(--color-rose-03) 8%, white), var(--color-paper-01));
+}
+.detail-tone-26 .detail-title {
+background: var(--color-gold-02);
+}
+.detail-tone-27 {
+border-left-color: var(--color-memory-08);
+background: linear-gradient(90deg, color-mix(in srgb, var(--color-sage-05) 8%, white), var(--color-paper-01));
+}
+.detail-tone-27 .detail-title {
+background: var(--color-violet-01);
+}
+.detail-tone-28 {
+border-left-color: var(--color-paper-01);
+background: linear-gradient(90deg, color-mix(in srgb, var(--color-memory-02) 8%, white), var(--color-paper-01));
+}
+.detail-tone-28 .detail-title {
+background: var(--color-cyan-05);
+}
+.detail-tone-29 {
+border-left-color: var(--color-ink-02);
+background: linear-gradient(90deg, color-mix(in srgb, var(--color-memory-09) 8%, white), var(--color-paper-01));
+}
+.detail-tone-29 .detail-title {
+background: var(--color-sage-04);
+}
+.detail-tone-30 {
+border-left-color: var(--color-ink-07);
+background: linear-gradient(90deg, color-mix(in srgb, var(--color-paper-04) 8%, white), var(--color-paper-01));
+}
+.detail-tone-30 .detail-title {
+background: var(--color-memory-03);
+}
+.detail-tone-31 {
+border-left-color: var(--color-primary-02);
+background: linear-gradient(90deg, color-mix(in srgb, var(--color-ink-07) 8%, white), var(--color-paper-01));
+}
+.detail-tone-31 .detail-title {
+background: var(--color-memory-12);
+}
+.detail-tone-32 {
+border-left-color: var(--color-blue-02);
+background: linear-gradient(90deg, color-mix(in srgb, var(--color-primary-04) 8%, white), var(--color-paper-01));
+}
+.detail-tone-32 .detail-title {
+background: var(--color-ink-05);
+}
+.detail-tone-33 {
+border-left-color: var(--color-gold-02);
+background: linear-gradient(90deg, color-mix(in srgb, var(--color-gold-01) 8%, white), var(--color-paper-01));
+}
+.detail-tone-33 .detail-title {
+background: var(--color-primary-04);
+}
+.detail-tone-34 {
+border-left-color: var(--color-red-02);
+background: linear-gradient(90deg, color-mix(in srgb, var(--color-red-03) 8%, white), var(--color-paper-01));
+}
+.detail-tone-34 .detail-title {
+background: var(--color-gold-03);
+}
+.detail-tone-35 {
+border-left-color: var(--color-violet-02);
+background: linear-gradient(90deg, color-mix(in srgb, var(--color-violet-05) 8%, white), var(--color-paper-01));
+}
+.detail-tone-35 .detail-title {
+background: var(--color-violet-02);
+}
+.detail-tone-36 {
+border-left-color: var(--color-cyan-02);
+background: linear-gradient(90deg, color-mix(in srgb, var(--color-rose-02) 8%, white), var(--color-paper-01));
+}
+.detail-tone-36 .detail-title {
+background: var(--color-rose-01);
+}
+.detail-tone-37 {
+border-left-color: var(--color-rose-02);
+background: linear-gradient(90deg, color-mix(in srgb, var(--color-sage-04) 8%, white), var(--color-paper-01));
+}
+.detail-tone-37 .detail-title {
+background: var(--color-sage-05);
+}
+.detail-tone-38 {
+border-left-color: var(--color-sage-02);
+background: linear-gradient(90deg, color-mix(in srgb, var(--color-memory-01) 8%, white), var(--color-paper-01));
+}
+.detail-tone-38 .detail-title {
+background: var(--color-memory-04);
+}
+.detail-tone-39 {
+border-left-color: var(--color-slate-02);
+background: linear-gradient(90deg, color-mix(in srgb, var(--color-memory-08) 8%, white), var(--color-paper-01));
+}
+.detail-tone-39 .detail-title {
+background: var(--color-paper-01);
+}
+.detail-tone-40 {
+border-left-color: var(--color-memory-02);
+background: linear-gradient(90deg, color-mix(in srgb, var(--color-paper-03) 8%, white), var(--color-paper-01));
+}
+.detail-tone-40 .detail-title {
+background: var(--color-ink-06);
+}
+.palette-strip-01 span:nth-child(1) {
+background: var(--color-paper-02);
+}
+.palette-strip-01 span:nth-child(2) {
+background: var(--color-paper-03);
+}
+.palette-strip-01 span:nth-child(3) {
+background: var(--color-paper-04);
+}
+.palette-strip-01 span:nth-child(4) {
+background: var(--color-ink-01);
+}
+.palette-strip-02 span:nth-child(1) {
+background: var(--color-ink-03);
+}
+.palette-strip-02 span:nth-child(2) {
+background: var(--color-ink-04);
+}
+.palette-strip-02 span:nth-child(3) {
+background: var(--color-ink-05);
+}
+.palette-strip-02 span:nth-child(4) {
+background: var(--color-ink-06);
+}
+.palette-strip-03 span:nth-child(1) {
+background: var(--color-ink-08);
+}
+.palette-strip-03 span:nth-child(2) {
+background: var(--color-ink-09);
+}
+.palette-strip-03 span:nth-child(3) {
+background: var(--color-ink-10);
+}
+.palette-strip-03 span:nth-child(4) {
+background: var(--color-primary-01);
+}
+.palette-strip-04 span:nth-child(1) {
+background: var(--color-primary-03);
+}
+.palette-strip-04 span:nth-child(2) {
+background: var(--color-primary-04);
+}
+.palette-strip-04 span:nth-child(3) {
+background: var(--color-primary-05);
+}
+.palette-strip-04 span:nth-child(4) {
+background: var(--color-blue-01);
+}
+.palette-strip-05 span:nth-child(1) {
+background: var(--color-blue-03);
+}
+.palette-strip-05 span:nth-child(2) {
+background: var(--color-blue-04);
+}
+.palette-strip-05 span:nth-child(3) {
+background: var(--color-blue-05);
+}
+.palette-strip-05 span:nth-child(4) {
+background: var(--color-gold-01);
+}
+.palette-strip-06 span:nth-child(1) {
+background: var(--color-gold-03);
+}
+.palette-strip-06 span:nth-child(2) {
+background: var(--color-gold-04);
+}
+.palette-strip-06 span:nth-child(3) {
+background: var(--color-gold-05);
+}
+.palette-strip-06 span:nth-child(4) {
+background: var(--color-red-01);
+}
+.palette-strip-07 span:nth-child(1) {
+background: var(--color-red-03);
+}
+.palette-strip-07 span:nth-child(2) {
+background: var(--color-red-04);
+}
+.palette-strip-07 span:nth-child(3) {
+background: var(--color-red-05);
+}
+.palette-strip-07 span:nth-child(4) {
+background: var(--color-violet-01);
+}
+.palette-strip-08 span:nth-child(1) {
+background: var(--color-violet-03);
+}
+.palette-strip-08 span:nth-child(2) {
+background: var(--color-violet-04);
+}
+.palette-strip-08 span:nth-child(3) {
+background: var(--color-violet-05);
+}
+.palette-strip-08 span:nth-child(4) {
+background: var(--color-cyan-01);
+}
+.palette-strip-09 span:nth-child(1) {
+background: var(--color-cyan-03);
+}
+.palette-strip-09 span:nth-child(2) {
+background: var(--color-cyan-04);
+}
+.palette-strip-09 span:nth-child(3) {
+background: var(--color-cyan-05);
+}
+.palette-strip-09 span:nth-child(4) {
+background: var(--color-rose-01);
+}
+.palette-strip-10 span:nth-child(1) {
+background: var(--color-rose-03);
+}
+.palette-strip-10 span:nth-child(2) {
+background: var(--color-rose-04);
+}
+.palette-strip-10 span:nth-child(3) {
+background: var(--color-rose-05);
+}
+.palette-strip-10 span:nth-child(4) {
+background: var(--color-sage-01);
+}
+@media (max-width: 1180px) {
+.page-frame {
+padding: var(--space-11) var(--space-07);
+}
+.cognitive-card {
+padding-left: clamp(22px, 4vw, 54px);
+padding-right: clamp(22px, 4vw, 54px);
+}
+.principle-grid {
+grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.anchor-grid {
+grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.palette-grid {
+grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+}
+@media (max-width: 940px) {
+.meta-grid {
+grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.reading-paths {
+grid-template-columns: 1fr;
+}
+.demand-grid {
+grid-template-columns: 1fr;
+}
+.quote-grid {
+grid-template-columns: 1fr;
+}
+.risk-grid {
+grid-template-columns: 1fr;
+}
+.check-grid {
+grid-template-columns: 1fr;
+}
+.text-system {
+grid-template-columns: 1fr;
+}
+}
+@media (max-width: 760px) {
+.page-frame {
+padding: 0;
+}
+.cognitive-card {
+width: 100%;
+border-width: var(--stroke-mid);
+box-shadow: none;
+padding: var(--space-13) var(--space-07);
+}
+.hero {
+padding-left: var(--space-07);
+}
+.section {
+padding-left: var(--space-07);
+}
+.footer-check {
+padding-left: var(--space-07);
+}
+.hierarchy-item {
+grid-template-columns: 1fr;
+}
+.comparison-row {
+grid-template-columns: 1fr;
+}
+.chunk-cloud {
+grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.anchor-grid {
+grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.swatch-ledger {
+grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+}
+@media (max-width: 560px) {
+.hero-title {
+font-size: 36px;
+line-height: 1.04;
+}
+.hero-core {
+font-size: var(--type-12);
+padding: var(--space-07);
+}
+.meta-grid {
+grid-template-columns: 1fr;
+}
+.principle-grid {
+grid-template-columns: 1fr;
+}
+.process-step {
+grid-template-columns: 52px 1fr;
+gap: var(--space-05);
+}
+.step-number {
+height: 44px;
+font-size: var(--type-10);
+}
+.action-item {
+grid-template-columns: 1fr;
+}
+.anchor-grid {
+grid-template-columns: 1fr;
+}
+.palette-grid {
+grid-template-columns: 1fr;
+}
+.text-layer {
+grid-template-columns: 48px 1fr;
+}
+.text-layer span:nth-child(n+3) {
+display: inline-block;
+}
+.correction-grid {
+grid-template-columns: 1fr;
+}
+.detail-card {
+grid-template-columns: 1fr;
+}
+}
+@media (max-width: 420px) {
+.cognitive-card {
+padding-left: var(--space-06);
+padding-right: var(--space-06);
+}
+.hero {
+padding-left: var(--space-05);
+}
+.section {
+padding-left: var(--space-05);
+}
+.section-title {
+grid-template-columns: 1fr;
+font-size: var(--type-15);
+}
+.summary-paragraph {
+font-size: var(--type-09);
+padding: var(--space-07);
+}
+.chunk-cloud {
+grid-template-columns: 1fr;
+}
+.swatch-ledger {
+grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+}
+</style>
+</head>
+<body>
+<main class="page-frame">
+<article class="cognitive-card">
+<header class="hero">
+<div class="hero-kicker">2026年5月16日 深圳线下需求局 · 转写精炼</div>
+<h1 class="hero-title">从真实痛点到<span></span><strong>可验证产品</strong></h1>
+<div class="hero-core">这场聚会最重要的结论：不要从“我想做什么”开始，而要从“谁在什么场景里被什么问题反复卡住，并愿意为解决它付钱”开始。</div>
+<div class="meta-grid">
+<div class="meta-cell">
+<span class="meta-label">保留比例</span>
+<span class="meta-value">默认20-30%精华提炼</span>
+</div>
+<div class="meta-cell">
+<span class="meta-label">核心人群</span>
+<span class="meta-value">老师、HR、出海团队、独立开发者</span>
+</div>
+<div class="meta-cell">
+<span class="meta-label">核心方法</span>
+<span class="meta-value">痛点吐槽 · 需求复述 · 低成本验证</span>
+</div>
+<div class="meta-cell">
+<span class="meta-label">输出形态</span>
+<span class="meta-value">单栏静态认知卡片</span>
+</div>
+</div>
+</header>
+<section class="section">
+<h2 class="section-title"><span>01</span>内容咀嚼后的核心理解</h2>
+<p class="section-subtitle">先过滤口语噪声和语音识别误差，再保留真正能指导产品判断的主干。</p>
+<div class="summary-block">
+<p class="summary-paragraph">这段转写的真正主题，不是一场普通的自我介绍，也不是一堆零散的项目闲聊，而是一场围绕“真实需求如何被看见、验证、转化”的线下产品工作坊。参与者来自营销、会务、程序员、财务、游戏、教育、学生、SEO、AI硬件、海外业务和独立开发等不同背景，他们的差异正是信息价值的来源。主持人一开始就把方向定得很清楚：先不要讨论能不能实现，也不要急着担心竞品；先把具体场景里的卡点、笨办法、损失和付费意愿说出来。于是会议从“我是谁”逐步转向“我到底被什么问题困住”。老师提出作业统计、作文批改、学生成长报告；软件销售者提出企业用户不会用工具、看不懂说明书、感受不到爽点；海外业务负责人提出主播管理、摸鱼监督和人力成本；独立开发者提出网站做完后冷启动推广最痛苦；AI从业者讨论API中转红利期、上游成本和合规风险；学习者则暴露出愿意付费但行动跟不上、需求表达不清的真实困境。整场对话最有价值的金线是：产品不是从灵感开始，而是从某个具体人在某个具体场景里愿意付钱解决的麻烦开始。</p>
+<p class="summary-paragraph">转写里有大量语音识别错误和口语噪声，例如“身材、申牌、真才”应理解为“生财”，“Redis需求”在上下文里多半是“Reddit需求”，“Cloudcode”应接近“Claude Code”，“Webcoding”更接近今天常说的“Vibe Coding”或用AI辅助快速搭建。纠正这些误差后，文章的逻辑变得清晰：第一层是线下链接带来信任和跨行业信息差；第二层是痛点吐槽把隐性需求显性化；第三层是用小红书、Reddit、推特、需求网站、痛点文案等低成本方式验证需求；第四层是用V0、扣子编程、Google AI Studio等工具快速把需求变成可演示原型；第五层是回到商业本质，判断谁付费、谁使用、谁反对、谁续费。关键金句包括：先行动，行动中遇到问题再学；不要自嗨，先找人群、找问题、找愿意付费的人；卖软件前先让用户感受到爽点；产品做完以后，推广才是更痛苦的一段；情绪无价，回忆无价。</p>
+</div>
+</section>
+<section class="section">
+<h2 class="section-title"><span>02</span>七级信息层级模型</h2>
+<p class="section-subtitle">远距离看核心，中距离看框架，近距离看细节。层级越高，视觉重量越强。</p>
+<div class="hierarchy-stack">
+<div class="hierarchy-item text-level-04">
+<div class="hierarchy-level">1级核心理念</div>
+<div class="hierarchy-content">
+<p class="hierarchy-main">从真实场景的付费痛点出发，而不是从技术灵感出发。</p>
+<p class="hierarchy-detail">远看只需读到这一句：需求先于产品，验证先于开发。</p>
+</div>
+</div>
+<div class="hierarchy-item text-level-05">
+<div class="hierarchy-level">2级主循环</div>
+<div class="hierarchy-content">
+<p class="hierarchy-main">线下链接、痛点吐槽、需求提炼、低成本验证、AI原型、反馈迭代。</p>
+<p class="hierarchy-detail">这是整场聚会最可复用的方法骨架。</p>
+</div>
+</div>
+<div class="hierarchy-item text-level-06">
+<div class="hierarchy-level">3级高价值人群</div>
+<div class="hierarchy-content">
+<p class="hierarchy-main">老师、HR、海外运营、独立开发者、学习付费者、情绪产品用户。</p>
+<p class="hierarchy-detail">他们不是抽象画像，而是现场有人能说出具体麻烦的人。</p>
+</div>
+</div>
+<div class="hierarchy-item text-level-07">
+<div class="hierarchy-level">4级需求簇</div>
+<div class="hierarchy-content">
+<p class="hierarchy-main">教育提效、B端交付、海外主播监管、冷启动获客、职业测评、记忆产品。</p>
+<p class="hierarchy-detail">每个需求都对应一个可被验证的小产品方向。</p>
+</div>
+</div>
+<div class="hierarchy-item text-level-08">
+<div class="hierarchy-level">5级验证方法</div>
+<div class="hierarchy-content">
+<p class="hierarchy-main">发帖测试、痛点文案、小红书共情、Reddit搜索、卖空气、Landing Page。</p>
+<p class="hierarchy-detail">先确认有人在意，再决定是否投入开发。</p>
+</div>
+</div>
+<div class="hierarchy-item text-level-09">
+<div class="hierarchy-level">6级风险边界</div>
+<div class="hierarchy-content">
+<p class="hierarchy-main">自嗨、用户不会用、买家与使用者分离、API上游变化、合规风险、流量衰减。</p>
+<p class="hierarchy-detail">这些风险决定项目是短期机会还是可沉淀资产。</p>
+</div>
+</div>
+<div class="hierarchy-item text-level-10">
+<div class="hierarchy-level">7级辅助细节</div>
+<div class="hierarchy-content">
+<p class="hierarchy-main">红包、签到、WiFi、工具链接、域名、住宅IP、课程与社群经验。</p>
+<p class="hierarchy-detail">这些细节不进入核心结论，但帮助还原真实语境。</p>
+</div>
+</div>
+</div>
+</section>
+<section class="section">
+<h2 class="section-title"><span>03</span>三种阅读路径</h2>
+<p class="section-subtitle">同一张卡片同时服务扫描、浏览、深读三种任务，让用户按自己的时间成本取走信息。</p>
+<div class="reading-paths">
+<div class="path-card">
+<h3>快速扫描</h3>
+<p>先看顶部核心句、七级模型和需求雷达标题，30秒内判断这场会的价值。</p>
+<span class="path-note">适合只想带走方法的人。</span>
+</div>
+<div class="path-card">
+<h3>浏览理解</h3>
+<p>沿着主循环、需求簇、验证方法、风险边界阅读，5分钟形成行动框架。</p>
+<span class="path-note">适合准备做产品试错的人。</span>
+</div>
+<div class="path-card">
+<h3>深度阅读</h3>
+<p>读完需求详情、金句锚点、行动清单和质量自检，把它转成自己的项目清单。</p>
+<span class="path-note">适合要复盘线下局或搭建需求库的人。</span>
+</div>
+</div>
+</section>
+<section class="section">
+<h2 class="section-title"><span>04</span>需求判断的八条底层原则</h2>
+<p class="section-subtitle">这些原则是从现场追问里提纯出来的，比任何单个项目更值得带走。</p>
+<div class="principle-grid">
+<div class="principle-card">
+<h3>需求先行</h3>
+<p>先问场景、卡点、损失和付费意愿，再讨论技术方案。</p>
+</div>
+<div class="principle-card">
+<h3>公开边界</h3>
+<p>只分享愿意公开的创意，敏感机会可以保留，避免线下信任被消耗。</p>
+</div>
+<div class="principle-card">
+<h3>买家用户分离</h3>
+<p>B端软件常常是老板付钱、员工使用、员工抱怨、老板决定续费。</p>
+</div>
+<div class="principle-card">
+<h3>爽点前置</h3>
+<p>工具第一次交付不应先让用户学习，而应先让用户看到省时、省力或省钱。</p>
+</div>
+<div class="principle-card">
+<h3>低成本验证</h3>
+<p>文案、帖子、假入口、店铺页、预约表都能先于正式开发出现。</p>
+</div>
+<div class="principle-card">
+<h3>线下加速</h3>
+<p>线下聚会把隐性经验显性化，把别人的坑变成自己的地图。</p>
+</div>
+<div class="principle-card">
+<h3>AI放大执行</h3>
+<p>AI编程降低开发门槛，但不会自动解决需求、分发、信任和付费。</p>
+</div>
+<div class="principle-card">
+<h3>情绪价值</h3>
+<p>照片书、电子宠物、成长记录等产品证明回忆与陪伴可以直接变现。</p>
+</div>
+</div>
+</section>
+<section class="section">
+<h2 class="section-title"><span>05</span>现场需求雷达</h2>
+<p class="section-subtitle">每个需求都按痛点、人群、验证信号组织，避免只停留在“好像有意思”。</p>
+<div class="demand-grid">
+<div class="demand-card demand-tone-01">
+<h3 class="demand-title">智能作业管理与异常预警</h3>
+<p class="demand-pain">老师难以及时统计谁没交作业、长期缺交、哪类作业拖延。</p>
+<p class="demand-user">目标人群：班主任、学科老师、家长</p>
+<p class="demand-signal">验证信号：高频刚需，先做极简点名与预警即可验证。</p>
+</div>
+<div class="demand-card demand-tone-02">
+<h3 class="demand-title">AI作文与听写批改</h3>
+<p class="demand-pain">作文批改耗时，维度多，现有AI建议刻板，容易出现不符合儿童表达的句子。</p>
+<p class="demand-user">目标人群：语文老师、教培机构、学校</p>
+<p class="demand-signal">验证信号：付费意愿明确，关键在专业度与老师风格蒸馏。</p>
+</div>
+<div class="demand-card demand-tone-03">
+<h3 class="demand-title">学生个性化成长报告</h3>
+<p class="demand-pain">家长想看长期发展，老师缺少持续记录与可视化分析工具。</p>
+<p class="demand-user">目标人群：家长、班主任、学校管理者</p>
+<p class="demand-signal">验证信号：适合做时间轴、异常值、作品档案和阶段报告。</p>
+</div>
+<div class="demand-card demand-tone-04">
+<h3 class="demand-title">B端软件交付爽点引导</h3>
+<p class="demand-pain">客户买了软件却不会用，说明书和视频仍然无法降低使用阻力。</p>
+<p class="demand-user">目标人群：软件服务商、HR、财务、企业老板</p>
+<p class="demand-signal">验证信号：核心不是写更长说明书，而是把第一口甜味放在最前面。</p>
+</div>
+<div class="demand-card demand-tone-05">
+<h3 class="demand-title">自动招聘角色配置</h3>
+<p class="demand-pain">招聘SOP、岗位画像、复聊话术都需要配置，但HR工作中频繁被打断。</p>
+<p class="demand-user">目标人群：HR、人力资源公司、老板</p>
+<p class="demand-signal">验证信号：可拆成小白版和专家版，先让小白跑通结果。</p>
+</div>
+<div class="demand-card demand-tone-06">
+<h3 class="demand-title">海外主播AI监控</h3>
+<p class="demand-pain">主播拿底薪后可能摸鱼，人工24小时监管成本高，海外团队管理成本更高。</p>
+<p class="demand-user">目标人群：MCN、跨境电商、直播团队</p>
+<p class="demand-signal">验证信号：要先定义摸鱼：看手机、离岗、客户进场无响应、话术频率过低。</p>
+</div>
+<div class="demand-card demand-tone-07">
+<h3 class="demand-title">产品冷启动推广执行器</h3>
+<p class="demand-pain">开发者爱做产品，不爱重复发帖、触达、跟进，前1000个用户最难。</p>
+<p class="demand-user">目标人群：独立开发者、SaaS团队</p>
+<p class="demand-signal">验证信号：适合做目标客户搜索、触达排程、话术生成和反馈归档。</p>
+</div>
+<div class="demand-card demand-tone-08">
+<h3 class="demand-title">职业与副业适配测评</h3>
+<p class="demand-pain">大学生和转型者不知道适合什么方向，需要像MBTI一样有传播性的职业入口。</p>
+<p class="demand-user">目标人群：大学生、职场转型者、知识付费用户</p>
+<p class="demand-signal">验证信号：可借鉴霍兰德、DISC，但要转化成可行动的副业路径。</p>
+</div>
+<div class="demand-card demand-tone-09">
+<h3 class="demand-title">Reddit需求采集器</h3>
+<p class="demand-pain">海外需求搜索容易漫无目的，账号封禁、反爬和代理配置会挡住小白。</p>
+<p class="demand-user">目标人群：出海开发者、SEO团队</p>
+<p class="demand-signal">验证信号：价值点在需求聚合、原帖链接、用户画像和防封操作路径。</p>
+</div>
+<div class="demand-card demand-tone-10">
+<h3 class="demand-title">中文版探索百科场景</h3>
+<p class="demand-pain">Freebook类产品能把抽象概念变成可点击场景，但中文用户使用门槛高。</p>
+<p class="demand-user">目标人群：学生、内容创作者、知识产品用户</p>
+<p class="demand-signal">验证信号：方向可以垂直化：美食、城市、历史、产品研究。</p>
+</div>
+<div class="demand-card demand-tone-11">
+<h3 class="demand-title">时间管理电子宠物</h3>
+<p class="demand-pain">普通番茄钟缺少情感连接，用户难坚持；宠物霸屏休息有天然传播点。</p>
+<p class="demand-user">目标人群：学生、上班族、创作者</p>
+<p class="demand-signal">验证信号：把强制休息、成长养成、同伴监督和可爱视觉组合起来。</p>
+</div>
+<div class="demand-card demand-tone-12">
+<h3 class="demand-title">照片日记与回忆书</h3>
+<p class="demand-pain">用户每天拍很多照片却不整理，想保留生活美感但不想写日记。</p>
+<p class="demand-user">目标人群：宝妈、情侣、家庭、记录型用户</p>
+<p class="demand-signal">验证信号：情绪价值强，纸质输出和年度回忆能形成复购。</p>
+</div>
+<div class="demand-card demand-tone-13">
+<h3 class="demand-title">API中转与分销风险</h3>
+<p class="demand-pain">API中转有红利，但上游协议、成本、封禁和法律风险会快速改变生意。</p>
+<p class="demand-user">目标人群：开发者、工作室、研究团队</p>
+<p class="demand-signal">验证信号：短期套利与长期资产要分开判断，合规边界不能模糊。</p>
+</div>
+<div class="demand-card demand-tone-14">
+<h3 class="demand-title">需求发布与痛点文案工具</h3>
+<p class="demand-pain">需求需要被结构化记录，并转成小红书、推特、Reddit等平台可测试文案。</p>
+<p class="demand-user">目标人群：线下局组织者、产品经理、独立开发者</p>
+<p class="demand-signal">验证信号：这是工作坊本身沉淀出来的工具方向。</p>
+</div>
+</div>
+</section>
+<section class="section">
+<h2 class="section-title"><span>06</span>从闲聊到产品的十步闭环</h2>
+<p class="section-subtitle">这套流程让线下局不只停留在“认识朋友”，而是沉淀出可发布、可测试、可复盘的需求资产。</p>
+<div class="process-list">
+<div class="process-step">
+<div class="step-number">01</div>
+<div class="step-body">
+<h3>自我介绍</h3>
+<p>建立背景可信度：谁懂技术、谁懂流量、谁懂行业、谁有客户。</p>
+</div>
+</div>
+<div class="process-step">
+<div class="step-number">02</div>
+<div class="step-body">
+<h3>痛点吐槽</h3>
+<p>只讲场景和麻烦，不急着评判方案是否可行。</p>
+</div>
+</div>
+<div class="process-step">
+<div class="step-number">03</div>
+<div class="step-body">
+<h3>需求复述</h3>
+<p>主持人把口语需求压缩成一句可记录、可检索、可讨论的话。</p>
+</div>
+</div>
+<div class="process-step">
+<div class="step-number">04</div>
+<div class="step-body">
+<h3>付费判断</h3>
+<p>追问谁愿意付、愿意付多少、为什么现在的笨办法不够好。</p>
+</div>
+</div>
+<div class="process-step">
+<div class="step-number">05</div>
+<div class="step-body">
+<h3>竞品意识</h3>
+<p>允许不知道竞品，但要知道信息差本身就是机会。</p>
+</div>
+</div>
+<div class="process-step">
+<div class="step-number">06</div>
+<div class="step-body">
+<h3>公开边界</h3>
+<p>愿意公开的需求现场讨论，不愿公开的机会自行保留。</p>
+</div>
+</div>
+<div class="process-step">
+<div class="step-number">07</div>
+<div class="step-body">
+<h3>平台验证</h3>
+<p>用小红书、Reddit、推特、公众号或需求站发出去看反馈。</p>
+</div>
+</div>
+<div class="process-step">
+<div class="step-number">08</div>
+<div class="step-body">
+<h3>痛点文案</h3>
+<p>把需求拆成生活场景、年龄阶段、情绪记忆、人群身份、核心痛点、行动障碍。</p>
+</div>
+</div>
+<div class="process-step">
+<div class="step-number">09</div>
+<div class="step-body">
+<h3>原型生成</h3>
+<p>用V0、扣子编程、Google AI Studio等工具做可展示版本。</p>
+</div>
+</div>
+<div class="process-step">
+<div class="step-number">10</div>
+<div class="step-body">
+<h3>反馈迭代</h3>
+<p>把用户反应、使用阻力、愿付费信号带回下一轮产品判断。</p>
+</div>
+</div>
+</div>
+</section>
+<section class="section">
+<h2 class="section-title"><span>07</span>关键金句记忆锚点</h2>
+<p class="section-subtitle">金句负责在远距离形成峰值，在复述时形成传播，在行动时形成提醒。</p>
+<div class="quote-grid">
+<div class="quote-card quote-tone-01">
+<p>需求不是灵感，是某个具体人在某个具体场景里愿意付钱解决的麻烦。</p>
+</div>
+<div class="quote-card quote-tone-02">
+<p>先不要讨论好不好实现，先把痛点说出来。</p>
+</div>
+<div class="quote-card quote-tone-03">
+<p>不要自嗨，先找人群，找问题，找愿意付费的人。</p>
+</div>
+<div class="quote-card quote-tone-04">
+<p>卖软件前，先让用户感受到爽点。</p>
+</div>
+<div class="quote-card quote-tone-05">
+<p>说明书写得再清楚，也可能不是用户真正需要的入口。</p>
+</div>
+<div class="quote-card quote-tone-06">
+<p>买单的人、使用的人、抱怨的人，常常不是同一个人。</p>
+</div>
+<div class="quote-card quote-tone-07">
+<p>产品做完以后，推广才是更痛苦的一段。</p>
+</div>
+<div class="quote-card quote-tone-08">
+<p>前1000个用户不是靠祈祷来的，是靠一次次触达来的。</p>
+</div>
+<div class="quote-card quote-tone-09">
+<p>AI编程降低的是开发门槛，不是商业判断门槛。</p>
+</div>
+<div class="quote-card quote-tone-10">
+<p>先行动，行动中遇到问题再学。</p>
+</div>
+<div class="quote-card quote-tone-11">
+<p>线下交流能把模糊痛点撞成具体需求。</p>
+</div>
+<div class="quote-card quote-tone-12">
+<p>情绪无价，回忆无价。</p>
+</div>
+<div class="quote-card quote-tone-13">
+<p>有些生意是短红利，有些产品能沉淀十年，判断错了成本很高。</p>
+</div>
+<div class="quote-card quote-tone-14">
+<p>工具效率赛道最后容易变成一家通吃，普通人要找更细的切口。</p>
+</div>
+<div class="quote-card quote-tone-15">
+<p>让用户第一次打开就完成一次真实任务，比讲十遍功能更有用。</p>
+</div>
+<div class="quote-card quote-tone-16">
+<p>竞品存在不代表不能做，很多用户根本不知道竞品存在。</p>
+</div>
+<div class="quote-card quote-tone-17">
+<p>需求表达不清，本身也是一个可以被产品化的问题。</p>
+</div>
+<div class="quote-card quote-tone-18">
+<p>一个好的线下局，结束时应该多出一张需求地图。</p>
+</div>
+<div class="quote-card quote-tone-19">
+<p>技术高手容易上瘾于开发，商业高手会先盯住分发。</p>
+</div>
+<div class="quote-card quote-tone-20">
+<p>如果无法定义摸鱼，就无法自动识别摸鱼。</p>
+</div>
+</div>
+</section>
+<section class="section">
+<h2 class="section-title"><span>08</span>容易混淆的判断对比</h2>
+<p class="section-subtitle">用对比结构把会议里反复出现的误区和更优路径并排呈现，减少认知摇摆。</p>
+<div class="comparison-table">
+<div class="comparison-row">
+<div class="comparison-cell comparison-label-bad">技术自嗨</div>
+<div class="comparison-cell">先做一个自己觉得厉害的产品</div>
+<div class="comparison-cell comparison-label-good">需求验证</div>
+<div class="comparison-cell">先找到一群人正在为同一麻烦付出代价</div>
+</div>
+<div class="comparison-row">
+<div class="comparison-cell comparison-label-bad">功能堆叠</div>
+<div class="comparison-cell">给用户更多配置项和说明书</div>
+<div class="comparison-cell comparison-label-good">爽点交付</div>
+<div class="comparison-cell">让用户第一次操作就得到一个好结果</div>
+</div>
+<div class="comparison-row">
+<div class="comparison-cell comparison-label-bad">泛泛人群</div>
+<div class="comparison-cell">觉得所有老师、所有HR都会用</div>
+<div class="comparison-cell comparison-label-good">具体画像</div>
+<div class="comparison-cell">锁定深圳小学语文老师、招聘量大的HR等窄场景</div>
+</div>
+<div class="comparison-row">
+<div class="comparison-cell comparison-label-bad">一次开发</div>
+<div class="comparison-cell">认为产品上线就是结束</div>
+<div class="comparison-cell comparison-label-good">持续验证</div>
+<div class="comparison-cell">上线只是进入分发、反馈、改版的开始</div>
+</div>
+<div class="comparison-row">
+<div class="comparison-cell comparison-label-bad">抽象摸鱼</div>
+<div class="comparison-cell">说主播不努力但无法量化</div>
+<div class="comparison-cell comparison-label-good">行为定义</div>
+<div class="comparison-cell">用离岗、看手机、客户进场无响应等行为拆解</div>
+</div>
+<div class="comparison-row">
+<div class="comparison-cell comparison-label-bad">学习优先</div>
+<div class="comparison-cell">先系统学完技术再动手</div>
+<div class="comparison-cell comparison-label-good">行动优先</div>
+<div class="comparison-cell">先做一个最小任务，遇到问题再问AI或找人</div>
+</div>
+<div class="comparison-row">
+<div class="comparison-cell comparison-label-bad">纯工具</div>
+<div class="comparison-cell">只强调效率和功能</div>
+<div class="comparison-cell comparison-label-good">情绪工具</div>
+<div class="comparison-cell">把效率、陪伴、成长、纪念感合在一起</div>
+</div>
+<div class="comparison-row">
+<div class="comparison-cell comparison-label-bad">短红利误判</div>
+<div class="comparison-cell">把套利机会当长期事业</div>
+<div class="comparison-cell comparison-label-good">资产判断</div>
+<div class="comparison-cell">区分短期现金流和可沉淀十年的产品能力</div>
+</div>
+</div>
+</section>
+<section class="section">
+<h2 class="section-title"><span>09</span>十五种分块技术</h2>
+<p class="section-subtitle">这些分块不是装饰，而是把长转写变成可扫、可懂、可记的认知路径。</p>
+<div class="chunk-cloud">
+<div class="chunk-pill">标题压缩核心命题</div>
+<div class="chunk-pill">热区放置最高层级信息</div>
+<div class="chunk-pill">七级模型建立主干</div>
+<div class="chunk-pill">需求雷达按人群分块</div>
+<div class="chunk-pill">步骤编号形成顺序记忆</div>
+<div class="chunk-pill">金句独立成锚点</div>
+<div class="chunk-pill">对比表强化判断边界</div>
+<div class="chunk-pill">风险条带降低盲区</div>
+<div class="chunk-pill">色彩编码区分信息类型</div>
+<div class="chunk-pill">左侧强调线指引扫描</div>
+<div class="chunk-pill">宽窄段落形成阅读节奏</div>
+<div class="chunk-pill">大号数字制造远距识别</div>
+<div class="chunk-pill">小标签承载近距细节</div>
+<div class="chunk-pill">重复结构降低理解成本</div>
+<div class="chunk-pill">结尾清单转成行动</div>
+</div>
+</section>
+<section class="section">
+<h2 class="section-title"><span>10</span>风险边界校准</h2>
+<p class="section-subtitle">机会越诱人，越需要把不能碰、容易错判、会导致续费失败的边界提前显性化。</p>
+<div class="risk-grid">
+<div class="risk-card">
+<h3>自嗨风险</h3>
+<p>没有真实用户和付费信号，只是在享受开发过程。</p>
+</div>
+<div class="risk-card">
+<h3>交付风险</h3>
+<p>产品可用但用户不会用，导致续费失败或口碑反噬。</p>
+</div>
+<div class="risk-card">
+<h3>角色错位</h3>
+<p>老板买单，员工使用，双方目标不一致。</p>
+</div>
+<div class="risk-card">
+<h3>合规风险</h3>
+<p>API逆向、账号池、代理、数据采集都可能触碰平台或法律边界。</p>
+</div>
+<div class="risk-card">
+<h3>红利衰减</h3>
+<p>热词、套利、中转站和小程序流量都可能快速消失。</p>
+</div>
+<div class="risk-card">
+<h3>分发不足</h3>
+<p>产品做出来却没有渠道，无法跨过第一批用户。</p>
+</div>
+<div class="risk-card">
+<h3>体验刻板</h3>
+<p>AI批改、AI文案若没有行业语感，会被专业用户立刻识别。</p>
+</div>
+<div class="risk-card">
+<h3>需求模糊</h3>
+<p>如果无法把痛点说成一句话，就难以形成产品功能。</p>
+</div>
+</div>
+</section>
+<section class="section">
+<h2 class="section-title"><span>11</span>下一步行动清单</h2>
+<p class="section-subtitle">把“听懂了”转成“今天就能做一小步”，这是这场需求局最务实的落点。</p>
+<div class="action-list">
+<div class="action-item">
+<div class="action-title">选一个具体人群</div>
+<div class="action-desc">不要写“老师”，写“深圳小学语文老师”。</div>
+</div>
+<div class="action-item">
+<div class="action-title">写一句痛点</div>
+<div class="action-desc">格式：在什么场景，做什么事，被什么卡住，造成什么损失。</div>
+</div>
+<div class="action-item">
+<div class="action-title">找现有笨办法</div>
+<div class="action-desc">用户现在怎么解决，花钱、花时间、求人还是忍受。</div>
+</div>
+<div class="action-item">
+<div class="action-title">确认付费角色</div>
+<div class="action-desc">谁掏钱、谁使用、谁有权决定继续用。</div>
+</div>
+<div class="action-item">
+<div class="action-title">做最小验证</div>
+<div class="action-desc">先用帖子、问卷、假入口、朋友圈或群聊看反应。</div>
+</div>
+<div class="action-item">
+<div class="action-title">搭一个原型</div>
+<div class="action-desc">用AI工具做出可截图、可演示、可收集反馈的版本。</div>
+</div>
+<div class="action-item">
+<div class="action-title">观察第一阻力</div>
+<div class="action-desc">用户卡在注册、理解、配置、结果不可信还是价格。</div>
+</div>
+<div class="action-item">
+<div class="action-title">保留证据</div>
+<div class="action-desc">把原帖、聊天、点赞、转发、愿付费留言都归档。</div>
+</div>
+<div class="action-item">
+<div class="action-title">复盘下一步</div>
+<div class="action-desc">决定继续、收窄、换人群或直接放弃。</div>
+</div>
+</div>
+</section>
+<section class="section">
+<h2 class="section-title"><span>12</span>二十个视觉记忆触发器</h2>
+<p class="section-subtitle">每个触发器对应一条认知功能，帮助核心内容在读后仍能被提取。</p>
+<div class="anchor-grid">
+<div class="anchor-card anchor-tone-01">
+<span class="anchor-word">钥匙</span>
+<span class="anchor-role">认知匹配</span>
+<p class="anchor-desc">让内容像钥匙入锁一样对应用户已有经验。</p>
+</div>
+<div class="anchor-card anchor-tone-02">
+<span class="anchor-word">漏斗</span>
+<span class="anchor-role">需求收敛</span>
+<p class="anchor-desc">从聊天噪声收束到可验证的一句话。</p>
+</div>
+<div class="anchor-card anchor-tone-03">
+<span class="anchor-word">雷达</span>
+<span class="anchor-role">机会扫描</span>
+<p class="anchor-desc">按人群和场景发现高信号需求。</p>
+</div>
+<div class="anchor-card anchor-tone-04">
+<span class="anchor-word">热区</span>
+<span class="anchor-role">注意力优先</span>
+<p class="anchor-desc">把核心结论放在顶部和左侧。</p>
+</div>
+<div class="anchor-card anchor-tone-05">
+<span class="anchor-word">台阶</span>
+<span class="anchor-role">信息层级</span>
+<p class="anchor-desc">让远看、中看、近看读到不同深度。</p>
+</div>
+<div class="anchor-card anchor-tone-06">
+<span class="anchor-word">锚点</span>
+<span class="anchor-role">记忆留存</span>
+<p class="anchor-desc">用金句和重复结构固定关键判断。</p>
+</div>
+<div class="anchor-card anchor-tone-07">
+<span class="anchor-word">刻度</span>
+<span class="anchor-role">付费判断</span>
+<p class="anchor-desc">用金额和频率校准痛感强度。</p>
+</div>
+<div class="anchor-card anchor-tone-08">
+<span class="anchor-word">路标</span>
+<span class="anchor-role">行动路径</span>
+<p class="anchor-desc">把讨论转成下一步动作。</p>
+</div>
+<div class="anchor-card anchor-tone-09">
+<span class="anchor-word">边界</span>
+<span class="anchor-role">风险控制</span>
+<p class="anchor-desc">把不能公开、不能碰的部分标清楚。</p>
+</div>
+<div class="anchor-card anchor-tone-10">
+<span class="anchor-word">回声</span>
+<span class="anchor-role">平台验证</span>
+<p class="anchor-desc">把需求发出去听市场回声。</p>
+</div>
+<div class="anchor-card anchor-tone-11">
+<span class="anchor-word">显微镜</span>
+<span class="anchor-role">细节洞察</span>
+<p class="anchor-desc">把摸鱼、不会用、没行动拆成可观察行为。</p>
+</div>
+<div class="anchor-card anchor-tone-12">
+<span class="anchor-word">种子</span>
+<span class="anchor-role">最小原型</span>
+<p class="anchor-desc">小到能今天做，大到能测试真反应。</p>
+</div>
+<div class="anchor-card anchor-tone-13">
+<span class="anchor-word">日历</span>
+<span class="anchor-role">长期记录</span>
+<p class="anchor-desc">照片、成长、作业、学习都需要时间轴。</p>
+</div>
+<div class="anchor-card anchor-tone-14">
+<span class="anchor-word">账本</span>
+<span class="anchor-role">成本意识</span>
+<p class="anchor-desc">人工、API、流量、交付都要算账。</p>
+</div>
+<div class="anchor-card anchor-tone-15">
+<span class="anchor-word">桥</span>
+<span class="anchor-role">线下链接</span>
+<p class="anchor-desc">跨行业信任让需求更快浮出水面。</p>
+</div>
+<div class="anchor-card anchor-tone-16">
+<span class="anchor-word">筛子</span>
+<span class="anchor-role">去噪提纯</span>
+<p class="anchor-desc">过滤客套、跑题、闲聊，留下可复用模型。</p>
+</div>
+<div class="anchor-card anchor-tone-17">
+<span class="anchor-word">火花</span>
+<span class="anchor-role">视觉峰点</span>
+<p class="anchor-desc">把最值得分享的句子做成强记忆点。</p>
+</div>
+<div class="anchor-card anchor-tone-18">
+<span class="anchor-word">地图</span>
+<span class="anchor-role">需求网络</span>
+<p class="anchor-desc">一个痛点常常连接多个产品方向。</p>
+</div>
+<div class="anchor-card anchor-tone-19">
+<span class="anchor-word">秤</span>
+<span class="anchor-role">价值权衡</span>
+<p class="anchor-desc">判断短期现金流和长期资产的重量。</p>
+</div>
+<div class="anchor-card anchor-tone-20">
+<span class="anchor-word">门槛</span>
+<span class="anchor-role">上手阻力</span>
+<p class="anchor-desc">最先优化的不是功能，而是第一步。</p>
+</div>
+</div>
+</section>
+<section class="section">
+<h2 class="section-title"><span>13</span>二十层文本视觉系统</h2>
+<p class="section-subtitle">文本层级从8px到36px，分别服务远距核心、近距细节和微型标注。</p>
+<div class="text-system">
+<div class="text-layer text-level-01">
+<span>L01</span>
+<span>远距核心标题</span>
+<span>36px</span>
+<span>800</span>
+<span>核心命题</span>
+</div>
+<div class="text-layer text-level-02">
+<span>L02</span>
+<span>远距副标题</span>
+<span>33px</span>
+<span>800</span>
+<span>主判断</span>
+</div>
+<div class="text-layer text-level-03">
+<span>L03</span>
+<span>强金句</span>
+<span>30px</span>
+<span>800</span>
+<span>记忆峰点</span>
+</div>
+<div class="text-layer text-level-04">
+<span>L04</span>
+<span>章节主标题</span>
+<span>28px</span>
+<span>650</span>
+<span>结构分段</span>
+</div>
+<div class="text-layer text-level-05">
+<span>L05</span>
+<span>章节副标题</span>
+<span>26px</span>
+<span>650</span>
+<span>大模块解释</span>
+</div>
+<div class="text-layer text-level-06">
+<span>L06</span>
+<span>需求卡标题</span>
+<span>24px</span>
+<span>650</span>
+<span>机会名称</span>
+</div>
+<div class="text-layer text-level-07">
+<span>L07</span>
+<span>流程标题</span>
+<span>22px</span>
+<span>650</span>
+<span>步骤动作</span>
+</div>
+<div class="text-layer text-level-08">
+<span>L08</span>
+<span>模型标题</span>
+<span>20px</span>
+<span>650</span>
+<span>层级标签</span>
+</div>
+<div class="text-layer text-level-09">
+<span>L09</span>
+<span>重点段落</span>
+<span>19px</span>
+<span>500</span>
+<span>摘要主干</span>
+</div>
+<div class="text-layer text-level-10">
+<span>L10</span>
+<span>普通段落</span>
+<span>18px</span>
+<span>400</span>
+<span>深读正文</span>
+</div>
+<div class="text-layer text-level-11">
+<span>L11</span>
+<span>证据文字</span>
+<span>17px</span>
+<span>400</span>
+<span>口语转义</span>
+</div>
+<div class="text-layer text-level-12">
+<span>L12</span>
+<span>列表文字</span>
+<span>16px</span>
+<span>400</span>
+<span>条目说明</span>
+</div>
+<div class="text-layer text-level-13">
+<span>L13</span>
+<span>细节文字</span>
+<span>15px</span>
+<span>400</span>
+<span>辅助理解</span>
+</div>
+<div class="text-layer text-level-14">
+<span>L14</span>
+<span>标签文字</span>
+<span>14px</span>
+<span>650</span>
+<span>信息编码</span>
+</div>
+<div class="text-layer text-level-15">
+<span>L15</span>
+<span>脚注文字</span>
+<span>13px</span>
+<span>400</span>
+<span>边界说明</span>
+</div>
+<div class="text-layer text-level-16">
+<span>L16</span>
+<span>微型标注</span>
+<span>12px</span>
+<span>650</span>
+<span>视觉锚点</span>
+</div>
+<div class="text-layer text-level-17">
+<span>L17</span>
+<span>刻度文字</span>
+<span>11px</span>
+<span>650</span>
+<span>序号刻度</span>
+</div>
+<div class="text-layer text-level-18">
+<span>L18</span>
+<span>元信息</span>
+<span>10px</span>
+<span>500</span>
+<span>日期场景</span>
+</div>
+<div class="text-layer text-level-19">
+<span>L19</span>
+<span>辅助符号</span>
+<span>9px</span>
+<span>650</span>
+<span>微标记</span>
+</div>
+<div class="text-layer text-level-20">
+<span>L20</span>
+<span>最低噪声</span>
+<span>8px</span>
+<span>400</span>
+<span>非核心信息</span>
+</div>
+</div>
+</section>
+<section class="section">
+<h2 class="section-title"><span>14</span>色彩认知编码</h2>
+<p class="section-subtitle">颜色不做装饰，颜色只帮助区分结构、机会、风险、情绪、成长和验证。</p>
+<div class="palette-grid">
+<div class="palette-card">
+<div class="palette-strip palette-strip-01"><span></span><span></span><span></span><span></span></div>
+<h3>纸面</h3>
+<p>温和底色，降低长读疲劳。</p>
+</div>
+<div class="palette-card">
+<div class="palette-strip palette-strip-02"><span></span><span></span><span></span><span></span></div>
+<h3>墨色</h3>
+<p>正文高可读性，保持稳定信任感。</p>
+</div>
+<div class="palette-card">
+<div class="palette-strip palette-strip-03"><span></span><span></span><span></span><span></span></div>
+<h3>主绿</h3>
+<p>代表需求、增长、可持续。</p>
+</div>
+<div class="palette-card">
+<div class="palette-strip palette-strip-04"><span></span><span></span><span></span><span></span></div>
+<h3>深蓝</h3>
+<p>代表结构、方法、冷静判断。</p>
+</div>
+<div class="palette-card">
+<div class="palette-strip palette-strip-05"><span></span><span></span><span></span><span></span></div>
+<h3>金色</h3>
+<p>代表机会、付费、价值峰点。</p>
+</div>
+<div class="palette-card">
+<div class="palette-strip palette-strip-06"><span></span><span></span><span></span><span></span></div>
+<h3>红色</h3>
+<p>代表风险、阻力、警示。</p>
+</div>
+<div class="palette-card">
+<div class="palette-strip palette-strip-07"><span></span><span></span><span></span><span></span></div>
+<h3>紫色</h3>
+<p>代表创意、AI、探索。</p>
+</div>
+<div class="palette-card">
+<div class="palette-strip palette-strip-08"><span></span><span></span><span></span><span></span></div>
+<h3>青色</h3>
+<p>代表流程、连接、验证。</p>
+</div>
+<div class="palette-card">
+<div class="palette-strip palette-strip-09"><span></span><span></span><span></span><span></span></div>
+<h3>玫瑰</h3>
+<p>代表情绪、回忆、陪伴。</p>
+</div>
+<div class="palette-card">
+<div class="palette-strip palette-strip-10"><span></span><span></span><span></span><span></span></div>
+<h3>鼠尾草</h3>
+<p>代表教育、成长、长期记录。</p>
+</div>
+</div>
+<div class="swatch-ledger">
+<span class="swatch-chip swatch-01"></span>
+<span class="swatch-chip swatch-02"></span>
+<span class="swatch-chip swatch-03"></span>
+<span class="swatch-chip swatch-04"></span>
+<span class="swatch-chip swatch-05"></span>
+<span class="swatch-chip swatch-06"></span>
+<span class="swatch-chip swatch-07"></span>
+<span class="swatch-chip swatch-08"></span>
+<span class="swatch-chip swatch-09"></span>
+<span class="swatch-chip swatch-10"></span>
+<span class="swatch-chip swatch-11"></span>
+<span class="swatch-chip swatch-12"></span>
+<span class="swatch-chip swatch-13"></span>
+<span class="swatch-chip swatch-14"></span>
+<span class="swatch-chip swatch-15"></span>
+<span class="swatch-chip swatch-16"></span>
+<span class="swatch-chip swatch-17"></span>
+<span class="swatch-chip swatch-18"></span>
+<span class="swatch-chip swatch-19"></span>
+<span class="swatch-chip swatch-20"></span>
+<span class="swatch-chip swatch-21"></span>
+<span class="swatch-chip swatch-22"></span>
+<span class="swatch-chip swatch-23"></span>
+<span class="swatch-chip swatch-24"></span>
+<span class="swatch-chip swatch-25"></span>
+<span class="swatch-chip swatch-26"></span>
+<span class="swatch-chip swatch-27"></span>
+<span class="swatch-chip swatch-28"></span>
+<span class="swatch-chip swatch-29"></span>
+<span class="swatch-chip swatch-30"></span>
+<span class="swatch-chip swatch-31"></span>
+<span class="swatch-chip swatch-32"></span>
+<span class="swatch-chip swatch-33"></span>
+<span class="swatch-chip swatch-34"></span>
+<span class="swatch-chip swatch-35"></span>
+<span class="swatch-chip swatch-36"></span>
+<span class="swatch-chip swatch-37"></span>
+<span class="swatch-chip swatch-38"></span>
+<span class="swatch-chip swatch-39"></span>
+<span class="swatch-chip swatch-40"></span>
+<span class="swatch-chip swatch-41"></span>
+<span class="swatch-chip swatch-42"></span>
+<span class="swatch-chip swatch-43"></span>
+<span class="swatch-chip swatch-44"></span>
+<span class="swatch-chip swatch-45"></span>
+<span class="swatch-chip swatch-46"></span>
+<span class="swatch-chip swatch-47"></span>
+<span class="swatch-chip swatch-48"></span>
+<span class="swatch-chip swatch-49"></span>
+<span class="swatch-chip swatch-50"></span>
+<span class="swatch-chip swatch-51"></span>
+<span class="swatch-chip swatch-52"></span>
+<span class="swatch-chip swatch-53"></span>
+<span class="swatch-chip swatch-54"></span>
+<span class="swatch-chip swatch-55"></span>
+<span class="swatch-chip swatch-56"></span>
+<span class="swatch-chip swatch-57"></span>
+<span class="swatch-chip swatch-58"></span>
+<span class="swatch-chip swatch-59"></span>
+<span class="swatch-chip swatch-60"></span>
+<span class="swatch-chip swatch-61"></span>
+<span class="swatch-chip swatch-62"></span>
+<span class="swatch-chip swatch-63"></span>
+<span class="swatch-chip swatch-64"></span>
+<span class="swatch-chip swatch-65"></span>
+<span class="swatch-chip swatch-66"></span>
+<span class="swatch-chip swatch-67"></span>
+<span class="swatch-chip swatch-68"></span>
+<span class="swatch-chip swatch-69"></span>
+<span class="swatch-chip swatch-70"></span>
+<span class="swatch-chip swatch-71"></span>
+</div>
+</section>
+<section class="section">
+<h2 class="section-title"><span>15</span>语音转写纠偏表</h2>
+<p class="section-subtitle">把转写噪声纠正为可理解概念，防止错误词汇把产品判断带偏。</p>
+<div class="correction-grid">
+<div class="correction-card">
+<div class="correction-wrong">身材 / 申牌 / 真才</div>
+<div class="correction-right">生财</div>
+<p class="correction-note">上下文反复出现航海、圈友、线下局，应统一理解为生财社群。</p>
+</div>
+<div class="correction-card">
+<div class="correction-wrong">Webcoding</div>
+<div class="correction-right">Vibe Coding / AI辅助编程</div>
+<p class="correction-note">参与者描述的是用AI快速生成网站或小工具，而不是传统手写代码。</p>
+</div>
+<div class="correction-card">
+<div class="correction-wrong">Redis需求</div>
+<div class="correction-right">Reddit需求</div>
+<p class="correction-note">语境是海外社区找痛点、找抱怨、找用户原帖，不是数据库Redis。</p>
+</div>
+<div class="correction-card">
+<div class="correction-wrong">Cloudcode</div>
+<div class="correction-right">Claude Code</div>
+<p class="correction-note">讨论的是AI编程工具与泄露功能，语音转写把Claude识别偏了。</p>
+</div>
+<div class="correction-card">
+<div class="correction-wrong">科菲的SU</div>
+<div class="correction-right">Coffee / SEO语境</div>
+<p class="correction-note">现场讨论搜索流量、热词、海外站，核心是SEO策略而非单独软件名。</p>
+</div>
+<div class="correction-card">
+<div class="correction-wrong">GU / GEOGEO</div>
+<div class="correction-right">GEO</div>
+<p class="correction-note">上下文是生成式搜索优化或AI搜索曝光，简称应保留为GEO。</p>
+</div>
+<div class="correction-card">
+<div class="correction-wrong">小白 / 小潘 / 小裴</div>
+<div class="correction-right">课程与导师称呼</div>
+<p class="correction-note">转写中姓名混杂，卡片保留“老师/导师/课程方法”而不强行定名。</p>
+</div>
+<div class="correction-card">
+<div class="correction-wrong">Ready / Already</div>
+<div class="correction-right">Reddit</div>
+<p class="correction-note">与需求采集、社区搜索、封号、发帖相关，统一归入Reddit场景。</p>
+</div>
+<div class="correction-card">
+<div class="correction-wrong">Workbody</div>
+<div class="correction-right">工作流/知识体工具</div>
+<p class="correction-note">语境是把老师方法蒸馏成AI助手，保留为“方法型AI助手”。</p>
+</div>
+<div class="correction-card">
+<div class="correction-wrong">拍个荔枝</div>
+<div class="correction-right">照片日记示例</div>
+<p class="correction-note">不是水果本身重要，而是AI自动聚焦日常照片中的记忆点。</p>
+</div>
+<div class="correction-card">
+<div class="correction-wrong">老登</div>
+<div class="correction-right">高龄或传统企业用户</div>
+<p class="correction-note">这是现场调侃，产品分析里转成“低数字化熟练度用户”。</p>
+</div>
+<div class="correction-card">
+<div class="correction-wrong">马扁</div>
+<div class="correction-right">被骗</div>
+<p class="correction-note">表达的是对互联网赚钱、知识付费和AI项目的戒备心理。</p>
+</div>
+<div class="correction-card">
+<div class="correction-wrong">扣子编程</div>
+<div class="correction-right">Coze类AI编程入口</div>
+<p class="correction-note">现场操作是把需求复制进AI工具，逐步问答生成原型。</p>
+</div>
+<div class="correction-card">
+<div class="correction-wrong">卖空气</div>
+<div class="correction-right">预售式需求验证</div>
+<p class="correction-note">产品未完成时先放出概念入口，观察是否有人咨询或购买。</p>
+</div>
+<div class="correction-card">
+<div class="correction-wrong">住宅IP</div>
+<div class="correction-right">稳定代理与账号环境</div>
+<p class="correction-note">属于海外平台采集、发帖、防封的基础设施问题。</p>
+</div>
+<div class="correction-card">
+<div class="correction-wrong">时间管理宠物</div>
+<div class="correction-right">情绪化效率工具</div>
+<p class="correction-note">重点不是宠物形象，而是把休息、坚持、陪伴和传播性组合。</p>
+</div>
+</div>
+</section>
+<section class="section">
+<h2 class="section-title"><span>16</span>近距细节证据库</h2>
+<p class="section-subtitle">这些细节不抢远距核心，但在深读时能还原“为什么这个需求值得做、怎么做、哪里危险”。</p>
+<div class="detail-ledger">
+<div class="detail-card detail-tone-01">
+<div class="detail-title">主持人的真实意图</div>
+<p class="detail-evidence">组织者并不只是想办一场社交局，而是想把线下行业经验变成可积累的需求库。</p>
+<p class="detail-move">把每次聚会都沉淀成需求条目、痛点文案、竞品链接和原型入口。</p>
+</div>
+<div class="detail-card detail-tone-02">
+<div class="detail-title">线下局的优势</div>
+<p class="detail-evidence">线上读文章容易停在知道，线下听真实职业的人吐槽，会立刻出现具体场景和付费线索。</p>
+<p class="detail-move">需求挖掘活动要刻意邀请不同行业、不同年龄、不同技能颗粒度的人。</p>
+</div>
+<div class="detail-card detail-tone-03">
+<div class="detail-title">营销转AI的路径</div>
+<p class="detail-evidence">影视广告业务受疫情和行业变化影响后，AI编程成了重新连接老客户的能力入口。</p>
+<p class="detail-move">老客户信任关系可以降低AI项目的成交难度，是传统行业转AI的切口。</p>
+</div>
+<div class="detail-card detail-tone-04">
+<div class="detail-title">会务人转型</div>
+<p class="detail-evidence">会务出身的人擅长组局、链接、加微信、理解企业老板，但技术颗粒度可能不深。</p>
+<p class="detail-move">产品团队可以把这类人当成销售、需求访谈和交付桥梁。</p>
+</div>
+<div class="detail-card detail-tone-05">
+<div class="detail-title">程序员的自动成交</div>
+<p class="detail-evidence">网站挂软件、用户点击购买、发卡密、自动交付，这是一条轻量但完整的产品变现链。</p>
+<p class="detail-move">独立开发者要优先打通从展示、支付到交付的闭环。</p>
+</div>
+<div class="detail-card detail-tone-06">
+<div class="detail-title">财务用户的隐性痛点</div>
+<p class="detail-evidence">财务背景的参与者说自己想赚钱、愿意学习和付费，但行动跟不上付款速度。</p>
+<p class="detail-move">学习产品的真正问题可能不是内容不足，而是行动设计与陪伴机制不足。</p>
+</div>
+<div class="detail-card detail-tone-07">
+<div class="detail-title">游戏开发者的经验</div>
+<p class="detail-evidence">做出流水很高的游戏也可能因版号、IP、投诉和行业规则突然归零。</p>
+<p class="detail-move">高流水不等于高安全，产品机会必须同时看政策、渠道和版权风险。</p>
+</div>
+<div class="detail-card detail-tone-08">
+<div class="detail-title">AI出海试手</div>
+<p class="detail-evidence">背景移除网站是红海品类，但适合作为从手写代码切换到AI辅助开发的练习。</p>
+<p class="detail-move">练手项目要选择可上线、可收录、可测流量的小切口。</p>
+</div>
+<div class="detail-card detail-tone-09">
+<div class="detail-title">代做业务的第二曲线</div>
+<p class="detail-evidence">计算机代做类业务进入不确定阶段，从业者开始寻找更可持续的产品化需求。</p>
+<p class="detail-move">服务型技能可以转化为模板、工具、流程系统或垂直SaaS。</p>
+</div>
+<div class="detail-card detail-tone-10">
+<div class="detail-title">大学生的焦虑</div>
+<p class="detail-evidence">大二学生已经开始找副业、做小红书虚拟资料和AI产品，但卡在推广。</p>
+<p class="detail-move">年轻用户的需求是低门槛变现路径和可复制的分发动作。</p>
+</div>
+<div class="detail-card detail-tone-11">
+<div class="detail-title">老师的高密度场景</div>
+<p class="detail-evidence">教育行业变化慢、流程老、表格多、形式化任务多，因此存在大量微自动化机会。</p>
+<p class="detail-move">老师场景适合做小而痛的工具，不宜一开始做大而全的学校系统。</p>
+</div>
+<div class="detail-card detail-tone-12">
+<div class="detail-title">作业管理切口</div>
+<p class="detail-evidence">课代表、小组长、希沃白板、钉钉通知、长期缺交统计可以形成一个极简闭环。</p>
+<p class="detail-move">第一版只做点名、缺交、预警和周报，不必先做完整教务系统。</p>
+</div>
+<div class="detail-card detail-tone-13">
+<div class="detail-title">作文批改难点</div>
+<p class="detail-evidence">老师不是单纯要AI给建议，而是要像本校、本年级、本老师的批改风格。</p>
+<p class="detail-move">产品要蒸馏老师角色、评分维度和禁用表达，避免一眼AI味。</p>
+</div>
+<div class="detail-card detail-tone-14">
+<div class="detail-title">成长报告机会</div>
+<p class="detail-evidence">家长关心孩子是否均衡发展，但学校评价机制多停留在成绩和老师口头反馈。</p>
+<p class="detail-move">成长报告要整合成绩、作品、证书、行为、异常值和时间变化。</p>
+</div>
+<div class="detail-card detail-tone-15">
+<div class="detail-title">B端交付阻力</div>
+<p class="detail-evidence">客户付钱后仍觉得软件难用，说明文字说明书和视频说明书都没有解决第一阻力。</p>
+<p class="detail-move">软件应在产品内部提供引导、示例数据、一键体验和默认角色。</p>
+</div>
+<div class="detail-card detail-tone-16">
+<div class="detail-title">老板与HR矛盾</div>
+<p class="detail-evidence">老板希望软件提高招聘效率，HR可能觉得软件增加学习负担。</p>
+<p class="detail-move">销售给老板讲ROI，交付给HR降负担，续费时避免HR说坏话。</p>
+</div>
+<div class="detail-card detail-tone-17">
+<div class="detail-title">自动招聘配置</div>
+<p class="detail-evidence">岗位画像、筛选SOP、复聊话术越强，越需要用户投入配置成本。</p>
+<p class="detail-move">用行业模板和分步提问替代让HR自己写长提示词。</p>
+</div>
+<div class="detail-card detail-tone-18">
+<div class="detail-title">海外主播监督</div>
+<p class="detail-evidence">底薪制主播如果缺乏监管，可能在没有观众时看手机，有观众时也错过互动。</p>
+<p class="detail-move">用视觉抽帧、语音频率、客户进入提醒和无响应记录组合判断。</p>
+</div>
+<div class="detail-card detail-tone-19">
+<div class="detail-title">摸鱼定义</div>
+<p class="detail-evidence">如果只是说主播不努力，AI无法判断；必须把摸鱼拆成可观察动作。</p>
+<p class="detail-move">需求访谈必须追问：什么行为出现几次，你就认为需要扣分或提醒。</p>
+</div>
+<div class="detail-card detail-tone-20">
+<div class="detail-title">冷启动痛苦</div>
+<p class="detail-evidence">开发本身有成就感，推广却常常石沉大海，尤其从零到第一批用户。</p>
+<p class="detail-move">冷启动工具要承担重复发帖、找人、排程、跟进和反馈归档。</p>
+</div>
+<div class="detail-card detail-tone-21">
+<div class="detail-title">前1000客户</div>
+<p class="detail-evidence">海外SaaS常需要手动邮件、LinkedIn触达、Reddit回复，回复率低但必须做。</p>
+<p class="detail-move">AI可以辅助筛选目标客户和生成个性化触达，但仍要保留人的判断。</p>
+</div>
+<div class="detail-card detail-tone-22">
+<div class="detail-title">职业测评入口</div>
+<p class="detail-evidence">副业识别测评像MBTI一样有传播潜力，因为它把焦虑包装成可分享结果。</p>
+<p class="detail-move">后端可以接课程、咨询、求职训练、专业选择或副业路径。</p>
+</div>
+<div class="detail-card detail-tone-23">
+<div class="detail-title">Reddit采集难点</div>
+<p class="detail-evidence">大家都想从海外社区找需求，但账号封禁、代理和反爬让新手难以稳定操作。</p>
+<p class="detail-move">工具价值不只是爬取内容，还包括账号环境、搜索策略和需求筛选。</p>
+</div>
+<div class="detail-card detail-tone-24">
+<div class="detail-title">Freebook启发</div>
+<p class="detail-evidence">可探索百科把内容变成可不断点击的场景，适合知识学习和兴趣探索。</p>
+<p class="detail-move">中文版不宜泛做，适合先做城市、美食、历史或学科垂直版本。</p>
+</div>
+<div class="detail-card detail-tone-25">
+<div class="detail-title">情绪工具传播</div>
+<p class="detail-evidence">电子宠物强制休息比普通番茄钟更容易传播，因为用户愿意晒可爱的体验。</p>
+<p class="detail-move">效率工具加入情绪化外壳，可以提高留存、分享和付费意愿。</p>
+</div>
+<div class="detail-card detail-tone-26">
+<div class="detail-title">照片日记价值</div>
+<p class="detail-evidence">用户不想写日记，但愿意让AI从相册挑一张代表今天的照片做成卡片。</p>
+<p class="detail-move">核心是自动选择、自动美化、自动配字、长期回看。</p>
+</div>
+<div class="detail-card detail-tone-27">
+<div class="detail-title">回忆书生意</div>
+<p class="detail-evidence">朋友圈、微博、QQ空间、宝宝照片都能一键成书，纸质书比PDF更有情绪重量。</p>
+<p class="detail-move">线上内容线下实体化，是把低成本数据转成高感知价值的路径。</p>
+</div>
+<div class="detail-card detail-tone-28">
+<div class="detail-title">API中转本质</div>
+<p class="detail-evidence">它像批发转零售：把上游账号、额度、风险和发票能力重新包装卖给国内用户。</p>
+<p class="detail-move">红利来自信息差和供应链，但一旦上游改规则，利润会快速消失。</p>
+</div>
+<div class="detail-card detail-tone-29">
+<div class="detail-title">合规警惕</div>
+<p class="detail-evidence">逆向国内大模型、绕过平台限制、滥用账号池都可能带来法律与封禁风险。</p>
+<p class="detail-move">短期现金流不能用长期不可承受风险换取。</p>
+</div>
+<div class="detail-card detail-tone-30">
+<div class="detail-title">SEO与热词</div>
+<p class="detail-evidence">热词站上得快、下得也快；大词稳定但竞争大，个人要先拿节奏感。</p>
+<p class="detail-move">独立站试错可用热词练流程，再慢慢沉淀长期词。</p>
+</div>
+<div class="detail-card detail-tone-31">
+<div class="detail-title">注意力优先</div>
+<p class="detail-evidence">有创业者先拿短视频注意力和话题，再反向融资和完善产品。</p>
+<p class="detail-move">当开发门槛下降，分发能力会变成更稀缺的能力。</p>
+</div>
+<div class="detail-card detail-tone-32">
+<div class="detail-title">小程序历史窗口</div>
+<p class="detail-evidence">早期小程序矩阵和广告流量曾经容易起量，现在平台规则和流量成本都变了。</p>
+<p class="detail-move">复盘旧机会时要分清当时红利和今天可复制部分。</p>
+</div>
+<div class="detail-card detail-tone-33">
+<div class="detail-title">学习者的真实阻力</div>
+<p class="detail-evidence">很多人不是不愿意付费，而是不知道如何从课程进入第一步行动。</p>
+<p class="detail-move">陪跑不一定要重服务，可以是每日任务、反馈、同伴和成果展示。</p>
+</div>
+<div class="detail-card detail-tone-34">
+<div class="detail-title">需求表达辅助</div>
+<p class="detail-evidence">中老年或新手用户常常说不清需求，只能表达缺钱、想学、没动力。</p>
+<p class="detail-move">产品经理要把模糊愿望拆成目标、阻力、资源和可执行动作。</p>
+</div>
+<div class="detail-card detail-tone-35">
+<div class="detail-title">线下局工具化</div>
+<p class="detail-evidence">主持人的需求网站把现场口语变成结构化条目，再生成平台文案。</p>
+<p class="detail-move">线下活动如果有工具承接，就能从一次性交流变成长期资产。</p>
+</div>
+<div class="detail-card detail-tone-36">
+<div class="detail-title">痛点文案框架</div>
+<p class="detail-evidence">生活场景、年龄阶段、情绪记忆、人群身份、核心痛点、行动障碍六维组合。</p>
+<p class="detail-move">同一产品可以生成大量不同角度的共情文案。</p>
+</div>
+<div class="detail-card detail-tone-37">
+<div class="detail-title">AI原型问答</div>
+<p class="detail-evidence">不是直接让AI写代码，而是先让AI像苏格拉底一样不断追问需求。</p>
+<p class="detail-move">需求不清时，最好的提示词是先禁止写代码。</p>
+</div>
+<div class="detail-card detail-tone-38">
+<div class="detail-title">技术学习策略</div>
+<p class="detail-evidence">真正要系统学技术会很慢，现场建议是遇到问题再问AI或找懂技术的人。</p>
+<p class="detail-move">非技术创业者应先跑通用户和钱，再补技术深度。</p>
+</div>
+<div class="detail-card detail-tone-39">
+<div class="detail-title">产品与课程</div>
+<p class="detail-evidence">很多机会最终会变成课程、模板、服务、工具的组合，而不只是一个软件。</p>
+<p class="detail-move">商业设计要同时考虑交付成本、信任来源和复购路径。</p>
+</div>
+<div class="detail-card detail-tone-40">
+<div class="detail-title">长期沉淀</div>
+<p class="detail-evidence">有人明确说不想只做很快消失的生意，而想做能沉淀十年二十年的价值。</p>
+<p class="detail-move">项目选择要问：这个需求三个月后还在吗，三年后还在吗。</p>
+</div>
+</div>
+</section>
+<footer class="footer-check">
+<h2 class="section-title"><span>17</span>质量自检</h2>
+<div class="check-grid">
+<div class="check-card">
+<strong>信息层级</strong>
+<span>核心命题在顶部最大权重呈现，需求、流程、风险按重要性递减。</span>
+</div>
+<div class="check-card">
+<strong>认知流畅</strong>
+<span>单栏直角卡片，无交互、无动画、无侧边栏，阅读路径稳定。</span>
+</div>
+<div class="check-card">
+<strong>内容完整</strong>
+<span>已纠正主要语音转写误差，并保留会议最有价值的需求与金句。</span>
+</div>
+<div class="check-card">
+<strong>多尺度</strong>
+<span>远看核心句，中看七级模型与雷达，近看需求证据和行动清单。</span>
+</div>
+<div class="check-card">
+<strong>记忆增强</strong>
+<span>20个视觉锚点、20条金句、重复结构共同强化提取。</span>
+</div>
+<div class="check-card">
+<strong>实现约束</strong>
+<span>纯HTML+CSS，静态自适应，主卡片直角，无脚本与动态效果。</span>
+</div>
+</div>
+</footer>
+</article>
+</main>
+</body>
+</html>
