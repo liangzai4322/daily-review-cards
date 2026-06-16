@@ -1,0 +1,3530 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>认知优化卡片系统：情绪动机营销</title>
+<style>
+:root {
+--paper-00: #fffdf8;
+--paper-01: #fbf6ea;
+--paper-02: #f3eadb;
+--paper-03: #e8dcc8;
+--paper-04: #d8c9b2;
+--ink-00: #111413;
+--ink-01: #1d2220;
+--ink-02: #2c332f;
+--ink-03: #424b45;
+--ink-04: #5e675f;
+--ink-05: #7a837a;
+--ink-06: #99a198;
+--ink-07: #bbc2b8;
+--ink-08: #d7ddd2;
+--ink-09: #eef1ea;
+--anger-01: #5b1616;
+--anger-02: #8f2721;
+--anger-03: #c64e3f;
+--anger-04: #e98473;
+--anger-05: #f5c4b7;
+--pride-01: #61370b;
+--pride-02: #955d13;
+--pride-03: #c98a28;
+--pride-04: #e6b65f;
+--pride-05: #f4dc9d;
+--envy-01: #1f4b32;
+--envy-02: #2f7047;
+--envy-03: #4a9a64;
+--envy-04: #85bf91;
+--envy-05: #c4e2c3;
+--fear-01: #182c55;
+--fear-02: #24457d;
+--fear-03: #3c65a2;
+--fear-04: #7d9dcc;
+--fear-05: #c0d2ec;
+--guilt-01: #53315e;
+--guilt-02: #7d4a88;
+--guilt-03: #a36aaa;
+--guilt-04: #c79aca;
+--guilt-05: #e4cbe5;
+--greed-01: #6b4a06;
+--greed-02: #9a7213;
+--greed-03: #cda33a;
+--greed-04: #e7ca74;
+--greed-05: #f5e7b4;
+--calm-01: #16464a;
+--calm-02: #236b70;
+--calm-03: #44949a;
+--calm-04: #86c0c3;
+--calm-05: #c8e4e5;
+--live-01: #62313f;
+--live-02: #944b5e;
+--live-03: #bf6e7d;
+--live-04: #df9ca5;
+--live-05: #f0ccd1;
+--trust-01: #2f3d27;
+--trust-02: #536a3c;
+--trust-03: #7f9857;
+--trust-04: #b2c388;
+--trust-05: #dee7bf;
+--sale-01: #402d22;
+--sale-02: #6b4c36;
+--sale-03: #9a7350;
+--sale-04: #caa17c;
+--sale-05: #ead0af;
+--signal-01: #203c42;
+--signal-02: #315d66;
+--signal-03: #4d8490;
+--signal-04: #8ab6bd;
+--signal-05: #c8dfe2;
+--space-01: 2px;
+--space-02: 4px;
+--space-03: 6px;
+--space-04: 8px;
+--space-05: 10px;
+--space-06: 12px;
+--space-07: 16px;
+--space-08: 20px;
+--space-09: 24px;
+--space-10: 28px;
+--space-11: 32px;
+--space-12: 36px;
+--space-13: 40px;
+--space-14: 48px;
+--space-15: 56px;
+--space-16: 64px;
+--space-17: 72px;
+--space-18: 88px;
+--type-01: 8px;
+--type-02: 9px;
+--type-03: 10px;
+--type-04: 11px;
+--type-05: 12px;
+--type-06: 13px;
+--type-07: 14px;
+--type-08: 15px;
+--type-09: 16px;
+--type-10: 17px;
+--type-11: 18px;
+--type-12: 19px;
+--type-13: 20px;
+--type-14: 22px;
+--type-15: 24px;
+--type-16: 26px;
+--type-17: 28px;
+--type-18: 30px;
+--type-19: 33px;
+--type-20: 36px;
+--line-tight: 1.24;
+--line-normal: 1.58;
+--line-loose: 1.86;
+--weight-light: 300;
+--weight-regular: 400;
+--weight-medium: 500;
+--weight-semibold: 650;
+--weight-bold: 800;
+--stroke-hair: 1px;
+--stroke-thin: 2px;
+--stroke-mid: 4px;
+--stroke-strong: 8px;
+--measure-short: 48ch;
+--measure-reading: 70ch;
+--measure-wide: 92ch;
+--card-max: 1140px;
+--shadow-paper: 0 18px 60px rgba(17,20,19,.14);
+--shadow-inset: inset 0 0 0 1px rgba(17,20,19,.08);
+--shadow-left: inset 14px 0 0 rgba(91,22,22,.82);
+--radius-none: 0px;
+}
+html {
+font-size: 16px;
+background: var(--paper-03);
+color: var(--ink-01);
+letter-spacing: 0em;
+}
+body {
+margin: 0;
+min-width: 320px;
+font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft YaHei', 'PingFang SC', Arial, sans-serif;
+background: radial-gradient(circle at 10% 4%, rgba(198,78,63,.16), transparent 34%), radial-gradient(circle at 90% 12%, rgba(201,138,40,.18), transparent 30%), linear-gradient(180deg, var(--paper-01) 0%, var(--paper-03) 62%, var(--ink-09) 100%);
+color: var(--ink-01);
+line-height: var(--line-normal);
+letter-spacing: 0em;
+}
+*, *::before, *::after {
+box-sizing: border-box;
+border-radius: var(--radius-none);
+}
+.page-shell {
+width: 100%;
+padding: var(--space-13) var(--space-09);
+background: linear-gradient(90deg, rgba(91,22,22,.07), transparent 32%, rgba(35,107,112,.08));
+}
+.cognitive-card {
+width: min(100%, var(--card-max));
+margin: 0 auto;
+padding: var(--space-13) clamp(24px, 5vw, 72px) var(--space-13);
+background: var(--paper-00);
+border: var(--stroke-strong) solid var(--ink-00);
+box-shadow: var(--shadow-paper);
+position: relative;
+overflow: hidden;
+}
+.cognitive-card::before {
+content: '';
+position: absolute;
+inset: 0 auto 0 0;
+width: 18px;
+background: linear-gradient(180deg, var(--anger-02), var(--pride-03) 28%, var(--fear-02) 55%, var(--guilt-02) 78%, var(--trust-02));
+}
+.cognitive-card::after {
+content: '';
+position: absolute;
+inset: auto 0 0 0;
+height: 12px;
+background: linear-gradient(90deg, var(--anger-03), var(--pride-03), var(--envy-03), var(--fear-03), var(--guilt-03));
+}
+.hero {
+display: grid;
+grid-template-columns: 1fr;
+gap: var(--space-09);
+padding: var(--space-11) 0 var(--space-10) var(--space-09);
+border-bottom: var(--stroke-mid) solid var(--ink-00);
+position: relative;
+}
+.hero-kicker {
+display: inline-flex;
+align-items: center;
+width: max-content;
+max-width: 100%;
+padding: var(--space-03) var(--space-06);
+background: var(--ink-00);
+color: var(--paper-00);
+font-size: var(--type-06);
+font-weight: var(--weight-semibold);
+line-height: var(--line-tight);
+}
+.hero-title {
+max-width: 13em;
+margin: 0;
+color: var(--ink-00);
+font-size: clamp(32px, 6vw, 64px);
+font-weight: var(--weight-bold);
+line-height: .98;
+letter-spacing: 0em;
+}
+.hero-title strong {
+color: var(--anger-02);
+font-weight: var(--weight-bold);
+}
+.hero-core {
+max-width: var(--measure-wide);
+padding: var(--space-08) var(--space-09);
+background: linear-gradient(90deg, rgba(91,22,22,.12), rgba(201,138,40,.14));
+border-left: var(--stroke-strong) solid var(--anger-02);
+border-top: var(--stroke-thin) solid var(--anger-03);
+border-bottom: var(--stroke-thin) solid var(--pride-03);
+font-size: var(--type-15);
+font-weight: var(--weight-semibold);
+line-height: var(--line-normal);
+color: var(--ink-00);
+}
+.meta-grid {
+display: grid;
+grid-template-columns: repeat(4, minmax(0, 1fr));
+gap: var(--space-06);
+}
+.meta-cell {
+padding: var(--space-06) var(--space-07);
+background: var(--paper-01);
+border: var(--stroke-hair) solid var(--ink-08);
+box-shadow: var(--shadow-inset);
+}
+.meta-label {
+display: block;
+color: var(--ink-05);
+font-size: var(--type-05);
+font-weight: var(--weight-semibold);
+line-height: var(--line-tight);
+}
+.meta-value {
+display: block;
+margin-top: var(--space-02);
+color: var(--ink-00);
+font-size: var(--type-09);
+font-weight: var(--weight-semibold);
+line-height: var(--line-normal);
+}
+.section {
+padding: var(--space-13) 0 0 var(--space-09);
+position: relative;
+}
+.section-title {
+display: grid;
+grid-template-columns: auto 1fr;
+align-items: baseline;
+gap: var(--space-07);
+margin: 0 0 var(--space-08);
+color: var(--ink-00);
+font-size: var(--type-18);
+font-weight: var(--weight-bold);
+line-height: var(--line-tight);
+letter-spacing: 0em;
+}
+.section-title span {
+display: inline-block;
+padding: var(--space-03) var(--space-06);
+background: var(--anger-02);
+color: var(--paper-00);
+font-size: var(--type-07);
+font-weight: var(--weight-bold);
+line-height: var(--line-tight);
+}
+.section-subtitle {
+max-width: var(--measure-reading);
+margin: 0 0 var(--space-09);
+color: var(--ink-04);
+font-size: var(--type-10);
+font-weight: var(--weight-regular);
+line-height: var(--line-loose);
+}
+.summary-block {
+display: grid;
+gap: var(--space-07);
+max-width: var(--measure-wide);
+}
+.summary-paragraph {
+margin: 0;
+padding: var(--space-08) var(--space-09);
+background: var(--paper-01);
+border-left: var(--stroke-mid) solid var(--fear-02);
+box-shadow: var(--shadow-inset);
+color: var(--ink-02);
+font-size: var(--type-11);
+font-weight: var(--weight-regular);
+line-height: var(--line-loose);
+}
+.hierarchy-stack {
+display: grid;
+gap: var(--space-06);
+}
+.hierarchy-item {
+display: grid;
+grid-template-columns: minmax(130px, 180px) 1fr;
+gap: var(--space-07);
+padding: var(--space-07) var(--space-08);
+background: linear-gradient(90deg, rgba(91,22,22,.08), rgba(255,253,248,.92));
+border-left: var(--stroke-strong) solid var(--anger-02);
+box-shadow: var(--shadow-inset);
+}
+.hierarchy-level {
+color: var(--anger-01);
+font-size: var(--type-12);
+font-weight: var(--weight-bold);
+line-height: var(--line-tight);
+}
+.hierarchy-main {
+margin: 0;
+color: var(--ink-00);
+font-size: var(--type-11);
+font-weight: var(--weight-semibold);
+line-height: var(--line-normal);
+}
+.hierarchy-detail {
+margin: var(--space-03) 0 0;
+color: var(--ink-04);
+font-size: var(--type-08);
+font-weight: var(--weight-regular);
+line-height: var(--line-normal);
+}
+.path-grid {
+display: grid;
+grid-template-columns: repeat(5, minmax(0, 1fr));
+gap: var(--space-06);
+}
+.path-card {
+padding: var(--space-07);
+background: var(--paper-01);
+border-top: var(--stroke-mid) solid var(--pride-03);
+box-shadow: var(--shadow-inset);
+}
+.path-card h3 {
+margin: 0 0 var(--space-04);
+color: var(--pride-01);
+font-size: var(--type-12);
+font-weight: var(--weight-bold);
+line-height: var(--line-tight);
+}
+.path-card p {
+margin: 0;
+color: var(--ink-03);
+font-size: var(--type-07);
+font-weight: var(--weight-regular);
+line-height: var(--line-normal);
+}
+.path-note {
+display: block;
+margin-top: var(--space-05);
+padding-top: var(--space-04);
+border-top: var(--stroke-hair) solid var(--ink-08);
+color: var(--ink-05);
+font-size: var(--type-06);
+font-weight: var(--weight-semibold);
+line-height: var(--line-normal);
+}
+.principle-grid {
+display: grid;
+grid-template-columns: repeat(4, minmax(0, 1fr));
+gap: var(--space-06);
+}
+.principle-card {
+padding: var(--space-07);
+background: var(--ink-09);
+border-left: var(--stroke-mid) solid var(--calm-02);
+box-shadow: var(--shadow-inset);
+}
+.principle-card h3 {
+margin: 0 0 var(--space-04);
+color: var(--calm-01);
+font-size: var(--type-11);
+font-weight: var(--weight-bold);
+line-height: var(--line-tight);
+}
+.principle-card p {
+margin: 0;
+color: var(--ink-03);
+font-size: var(--type-07);
+font-weight: var(--weight-regular);
+line-height: var(--line-normal);
+}
+.emotion-grid {
+display: grid;
+grid-template-columns: repeat(2, minmax(0, 1fr));
+gap: var(--space-07);
+}
+.emotion-card {
+display: grid;
+grid-template-rows: auto auto 1fr auto;
+gap: var(--space-05);
+min-height: 220px;
+padding: var(--space-08);
+background: var(--paper-01);
+border: var(--stroke-hair) solid var(--ink-08);
+box-shadow: var(--shadow-inset);
+}
+.emotion-title {
+margin: 0;
+color: var(--ink-00);
+font-size: var(--type-15);
+font-weight: var(--weight-bold);
+line-height: var(--line-tight);
+}
+.emotion-trigger {
+margin: 0;
+color: var(--ink-02);
+font-size: var(--type-09);
+font-weight: var(--weight-semibold);
+line-height: var(--line-normal);
+}
+.emotion-scene {
+margin: 0;
+padding: var(--space-04) var(--space-05);
+background: rgba(17,20,19,.06);
+color: var(--ink-04);
+font-size: var(--type-07);
+font-weight: var(--weight-medium);
+line-height: var(--line-normal);
+}
+.emotion-use {
+margin: 0;
+color: var(--anger-01);
+font-size: var(--type-08);
+font-weight: var(--weight-semibold);
+line-height: var(--line-normal);
+}
+.case-grid {
+display: grid;
+grid-template-columns: repeat(2, minmax(0, 1fr));
+gap: var(--space-07);
+}
+.case-card {
+padding: var(--space-08);
+background: var(--paper-01);
+border-left: var(--stroke-strong) solid var(--pride-03);
+box-shadow: var(--shadow-inset);
+}
+.case-card h3 {
+margin: 0 0 var(--space-04);
+color: var(--ink-00);
+font-size: var(--type-14);
+font-weight: var(--weight-bold);
+line-height: var(--line-tight);
+}
+.case-card p {
+margin: var(--space-04) 0 0;
+color: var(--ink-03);
+font-size: var(--type-08);
+font-weight: var(--weight-regular);
+line-height: var(--line-normal);
+}
+.case-signal {
+display: block;
+margin-top: var(--space-05);
+padding: var(--space-04) var(--space-05);
+background: rgba(201,138,40,.14);
+color: var(--pride-01);
+font-size: var(--type-07);
+font-weight: var(--weight-bold);
+line-height: var(--line-normal);
+}
+.scenario-list {
+display: grid;
+gap: var(--space-05);
+}
+.scenario-row {
+display: grid;
+grid-template-columns: 190px 1fr 1fr;
+gap: var(--space-06);
+padding: var(--space-06);
+background: var(--paper-01);
+border-left: var(--stroke-mid) solid var(--fear-02);
+box-shadow: var(--shadow-inset);
+}
+.scenario-name {
+display: grid;
+align-content: center;
+padding: var(--space-05);
+background: var(--fear-01);
+color: var(--paper-00);
+font-size: var(--type-09);
+font-weight: var(--weight-bold);
+line-height: var(--line-normal);
+}
+.scenario-context {
+margin: 0;
+padding: var(--space-05);
+background: rgba(36,69,125,.08);
+color: var(--ink-03);
+font-size: var(--type-08);
+font-weight: var(--weight-regular);
+line-height: var(--line-loose);
+}
+.scenario-move {
+margin: 0;
+padding: var(--space-05);
+background: rgba(83,49,94,.08);
+color: var(--guilt-01);
+font-size: var(--type-08);
+font-weight: var(--weight-semibold);
+line-height: var(--line-loose);
+}
+.quote-grid {
+display: grid;
+grid-template-columns: repeat(2, minmax(0, 1fr));
+gap: var(--space-06);
+}
+.quote-card {
+min-height: 124px;
+display: grid;
+align-content: center;
+padding: var(--space-07) var(--space-08);
+background: var(--ink-00);
+color: var(--paper-00);
+box-shadow: var(--shadow-inset);
+}
+.quote-card p {
+margin: 0;
+font-size: var(--type-12);
+font-weight: var(--weight-semibold);
+line-height: var(--line-normal);
+}
+.comparison-table {
+display: grid;
+gap: var(--space-04);
+}
+.comparison-row {
+display: grid;
+grid-template-columns: 1fr 1.4fr 1fr 1.4fr;
+gap: var(--space-04);
+}
+.comparison-cell {
+padding: var(--space-06) var(--space-07);
+background: var(--paper-01);
+border: var(--stroke-hair) solid var(--ink-08);
+color: var(--ink-03);
+font-size: var(--type-07);
+font-weight: var(--weight-regular);
+line-height: var(--line-normal);
+}
+.comparison-bad {
+background: rgba(198,78,63,.12);
+color: var(--anger-01);
+font-weight: var(--weight-bold);
+}
+.comparison-good {
+background: rgba(47,112,71,.12);
+color: var(--envy-01);
+font-weight: var(--weight-bold);
+}
+.chunk-cloud {
+display: grid;
+grid-template-columns: repeat(5, minmax(0, 1fr));
+gap: var(--space-05);
+}
+.chunk-pill {
+padding: var(--space-05) var(--space-06);
+background: var(--paper-01);
+border-left: var(--stroke-thin) solid var(--guilt-02);
+border-top: var(--stroke-hair) solid var(--guilt-05);
+color: var(--guilt-01);
+font-size: var(--type-07);
+font-weight: var(--weight-semibold);
+line-height: var(--line-normal);
+}
+.anchor-grid {
+display: grid;
+grid-template-columns: repeat(4, minmax(0, 1fr));
+gap: var(--space-06);
+}
+.anchor-card {
+padding: var(--space-06);
+background: var(--paper-01);
+border-top: var(--stroke-mid) solid var(--anger-02);
+box-shadow: var(--shadow-inset);
+}
+.anchor-word {
+display: block;
+color: var(--ink-00);
+font-size: var(--type-12);
+font-weight: var(--weight-bold);
+line-height: var(--line-tight);
+}
+.anchor-role {
+display: block;
+margin-top: var(--space-02);
+color: var(--anger-02);
+font-size: var(--type-07);
+font-weight: var(--weight-semibold);
+line-height: var(--line-tight);
+}
+.anchor-desc {
+margin: var(--space-04) 0 0;
+color: var(--ink-04);
+font-size: var(--type-07);
+font-weight: var(--weight-regular);
+line-height: var(--line-normal);
+}
+.correction-grid {
+display: grid;
+grid-template-columns: repeat(2, minmax(0, 1fr));
+gap: var(--space-06);
+}
+.correction-card {
+display: grid;
+grid-template-columns: 1fr 1fr;
+gap: var(--space-04);
+padding: var(--space-06);
+background: var(--paper-01);
+border-left: var(--stroke-mid) solid var(--guilt-02);
+box-shadow: var(--shadow-inset);
+}
+.correction-wrong {
+padding: var(--space-04) var(--space-05);
+background: rgba(198,78,63,.1);
+color: var(--anger-01);
+font-size: var(--type-07);
+font-weight: var(--weight-bold);
+line-height: var(--line-normal);
+}
+.correction-right {
+padding: var(--space-04) var(--space-05);
+background: rgba(47,112,71,.12);
+color: var(--envy-01);
+font-size: var(--type-07);
+font-weight: var(--weight-bold);
+line-height: var(--line-normal);
+}
+.correction-note {
+grid-column: 1 / -1;
+margin: 0;
+color: var(--ink-04);
+font-size: var(--type-07);
+font-weight: var(--weight-regular);
+line-height: var(--line-normal);
+}
+.deep-ledger {
+display: grid;
+gap: var(--space-05);
+}
+.deep-card {
+display: grid;
+grid-template-columns: 210px 1fr 1fr;
+gap: var(--space-06);
+align-items: stretch;
+padding: var(--space-06);
+background: var(--paper-01);
+border-left: var(--stroke-mid) solid var(--calm-02);
+box-shadow: var(--shadow-inset);
+}
+.deep-title {
+display: grid;
+align-content: center;
+padding: var(--space-05);
+background: var(--ink-00);
+color: var(--paper-00);
+font-size: var(--type-09);
+font-weight: var(--weight-bold);
+line-height: var(--line-normal);
+}
+.deep-evidence {
+margin: 0;
+padding: var(--space-05);
+background: rgba(35,107,112,.08);
+color: var(--ink-03);
+font-size: var(--type-08);
+font-weight: var(--weight-regular);
+line-height: var(--line-loose);
+}
+.deep-translation {
+margin: 0;
+padding: var(--space-05);
+background: rgba(201,138,40,.09);
+color: var(--pride-01);
+font-size: var(--type-08);
+font-weight: var(--weight-semibold);
+line-height: var(--line-loose);
+}
+.risk-grid {
+display: grid;
+grid-template-columns: repeat(2, minmax(0, 1fr));
+gap: var(--space-06);
+}
+.risk-card {
+padding: var(--space-07);
+background: rgba(198,78,63,.08);
+border-left: var(--stroke-mid) solid var(--anger-02);
+box-shadow: var(--shadow-inset);
+}
+.risk-card h3 {
+margin: 0 0 var(--space-04);
+color: var(--anger-01);
+font-size: var(--type-11);
+font-weight: var(--weight-bold);
+line-height: var(--line-tight);
+}
+.risk-card p {
+margin: 0;
+color: var(--ink-03);
+font-size: var(--type-08);
+font-weight: var(--weight-regular);
+line-height: var(--line-normal);
+}
+.action-list {
+display: grid;
+gap: var(--space-05);
+}
+.action-item {
+display: grid;
+grid-template-columns: 220px 1fr;
+gap: var(--space-07);
+padding: var(--space-07) var(--space-08);
+background: linear-gradient(90deg, rgba(201,138,40,.16), rgba(255,253,248,.96));
+border-left: var(--stroke-mid) solid var(--pride-02);
+box-shadow: var(--shadow-inset);
+}
+.action-title {
+color: var(--pride-01);
+font-size: var(--type-11);
+font-weight: var(--weight-bold);
+line-height: var(--line-tight);
+}
+.action-desc {
+color: var(--ink-03);
+font-size: var(--type-08);
+font-weight: var(--weight-regular);
+line-height: var(--line-normal);
+}
+.text-system {
+display: grid;
+grid-template-columns: repeat(2, minmax(0, 1fr));
+gap: var(--space-04);
+}
+.text-layer {
+display: grid;
+grid-template-columns: 58px 1fr 86px 72px 120px;
+gap: var(--space-04);
+align-items: center;
+padding: var(--space-04) var(--space-05);
+background: var(--paper-01);
+border-left: var(--stroke-thin) solid var(--signal-02);
+box-shadow: var(--shadow-inset);
+}
+.text-layer span {
+color: var(--ink-03);
+font-size: var(--type-06);
+font-weight: var(--weight-medium);
+line-height: var(--line-normal);
+}
+.palette-grid {
+display: grid;
+grid-template-columns: repeat(5, minmax(0, 1fr));
+gap: var(--space-05);
+}
+.palette-card {
+padding: var(--space-05);
+background: var(--paper-01);
+border: var(--stroke-hair) solid var(--ink-08);
+box-shadow: var(--shadow-inset);
+}
+.palette-strip {
+display: grid;
+grid-template-columns: repeat(4, 1fr);
+height: 26px;
+margin-bottom: var(--space-04);
+border: var(--stroke-hair) solid rgba(17,20,19,.12);
+}
+.palette-card h3 {
+margin: 0 0 var(--space-02);
+color: var(--ink-00);
+font-size: var(--type-08);
+font-weight: var(--weight-bold);
+line-height: var(--line-tight);
+}
+.palette-card p {
+margin: 0;
+color: var(--ink-04);
+font-size: var(--type-06);
+font-weight: var(--weight-regular);
+line-height: var(--line-normal);
+}
+.swatch-ledger {
+display: grid;
+grid-template-columns: repeat(8, minmax(0, 1fr));
+gap: var(--space-03);
+margin-top: var(--space-07);
+}
+.swatch-chip {
+height: 18px;
+border: var(--stroke-hair) solid rgba(17,20,19,.18);
+box-shadow: inset 0 0 0 2px rgba(255,255,255,.28);
+}
+.footer-check {
+margin-top: var(--space-13);
+padding: var(--space-10) 0 var(--space-13) var(--space-09);
+border-top: var(--stroke-mid) solid var(--ink-00);
+display: grid;
+gap: var(--space-06);
+}
+.check-grid {
+display: grid;
+grid-template-columns: repeat(3, minmax(0, 1fr));
+gap: var(--space-06);
+}
+.check-card {
+padding: var(--space-07);
+background: var(--ink-00);
+color: var(--paper-00);
+border-left: var(--stroke-mid) solid var(--pride-03);
+}
+.check-card strong {
+display: block;
+font-size: var(--type-10);
+font-weight: var(--weight-bold);
+line-height: var(--line-tight);
+}
+.check-card span {
+display: block;
+margin-top: var(--space-03);
+font-size: var(--type-07);
+font-weight: var(--weight-regular);
+line-height: var(--line-normal);
+color: var(--ink-08);
+}
+.text-level-01 {
+font-size: var(--type-20);
+font-weight: var(--weight-bold);
+line-height: var(--line-normal);
+letter-spacing: 0em;
+color: var(--ink-01);
+}
+.text-level-02 {
+font-size: var(--type-19);
+font-weight: var(--weight-bold);
+line-height: var(--line-normal);
+letter-spacing: 0em;
+color: var(--ink-02);
+}
+.text-level-03 {
+font-size: var(--type-18);
+font-weight: var(--weight-bold);
+line-height: var(--line-normal);
+letter-spacing: 0em;
+color: var(--ink-03);
+}
+.text-level-04 {
+font-size: var(--type-17);
+font-weight: var(--weight-bold);
+line-height: var(--line-normal);
+letter-spacing: 0em;
+color: var(--ink-04);
+}
+.text-level-05 {
+font-size: var(--type-16);
+font-weight: var(--weight-semibold);
+line-height: var(--line-normal);
+letter-spacing: 0em;
+color: var(--ink-05);
+}
+.text-level-06 {
+font-size: var(--type-15);
+font-weight: var(--weight-semibold);
+line-height: var(--line-normal);
+letter-spacing: 0em;
+color: var(--ink-06);
+}
+.text-level-07 {
+font-size: var(--type-14);
+font-weight: var(--weight-semibold);
+line-height: var(--line-normal);
+letter-spacing: 0em;
+color: var(--ink-07);
+}
+.text-level-08 {
+font-size: var(--type-13);
+font-weight: var(--weight-semibold);
+line-height: var(--line-normal);
+letter-spacing: 0em;
+color: var(--ink-08);
+}
+.text-level-09 {
+font-size: var(--type-12);
+font-weight: var(--weight-semibold);
+line-height: var(--line-normal);
+letter-spacing: 0em;
+color: var(--ink-09);
+}
+.text-level-10 {
+font-size: var(--type-11);
+font-weight: var(--weight-semibold);
+line-height: var(--line-normal);
+letter-spacing: 0em;
+color: var(--anger-01);
+}
+.text-level-11 {
+font-size: var(--type-10);
+font-weight: var(--weight-medium);
+line-height: var(--line-normal);
+letter-spacing: 0em;
+color: var(--anger-02);
+}
+.text-level-12 {
+font-size: var(--type-09);
+font-weight: var(--weight-medium);
+line-height: var(--line-normal);
+letter-spacing: 0em;
+color: var(--anger-03);
+}
+.text-level-13 {
+font-size: var(--type-08);
+font-weight: var(--weight-medium);
+line-height: var(--line-normal);
+letter-spacing: 0em;
+color: var(--anger-04);
+}
+.text-level-14 {
+font-size: var(--type-07);
+font-weight: var(--weight-medium);
+line-height: var(--line-normal);
+letter-spacing: 0em;
+color: var(--anger-05);
+}
+.text-level-15 {
+font-size: var(--type-06);
+font-weight: var(--weight-medium);
+line-height: var(--line-normal);
+letter-spacing: 0em;
+color: var(--pride-01);
+}
+.text-level-16 {
+font-size: var(--type-05);
+font-weight: var(--weight-medium);
+line-height: var(--line-normal);
+letter-spacing: 0em;
+color: var(--pride-02);
+}
+.text-level-17 {
+font-size: var(--type-04);
+font-weight: var(--weight-regular);
+line-height: var(--line-normal);
+letter-spacing: 0em;
+color: var(--pride-03);
+}
+.text-level-18 {
+font-size: var(--type-03);
+font-weight: var(--weight-regular);
+line-height: var(--line-normal);
+letter-spacing: 0em;
+color: var(--pride-04);
+}
+.text-level-19 {
+font-size: var(--type-02);
+font-weight: var(--weight-regular);
+line-height: var(--line-normal);
+letter-spacing: 0em;
+color: var(--pride-05);
+}
+.text-level-20 {
+font-size: var(--type-01);
+font-weight: var(--weight-regular);
+line-height: var(--line-normal);
+letter-spacing: 0em;
+color: var(--envy-01);
+}
+.emotion-tone-01 {
+border-top: var(--stroke-mid) solid var(--ink-06);
+border-left: var(--stroke-strong) solid var(--anger-03);
+background: linear-gradient(135deg, rgba(255,253,248,.98), color-mix(in srgb, var(--pride-04) 13%, white));
+}
+.emotion-tone-01 .emotion-use {
+color: var(--ink-06);
+}
+.emotion-tone-02 {
+border-top: var(--stroke-mid) solid var(--ink-09);
+border-left: var(--stroke-strong) solid var(--pride-03);
+background: linear-gradient(135deg, rgba(255,253,248,.98), color-mix(in srgb, var(--fear-01) 13%, white));
+}
+.emotion-tone-02 .emotion-use {
+color: var(--pride-01);
+}
+.emotion-tone-03 {
+border-top: var(--stroke-mid) solid var(--anger-03);
+border-left: var(--stroke-strong) solid var(--envy-03);
+background: linear-gradient(135deg, rgba(255,253,248,.98), color-mix(in srgb, var(--guilt-03) 13%, white));
+}
+.emotion-tone-03 .emotion-use {
+color: var(--envy-05);
+}
+.emotion-tone-04 {
+border-top: var(--stroke-mid) solid var(--pride-01);
+border-left: var(--stroke-strong) solid var(--fear-03);
+background: linear-gradient(135deg, rgba(255,253,248,.98), color-mix(in srgb, var(--greed-05) 13%, white));
+}
+.emotion-tone-04 .emotion-use {
+color: var(--guilt-04);
+}
+.emotion-tone-05 {
+border-top: var(--stroke-mid) solid var(--pride-04);
+border-left: var(--stroke-strong) solid var(--guilt-03);
+background: linear-gradient(135deg, rgba(255,253,248,.98), color-mix(in srgb, var(--live-02) 13%, white));
+}
+.emotion-tone-05 .emotion-use {
+color: var(--calm-03);
+}
+.emotion-tone-06 {
+border-top: var(--stroke-mid) solid var(--envy-02);
+border-left: var(--stroke-strong) solid var(--greed-03);
+background: linear-gradient(135deg, rgba(255,253,248,.98), color-mix(in srgb, var(--trust-04) 13%, white));
+}
+.emotion-tone-06 .emotion-use {
+color: var(--trust-02);
+}
+.emotion-tone-07 {
+border-top: var(--stroke-mid) solid var(--envy-05);
+border-left: var(--stroke-strong) solid var(--calm-03);
+background: linear-gradient(135deg, rgba(255,253,248,.98), color-mix(in srgb, var(--signal-01) 13%, white));
+}
+.emotion-tone-07 .emotion-use {
+color: var(--signal-01);
+}
+.emotion-tone-08 {
+border-top: var(--stroke-mid) solid var(--fear-03);
+border-left: var(--stroke-strong) solid var(--live-03);
+background: linear-gradient(135deg, rgba(255,253,248,.98), color-mix(in srgb, var(--paper-02) 13%, white));
+}
+.emotion-tone-08 .emotion-use {
+color: var(--paper-04);
+}
+.emotion-tone-09 {
+border-top: var(--stroke-mid) solid var(--guilt-01);
+border-left: var(--stroke-strong) solid var(--trust-03);
+background: linear-gradient(135deg, rgba(255,253,248,.98), color-mix(in srgb, var(--ink-04) 13%, white));
+}
+.emotion-tone-09 .emotion-use {
+color: var(--ink-08);
+}
+.emotion-tone-10 {
+border-top: var(--stroke-mid) solid var(--guilt-04);
+border-left: var(--stroke-strong) solid var(--sale-03);
+background: linear-gradient(135deg, rgba(255,253,248,.98), color-mix(in srgb, var(--anger-02) 13%, white));
+}
+.emotion-tone-10 .emotion-use {
+color: var(--pride-03);
+}
+.case-tone-01 {
+border-left-color: var(--ink-05);
+background: linear-gradient(180deg, color-mix(in srgb, var(--ink-04) 9%, white), var(--paper-00));
+}
+.case-tone-01 .case-signal {
+background: color-mix(in srgb, var(--ink-04) 14%, white);
+color: var(--ink-07);
+}
+.case-tone-02 {
+border-left-color: var(--ink-09);
+background: linear-gradient(180deg, color-mix(in srgb, var(--anger-01) 9%, white), var(--paper-00));
+}
+.case-tone-02 .case-signal {
+background: color-mix(in srgb, var(--anger-03) 14%, white);
+color: var(--pride-03);
+}
+.case-tone-03 {
+border-left-color: var(--anger-04);
+background: linear-gradient(180deg, color-mix(in srgb, var(--pride-02) 9%, white), var(--paper-00));
+}
+.case-tone-03 .case-signal {
+background: color-mix(in srgb, var(--envy-01) 14%, white);
+color: var(--fear-03);
+}
+.case-tone-04 {
+border-left-color: var(--pride-03);
+background: linear-gradient(180deg, color-mix(in srgb, var(--envy-03) 9%, white), var(--paper-00));
+}
+.case-tone-04 .case-signal {
+background: color-mix(in srgb, var(--fear-04) 14%, white);
+color: var(--greed-03);
+}
+.case-tone-05 {
+border-left-color: var(--envy-02);
+background: linear-gradient(180deg, color-mix(in srgb, var(--fear-04) 9%, white), var(--paper-00));
+}
+.case-tone-05 .case-signal {
+background: color-mix(in srgb, var(--greed-02) 14%, white);
+color: var(--live-03);
+}
+.case-tone-06 {
+border-left-color: var(--fear-01);
+background: linear-gradient(180deg, color-mix(in srgb, var(--guilt-05) 9%, white), var(--paper-00));
+}
+.case-tone-06 .case-signal {
+background: color-mix(in srgb, var(--calm-05) 14%, white);
+color: var(--sale-03);
+}
+.case-tone-07 {
+border-left-color: var(--fear-05);
+background: linear-gradient(180deg, color-mix(in srgb, var(--calm-01) 9%, white), var(--paper-00));
+}
+.case-tone-07 .case-signal {
+background: color-mix(in srgb, var(--trust-03) 14%, white);
+color: var(--paper-02);
+}
+.case-tone-08 {
+border-left-color: var(--guilt-04);
+background: linear-gradient(180deg, color-mix(in srgb, var(--live-02) 9%, white), var(--paper-00));
+}
+.case-tone-08 .case-signal {
+background: color-mix(in srgb, var(--signal-01) 14%, white);
+color: var(--ink-07);
+}
+.case-tone-09 {
+border-left-color: var(--greed-03);
+background: linear-gradient(180deg, color-mix(in srgb, var(--trust-03) 9%, white), var(--paper-00));
+}
+.case-tone-09 .case-signal {
+background: color-mix(in srgb, var(--paper-03) 14%, white);
+color: var(--pride-03);
+}
+.case-tone-10 {
+border-left-color: var(--calm-02);
+background: linear-gradient(180deg, color-mix(in srgb, var(--sale-04) 9%, white), var(--paper-00));
+}
+.case-tone-10 .case-signal {
+background: color-mix(in srgb, var(--ink-06) 14%, white);
+color: var(--fear-03);
+}
+.case-tone-11 {
+border-left-color: var(--live-01);
+background: linear-gradient(180deg, color-mix(in srgb, var(--signal-05) 9%, white), var(--paper-00));
+}
+.case-tone-11 .case-signal {
+background: color-mix(in srgb, var(--anger-05) 14%, white);
+color: var(--greed-03);
+}
+.case-tone-12 {
+border-left-color: var(--live-05);
+background: linear-gradient(180deg, color-mix(in srgb, var(--ink-00) 9%, white), var(--paper-00));
+}
+.case-tone-12 .case-signal {
+background: color-mix(in srgb, var(--envy-03) 14%, white);
+color: var(--live-03);
+}
+.quote-tone-01 {
+border-left: var(--stroke-mid) solid var(--pride-04);
+background: linear-gradient(135deg, var(--ink-00), color-mix(in srgb, var(--ink-06) 24%, var(--ink-00)));
+}
+.quote-tone-02 {
+border-left: var(--stroke-mid) solid var(--envy-01);
+background: linear-gradient(135deg, var(--ink-00), color-mix(in srgb, var(--anger-01) 24%, var(--ink-00)));
+}
+.quote-tone-03 {
+border-left: var(--stroke-mid) solid var(--envy-03);
+background: linear-gradient(135deg, var(--ink-00), color-mix(in srgb, var(--anger-05) 24%, var(--ink-00)));
+}
+.quote-tone-04 {
+border-left: var(--stroke-mid) solid var(--envy-05);
+background: linear-gradient(135deg, var(--ink-00), color-mix(in srgb, var(--pride-04) 24%, var(--ink-00)));
+}
+.quote-tone-05 {
+border-left: var(--stroke-mid) solid var(--fear-02);
+background: linear-gradient(135deg, var(--ink-00), color-mix(in srgb, var(--envy-03) 24%, var(--ink-00)));
+}
+.quote-tone-06 {
+border-left: var(--stroke-mid) solid var(--fear-04);
+background: linear-gradient(135deg, var(--ink-00), color-mix(in srgb, var(--fear-02) 24%, var(--ink-00)));
+}
+.quote-tone-07 {
+border-left: var(--stroke-mid) solid var(--guilt-01);
+background: linear-gradient(135deg, var(--ink-00), color-mix(in srgb, var(--guilt-01) 24%, var(--ink-00)));
+}
+.quote-tone-08 {
+border-left: var(--stroke-mid) solid var(--guilt-03);
+background: linear-gradient(135deg, var(--ink-00), color-mix(in srgb, var(--guilt-05) 24%, var(--ink-00)));
+}
+.quote-tone-09 {
+border-left: var(--stroke-mid) solid var(--guilt-05);
+background: linear-gradient(135deg, var(--ink-00), color-mix(in srgb, var(--greed-04) 24%, var(--ink-00)));
+}
+.quote-tone-10 {
+border-left: var(--stroke-mid) solid var(--greed-02);
+background: linear-gradient(135deg, var(--ink-00), color-mix(in srgb, var(--calm-03) 24%, var(--ink-00)));
+}
+.quote-tone-11 {
+border-left: var(--stroke-mid) solid var(--greed-04);
+background: linear-gradient(135deg, var(--ink-00), color-mix(in srgb, var(--live-02) 24%, var(--ink-00)));
+}
+.quote-tone-12 {
+border-left: var(--stroke-mid) solid var(--calm-01);
+background: linear-gradient(135deg, var(--ink-00), color-mix(in srgb, var(--trust-01) 24%, var(--ink-00)));
+}
+.quote-tone-13 {
+border-left: var(--stroke-mid) solid var(--calm-03);
+background: linear-gradient(135deg, var(--ink-00), color-mix(in srgb, var(--trust-05) 24%, var(--ink-00)));
+}
+.quote-tone-14 {
+border-left: var(--stroke-mid) solid var(--calm-05);
+background: linear-gradient(135deg, var(--ink-00), color-mix(in srgb, var(--sale-04) 24%, var(--ink-00)));
+}
+.quote-tone-15 {
+border-left: var(--stroke-mid) solid var(--live-02);
+background: linear-gradient(135deg, var(--ink-00), color-mix(in srgb, var(--signal-03) 24%, var(--ink-00)));
+}
+.quote-tone-16 {
+border-left: var(--stroke-mid) solid var(--live-04);
+background: linear-gradient(135deg, var(--ink-00), color-mix(in srgb, var(--paper-01) 24%, var(--ink-00)));
+}
+.quote-tone-17 {
+border-left: var(--stroke-mid) solid var(--trust-01);
+background: linear-gradient(135deg, var(--ink-00), color-mix(in srgb, var(--ink-00) 24%, var(--ink-00)));
+}
+.quote-tone-18 {
+border-left: var(--stroke-mid) solid var(--trust-03);
+background: linear-gradient(135deg, var(--ink-00), color-mix(in srgb, var(--ink-04) 24%, var(--ink-00)));
+}
+.quote-tone-19 {
+border-left: var(--stroke-mid) solid var(--trust-05);
+background: linear-gradient(135deg, var(--ink-00), color-mix(in srgb, var(--ink-08) 24%, var(--ink-00)));
+}
+.quote-tone-20 {
+border-left: var(--stroke-mid) solid var(--sale-02);
+background: linear-gradient(135deg, var(--ink-00), color-mix(in srgb, var(--anger-03) 24%, var(--ink-00)));
+}
+.scenario-tone-01 {
+border-left-color: var(--ink-04);
+background: linear-gradient(90deg, color-mix(in srgb, var(--anger-02) 8%, white), var(--paper-00));
+}
+.scenario-tone-01 .scenario-name {
+background: var(--ink-06);
+}
+.scenario-tone-02 {
+border-left-color: var(--ink-09);
+background: linear-gradient(90deg, color-mix(in srgb, var(--pride-04) 8%, white), var(--paper-00));
+}
+.scenario-tone-02 .scenario-name {
+background: var(--pride-01);
+}
+.scenario-tone-03 {
+border-left-color: var(--anger-05);
+background: linear-gradient(90deg, color-mix(in srgb, var(--fear-01) 8%, white), var(--paper-00));
+}
+.scenario-tone-03 .scenario-name {
+background: var(--envy-05);
+}
+.scenario-tone-04 {
+border-left-color: var(--pride-05);
+background: linear-gradient(90deg, color-mix(in srgb, var(--guilt-03) 8%, white), var(--paper-00));
+}
+.scenario-tone-04 .scenario-name {
+background: var(--guilt-04);
+}
+.scenario-tone-05 {
+border-left-color: var(--envy-05);
+background: linear-gradient(90deg, color-mix(in srgb, var(--greed-05) 8%, white), var(--paper-00));
+}
+.scenario-tone-05 .scenario-name {
+background: var(--calm-03);
+}
+.scenario-tone-06 {
+border-left-color: var(--fear-05);
+background: linear-gradient(90deg, color-mix(in srgb, var(--live-02) 8%, white), var(--paper-00));
+}
+.scenario-tone-06 .scenario-name {
+background: var(--trust-02);
+}
+.scenario-tone-07 {
+border-left-color: var(--guilt-05);
+background: linear-gradient(90deg, color-mix(in srgb, var(--trust-04) 8%, white), var(--paper-00));
+}
+.scenario-tone-07 .scenario-name {
+background: var(--signal-01);
+}
+.scenario-tone-08 {
+border-left-color: var(--greed-05);
+background: linear-gradient(90deg, color-mix(in srgb, var(--signal-01) 8%, white), var(--paper-00));
+}
+.scenario-tone-08 .scenario-name {
+background: var(--paper-04);
+}
+.scenario-tone-09 {
+border-left-color: var(--calm-05);
+background: linear-gradient(90deg, color-mix(in srgb, var(--paper-02) 8%, white), var(--paper-00));
+}
+.scenario-tone-09 .scenario-name {
+background: var(--ink-08);
+}
+.scenario-tone-10 {
+border-left-color: var(--live-05);
+background: linear-gradient(90deg, color-mix(in srgb, var(--ink-04) 8%, white), var(--paper-00));
+}
+.scenario-tone-10 .scenario-name {
+background: var(--pride-03);
+}
+.scenario-tone-11 {
+border-left-color: var(--trust-05);
+background: linear-gradient(90deg, color-mix(in srgb, var(--anger-02) 8%, white), var(--paper-00));
+}
+.scenario-tone-11 .scenario-name {
+background: var(--fear-02);
+}
+.scenario-tone-12 {
+border-left-color: var(--sale-05);
+background: linear-gradient(90deg, color-mix(in srgb, var(--pride-04) 8%, white), var(--paper-00));
+}
+.scenario-tone-12 .scenario-name {
+background: var(--greed-01);
+}
+.anchor-tone-01 {
+border-top-color: var(--ink-06);
+background: linear-gradient(180deg, color-mix(in srgb, var(--ink-06) 10%, white), var(--paper-00));
+}
+.anchor-tone-01 .anchor-role {
+color: var(--ink-05);
+}
+.anchor-tone-02 {
+border-top-color: var(--anger-03);
+background: linear-gradient(180deg, color-mix(in srgb, var(--anger-05) 10%, white), var(--paper-00));
+}
+.anchor-tone-02 .anchor-role {
+color: var(--anger-05);
+}
+.anchor-tone-03 {
+border-top-color: var(--pride-04);
+background: linear-gradient(180deg, color-mix(in srgb, var(--envy-03) 10%, white), var(--paper-00));
+}
+.anchor-tone-03 .anchor-role {
+color: var(--envy-04);
+}
+.anchor-tone-04 {
+border-top-color: var(--envy-05);
+background: linear-gradient(180deg, color-mix(in srgb, var(--guilt-01) 10%, white), var(--paper-00));
+}
+.anchor-tone-04 .anchor-role {
+color: var(--guilt-03);
+}
+.anchor-tone-05 {
+border-top-color: var(--guilt-01);
+background: linear-gradient(180deg, color-mix(in srgb, var(--greed-04) 10%, white), var(--paper-00));
+}
+.anchor-tone-05 .anchor-role {
+color: var(--calm-02);
+}
+.anchor-tone-06 {
+border-top-color: var(--greed-02);
+background: linear-gradient(180deg, color-mix(in srgb, var(--live-02) 10%, white), var(--paper-00));
+}
+.anchor-tone-06 .anchor-role {
+color: var(--trust-01);
+}
+.anchor-tone-07 {
+border-top-color: var(--calm-03);
+background: linear-gradient(180deg, color-mix(in srgb, var(--trust-05) 10%, white), var(--paper-00));
+}
+.anchor-tone-07 .anchor-role {
+color: var(--sale-05);
+}
+.anchor-tone-08 {
+border-top-color: var(--live-04);
+background: linear-gradient(180deg, color-mix(in srgb, var(--signal-03) 10%, white), var(--paper-00));
+}
+.anchor-tone-08 .anchor-role {
+color: var(--paper-03);
+}
+.anchor-tone-09 {
+border-top-color: var(--trust-05);
+background: linear-gradient(180deg, color-mix(in srgb, var(--ink-00) 10%, white), var(--paper-00));
+}
+.anchor-tone-09 .anchor-role {
+color: var(--ink-07);
+}
+.anchor-tone-10 {
+border-top-color: var(--signal-01);
+background: linear-gradient(180deg, color-mix(in srgb, var(--ink-08) 10%, white), var(--paper-00));
+}
+.anchor-tone-10 .anchor-role {
+color: var(--pride-02);
+}
+.anchor-tone-11 {
+border-top-color: var(--paper-01);
+background: linear-gradient(180deg, color-mix(in srgb, var(--pride-02) 10%, white), var(--paper-00));
+}
+.anchor-tone-11 .anchor-role {
+color: var(--fear-01);
+}
+.anchor-tone-12 {
+border-top-color: var(--ink-02);
+background: linear-gradient(180deg, color-mix(in srgb, var(--envy-05) 10%, white), var(--paper-00));
+}
+.anchor-tone-12 .anchor-role {
+color: var(--guilt-05);
+}
+.anchor-tone-13 {
+border-top-color: var(--ink-08);
+background: linear-gradient(180deg, color-mix(in srgb, var(--guilt-03) 10%, white), var(--paper-00));
+}
+.anchor-tone-13 .anchor-role {
+color: var(--calm-04);
+}
+.anchor-tone-14 {
+border-top-color: var(--anger-05);
+background: linear-gradient(180deg, color-mix(in srgb, var(--calm-01) 10%, white), var(--paper-00));
+}
+.anchor-tone-14 .anchor-role {
+color: var(--trust-03);
+}
+.anchor-tone-15 {
+border-top-color: var(--envy-01);
+background: linear-gradient(180deg, color-mix(in srgb, var(--live-04) 10%, white), var(--paper-00));
+}
+.anchor-tone-15 .anchor-role {
+color: var(--signal-02);
+}
+.anchor-tone-16 {
+border-top-color: var(--fear-02);
+background: linear-gradient(180deg, color-mix(in srgb, var(--sale-02) 10%, white), var(--paper-00));
+}
+.anchor-tone-16 .anchor-role {
+color: var(--ink-00);
+}
+.anchor-tone-17 {
+border-top-color: var(--guilt-03);
+background: linear-gradient(180deg, color-mix(in srgb, var(--signal-05) 10%, white), var(--paper-00));
+}
+.anchor-tone-17 .anchor-role {
+color: var(--ink-09);
+}
+.anchor-tone-18 {
+border-top-color: var(--greed-04);
+background: linear-gradient(180deg, color-mix(in srgb, var(--ink-02) 10%, white), var(--paper-00));
+}
+.anchor-tone-18 .anchor-role {
+color: var(--pride-04);
+}
+.anchor-tone-19 {
+border-top-color: var(--calm-05);
+background: linear-gradient(180deg, color-mix(in srgb, var(--anger-01) 10%, white), var(--paper-00));
+}
+.anchor-tone-19 .anchor-role {
+color: var(--fear-03);
+}
+.anchor-tone-20 {
+border-top-color: var(--trust-01);
+background: linear-gradient(180deg, color-mix(in srgb, var(--pride-04) 10%, white), var(--paper-00));
+}
+.anchor-tone-20 .anchor-role {
+color: var(--greed-02);
+}
+.deep-tone-01 {
+border-left-color: var(--ink-01);
+background: linear-gradient(90deg, color-mix(in srgb, var(--ink-06) 7%, white), var(--paper-00));
+}
+.deep-tone-01 .deep-title {
+background: var(--anger-01);
+}
+.deep-tone-02 {
+border-left-color: var(--ink-06);
+background: linear-gradient(90deg, color-mix(in srgb, var(--anger-04) 7%, white), var(--paper-00));
+}
+.deep-tone-02 .deep-title {
+background: var(--pride-05);
+}
+.deep-tone-03 {
+border-left-color: var(--anger-02);
+background: linear-gradient(90deg, color-mix(in srgb, var(--envy-01) 7%, white), var(--paper-00));
+}
+.deep-tone-03 .deep-title {
+background: var(--fear-04);
+}
+.deep-tone-04 {
+border-left-color: var(--pride-02);
+background: linear-gradient(90deg, color-mix(in srgb, var(--fear-03) 7%, white), var(--paper-00));
+}
+.deep-tone-04 .deep-title {
+background: var(--greed-03);
+}
+.deep-tone-05 {
+border-left-color: var(--envy-02);
+background: linear-gradient(90deg, color-mix(in srgb, var(--guilt-05) 7%, white), var(--paper-00));
+}
+.deep-tone-05 .deep-title {
+background: var(--live-02);
+}
+.deep-tone-06 {
+border-left-color: var(--fear-02);
+background: linear-gradient(90deg, color-mix(in srgb, var(--calm-02) 7%, white), var(--paper-00));
+}
+.deep-tone-06 .deep-title {
+background: var(--sale-01);
+}
+.deep-tone-07 {
+border-left-color: var(--guilt-02);
+background: linear-gradient(90deg, color-mix(in srgb, var(--live-04) 7%, white), var(--paper-00));
+}
+.deep-tone-07 .deep-title {
+background: var(--signal-05);
+}
+.deep-tone-08 {
+border-left-color: var(--greed-02);
+background: linear-gradient(90deg, color-mix(in srgb, var(--sale-01) 7%, white), var(--paper-00));
+}
+.deep-tone-08 .deep-title {
+background: var(--ink-03);
+}
+.deep-tone-09 {
+border-left-color: var(--calm-02);
+background: linear-gradient(90deg, color-mix(in srgb, var(--signal-03) 7%, white), var(--paper-00));
+}
+.deep-tone-09 .deep-title {
+background: var(--anger-03);
+}
+.deep-tone-10 {
+border-left-color: var(--live-02);
+background: linear-gradient(90deg, color-mix(in srgb, var(--paper-04) 7%, white), var(--paper-00));
+}
+.deep-tone-10 .deep-title {
+background: var(--envy-02);
+}
+.deep-tone-11 {
+border-left-color: var(--trust-02);
+background: linear-gradient(90deg, color-mix(in srgb, var(--ink-06) 7%, white), var(--paper-00));
+}
+.deep-tone-11 .deep-title {
+background: var(--guilt-01);
+}
+.deep-tone-12 {
+border-left-color: var(--sale-02);
+background: linear-gradient(90deg, color-mix(in srgb, var(--anger-04) 7%, white), var(--paper-00));
+}
+.deep-tone-12 .deep-title {
+background: var(--greed-05);
+}
+.deep-tone-13 {
+border-left-color: var(--signal-02);
+background: linear-gradient(90deg, color-mix(in srgb, var(--envy-01) 7%, white), var(--paper-00));
+}
+.deep-tone-13 .deep-title {
+background: var(--live-04);
+}
+.deep-tone-14 {
+border-left-color: var(--paper-01);
+background: linear-gradient(90deg, color-mix(in srgb, var(--fear-03) 7%, white), var(--paper-00));
+}
+.deep-tone-14 .deep-title {
+background: var(--sale-03);
+}
+.deep-tone-15 {
+border-left-color: var(--ink-01);
+background: linear-gradient(90deg, color-mix(in srgb, var(--guilt-05) 7%, white), var(--paper-00));
+}
+.deep-tone-15 .deep-title {
+background: var(--paper-01);
+}
+.deep-tone-16 {
+border-left-color: var(--ink-06);
+background: linear-gradient(90deg, color-mix(in srgb, var(--calm-02) 7%, white), var(--paper-00));
+}
+.deep-tone-16 .deep-title {
+background: var(--ink-05);
+}
+.deep-tone-17 {
+border-left-color: var(--anger-02);
+background: linear-gradient(90deg, color-mix(in srgb, var(--live-04) 7%, white), var(--paper-00));
+}
+.deep-tone-17 .deep-title {
+background: var(--anger-05);
+}
+.deep-tone-18 {
+border-left-color: var(--pride-02);
+background: linear-gradient(90deg, color-mix(in srgb, var(--sale-01) 7%, white), var(--paper-00));
+}
+.deep-tone-18 .deep-title {
+background: var(--envy-04);
+}
+.deep-tone-19 {
+border-left-color: var(--envy-02);
+background: linear-gradient(90deg, color-mix(in srgb, var(--signal-03) 7%, white), var(--paper-00));
+}
+.deep-tone-19 .deep-title {
+background: var(--guilt-03);
+}
+.deep-tone-20 {
+border-left-color: var(--fear-02);
+background: linear-gradient(90deg, color-mix(in srgb, var(--paper-04) 7%, white), var(--paper-00));
+}
+.deep-tone-20 .deep-title {
+background: var(--calm-02);
+}
+.deep-tone-21 {
+border-left-color: var(--guilt-02);
+background: linear-gradient(90deg, color-mix(in srgb, var(--ink-06) 7%, white), var(--paper-00));
+}
+.deep-tone-21 .deep-title {
+background: var(--trust-01);
+}
+.deep-tone-22 {
+border-left-color: var(--greed-02);
+background: linear-gradient(90deg, color-mix(in srgb, var(--anger-04) 7%, white), var(--paper-00));
+}
+.deep-tone-22 .deep-title {
+background: var(--sale-05);
+}
+.deep-tone-23 {
+border-left-color: var(--calm-02);
+background: linear-gradient(90deg, color-mix(in srgb, var(--envy-01) 7%, white), var(--paper-00));
+}
+.deep-tone-23 .deep-title {
+background: var(--paper-03);
+}
+.deep-tone-24 {
+border-left-color: var(--live-02);
+background: linear-gradient(90deg, color-mix(in srgb, var(--fear-03) 7%, white), var(--paper-00));
+}
+.deep-tone-24 .deep-title {
+background: var(--ink-07);
+}
+.deep-tone-25 {
+border-left-color: var(--trust-02);
+background: linear-gradient(90deg, color-mix(in srgb, var(--guilt-05) 7%, white), var(--paper-00));
+}
+.deep-tone-25 .deep-title {
+background: var(--pride-02);
+}
+.deep-tone-26 {
+border-left-color: var(--sale-02);
+background: linear-gradient(90deg, color-mix(in srgb, var(--calm-02) 7%, white), var(--paper-00));
+}
+.deep-tone-26 .deep-title {
+background: var(--fear-01);
+}
+.deep-tone-27 {
+border-left-color: var(--signal-02);
+background: linear-gradient(90deg, color-mix(in srgb, var(--live-04) 7%, white), var(--paper-00));
+}
+.deep-tone-27 .deep-title {
+background: var(--guilt-05);
+}
+.deep-tone-28 {
+border-left-color: var(--paper-01);
+background: linear-gradient(90deg, color-mix(in srgb, var(--sale-01) 7%, white), var(--paper-00));
+}
+.deep-tone-28 .deep-title {
+background: var(--calm-04);
+}
+.deep-tone-29 {
+border-left-color: var(--ink-01);
+background: linear-gradient(90deg, color-mix(in srgb, var(--signal-03) 7%, white), var(--paper-00));
+}
+.deep-tone-29 .deep-title {
+background: var(--trust-03);
+}
+.deep-tone-30 {
+border-left-color: var(--ink-06);
+background: linear-gradient(90deg, color-mix(in srgb, var(--paper-04) 7%, white), var(--paper-00));
+}
+.deep-tone-30 .deep-title {
+background: var(--signal-02);
+}
+.deep-tone-31 {
+border-left-color: var(--anger-02);
+background: linear-gradient(90deg, color-mix(in srgb, var(--ink-06) 7%, white), var(--paper-00));
+}
+.deep-tone-31 .deep-title {
+background: var(--ink-00);
+}
+.deep-tone-32 {
+border-left-color: var(--pride-02);
+background: linear-gradient(90deg, color-mix(in srgb, var(--anger-04) 7%, white), var(--paper-00));
+}
+.deep-tone-32 .deep-title {
+background: var(--ink-09);
+}
+.deep-tone-33 {
+border-left-color: var(--envy-02);
+background: linear-gradient(90deg, color-mix(in srgb, var(--envy-01) 7%, white), var(--paper-00));
+}
+.deep-tone-33 .deep-title {
+background: var(--pride-04);
+}
+.deep-tone-34 {
+border-left-color: var(--fear-02);
+background: linear-gradient(90deg, color-mix(in srgb, var(--fear-03) 7%, white), var(--paper-00));
+}
+.deep-tone-34 .deep-title {
+background: var(--fear-03);
+}
+.deep-tone-35 {
+border-left-color: var(--guilt-02);
+background: linear-gradient(90deg, color-mix(in srgb, var(--guilt-05) 7%, white), var(--paper-00));
+}
+.deep-tone-35 .deep-title {
+background: var(--greed-02);
+}
+.deep-tone-36 {
+border-left-color: var(--greed-02);
+background: linear-gradient(90deg, color-mix(in srgb, var(--calm-02) 7%, white), var(--paper-00));
+}
+.deep-tone-36 .deep-title {
+background: var(--live-01);
+}
+.deep-tone-37 {
+border-left-color: var(--calm-02);
+background: linear-gradient(90deg, color-mix(in srgb, var(--live-04) 7%, white), var(--paper-00));
+}
+.deep-tone-37 .deep-title {
+background: var(--trust-05);
+}
+.deep-tone-38 {
+border-left-color: var(--live-02);
+background: linear-gradient(90deg, color-mix(in srgb, var(--sale-01) 7%, white), var(--paper-00));
+}
+.deep-tone-38 .deep-title {
+background: var(--signal-04);
+}
+.deep-tone-39 {
+border-left-color: var(--trust-02);
+background: linear-gradient(90deg, color-mix(in srgb, var(--signal-03) 7%, white), var(--paper-00));
+}
+.deep-tone-39 .deep-title {
+background: var(--ink-02);
+}
+.deep-tone-40 {
+border-left-color: var(--sale-02);
+background: linear-gradient(90deg, color-mix(in srgb, var(--paper-04) 7%, white), var(--paper-00));
+}
+.deep-tone-40 .deep-title {
+background: var(--anger-02);
+}
+.swatch-01 {
+background: var(--paper-00);
+}
+.swatch-02 {
+background: var(--paper-01);
+}
+.swatch-03 {
+background: var(--paper-02);
+}
+.swatch-04 {
+background: var(--paper-03);
+}
+.swatch-05 {
+background: var(--paper-04);
+}
+.swatch-06 {
+background: var(--ink-00);
+}
+.swatch-07 {
+background: var(--ink-01);
+}
+.swatch-08 {
+background: var(--ink-02);
+}
+.swatch-09 {
+background: var(--ink-03);
+}
+.swatch-10 {
+background: var(--ink-04);
+}
+.swatch-11 {
+background: var(--ink-05);
+}
+.swatch-12 {
+background: var(--ink-06);
+}
+.swatch-13 {
+background: var(--ink-07);
+}
+.swatch-14 {
+background: var(--ink-08);
+}
+.swatch-15 {
+background: var(--ink-09);
+}
+.swatch-16 {
+background: var(--anger-01);
+}
+.swatch-17 {
+background: var(--anger-02);
+}
+.swatch-18 {
+background: var(--anger-03);
+}
+.swatch-19 {
+background: var(--anger-04);
+}
+.swatch-20 {
+background: var(--anger-05);
+}
+.swatch-21 {
+background: var(--pride-01);
+}
+.swatch-22 {
+background: var(--pride-02);
+}
+.swatch-23 {
+background: var(--pride-03);
+}
+.swatch-24 {
+background: var(--pride-04);
+}
+.swatch-25 {
+background: var(--pride-05);
+}
+.swatch-26 {
+background: var(--envy-01);
+}
+.swatch-27 {
+background: var(--envy-02);
+}
+.swatch-28 {
+background: var(--envy-03);
+}
+.swatch-29 {
+background: var(--envy-04);
+}
+.swatch-30 {
+background: var(--envy-05);
+}
+.swatch-31 {
+background: var(--fear-01);
+}
+.swatch-32 {
+background: var(--fear-02);
+}
+.swatch-33 {
+background: var(--fear-03);
+}
+.swatch-34 {
+background: var(--fear-04);
+}
+.swatch-35 {
+background: var(--fear-05);
+}
+.swatch-36 {
+background: var(--guilt-01);
+}
+.swatch-37 {
+background: var(--guilt-02);
+}
+.swatch-38 {
+background: var(--guilt-03);
+}
+.swatch-39 {
+background: var(--guilt-04);
+}
+.swatch-40 {
+background: var(--guilt-05);
+}
+.swatch-41 {
+background: var(--greed-01);
+}
+.swatch-42 {
+background: var(--greed-02);
+}
+.swatch-43 {
+background: var(--greed-03);
+}
+.swatch-44 {
+background: var(--greed-04);
+}
+.swatch-45 {
+background: var(--greed-05);
+}
+.swatch-46 {
+background: var(--calm-01);
+}
+.swatch-47 {
+background: var(--calm-02);
+}
+.swatch-48 {
+background: var(--calm-03);
+}
+.swatch-49 {
+background: var(--calm-04);
+}
+.swatch-50 {
+background: var(--calm-05);
+}
+.swatch-51 {
+background: var(--live-01);
+}
+.swatch-52 {
+background: var(--live-02);
+}
+.swatch-53 {
+background: var(--live-03);
+}
+.swatch-54 {
+background: var(--live-04);
+}
+.swatch-55 {
+background: var(--live-05);
+}
+.swatch-56 {
+background: var(--trust-01);
+}
+.swatch-57 {
+background: var(--trust-02);
+}
+.swatch-58 {
+background: var(--trust-03);
+}
+.swatch-59 {
+background: var(--trust-04);
+}
+.swatch-60 {
+background: var(--trust-05);
+}
+.swatch-61 {
+background: var(--sale-01);
+}
+.swatch-62 {
+background: var(--sale-02);
+}
+.swatch-63 {
+background: var(--sale-03);
+}
+.swatch-64 {
+background: var(--sale-04);
+}
+.swatch-65 {
+background: var(--sale-05);
+}
+.swatch-66 {
+background: var(--signal-01);
+}
+.swatch-67 {
+background: var(--signal-02);
+}
+.swatch-68 {
+background: var(--signal-03);
+}
+.swatch-69 {
+background: var(--signal-04);
+}
+.swatch-70 {
+background: var(--signal-05);
+}
+.palette-strip-01 span:nth-child(1) {
+background: var(--paper-01);
+}
+.palette-strip-01 span:nth-child(2) {
+background: var(--paper-02);
+}
+.palette-strip-01 span:nth-child(3) {
+background: var(--paper-03);
+}
+.palette-strip-01 span:nth-child(4) {
+background: var(--paper-04);
+}
+.palette-strip-02 span:nth-child(1) {
+background: var(--ink-01);
+}
+.palette-strip-02 span:nth-child(2) {
+background: var(--ink-02);
+}
+.palette-strip-02 span:nth-child(3) {
+background: var(--ink-03);
+}
+.palette-strip-02 span:nth-child(4) {
+background: var(--ink-04);
+}
+.palette-strip-03 span:nth-child(1) {
+background: var(--ink-06);
+}
+.palette-strip-03 span:nth-child(2) {
+background: var(--ink-07);
+}
+.palette-strip-03 span:nth-child(3) {
+background: var(--ink-08);
+}
+.palette-strip-03 span:nth-child(4) {
+background: var(--ink-09);
+}
+.palette-strip-04 span:nth-child(1) {
+background: var(--anger-02);
+}
+.palette-strip-04 span:nth-child(2) {
+background: var(--anger-03);
+}
+.palette-strip-04 span:nth-child(3) {
+background: var(--anger-04);
+}
+.palette-strip-04 span:nth-child(4) {
+background: var(--anger-05);
+}
+.palette-strip-05 span:nth-child(1) {
+background: var(--pride-02);
+}
+.palette-strip-05 span:nth-child(2) {
+background: var(--pride-03);
+}
+.palette-strip-05 span:nth-child(3) {
+background: var(--pride-04);
+}
+.palette-strip-05 span:nth-child(4) {
+background: var(--pride-05);
+}
+.palette-strip-06 span:nth-child(1) {
+background: var(--envy-02);
+}
+.palette-strip-06 span:nth-child(2) {
+background: var(--envy-03);
+}
+.palette-strip-06 span:nth-child(3) {
+background: var(--envy-04);
+}
+.palette-strip-06 span:nth-child(4) {
+background: var(--envy-05);
+}
+.palette-strip-07 span:nth-child(1) {
+background: var(--fear-02);
+}
+.palette-strip-07 span:nth-child(2) {
+background: var(--fear-03);
+}
+.palette-strip-07 span:nth-child(3) {
+background: var(--fear-04);
+}
+.palette-strip-07 span:nth-child(4) {
+background: var(--fear-05);
+}
+.palette-strip-08 span:nth-child(1) {
+background: var(--guilt-02);
+}
+.palette-strip-08 span:nth-child(2) {
+background: var(--guilt-03);
+}
+.palette-strip-08 span:nth-child(3) {
+background: var(--guilt-04);
+}
+.palette-strip-08 span:nth-child(4) {
+background: var(--guilt-05);
+}
+.palette-strip-09 span:nth-child(1) {
+background: var(--greed-02);
+}
+.palette-strip-09 span:nth-child(2) {
+background: var(--greed-03);
+}
+.palette-strip-09 span:nth-child(3) {
+background: var(--greed-04);
+}
+.palette-strip-09 span:nth-child(4) {
+background: var(--greed-05);
+}
+.palette-strip-10 span:nth-child(1) {
+background: var(--calm-02);
+}
+.palette-strip-10 span:nth-child(2) {
+background: var(--calm-03);
+}
+.palette-strip-10 span:nth-child(3) {
+background: var(--calm-04);
+}
+.palette-strip-10 span:nth-child(4) {
+background: var(--calm-05);
+}
+@media (max-width: 1180px) {
+.page-shell {
+padding: var(--space-11) var(--space-07);
+}
+.cognitive-card {
+padding-left: clamp(22px, 4vw, 54px);
+padding-right: clamp(22px, 4vw, 54px);
+}
+.path-grid {
+grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.principle-grid {
+grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.anchor-grid {
+grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.palette-grid {
+grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+}
+@media (max-width: 940px) {
+.meta-grid {
+grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.path-grid {
+grid-template-columns: 1fr;
+}
+.emotion-grid {
+grid-template-columns: 1fr;
+}
+.case-grid {
+grid-template-columns: 1fr;
+}
+.quote-grid {
+grid-template-columns: 1fr;
+}
+.risk-grid {
+grid-template-columns: 1fr;
+}
+.check-grid {
+grid-template-columns: 1fr;
+}
+.text-system {
+grid-template-columns: 1fr;
+}
+}
+@media (max-width: 760px) {
+.page-shell {
+padding: 0;
+}
+.cognitive-card {
+width: 100%;
+border-width: var(--stroke-mid);
+box-shadow: none;
+padding: var(--space-13) var(--space-07);
+}
+.hero {
+padding-left: var(--space-07);
+}
+.section {
+padding-left: var(--space-07);
+}
+.footer-check {
+padding-left: var(--space-07);
+}
+.hierarchy-item {
+grid-template-columns: 1fr;
+}
+.scenario-row {
+grid-template-columns: 1fr;
+}
+.comparison-row {
+grid-template-columns: 1fr;
+}
+.chunk-cloud {
+grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.anchor-grid {
+grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+.swatch-ledger {
+grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+}
+@media (max-width: 560px) {
+.hero-title {
+font-size: 36px;
+line-height: 1.04;
+}
+.hero-core {
+font-size: var(--type-12);
+padding: var(--space-07);
+}
+.meta-grid {
+grid-template-columns: 1fr;
+}
+.principle-grid {
+grid-template-columns: 1fr;
+}
+.action-item {
+grid-template-columns: 1fr;
+}
+.anchor-grid {
+grid-template-columns: 1fr;
+}
+.palette-grid {
+grid-template-columns: 1fr;
+}
+.text-layer {
+grid-template-columns: 48px 1fr;
+}
+.text-layer span:nth-child(n+3) {
+display: inline-block;
+}
+.correction-grid {
+grid-template-columns: 1fr;
+}
+.deep-card {
+grid-template-columns: 1fr;
+}
+}
+@media (max-width: 420px) {
+.cognitive-card {
+padding-left: var(--space-06);
+padding-right: var(--space-06);
+}
+.hero {
+padding-left: var(--space-05);
+}
+.section {
+padding-left: var(--space-05);
+}
+.section-title {
+grid-template-columns: 1fr;
+font-size: var(--type-15);
+}
+.summary-paragraph {
+font-size: var(--type-09);
+padding: var(--space-07);
+}
+.chunk-cloud {
+grid-template-columns: 1fr;
+}
+.swatch-ledger {
+grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+}
+</style>
+</head>
+<body>
+<main class="page-shell">
+<article class="cognitive-card">
+<header class="hero">
+<div class="hero-kicker">2026年2月25日直播录音 · 情绪动机营销 · 顶峰会发售拆解</div>
+<h1 class="hero-title">给情绪一个<span></span><strong>成交出口</strong></h1>
+<div class="hero-core">高级营销不是把产品讲得更用力，而是把客户心里已经存在的情绪、动机和遗憾，组织成一个体面、合理、值得立刻行动的出口。</div>
+<div class="meta-grid">
+<div class="meta-cell">
+<span class="meta-label">提炼比例</span>
+<span class="meta-value">默认20-30%精华保留</span>
+</div>
+<div class="meta-cell">
+<span class="meta-label">核心主题</span>
+<span class="meta-value">情绪出口 · 动机洞察 · 场景成交</span>
+</div>
+<div class="meta-cell">
+<span class="meta-label">高频场景</span>
+<span class="meta-value">谈单、直播、写作、舆情、社群发售</span>
+</div>
+<div class="meta-cell">
+<span class="meta-label">输出形态</span>
+<span class="meta-value">单栏直角静态认知卡片</span>
+</div>
+</div>
+</header>
+<section class="section">
+<h2 class="section-title"><span>01</span>深度咀嚼后的核心理解</h2>
+<p class="section-subtitle">先从冗长直播、口语停顿和发售话术中提纯出真正的营销骨架。</p>
+<div class="summary-block">
+<p class="summary-paragraph">这段直播的核心不是“情绪营销很有用”这么简单，而是把营销从产品自夸转回到人的底层动机：用户不是因为你讲了多少功能而买单，而是因为你替他说出了心里说不出口的情绪，并且给这股情绪设计了一个体面、合理、可行动的出口。分享人用三个案例建立主论点：推荐理想汽车时，购买建议绑定了爱国情绪与积分利益；高端护发项目中，朋友圈任务没人发，但“老公帮洗头”活动让用户获得秀恩爱的正当理由；考研机构裂变中，父母不只是想帮孩子转介绍，更想展示劳苦功高、吐出培养孩子的苦水、在亲友面前显摆成果。三个案例共同证明：营销动作不是把产品推到用户面前，而是把用户本来就有、但缺少表达场景的情绪组织成行动。</p>
+<p class="summary-paragraph">直播的第二条主线是情绪的分层使用。愤怒被放在第一梯队，因为同仇敌忾、被冒犯、替自己或某个群体讨回公道，最容易激发注意力和表达欲；傲慢不是让销售说自己特别，而是把优越感还给客户，让客户感觉“我和别人不一样”；嫉妒对应“别人有我也要有”的攀比和掌控感；懒惰对应省力、被动收入、长尾流量、自动化；贪婪对应高情商地突破边界，让客户把获得更多的期待投射到成交动作上。分享人同时强调情绪ABC理论：事件A不直接导致结果C，真正决定情绪和行为的是底层信念B。对营销者来说，这意味着既要诊断客户的信念，也要管理自己的信念。钱和情绪的流向是相反的，谁能承接、包容、翻译别人的情绪，谁就更容易获得对方的信任与付费。</p>
+<p class="summary-paragraph">第三条主线是不同场景下的应用：一对一谈单要先识别身份和业务状态，实体店老板讲成本、房租、青春饭和转型焦虑；职场打工人讲裁员风险、线上业务和自我实现；咨询师讲高价学习后的变现不甘和影响力出口。直播发售无法一对一，就用人群分类法，把身份、阶段、痛点拆成评论区数字互动，哪个群体多就先打穿哪个群体，每拆完一类就顺势推产品。平和型创作者可以借助马斯洛需求理论和霍金斯能量表找情绪切口：内疚、遗憾、恐惧、损失厌恶都能成为内容入口。舆情处理则把黑粉视为“恶贵人”：先捧高其他用户，隔离闹事者；再点出闹事者动机；最后顺势推产品，把负面评论变成算法权重、稳定感展示和成交机会。最后的顶峰会发售，是整套方法的实战落点：用长期主义、线下活动、体验资格、抵扣优惠、推荐福利、个人收获和榜一背书完成信任闭环。</p>
+</div>
+</section>
+<section class="section">
+<h2 class="section-title"><span>02</span>七级信息层级模型</h2>
+<p class="section-subtitle">远看只读核心，中距离看框架，近距离再进入场景、话术与风险。</p>
+<div class="hierarchy-stack">
+<div class="hierarchy-item text-level-04">
+<div class="hierarchy-level">1级核心理念</div>
+<div>
+<p class="hierarchy-main">高级营销是为客户的情绪创造出口。</p>
+<p class="hierarchy-detail">远看只需读懂这句：不是卖产品，而是承接动机。</p>
+</div>
+</div>
+<div class="hierarchy-item text-level-05">
+<div class="hierarchy-level">2级主方法</div>
+<div>
+<p class="hierarchy-main">读懂行为背后的真实动机，把情绪转成合理行动。</p>
+<p class="hierarchy-detail">案例、谈单、直播、舆情都围绕这一条展开。</p>
+</div>
+</div>
+<div class="hierarchy-item text-level-06">
+<div class="hierarchy-level">3级情绪模型</div>
+<div>
+<p class="hierarchy-main">愤怒、傲慢、嫉妒、懒惰、贪婪、内疚、恐惧。</p>
+<p class="hierarchy-detail">不同情绪对应不同注意力强度和转化路径。</p>
+</div>
+</div>
+<div class="hierarchy-item text-level-07">
+<div class="hierarchy-level">4级信念系统</div>
+<div>
+<p class="hierarchy-main">ABC理论：事件不决定结果，底层信念决定情绪。</p>
+<p class="hierarchy-detail">营销者要看见客户信念，也要稳定自己的信念。</p>
+</div>
+</div>
+<div class="hierarchy-item text-level-08">
+<div class="hierarchy-level">5级场景应用</div>
+<div>
+<p class="hierarchy-main">一对一谈单、直播发售、内容写作、舆情处理。</p>
+<p class="hierarchy-detail">场景不同，情绪触发与成交动作也不同。</p>
+</div>
+</div>
+<div class="hierarchy-item text-level-09">
+<div class="hierarchy-level">6级发售结构</div>
+<div>
+<p class="hierarchy-main">顶峰会用长期价值、体验门槛、抵扣政策、赠品背书成交。</p>
+<p class="hierarchy-detail">这部分是整场分享的商业闭环。</p>
+</div>
+</div>
+<div class="hierarchy-item text-level-10">
+<div class="hierarchy-level">7级辅助细节</div>
+<div>
+<p class="hierarchy-main">城市聚会、线下课、榜单、推荐人数、投资观点、优惠口径。</p>
+<p class="hierarchy-detail">细节用于增强可信度，但不应抢夺核心权重。</p>
+</div>
+</div>
+</div>
+</section>
+<section class="section">
+<h2 class="section-title"><span>03</span>五条视觉阅读路径</h2>
+<p class="section-subtitle">同一张卡片服务扫描、浏览、复盘、案例检索和自我校准五种任务。</p>
+<div class="path-grid">
+<div class="path-card">
+<h3>快速扫描</h3>
+<p>先看顶部核心句、七级模型、情绪地图与金句，30秒内抓住方法主轴。</p>
+<span class="path-note">适合只想带走“情绪出口”这个战略判断的人。</span>
+</div>
+<div class="path-card">
+<h3>结构浏览</h3>
+<p>沿着案例、情绪、信念、谈单、直播、舆情、发售七段阅读，5分钟形成应用框架。</p>
+<span class="path-note">适合正在做销售、直播、内容或社群发售的人。</span>
+</div>
+<div class="path-card">
+<h3>深度复盘</h3>
+<p>读完纠偏表、场景剧本、风险边界、行动清单，把它转成自己的话术库。</p>
+<span class="path-note">适合准备写文章、开直播、做产品发售的人。</span>
+</div>
+<div class="path-card">
+<h3>案例检索</h3>
+<p>只看案例卡和场景卡，找到与自己业务最像的人群和情绪触发点。</p>
+<span class="path-note">适合已经有产品但卖不动的人。</span>
+</div>
+<div class="path-card">
+<h3>自我校准</h3>
+<p>只看ABC理论、舆情处理和投资提醒，检查自己是否被情绪牵着走。</p>
+<span class="path-note">适合容易被评论、拒绝和亏损干扰的人。</span>
+</div>
+</div>
+</section>
+<section class="section">
+<h2 class="section-title"><span>04</span>八条底层营销原则</h2>
+<p class="section-subtitle">这些原则把“情绪”从玄学词汇转成可执行的成交判断。</p>
+<div class="principle-grid">
+<div class="principle-card">
+<h3>情绪出口</h3>
+<p>营销动作要让用户把原本压住的情绪表达出来，并且有理由行动。</p>
+</div>
+<div class="principle-card">
+<h3>动机先行</h3>
+<p>客户说的每句话都可能是线索，先追问动机，再判断方案。</p>
+</div>
+<div class="principle-card">
+<h3>优越感归还</h3>
+<p>不要证明自己特别，要让客户感觉自己被看见、被特殊对待。</p>
+</div>
+<div class="principle-card">
+<h3>愤怒慎用</h3>
+<p>愤怒能带来注意力和表达欲，但营销者自己要保持稳定。</p>
+</div>
+<div class="principle-card">
+<h3>分类打穿</h3>
+<p>直播和内容不面向所有人，而是逐类人群逐个场景击穿。</p>
+</div>
+<div class="principle-card">
+<h3>损失厌恶</h3>
+<p>用户常常不是怕花钱，而是还没看见继续拖延的时间成本。</p>
+</div>
+<div class="principle-card">
+<h3>舆情变资产</h3>
+<p>黑粉的评论、停留和措辞都可能变成算法权重与信任展示。</p>
+</div>
+<div class="principle-card">
+<h3>长期主义</h3>
+<p>一次成交之外，还要沉淀行业理解、人群理解和持续输出能力。</p>
+</div>
+</div>
+</section>
+<section class="section">
+<h2 class="section-title"><span>05</span>情绪动机地图</h2>
+<p class="section-subtitle">每种情绪都有触发条件、适用场景和使用边界，不能混用。</p>
+<div class="emotion-grid">
+<div class="emotion-card emotion-tone-01">
+<h3 class="emotion-title">愤怒</h3>
+<p class="emotion-trigger">被冒犯、替自己讨公道、同仇敌忾</p>
+<p class="emotion-scene">适用场景：爆款文章、社群讨论、短剧、舆情、对立话题</p>
+<p class="emotion-use">使用边界：制造共同敌人，但营销者自己不能失控。</p>
+</div>
+<div class="emotion-card emotion-tone-02">
+<h3 class="emotion-title">傲慢</h3>
+<p class="emotion-trigger">我和别人不一样，我值得更好的</p>
+<p class="emotion-scene">适用场景：高端消费、私教、咨询、奢侈服务、身份型产品</p>
+<p class="emotion-use">使用边界：把优越感还给客户，而不是夸自己高级。</p>
+</div>
+<div class="emotion-card emotion-tone-03">
+<h3 class="emotion-title">嫉妒</h3>
+<p class="emotion-trigger">别人有我也要有，别人领先我不能落后</p>
+<p class="emotion-scene">适用场景：老板买AI系统、同侪比较、成绩展示、职场进阶</p>
+<p class="emotion-use">使用边界：展示参照对象，唤起差距和追赶欲。</p>
+</div>
+<div class="emotion-card emotion-tone-04">
+<h3 class="emotion-title">懒惰</h3>
+<p class="emotion-trigger">想省力、想自动化、想被动获得结果</p>
+<p class="emotion-scene">适用场景：AI工具、自动获客、长尾流量、被动收入课程</p>
+<p class="emotion-use">使用边界：强调少做重复劳动，而不是承诺不劳而获。</p>
+</div>
+<div class="emotion-card emotion-tone-05">
+<h3 class="emotion-title">贪婪</h3>
+<p class="emotion-trigger">想获得更多、想抓住便宜、想占住机会</p>
+<p class="emotion-scene">适用场景：定金、限时优惠、权益叠加、套利机会</p>
+<p class="emotion-use">使用边界：用高情商推进边界，避免显得粗暴逼单。</p>
+</div>
+<div class="emotion-card emotion-tone-06">
+<h3 class="emotion-title">内疚</h3>
+<p class="emotion-trigger">我亏欠孩子、家人、自己或曾经的选择</p>
+<p class="emotion-scene">适用场景：亲子教育、成长产品、家庭关系、学习陪伴</p>
+<p class="emotion-use">使用边界：给弥补提供具体工具，不要只让用户难受。</p>
+</div>
+<div class="emotion-card emotion-tone-07">
+<h3 class="emotion-title">恐惧</h3>
+<p class="emotion-trigger">害怕错过、被裁、落后、未来后悔</p>
+<p class="emotion-scene">适用场景：转型、求职、投资、教育、技能学习</p>
+<p class="emotion-use">使用边界：点出客观存在的焦虑，不要无中生有制造恐慌。</p>
+</div>
+<div class="emotion-card emotion-tone-08">
+<h3 class="emotion-title">遗憾</h3>
+<p class="emotion-trigger">如果当时就开始，现在会不会不同</p>
+<p class="emotion-scene">适用场景：复购唤醒、长期课程、IP写作、自媒体启动</p>
+<p class="emotion-use">使用边界：把时间拉长，让用户看见拖延的复利损失。</p>
+</div>
+<div class="emotion-card emotion-tone-09">
+<h3 class="emotion-title">尊重</h3>
+<p class="emotion-trigger">我不是缺钱，我需要被理解和认可</p>
+<p class="emotion-scene">适用场景：职场人、专家型客户、咨询师、老板</p>
+<p class="emotion-use">使用边界：先肯定对方能力，再给成长出口。</p>
+</div>
+<div class="emotion-card emotion-tone-10">
+<h3 class="emotion-title">掌控</h3>
+<p class="emotion-trigger">我要知道系统、员工、业务是否可控</p>
+<p class="emotion-scene">适用场景：企业软件、AI管理工具、数据看板</p>
+<p class="emotion-use">使用边界：很多老板为掌控感付费，不只是为效率付费。</p>
+</div>
+</div>
+</section>
+<section class="section">
+<h2 class="section-title"><span>06</span>关键案例证据库</h2>
+<p class="section-subtitle">案例负责证明模型不是概念，而是能直接变成成交动作的结构。</p>
+<div class="case-grid">
+<div class="case-card case-tone-01">
+<h3>拱火式成交</h3>
+<p>夸对方厉害、有匠心，再指出“不如你的人营销更好不公平”。</p>
+<span class="case-signal">触发情绪：激发不甘与争气心</span>
+<p>让对方买解决方案不是为了产品，而是为了证明自己值得更好。</p>
+</div>
+<div class="case-card case-tone-02">
+<h3>理想汽车推荐</h3>
+<p>朋友想买日本车，分享人用爱国情绪与积分福利共同推动转介绍。</p>
+<span class="case-signal">触发情绪：爱国、仇日、利益共享</span>
+<p>情绪与实际利益叠加，推荐行为就更自然。</p>
+</div>
+<div class="case-card case-tone-03">
+<h3>老公帮洗头</h3>
+<p>高端护发项目从发朋友圈领券，改成老公帮洗头晒恩爱活动。</p>
+<span class="case-signal">触发情绪：秀恩爱、被照顾、体面展示</span>
+<p>用户不是缺旅行装，而是缺一个正当晒幸福的理由。</p>
+</div>
+<div class="case-card case-tone-04">
+<h3>考研父母裂变</h3>
+<p>采访父母培养孩子的辛苦，给父母劳苦功高和显摆成果的出口。</p>
+<span class="case-signal">触发情绪：显摆、吐苦水、家族荣誉</span>
+<p>转介绍不是孩子完成的，是父母主动扩散完成的。</p>
+</div>
+<div class="case-card case-tone-05">
+<h3>万元塑形内衣</h3>
+<p>把购买理由从塑形效果转成“不能把钱省给小妖精”。</p>
+<span class="case-signal">触发情绪：愤怒、危机、领地意识</span>
+<p>高价成交靠的不是理性参数，而是情绪强度。</p>
+</div>
+<div class="case-card case-tone-06">
+<h3>实体店老板谈单</h3>
+<p>共情房租、人流、营收不稳、守店辛苦和年龄压力。</p>
+<span class="case-signal">触发情绪：焦虑、苦楚、转型欲</span>
+<p>学费与半个月房租对比，降低决策门槛。</p>
+</div>
+<div class="case-card case-tone-07">
+<h3>职场打工人谈单</h3>
+<p>不说你穷，而说你热爱工作，突然闲下来会失去状态。</p>
+<span class="case-signal">触发情绪：裁员恐惧、自我实现</span>
+<p>把线上业务包装成保持社会化和认知状态的出口。</p>
+</div>
+<div class="case-card case-tone-08">
+<h3>咨询师谈单</h3>
+<p>看见咨询师高价学习却无人咨询的不甘，肯定其大爱和专业。</p>
+<span class="case-signal">触发情绪：不甘、被认可、影响力</span>
+<p>自媒体不是流量工具，而是让专业被看见的出口。</p>
+</div>
+<div class="case-card case-tone-09">
+<h3>直播大点名</h3>
+<p>按自由职业、兼职、实体店主、咨询师等身份让用户扣数字。</p>
+<span class="case-signal">触发情绪：被点名、被看见、参与感</span>
+<p>评论区互动本身也是分类成交的前奏。</p>
+</div>
+<div class="case-card case-tone-10">
+<h3>黑粉转舆情</h3>
+<p>先捧高其他用户，再点出黑粉动机，最后顺势推产品。</p>
+<span class="case-signal">触发情绪：稳定感、围观、反转</span>
+<p>把攻击变成展示认知、风度和产品入口的机会。</p>
+</div>
+<div class="case-card case-tone-11">
+<h3>25元体验设计</h3>
+<p>低门槛体验、随时可退、打卡领红包、正式加入抵扣。</p>
+<span class="case-signal">触发情绪：低风险、占便宜、行动惯性</span>
+<p>体验不是小钱收入，而是降低第一次行动阻力。</p>
+</div>
+<div class="case-card case-tone-12">
+<h3>推荐榜背书</h3>
+<p>靠谱老师推荐215人，断崖领先第二名，赠送销冠孵化基地。</p>
+<span class="case-signal">触发情绪：权威、从众、稀缺福利</span>
+<p>用可验证成绩和附加交付增强加入理由。</p>
+</div>
+</div>
+</section>
+<section class="section">
+<h2 class="section-title"><span>07</span>场景化应用剧本</h2>
+<p class="section-subtitle">把抽象情绪翻译成具体场景下能说、能写、能测试的话术方向。</p>
+<div class="scenario-list">
+<div class="scenario-row scenario-tone-01">
+<div class="scenario-name">一对一谈单</div>
+<p class="scenario-context">先问业务状态，再复述对方苦楚，最后把产品放到他的未来路径里。</p>
+<p class="scenario-move">你不是要劝他买，而是要让他发现自己本来就需要这个出口。</p>
+</div>
+<div class="scenario-row scenario-tone-02">
+<div class="scenario-name">实体店老板</div>
+<p class="scenario-context">成本高、人流不稳、起早贪黑、年龄增加、房租压身。</p>
+<p class="scenario-move">线上IP、低成本获客和新可能性是对抗焦虑的出口。</p>
+</div>
+<div class="scenario-row scenario-tone-03">
+<div class="scenario-name">职场打工人</div>
+<p class="scenario-context">公司强弩之末、被裁风险、突然闲下来失去社会化。</p>
+<p class="scenario-move">线上业务不是副业炫技，而是维持状态与自我实现。</p>
+</div>
+<div class="scenario-row scenario-tone-04">
+<div class="scenario-name">咨询师</div>
+<p class="scenario-context">学习花钱多、商业化弱、送公益咨询都没人接。</p>
+<p class="scenario-move">写文章和做自媒体，是让专业被更多人得到的出口。</p>
+</div>
+<div class="scenario-row scenario-tone-05">
+<div class="scenario-name">直播发售</div>
+<p class="scenario-context">用身份标签和痛点标签让用户评论区扣数字。</p>
+<p class="scenario-move">谁的人数多就先讲谁，每讲完一类就推一次产品。</p>
+</div>
+<div class="scenario-row scenario-tone-06">
+<div class="scenario-name">写作选题</div>
+<p class="scenario-context">不要想覆盖所有人，今天写保险，明天写咨询，后天写房产。</p>
+<p class="scenario-move">长期输出可以逐类覆盖，单篇内容必须精准打穿。</p>
+</div>
+<div class="scenario-row scenario-tone-07">
+<div class="scenario-name">淡人写内容</div>
+<p class="scenario-context">用马斯洛需求和霍金斯能量表找情绪切口。</p>
+<p class="scenario-move">平和性格不必硬燃，可以从内疚、遗憾、恐惧、尊重切入。</p>
+</div>
+<div class="scenario-row scenario-tone-08">
+<div class="scenario-name">亲子产品</div>
+<p class="scenario-context">父母出门学习没时间陪孩子，担心孩子被老人带偏。</p>
+<p class="scenario-move">AI教育产品被包装成弥补亏欠和预防未来遗憾的工具。</p>
+</div>
+<div class="scenario-row scenario-tone-09">
+<div class="scenario-name">复购唤醒</div>
+<p class="scenario-context">你一年前问过，如果当时开始，现在可能已经跑通。</p>
+<p class="scenario-move">把拖延造成的时间损失摊开，推动当下决策。</p>
+</div>
+<div class="scenario-row scenario-tone-10">
+<div class="scenario-name">舆情处理</div>
+<p class="scenario-context">回应不是给闹事者看，而是给围观者看。</p>
+<p class="scenario-move">捧高多数人、隔离闹事者、点出动机、顺势成交。</p>
+</div>
+<div class="scenario-row scenario-tone-11">
+<div class="scenario-name">个人心力</div>
+<p class="scenario-context">先察觉情绪，再分析原因，再接住它，最后输出。</p>
+<p class="scenario-move">情绪不是敌人，它是内容、营销和自我理解的原材料。</p>
+</div>
+<div class="scenario-row scenario-tone-12">
+<div class="scenario-name">投资提醒</div>
+<p class="scenario-context">牛市更容易亏钱，因为放松警惕、加杠杆、认知跟不上财富。</p>
+<p class="scenario-move">最好的投资是投资自己，财务自由首先要无债。</p>
+</div>
+</div>
+</section>
+<section class="section">
+<h2 class="section-title"><span>08</span>关键金句记忆锚点</h2>
+<p class="section-subtitle">金句是复述和传播的最小单位，也是这张卡片的记忆峰点。</p>
+<div class="quote-grid">
+<div class="quote-card quote-tone-01">
+<p>高级感的营销，是给别人的情绪创造一个出口。</p>
+</div>
+<div class="quote-card quote-tone-02">
+<p>当你做客户肚子里的蛔虫、做他嘴替，你就不会被卷入低价内卷。</p>
+</div>
+<div class="quote-card quote-tone-03">
+<p>把优越感还给客户。</p>
+</div>
+<div class="quote-card quote-tone-04">
+<p>销售如果说自己不一样，那你就输了；如果让客户觉得自己不一样，你就赢了。</p>
+</div>
+<div class="quote-card quote-tone-05">
+<p>人本身就是为了情绪而买单的动物。</p>
+</div>
+<div class="quote-card quote-tone-06">
+<p>钱和情绪的流向是相反的。</p>
+</div>
+<div class="quote-card quote-tone-07">
+<p>客户给你付钱的需求，远远大于你成交他的需求。</p>
+</div>
+<div class="quote-card quote-tone-08">
+<p>IP死，行业永生。</p>
+</div>
+<div class="quote-card quote-tone-09">
+<p>你想得到所有，你就会一无所有。</p>
+</div>
+<div class="quote-card quote-tone-10">
+<p>不是制造焦虑，只是点出焦虑。</p>
+</div>
+<div class="quote-card quote-tone-11">
+<p>坏日子没多久，很快好日子就到头了，赶紧把它输出出来。</p>
+</div>
+<div class="quote-card quote-tone-12">
+<p>客户问的每一句话都不是白给的。</p>
+</div>
+<div class="quote-card quote-tone-13">
+<p>愤怒不只是情绪结果，它也可以是一种策略。</p>
+</div>
+<div class="quote-card quote-tone-14">
+<p>真善美是第二梯队，贪嗔痴更容易击穿注意力。</p>
+</div>
+<div class="quote-card quote-tone-15">
+<p>普通人算成本只算钱，却忘了时间也是成本。</p>
+</div>
+<div class="quote-card quote-tone-16">
+<p>评论权重比点赞高，黑粉可能是恶贵人。</p>
+</div>
+<div class="quote-card quote-tone-17">
+<p>每一个流量背后都是活生生的人。</p>
+</div>
+<div class="quote-card quote-tone-18">
+<p>人生逻辑大于商业逻辑。</p>
+</div>
+<div class="quote-card quote-tone-19">
+<p>商业是一厘米宽度，一万米深度。</p>
+</div>
+<div class="quote-card quote-tone-20">
+<p>财务自由首先要无债。</p>
+</div>
+</div>
+</section>
+<section class="section">
+<h2 class="section-title"><span>09</span>误区与更优路径对比</h2>
+<p class="section-subtitle">用并排对照压缩判断成本，让行动方向更清楚。</p>
+<div class="comparison-table">
+<div class="comparison-row">
+<div class="comparison-cell comparison-bad">产品自夸</div>
+<div class="comparison-cell">反复说功能多、交付重、老师强</div>
+<div class="comparison-cell comparison-good">情绪出口</div>
+<div class="comparison-cell">替用户说出难言动机，让产品成为行动理由</div>
+</div>
+<div class="comparison-row">
+<div class="comparison-cell comparison-bad">低价内卷</div>
+<div class="comparison-cell">靠便宜、赠品、折扣抢客户</div>
+<div class="comparison-cell comparison-good">动机洞察</div>
+<div class="comparison-cell">懂客户比便宜更稀缺，价格不再是唯一判断</div>
+</div>
+<div class="comparison-row">
+<div class="comparison-cell comparison-bad">覆盖所有人</div>
+<div class="comparison-cell">一篇内容想让所有行业都买</div>
+<div class="comparison-cell comparison-good">分类打穿</div>
+<div class="comparison-cell">一篇只打一个人群，一个场景，一个痛点</div>
+</div>
+<div class="comparison-row">
+<div class="comparison-cell comparison-bad">跟进说服</div>
+<div class="comparison-cell">用户犹豫就不断追问催单</div>
+<div class="comparison-cell comparison-good">谈透撤退</div>
+<div class="comparison-cell">第一轮谈透动机，让用户自己回来成交</div>
+</div>
+<div class="comparison-row">
+<div class="comparison-cell comparison-bad">害怕黑粉</div>
+<div class="comparison-cell">被评论牵动情绪，急着解释防御</div>
+<div class="comparison-cell comparison-good">利用舆情</div>
+<div class="comparison-cell">把评论变成算法权重、稳定感展示和新内容素材</div>
+</div>
+<div class="comparison-row">
+<div class="comparison-cell comparison-bad">制造焦虑</div>
+<div class="comparison-cell">无中生有夸大恐惧</div>
+<div class="comparison-cell comparison-good">点出焦虑</div>
+<div class="comparison-cell">把用户已经存在的担忧排序提前</div>
+</div>
+<div class="comparison-row">
+<div class="comparison-cell comparison-bad">学完再做</div>
+<div class="comparison-cell">收藏理论，等待完全准备好</div>
+<div class="comparison-cell comparison-good">输出吸收</div>
+<div class="comparison-cell">带着问题学，用文章、直播、产品立刻转化</div>
+</div>
+<div class="comparison-row">
+<div class="comparison-cell comparison-bad">短期套利</div>
+<div class="comparison-cell">只追热点和促销成交</div>
+<div class="comparison-cell comparison-good">长期资产</div>
+<div class="comparison-cell">沉淀行业理解、人群理解、内容能力和社群关系</div>
+</div>
+</div>
+</section>
+<section class="section">
+<h2 class="section-title"><span>10</span>十五种认知分块技术</h2>
+<p class="section-subtitle">分块让长直播从“信息洪水”变成“可提取的行动地图”。</p>
+<div class="chunk-cloud">
+<div class="chunk-pill">顶部一句话锁定核心</div>
+<div class="chunk-pill">七级模型建立主干</div>
+<div class="chunk-pill">情绪地图分类记忆</div>
+<div class="chunk-pill">案例卡承载证据</div>
+<div class="chunk-pill">场景剧本转成行动</div>
+<div class="chunk-pill">金句锚点方便传播</div>
+<div class="chunk-pill">对比表压缩判断</div>
+<div class="chunk-pill">纠偏表清理转写噪声</div>
+<div class="chunk-pill">流程编号降低负担</div>
+<div class="chunk-pill">风险边界防止滥用</div>
+<div class="chunk-pill">发售结构独立分块</div>
+<div class="chunk-pill">色彩编码标注情绪</div>
+<div class="chunk-pill">左侧热区引导扫描</div>
+<div class="chunk-pill">宽窄行距制造呼吸</div>
+<div class="chunk-pill">底部自检形成闭环</div>
+</div>
+</section>
+<section class="section">
+<h2 class="section-title"><span>11</span>二十个视觉记忆触发器</h2>
+<p class="section-subtitle">每个触发器对应一条认知功能，帮助读者在离开页面后仍能提取核心概念。</p>
+<div class="anchor-grid">
+<div class="anchor-card anchor-tone-01">
+<span class="anchor-word">出口</span>
+<span class="anchor-role">情绪释放</span>
+<p class="anchor-desc">营销给情绪一个正当行动理由。</p>
+</div>
+<div class="anchor-card anchor-tone-02">
+<span class="anchor-word">蛔虫</span>
+<span class="anchor-role">动机洞察</span>
+<p class="anchor-desc">像住进客户肚子里一样理解他。</p>
+</div>
+<div class="anchor-card anchor-tone-03">
+<span class="anchor-word">嘴替</span>
+<span class="anchor-role">语言代偿</span>
+<p class="anchor-desc">替客户说出他说不清的话。</p>
+</div>
+<div class="anchor-card anchor-tone-04">
+<span class="anchor-word">火焰</span>
+<span class="anchor-role">愤怒注意力</span>
+<p class="anchor-desc">愤怒能迅速点燃表达欲。</p>
+</div>
+<div class="anchor-card anchor-tone-05">
+<span class="anchor-word">皇冠</span>
+<span class="anchor-role">优越感</span>
+<p class="anchor-desc">把“你不一样”的感受还给客户。</p>
+</div>
+<div class="anchor-card anchor-tone-06">
+<span class="anchor-word">镜子</span>
+<span class="anchor-role">嫉妒参照</span>
+<p class="anchor-desc">别人拥有的东西会照出自己的缺口。</p>
+</div>
+<div class="anchor-card anchor-tone-07">
+<span class="anchor-word">沙发</span>
+<span class="anchor-role">懒惰卖点</span>
+<p class="anchor-desc">省力是技术和工具的永久需求。</p>
+</div>
+<div class="anchor-card anchor-tone-08">
+<span class="anchor-word">钩子</span>
+<span class="anchor-role">贪婪边界</span>
+<p class="anchor-desc">让机会感拉动成交动作。</p>
+</div>
+<div class="anchor-card anchor-tone-09">
+<span class="anchor-word">天平</span>
+<span class="anchor-role">ABC信念</span>
+<p class="anchor-desc">同一事件因信念不同而结果不同。</p>
+</div>
+<div class="anchor-card anchor-tone-10">
+<span class="anchor-word">时钟</span>
+<span class="anchor-role">损失厌恶</span>
+<p class="anchor-desc">错过的时间比学费更贵。</p>
+</div>
+<div class="anchor-card anchor-tone-11">
+<span class="anchor-word">麦克风</span>
+<span class="anchor-role">直播分类</span>
+<p class="anchor-desc">用评论区数字把人群显性化。</p>
+</div>
+<div class="anchor-card anchor-tone-12">
+<span class="anchor-word">围栏</span>
+<span class="anchor-role">舆情隔离</span>
+<p class="anchor-desc">先把多数用户和闹事者分开。</p>
+</div>
+<div class="anchor-card anchor-tone-13">
+<span class="anchor-word">反光板</span>
+<span class="anchor-role">黑粉价值</span>
+<p class="anchor-desc">攻击也能反射出你的稳定感。</p>
+</div>
+<div class="anchor-card anchor-tone-14">
+<span class="anchor-word">阶梯</span>
+<span class="anchor-role">长期主义</span>
+<p class="anchor-desc">十年成长需要连续台阶。</p>
+</div>
+<div class="anchor-card anchor-tone-15">
+<span class="anchor-word">地图</span>
+<span class="anchor-role">行业永生</span>
+<p class="anchor-desc">懂行业运行比单个IP更耐用。</p>
+</div>
+<div class="anchor-card anchor-tone-16">
+<span class="anchor-word">书页</span>
+<span class="anchor-role">输出训练</span>
+<p class="anchor-desc">学习只有输出才会长在身上。</p>
+</div>
+<div class="anchor-card anchor-tone-17">
+<span class="anchor-word">红包</span>
+<span class="anchor-role">低门槛行动</span>
+<p class="anchor-desc">25元体验降低第一次决策阻力。</p>
+</div>
+<div class="anchor-card anchor-tone-18">
+<span class="anchor-word">证书</span>
+<span class="anchor-role">榜单背书</span>
+<p class="anchor-desc">推荐人数是可见的信任证据。</p>
+</div>
+<div class="anchor-card anchor-tone-19">
+<span class="anchor-word">水位</span>
+<span class="anchor-role">财富认知</span>
+<p class="anchor-desc">财富终会回落或上升到认知水位。</p>
+</div>
+<div class="anchor-card anchor-tone-20">
+<span class="anchor-word">刹车</span>
+<span class="anchor-role">无债自由</span>
+<p class="anchor-desc">没有债务才有真正选择权。</p>
+</div>
+</div>
+</section>
+<section class="section">
+<h2 class="section-title"><span>12</span>语音转写纠偏表</h2>
+<p class="section-subtitle">先纠正关键词，才能避免错词把理解带偏。</p>
+<div class="correction-grid">
+<div class="correction-card">
+<div class="correction-wrong">鼎峰会 / 家庭峰会 / 锦峰会</div>
+<div class="correction-right">顶峰会</div>
+<p class="correction-note">同一社群名称在语音转写中多次漂移，统一为顶峰会。</p>
+</div>
+<div class="correction-card">
+<div class="correction-wrong">靠谱 / 康福 / 客服老师</div>
+<div class="correction-right">靠谱老师</div>
+<p class="correction-note">上下文指分享人及其销售体系，不是客服岗位。</p>
+</div>
+<div class="correction-card">
+<div class="correction-wrong">年矿顾问</div>
+<div class="correction-right">年框顾问</div>
+<p class="correction-note">新东方相关语境里更接近年度框架或年框服务顾问。</p>
+</div>
+<div class="correction-card">
+<div class="correction-wrong">小某鼠</div>
+<div class="correction-right">小红书</div>
+<p class="correction-note">转写避讳平台名，语境是搜索、笔记和种草平台。</p>
+</div>
+<div class="correction-card">
+<div class="correction-wrong">UV的人性</div>
+<div class="correction-right">《幽微的人性》</div>
+<p class="correction-note">结合李玫瑾老师与人性动机分析，应为书名《幽微的人性》。</p>
+</div>
+<div class="correction-card">
+<div class="correction-wrong">豹纹</div>
+<div class="correction-right">爆文</div>
+<p class="correction-note">写作训练、公众号和阅读量语境中应为爆文。</p>
+</div>
+<div class="correction-card">
+<div class="correction-wrong">军月不好</div>
+<div class="correction-right">均阅不好</div>
+<p class="correction-note">讨论文章阅读表现，指平均阅读量不好。</p>
+</div>
+<div class="correction-card">
+<div class="correction-wrong">jamie</div>
+<div class="correction-right">Gemini</div>
+<p class="correction-note">把文章搓成图片和分析爆款的AI工具，语境接近Gemini。</p>
+</div>
+<div class="correction-card">
+<div class="correction-wrong">margin call / 麻金矿</div>
+<div class="correction-right">保证金追缴</div>
+<p class="correction-note">投资段落讨论杠杆和保证金账户。</p>
+</div>
+<div class="correction-card">
+<div class="correction-wrong">炒麻酱</div>
+<div class="correction-right">炒保证金 / 加杠杆</div>
+<p class="correction-note">语音误识别，实际是融资融券或保证金交易。</p>
+</div>
+<div class="correction-card">
+<div class="correction-wrong">三倍变现闭门闭门课</div>
+<div class="correction-right">三倍变现闭门课</div>
+<p class="correction-note">重复词来自转写卡顿，应去重。</p>
+</div>
+<div class="correction-card">
+<div class="correction-wrong">戏剧会</div>
+<div class="correction-right">城市聚会</div>
+<p class="correction-note">顶峰会线下活动语境里应为城市聚会。</p>
+</div>
+<div class="correction-card">
+<div class="correction-wrong">煤票</div>
+<div class="correction-right">门票</div>
+<p class="correction-note">讨论值回票价，不是煤票。</p>
+</div>
+<div class="correction-card">
+<div class="correction-wrong">中女的天下</div>
+<div class="correction-right">中年女性机会</div>
+<p class="correction-note">保留原语气，但在卡片中转成更稳妥的机会判断。</p>
+</div>
+<div class="correction-card">
+<div class="correction-wrong">发身份的要饭</div>
+<div class="correction-right">放弃自我要求的状态</div>
+<p class="correction-note">原话粗粝，卡片转译为心力放弃的极端对照。</p>
+</div>
+<div class="correction-card">
+<div class="correction-wrong">上医治未病</div>
+<div class="correction-right">预防大于治疗</div>
+<p class="correction-note">中医表达用于说明提前干预比事后补救更有说服力。</p>
+</div>
+<div class="correction-card">
+<div class="correction-wrong">恶贵人</div>
+<div class="correction-right">负面评论带来的流量助推者</div>
+<p class="correction-note">保留概念，同时解释其算法与传播价值。</p>
+</div>
+<div class="correction-card">
+<div class="correction-wrong">离火年</div>
+<div class="correction-right">趋势叙事</div>
+<p class="correction-note">这是分享人的个人信念表达，不作为事实判断。</p>
+</div>
+</div>
+</section>
+<section class="section">
+<h2 class="section-title"><span>13</span>深读证据与话术转译</h2>
+<p class="section-subtitle">这一层给近距离阅读的人：把直播里的细节还原成可复用的话术、判断和产品动作。</p>
+<div class="deep-ledger">
+<div class="deep-card deep-tone-01">
+<div class="deep-title">拱火不是骂人</div>
+<p class="deep-evidence">分享人开场说“你这么厉害的人就应该卖得多，不如你的人营销还做得好不公平”，本质不是攻击客户，而是先承认客户价值，再把不甘转成行动。</p>
+<p class="deep-translation">适合用于有能力但不愿营销的人：先肯定，再指出错配，再给解决方案。</p>
+</div>
+<div class="deep-card deep-tone-02">
+<div class="deep-title">推荐不是只讲利益</div>
+<p class="deep-evidence">理想汽车案例里既有双方积分福利，也有爱国和反日情绪。单纯讲积分只是理性收益，绑定情绪后，推荐者自己也有了强烈表达动机。</p>
+<p class="deep-translation">设计转介绍时，不只给奖励，还要给转发者一个情绪立场。</p>
+</div>
+<div class="deep-card deep-tone-03">
+<div class="deep-title">活动要给用户台阶</div>
+<p class="deep-evidence">高端护发用户不缺20元券，也不想像薅羊毛一样发朋友圈；“老公帮洗头”让她可以借活动之名展示被爱与家庭幸福。</p>
+<p class="deep-translation">高端用户的参与理由要体面，不能只用小利诱导。</p>
+</div>
+<div class="deep-card deep-tone-04">
+<div class="deep-title">父母裂变不是孩子裂变</div>
+<p class="deep-evidence">考研机构让父母讲培养孩子的成本和心得，解决的是父母想显摆、想诉苦、想被承认劳苦功高的动机。</p>
+<p class="deep-translation">教育裂变可以绕开孩子本人，从家长的身份荣誉切入。</p>
+</div>
+<div class="deep-card deep-tone-05">
+<div class="deep-title">愤怒是表达燃料</div>
+<p class="deep-evidence">分享人提到骂老公婆婆、男女对立、抄袭原创等内容容易激发长评论，因为愤怒会让人愿意打字、站队和传播。</p>
+<p class="deep-translation">内容要区分公共愤怒和私人攻击，前者可用，后者伤害品牌。</p>
+</div>
+<div class="deep-card deep-tone-06">
+<div class="deep-title">表演愤怒是管理信号</div>
+<p class="deep-evidence">领导拍桌子、小孩摔倒后家长打地板，都不一定是情绪失控，而是通过愤怒表演传递压力、忠诚或关怀。</p>
+<p class="deep-translation">营销者可以设计情绪场，但自己要在场外保持清醒。</p>
+</div>
+<div class="deep-card deep-tone-07">
+<div class="deep-title">傲慢不是自夸</div>
+<p class="deep-evidence">“我不一样”从销售嘴里说出来是自夸，从客户心里长出来是成交理由。高端产品卖的是客户被特殊对待的感受。</p>
+<p class="deep-translation">话术要从“我们多好”改成“你值得这种更适合你的方案”。</p>
+</div>
+<div class="deep-card deep-tone-08">
+<div class="deep-title">嫉妒背后是参照</div>
+<p class="deep-evidence">老板买AI系统不只是为了提效降本，还可能是想知道员工谁在摸鱼，满足掌控感和不落后于同行的心理。</p>
+<p class="deep-translation">B端卖点不要只写ROI，还要识别老板的掌控欲和比较对象。</p>
+</div>
+<div class="deep-card deep-tone-09">
+<div class="deep-title">懒惰不是贬义词</div>
+<p class="deep-evidence">技术进步经常来自人的省力需求，被动收入、长尾流量、自动化工具都在响应“少做重复劳动”的渴望。</p>
+<p class="deep-translation">把懒惰翻译成效率，把省力翻译成长期复利。</p>
+</div>
+<div class="deep-card deep-tone-10">
+<div class="deep-title">贪婪需要高情商推进</div>
+<p class="deep-evidence">当客户说“你这么着急收钱”，分享人示范顺着对方夸赞，让对方觉得自己被重视，从而更容易支付定金。</p>
+<p class="deep-translation">逼单不是硬推，而是把对方的防御话术转成被尊重的体验。</p>
+</div>
+<div class="deep-card deep-tone-11">
+<div class="deep-title">ABC理论落到销售</div>
+<p class="deep-evidence">事件A是客户问价格、质疑、拖延；结果C是成交或流失；真正决定走向的是客户和销售双方的信念B。</p>
+<p class="deep-translation">销售先稳住自己的B，再去读懂客户的B。</p>
+</div>
+<div class="deep-card deep-tone-12">
+<div class="deep-title">期待会制造怨怼</div>
+<p class="deep-evidence">分享人说普通人容易被期待所伤，期待他人按自己想法回应，一旦落空就产生情绪内耗。</p>
+<p class="deep-translation">做营销要降低对客户立刻理解、立刻付款、立刻感激的期待。</p>
+</div>
+<div class="deep-card deep-tone-13">
+<div class="deep-title">钱和情绪反向流动</div>
+<p class="deep-evidence">谁能承接别人的焦虑、愤怒、内疚、不甘和表达欲，谁就更可能获得信任；谁把情绪甩给客户，谁就更难成交。</p>
+<p class="deep-translation">成交前先做情绪容器，成交后再做方案交付。</p>
+</div>
+<div class="deep-card deep-tone-14">
+<div class="deep-title">客户提问不是找茬</div>
+<p class="deep-evidence">客户问学习方式，可能不是挑剔，而是眼睛不方便；客户问时间，背后可能是希望你预判接送、吃饭、会议安排。</p>
+<p class="deep-translation">每个问题都追问一层：他为什么现在问这个。</p>
+</div>
+<div class="deep-card deep-tone-15">
+<div class="deep-title">实体店老板的苦楚</div>
+<p class="deep-evidence">成本、人流、房租、员工、家庭、年龄和守店疲惫共同构成实体老板的转型焦虑。</p>
+<p class="deep-translation">谈线上IP时，不要先讲流量，而要先承认他现在的经营压力。</p>
+</div>
+<div class="deep-card deep-tone-16">
+<div class="deep-title">房租对比降低门槛</div>
+<p class="deep-evidence">一万多学费听起来贵，但对实体老板来说可能只是半个月多的房租；用熟悉成本换算能降低抽象价格压力。</p>
+<p class="deep-translation">价格锚点要来自客户生活，而不是来自你的成本结构。</p>
+</div>
+<div class="deep-card deep-tone-17">
+<div class="deep-title">职场人不是只怕没钱</div>
+<p class="deep-evidence">被裁后拿补偿可能不至于立刻没钱，但热爱工作的人害怕失去状态、社会化和自我实现。</p>
+<p class="deep-translation">对职场人卖成长，要讲状态、身份和未来主动权。</p>
+</div>
+<div class="deep-card deep-tone-18">
+<div class="deep-title">咨询师的痛点是不被看见</div>
+<p class="deep-evidence">咨询师花高价学专业，却找不到商业化入口，甚至公益名额都送不出去，这种不甘比单纯缺流量更刺痛。</p>
+<p class="deep-translation">咨询师内容要从“我会什么”转成“谁需要我，为什么需要我”。</p>
+</div>
+<div class="deep-card deep-tone-19">
+<div class="deep-title">谈透后可以撤退</div>
+<p class="deep-evidence">分享人说自己很少跟进，因为第一轮把动机谈透后，客户付钱的需求会大于销售成交他的需求。</p>
+<p class="deep-translation">不要把跟进当补救，真正的重点是第一轮是否说到心里。</p>
+</div>
+<div class="deep-card deep-tone-20">
+<div class="deep-title">直播要大点名</div>
+<p class="deep-evidence">千人直播不能逐个谈，就通过身份和痛点打数字，让用户自己站队，评论区数据决定先讲哪类人。</p>
+<p class="deep-translation">大场发售要先把人群显性化，再把内容顺序交给现场反馈。</p>
+</div>
+<div class="deep-card deep-tone-21">
+<div class="deep-title">分类不是排斥别人</div>
+<p class="deep-evidence">今天写保险，明天写咨询，后天写房产；长期输出可以覆盖很多人，但单篇必须精准，否则谁都觉得不关自己。</p>
+<p class="deep-translation">内容矩阵靠数量覆盖广度，单篇内容靠具体获得深度。</p>
+</div>
+<div class="deep-card deep-tone-22">
+<div class="deep-title">技能加人群才是定位</div>
+<p class="deep-evidence">只说自己会销售、写作、财务还不够，还要说服务谁：财务小白、小微企业、咨询师、实体老板。</p>
+<p class="deep-translation">定位公式：技能能力乘以服务人群，才会形成可识别标签。</p>
+</div>
+<div class="deep-card deep-tone-23">
+<div class="deep-title">平和人格也能写情绪</div>
+<p class="deep-evidence">淡人不必强行制造冲突，可以借助马斯洛需求和霍金斯能量表，从内疚、遗憾、恐惧、尊重等稳定情绪切入。</p>
+<p class="deep-translation">内容风格可以平和，但情绪按钮不能缺席。</p>
+</div>
+<div class="deep-card deep-tone-24">
+<div class="deep-title">内疚营销要给弥补方案</div>
+<p class="deep-evidence">父母亏欠孩子、创业者亏欠自己、学员亏欠老师，这些内疚如果只被放大，会令人难受；有方案才会变成行动。</p>
+<p class="deep-translation">先点出亏欠，再提供可执行弥补，不要停在道德压力。</p>
+</div>
+<div class="deep-card deep-tone-25">
+<div class="deep-title">遗憾比圆满更留人</div>
+<p class="deep-evidence">分享人提到意难平、BE结局、错过少年时，这些情绪比圆满更容易被反复想起。</p>
+<p class="deep-translation">复购唤醒和长期课销售，可以把“如果当时开始”讲具体。</p>
+</div>
+<div class="deep-card deep-tone-26">
+<div class="deep-title">时间是最大卖点</div>
+<p class="deep-evidence">用户常常只计算一万多学费，却不计算晚一年启动带来的机会损失、心气消耗和复利缺口。</p>
+<p class="deep-translation">报价时同时展示金钱成本和时间成本。</p>
+</div>
+<div class="deep-card deep-tone-27">
+<div class="deep-title">点出焦虑不是制造焦虑</div>
+<p class="deep-evidence">分享人强调焦虑客观存在，营销只是把原本拖到未来的决策排序提前。</p>
+<p class="deep-translation">表达时要基于真实风险，避免制造不存在的威胁。</p>
+</div>
+<div class="deep-card deep-tone-28">
+<div class="deep-title">坏日子是内容素材</div>
+<p class="deep-evidence">苦难、离婚、低谷、受挫都可能变成文章和分享，但好日子太安逸时反而没有强冲突。</p>
+<p class="deep-translation">遇到情绪事件时，先活下来，再把它整理成可帮助他人的内容。</p>
+</div>
+<div class="deep-card deep-tone-29">
+<div class="deep-title">写作前先判断爆点</div>
+<p class="deep-evidence">分享人说如果文章没有矛盾、冲突或对立，可能一开始就不写，以免结果太平导致自己低落。</p>
+<p class="deep-translation">写之前先检查情绪张力，不要写完才补标题。</p>
+</div>
+<div class="deep-card deep-tone-30">
+<div class="deep-title">收费保护关系</div>
+<p class="deep-evidence">有人想前置打电话，分享人拒绝免费咨询，因为了解自己免费时可能忍不住凶，收费反而让关系更稳定。</p>
+<p class="deep-translation">收费不是冷漠，而是设置边界和交付质量的方式。</p>
+</div>
+<div class="deep-card deep-tone-31">
+<div class="deep-title">舆情回应给围观者看</div>
+<p class="deep-evidence">处理闹事者时，真正的对象不是闹事者本人，而是群里其他正在观察你稳定性的人。</p>
+<p class="deep-translation">公开场域里，每句话都要默认有第三方旁观。</p>
+</div>
+<div class="deep-card deep-tone-32">
+<div class="deep-title">先捧高多数人</div>
+<p class="deep-evidence">把其他用户放到高认知位置，他们就不好意思跟风闹事；闹事者被隔离后，情绪扩散就被切断。</p>
+<p class="deep-translation">舆情第一步不是解释，而是重建群体站位。</p>
+</div>
+<div class="deep-card deep-tone-33">
+<div class="deep-title">点出动机但保留风度</div>
+<p class="deep-evidence">告诉对方“你在我面前是透明的”，同时肯定他的能力和履历，能让围观者看到你的稳定。</p>
+<p class="deep-translation">拆动机不要羞辱人，要让旁观者感到你有掌控力。</p>
+</div>
+<div class="deep-card deep-tone-34">
+<div class="deep-title">黑粉帮算法加权</div>
+<p class="deep-evidence">愿意看完、措辞、动怒并评论的人，比随手点赞的人给平台更多互动信号。</p>
+<p class="deep-translation">被骂后先判断是否可转成内容，而不是立刻情绪反击。</p>
+</div>
+<div class="deep-card deep-tone-35">
+<div class="deep-title">顶峰会发售的低门槛</div>
+<p class="deep-evidence">25元体验、随时可退、打卡领52元红包、正式加入抵200元，这组设计把风险感降到很低。</p>
+<p class="deep-translation">高客单产品可以设计低风险前置体验，降低第一次行动摩擦。</p>
+</div>
+<div class="deep-card deep-tone-36">
+<div class="deep-title">长期价值摊薄价格</div>
+<p class="deep-evidence">十年一万四，平均一年一千多；一年参加一两个线下或线上项目就值回票价。</p>
+<p class="deep-translation">高总价可以用服务周期、使用场景和年度价值重新锚定。</p>
+</div>
+<div class="deep-card deep-tone-37">
+<div class="deep-title">推荐人附加交付</div>
+<p class="deep-evidence">通过靠谱老师加入，不只是买顶峰会，还获得销冠孵化基地、实体礼物和个性化定位建议。</p>
+<p class="deep-translation">渠道推荐要提供独特增量，而不是只重复官方权益。</p>
+</div>
+<div class="deep-card deep-tone-38">
+<div class="deep-title">榜一是强背书</div>
+<p class="deep-evidence">推荐215人、断崖领先第二名，不只是成绩展示，也证明分享人会卖、能教别人卖。</p>
+<p class="deep-translation">销售教学类产品尤其需要展示真实销售结果。</p>
+</div>
+<div class="deep-card deep-tone-39">
+<div class="deep-title">人生逻辑大于商业逻辑</div>
+<p class="deep-evidence">分享人最后把流量还原成活生生的人，强调帮助成员过好人生，而不只是让他们购买。</p>
+<p class="deep-translation">长期社群不能只有成交话术，还要有价值观和关系承诺。</p>
+</div>
+<div class="deep-card deep-tone-40">
+<div class="deep-title">投资提醒连接认知</div>
+<p class="deep-evidence">末尾投资观点说多数人亏在牛市和杠杆，财富最终会回到认知水位，财务自由先要无债。</p>
+<p class="deep-translation">营销之外，所有增长都要回到认知、风险和债务管理。</p>
+</div>
+</div>
+</section>
+<section class="section">
+<h2 class="section-title"><span>14</span>风险边界</h2>
+<p class="section-subtitle">情绪营销越有效，越要明确边界：承接真实需求，而不是操控脆弱情绪。</p>
+<div class="risk-grid">
+<div class="risk-card">
+<h3>情绪操控风险</h3>
+<p>情绪营销容易滑向操控，必须以真实需求和真实价值为底线。</p>
+</div>
+<div class="risk-card">
+<h3>焦虑滥用风险</h3>
+<p>点出焦虑和制造焦虑只差一步，越高压越要谨慎。</p>
+</div>
+<div class="risk-card">
+<h3>愤怒反噬风险</h3>
+<p>愤怒能拉流量，也可能伤品牌、伤信任、吸引错误人群。</p>
+</div>
+<div class="risk-card">
+<h3>过度承诺风险</h3>
+<p>把未来收益讲得太满，会消耗长期口碑。</p>
+</div>
+<div class="risk-card">
+<h3>人群误判风险</h3>
+<p>同一句话对实体店老板有效，对职场人可能无感。</p>
+</div>
+<div class="risk-card">
+<h3>话术替代价值</h3>
+<p>话术只能放大价值，不能替代交付本身。</p>
+</div>
+<div class="risk-card">
+<h3>舆情误处理</h3>
+<p>公开回应时如果失去风度，会把机会变成危机。</p>
+</div>
+<div class="risk-card">
+<h3>财务杠杆风险</h3>
+<p>直播末尾的投资提醒说明：认知和财富不匹配时，杠杆会放大坠落。</p>
+</div>
+</div>
+</section>
+<section class="section">
+<h2 class="section-title"><span>15</span>下一步行动清单</h2>
+<p class="section-subtitle">把“听懂了”转成“今天可以写一条话术、发一篇内容、复盘一次谈单”。</p>
+<div class="action-list">
+<div class="action-item">
+<div class="action-title">写出客户身份</div>
+<div class="action-desc">用“实体店老板”“咨询师”“职场打工人”替代泛泛的“用户”。</div>
+</div>
+<div class="action-item">
+<div class="action-title">写出表层问题</div>
+<div class="action-desc">记录客户原话，不要急着纠正或反驳。</div>
+</div>
+<div class="action-item">
+<div class="action-title">追问底层动机</div>
+<div class="action-desc">他为什么问这个，他想证明什么，他害怕什么，他想摆脱什么。</div>
+</div>
+<div class="action-item">
+<div class="action-title">选择主情绪</div>
+<div class="action-desc">在愤怒、傲慢、嫉妒、懒惰、贪婪、内疚、恐惧里选一个主按钮。</div>
+</div>
+<div class="action-item">
+<div class="action-title">设计体面出口</div>
+<div class="action-desc">让用户的情绪通过分享、报名、购买、咨询、转介绍自然释放。</div>
+</div>
+<div class="action-item">
+<div class="action-title">做场景化话术</div>
+<div class="action-desc">不要讲产品全功能，只讲这个人此刻最关心的一条路径。</div>
+</div>
+<div class="action-item">
+<div class="action-title">测试评论互动</div>
+<div class="action-desc">直播或公域内容用数字、身份、痛点让用户自我分类。</div>
+</div>
+<div class="action-item">
+<div class="action-title">记录成交证据</div>
+<div class="action-desc">保存用户原话、问题、犹豫点、最终付款理由。</div>
+</div>
+<div class="action-item">
+<div class="action-title">复盘信念B</div>
+<div class="action-desc">看见自己被什么评论、拒绝和期待刺痛，先稳住自己。</div>
+</div>
+<div class="action-item">
+<div class="action-title">沉淀内容资产</div>
+<div class="action-desc">把一次谈单、一次舆情、一次成交复盘写成文章。</div>
+</div>
+</div>
+</section>
+<section class="section">
+<h2 class="section-title"><span>16</span>二十层文本视觉系统</h2>
+<p class="section-subtitle">从8px到36px，每一层都有清晰的信息任务，避免视觉层级与信息层级错位。</p>
+<div class="text-system">
+<div class="text-layer text-level-01">
+<span>L01</span>
+<span>远距核心标题</span>
+<span>36px</span>
+<span>800</span>
+<span>核心命题</span>
+</div>
+<div class="text-layer text-level-02">
+<span>L02</span>
+<span>战略判断</span>
+<span>33px</span>
+<span>800</span>
+<span>主张</span>
+</div>
+<div class="text-layer text-level-03">
+<span>L03</span>
+<span>金句峰点</span>
+<span>30px</span>
+<span>800</span>
+<span>传播句</span>
+</div>
+<div class="text-layer text-level-04">
+<span>L04</span>
+<span>章节标题</span>
+<span>28px</span>
+<span>650</span>
+<span>结构</span>
+</div>
+<div class="text-layer text-level-05">
+<span>L05</span>
+<span>模块标题</span>
+<span>26px</span>
+<span>650</span>
+<span>分段</span>
+</div>
+<div class="text-layer text-level-06">
+<span>L06</span>
+<span>案例标题</span>
+<span>24px</span>
+<span>650</span>
+<span>证据</span>
+</div>
+<div class="text-layer text-level-07">
+<span>L07</span>
+<span>场景标题</span>
+<span>22px</span>
+<span>650</span>
+<span>剧本</span>
+</div>
+<div class="text-layer text-level-08">
+<span>L08</span>
+<span>模型标题</span>
+<span>20px</span>
+<span>650</span>
+<span>层级</span>
+</div>
+<div class="text-layer text-level-09">
+<span>L09</span>
+<span>重点段落</span>
+<span>19px</span>
+<span>500</span>
+<span>摘要</span>
+</div>
+<div class="text-layer text-level-10">
+<span>L10</span>
+<span>普通正文</span>
+<span>18px</span>
+<span>400</span>
+<span>阅读</span>
+</div>
+<div class="text-layer text-level-11">
+<span>L11</span>
+<span>应用说明</span>
+<span>17px</span>
+<span>400</span>
+<span>细节</span>
+</div>
+<div class="text-layer text-level-12">
+<span>L12</span>
+<span>列表文本</span>
+<span>16px</span>
+<span>400</span>
+<span>条目</span>
+</div>
+<div class="text-layer text-level-13">
+<span>L13</span>
+<span>辅助文本</span>
+<span>15px</span>
+<span>400</span>
+<span>补充</span>
+</div>
+<div class="text-layer text-level-14">
+<span>L14</span>
+<span>标签文本</span>
+<span>14px</span>
+<span>650</span>
+<span>编码</span>
+</div>
+<div class="text-layer text-level-15">
+<span>L15</span>
+<span>脚注文案</span>
+<span>13px</span>
+<span>400</span>
+<span>边界</span>
+</div>
+<div class="text-layer text-level-16">
+<span>L16</span>
+<span>微型标注</span>
+<span>12px</span>
+<span>650</span>
+<span>标记</span>
+</div>
+<div class="text-layer text-level-17">
+<span>L17</span>
+<span>刻度数字</span>
+<span>11px</span>
+<span>650</span>
+<span>序号</span>
+</div>
+<div class="text-layer text-level-18">
+<span>L18</span>
+<span>元信息</span>
+<span>10px</span>
+<span>500</span>
+<span>时间</span>
+</div>
+<div class="text-layer text-level-19">
+<span>L19</span>
+<span>细符号</span>
+<span>9px</span>
+<span>650</span>
+<span>锚点</span>
+</div>
+<div class="text-layer text-level-20">
+<span>L20</span>
+<span>低噪声</span>
+<span>8px</span>
+<span>400</span>
+<span>辅助</span>
+</div>
+</div>
+</section>
+<section class="section">
+<h2 class="section-title"><span>17</span>色彩认知编码</h2>
+<p class="section-subtitle">颜色只承担认知任务：区分情绪类型、风险强度、信任结构和行动路径。</p>
+<div class="palette-grid">
+<div class="palette-card">
+<div class="palette-strip palette-strip-01"><span></span><span></span><span></span><span></span></div>
+<h3>纸面</h3>
+<p>长文承载底色，降低阅读疲劳。</p>
+</div>
+<div class="palette-card">
+<div class="palette-strip palette-strip-02"><span></span><span></span><span></span><span></span></div>
+<h3>墨色</h3>
+<p>正文与标题高可读性。</p>
+</div>
+<div class="palette-card">
+<div class="palette-strip palette-strip-03"><span></span><span></span><span></span><span></span></div>
+<h3>愤怒红</h3>
+<p>标记冲突、同仇敌忾和风险。</p>
+</div>
+<div class="palette-card">
+<div class="palette-strip palette-strip-04"><span></span><span></span><span></span><span></span></div>
+<h3>傲慢金</h3>
+<p>标记优越感、身份与高端感。</p>
+</div>
+<div class="palette-card">
+<div class="palette-strip palette-strip-05"><span></span><span></span><span></span><span></span></div>
+<h3>嫉妒绿</h3>
+<p>标记比较、追赶和掌控欲。</p>
+</div>
+<div class="palette-card">
+<div class="palette-strip palette-strip-06"><span></span><span></span><span></span><span></span></div>
+<h3>恐惧蓝</h3>
+<p>标记损失厌恶和未来风险。</p>
+</div>
+<div class="palette-card">
+<div class="palette-strip palette-strip-07"><span></span><span></span><span></span><span></span></div>
+<h3>内疚紫</h3>
+<p>标记亏欠、遗憾和弥补。</p>
+</div>
+<div class="palette-card">
+<div class="palette-strip palette-strip-08"><span></span><span></span><span></span><span></span></div>
+<h3>平静青</h3>
+<p>标记ABC理论与自我稳定。</p>
+</div>
+<div class="palette-card">
+<div class="palette-strip palette-strip-09"><span></span><span></span><span></span><span></span></div>
+<h3>直播玫</h3>
+<p>标记互动、发售和群体情绪。</p>
+</div>
+<div class="palette-card">
+<div class="palette-strip palette-strip-10"><span></span><span></span><span></span><span></span></div>
+<h3>信任绿</h3>
+<p>标记社群、长期主义和交付。</p>
+</div>
+</div>
+<div class="swatch-ledger">
+<span class="swatch-chip swatch-01"></span>
+<span class="swatch-chip swatch-02"></span>
+<span class="swatch-chip swatch-03"></span>
+<span class="swatch-chip swatch-04"></span>
+<span class="swatch-chip swatch-05"></span>
+<span class="swatch-chip swatch-06"></span>
+<span class="swatch-chip swatch-07"></span>
+<span class="swatch-chip swatch-08"></span>
+<span class="swatch-chip swatch-09"></span>
+<span class="swatch-chip swatch-10"></span>
+<span class="swatch-chip swatch-11"></span>
+<span class="swatch-chip swatch-12"></span>
+<span class="swatch-chip swatch-13"></span>
+<span class="swatch-chip swatch-14"></span>
+<span class="swatch-chip swatch-15"></span>
+<span class="swatch-chip swatch-16"></span>
+<span class="swatch-chip swatch-17"></span>
+<span class="swatch-chip swatch-18"></span>
+<span class="swatch-chip swatch-19"></span>
+<span class="swatch-chip swatch-20"></span>
+<span class="swatch-chip swatch-21"></span>
+<span class="swatch-chip swatch-22"></span>
+<span class="swatch-chip swatch-23"></span>
+<span class="swatch-chip swatch-24"></span>
+<span class="swatch-chip swatch-25"></span>
+<span class="swatch-chip swatch-26"></span>
+<span class="swatch-chip swatch-27"></span>
+<span class="swatch-chip swatch-28"></span>
+<span class="swatch-chip swatch-29"></span>
+<span class="swatch-chip swatch-30"></span>
+<span class="swatch-chip swatch-31"></span>
+<span class="swatch-chip swatch-32"></span>
+<span class="swatch-chip swatch-33"></span>
+<span class="swatch-chip swatch-34"></span>
+<span class="swatch-chip swatch-35"></span>
+<span class="swatch-chip swatch-36"></span>
+<span class="swatch-chip swatch-37"></span>
+<span class="swatch-chip swatch-38"></span>
+<span class="swatch-chip swatch-39"></span>
+<span class="swatch-chip swatch-40"></span>
+<span class="swatch-chip swatch-41"></span>
+<span class="swatch-chip swatch-42"></span>
+<span class="swatch-chip swatch-43"></span>
+<span class="swatch-chip swatch-44"></span>
+<span class="swatch-chip swatch-45"></span>
+<span class="swatch-chip swatch-46"></span>
+<span class="swatch-chip swatch-47"></span>
+<span class="swatch-chip swatch-48"></span>
+<span class="swatch-chip swatch-49"></span>
+<span class="swatch-chip swatch-50"></span>
+<span class="swatch-chip swatch-51"></span>
+<span class="swatch-chip swatch-52"></span>
+<span class="swatch-chip swatch-53"></span>
+<span class="swatch-chip swatch-54"></span>
+<span class="swatch-chip swatch-55"></span>
+<span class="swatch-chip swatch-56"></span>
+<span class="swatch-chip swatch-57"></span>
+<span class="swatch-chip swatch-58"></span>
+<span class="swatch-chip swatch-59"></span>
+<span class="swatch-chip swatch-60"></span>
+<span class="swatch-chip swatch-61"></span>
+<span class="swatch-chip swatch-62"></span>
+<span class="swatch-chip swatch-63"></span>
+<span class="swatch-chip swatch-64"></span>
+<span class="swatch-chip swatch-65"></span>
+<span class="swatch-chip swatch-66"></span>
+<span class="swatch-chip swatch-67"></span>
+<span class="swatch-chip swatch-68"></span>
+<span class="swatch-chip swatch-69"></span>
+<span class="swatch-chip swatch-70"></span>
+</div>
+</section>
+<footer class="footer-check">
+<h2 class="section-title"><span>18</span>质量自检</h2>
+<div class="check-grid">
+<div class="check-card">
+<strong>信息层级</strong>
+<span>核心命题在顶部最大权重呈现，模型、案例、风险、行动按重要性递进。</span>
+</div>
+<div class="check-card">
+<strong>认知流畅</strong>
+<span>单栏直角卡片，无交互、无动画、无侧边栏，阅读路径稳定。</span>
+</div>
+<div class="check-card">
+<strong>内容完整</strong>
+<span>已纠正主要语音转写误差，并保留营销模型、案例、金句和发售结构。</span>
+</div>
+<div class="check-card">
+<strong>多尺度</strong>
+<span>远看核心句，中看情绪地图，近看场景剧本、纠偏表和行动清单。</span>
+</div>
+<div class="check-card">
+<strong>记忆增强</strong>
+<span>20个视觉锚点、20条金句、重复结构共同强化提取。</span>
+</div>
+<div class="check-card">
+<strong>实现约束</strong>
+<span>纯HTML+CSS，静态自适应，主卡片直角，无脚本与动态效果。</span>
+</div>
+</div>
+</footer>
+</article>
+</main>
+</body>
+</html>
