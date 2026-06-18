@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>认知卡片 · 2026-06-19</title>
+  <style>
+    :root {
+      --blue-900: #0e3191;
+      --blue-800: #024ad8;
+      --blue-700: #296ef9;
+      --blue-200: #c9e0fc;
+      --blue-100: #eaf3ff;
+      --ink-950: #000000;
+      --ink-900: #1a1a1a;
+      --ink-800: #292929;
+      --ink-700: #3d3d3d;
+      --ink-600: #636363;
+      --ink-500: #777777;
+      --paper-000: #ffffff;
+      --paper-050: #fbfbfb;
+      --paper-100: #f7f7f7;
+      --paper-200: #eeeeee;
+      --paper-300: #e8e8e8;
+      --paper-400: #d8d8d8;
+      --steel-300: #c2c2c2;
+      --coral-700: #b3262b;
+      --coral-500: #ff5050;
+      --coral-100: #f9d4d2;
+      --green-700: #1f6f43;
+      --green-100: #daf4e4;
+      --amber-700: #8a5600;
+      --amber-100: #fff1cf;
+      --violet-700: #5936b3;
+      --violet-100: #eee7ff;
+      --cyan-700: #356373;
+      --cyan-100: #e2f0f4;
+      --line-soft: #e8e8e8;
+      --line-mid: #c2c2c2;
+      --line-strong: #1a1a1a;
+      --shadow-soft: 0 2px 8px rgba(26, 26, 26, 0.08);
+      --font-main: "Forma DJR Micro", "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", Arial, system-ui, sans-serif;
+      --fs-hero: 48px;
+      --lh-hero: 56px;
+      --fs-title: 34px;
+      --lh-title: 42px;
+      --fs-section: 28px;
+      --lh-section: 36px;
+      --fs-sub: 22px;
+      --lh-sub: 30px;
+      --fs-lead: 18px;
+      --lh-lead: 30px;
+      --fs-body: 16px;
+      --lh-body: 27px;
+      --fs-small: 14px;
+      --lh-small: 22px;
+      --fs-tiny: 12px;
+      --lh-tiny: 18px;
+      --fs-number: 30px;
+      --lh-number: 36px;
+      --weight-regular: 400;
+      --weight-medium: 500;
+      --weight-bold: 700;
+      --tracking-zero: 0;
+      --sp-1: 4px;
+      --sp-2: 8px;
+      --sp-3: 12px;
+      --sp-4: 16px;
+      --sp-5: 20px;
+      --sp-6: 24px;
+      --sp-7: 32px;
+      --sp-8: 40px;
+      --sp-9: 48px;
+      --sp-10: 64px;
+      --sp-11: 80px;
+      --mark-thick: 8px;
+      --mark-mid: 4px;
+      --mark-line: 1px;
+      --mark-index: 42px;
+      --radius-none: 0;
+      --card-max: 1040px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      margin: 0;
+      background: var(--paper-100);
+      color: var(--ink-900);
+      font-family: var(--font-main);
+      letter-spacing: var(--tracking-zero);
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: linear-gradient(180deg, var(--paper-000), var(--paper-100));
+      color: var(--ink-900);
+      font-size: var(--fs-body);
+      line-height: var(--lh-body);
+    }
+
+    .page {
+      width: 100%;
+      padding: var(--sp-8) var(--sp-4);
+    }
+
+    .card {
+      width: min(100%, var(--card-max));
+      margin: 0 auto;
+      background: var(--paper-000);
+      border: var(--mark-line) solid var(--line-mid);
+      border-radius: var(--radius-none);
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .hero {
+      position: relative;
+      padding: var(--sp-8) var(--sp-7) var(--sp-7);
+      border-bottom: var(--mark-line) solid var(--line-soft);
+      background:
+        linear-gradient(135deg, var(--blue-100) 0%, var(--paper-000) 54%),
+        var(--paper-000);
+    }
+
+    .hero::before,
+    .hero::after {
+      content: "";
+      position: absolute;
+      top: var(--sp-8);
+      width: 18px;
+      height: 112px;
+      background: var(--blue-800);
+      transform: skewX(-22deg);
+    }
+
+    .hero::before {
+      right: var(--sp-8);
+    }
+
+    .hero::after {
+      right: calc(var(--sp-8) + 28px);
+      opacity: 0.28;
+    }
+
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--sp-2);
+      margin-bottom: var(--sp-6);
+      color: var(--ink-700);
+      font-size: var(--fs-small);
+      line-height: var(--lh-small);
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: var(--sp-1) var(--sp-3);
+      border: var(--mark-line) solid var(--blue-800);
+      background: var(--paper-000);
+      color: var(--blue-800);
+      font-weight: var(--weight-medium);
+    }
+
+    .hero h1 {
+      position: relative;
+      z-index: 1;
+      max-width: 780px;
+      margin: 0;
+      color: var(--ink-950);
+      font-size: var(--fs-hero);
+      line-height: var(--lh-hero);
+      font-weight: var(--weight-medium);
+      letter-spacing: var(--tracking-zero);
+    }
+
+    .hero p {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+      margin: var(--sp-5) 0 0;
+      color: var(--ink-700);
+      font-size: var(--fs-lead);
+      line-height: var(--lh-lead);
+    }
+
+    .metric-row {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--sp-3);
+      margin-top: var(--sp-7);
+    }
+
+    .metric {
+      min-height: 112px;
+      padding: var(--sp-4);
+      border: var(--mark-line) solid var(--line-soft);
+      background: var(--paper-000);
+    }
+
+    .metric strong {
+      display: block;
+      color: var(--blue-800);
+      font-size: var(--fs-number);
+      line-height: var(--lh-number);
+      font-weight: var(--weight-medium);
+    }
+
+    .metric span {
+      display: block;
+      margin-top: var(--sp-2);
+      color: var(--ink-600);
+      font-size: var(--fs-small);
+      line-height: var(--lh-small);
+    }
+
+    .section {
+      padding: var(--sp-7);
+      border-bottom: var(--mark-line) solid var(--line-soft);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: var(--mark-index) 1fr;
+      gap: var(--sp-4);
+      align-items: start;
+      margin-bottom: var(--sp-5);
+    }
+
+    .index {
+      display: grid;
+      place-items: center;
+      width: var(--mark-index);
+      height: var(--mark-index);
+      background: var(--blue-800);
+      color: var(--paper-000);
+      font-size: var(--fs-small);
+      line-height: var(--lh-small);
+      font-weight: var(--weight-bold);
+    }
+
+    .section-head h2 {
+      margin: 0;
+      color: var(--ink-950);
+      font-size: var(--fs-section);
+      line-height: var(--lh-section);
+      font-weight: var(--weight-medium);
+    }
+
+    .section-head p {
+      margin: var(--sp-1) 0 0;
+      color: var(--ink-600);
+      font-size: var(--fs-small);
+      line-height: var(--lh-small);
+    }
+
+    .core-box {
+      padding: var(--sp-6);
+      border-left: var(--mark-thick) solid var(--blue-800);
+      background: var(--paper-100);
+    }
+
+    .core-box h3 {
+      margin: 0 0 var(--sp-4);
+      color: var(--ink-950);
+      font-size: var(--fs-title);
+      line-height: var(--lh-title);
+      font-weight: var(--weight-medium);
+    }
+
+    .core-box p {
+      margin: 0;
+      color: var(--ink-700);
+      font-size: var(--fs-lead);
+      line-height: var(--lh-lead);
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--sp-4);
+    }
+
+    .panel {
+      padding: var(--sp-5);
+      border: var(--mark-line) solid var(--line-soft);
+      background: var(--paper-000);
+    }
+
+    .panel.blue {
+      background: var(--blue-100);
+      border-color: var(--blue-200);
+    }
+
+    .panel.warn {
+      background: var(--amber-100);
+      border-color: #f1cc79;
+    }
+
+    .panel.risk {
+      background: var(--coral-100);
+      border-color: #eca2a0;
+    }
+
+    .panel.green {
+      background: var(--green-100);
+      border-color: #9cdbb8;
+    }
+
+    .panel h3 {
+      margin: 0 0 var(--sp-3);
+      color: var(--ink-950);
+      font-size: var(--fs-sub);
+      line-height: var(--lh-sub);
+      font-weight: var(--weight-medium);
+    }
+
+    .panel p {
+      margin: 0;
+      color: var(--ink-700);
+      font-size: var(--fs-body);
+      line-height: var(--lh-body);
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: var(--mark-line) solid var(--line-mid);
+    }
+
+    .step {
+      min-height: 136px;
+      padding: var(--sp-5);
+      border-right: var(--mark-line) solid var(--line-soft);
+      background: var(--paper-000);
+    }
+
+    .step:last-child {
+      border-right: 0;
+    }
+
+    .step b {
+      display: block;
+      margin-bottom: var(--sp-3);
+      color: var(--blue-800);
+      font-size: var(--fs-tiny);
+      line-height: var(--lh-tiny);
+      font-weight: var(--weight-bold);
+    }
+
+    .step strong {
+      display: block;
+      color: var(--ink-950);
+      font-size: var(--fs-sub);
+      line-height: var(--lh-sub);
+      font-weight: var(--weight-medium);
+    }
+
+    .step span {
+      display: block;
+      margin-top: var(--sp-2);
+      color: var(--ink-600);
+      font-size: var(--fs-small);
+      line-height: var(--lh-small);
+    }
+
+    .quote {
+      padding: var(--sp-6);
+      background: var(--ink-900);
+      color: var(--paper-000);
+      border-left: var(--mark-thick) solid var(--blue-700);
+    }
+
+    .quote small {
+      display: block;
+      margin-bottom: var(--sp-3);
+      color: var(--blue-200);
+      font-size: var(--fs-tiny);
+      line-height: var(--lh-tiny);
+      font-weight: var(--weight-bold);
+    }
+
+    .quote p {
+      margin: 0;
+      font-size: 24px;
+      line-height: 36px;
+      font-weight: var(--weight-medium);
+    }
+
+    .list {
+      display: grid;
+      gap: var(--sp-3);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .list li {
+      position: relative;
+      padding-left: var(--sp-5);
+      color: var(--ink-700);
+      font-size: var(--fs-body);
+      line-height: var(--lh-body);
+    }
+
+    .list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: 8px;
+      height: 8px;
+      background: var(--blue-800);
+      transform: skewX(-22deg);
+    }
+
+    .footer {
+      padding: var(--sp-7);
+      background: var(--ink-900);
+      color: var(--paper-300);
+      font-size: var(--fs-small);
+      line-height: var(--lh-small);
+    }
+
+    .footer strong {
+      color: var(--paper-000);
+      font-weight: var(--weight-medium);
+    }
+
+    @media (max-width: 520px) {
+      :root {
+        --fs-hero: 34px;
+        --lh-hero: 42px;
+        --fs-title: 26px;
+        --lh-title: 34px;
+        --fs-section: 24px;
+        --lh-section: 32px;
+      }
+
+      .page {
+        padding: var(--sp-4) var(--sp-2);
+      }
+
+      .hero,
+      .section,
+      .footer {
+        padding: var(--sp-6) var(--sp-4);
+      }
+
+      .hero::before,
+      .hero::after {
+        display: none;
+      }
+
+      .metric-row,
+      .grid-2,
+      .flow {
+        grid-template-columns: 1fr;
+      }
+
+      .step {
+        border-right: 0;
+        border-bottom: var(--mark-line) solid var(--line-soft);
+      }
+
+      .step:last-child {
+        border-bottom: 0;
+      }
+    }
+
+    @media (min-width: 521px) and (max-width: 767px) {
+      :root {
+        --fs-hero: 40px;
+        --lh-hero: 48px;
+      }
+
+      .metric-row,
+      .grid-2,
+      .flow {
+        grid-template-columns: 1fr;
+      }
+
+      .step {
+        border-right: 0;
+        border-bottom: var(--mark-line) solid var(--line-soft);
+      }
+
+      .step:last-child {
+        border-bottom: 0;
+      }
+    }
+
+    @media (min-width: 768px) and (max-width: 1079px) {
+      .metric-row,
+      .flow {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .step:nth-child(2) {
+        border-right: 0;
+      }
+
+      .step:nth-child(1),
+      .step:nth-child(2) {
+        border-bottom: var(--mark-line) solid var(--line-soft);
+      }
+    }
+
+    @media (min-width: 1080px) {
+      .page {
+        padding-top: var(--sp-10);
+        padding-bottom: var(--sp-10);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <article class="card">
+      <header class="hero">
+        <div class="meta">
+          <span class="tag">2026-06-19</span>
+          <span class="tag">日省认知卡片</span>
+          <span class="tag">HP 风格转译</span>
+        </div>
+        <h1>先把情绪说出来，再把流程写进表里</h1>
+        <p>今天不是主线项目出了结果，而是情绪边界、助理流程和写作卡点同时暴露。真正要沉淀的不是一时发火，而是把混乱变成制度。</p>
+        <div class="metric-row">
+          <div class="metric"><strong>3</strong><span>个输入文件归入 6-19</span></div>
+          <div class="metric"><strong>2</strong><span>项助理流程改革待落地</span></div>
+          <div class="metric"><strong>0</strong><span>文章、SEO、小红书结果物</span></div>
+          <div class="metric"><strong>1</strong><span>条情绪外放铁原则</span></div>
+        </div>
+      </header>
+
+      <section class="section">
+        <div class="section-head">
+          <span class="index">01</span>
+          <div>
+            <h2>核心命题</h2>
+            <p>远看只抓这一句。</p>
+          </div>
+        </div>
+        <div class="core-box">
+          <h3>不爽要当场说，流程要当场补。</h3>
+          <p>情绪压着，会变成内耗；流程缺着，会变成事故。助理找不到退款订单不是钱的问题，是订单、群、收货、核账没有绑定成系统的问题。</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <span class="index">02</span>
+          <div>
+            <h2>三个关键暴露</h2>
+            <p>不要把暴露包装成进展，暴露只是修系统的入口。</p>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="panel blue">
+            <h3>情绪边界</h3>
+            <p>前面多次忍着助理状态问题，最后在退款订单找不到时触底线。当场说是必要动作，不是失控。</p>
+          </div>
+          <div class="panel warn">
+            <h3>写作卡点</h3>
+            <p>文章已开始，但被大佬内容和提示词实验带跑。真正修正不是再找资料，而是回到 SOP，先完成再完美。</p>
+          </div>
+          <div class="panel green">
+            <h3>供给者视角</h3>
+            <p>从“我要学什么”切到“我能提供什么”。学习只有变成产品、服务、内容或结果物，才进入商业闭环。</p>
+          </div>
+          <div class="panel risk">
+            <h3>主线未产出</h3>
+            <p>文章未发，SEO 未推进，小红书虚拟仍卡选品。今天的价值是识别问题，不是完成主线。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <span class="index">03</span>
+          <div>
+            <h2>流程修复路径</h2>
+            <p>从一次冲突，落到可复用制度。</p>
+          </div>
+        </div>
+        <div class="flow">
+          <div class="step"><b>STEP 1</b><strong>当场表达</strong><span>不爽、不满、愤怒不要继续压着，先把边界说清。</span></div>
+          <div class="step"><b>STEP 2</b><strong>定位缺口</strong><span>这次不是红包和钱的问题，而是订单信息找不到。</span></div>
+          <div class="step"><b>STEP 3</b><strong>表格绑定</strong><span>收货登记表绑定订单、群、客户、退款和核账字段。</span></div>
+          <div class="step"><b>STEP 4</b><strong>节后执行</strong><span>端午后执行两项改革，米儿订单单独登记核账。</span></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="quote">
+          <small>KEY SENTENCE</small>
+          <p>“情绪没有外放，就会淤积在体内，冲击自己，撞伤自己。”</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <span class="index">04</span>
+          <div>
+            <h2>方法沉淀</h2>
+            <p>这几条能直接进入后续操作。</p>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="panel">
+            <h3>写作 SOP 原则</h3>
+            <p>有既定 SOP 就跟着走，不追求一开始完美。先一股脑完成，再回头优化。</p>
+          </div>
+          <div class="panel">
+            <h3>IP 产品依附原则</h3>
+            <p>先定产品和客户画像，再定制 IP 形象。不要先做 IP 再反找产品。</p>
+          </div>
+          <div class="panel">
+            <h3>出海 SEO 护城河</h3>
+            <p>第三方案例显示，热词、多语言、长尾词、爬虫隔离和提前铺垫，都可能影响 SEO 结果。</p>
+          </div>
+          <div class="panel">
+            <h3>时间压缩法</h3>
+            <p>先矫枉过正，减少吃饭和路上时间，用外卖、快餐、附近图书馆把连续工作时间抢回来。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <span class="index">05</span>
+          <div>
+            <h2>待办与待核</h2>
+            <p>保留未完成状态，不把计划写成成果。</p>
+          </div>
+        </div>
+        <div class="grid-2">
+          <div class="panel blue">
+            <h3>下一步动作</h3>
+            <ul class="list">
+              <li>继续写完并发布公众号文章。</li>
+              <li>继续完善、测试 SEO 站。</li>
+              <li>继续确定小红书虚拟产品方向。</li>
+              <li>端午后落地助理订单登记表和米儿订单独立核账。</li>
+            </ul>
+          </div>
+          <div class="panel risk">
+            <h3>待核风险</h3>
+            <ul class="list">
+              <li>出海 SEO 30 天 100 万 UV、290 万 PV 是第三方数据，未亲身验证。</li>
+              <li>端午活动安排有一丢丢小问题，但具体问题没有说清。</li>
+              <li>节假日前平台封号风险需要预判，但目前还没有形成 SOP。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <strong>来源：</strong>2026-06-19 日省文件。内容保留约 25%，重点保留核心命题、关键论点、金句、行动与待核风险。视觉参考为 HP 白底蓝色企业信息系统，已按本地硬约束处理为完整静态 HTML、主卡片直角、无脚本、无交互、无跳转。
+      </footer>
+    </article>
+  </main>
+</body>
+</html>
