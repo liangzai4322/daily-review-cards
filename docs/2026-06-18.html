@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>认知卡片 · 2026-06-18</title>
+  <style>
+    :root {
+      --color-canvas-0: #0a0a0a;
+      --color-canvas-1: #111214;
+      --color-canvas-2: #191919;
+      --color-canvas-3: #1f2227;
+      --color-canvas-4: #292d34;
+      --color-canvas-5: #363a3f;
+      --color-ink-0: #ffffff;
+      --color-ink-1: #f4f5f6;
+      --color-ink-2: #dadbdf;
+      --color-ink-3: #b7bbc1;
+      --color-ink-4: #8e949c;
+      --color-ink-5: #7d8187;
+      --color-ink-6: #5d636b;
+      --color-line-0: #ffffff;
+      --color-line-1: #3f444b;
+      --color-line-2: #2c3036;
+      --color-line-3: #212327;
+      --color-line-4: #17191d;
+      --color-accent-warm-0: #ff7a17;
+      --color-accent-warm-1: #ffc285;
+      --color-accent-warm-2: #3a2414;
+      --color-accent-violet-0: #7c3aed;
+      --color-accent-violet-1: #c4b5fd;
+      --color-accent-violet-2: #251843;
+      --color-accent-blue-0: #a0c3ec;
+      --color-accent-blue-1: #d6e7fb;
+      --color-accent-blue-2: #0d1726;
+      --color-signal-good: #b7f7d3;
+      --color-signal-good-bg: #0f2a1b;
+      --color-signal-warn: #ffd28a;
+      --color-signal-warn-bg: #33230d;
+      --color-signal-risk: #ffb4b4;
+      --color-signal-risk-bg: #351515;
+      --color-signal-action: #b9c8ff;
+      --color-signal-action-bg: #141b35;
+      --color-signal-method: #d5c7ff;
+      --color-signal-method-bg: #201632;
+      --color-panel-core: #f6f2ec;
+      --color-panel-core-ink: #0a0a0a;
+      --color-panel-dark: #111214;
+      --color-panel-mid: #191919;
+      --color-panel-soft: #1a1c20;
+      --color-panel-line: #2f333a;
+      --font-sans: Inter, "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", system-ui, -apple-system, sans-serif;
+      --font-mono: "Geist Mono", "SFMono-Regular", Consolas, "Microsoft YaHei", monospace;
+      --text-hero: 52px;
+      --text-hero-line: 58px;
+      --text-title: 34px;
+      --text-title-line: 42px;
+      --text-section: 25px;
+      --text-section-line: 33px;
+      --text-subtitle: 21px;
+      --text-subtitle-line: 30px;
+      --text-lead: 18px;
+      --text-lead-line: 30px;
+      --text-body: 16px;
+      --text-body-line: 27px;
+      --text-small: 14px;
+      --text-small-line: 22px;
+      --text-tiny: 12px;
+      --text-tiny-line: 18px;
+      --text-metric: 28px;
+      --text-metric-line: 34px;
+      --text-quote: 22px;
+      --text-quote-line: 34px;
+      --text-chip: 13px;
+      --text-chip-line: 18px;
+      --weight-light: 300;
+      --weight-regular: 400;
+      --weight-medium: 500;
+      --weight-strong: 650;
+      --weight-heavy: 760;
+      --tracking-zero: 0;
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 20px;
+      --space-6: 24px;
+      --space-7: 32px;
+      --space-8: 40px;
+      --space-9: 48px;
+      --space-10: 56px;
+      --space-11: 64px;
+      --space-12: 80px;
+      --mark-core: 7px;
+      --mark-slim: 3px;
+      --mark-step: 28px;
+      --mark-index: 38px;
+      --mark-line: 1px;
+      --mark-heavy-line: 2px;
+      --mark-bar: 10px;
+      --mark-dot: 8px;
+      --mark-rule: 72px;
+      --radius-none: 0;
+      --max-card: 1060px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      margin: 0;
+      background: var(--color-canvas-0);
+      color: var(--color-ink-1);
+      font-family: var(--font-sans);
+      letter-spacing: var(--tracking-zero);
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        linear-gradient(180deg, var(--color-canvas-0) 0%, var(--color-accent-blue-2) 42%, var(--color-canvas-0) 100%);
+      color: var(--color-ink-1);
+      font-size: var(--text-body);
+      line-height: var(--text-body-line);
+      letter-spacing: var(--tracking-zero);
+    }
+
+    .card-shell {
+      width: 100%;
+      padding: var(--space-8) var(--space-4);
+    }
+
+    .cognitive-card {
+      width: min(100%, var(--max-card));
+      margin: 0 auto;
+      border: var(--mark-line) solid var(--color-line-2);
+      border-radius: var(--radius-none);
+      background: var(--color-canvas-0);
+      overflow: hidden;
+    }
+
+    .card-header {
+      padding: var(--space-8) var(--space-7) var(--space-7);
+      border-bottom: var(--mark-line) solid var(--color-line-3);
+      background:
+        linear-gradient(135deg, rgba(255, 122, 23, 0.18) 0%, rgba(124, 58, 237, 0.14) 44%, rgba(10, 10, 10, 0) 68%),
+        var(--color-canvas-0);
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      align-items: center;
+      margin-bottom: var(--space-6);
+      font-family: var(--font-mono);
+      font-size: var(--text-chip);
+      line-height: var(--text-chip-line);
+      color: var(--color-ink-3);
+      letter-spacing: var(--tracking-zero);
+    }
+
+    .meta-chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: var(--space-1) var(--space-3);
+      border: var(--mark-line) solid var(--color-line-1);
+      border-radius: var(--radius-none);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .hero-title {
+      margin: 0;
+      max-width: 900px;
+      color: var(--color-ink-0);
+      font-size: var(--text-hero);
+      line-height: var(--text-hero-line);
+      font-weight: var(--weight-regular);
+      letter-spacing: var(--tracking-zero);
+    }
+
+    .hero-lead {
+      margin: var(--space-5) 0 0;
+      max-width: 780px;
+      color: var(--color-ink-2);
+      font-size: var(--text-lead);
+      line-height: var(--text-lead-line);
+      font-weight: var(--weight-regular);
+      letter-spacing: var(--tracking-zero);
+    }
+
+    .signal-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-3);
+      margin-top: var(--space-7);
+    }
+
+    .signal {
+      min-height: 108px;
+      padding: var(--space-4);
+      border: var(--mark-line) solid var(--color-line-3);
+      background: rgba(255, 255, 255, 0.035);
+    }
+
+    .signal strong {
+      display: block;
+      color: var(--color-ink-0);
+      font-size: var(--text-metric);
+      line-height: var(--text-metric-line);
+      font-weight: var(--weight-regular);
+      letter-spacing: var(--tracking-zero);
+    }
+
+    .signal span {
+      display: block;
+      margin-top: var(--space-2);
+      color: var(--color-ink-4);
+      font-size: var(--text-small);
+      line-height: var(--text-small-line);
+    }
+
+    .section {
+      padding: var(--space-7);
+      border-bottom: var(--mark-line) solid var(--color-line-3);
+    }
+
+    .section-title {
+      display: grid;
+      grid-template-columns: var(--mark-index) 1fr;
+      gap: var(--space-4);
+      align-items: start;
+      margin-bottom: var(--space-5);
+    }
+
+    .section-index {
+      display: inline-grid;
+      place-items: center;
+      width: var(--mark-index);
+      height: var(--mark-index);
+      border: var(--mark-line) solid var(--color-line-1);
+      color: var(--color-accent-warm-1);
+      font-family: var(--font-mono);
+      font-size: var(--text-small);
+      line-height: var(--text-small-line);
+    }
+
+    .section-title h2 {
+      margin: 0;
+      color: var(--color-ink-0);
+      font-size: var(--text-section);
+      line-height: var(--text-section-line);
+      font-weight: var(--weight-regular);
+      letter-spacing: var(--tracking-zero);
+    }
+
+    .section-title p {
+      margin: var(--space-1) 0 0;
+      color: var(--color-ink-4);
+      font-size: var(--text-small);
+      line-height: var(--text-small-line);
+    }
+
+    .core-panel {
+      display: grid;
+      gap: var(--space-4);
+      padding: var(--space-6);
+      border-left: var(--mark-core) solid var(--color-accent-warm-0);
+      background: var(--color-panel-core);
+      color: var(--color-panel-core-ink);
+    }
+
+    .core-panel h3 {
+      margin: 0;
+      font-size: var(--text-title);
+      line-height: var(--text-title-line);
+      font-weight: var(--weight-medium);
+      letter-spacing: var(--tracking-zero);
+    }
+
+    .core-panel p {
+      margin: 0;
+      font-size: var(--text-lead);
+      line-height: var(--text-lead-line);
+      color: var(--color-panel-core-ink);
+    }
+
+    .argument-list {
+      display: grid;
+      gap: var(--space-4);
+    }
+
+    .argument {
+      display: grid;
+      grid-template-columns: var(--mark-step) 1fr;
+      gap: var(--space-4);
+      padding: var(--space-5);
+      border: var(--mark-line) solid var(--color-panel-line);
+      background: var(--color-panel-mid);
+    }
+
+    .argument-number {
+      display: inline-grid;
+      place-items: center;
+      width: var(--mark-step);
+      height: var(--mark-step);
+      border: var(--mark-line) solid var(--color-line-1);
+      color: var(--color-accent-blue-1);
+      font-family: var(--font-mono);
+      font-size: var(--text-tiny);
+      line-height: var(--text-tiny-line);
+    }
+
+    .argument h3 {
+      margin: 0 0 var(--space-2);
+      color: var(--color-ink-0);
+      font-size: var(--text-subtitle);
+      line-height: var(--text-subtitle-line);
+      font-weight: var(--weight-regular);
+      letter-spacing: var(--tracking-zero);
+    }
+
+    .argument p {
+      margin: 0;
+      color: var(--color-ink-3);
+      font-size: var(--text-body);
+      line-height: var(--text-body-line);
+    }
+
+    .flow-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: var(--mark-line) solid var(--color-line-2);
+      background: var(--color-panel-dark);
+    }
+
+    .flow-node {
+      min-height: 132px;
+      padding: var(--space-5);
+      border-right: var(--mark-line) solid var(--color-line-3);
+    }
+
+    .flow-node:last-child {
+      border-right: 0;
+    }
+
+    .flow-node b {
+      display: block;
+      color: var(--color-accent-warm-1);
+      font-family: var(--font-mono);
+      font-size: var(--text-tiny);
+      line-height: var(--text-tiny-line);
+      font-weight: var(--weight-regular);
+      letter-spacing: var(--tracking-zero);
+    }
+
+    .flow-node strong {
+      display: block;
+      margin-top: var(--space-3);
+      color: var(--color-ink-0);
+      font-size: var(--text-subtitle);
+      line-height: var(--text-subtitle-line);
+      font-weight: var(--weight-regular);
+      letter-spacing: var(--tracking-zero);
+    }
+
+    .flow-node span {
+      display: block;
+      margin-top: var(--space-2);
+      color: var(--color-ink-4);
+      font-size: var(--text-small);
+      line-height: var(--text-small-line);
+    }
+
+    .quote-band {
+      display: grid;
+      gap: var(--space-4);
+      padding: var(--space-6);
+      border-top: var(--mark-heavy-line) solid var(--color-accent-violet-0);
+      border-bottom: var(--mark-heavy-line) solid var(--color-accent-violet-0);
+      background: linear-gradient(90deg, var(--color-accent-violet-2), var(--color-panel-dark));
+    }
+
+    .quote-band p {
+      margin: 0;
+      color: var(--color-ink-0);
+      font-size: var(--text-quote);
+      line-height: var(--text-quote-line);
+      font-weight: var(--weight-regular);
+      letter-spacing: var(--tracking-zero);
+    }
+
+    .quote-band small {
+      color: var(--color-accent-violet-1);
+      font-family: var(--font-mono);
+      font-size: var(--text-tiny);
+      line-height: var(--text-tiny-line);
+      letter-spacing: var(--tracking-zero);
+    }
+
+    .method-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-4);
+    }
+
+    .method-card,
+    .action-card,
+    .risk-card,
+    .example-card {
+      padding: var(--space-5);
+      border: var(--mark-line) solid var(--color-line-2);
+      background: var(--color-panel-soft);
+    }
+
+    .method-card {
+      border-top: var(--mark-bar) solid var(--color-signal-method);
+    }
+
+    .example-card {
+      border-top: var(--mark-bar) solid var(--color-accent-blue-0);
+    }
+
+    .action-card {
+      border-top: var(--mark-bar) solid var(--color-signal-action);
+    }
+
+    .risk-card {
+      border-top: var(--mark-bar) solid var(--color-signal-risk);
+    }
+
+    .method-card h3,
+    .action-card h3,
+    .risk-card h3,
+    .example-card h3 {
+      margin: 0 0 var(--space-3);
+      color: var(--color-ink-0);
+      font-size: var(--text-subtitle);
+      line-height: var(--text-subtitle-line);
+      font-weight: var(--weight-regular);
+      letter-spacing: var(--tracking-zero);
+    }
+
+    .method-card p,
+    .action-card p,
+    .risk-card p,
+    .example-card p {
+      margin: 0;
+      color: var(--color-ink-3);
+      font-size: var(--text-body);
+      line-height: var(--text-body-line);
+    }
+
+    .evidence-list,
+    .action-list,
+    .risk-list {
+      display: grid;
+      gap: var(--space-3);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .evidence-list li,
+    .action-list li,
+    .risk-list li {
+      position: relative;
+      padding-left: var(--space-5);
+      color: var(--color-ink-3);
+      font-size: var(--text-body);
+      line-height: var(--text-body-line);
+    }
+
+    .evidence-list li::before,
+    .action-list li::before,
+    .risk-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 10px;
+      width: var(--mark-dot);
+      height: var(--mark-dot);
+      background: var(--color-accent-warm-0);
+    }
+
+    .action-list li::before {
+      background: var(--color-signal-action);
+    }
+
+    .risk-list li::before {
+      background: var(--color-signal-risk);
+    }
+
+    .split-grid {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: var(--space-4);
+    }
+
+    .progress-note {
+      margin-top: var(--space-5);
+      padding: var(--space-4) var(--space-5);
+      border-left: var(--mark-core) solid var(--color-signal-warn);
+      background: var(--color-signal-warn-bg);
+      color: var(--color-signal-warn);
+      font-size: var(--text-body);
+      line-height: var(--text-body-line);
+    }
+
+    .footer {
+      padding: var(--space-7);
+      background: var(--color-canvas-0);
+      color: var(--color-ink-5);
+      font-size: var(--text-small);
+      line-height: var(--text-small-line);
+    }
+
+    .footer strong {
+      color: var(--color-ink-2);
+      font-weight: var(--weight-regular);
+    }
+
+    @media (max-width: 520px) {
+      :root {
+        --text-hero: 34px;
+        --text-hero-line: 42px;
+        --text-title: 26px;
+        --text-title-line: 34px;
+        --text-section: 22px;
+        --text-section-line: 30px;
+        --text-lead: 16px;
+        --text-lead-line: 27px;
+      }
+
+      .card-shell {
+        padding: var(--space-4) var(--space-2);
+      }
+
+      .card-header,
+      .section,
+      .footer {
+        padding: var(--space-6) var(--space-4);
+      }
+
+      .signal-grid,
+      .flow-strip,
+      .method-grid,
+      .split-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .flow-node {
+        border-right: 0;
+        border-bottom: var(--mark-line) solid var(--color-line-3);
+      }
+
+      .flow-node:last-child {
+        border-bottom: 0;
+      }
+    }
+
+    @media (min-width: 521px) and (max-width: 759px) {
+      :root {
+        --text-hero: 40px;
+        --text-hero-line: 48px;
+        --text-title: 29px;
+        --text-title-line: 37px;
+      }
+
+      .signal-grid,
+      .flow-strip,
+      .method-grid,
+      .split-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .flow-node {
+        border-right: 0;
+        border-bottom: var(--mark-line) solid var(--color-line-3);
+      }
+
+      .flow-node:last-child {
+        border-bottom: 0;
+      }
+    }
+
+    @media (min-width: 760px) and (max-width: 1079px) {
+      .signal-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .flow-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .flow-node:nth-child(2) {
+        border-right: 0;
+      }
+
+      .flow-node:nth-child(1),
+      .flow-node:nth-child(2) {
+        border-bottom: var(--mark-line) solid var(--color-line-3);
+      }
+    }
+
+    @media (min-width: 1080px) {
+      .card-shell {
+        padding-top: var(--space-10);
+        padding-bottom: var(--space-10);
+      }
+
+      .cognitive-card {
+        border-color: var(--color-line-1);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="card-shell">
+    <article class="cognitive-card">
+      <header class="card-header">
+        <div class="meta-row">
+          <span class="meta-chip">DAILY REVIEW</span>
+          <span class="meta-chip">2026-06-18</span>
+          <span class="meta-chip">x.ai 风格转译</span>
+        </div>
+        <h1 class="hero-title">先把飞轮推起来，再谈主线推进</h1>
+        <p class="hero-lead">今天真正发生的，不是 SEO 站或小红书虚拟取得了结果，而是你把启动阻力、状态窗口和连续工作成本讲清楚了。</p>
+        <div class="signal-grid">
+          <div class="signal"><strong>4</strong><span>个输入文件合并整理</span></div>
+          <div class="signal"><strong>2</strong><span>条差评已退款撤评</span></div>
+          <div class="signal"><strong>20+</strong><span>订单验证改群名脚本价值</span></div>
+          <div class="signal"><strong>0</strong><span>SEO 与小红书主线仍未产出</span></div>
+        </div>
+      </header>
+
+      <section class="section">
+        <div class="section-title">
+          <span class="section-index">01</span>
+          <div>
+            <h2>核心判断</h2>
+            <p>远看只需要记住这一句。</p>
+          </div>
+        </div>
+        <div class="core-panel">
+          <h3>低状态时，先启动，不先规划。</h3>
+          <p>你以前总想先梳理最重要的事再开始工作，但在低状态时，梳理本身变成了阻力。正确顺序是：简单待办先推一把，状态起来后，再进入重要任务。</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-title">
+          <span class="section-index">02</span>
+          <div>
+            <h2>三个认知位移</h2>
+            <p>从“我不够自律”转向“系统没有按状态设计”。</p>
+          </div>
+        </div>
+        <div class="argument-list">
+          <div class="argument">
+            <span class="argument-number">A</span>
+            <div>
+              <h3>状态窗口决定排错效率</h3>
+              <p>同一个网络问题，晚上研究到 1 点没解决，早上两三下看明白。复杂判断和技术排错应该尽量放到高状态窗口。</p>
+            </div>
+          </div>
+          <div class="argument">
+            <span class="argument-number">B</span>
+            <div>
+              <h3>工作碎片化会吞掉连接成本</h3>
+              <p>吃饭、路上、回消息把工作切碎以后，真正损耗的不只是时间，而是每次重新进入状态的十几分钟。</p>
+            </div>
+          </div>
+          <div class="argument">
+            <span class="argument-number">C</span>
+            <div>
+              <h3>积累型工具的爽点滞后出现</h3>
+              <p>改群名脚本前期麻烦，但 20 多条订单一来，立刻暴露出自动化价值。录制脚本是止血，Python 化才是复用。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-title">
+          <span class="section-index">03</span>
+          <div>
+            <h2>飞轮流程</h2>
+            <p>把启动动作从意志力问题改成流程问题。</p>
+          </div>
+        </div>
+        <div class="flow-strip">
+          <div class="flow-node"><b>STEP 1</b><strong>识别状态</strong><span>早上高状态，直接进重要盒；下午或低状态，先别硬规划。</span></div>
+          <div class="flow-node"><b>STEP 2</b><strong>低阻力启动</strong><span>从待办盒里拿一个简单动作，先让身体和注意力跑起来。</span></div>
+          <div class="flow-node"><b>STEP 3</b><strong>接入主线</strong><span>飞轮起来后，再切到 SEO 站、小红书虚拟、脚本重写这些主线任务。</span></div>
+          <div class="flow-node"><b>STEP 4</b><strong>结果物校验</strong><span>网页、帖子、文章、脚本才算推进；想通了不等于做完了。</span></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="quote-band">
+          <small>KEY SENTENCE</small>
+          <p>“像跑步之前都要求自己必须得先穿上最好的跑鞋，先把鞋刷干净，然后再跑，这样把我的启动难度真的太大了。”</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-title">
+          <span class="section-index">04</span>
+          <div>
+            <h2>方法沉淀</h2>
+            <p>今天最值得复用的不是某个结论，而是这几套动作。</p>
+          </div>
+        </div>
+        <div class="method-grid">
+          <div class="method-card">
+            <h3>重要盒 / 待办盒</h3>
+            <p>日醒时把重要任务放入重要盒，把低阻力事项放入待办盒。高状态吃重要盒，低状态吃待办盒。</p>
+          </div>
+          <div class="method-card">
+            <h3>标签页留存内化法</h3>
+            <p>看完文章不急着关，下次打开先自己输出收获，再看 AI 总结对照，把输入变成表达。</p>
+          </div>
+          <div class="method-card">
+            <h3>双版本任务规划</h3>
+            <p>晚上只做简版，早上再做精细版。不要在低状态下逼自己做高质量规划。</p>
+          </div>
+          <div class="method-card">
+            <h3>自动化三步</h3>
+            <p>批量填、批量发、批量改。先标准化变量少的后两步，再处理更复杂的第一步。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-title">
+          <span class="section-index">05</span>
+          <div>
+            <h2>证据与动作</h2>
+            <p>保留事实，不把未完成包装成完成。</p>
+          </div>
+        </div>
+        <div class="split-grid">
+          <div class="example-card">
+            <h3>今天的证据</h3>
+            <ul class="evidence-list">
+              <li>网络环境已解决，Codex 可用，稳定基础设施开始恢复。</li>
+              <li>改群名脚本短期投入生产，说明这条自动化路线值得继续。</li>
+              <li>两条差评通过退款撤评处理完，但评价风险需要前置 SOP。</li>
+              <li>和室友聊知识库蒸馏，按月维度方案仍在讨论，不是已启动。</li>
+            </ul>
+          </div>
+          <div class="action-card">
+            <h3>下一步动作</h3>
+            <ul class="action-list">
+              <li>今天追回 SEO 站全流程搭建，至少产出可检查页面。</li>
+              <li>推进小红书虚拟资料或内容更新，不能继续停在选品。</li>
+              <li>从选题库选一个主题，结合 AI 和卡兹克风格写出一篇。</li>
+              <li>把改群名脚本从录制方案推进到 Python 重写方案。</li>
+            </ul>
+          </div>
+        </div>
+        <div class="progress-note">关键提醒：网络解决、脚本灵感、飞轮想通，都不能替代主线结果物。今天的校验标准仍然是 SEO、小红书、文章或脚本是否真的产出。</div>
+      </section>
+
+      <section class="section">
+        <div class="section-title">
+          <span class="section-index">06</span>
+          <div>
+            <h2>待核风险</h2>
+            <p>不确定的内容继续标记，不把摘录当亲验。</p>
+          </div>
+        </div>
+        <div class="risk-card">
+          <h3>需要后续确认</h3>
+          <ul class="risk-list">
+            <li>原网络问题是否与 TUN 模式有关，已经被新方案绕过，但未最终确认。</li>
+            <li>ToB AI 视频和无人实体店复盘来自他人分享，结论可以研究，不能直接当成亲身验证。</li>
+            <li>知识库蒸馏按月维度、6 年约 72 个文件，仍是讨论方案，不是执行计划。</li>
+            <li>购买约 100G 流量包和服务名需要确认，金额也只保留为口语记录。</li>
+          </ul>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <strong>来源：</strong>2026-06-18 日省文件。保留比例约 25%，重点保留核心命题、关键论点、金句、动作和待核风险。视觉参考为 x.ai 深色实验室风格，已按本地硬约束去除交互、跳转、脚本和圆角主卡片。
+      </footer>
+    </article>
+  </main>
+</body>
+</html>
