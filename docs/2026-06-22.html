@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>认知卡片 · 2026-06-22</title>
+  <style>
+    :root {
+      --c-ink-900: #201d1d;
+      --c-ink-950: #0f0000;
+      --c-ink-800: #302c2c;
+      --c-ink-700: #424245;
+      --c-ink-600: #545252;
+      --c-ink-500: #646262;
+      --c-ink-400: #6e6e73;
+      --c-ink-300: #858282;
+      --c-ink-200: #9a9898;
+      --c-ink-100: #c7c4c4;
+      --c-canvas: #fdfcfc;
+      --c-surface-1: #faf8f8;
+      --c-surface-2: #f8f7f7;
+      --c-surface-3: #f1eeee;
+      --c-surface-4: #ebe7e7;
+      --c-surface-dark: #201d1d;
+      --c-surface-dark-2: #302c2c;
+      --c-line-soft: rgba(15, 0, 0, 0.10);
+      --c-line: rgba(15, 0, 0, 0.16);
+      --c-line-strong: rgba(15, 0, 0, 0.34);
+      --c-on-dark: #fdfcfc;
+      --c-on-dark-soft: #d9d5d5;
+      --c-on-dark-mute: #9a9898;
+      --c-accent-blue: #007aff;
+      --c-accent-blue-deep: #004085;
+      --c-accent-gold: #ff9f0a;
+      --c-accent-gold-soft: #fff2d6;
+      --c-accent-red: #ff3b30;
+      --c-accent-red-soft: #ffe3e1;
+      --c-accent-green: #30d158;
+      --c-accent-green-soft: #e7f8ed;
+      --c-accent-cyan: #56c7ff;
+      --c-accent-cyan-soft: #e6f6ff;
+      --c-accent-purple: #7a5cff;
+      --c-accent-purple-soft: #eeeafd;
+      --c-type-core: #0f0000;
+      --c-type-main: #201d1d;
+      --c-type-body: #424245;
+      --c-type-muted: #646262;
+      --c-type-faint: #858282;
+      --c-block-core: #201d1d;
+      --c-block-rule: #f1eeee;
+      --c-block-action: #e7f8ed;
+      --c-block-risk: #ffe3e1;
+      --c-block-quote: #fff2d6;
+      --shadow-none: none;
+      --font-mono: "Berkeley Mono", "JetBrains Mono", "IBM Plex Mono", "Geist Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --fs-01: 11px;
+      --fs-02: 12px;
+      --fs-03: 13px;
+      --fs-04: 14px;
+      --fs-05: 15px;
+      --fs-06: 16px;
+      --fs-07: 17px;
+      --fs-08: 18px;
+      --fs-09: 20px;
+      --fs-10: 22px;
+      --fs-11: 24px;
+      --fs-12: 28px;
+      --fs-13: 32px;
+      --fs-14: 38px;
+      --fs-15: 44px;
+      --lh-tight: 1.18;
+      --lh-title: 1.28;
+      --lh-body: 1.62;
+      --lh-loose: 1.86;
+      --fw-regular: 400;
+      --fw-medium: 500;
+      --fw-semibold: 650;
+      --fw-bold: 750;
+      --fw-black: 850;
+      --ls-zero: 0;
+      --sp-00: 0;
+      --sp-01: 2px;
+      --sp-02: 4px;
+      --sp-03: 6px;
+      --sp-04: 8px;
+      --sp-05: 10px;
+      --sp-06: 12px;
+      --sp-07: 16px;
+      --sp-08: 20px;
+      --sp-09: 24px;
+      --sp-10: 28px;
+      --sp-11: 32px;
+      --sp-12: 40px;
+      --sp-13: 48px;
+      --sp-14: 64px;
+      --sp-15: 80px;
+      --sp-16: 96px;
+      --safe-x: 40px;
+      --safe-y: 40px;
+      --mark-core: "[!]";
+      --mark-argument: "[+]";
+      --mark-rule: "[=]";
+      --mark-quote: "[*]";
+      --mark-action: "[>]";
+      --mark-risk: "[?]";
+      --mark-source: "[src]";
+      --rule-thin: 1px solid var(--c-line);
+      --rule-strong: 1px solid var(--c-line-strong);
+      --rule-dark: 1px solid var(--c-ink-900);
+      --card-width: 980px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      background: var(--c-canvas);
+      color: var(--c-type-body);
+      font-family: var(--font-mono);
+      letter-spacing: var(--ls-zero);
+      text-rendering: optimizeLegibility;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: var(--c-canvas);
+    }
+
+    .card-shell {
+      width: 100%;
+      padding: var(--sp-14) var(--sp-09);
+    }
+
+    .cognitive-card {
+      width: min(100%, var(--card-width));
+      margin: 0 auto;
+      background: var(--c-canvas);
+      border: var(--rule-dark);
+      border-radius: 0;
+      box-shadow: var(--shadow-none);
+    }
+
+    .card-header {
+      padding: var(--safe-y) var(--safe-x) var(--sp-12);
+      border-bottom: var(--rule-strong);
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--sp-04) var(--sp-08);
+      align-items: center;
+      margin-bottom: var(--sp-10);
+      color: var(--c-type-muted);
+      font-size: var(--fs-03);
+      line-height: var(--lh-body);
+      font-weight: var(--fw-medium);
+    }
+
+    .meta-chip {
+      display: inline-block;
+      padding: var(--sp-01) var(--sp-04);
+      border: var(--rule-thin);
+      background: var(--c-surface-2);
+      color: var(--c-type-main);
+    }
+
+    .ascii-title {
+      margin: 0 0 var(--sp-07);
+      color: var(--c-type-core);
+      font-size: var(--fs-14);
+      line-height: var(--lh-title);
+      font-weight: var(--fw-black);
+      letter-spacing: var(--ls-zero);
+    }
+
+    .subtitle {
+      max-width: 760px;
+      margin: 0;
+      color: var(--c-type-body);
+      font-size: var(--fs-06);
+      line-height: var(--lh-body);
+      font-weight: var(--fw-regular);
+    }
+
+    .terminal-core {
+      margin: var(--sp-12) var(--safe-x) 0;
+      padding: var(--sp-12);
+      background: var(--c-block-core);
+      color: var(--c-on-dark);
+      border-radius: 0;
+    }
+
+    .terminal-label {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--sp-08);
+      margin-bottom: var(--sp-09);
+      color: var(--c-on-dark-mute);
+      font-size: var(--fs-03);
+      line-height: var(--lh-body);
+      font-weight: var(--fw-medium);
+    }
+
+    .terminal-command {
+      margin: 0 0 var(--sp-09);
+      padding: var(--sp-06) var(--sp-07);
+      background: var(--c-surface-dark-2);
+      color: var(--c-on-dark);
+      font-size: var(--fs-05);
+      line-height: var(--lh-body);
+      font-weight: var(--fw-medium);
+      border-left: 4px solid var(--c-on-dark);
+    }
+
+    .core-line {
+      margin: 0;
+      color: var(--c-on-dark);
+      font-size: var(--fs-12);
+      line-height: var(--lh-title);
+      font-weight: var(--fw-black);
+    }
+
+    .core-explain {
+      margin: var(--sp-08) 0 0;
+      color: var(--c-on-dark-soft);
+      font-size: var(--fs-06);
+      line-height: var(--lh-body);
+      font-weight: var(--fw-regular);
+    }
+
+    .section {
+      margin: var(--sp-12) var(--safe-x) 0;
+      padding-top: var(--sp-12);
+      border-top: var(--rule-thin);
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: baseline;
+      gap: var(--sp-06);
+      margin: 0 0 var(--sp-09);
+      color: var(--c-type-main);
+      font-size: var(--fs-09);
+      line-height: var(--lh-title);
+      font-weight: var(--fw-bold);
+    }
+
+    .section-heading .marker {
+      color: var(--c-type-muted);
+      font-size: var(--fs-05);
+      font-weight: var(--fw-bold);
+    }
+
+    .argument-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--sp-07);
+    }
+
+    .argument-block {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: var(--sp-07);
+      padding: var(--sp-08);
+      background: var(--c-surface-1);
+      border: var(--rule-thin);
+    }
+
+    .argument-number {
+      color: var(--c-type-core);
+      font-size: var(--fs-10);
+      line-height: var(--lh-tight);
+      font-weight: var(--fw-black);
+    }
+
+    .argument-title {
+      margin: 0 0 var(--sp-04);
+      color: var(--c-type-main);
+      font-size: var(--fs-07);
+      line-height: var(--lh-title);
+      font-weight: var(--fw-bold);
+    }
+
+    .argument-copy {
+      margin: 0;
+      color: var(--c-type-body);
+      font-size: var(--fs-05);
+      line-height: var(--lh-body);
+      font-weight: var(--fw-regular);
+    }
+
+    .flow-strip {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--sp-05);
+      padding: var(--sp-08);
+      background: var(--c-block-rule);
+      border: var(--rule-thin);
+    }
+
+    .flow-step {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      gap: var(--sp-06);
+      align-items: start;
+      padding: var(--sp-05) 0;
+      border-bottom: var(--rule-thin);
+    }
+
+    .flow-step:last-child {
+      border-bottom: 0;
+    }
+
+    .flow-code {
+      color: var(--c-type-core);
+      font-size: var(--fs-04);
+      line-height: var(--lh-body);
+      font-weight: var(--fw-black);
+    }
+
+    .flow-text {
+      margin: 0;
+      color: var(--c-type-body);
+      font-size: var(--fs-05);
+      line-height: var(--lh-body);
+      font-weight: var(--fw-regular);
+    }
+
+    .rule-ledger {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--sp-06);
+    }
+
+    .rule-row {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: var(--sp-07);
+      padding: var(--sp-07) 0;
+      border-bottom: var(--rule-thin);
+    }
+
+    .rule-name {
+      color: var(--c-type-main);
+      font-size: var(--fs-05);
+      line-height: var(--lh-body);
+      font-weight: var(--fw-bold);
+    }
+
+    .rule-detail {
+      margin: 0;
+      color: var(--c-type-body);
+      font-size: var(--fs-05);
+      line-height: var(--lh-body);
+      font-weight: var(--fw-regular);
+    }
+
+    .quote-band {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--sp-06);
+      padding: var(--sp-08);
+      background: var(--c-block-quote);
+      border: var(--rule-thin);
+    }
+
+    .quote-line {
+      margin: 0;
+      color: var(--c-type-core);
+      font-size: var(--fs-07);
+      line-height: var(--lh-body);
+      font-weight: var(--fw-bold);
+    }
+
+    .quote-support {
+      margin: 0;
+      color: var(--c-type-muted);
+      font-size: var(--fs-04);
+      line-height: var(--lh-body);
+      font-weight: var(--fw-regular);
+    }
+
+    .two-block {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-07);
+    }
+
+    .action-box,
+    .risk-box {
+      padding: var(--sp-08);
+      border: var(--rule-thin);
+    }
+
+    .action-box {
+      background: var(--c-block-action);
+    }
+
+    .risk-box {
+      background: var(--c-block-risk);
+    }
+
+    .box-title {
+      margin: 0 0 var(--sp-06);
+      color: var(--c-type-main);
+      font-size: var(--fs-06);
+      line-height: var(--lh-title);
+      font-weight: var(--fw-bold);
+    }
+
+    .plain-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .plain-list li {
+      position: relative;
+      margin: 0 0 var(--sp-05);
+      padding-left: 34px;
+      color: var(--c-type-body);
+      font-size: var(--fs-04);
+      line-height: var(--lh-body);
+      font-weight: var(--fw-regular);
+    }
+
+    .plain-list li:last-child {
+      margin-bottom: 0;
+    }
+
+    .plain-list li::before {
+      content: "[+]";
+      position: absolute;
+      left: 0;
+      top: 0;
+      color: var(--c-type-main);
+      font-weight: var(--fw-bold);
+    }
+
+    .risk-box .plain-list li::before {
+      content: "[?]";
+    }
+
+    .action-box .plain-list li::before {
+      content: "[>]";
+    }
+
+    .source-note {
+      margin: var(--sp-12) var(--safe-x) var(--safe-y);
+      padding-top: var(--sp-08);
+      border-top: var(--rule-strong);
+      color: var(--c-type-muted);
+      font-size: var(--fs-03);
+      line-height: var(--lh-body);
+      font-weight: var(--fw-regular);
+    }
+
+    .source-note strong {
+      color: var(--c-type-main);
+      font-weight: var(--fw-bold);
+    }
+
+    @media (max-width: 1100px) {
+      :root {
+        --card-width: 900px;
+        --safe-x: 36px;
+        --safe-y: 40px;
+      }
+
+      .ascii-title {
+        font-size: var(--fs-13);
+      }
+    }
+
+    @media (max-width: 860px) {
+      :root {
+        --safe-x: 30px;
+        --safe-y: 36px;
+      }
+
+      .card-shell {
+        padding: var(--sp-12) var(--sp-07);
+      }
+
+      .two-block {
+        grid-template-columns: 1fr;
+      }
+
+      .core-line {
+        font-size: var(--fs-11);
+      }
+    }
+
+    @media (max-width: 640px) {
+      :root {
+        --safe-x: 22px;
+        --safe-y: 30px;
+      }
+
+      .ascii-title {
+        font-size: var(--fs-11);
+      }
+
+      .subtitle,
+      .core-explain {
+        font-size: var(--fs-05);
+      }
+
+      .argument-block,
+      .flow-step,
+      .rule-row {
+        grid-template-columns: 1fr;
+      }
+
+      .argument-number {
+        font-size: var(--fs-08);
+      }
+    }
+
+    @media (max-width: 420px) {
+      :root {
+        --safe-x: 16px;
+        --safe-y: 24px;
+      }
+
+      .card-shell {
+        padding: var(--sp-08) var(--sp-04);
+      }
+
+      .terminal-core {
+        padding: var(--sp-08);
+      }
+
+      .section-heading {
+        font-size: var(--fs-07);
+      }
+
+      .quote-line {
+        font-size: var(--fs-06);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="card-shell">
+    <article class="cognitive-card">
+      <header class="card-header">
+        <div class="meta-row">
+          <span class="meta-chip">日省 / 2026-06-22</span>
+          <span>主题：SEO建站 · 小红书虚拟 · 主线聚焦</span>
+          <span>风格：opencode.ai terminal sheet</span>
+        </div>
+        <h1 class="ascii-title">网站不是作品集，网站是流量入口</h1>
+        <p class="subtitle">今天真正的突破，是发现过去两周的 SEO 案例站没有修“入口”。案例能增强信任，但用户搜索的是问题、教程、服务和解决方案，不是案例名。</p>
+      </header>
+
+      <section class="terminal-core">
+        <div class="terminal-label">
+          <span>[core_insight]</span>
+          <span>scan first / read later</span>
+        </div>
+        <p class="terminal-command">Build direction: 计算机定制建站 + SEO/GEO 作为长期沉淀入口；小红书虚拟产品作为第二条验证线。</p>
+        <p class="core-line">案例不是入口，案例是到站后的信任背书。</p>
+        <p class="core-explain">先让网站可访问，再用同行结构、关键词、AI 反馈和真实访问修正内容。不要继续在脑子里优化，也不要推倒旧代码重来。</p>
+      </section>
+
+      <section class="section">
+        <h2 class="section-heading"><span class="marker">[+]</span><span>今天的三个判断</span></h2>
+        <div class="argument-grid">
+          <div class="argument-block">
+            <div class="argument-number">01</div>
+            <div>
+              <h3 class="argument-title">SEO 要先修门，再摆货</h3>
+              <p class="argument-copy">只上传案例等于建了宝库但没修门。搜索入口应该围绕“怎么做、哪里找、如何实现、定制服务、毕业设计”等真实问题组织。</p>
+            </div>
+          </div>
+          <div class="argument-block">
+            <div class="argument-number">02</div>
+            <div>
+              <h3 class="argument-title">主线收敛到两条</h3>
+              <p class="argument-copy">计算机业务继续做深，补代理、补平台、补 SEO/GEO；小红书虚拟产品继续验证，先发出最小工具或资料产品。</p>
+            </div>
+          </div>
+          <div class="argument-block">
+            <div class="argument-number">03</div>
+            <div>
+              <h3 class="argument-title">休息让方向重新可见</h3>
+              <p class="argument-copy">端午期间运动、爬山、打球后，判断力反而恢复。连续高压执行会让人只盯任务，留白能暴露方向问题。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-heading"><span class="marker">[=]</span><span>正确推进顺序</span></h2>
+        <div class="flow-strip">
+          <div class="flow-step">
+            <div class="flow-code">step 01</div>
+            <p class="flow-text">确定目标：网站不是展示，是让搜索、AI回答、外链和服务说明沉淀成长期入口。</p>
+          </div>
+          <div class="flow-step">
+            <div class="flow-code">step 02</div>
+            <p class="flow-text">研究同行：先看别人如何布局关键词、服务页、教程页和转化路径，不从零发明结构。</p>
+          </div>
+          <div class="flow-step">
+            <div class="flow-code">step 03</div>
+            <p class="flow-text">部署 MVP：买域名，上日本服务器，上传少量案例和基础页面，先让网站能访问。</p>
+          </div>
+          <div class="flow-step">
+            <div class="flow-code">step 04</div>
+            <p class="flow-text">反馈迭代：让 AI 和真实用户从 SEO、GEO、转化路径三个角度指出问题，再增删改。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-heading"><span class="marker">[*]</span><span>可复用原则</span></h2>
+        <div class="rule-ledger">
+          <div class="rule-row">
+            <div class="rule-name">可行性前置</div>
+            <p class="rule-detail">MVP 不是盲做。动手前至少确认目标用户搜什么、同行怎么做、关键词入口在哪里。</p>
+          </div>
+          <div class="rule-row">
+            <div class="rule-name">先抄后超</div>
+            <p class="rule-detail">陌生赛道先抄结构，不抄皮肤。先理解有效页面的底层逻辑，再做差异化。</p>
+          </div>
+          <div class="rule-row">
+            <div class="rule-name">时间分层</div>
+            <p class="rule-detail">早晨黄金时间做输出、判断和推进；客服间隙处理消息、读短内容、看案例。</p>
+          </div>
+          <div class="rule-row">
+            <div class="rule-name">前置减摩擦</div>
+            <p class="rule-detail">前一晚准备衣物和出门物品，不是生活小事，而是保护第二天启动状态。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-heading"><span class="marker">[quote]</span><span>今日金句</span></h2>
+        <div class="quote-band">
+          <p class="quote-line">“没有定好方向的奔跑，反而是在做负功。”</p>
+          <p class="quote-line">“你建立一个宝库，结果你把门没修。”</p>
+          <p class="quote-line">“万物皆可虚拟。”</p>
+          <p class="quote-support">这三句话共同指向一件事：不要用执行力掩盖入口、方向和闭环没有验证的问题。</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <h2 class="section-heading"><span class="marker">[next]</span><span>行动与风险</span></h2>
+        <div class="two-block">
+          <div class="action-box">
+            <h3 class="box-title">明日第一动作</h3>
+            <ul class="plain-list">
+              <li>买 SEO 案例站域名。</li>
+              <li>把现有站点部署到日本服务器。</li>
+              <li>上传少量案例和基础服务页，先跑出可访问版本。</li>
+              <li>让 AI 从 SEO、GEO、转化路径三个角度反馈。</li>
+            </ul>
+          </div>
+          <div class="risk-box">
+            <h3 class="box-title">不能误判的地方</h3>
+            <ul class="plain-list">
+              <li>小红书虚拟产品案例里的年营收数据未验证，不能直接当事实外写。</li>
+              <li>案例站是否重构，要等部署后看反馈，不要提前脑补大改。</li>
+              <li>平台扩展必须服务两条主线，否则又会回到分散状态。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <footer class="source-note">
+        <strong>[src]</strong> 根据 2026-06-22 日省、飞书妙记、flomo 与录音转写整理。核心保留比例约 25%，用于快速扫描和截图分享；完整上下文仍以日省原文为准。
+      </footer>
+    </article>
+  </main>
+</body>
+</html>
