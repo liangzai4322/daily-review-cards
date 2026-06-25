@@ -1,0 +1,872 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>认知卡片 · 2026-06-25</title>
+  <style>
+    :root {
+      --color-canvas-dark: #0b0e11;
+      --color-canvas-deep: #07090b;
+      --color-canvas-soft: #11151a;
+      --color-surface-card: #1e2329;
+      --color-surface-elevated: #2b3139;
+      --color-surface-muted: #161b22;
+      --color-surface-table: #13171d;
+      --color-surface-row: #181d24;
+      --color-surface-row-alt: #20262e;
+      --color-surface-light: #fafafa;
+      --color-surface-white: #ffffff;
+      --color-primary: #fcd535;
+      --color-primary-active: #f0b90b;
+      --color-primary-soft: rgba(252, 213, 53, 0.16);
+      --color-primary-faint: rgba(252, 213, 53, 0.08);
+      --color-primary-line: rgba(252, 213, 53, 0.42);
+      --color-on-primary: #181a20;
+      --color-ink-dark: #181a20;
+      --color-body: #eaecef;
+      --color-body-strong: #ffffff;
+      --color-body-muted: #b7bdc6;
+      --color-muted: #707a8a;
+      --color-muted-strong: #929aa5;
+      --color-hairline-dark: #2b3139;
+      --color-hairline-light: #eaecef;
+      --color-border-strong: #cdd1d6;
+      --color-trading-up: #0ecb81;
+      --color-trading-up-soft: rgba(14, 203, 129, 0.12);
+      --color-trading-down: #f6465d;
+      --color-trading-down-soft: rgba(246, 70, 93, 0.12);
+      --color-info: #3b82f6;
+      --color-info-soft: rgba(59, 130, 246, 0.12);
+      --color-turquoise: #2dbdb6;
+      --color-turquoise-soft: rgba(45, 189, 182, 0.12);
+      --color-warning: #f0b90b;
+      --color-warning-soft: rgba(240, 185, 11, 0.12);
+      --color-grid: rgba(234, 236, 239, 0.04);
+      --color-shadow: rgba(0, 0, 0, 0.56);
+      --font-display: "BinanceNova", "Inter", "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+      --font-number: "BinancePlex", "IBM Plex Sans", "JetBrains Mono", ui-monospace, monospace;
+      --font-body: "BinanceNova", "Inter", "Segoe UI", -apple-system, BlinkMacSystemFont, sans-serif;
+      --text-hero: 48px;
+      --text-display: 40px;
+      --text-section: 28px;
+      --text-title-lg: 24px;
+      --text-title-md: 20px;
+      --text-title-sm: 17px;
+      --text-body-lg: 16px;
+      --text-body: 14px;
+      --text-body-sm: 13px;
+      --text-caption: 12px;
+      --text-micro: 11px;
+      --weight-regular: 400;
+      --weight-medium: 500;
+      --weight-semibold: 600;
+      --weight-bold: 700;
+      --line-hero: 1.12;
+      --line-title: 1.28;
+      --line-body: 1.72;
+      --line-dense: 1.48;
+      --track-zero: 0;
+      --track-label: 0.08em;
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 20px;
+      --space-6: 24px;
+      --space-7: 32px;
+      --space-8: 40px;
+      --space-9: 48px;
+      --space-10: 56px;
+      --space-11: 64px;
+      --space-12: 80px;
+      --safe-top: 40px;
+      --safe-bottom: 40px;
+      --border-card: 1px solid var(--color-hairline-dark);
+      --border-strong: 1px solid var(--color-surface-elevated);
+      --border-yellow: 1px solid var(--color-primary-line);
+      --border-up: 1px solid rgba(14, 203, 129, 0.42);
+      --border-down: 1px solid rgba(246, 70, 93, 0.42);
+      --mark-yellow: 6px solid var(--color-primary);
+      --rule-yellow: linear-gradient(90deg, var(--color-primary), rgba(252, 213, 53, 0));
+      --grid-bg: linear-gradient(var(--color-grid) 1px, transparent 1px), linear-gradient(90deg, var(--color-grid) 1px, transparent 1px);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      background: var(--color-canvas-dark);
+      color: var(--color-body);
+      font-family: var(--font-body);
+      letter-spacing: var(--track-zero);
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        var(--grid-bg),
+        linear-gradient(180deg, var(--color-canvas-dark), var(--color-canvas-deep));
+      background-size: 40px 40px, auto;
+    }
+
+    .card-shell {
+      width: 100%;
+      min-height: 100vh;
+      padding: var(--space-10) var(--space-6);
+    }
+
+    .cognitive-card {
+      width: min(1120px, 100%);
+      margin: 0 auto;
+      border-radius: 0;
+      border: var(--border-strong);
+      background: var(--color-canvas-dark);
+      box-shadow: 0 32px 110px var(--color-shadow);
+      overflow: hidden;
+    }
+
+    .hero {
+      padding: var(--safe-top) var(--space-10) var(--space-9);
+      border-bottom: var(--border-card);
+      background:
+        linear-gradient(135deg, rgba(252, 213, 53, 0.13), rgba(11, 14, 17, 0.92) 42%),
+        var(--color-canvas-dark);
+    }
+
+    .topline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      align-items: center;
+      margin-bottom: var(--space-7);
+    }
+
+    .brand-chip,
+    .date-chip,
+    .range-chip {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: 0 var(--space-3);
+      font-family: var(--font-number);
+      font-size: var(--text-caption);
+      line-height: 1;
+      border-radius: 0;
+    }
+
+    .brand-chip {
+      background: var(--color-primary);
+      color: var(--color-on-primary);
+      font-weight: var(--weight-bold);
+      letter-spacing: var(--track-label);
+    }
+
+    .date-chip,
+    .range-chip {
+      background: var(--color-surface-card);
+      color: var(--color-body-muted);
+      border: var(--border-card);
+      font-weight: var(--weight-medium);
+    }
+
+    .hero-title {
+      margin: 0;
+      max-width: 860px;
+      color: var(--color-body-strong);
+      font-family: var(--font-display);
+      font-size: var(--text-hero);
+      font-weight: var(--weight-bold);
+      line-height: var(--line-hero);
+      letter-spacing: var(--track-zero);
+    }
+
+    .hero-lead {
+      margin: var(--space-5) 0 0;
+      max-width: 760px;
+      color: var(--color-body-muted);
+      font-size: var(--text-body-lg);
+      line-height: var(--line-body);
+    }
+
+    .ticker-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      border-bottom: var(--border-card);
+      background: var(--color-surface-table);
+    }
+
+    .ticker-cell {
+      min-height: 112px;
+      padding: var(--space-5);
+      border-right: var(--border-card);
+      display: grid;
+      gap: var(--space-2);
+      align-content: start;
+    }
+
+    .ticker-cell:last-child {
+      border-right: 0;
+    }
+
+    .ticker-label {
+      color: var(--color-muted-strong);
+      font-size: var(--text-caption);
+      font-family: var(--font-number);
+      text-transform: uppercase;
+      letter-spacing: var(--track-label);
+    }
+
+    .ticker-value {
+      color: var(--color-body-strong);
+      font-size: var(--text-title-md);
+      font-weight: var(--weight-semibold);
+      line-height: var(--line-title);
+    }
+
+    .ticker-value.yellow {
+      color: var(--color-primary);
+      font-family: var(--font-number);
+      font-weight: var(--weight-bold);
+    }
+
+    .ticker-copy {
+      margin: 0;
+      color: var(--color-muted-strong);
+      font-size: var(--text-body-sm);
+      line-height: var(--line-dense);
+    }
+
+    .content {
+      padding: var(--space-10);
+      display: grid;
+      gap: var(--space-10);
+    }
+
+    .core-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 1.3fr) minmax(260px, 0.7fr);
+      gap: var(--space-7);
+      padding: var(--space-8);
+      border-left: var(--mark-yellow);
+      border-top: var(--border-yellow);
+      border-right: var(--border-card);
+      border-bottom: var(--border-card);
+      background:
+        linear-gradient(120deg, var(--color-primary-faint), rgba(30, 35, 41, 0.98) 56%),
+        var(--color-surface-card);
+    }
+
+    .core-kicker {
+      margin: 0 0 var(--space-4);
+      color: var(--color-primary);
+      font-family: var(--font-number);
+      font-size: var(--text-caption);
+      font-weight: var(--weight-bold);
+      letter-spacing: var(--track-label);
+      text-transform: uppercase;
+    }
+
+    .core-title {
+      margin: 0;
+      color: var(--color-body-strong);
+      font-size: var(--text-display);
+      font-weight: var(--weight-bold);
+      line-height: var(--line-title);
+      letter-spacing: var(--track-zero);
+    }
+
+    .core-copy {
+      margin: var(--space-5) 0 0;
+      color: var(--color-body);
+      font-size: var(--text-body-lg);
+      line-height: var(--line-body);
+    }
+
+    .stat-card {
+      padding: var(--space-6);
+      border: var(--border-card);
+      background: var(--color-canvas-dark);
+      display: grid;
+      align-content: center;
+      gap: var(--space-4);
+    }
+
+    .stat-label {
+      color: var(--color-muted-strong);
+      font-family: var(--font-number);
+      font-size: var(--text-caption);
+      letter-spacing: var(--track-label);
+    }
+
+    .stat-number {
+      color: var(--color-primary);
+      font-family: var(--font-number);
+      font-size: var(--text-display);
+      font-weight: var(--weight-bold);
+      line-height: 1;
+    }
+
+    .stat-note {
+      margin: 0;
+      color: var(--color-muted-strong);
+      font-size: var(--text-body-sm);
+      line-height: var(--line-dense);
+    }
+
+    .section {
+      display: grid;
+      gap: var(--space-6);
+    }
+
+    .section-head {
+      display: grid;
+      gap: var(--space-3);
+    }
+
+    .section-title {
+      margin: 0;
+      color: var(--color-body-strong);
+      font-size: var(--text-section);
+      font-weight: var(--weight-bold);
+      line-height: var(--line-title);
+      letter-spacing: var(--track-zero);
+    }
+
+    .section-subtitle {
+      margin: 0;
+      max-width: 760px;
+      color: var(--color-muted-strong);
+      font-size: var(--text-body);
+      line-height: var(--line-body);
+    }
+
+    .section-rule {
+      width: 100%;
+      height: 2px;
+      background: var(--rule-yellow);
+    }
+
+    .market-table {
+      border: var(--border-card);
+      background: var(--color-surface-card);
+      display: grid;
+    }
+
+    .market-row {
+      display: grid;
+      grid-template-columns: 180px minmax(0, 1fr) 118px;
+      gap: var(--space-4);
+      align-items: start;
+      padding: var(--space-5);
+      border-bottom: var(--border-card);
+    }
+
+    .market-row:last-child {
+      border-bottom: 0;
+    }
+
+    .asset-name {
+      color: var(--color-body-strong);
+      font-size: var(--text-title-sm);
+      font-weight: var(--weight-semibold);
+      line-height: var(--line-title);
+    }
+
+    .asset-code {
+      display: block;
+      margin-top: var(--space-1);
+      color: var(--color-muted);
+      font-family: var(--font-number);
+      font-size: var(--text-caption);
+      font-weight: var(--weight-medium);
+    }
+
+    .asset-copy {
+      margin: 0;
+      color: var(--color-body);
+      font-size: var(--text-body);
+      line-height: var(--line-body);
+    }
+
+    .price-signal {
+      justify-self: end;
+      min-width: 98px;
+      padding: var(--space-2) var(--space-3);
+      text-align: center;
+      font-family: var(--font-number);
+      font-size: var(--text-caption);
+      font-weight: var(--weight-bold);
+      border-radius: 0;
+    }
+
+    .price-signal.up {
+      color: var(--color-trading-up);
+      border: var(--border-up);
+      background: var(--color-trading-up-soft);
+    }
+
+    .price-signal.down {
+      color: var(--color-trading-down);
+      border: var(--border-down);
+      background: var(--color-trading-down-soft);
+    }
+
+    .price-signal.flat {
+      color: var(--color-primary);
+      border: var(--border-yellow);
+      background: var(--color-primary-faint);
+    }
+
+    .flow-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      border: var(--border-card);
+      background: var(--color-surface-table);
+    }
+
+    .flow-step {
+      min-height: 178px;
+      padding: var(--space-6);
+      border-right: var(--border-card);
+      display: grid;
+      gap: var(--space-3);
+      align-content: start;
+    }
+
+    .flow-step:last-child {
+      border-right: 0;
+    }
+
+    .flow-index {
+      color: var(--color-primary);
+      font-family: var(--font-number);
+      font-size: var(--text-caption);
+      font-weight: var(--weight-bold);
+    }
+
+    .flow-title {
+      color: var(--color-body-strong);
+      font-size: var(--text-title-md);
+      font-weight: var(--weight-semibold);
+      line-height: var(--line-title);
+    }
+
+    .flow-copy {
+      margin: 0;
+      color: var(--color-body-muted);
+      font-size: var(--text-body);
+      line-height: var(--line-dense);
+    }
+
+    .quote-band {
+      padding: var(--space-8);
+      border: var(--border-yellow);
+      background:
+        linear-gradient(90deg, var(--color-primary-soft), rgba(30, 35, 41, 0.96)),
+        var(--color-surface-card);
+      display: grid;
+      gap: var(--space-5);
+    }
+
+    .quote-label {
+      color: var(--color-primary);
+      font-family: var(--font-number);
+      font-size: var(--text-caption);
+      font-weight: var(--weight-bold);
+      letter-spacing: var(--track-label);
+    }
+
+    .quote-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-4);
+    }
+
+    .quote-item {
+      padding: var(--space-5);
+      border-left: 3px solid var(--color-primary);
+      background: rgba(11, 14, 17, 0.54);
+      color: var(--color-body-strong);
+      font-size: var(--text-body-lg);
+      font-weight: var(--weight-semibold);
+      line-height: var(--line-body);
+    }
+
+    .action-risk {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: var(--space-5);
+    }
+
+    .action-box,
+    .risk-box {
+      padding: var(--space-6);
+      display: grid;
+      gap: var(--space-5);
+    }
+
+    .action-box {
+      border: var(--border-up);
+      background: var(--color-trading-up-soft);
+    }
+
+    .risk-box {
+      border: var(--border-down);
+      background: var(--color-trading-down-soft);
+    }
+
+    .box-title {
+      margin: 0;
+      color: var(--color-body-strong);
+      font-size: var(--text-title-md);
+      font-weight: var(--weight-bold);
+      line-height: var(--line-title);
+    }
+
+    .box-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: var(--space-4);
+    }
+
+    .box-list li {
+      position: relative;
+      padding-left: var(--space-7);
+      color: var(--color-body);
+      font-size: var(--text-body);
+      line-height: var(--line-body);
+    }
+
+    .box-list li::before {
+      position: absolute;
+      left: 0;
+      top: 2px;
+      width: 22px;
+      height: 22px;
+      display: grid;
+      place-items: center;
+      font-family: var(--font-number);
+      font-size: var(--text-micro);
+      font-weight: var(--weight-bold);
+      border-radius: 0;
+    }
+
+    .action-box .box-list li::before {
+      content: "GO";
+      color: var(--color-trading-up);
+      border: var(--border-up);
+      background: rgba(14, 203, 129, 0.10);
+    }
+
+    .risk-box .box-list li::before {
+      content: "?";
+      color: var(--color-trading-down);
+      border: var(--border-down);
+      background: rgba(246, 70, 93, 0.10);
+    }
+
+    .evidence {
+      display: grid;
+      grid-template-columns: 230px minmax(0, 1fr);
+      gap: var(--space-6);
+      padding: var(--space-6);
+      border: var(--border-card);
+      background: var(--color-surface-card);
+    }
+
+    .evidence-label {
+      color: var(--color-primary);
+      font-family: var(--font-number);
+      font-size: var(--text-caption);
+      font-weight: var(--weight-bold);
+      letter-spacing: var(--track-label);
+      text-transform: uppercase;
+    }
+
+    .evidence-copy {
+      margin: 0;
+      color: var(--color-body-muted);
+      font-size: var(--text-body);
+      line-height: var(--line-body);
+    }
+
+    .footer {
+      padding: var(--space-6) var(--space-10) var(--safe-bottom);
+      border-top: var(--border-card);
+      background: var(--color-surface-light);
+      color: var(--color-ink-dark);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: var(--space-4);
+      font-size: var(--text-caption);
+      line-height: var(--line-dense);
+    }
+
+    @media (max-width: 1180px) {
+      .card-shell {
+        padding: var(--space-8) var(--space-4);
+      }
+
+      .hero,
+      .content,
+      .footer {
+        padding-left: var(--space-8);
+        padding-right: var(--space-8);
+      }
+
+      .core-panel {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 920px) {
+      .ticker-strip,
+      .flow-grid,
+      .quote-grid,
+      .action-risk {
+        grid-template-columns: 1fr;
+      }
+
+      .ticker-cell,
+      .flow-step {
+        border-right: 0;
+        border-bottom: var(--border-card);
+      }
+
+      .ticker-cell:last-child,
+      .flow-step:last-child {
+        border-bottom: 0;
+      }
+
+      .market-row,
+      .evidence {
+        grid-template-columns: 1fr;
+      }
+
+      .price-signal {
+        justify-self: start;
+      }
+    }
+
+    @media (max-width: 640px) {
+      :root {
+        --text-hero: 34px;
+        --text-display: 30px;
+        --text-section: 24px;
+        --text-title-lg: 22px;
+        --text-title-md: 18px;
+      }
+
+      .card-shell {
+        padding: var(--space-4) var(--space-3);
+      }
+
+      .hero,
+      .content,
+      .footer {
+        padding-left: var(--space-5);
+        padding-right: var(--space-5);
+      }
+
+      .content {
+        gap: var(--space-8);
+      }
+
+      .core-panel,
+      .quote-band {
+        padding: var(--space-5);
+      }
+    }
+
+    @media (max-width: 420px) {
+      .brand-chip,
+      .date-chip,
+      .range-chip {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .hero,
+      .content,
+      .footer {
+        padding-left: var(--space-4);
+        padding-right: var(--space-4);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="card-shell">
+    <article class="cognitive-card">
+      <header class="hero">
+        <div class="topline">
+          <span class="brand-chip">COGNITIVE MARKET</span>
+          <span class="date-chip">2026-06-25</span>
+          <span class="range-chip">实际内容范围：2026-06-24</span>
+        </div>
+        <h1 class="hero-title">复盘不是靠想起来，而是靠固定触发</h1>
+        <p class="hero-lead">今天真正暴露的不是“忙”，而是习惯没有固定时间槽；真正值得抓住的，也不是刷短视频这件小事，而是它背后的多巴胺负向飞轮。</p>
+      </header>
+
+      <section class="ticker-strip" aria-label="今日核心指标">
+        <div class="ticker-cell">
+          <span class="ticker-label">Review Slot</span>
+          <span class="ticker-value yellow">缺失</span>
+          <p class="ticker-copy">连续两天断档，说明复盘没有绑定稳定触发。</p>
+        </div>
+        <div class="ticker-cell">
+          <span class="ticker-label">Dopamine Base</span>
+          <span class="ticker-value">被拉高</span>
+          <p class="ticker-copy">社区图书馆刷短视频，当时知道问题但没切断。</p>
+        </div>
+        <div class="ticker-cell">
+          <span class="ticker-label">Xianyu Path</span>
+          <span class="ticker-value">低门槛</span>
+          <p class="ticker-copy">虚拟类目和服务可能在闲鱼已有现成卖家。</p>
+        </div>
+        <div class="ticker-cell">
+          <span class="ticker-label">Validation</span>
+          <span class="ticker-value">3 小时</span>
+          <p class="ticker-copy">GO-No GO 用小成本判断项目值不值得继续。</p>
+        </div>
+      </section>
+
+      <div class="content">
+        <section class="core-panel">
+          <div>
+            <p class="core-kicker">核心命题</p>
+            <h2 class="core-title">你不是缺一个“想复盘”的念头，你缺一个到点就发生的复盘系统。</h2>
+            <p class="core-copy">连续两天断档说明，意愿不可靠。晚上困了、业务接上了、娱乐出现了，复盘就会自动让位。解决方案不是再骂自己，而是把复盘固定到一个时间槽里，让它从选择题变成默认动作。</p>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">今日最大亏损</span>
+            <span class="stat-number">2 天</span>
+            <p class="stat-note">断掉的不只是记录，还有弱连接、时间线、状态证据和后续可写素材。</p>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <h2 class="section-title">四个认知资产</h2>
+            <p class="section-subtitle">把今天的信息当成一张交易盘看：哪些资产上涨，哪些风险扩大，哪些还只是观察单。</p>
+            <div class="section-rule"></div>
+          </div>
+          <div class="market-table">
+            <div class="market-row">
+              <div>
+                <span class="asset-name">复盘习惯</span>
+                <span class="asset-code">HABIT / SLOT</span>
+              </div>
+              <p class="asset-copy">复盘不能等晚上困了再决定做不做。固定时间槽是最低成本的习惯锚点。</p>
+              <span class="price-signal down">风险扩大</span>
+            </div>
+            <div class="market-row">
+              <div>
+                <span class="asset-name">多巴胺基线</span>
+                <span class="asset-code">DOPAMINE / BASELINE</span>
+              </div>
+              <p class="asset-copy">短视频带来的不是快乐，而是在痛苦表层撒一层快乐粉。基线越高，普通行动越痛苦。</p>
+              <span class="price-signal down">需降基线</span>
+            </div>
+            <div class="market-row">
+              <div>
+                <span class="asset-name">虚拟资料路径</span>
+                <span class="asset-code">XHS / IMA</span>
+              </div>
+              <p class="asset-copy">闲鱼可低价解决类目和资料门槛，腾讯 IMA 可把资料包装成智能体商品，但付费意愿仍未验证。</p>
+              <span class="price-signal up">值得验证</span>
+            </div>
+            <div class="market-row">
+              <div>
+                <span class="asset-name">差异化切口</span>
+                <span class="asset-code">DIFFERENT / NOT BETTER</span>
+              </div>
+              <p class="asset-copy">真正的差异化不是做得更好，而是做别人没做的。同质比较里，更好很容易被价格战吞掉。</p>
+              <span class="price-signal flat">核心原则</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <h2 class="section-title">负向飞轮的三步</h2>
+            <p class="section-subtitle">今天最该留下的是机制，不是情绪。只要机制没改，下次还会发生。</p>
+            <div class="section-rule"></div>
+          </div>
+          <div class="flow-grid">
+            <div class="flow-step">
+              <span class="flow-index">01</span>
+              <span class="flow-title">琐事打断</span>
+              <p class="flow-copy">状态被打断后，大脑出现失重感，想快速找回掌控。</p>
+            </div>
+            <div class="flow-step">
+              <span class="flow-index">02</span>
+              <span class="flow-title">高刺激补偿</span>
+              <p class="flow-copy">短视频和娱乐信息提供超量多巴胺，短暂盖住痛苦。</p>
+            </div>
+            <div class="flow-step">
+              <span class="flow-index">03</span>
+              <span class="flow-title">基线被抬高</span>
+              <p class="flow-copy">基线之下皆为痛苦，普通学习和复盘变得更难启动。</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="quote-band">
+          <span class="quote-label">MEMORY ANCHORS</span>
+          <div class="quote-grid">
+            <div class="quote-item">“在痛苦表层撒上一层名为快乐的粉。”</div>
+            <div class="quote-item">“差异化的核心不是做得更好，而是做别人没做的。”</div>
+            <div class="quote-item">“花 3 小时发现不值得做，比花 3 个月做出来才发现要聪明 100 倍。”</div>
+            <div class="quote-item">“弱连接点其实也是很有用的。”</div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <h2 class="section-title">行动与待核</h2>
+            <p class="section-subtitle">保持原始记录里的不确定状态：能做的立刻做，仍只是构思的不要包装成已定。</p>
+            <div class="section-rule"></div>
+          </div>
+          <div class="action-risk">
+            <div class="action-box">
+              <h3 class="box-title">下一步行动</h3>
+              <ul class="box-list">
+                <li>建立固定复盘时间槽，让复盘从选择题变成默认动作。</li>
+                <li>用 3 小时验证小红书虚拟资料 + 腾讯 IMA 路径。</li>
+                <li>继续跟进蚩尤闲鱼进展，但设置辅导结束点。</li>
+                <li>进入短视频状态时，优先换场景或停止输入。</li>
+              </ul>
+            </div>
+            <div class="risk-box">
+              <h3 class="box-title">可疑与待核</h3>
+              <ul class="box-list">
+                <li>小红书虚拟类目十几元开通，需要实际下单或咨询验证。</li>
+                <li>腾讯 IMA 资料智能体售卖路径尚未验证付费意愿。</li>
+                <li>抖音 CPS 案例来自他人分享，收益和路径保留待核。</li>
+                <li>早上起床和出门时间都是回忆估计，不是确定时间。</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="evidence">
+          <div class="evidence-label">Evidence Chain</div>
+          <p class="evidence-copy">今天的证据链很清楚：复盘连续断档，社区图书馆刷短视频，辅导蚩尤闲鱼，看到虚拟资料低门槛路径。这里最值钱的不是“我又知道了一个项目”，而是看见了习惯断档、负向飞轮和低成本验证之间的关系。</p>
+        </section>
+      </div>
+
+      <footer class="footer">
+        <span>来源：D:\note_new\06-日常输入_输出\10-日省\2026-06-25.md</span>
+        <span>风格参考：binance · 静态单栏认知卡片</span>
+      </footer>
+    </article>
+  </main>
+</body>
+</html>
