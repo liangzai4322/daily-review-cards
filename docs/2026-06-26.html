@@ -1,0 +1,820 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>认知卡片 · 2026-06-26</title>
+  <style>
+    :root {
+      --canvas-black: #0b0b0b;
+      --canvas-true: #000000;
+      --surface-1: #151515;
+      --surface-2: #212121;
+      --surface-3: #2a2a2a;
+      --surface-4: #353535;
+      --surface-invert: #ededed;
+      --surface-white: #ffffff;
+      --text-primary: #ffffff;
+      --text-secondary: #b9b9b9;
+      --text-tertiary: #797979;
+      --text-dark: #0b0b0b;
+      --accent-red: #f36458;
+      --accent-red-soft: rgba(243, 100, 88, 0.14);
+      --accent-red-line: rgba(243, 100, 88, 0.54);
+      --accent-blue: #0052ef;
+      --accent-blue-soft: rgba(0, 82, 239, 0.16);
+      --accent-blue-line: rgba(0, 82, 239, 0.48);
+      --accent-green: #19d600;
+      --accent-green-soft: rgba(25, 214, 0, 0.13);
+      --accent-green-line: rgba(25, 214, 0, 0.44);
+      --accent-magenta: #f500ff;
+      --accent-magenta-soft: rgba(245, 0, 255, 0.12);
+      --warning: #ff7a00;
+      --warning-soft: rgba(255, 122, 0, 0.14);
+      --error: #dd0000;
+      --error-soft: rgba(221, 0, 0, 0.15);
+      --border-subtle: #212121;
+      --border-visible: #353535;
+      --border-light: rgba(255, 255, 255, 0.22);
+      --grid-line: rgba(255, 255, 255, 0.035);
+      --shadow-dark: rgba(0, 0, 0, 0.64);
+      --font-display: "Space Grotesk", "Inter", "Microsoft YaHei", "PingFang SC", system-ui, sans-serif;
+      --font-body: "Inter", "Microsoft YaHei", "PingFang SC", system-ui, sans-serif;
+      --font-mono: "IBM Plex Mono", "JetBrains Mono", "SF Mono", Consolas, monospace;
+      --size-hero: 48px;
+      --size-display: 38px;
+      --size-section: 28px;
+      --size-title: 22px;
+      --size-subtitle: 18px;
+      --size-body-lg: 17px;
+      --size-body: 15px;
+      --size-body-sm: 14px;
+      --size-caption: 12px;
+      --size-micro: 11px;
+      --weight-regular: 400;
+      --weight-medium: 500;
+      --weight-semibold: 600;
+      --line-hero: 1.08;
+      --line-title: 1.22;
+      --line-body: 1.68;
+      --line-dense: 1.46;
+      --tracking: 0;
+      --tracking-label: 0.08em;
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 20px;
+      --space-6: 24px;
+      --space-7: 32px;
+      --space-8: 40px;
+      --space-9: 48px;
+      --space-10: 64px;
+      --space-11: 80px;
+      --safe-top: 40px;
+      --safe-bottom: 40px;
+      --radius-xs: 3px;
+      --radius-sm: 5px;
+      --radius-md: 6px;
+      --border-card: 1px solid var(--border-visible);
+      --border-soft: 1px solid var(--border-subtle);
+      --rule-red: linear-gradient(90deg, var(--accent-red), rgba(243, 100, 88, 0));
+      --rule-blue: linear-gradient(90deg, var(--accent-blue), rgba(0, 82, 239, 0));
+      --grid-background: linear-gradient(var(--grid-line) 1px, transparent 1px), linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      background: var(--canvas-black);
+      color: var(--text-primary);
+      font-family: var(--font-body);
+      letter-spacing: var(--tracking);
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        var(--grid-background),
+        radial-gradient(circle at 10% 0%, rgba(243, 100, 88, 0.14), transparent 28%),
+        radial-gradient(circle at 92% 16%, rgba(0, 82, 239, 0.13), transparent 26%),
+        var(--canvas-black);
+      background-size: 44px 44px, auto, auto, auto;
+    }
+
+    .card-shell {
+      width: 100%;
+      min-height: 100vh;
+      padding: var(--space-9) var(--space-6);
+    }
+
+    .cognitive-card {
+      width: min(1120px, 100%);
+      margin: 0 auto;
+      border-radius: 0;
+      border: var(--border-card);
+      background: var(--canvas-black);
+      box-shadow: 0 32px 120px var(--shadow-dark);
+      overflow: hidden;
+    }
+
+    .card-header {
+      padding: var(--safe-top) var(--space-9) var(--space-8);
+      border-bottom: var(--border-soft);
+      background:
+        linear-gradient(135deg, rgba(243, 100, 88, 0.16), rgba(11, 11, 11, 0.95) 46%),
+        var(--canvas-black);
+    }
+
+    .header-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      margin-bottom: var(--space-7);
+    }
+
+    .label,
+    .date,
+    .range {
+      min-height: 30px;
+      display: inline-flex;
+      align-items: center;
+      padding: 0 var(--space-3);
+      border-radius: 99999px;
+      font-family: var(--font-mono);
+      font-size: var(--size-caption);
+      font-weight: var(--weight-medium);
+      line-height: 1;
+      letter-spacing: var(--tracking-label);
+      text-transform: uppercase;
+    }
+
+    .label {
+      background: var(--accent-red);
+      color: var(--text-primary);
+    }
+
+    .date,
+    .range {
+      background: var(--surface-2);
+      color: var(--text-secondary);
+      border: var(--border-soft);
+    }
+
+    .hero-title {
+      max-width: 900px;
+      margin: 0;
+      color: var(--text-primary);
+      font-family: var(--font-display);
+      font-size: var(--size-hero);
+      font-weight: var(--weight-regular);
+      line-height: var(--line-hero);
+      letter-spacing: var(--tracking);
+    }
+
+    .hero-copy {
+      max-width: 780px;
+      margin: var(--space-5) 0 0;
+      color: var(--text-secondary);
+      font-size: var(--size-body-lg);
+      line-height: var(--line-body);
+    }
+
+    .signal-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      border-bottom: var(--border-soft);
+      background: var(--surface-1);
+    }
+
+    .signal {
+      min-height: 126px;
+      padding: var(--space-5);
+      border-right: var(--border-soft);
+      display: grid;
+      align-content: start;
+      gap: var(--space-2);
+    }
+
+    .signal:last-child {
+      border-right: 0;
+    }
+
+    .signal-code {
+      color: var(--accent-red);
+      font-family: var(--font-mono);
+      font-size: var(--size-micro);
+      font-weight: var(--weight-semibold);
+      letter-spacing: var(--tracking-label);
+    }
+
+    .signal-title {
+      color: var(--text-primary);
+      font-size: var(--size-subtitle);
+      font-weight: var(--weight-medium);
+      line-height: var(--line-title);
+    }
+
+    .signal-copy {
+      margin: 0;
+      color: var(--text-tertiary);
+      font-size: var(--size-body-sm);
+      line-height: var(--line-dense);
+    }
+
+    .content {
+      padding: var(--space-9);
+      display: grid;
+      gap: var(--space-10);
+    }
+
+    .core-panel {
+      display: grid;
+      grid-template-columns: minmax(0, 1.25fr) minmax(260px, 0.75fr);
+      gap: var(--space-7);
+      padding: var(--space-7);
+      border: var(--border-card);
+      border-left: 6px solid var(--accent-red);
+      background:
+        linear-gradient(120deg, var(--accent-red-soft), rgba(33, 33, 33, 0.95) 58%),
+        var(--surface-2);
+    }
+
+    .core-label {
+      margin: 0 0 var(--space-4);
+      color: var(--accent-red);
+      font-family: var(--font-mono);
+      font-size: var(--size-caption);
+      font-weight: var(--weight-semibold);
+      letter-spacing: var(--tracking-label);
+      text-transform: uppercase;
+    }
+
+    .core-title {
+      margin: 0;
+      color: var(--text-primary);
+      font-family: var(--font-display);
+      font-size: var(--size-display);
+      font-weight: var(--weight-regular);
+      line-height: var(--line-title);
+      letter-spacing: var(--tracking);
+    }
+
+    .core-copy {
+      margin: var(--space-5) 0 0;
+      color: var(--text-secondary);
+      font-size: var(--size-body-lg);
+      line-height: var(--line-body);
+    }
+
+    .core-stat {
+      padding: var(--space-6);
+      border: var(--border-soft);
+      background: var(--canvas-black);
+      display: grid;
+      align-content: center;
+      gap: var(--space-4);
+    }
+
+    .stat-kicker {
+      color: var(--text-tertiary);
+      font-family: var(--font-mono);
+      font-size: var(--size-caption);
+      letter-spacing: var(--tracking-label);
+      text-transform: uppercase;
+    }
+
+    .stat-value {
+      color: var(--accent-green);
+      font-family: var(--font-mono);
+      font-size: var(--size-display);
+      font-weight: var(--weight-medium);
+      line-height: 1;
+    }
+
+    .stat-note {
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: var(--size-body-sm);
+      line-height: var(--line-dense);
+    }
+
+    .section {
+      display: grid;
+      gap: var(--space-6);
+    }
+
+    .section-head {
+      display: grid;
+      gap: var(--space-3);
+    }
+
+    .section-title {
+      margin: 0;
+      color: var(--text-primary);
+      font-family: var(--font-display);
+      font-size: var(--size-section);
+      font-weight: var(--weight-regular);
+      line-height: var(--line-title);
+      letter-spacing: var(--tracking);
+    }
+
+    .section-copy {
+      max-width: 780px;
+      margin: 0;
+      color: var(--text-tertiary);
+      font-size: var(--size-body);
+      line-height: var(--line-body);
+    }
+
+    .section-rule {
+      width: 100%;
+      height: 2px;
+      background: var(--rule-red);
+    }
+
+    .frame-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-5);
+    }
+
+    .frame {
+      min-height: 238px;
+      padding: var(--space-6);
+      border: var(--border-card);
+      border-radius: var(--radius-md);
+      background: var(--surface-2);
+      display: grid;
+      align-content: start;
+      gap: var(--space-4);
+    }
+
+    .frame-code {
+      width: fit-content;
+      padding: var(--space-1) var(--space-2);
+      border-radius: 99999px;
+      background: var(--canvas-black);
+      color: var(--text-tertiary);
+      font-family: var(--font-mono);
+      font-size: var(--size-micro);
+      font-weight: var(--weight-semibold);
+      letter-spacing: var(--tracking-label);
+      text-transform: uppercase;
+    }
+
+    .frame-title {
+      margin: 0;
+      color: var(--text-primary);
+      font-size: var(--size-title);
+      font-weight: var(--weight-medium);
+      line-height: var(--line-title);
+    }
+
+    .frame-copy {
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: var(--size-body);
+      line-height: var(--line-body);
+    }
+
+    .flow-line {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      border: var(--border-card);
+      background: var(--surface-1);
+    }
+
+    .flow-step {
+      min-height: 168px;
+      padding: var(--space-5);
+      border-right: var(--border-soft);
+      display: grid;
+      gap: var(--space-3);
+      align-content: start;
+    }
+
+    .flow-step:last-child {
+      border-right: 0;
+    }
+
+    .flow-index {
+      color: var(--accent-blue);
+      font-family: var(--font-mono);
+      font-size: var(--size-caption);
+      font-weight: var(--weight-semibold);
+    }
+
+    .flow-title {
+      color: var(--text-primary);
+      font-size: var(--size-subtitle);
+      font-weight: var(--weight-medium);
+      line-height: var(--line-title);
+    }
+
+    .flow-copy {
+      margin: 0;
+      color: var(--text-tertiary);
+      font-size: var(--size-body-sm);
+      line-height: var(--line-dense);
+    }
+
+    .quote-block {
+      padding: var(--space-7);
+      border: 1px solid var(--accent-blue-line);
+      background:
+        linear-gradient(90deg, var(--accent-blue-soft), rgba(33, 33, 33, 0.96)),
+        var(--surface-2);
+      display: grid;
+      gap: var(--space-5);
+    }
+
+    .quote-label {
+      color: var(--accent-blue);
+      font-family: var(--font-mono);
+      font-size: var(--size-caption);
+      font-weight: var(--weight-semibold);
+      letter-spacing: var(--tracking-label);
+      text-transform: uppercase;
+    }
+
+    .quote-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-4);
+    }
+
+    .quote {
+      padding: var(--space-5);
+      border-left: 3px solid var(--accent-blue);
+      background: rgba(0, 0, 0, 0.34);
+      color: var(--text-primary);
+      font-size: var(--size-body-lg);
+      line-height: var(--line-body);
+    }
+
+    .action-risk {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: var(--space-5);
+    }
+
+    .action-box,
+    .risk-box {
+      padding: var(--space-6);
+      display: grid;
+      gap: var(--space-5);
+      border-radius: var(--radius-md);
+    }
+
+    .action-box {
+      border: 1px solid var(--accent-green-line);
+      background: var(--accent-green-soft);
+    }
+
+    .risk-box {
+      border: 1px solid var(--accent-red-line);
+      background: var(--accent-red-soft);
+    }
+
+    .box-title {
+      margin: 0;
+      color: var(--text-primary);
+      font-size: var(--size-title);
+      font-weight: var(--weight-medium);
+      line-height: var(--line-title);
+    }
+
+    .box-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: var(--space-4);
+    }
+
+    .box-list li {
+      position: relative;
+      padding-left: var(--space-7);
+      color: var(--text-secondary);
+      font-size: var(--size-body);
+      line-height: var(--line-body);
+    }
+
+    .box-list li::before {
+      position: absolute;
+      left: 0;
+      top: 3px;
+      width: 22px;
+      height: 22px;
+      display: grid;
+      place-items: center;
+      border-radius: 99999px;
+      font-family: var(--font-mono);
+      font-size: var(--size-micro);
+      font-weight: var(--weight-semibold);
+    }
+
+    .action-box .box-list li::before {
+      content: "GO";
+      color: var(--accent-green);
+      background: rgba(25, 214, 0, 0.12);
+      border: 1px solid var(--accent-green-line);
+    }
+
+    .risk-box .box-list li::before {
+      content: "?";
+      color: var(--accent-red);
+      background: rgba(243, 100, 88, 0.12);
+      border: 1px solid var(--accent-red-line);
+    }
+
+    .evidence {
+      display: grid;
+      grid-template-columns: 240px minmax(0, 1fr);
+      gap: var(--space-6);
+      padding: var(--space-6);
+      border: var(--border-card);
+      background: var(--surface-2);
+    }
+
+    .evidence-label {
+      color: var(--accent-red);
+      font-family: var(--font-mono);
+      font-size: var(--size-caption);
+      font-weight: var(--weight-semibold);
+      letter-spacing: var(--tracking-label);
+      text-transform: uppercase;
+    }
+
+    .evidence-copy {
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: var(--size-body);
+      line-height: var(--line-body);
+    }
+
+    .card-footer {
+      padding: var(--space-6) var(--space-9) var(--safe-bottom);
+      border-top: var(--border-soft);
+      background: var(--surface-invert);
+      color: var(--text-dark);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: var(--space-4);
+      font-size: var(--size-caption);
+      line-height: var(--line-dense);
+    }
+
+    @media (max-width: 1180px) {
+      .card-shell {
+        padding: var(--space-8) var(--space-4);
+      }
+
+      .card-header,
+      .content,
+      .card-footer {
+        padding-left: var(--space-7);
+        padding-right: var(--space-7);
+      }
+
+      .core-panel {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 920px) {
+      .signal-grid,
+      .frame-grid,
+      .flow-line,
+      .quote-grid,
+      .action-risk {
+        grid-template-columns: 1fr;
+      }
+
+      .signal,
+      .flow-step {
+        border-right: 0;
+        border-bottom: var(--border-soft);
+      }
+
+      .signal:last-child,
+      .flow-step:last-child {
+        border-bottom: 0;
+      }
+
+      .evidence {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      :root {
+        --size-hero: 34px;
+        --size-display: 30px;
+        --size-section: 24px;
+        --size-title: 20px;
+        --size-subtitle: 17px;
+      }
+
+      .card-shell {
+        padding: var(--space-4) var(--space-2);
+      }
+
+      .card-header,
+      .content,
+      .card-footer {
+        padding-left: var(--space-5);
+        padding-right: var(--space-5);
+      }
+
+      .content {
+        gap: var(--space-8);
+      }
+    }
+
+    @media (max-width: 420px) {
+      .label,
+      .date,
+      .range {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .card-header,
+      .content,
+      .card-footer {
+        padding-left: var(--space-4);
+        padding-right: var(--space-4);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="card-shell">
+    <article class="cognitive-card">
+      <header class="card-header">
+        <div class="header-meta">
+          <span class="label">structured review</span>
+          <span class="date">2026-06-26</span>
+          <span class="range">实际内容范围：2026-06-25</span>
+        </div>
+        <h1 class="hero-title">AI 不是替你走路，是把第一步的阻力降到足够低</h1>
+        <p class="hero-copy">今天真正发生的是，域名从想法变成线上网站，闲鱼从单账号变成双账号，复盘从固定时间点变成随时输出。主线不是“做了多少事”，而是飞轮启动门槛被系统性压低。</p>
+      </header>
+
+      <section class="signal-grid" aria-label="今日四个信号">
+        <div class="signal">
+          <span class="signal-code">SIGNAL 01</span>
+          <span class="signal-title">网站上线</span>
+          <p class="signal-copy">域名已购，部署完成，访问测试通过，下一步进入 SEO 和内容更新。</p>
+        </div>
+        <div class="signal">
+          <span class="signal-code">SIGNAL 02</span>
+          <span class="signal-title">矩阵起步</span>
+          <p class="signal-copy">闲鱼从单账号推进到两个账号，室友账号仍是计划，未执行。</p>
+        </div>
+        <div class="signal">
+          <span class="signal-code">SIGNAL 03</span>
+          <span class="signal-title">额度补给</span>
+          <p class="signal-copy">Codex 额度不足后用闲鱼服务重置，生产资源开始被纳入补给系统。</p>
+        </div>
+        <div class="signal">
+          <span class="signal-code">SIGNAL 04</span>
+          <span class="signal-title">积分刹车</span>
+          <p class="signal-copy">刷短视频扣分，辛苦不能抵消扣分，多巴胺行为开始被量化约束。</p>
+        </div>
+      </section>
+
+      <div class="content">
+        <section class="core-panel">
+          <div>
+            <p class="core-label">core insight</p>
+            <h2 class="core-title">目标出现后，要么让 AI 拆解，要么直接启动，中间的犹豫层最该删除。</h2>
+            <p class="core-copy">今天买域名、部署网站、清 C 盘、补 Codex 额度，都不是靠“想清楚所有细节”完成的。真正有效的动作，是把主题缩到最小，然后让 AI 或工具把第一步变得足够轻。</p>
+          </div>
+          <aside class="core-stat">
+            <span class="stat-kicker">validated result</span>
+            <span class="stat-value">上线</span>
+            <p class="stat-note">网站已经从概念进入可访问状态。下一步不是继续感慨，而是定部署方案、修代码、每天上传 3-5 个案例。</p>
+          </aside>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <h2 class="section-title">四个结构化判断</h2>
+            <p class="section-copy">这些不是情绪总结，而是后续可以复用的工作规则。重点区分：什么已经跑通，什么只是计划，什么还需要核实。</p>
+            <div class="section-rule"></div>
+          </div>
+          <div class="frame-grid">
+            <div class="frame">
+              <span class="frame-code">ai flywheel</span>
+              <h3 class="frame-title">AI 降低的是启动阻力</h3>
+              <p class="frame-copy">上线网站以前看起来复杂，今天实际跑通后发现，AI 的价值不是替代判断，而是把建站、部署、排错的第一步拆到可执行。</p>
+            </div>
+            <div class="frame">
+              <span class="frame-code">effect payment</span>
+              <h3 class="frame-title">老板为增量和效果付钱</h3>
+              <p class="frame-copy">讲 AI 名词没有用。老板要的是业务放大、客服回复率提升、转化结果这些可见变化。内容表达也要从工具名转向效果证据。</p>
+            </div>
+            <div class="frame">
+              <span class="frame-code">matrix leverage</span>
+              <h3 class="frame-title">生意不能只用个体打法</h3>
+              <p class="frame-copy">闲鱼矩阵、账号扩展、五库沉淀，本质都是杠杆思维。人力杠杆、时间杠杆、矩阵杠杆叠起来，才不是自己硬打。</p>
+            </div>
+            <div class="frame">
+              <span class="frame-code">dopamine brake</span>
+              <h3 class="frame-title">多巴胺入口必须有刹车</h3>
+              <p class="frame-copy">下午看小说、刷 B 站后，状态被拖走。积分系统的关键不是惩罚，而是让“免费爽一下”变成有成本的选择。</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <h2 class="section-title">执行飞轮链路</h2>
+            <p class="section-copy">这是今天最该复用的顺序：不要先等完整计划，先把飞轮推到有结果的位置。</p>
+            <div class="section-rule"></div>
+          </div>
+          <div class="flow-line">
+            <div class="flow-step">
+              <span class="flow-index">01</span>
+              <span class="flow-title">目标缩小</span>
+              <p class="flow-copy">把主题放到最小，不让宏大任务挡住第一步。</p>
+            </div>
+            <div class="flow-step">
+              <span class="flow-index">02</span>
+              <span class="flow-title">AI 拆解</span>
+              <p class="flow-copy">让 Codex 或其他工具把路径拆成可执行动作。</p>
+            </div>
+            <div class="flow-step">
+              <span class="flow-index">03</span>
+              <span class="flow-title">直接启动</span>
+              <p class="flow-copy">删掉犹豫、纠结和过度思考这段中间层。</p>
+            </div>
+            <div class="flow-step">
+              <span class="flow-index">04</span>
+              <span class="flow-title">结果反馈</span>
+              <p class="flow-copy">网站上线后，再围绕部署、SEO、内容和索引继续迭代。</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="quote-block">
+          <span class="quote-label">memory anchors</span>
+          <div class="quote-grid">
+            <div class="quote">“生活永远都有意义，只能说诠释的角度不同。”</div>
+            <div class="quote">“尴尬的是别人，不是你，你怕什么呢？”</div>
+            <div class="quote">“你要刷视频，那就扣我 27 分嘛，你刷越久，你扣得越多。”</div>
+            <div class="quote">“老板不是为名词付钱，老板是为增量和效果付钱。”</div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <h2 class="section-title">行动与待核</h2>
+            <p class="section-copy">今天最重要的精度，是不要把“计划”写成“完成”。网站上线了，但更新方案、SEO 索引、账号扩展都还没定型。</p>
+            <div class="section-rule"></div>
+          </div>
+          <div class="action-risk">
+            <div class="action-box">
+              <h3 class="box-title">下一步行动</h3>
+              <ul class="box-list">
+                <li>明天完成 CSU 测试，开始可以上品。</li>
+                <li>确定网站代码更新部署方案，选 GitHub 或其他固定路径。</li>
+                <li>开始修缮网站代码，每天上传 3-5 个案例。</li>
+                <li>把待办写进 Typepro，拆成重要盒和待办盒。</li>
+                <li>调研飞书待办接入微信服务号的可行方案。</li>
+              </ul>
+            </div>
+            <div class="risk-box">
+              <h3 class="box-title">可疑与待核</h3>
+              <ul class="box-list">
+                <li>域名平台大概率是 Namecheap，但原始记录仍需确认。</li>
+                <li>Cloudflare 托管能否加速索引，当前只是“好像是”。</li>
+                <li>室友闲鱼账号矩阵扩展仍是打算，尚未执行。</li>
+                <li>“宠物猫”账号 ID 和服务号接入方案未确认。</li>
+                <li>娱乐行业“有油水”的判断缺少具体案例支撑。</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="evidence">
+          <div class="evidence-label">evidence chain</div>
+          <p class="evidence-copy">证据链很清楚：域名购买和部署上线已经发生，Codex 额度补给已验证一次，闲鱼双账号正在推进，下午多巴胺入口打开也真实发生。今天的价值不是“完美的一天”，而是把启动、补给、刹车和升维都记录进系统。</p>
+        </section>
+      </div>
+
+      <footer class="card-footer">
+        <span>来源：D:\note_new\06-日常输入_输出\10-日省\2026-06-26.md</span>
+        <span>风格参考：sanity · 静态单栏认知卡片</span>
+      </footer>
+    </article>
+  </main>
+</body>
+</html>
