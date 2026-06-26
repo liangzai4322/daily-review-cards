@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>认知卡片 · 2026-06-27</title>
+  <style>
+    :root {
+      --color-ink-950: #0c0a09;
+      --color-ink-900: #1c1917;
+      --color-ink-850: #292524;
+      --color-ink-800: #3b322b;
+      --color-body-700: #4e4e4e;
+      --color-body-650: #5f5a54;
+      --color-muted-600: #777169;
+      --color-muted-500: #8e877d;
+      --color-muted-400: #a8a29e;
+      --color-muted-300: #c2beb8;
+      --color-line-300: #d6d3d1;
+      --color-line-250: #e0ddda;
+      --color-line-200: #e7e5e4;
+      --color-line-150: #f0efed;
+      --color-canvas-100: #f5f5f5;
+      --color-canvas-050: #fafafa;
+      --color-surface-000: #ffffff;
+      --color-surface-050: #fbfaf8;
+      --color-surface-100: #f7f5f2;
+      --color-surface-150: #f0efed;
+      --color-surface-dark: #0c0a09;
+      --color-on-dark: #ffffff;
+      --color-on-dark-soft: #d6d3d1;
+      --color-mint-100: #e6f8f2;
+      --color-mint-300: #a7e5d3;
+      --color-mint-700: #247b67;
+      --color-peach-100: #fff0e8;
+      --color-peach-300: #f4c5a8;
+      --color-peach-700: #a65c35;
+      --color-lavender-100: #f1ecfa;
+      --color-lavender-300: #c8b8e0;
+      --color-lavender-700: #685390;
+      --color-sky-100: #ecf5ff;
+      --color-sky-300: #a8c8e8;
+      --color-sky-700: #346e9c;
+      --color-rose-100: #fff0f3;
+      --color-rose-300: #e8b8c4;
+      --color-rose-700: #9d4960;
+      --color-success-100: #ecfdf3;
+      --color-success-700: #15803d;
+      --color-warning-100: #fff7ed;
+      --color-warning-700: #c2410c;
+      --color-risk-100: #fef2f2;
+      --color-risk-700: #b91c1c;
+      --color-action-100: #eff6ff;
+      --color-action-700: #1d4ed8;
+      --shadow-card: 0 4px 16px rgba(12, 10, 9, 0.04);
+      --shadow-soft: 0 20px 60px rgba(12, 10, 9, 0.08);
+      --font-display: "Times New Roman", "Noto Serif SC", "Songti SC", serif;
+      --font-body: Inter, "Microsoft YaHei", "PingFang SC", "Noto Sans SC", sans-serif;
+      --text-hero: 52px;
+      --text-hero-line: 1.08;
+      --text-display-lg: 38px;
+      --text-display-md: 30px;
+      --text-display-sm: 24px;
+      --text-title-xl: 22px;
+      --text-title-lg: 20px;
+      --text-title-md: 18px;
+      --text-title-sm: 16px;
+      --text-body-lg: 17px;
+      --text-body: 16px;
+      --text-body-sm: 15px;
+      --text-caption: 13px;
+      --text-micro: 12px;
+      --weight-light: 300;
+      --weight-regular: 400;
+      --weight-medium: 500;
+      --weight-semibold: 600;
+      --weight-bold: 700;
+      --line-tight: 1.16;
+      --line-title: 1.32;
+      --line-body: 1.72;
+      --line-caption: 1.46;
+      --track-none: 0;
+      --track-soft: 0.02em;
+      --track-wide: 0.08em;
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 20px;
+      --space-6: 24px;
+      --space-7: 28px;
+      --space-8: 32px;
+      --space-9: 40px;
+      --space-10: 48px;
+      --space-11: 56px;
+      --space-12: 64px;
+      --space-13: 80px;
+      --space-14: 96px;
+      --mark-thin: 1px;
+      --mark-medium: 2px;
+      --mark-heavy: 4px;
+      --mark-block: 10px;
+      --mark-step: 34px;
+      --mark-rule: 72px;
+      --mark-label: 112px;
+      --mark-gutter: 18px;
+      --mark-inset: 30px;
+      --mark-quote: 6px;
+      --mark-module: 46px;
+      --radius-none: 0;
+      --card-width: 1060px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      min-height: 100%;
+      background: var(--color-canvas-100);
+      color: var(--color-ink-950);
+      font-family: var(--font-body);
+      letter-spacing: var(--track-none);
+    }
+
+    body {
+      margin: 0;
+      min-height: 100%;
+      background:
+        radial-gradient(circle at 14% 9%, rgba(167, 229, 211, 0.58) 0, rgba(167, 229, 211, 0.26) 17%, rgba(167, 229, 211, 0) 35%),
+        radial-gradient(circle at 88% 18%, rgba(244, 197, 168, 0.54) 0, rgba(244, 197, 168, 0.22) 16%, rgba(244, 197, 168, 0) 34%),
+        radial-gradient(circle at 82% 62%, rgba(200, 184, 224, 0.48) 0, rgba(200, 184, 224, 0.19) 18%, rgba(200, 184, 224, 0) 38%),
+        radial-gradient(circle at 10% 84%, rgba(168, 200, 232, 0.45) 0, rgba(168, 200, 232, 0.18) 18%, rgba(168, 200, 232, 0) 38%),
+        var(--color-canvas-100);
+      color: var(--color-body-700);
+      font-size: var(--text-body);
+      line-height: var(--line-body);
+    }
+
+    .card-shell {
+      width: 100%;
+      padding: var(--space-10) var(--space-6);
+    }
+
+    .cognitive-card {
+      width: min(100%, var(--card-width));
+      margin: 0 auto;
+      border: var(--mark-thin) solid var(--color-line-200);
+      border-radius: var(--radius-none);
+      background: rgba(255, 255, 255, 0.92);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+    }
+
+    .card-header {
+      position: relative;
+      padding: var(--space-12) var(--space-12) var(--space-10);
+      border-bottom: var(--mark-thin) solid var(--color-line-200);
+      background:
+        linear-gradient(135deg, rgba(250, 250, 250, 0.96), rgba(245, 245, 245, 0.76)),
+        radial-gradient(circle at 74% 18%, rgba(232, 184, 196, 0.38), rgba(232, 184, 196, 0) 38%);
+    }
+
+    .eyebrow-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      align-items: center;
+      margin-bottom: var(--space-8);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      min-height: 30px;
+      padding: var(--space-1) var(--space-3);
+      border: var(--mark-thin) solid var(--color-line-300);
+      border-radius: 999px;
+      background: var(--color-surface-000);
+      color: var(--color-ink-850);
+      font-size: var(--text-micro);
+      font-weight: var(--weight-semibold);
+      line-height: var(--line-caption);
+      letter-spacing: var(--track-wide);
+    }
+
+    .date-stamp {
+      color: var(--color-muted-600);
+      font-size: var(--text-caption);
+      line-height: var(--line-caption);
+    }
+
+    .hero-title {
+      max-width: 880px;
+      margin: 0;
+      color: var(--color-ink-950);
+      font-family: var(--font-display);
+      font-size: var(--text-hero);
+      font-weight: var(--weight-light);
+      line-height: var(--text-hero-line);
+      letter-spacing: var(--track-none);
+    }
+
+    .hero-subtitle {
+      max-width: 760px;
+      margin: var(--space-6) 0 0;
+      color: var(--color-body-650);
+      font-size: var(--text-body-lg);
+      font-weight: var(--weight-regular);
+      line-height: var(--line-body);
+      letter-spacing: var(--track-soft);
+    }
+
+    .hero-signal {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-3);
+      margin-top: var(--space-9);
+      padding-left: var(--mark-inset);
+      border-left: var(--mark-heavy) solid var(--color-ink-950);
+    }
+
+    .signal-label {
+      color: var(--color-muted-600);
+      font-size: var(--text-caption);
+      font-weight: var(--weight-semibold);
+      letter-spacing: var(--track-wide);
+      line-height: var(--line-caption);
+    }
+
+    .signal-text {
+      margin: 0;
+      color: var(--color-ink-850);
+      font-size: var(--text-title-md);
+      font-weight: var(--weight-medium);
+      line-height: var(--line-title);
+    }
+
+    .card-body {
+      padding: var(--space-10) var(--space-12) var(--space-12);
+    }
+
+    .section-block {
+      padding: var(--space-9) 0;
+      border-bottom: var(--mark-thin) solid var(--color-line-150);
+    }
+
+    .section-block:first-child {
+      padding-top: 0;
+    }
+
+    .section-block:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .section-kicker {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      margin-bottom: var(--space-5);
+      color: var(--color-muted-600);
+      font-size: var(--text-caption);
+      font-weight: var(--weight-semibold);
+      line-height: var(--line-caption);
+      letter-spacing: var(--track-wide);
+    }
+
+    .kicker-rule {
+      width: var(--mark-rule);
+      height: var(--mark-thin);
+      background: var(--color-line-300);
+    }
+
+    .section-title {
+      margin: 0 0 var(--space-6);
+      color: var(--color-ink-950);
+      font-family: var(--font-display);
+      font-size: var(--text-display-md);
+      font-weight: var(--weight-light);
+      line-height: var(--line-tight);
+      letter-spacing: var(--track-none);
+    }
+
+    .core-panel {
+      padding: var(--space-8);
+      border: var(--mark-thin) solid var(--color-line-200);
+      border-left: var(--mark-block) solid var(--color-ink-950);
+      background:
+        linear-gradient(90deg, rgba(167, 229, 211, 0.16), rgba(255, 255, 255, 0.96) 35%),
+        var(--color-surface-000);
+      box-shadow: var(--shadow-card);
+    }
+
+    .core-sentence {
+      margin: 0;
+      color: var(--color-ink-950);
+      font-family: var(--font-display);
+      font-size: var(--text-display-sm);
+      font-weight: var(--weight-light);
+      line-height: 1.34;
+      letter-spacing: var(--track-none);
+    }
+
+    .core-explain {
+      margin: var(--space-5) 0 0;
+      color: var(--color-body-700);
+      font-size: var(--text-body);
+      line-height: var(--line-body);
+      letter-spacing: var(--track-soft);
+    }
+
+    .argument-stack {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    .argument-item {
+      display: grid;
+      grid-template-columns: var(--mark-module) 1fr;
+      gap: var(--space-5);
+      padding: var(--space-6);
+      border: var(--mark-thin) solid var(--color-line-200);
+      background: var(--color-surface-000);
+      box-shadow: var(--shadow-card);
+    }
+
+    .argument-number {
+      display: grid;
+      place-items: center;
+      width: var(--mark-module);
+      height: var(--mark-module);
+      border: var(--mark-thin) solid var(--color-line-300);
+      background: var(--color-surface-150);
+      color: var(--color-ink-950);
+      font-size: var(--text-caption);
+      font-weight: var(--weight-semibold);
+      line-height: 1;
+    }
+
+    .argument-item:nth-child(1) .argument-number {
+      background: var(--color-mint-100);
+      color: var(--color-mint-700);
+      border-color: rgba(36, 123, 103, 0.18);
+    }
+
+    .argument-item:nth-child(2) .argument-number {
+      background: var(--color-peach-100);
+      color: var(--color-peach-700);
+      border-color: rgba(166, 92, 53, 0.2);
+    }
+
+    .argument-item:nth-child(3) .argument-number {
+      background: var(--color-lavender-100);
+      color: var(--color-lavender-700);
+      border-color: rgba(104, 83, 144, 0.2);
+    }
+
+    .argument-item:nth-child(4) .argument-number {
+      background: var(--color-sky-100);
+      color: var(--color-sky-700);
+      border-color: rgba(52, 110, 156, 0.18);
+    }
+
+    .argument-title {
+      margin: 0;
+      color: var(--color-ink-850);
+      font-size: var(--text-title-lg);
+      font-weight: var(--weight-medium);
+      line-height: var(--line-title);
+      letter-spacing: var(--track-none);
+    }
+
+    .argument-copy {
+      margin: var(--space-2) 0 0;
+      color: var(--color-body-700);
+      font-size: var(--text-body-sm);
+      line-height: var(--line-body);
+      letter-spacing: var(--track-soft);
+    }
+
+    .flow-band {
+      padding: var(--space-7) var(--space-8);
+      border: var(--mark-thin) solid var(--color-line-200);
+      background:
+        linear-gradient(90deg, var(--color-surface-050), var(--color-canvas-050)),
+        var(--color-surface-000);
+    }
+
+    .flow-title {
+      margin: 0 0 var(--space-5);
+      color: var(--color-ink-950);
+      font-size: var(--text-title-md);
+      font-weight: var(--weight-medium);
+      line-height: var(--line-title);
+    }
+
+    .flow-steps {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-3);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .flow-step {
+      position: relative;
+      padding: var(--space-3) var(--space-4) var(--space-3) var(--space-8);
+      border-left: var(--mark-medium) solid var(--color-line-300);
+      background: rgba(255, 255, 255, 0.72);
+      color: var(--color-body-700);
+      font-size: var(--text-body-sm);
+      line-height: var(--line-body);
+    }
+
+    .flow-step::before {
+      content: attr(data-step);
+      position: absolute;
+      left: -18px;
+      top: var(--space-3);
+      display: grid;
+      place-items: center;
+      width: var(--mark-step);
+      height: var(--mark-step);
+      border: var(--mark-thin) solid var(--color-line-300);
+      background: var(--color-surface-000);
+      color: var(--color-ink-850);
+      font-size: var(--text-micro);
+      font-weight: var(--weight-semibold);
+      line-height: 1;
+    }
+
+    .quote-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+    }
+
+    .quote-card {
+      padding: var(--space-6) var(--space-7);
+      border: var(--mark-thin) solid var(--color-line-200);
+      border-left: var(--mark-quote) solid var(--color-ink-850);
+      background: var(--color-surface-000);
+    }
+
+    .quote-card.primary {
+      background:
+        radial-gradient(circle at 92% 10%, rgba(244, 197, 168, 0.28), rgba(244, 197, 168, 0) 34%),
+        var(--color-surface-000);
+    }
+
+    .quote-text {
+      margin: 0;
+      color: var(--color-ink-950);
+      font-family: var(--font-display);
+      font-size: var(--text-title-xl);
+      font-weight: var(--weight-light);
+      line-height: 1.42;
+      letter-spacing: var(--track-none);
+    }
+
+    .quote-note {
+      margin: var(--space-3) 0 0;
+      color: var(--color-muted-600);
+      font-size: var(--text-caption);
+      line-height: var(--line-caption);
+      letter-spacing: var(--track-soft);
+    }
+
+    .method-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-4);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .method-item {
+      padding: var(--space-5) var(--space-6);
+      border: var(--mark-thin) solid var(--color-line-200);
+      background: var(--color-surface-050);
+    }
+
+    .method-head {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-3);
+      margin-bottom: var(--space-2);
+    }
+
+    .method-tag {
+      min-width: var(--mark-label);
+      color: var(--color-muted-600);
+      font-size: var(--text-micro);
+      font-weight: var(--weight-semibold);
+      line-height: var(--line-caption);
+      letter-spacing: var(--track-wide);
+    }
+
+    .method-name {
+      color: var(--color-ink-850);
+      font-size: var(--text-title-sm);
+      font-weight: var(--weight-semibold);
+      line-height: var(--line-title);
+    }
+
+    .method-copy {
+      margin: 0;
+      color: var(--color-body-700);
+      font-size: var(--text-body-sm);
+      line-height: var(--line-body);
+      letter-spacing: var(--track-soft);
+    }
+
+    .evidence-box {
+      padding: var(--space-6);
+      border: var(--mark-thin) solid rgba(36, 123, 103, 0.18);
+      background:
+        linear-gradient(90deg, rgba(230, 248, 242, 0.82), rgba(255, 255, 255, 0.86)),
+        var(--color-surface-000);
+    }
+
+    .evidence-title {
+      margin: 0 0 var(--space-3);
+      color: var(--color-mint-700);
+      font-size: var(--text-title-sm);
+      font-weight: var(--weight-semibold);
+      line-height: var(--line-title);
+    }
+
+    .evidence-copy {
+      margin: 0;
+      color: var(--color-body-700);
+      font-size: var(--text-body-sm);
+      line-height: var(--line-body);
+    }
+
+    .action-risk-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-5);
+    }
+
+    .action-box,
+    .risk-box {
+      padding: var(--space-7);
+      border: var(--mark-thin) solid var(--color-line-200);
+      background: var(--color-surface-000);
+    }
+
+    .action-box {
+      border-top: var(--mark-heavy) solid var(--color-action-700);
+      background:
+        linear-gradient(180deg, rgba(239, 246, 255, 0.72), rgba(255, 255, 255, 0.95) 42%),
+        var(--color-surface-000);
+    }
+
+    .risk-box {
+      border-top: var(--mark-heavy) solid var(--color-warning-700);
+      background:
+        linear-gradient(180deg, rgba(255, 247, 237, 0.72), rgba(255, 255, 255, 0.95) 42%),
+        var(--color-surface-000);
+    }
+
+    .box-title {
+      margin: 0 0 var(--space-4);
+      color: var(--color-ink-950);
+      font-size: var(--text-title-lg);
+      font-weight: var(--weight-medium);
+      line-height: var(--line-title);
+    }
+
+    .check-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-3);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .check-item {
+      display: grid;
+      grid-template-columns: 24px 1fr;
+      gap: var(--space-3);
+      align-items: start;
+      color: var(--color-body-700);
+      font-size: var(--text-body-sm);
+      line-height: var(--line-body);
+    }
+
+    .check-marker {
+      display: grid;
+      place-items: center;
+      width: 24px;
+      height: 24px;
+      border: var(--mark-thin) solid var(--color-line-300);
+      background: var(--color-surface-000);
+      color: var(--color-muted-600);
+      font-size: var(--text-micro);
+      font-weight: var(--weight-semibold);
+      line-height: 1;
+    }
+
+    .risk-list {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-3);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .risk-item {
+      padding-left: var(--space-5);
+      border-left: var(--mark-medium) solid var(--color-warning-700);
+      color: var(--color-body-700);
+      font-size: var(--text-body-sm);
+      line-height: var(--line-body);
+    }
+
+    .life-material {
+      padding: var(--space-7);
+      border: var(--mark-thin) solid var(--color-line-200);
+      background:
+        radial-gradient(circle at 96% 18%, rgba(168, 200, 232, 0.32), rgba(168, 200, 232, 0) 34%),
+        var(--color-surface-000);
+    }
+
+    .material-title {
+      margin: 0 0 var(--space-3);
+      color: var(--color-ink-950);
+      font-size: var(--text-title-lg);
+      font-weight: var(--weight-medium);
+      line-height: var(--line-title);
+    }
+
+    .material-copy {
+      margin: 0;
+      color: var(--color-body-700);
+      font-size: var(--text-body-sm);
+      line-height: var(--line-body);
+    }
+
+    .memory-row {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-3);
+      margin-top: var(--space-5);
+    }
+
+    .memory-chip {
+      padding: var(--space-3) var(--space-4);
+      border: var(--mark-thin) solid var(--color-line-200);
+      background: var(--color-surface-050);
+      color: var(--color-ink-850);
+      font-size: var(--text-caption);
+      font-weight: var(--weight-medium);
+      line-height: var(--line-caption);
+      letter-spacing: var(--track-soft);
+    }
+
+    .card-footer {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-2);
+      padding: var(--space-9) var(--space-12);
+      border-top: var(--mark-thin) solid var(--color-line-200);
+      background: var(--color-canvas-100);
+      color: var(--color-muted-600);
+      font-size: var(--text-caption);
+      line-height: var(--line-caption);
+    }
+
+    .footer-strong {
+      color: var(--color-ink-850);
+      font-weight: var(--weight-medium);
+    }
+
+    @media (max-width: 480px) {
+      :root {
+        --text-hero: 34px;
+        --text-display-md: 25px;
+        --text-display-sm: 21px;
+        --text-title-xl: 20px;
+        --space-12: 34px;
+        --space-10: 30px;
+        --space-9: 28px;
+        --space-8: 24px;
+      }
+
+      .card-shell {
+        padding: var(--space-5) var(--space-3);
+      }
+
+      .card-header,
+      .card-body,
+      .card-footer {
+        padding-left: var(--space-5);
+        padding-right: var(--space-5);
+      }
+
+      .argument-item {
+        grid-template-columns: 1fr;
+      }
+
+      .method-head {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: var(--space-1);
+      }
+
+      .method-tag {
+        min-width: 0;
+      }
+    }
+
+    @media (min-width: 481px) and (max-width: 760px) {
+      :root {
+        --text-hero: 39px;
+        --text-display-md: 27px;
+        --space-12: 42px;
+        --space-10: 36px;
+      }
+
+      .card-shell {
+        padding: var(--space-7) var(--space-4);
+      }
+
+      .card-header,
+      .card-body,
+      .card-footer {
+        padding-left: var(--space-7);
+        padding-right: var(--space-7);
+      }
+    }
+
+    @media (min-width: 761px) and (max-width: 1024px) {
+      :root {
+        --text-hero: 46px;
+        --text-display-md: 29px;
+      }
+
+      .card-shell {
+        padding: var(--space-9) var(--space-5);
+      }
+    }
+
+    @media (min-width: 1025px) and (max-width: 1280px) {
+      .card-shell {
+        padding-top: var(--space-12);
+        padding-bottom: var(--space-12);
+      }
+    }
+
+    @media (min-width: 1281px) {
+      :root {
+        --text-hero: 56px;
+      }
+
+      .card-shell {
+        padding-top: var(--space-14);
+        padding-bottom: var(--space-14);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="card-shell">
+    <article class="cognitive-card">
+      <header class="card-header">
+        <div class="eyebrow-row">
+          <span class="eyebrow">日省认知卡片</span>
+          <span class="date-stamp">2026-06-27 · 实际内容范围 2026-06-26</span>
+        </div>
+        <h1 class="hero-title">目标不是口号，是早上把你从床上拽起来的力</h1>
+        <p class="hero-subtitle">今天的核心不是“又想通了一个道理”，而是看清了执行的底层燃料：没有足够具体、足够让人兴奋的目标，早起、输出、戒短视频都会退化成硬扛。</p>
+        <div class="hero-signal">
+          <span class="signal-label">今日主线判断</span>
+          <p class="signal-text">意志力只负责最后一公里，真正决定能不能启动的是目标强度、注意力分配和低阻力动作系统。</p>
+        </div>
+      </header>
+
+      <div class="card-body">
+        <section class="section-block">
+          <div class="section-kicker">
+            <span>01 · 核心命题</span>
+            <span class="kicker-rule"></span>
+          </div>
+          <h2 class="section-title">今天真正发生了什么</h2>
+          <div class="core-panel">
+            <p class="core-sentence">早起、复盘、输出、小红书虚拟、SEO 建站、图床、五库 JSON，本质都在问同一个问题：你到底有没有一个值得每天主动交换注意力的目标？</p>
+            <p class="core-explain">上午靠目标讨论和阅读进入状态；下午被火锅预期、午睡质量和短视频多巴胺扰动；晚上重新通过复盘把问题拉回系统层。真正的变化不是情绪波动，而是把“我为什么起不来、刷不停、等 Codex”拆成了可改的结构。</p>
+          </div>
+        </section>
+
+        <section class="section-block">
+          <div class="section-kicker">
+            <span>02 · 四个主模块</span>
+            <span class="kicker-rule"></span>
+          </div>
+          <h2 class="section-title">认知变化的骨架</h2>
+          <div class="argument-stack">
+            <div class="argument-item">
+              <div class="argument-number">A</div>
+              <div>
+                <h3 class="argument-title">目标驱动比意志力更底层</h3>
+                <p class="argument-copy">早晨起不来，不只是疲惫，也不是简单的懒。没有一个让大脑觉得“现在起床值得”的激进目标，所有自律都会变成靠摩擦硬推。</p>
+              </div>
+            </div>
+            <div class="argument-item">
+              <div class="argument-number">B</div>
+              <div>
+                <h3 class="argument-title">注意力是战略资源，不是剩余资源</h3>
+                <p class="argument-copy">普通人的注意力被环境抢走，大人物的注意力主动投向结构、关键人、认知漏洞、时间复利端和异常信号。Codex 跑任务时等待刷手机，是把老板注意力降级成员工等待位。</p>
+              </div>
+            </div>
+            <div class="argument-item">
+              <div class="argument-number">C</div>
+              <div>
+                <h3 class="argument-title">习惯要绑定，不要空喊</h3>
+                <p class="argument-copy">刷牙 + 结算自动化已经跑通：把想做但抗拒的动作，挂到必须做且存在等待空隙的动作上。习惯不是靠热血，是靠触发结构。</p>
+              </div>
+            </div>
+            <div class="argument-item">
+              <div class="argument-number">D</div>
+              <div>
+                <h3 class="argument-title">出海需求看四个信号</h3>
+                <p class="argument-copy">客户搜什么、抱怨什么、用什么替代品、在哪里付费。先看 5-10 个小帖，找真实痛点，不追热门幻觉。</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-block">
+          <div class="section-kicker">
+            <span>03 · 理解路径</span>
+            <span class="kicker-rule"></span>
+          </div>
+          <h2 class="section-title">从想法到执行的顺序</h2>
+          <div class="flow-band">
+            <h3 class="flow-title">今天沉淀出来的执行链路</h3>
+            <ol class="flow-steps">
+              <li class="flow-step" data-step="1">先定一个能让早晨有吸引力的目标锚点，但“邓丽然式生活”目前仍是向往，不是最终定版。</li>
+              <li class="flow-step" data-step="2">把注意力投到高杠杆任务：验收 JSON、修 SEO bug、收尾图床、小红书先上架一个产品。</li>
+              <li class="flow-step" data-step="3">用低成本尝试解决纠结：不知道做什么品，就先随便上一个虚拟产品，不再等完美方向。</li>
+              <li class="flow-step" data-step="4">把习惯设计成复利系统：复盘、输出、帮助别人、产品迭代，全部服务于长期影响力增长。</li>
+            </ol>
+          </div>
+        </section>
+
+        <section class="section-block">
+          <div class="section-kicker">
+            <span>04 · 金句锚点</span>
+            <span class="kicker-rule"></span>
+          </div>
+          <h2 class="section-title">最值得留下的原话</h2>
+          <div class="quote-grid">
+            <div class="quote-card primary">
+              <p class="quote-text">“一个人的生命长度，真的取决于他最后每天是否有做复盘，是否有做迭代，是否有做升级。”</p>
+              <p class="quote-note">复盘不是记录生活，是拉长生命有效长度的基础数据工程。</p>
+            </div>
+            <div class="quote-card">
+              <p class="quote-text">“普通人的注意力是被环境抢走的，大人物的注意力是自己决定给出去的。”</p>
+              <p class="quote-note">今天最该升级的不是任务列表，而是注意力分配权。</p>
+            </div>
+            <div class="quote-card">
+              <p class="quote-text">“拿你想要的去换你想要的。”</p>
+              <p class="quote-note">目标和交换关系必须清晰，否则短期快感会持续抢走长期目标。</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-block">
+          <div class="section-kicker">
+            <span>05 · 方法论</span>
+            <span class="kicker-rule"></span>
+          </div>
+          <h2 class="section-title">可复用规则</h2>
+          <ul class="method-list">
+            <li class="method-item">
+              <div class="method-head">
+                <span class="method-tag">目标系统</span>
+                <span class="method-name">早上先做亢奋性输出</span>
+              </div>
+              <p class="method-copy">起床后不先看文章、不先做 AI 问答，直接做能让自己兴奋的输出任务。早上连续清醒，下午天然下降，不要把最强脑力窗口浪费掉。</p>
+            </li>
+            <li class="method-item">
+              <div class="method-head">
+                <span class="method-tag">多巴胺系统</span>
+                <span class="method-name">坏习惯第一天就要掐死</span>
+              </div>
+              <p class="method-copy">“最后一个”说出口后就必须停止；下午短视频如果一定要看，积分加倍惩罚。破一次忌会形成惯性，不要等成型再处理。</p>
+            </li>
+            <li class="method-item">
+              <div class="method-head">
+                <span class="method-tag">习惯系统</span>
+                <span class="method-name">把抗拒动作挂到等待动作上</span>
+              </div>
+              <p class="method-copy">刷牙绑定结算自动化是有效样本：自动化运行期间要盯着和按 F4，正好承接刷牙。触发锚点比自律口号更可靠。</p>
+            </li>
+            <li class="method-item">
+              <div class="method-head">
+                <span class="method-tag">产品系统</span>
+                <span class="method-name">纠结时先低成本试</span>
+              </div>
+              <p class="method-copy">小红书虚拟不再等“想好品类”，先上架一个 PPT 或任意参考品，再用反馈迭代。低成本尝试比长期纠结更接近真实答案。</p>
+            </li>
+          </ul>
+        </section>
+
+        <section class="section-block">
+          <div class="section-kicker">
+            <span>06 · 生活素材</span>
+            <span class="kicker-rule"></span>
+          </div>
+          <h2 class="section-title">今天的现实锚点</h2>
+          <div class="life-material">
+            <h3 class="material-title">第一次自己买食材做火锅</h3>
+            <p class="material-copy">牛肉、蔬菜、丸子、火锅底料和快乐水，成本并不高，但体验感非常强。它证明生活感不是大额消费堆出来的，而是自己参与选择、洗菜、煮食、和室友一起完成的具身体验。</p>
+            <div class="memory-row">
+              <div class="memory-chip">记忆锚点：低成本高体验</div>
+              <div class="memory-chip">可写素材：家庭火锅、室友当兵经验、生活方式复利</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-block">
+          <div class="section-kicker">
+            <span>07 · 行动与待核</span>
+            <span class="kicker-rule"></span>
+          </div>
+          <h2 class="section-title">下一步不能停在“想通了”</h2>
+          <div class="action-risk-grid">
+            <div class="action-box">
+              <h3 class="box-title">今天之后的硬动作</h3>
+              <ul class="check-list">
+                <li class="check-item"><span class="check-marker">1</span><span>验收 Codex 已完成的精华汇总 JSON 文件。</span></li>
+                <li class="check-item"><span class="check-marker">2</span><span>将 5 个库的 JSON 汇总到一个文件夹，部署到 GitHub，做成可浏览网页。</span></li>
+                <li class="check-item"><span class="check-marker">3</span><span>图床 Cloudflare R2 + PicGo 的小 bug 做收尾测试。</span></li>
+                <li class="check-item"><span class="check-marker">4</span><span>SEO 建站第一版继续测试，把已发现的七八个 bug 逐一修掉。</span></li>
+                <li class="check-item"><span class="check-marker">5</span><span>小红书虚拟方向先上架一个产品，不再等“想好品类”。</span></li>
+              </ul>
+            </div>
+            <div class="risk-box">
+              <h3 class="box-title">仍然不能写死的内容</h3>
+              <ul class="risk-list">
+                <li class="risk-item">“邓丽然式生活”目前是向往目标，不是最终定版，还要继续倒推每月成绩。</li>
+                <li class="risk-item">五库 JSON 的完整分类名称仍要以原始文件核对，不能凭记忆补齐。</li>
+                <li class="risk-item">SEO 第一版的七八个 bug 是否全部修复，还没有完成验收。</li>
+                <li class="risk-item">中考与高考相差约 20 多天来自当场推断，未查证。</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="section-block">
+          <div class="evidence-box">
+            <h3 class="evidence-title">安全底线单独保留</h3>
+            <p class="evidence-copy">“君子不立危墙之下。”凡是威胁生命、健康、安全的场景，今后第一动作不是分析、不是逞强，而是立刻离开。</p>
+          </div>
+        </section>
+      </div>
+
+      <footer class="card-footer">
+        <span><span class="footer-strong">来源：</span>日省 · 2026-06-27，合并 4 个输入文件。</span>
+        <span><span class="footer-strong">设计：</span>ElevenLabs 风格转译，浅米白画布、近黑文字、柔和彩色气氛层，完全静态单栏直角卡片。</span>
+      </footer>
+    </article>
+  </main>
+</body>
+</html>
