@@ -1,0 +1,852 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026-06-30 日省认知卡片</title>
+  <style>
+    :root {
+      --canvas: #f7f7f4;
+      --canvas-soft: #fafaf7;
+      --surface: #ffffff;
+      --surface-strong: #e6e5e0;
+      --ink: #26251e;
+      --body: #5a5852;
+      --muted: #807d72;
+      --muted-soft: #a09c92;
+      --hairline: #e6e5e0;
+      --hairline-soft: #efeee8;
+      --hairline-strong: #cfcdc4;
+      --orange: #f54e00;
+      --orange-deep: #d04200;
+      --thinking: #dfa88f;
+      --grep: #9fc9a2;
+      --read: #9fbbe0;
+      --edit: #c0a8dd;
+      --done: #c08532;
+      --success: #1f8a65;
+      --danger: #cf2d56;
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 20px;
+      --space-6: 24px;
+      --space-7: 32px;
+      --space-8: 40px;
+      --space-9: 48px;
+      --space-10: 64px;
+      --space-11: 80px;
+      --radius-xs: 4px;
+      --radius-sm: 6px;
+      --radius-md: 8px;
+      --radius-lg: 12px;
+      --font-sans: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", "PingFang SC", sans-serif;
+      --font-mono: "JetBrains Mono", "Fira Code", Consolas, "SFMono-Regular", monospace;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--canvas);
+      color: var(--ink);
+      font-family: var(--font-sans);
+      letter-spacing: 0;
+    }
+
+    .page {
+      width: min(100%, 1220px);
+      margin: 0 auto;
+      padding: var(--space-9) var(--space-6);
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--hairline-strong);
+      border-radius: 0;
+      min-height: 100vh;
+      overflow: hidden;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.65fr);
+      gap: var(--space-9);
+      padding: var(--space-10) var(--space-10) var(--space-9);
+      border-bottom: 1px solid var(--hairline);
+      background: linear-gradient(180deg, var(--canvas) 0%, var(--surface) 100%);
+    }
+
+    .kicker {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      gap: var(--space-2);
+      margin-bottom: var(--space-5);
+      padding: var(--space-2) var(--space-3);
+      border: 1px solid var(--hairline-strong);
+      border-radius: 999px;
+      background: var(--surface);
+      color: var(--body);
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+
+    .kicker::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--orange);
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 760px;
+      font-size: 58px;
+      font-weight: 400;
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      max-width: 760px;
+      margin: var(--space-6) 0 0;
+      color: var(--body);
+      font-size: 19px;
+      line-height: 1.72;
+      letter-spacing: 0;
+    }
+
+    .hero-mark {
+      align-self: stretch;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-lg);
+      background: var(--canvas-soft);
+      overflow: hidden;
+    }
+
+    .window-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-4);
+      border-bottom: 1px solid var(--hairline);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--muted);
+      background: var(--surface);
+    }
+
+    .dots {
+      display: flex;
+      gap: 7px;
+    }
+
+    .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: var(--hairline-strong);
+    }
+
+    .dot.orange {
+      background: var(--orange);
+    }
+
+    .agent-flow {
+      display: grid;
+      align-content: center;
+      gap: var(--space-4);
+      padding: var(--space-7);
+    }
+
+    .flow-row {
+      display: grid;
+      grid-template-columns: 96px 1fr;
+      align-items: start;
+      gap: var(--space-4);
+      padding-bottom: var(--space-4);
+      border-bottom: 1px solid var(--hairline-soft);
+    }
+
+    .flow-row:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .pill {
+      display: inline-flex;
+      justify-content: center;
+      width: 96px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1.25;
+      color: var(--ink);
+      text-transform: uppercase;
+      letter-spacing: 0.6px;
+    }
+
+    .pill.thinking {
+      background: var(--thinking);
+    }
+
+    .pill.grep {
+      background: var(--grep);
+    }
+
+    .pill.read {
+      background: var(--read);
+    }
+
+    .pill.edit {
+      background: var(--edit);
+    }
+
+    .pill.done {
+      background: var(--done);
+      color: #ffffff;
+    }
+
+    .flow-text {
+      margin: 0;
+      color: var(--body);
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .section {
+      padding: var(--space-10);
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .section:last-child {
+      border-bottom: 0;
+    }
+
+    .section-label {
+      margin: 0 0 var(--space-3);
+      color: var(--orange);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.4;
+      letter-spacing: 0.4px;
+    }
+
+    .section-title {
+      margin: 0 0 var(--space-7);
+      color: var(--ink);
+      font-size: 32px;
+      font-weight: 400;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+
+    .core-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-5);
+    }
+
+    .core-panel {
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-lg);
+      background: var(--canvas-soft);
+      padding: var(--space-7);
+    }
+
+    .core-panel.strong {
+      background: var(--ink);
+      color: var(--canvas);
+      border-color: var(--ink);
+    }
+
+    .core-panel h3 {
+      margin: 0 0 var(--space-4);
+      font-size: 21px;
+      font-weight: 600;
+      line-height: 1.35;
+      letter-spacing: 0;
+    }
+
+    .core-panel p {
+      margin: 0;
+      color: var(--body);
+      font-size: 16px;
+      line-height: 1.75;
+    }
+
+    .core-panel.strong p {
+      color: #efece2;
+    }
+
+    .code-line {
+      margin-top: var(--space-5);
+      padding: var(--space-4);
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-md);
+      background: var(--surface);
+      color: var(--ink);
+      font-family: var(--font-mono);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .map {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--space-5);
+    }
+
+    .map-node {
+      position: relative;
+      min-height: 230px;
+      padding: var(--space-6);
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+    }
+
+    .map-index {
+      display: inline-grid;
+      place-items: center;
+      width: 34px;
+      height: 34px;
+      margin-bottom: var(--space-5);
+      border: 1px solid var(--hairline-strong);
+      border-radius: var(--radius-md);
+      color: var(--orange);
+      font-family: var(--font-mono);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .map-node h3 {
+      margin: 0 0 var(--space-3);
+      font-size: 20px;
+      font-weight: 600;
+      line-height: 1.35;
+    }
+
+    .map-node p {
+      margin: 0;
+      color: var(--body);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .map-node .tag {
+      position: absolute;
+      left: var(--space-6);
+      bottom: var(--space-6);
+      display: inline-flex;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: var(--surface-strong);
+      color: var(--body);
+      font-family: var(--font-mono);
+      font-size: 11px;
+      line-height: 1.2;
+    }
+
+    .split {
+      display: grid;
+      grid-template-columns: 0.95fr 1.05fr;
+      gap: var(--space-7);
+      align-items: start;
+    }
+
+    .quote-stack {
+      display: grid;
+      gap: var(--space-4);
+    }
+
+    .quote {
+      padding: var(--space-6);
+      border-left: 4px solid var(--orange);
+      background: var(--canvas-soft);
+      color: var(--ink);
+      font-size: 20px;
+      font-weight: 400;
+      line-height: 1.55;
+    }
+
+    .evidence {
+      display: grid;
+      gap: var(--space-3);
+      padding: var(--space-6);
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-lg);
+      background: var(--surface);
+    }
+
+    .evidence-row {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: var(--space-4);
+      padding: var(--space-3) 0;
+      border-bottom: 1px solid var(--hairline-soft);
+    }
+
+    .evidence-row:last-child {
+      border-bottom: 0;
+    }
+
+    .evidence-key {
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .evidence-value {
+      margin: 0;
+      color: var(--body);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .rules {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--space-5);
+    }
+
+    .rule {
+      padding: var(--space-6);
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-lg);
+      background: var(--canvas-soft);
+    }
+
+    .rule h3 {
+      margin: 0 0 var(--space-3);
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .rule p {
+      margin: 0;
+      color: var(--body);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .rule.accent {
+      background: var(--orange);
+      border-color: var(--orange);
+    }
+
+    .rule.accent h3,
+    .rule.accent p {
+      color: #ffffff;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 0;
+      border: 1px solid var(--hairline);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--surface);
+    }
+
+    .timeline-step {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: var(--space-5);
+      padding: var(--space-5) var(--space-6);
+      border-bottom: 1px solid var(--hairline);
+    }
+
+    .timeline-step:last-child {
+      border-bottom: 0;
+    }
+
+    .timeline-time {
+      font-family: var(--font-mono);
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    .timeline-content h3 {
+      margin: 0 0 var(--space-2);
+      font-size: 17px;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .timeline-content p {
+      margin: 0;
+      color: var(--body);
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    .final {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-7);
+      padding: var(--space-10);
+      background: var(--ink);
+      color: var(--canvas);
+    }
+
+    .final h2 {
+      margin: 0;
+      font-size: 36px;
+      font-weight: 400;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+
+    .final-list {
+      display: grid;
+      gap: var(--space-4);
+    }
+
+    .final-item {
+      padding: var(--space-4) 0;
+      border-bottom: 1px solid rgba(247, 247, 244, 0.18);
+      color: #efece2;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    .final-item:first-child {
+      padding-top: 0;
+    }
+
+    .final-item:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-5);
+      padding: var(--space-8) var(--space-10);
+      background: var(--canvas);
+      color: var(--muted);
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 1080px) {
+      .page {
+        padding: var(--space-7) var(--space-5);
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding: var(--space-9);
+      }
+
+      h1 {
+        font-size: 46px;
+      }
+
+      .map {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .split,
+      .final {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .page {
+        padding: var(--space-5) var(--space-4);
+      }
+
+      .hero,
+      .section,
+      .final {
+        padding: var(--space-7);
+      }
+
+      h1 {
+        font-size: 36px;
+        line-height: 1.14;
+      }
+
+      .lead {
+        font-size: 16px;
+      }
+
+      .core-grid,
+      .map,
+      .rules {
+        grid-template-columns: 1fr;
+      }
+
+      .timeline-step,
+      .evidence-row,
+      .flow-row {
+        grid-template-columns: 1fr;
+      }
+
+      .map-node .tag {
+        position: static;
+        margin-top: var(--space-5);
+      }
+
+      .footer {
+        flex-direction: column;
+        padding: var(--space-7);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .page {
+        padding: 0;
+      }
+
+      .card {
+        border-left: 0;
+        border-right: 0;
+      }
+
+      .hero,
+      .section,
+      .final {
+        padding: var(--space-6);
+      }
+
+      h1 {
+        font-size: 31px;
+      }
+
+      .section-title,
+      .final h2 {
+        font-size: 27px;
+      }
+
+      .quote {
+        font-size: 18px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <article class="card">
+      <section class="hero">
+        <div>
+          <div class="kicker">日省认知卡片 · 2026-06-30</div>
+          <h1>找需求不是一句话，是一个带 DDL 的系统动作</h1>
+          <p class="lead">今天的核心校正很直接：小红书虚拟产品、SEO站、五库、周复盘，都不是缺方向，而是缺能产生反馈的动作结构。没有平台、动作、数量、截止时间和验收标准，所有“我要推进”都会退化成心理安慰。</p>
+        </div>
+        <div class="hero-mark">
+          <div class="window-bar">
+            <div class="dots">
+              <span class="dot orange"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+            <span>review.system</span>
+          </div>
+          <div class="agent-flow">
+            <div class="flow-row">
+              <span class="pill thinking">Think</span>
+              <p class="flow-text">从“我要找需求”识别出真正缺口：任务没有被定义成可执行对象。</p>
+            </div>
+            <div class="flow-row">
+              <span class="pill grep">Grep</span>
+              <p class="flow-text">从65篇小红书虚拟内容里确认：泛资料类不是主线，工具开发才贴合能力。</p>
+            </div>
+            <div class="flow-row">
+              <span class="pill read">Read</span>
+              <p class="flow-text">复盘系统也暴露同一问题：总结很多，原则产出不够。</p>
+            </div>
+            <div class="flow-row">
+              <span class="pill edit">Edit</span>
+              <p class="flow-text">把日省改造成“复盘 → GAP → 原则 → 入库”的迭代链路。</p>
+            </div>
+            <div class="flow-row">
+              <span class="pill done">Done</span>
+              <p class="flow-text">明日优先级：用 SMART 格式重写找需求任务，再开始执行。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <p class="section-label">CORE MODEL</p>
+        <h2 class="section-title">今天真正升级的不是方向，而是“方向如何变成反馈”的方法。</h2>
+        <div class="core-grid">
+          <div class="core-panel strong">
+            <h3>核心判断</h3>
+            <p>小红书虚拟产品继续做，但不做泛资料、教培、模板打包。正确路径是先找高净值人群的高频抱怨，再把抱怨翻译成可自动化、可监控、可节省时间的工具。</p>
+          </div>
+          <div class="core-panel">
+            <h3>执行校正</h3>
+            <p>“找需求”必须被拆成具体任务：在哪个平台、找哪类人、看哪些抱怨、记录多少条、几点结束、用什么标准判断能不能进入开发。</p>
+            <div class="code-line">需求任务 = 平台 + 人群 + 抱怨 + 数量 + DDL + 验收标准</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <p class="section-label">COGNITIVE MAP</p>
+        <h2 class="section-title">六个关键模块，指向同一个系统漏洞：任务没有形成闭环。</h2>
+        <div class="map">
+          <div class="map-node">
+            <span class="map-index">01</span>
+            <h3>小红书虚拟</h3>
+            <p>65篇资料证明市场不缺玩法，缺的是你自己的筛选标准。不要被“虚拟产品”四个字拖进资料包战场。</p>
+            <span class="tag">人群 → 抱怨 → 工具</span>
+          </div>
+          <div class="map-node">
+            <span class="map-index">02</span>
+            <h3>GAP 教练</h3>
+            <p>前两天没有原则产出，不是没有内容，而是遇到难问题时绕开了。越难回答，越可能值钱。</p>
+            <span class="tag">不逃避问题</span>
+          </div>
+          <div class="map-node">
+            <span class="map-index">03</span>
+            <h3>复盘系统</h3>
+            <p>复盘不是把信息重新排版。日省必须进入 GAP，GAP 必须长出原则，原则必须入库。</p>
+            <span class="tag">记录 → 改进</span>
+          </div>
+          <div class="map-node">
+            <span class="map-index">04</span>
+            <h3>AI 判断权</h3>
+            <p>AI 懂不等于你懂。AI 可以执行，但判断前要先列概念清单，确认自己真的理解关键变量。</p>
+            <span class="tag">AI 执行，人判断</span>
+          </div>
+          <div class="map-node">
+            <span class="map-index">05</span>
+            <h3>SEO站</h3>
+            <p>SEO站当前不是主力业务，而是肌肉展示。它的第一目标是让别人相信你真的能做。</p>
+            <span class="tag">信任资产</span>
+          </div>
+          <div class="map-node">
+            <span class="map-index">06</span>
+            <h3>高刺激入口</h3>
+            <p>成人内容导致晚起，不是靠自责解决。对大脑天然强刺激的东西，正确动作是关闭入口。</p>
+            <span class="tag">环境设计</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <p class="section-label">SIGNAL & EVIDENCE</p>
+        <h2 class="section-title">今天最有用的证据，是它们都把你拉回同一个结论。</h2>
+        <div class="split">
+          <div class="quote-stack">
+            <div class="quote">“没有迭代产物的复盘，只是把流水账重新排版。”</div>
+            <div class="quote">“不是先做产品再找人，而是先找高净值人群的抱怨。”</div>
+          </div>
+          <div class="evidence">
+            <div class="evidence-row">
+              <span class="evidence-key">小红书</span>
+              <p class="evidence-value">65篇内容把方向筛掉一层：资料类、教培类、知识类不是当前主线，工具开发更适合你的能力结构。</p>
+            </div>
+            <div class="evidence-row">
+              <span class="evidence-key">时间表</span>
+              <p class="evidence-value">没有把路途、切换、启动成本写进计划，下午任务自然整体后移。</p>
+            </div>
+            <div class="evidence-row">
+              <span class="evidence-key">录音</span>
+              <p class="evidence-value">手机录音被通知打断，说明复盘工具的第一指标不是音质，而是连续表达不被干扰。</p>
+            </div>
+            <div class="evidence-row">
+              <span class="evidence-key">五库</span>
+              <p class="evidence-value">源链接缺失是已知缺陷，不应继续阻塞部署；先让系统运转，再逐步补鲁棒性。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <p class="section-label">RULES</p>
+        <h2 class="section-title">把今天沉淀成以后能直接调用的四条规则。</h2>
+        <div class="rules">
+          <div class="rule accent">
+            <h3>找需求 SMART 原则</h3>
+            <p>没有平台、对象、动作、数量、DDL、验收标准的“找需求”，不是任务，是愿望。</p>
+          </div>
+          <div class="rule">
+            <h3>人群优先原则</h3>
+            <p>先找会付费的人和真实抱怨，再考虑产品形态。产品只是痛点的翻译结果。</p>
+          </div>
+          <div class="rule">
+            <h3>复盘迭代原则</h3>
+            <p>一次复盘至少要产出一个新约束、原则或动作，否则它不会改变下一次行为。</p>
+          </div>
+          <div class="rule">
+            <h3>高刺激屏蔽原则</h3>
+            <p>成人内容和短视频不靠意志力抵抗，靠减少入口、降低暴露、切断触发。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <p class="section-label">NEXT ACTION</p>
+        <h2 class="section-title">明天不是继续想方向，而是把方向改写成能被检查的动作。</h2>
+        <div class="timeline">
+          <div class="timeline-step">
+            <span class="timeline-time">Step 01</span>
+            <div class="timeline-content">
+              <h3>重写小红书找需求任务</h3>
+              <p>写清平台、人群、评论区入口、抱怨记录数量、结束时间、进入开发的判断标准。</p>
+            </div>
+          </div>
+          <div class="timeline-step">
+            <span class="timeline-time">Step 02</span>
+            <div class="timeline-content">
+              <h3>完成周复盘链路</h3>
+              <p>上一周日省汇总后交给 GAP 教练，再产出周省和周 GAP，最后写入原则库。</p>
+            </div>
+          </div>
+          <div class="timeline-step">
+            <span class="timeline-time">Step 03</span>
+            <div class="timeline-content">
+              <h3>跑 SEO 最小内容闭环</h3>
+              <p>不要把 SEO站神化，先每天新增2-3条案例、博客或工具教程，让肌肉展示持续存在。</p>
+            </div>
+          </div>
+          <div class="timeline-step">
+            <span class="timeline-time">Step 04</span>
+            <div class="timeline-content">
+              <h3>给待办盒补 DDL 字段</h3>
+              <p>没有截止时间的任务不会真正占用优先级，只会以“愿望”的形式拖在系统里。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="final">
+        <h2>今天的底层结论：系统不是靠想清楚，而是靠可反馈动作长出来。</h2>
+        <div class="final-list">
+          <div class="final-item">方向要落到人群和抱怨，否则只是抽象偏好。</div>
+          <div class="final-item">复盘要落到原则和动作，否则只是信息重排。</div>
+          <div class="final-item">AI 要落到概念清单和判断权，否则只是虚假掌控感。</div>
+          <div class="final-item">系统要先低阻跑起来，再从真实摩擦里加鲁棒性。</div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <span>Daily Review Card · 2026-06-30</span>
+        <span>Style seed: Cursor · static single-card HTML</span>
+      </footer>
+    </article>
+  </main>
+</body>
+</html>
