@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>认知卡片 · 2026-07-02</title>
+  <style>
+    :root {
+      --blue-01: #0066cc;
+      --blue-02: #0071e3;
+      --blue-03: #2997ff;
+      --ink-01: #1d1d1f;
+      --ink-02: #333333;
+      --ink-03: #515154;
+      --ink-04: #6e6e73;
+      --ink-05: #86868b;
+      --ink-06: #a1a1a6;
+      --white-01: #ffffff;
+      --paper-01: #f5f5f7;
+      --paper-02: #fafafc;
+      --paper-03: #f0f0f2;
+      --paper-04: #e8e8ed;
+      --dark-01: #000000;
+      --dark-02: #1d1d1f;
+      --dark-03: #272729;
+      --dark-04: #2a2a2c;
+      --dark-05: #252527;
+      --line-01: #e0e0e0;
+      --line-02: #f0f0f0;
+      --line-03: rgba(0, 0, 0, 0.08);
+      --green-01: #0b6b3a;
+      --green-02: #e8f4ed;
+      --orange-01: #b45a00;
+      --orange-02: #fff3e6;
+      --red-01: #b42318;
+      --red-02: #fff1f0;
+      --violet-01: #6b4eff;
+      --violet-02: #f1efff;
+      --font-display: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+      --font-text: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+      --fs-01: 10px;
+      --fs-02: 12px;
+      --fs-03: 14px;
+      --fs-04: 15px;
+      --fs-05: 16px;
+      --fs-06: 17px;
+      --fs-07: 18px;
+      --fs-08: 21px;
+      --fs-09: 24px;
+      --fs-10: 28px;
+      --fs-11: 34px;
+      --fs-12: 40px;
+      --fs-13: 48px;
+      --fs-14: 56px;
+      --lh-compact: 1.08;
+      --lh-title: 1.16;
+      --lh-body: 1.47;
+      --lh-long: 1.68;
+      --w-light: 300;
+      --w-regular: 400;
+      --w-medium: 500;
+      --w-semi: 600;
+      --s-01: 4px;
+      --s-02: 8px;
+      --s-03: 12px;
+      --s-04: 16px;
+      --s-05: 20px;
+      --s-06: 24px;
+      --s-07: 32px;
+      --s-08: 40px;
+      --s-09: 48px;
+      --s-10: 64px;
+      --s-11: 80px;
+      --mark-blue: 6px solid var(--blue-01);
+      --mark-green: 6px solid var(--green-01);
+      --mark-orange: 6px solid var(--orange-01);
+      --mark-red: 6px solid var(--red-01);
+      --mark-violet: 6px solid var(--violet-01);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper-01);
+      color: var(--ink-01);
+      font-family: var(--font-text);
+    }
+
+    .shell {
+      width: 100%;
+      padding: var(--s-08) var(--s-04);
+    }
+
+    .card {
+      width: min(1120px, 100%);
+      margin: 0 auto;
+      background: var(--white-01);
+      border-radius: 0;
+      overflow: hidden;
+    }
+
+    .hero {
+      min-height: 620px;
+      display: grid;
+      place-items: center;
+      padding: var(--s-11) var(--s-09);
+      background: var(--dark-01);
+      color: var(--white-01);
+      text-align: center;
+    }
+
+    .eyebrow {
+      margin: 0 0 var(--s-05);
+      color: var(--blue-03);
+      font-size: var(--fs-06);
+      line-height: var(--lh-body);
+      font-weight: var(--w-semi);
+    }
+
+    h1 {
+      max-width: 920px;
+      margin: 0;
+      color: var(--white-01);
+      font-family: var(--font-display);
+      font-size: var(--fs-14);
+      font-weight: var(--w-semi);
+      line-height: var(--lh-compact);
+      letter-spacing: 0;
+    }
+
+    .hero-copy {
+      max-width: 760px;
+      margin: var(--s-06) auto 0;
+      color: #d2d2d7;
+      font-size: var(--fs-09);
+      line-height: 1.42;
+      font-weight: var(--w-light);
+    }
+
+    .meta-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      background: var(--paper-01);
+      border-bottom: 1px solid var(--line-01);
+    }
+
+    .meta-item {
+      padding: var(--s-06);
+      border-right: 1px solid var(--line-01);
+    }
+
+    .meta-item:last-child {
+      border-right: 0;
+    }
+
+    .meta-label {
+      display: block;
+      color: var(--ink-04);
+      font-size: var(--fs-02);
+      line-height: 1.3;
+    }
+
+    .meta-value {
+      display: block;
+      margin-top: var(--s-02);
+      color: var(--ink-01);
+      font-size: var(--fs-08);
+      line-height: var(--lh-title);
+      font-weight: var(--w-semi);
+    }
+
+    .content {
+      padding: var(--s-10) var(--s-09);
+    }
+
+    .tile {
+      margin-bottom: var(--s-10);
+      padding: var(--s-09);
+      background: var(--paper-01);
+      border-radius: 0;
+    }
+
+    .tile.dark {
+      background: var(--dark-03);
+      color: var(--white-01);
+    }
+
+    .tile.white {
+      background: var(--white-01);
+      border: 1px solid var(--line-01);
+    }
+
+    .tile:last-child {
+      margin-bottom: 0;
+    }
+
+    .tile-title {
+      margin: 0 0 var(--s-06);
+      color: inherit;
+      font-size: var(--fs-12);
+      line-height: var(--lh-title);
+      font-weight: var(--w-semi);
+      letter-spacing: 0;
+    }
+
+    .tile-subtitle {
+      margin: 0 0 var(--s-07);
+      color: var(--ink-04);
+      font-size: var(--fs-06);
+      line-height: var(--lh-body);
+    }
+
+    .dark .tile-subtitle {
+      color: #cccccc;
+    }
+
+    .core-statement {
+      margin: 0;
+      color: inherit;
+      font-size: var(--fs-10);
+      line-height: 1.42;
+      font-weight: var(--w-regular);
+    }
+
+    .core-statement strong {
+      color: var(--blue-03);
+      font-weight: var(--w-semi);
+    }
+
+    .grid-two {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--s-05);
+    }
+
+    .point {
+      padding: var(--s-06);
+      background: var(--white-01);
+      border: 1px solid var(--line-01);
+      border-radius: 0;
+    }
+
+    .point.blue {
+      border-left: var(--mark-blue);
+    }
+
+    .point.green {
+      border-left: var(--mark-green);
+    }
+
+    .point.orange {
+      border-left: var(--mark-orange);
+    }
+
+    .point.violet {
+      border-left: var(--mark-violet);
+    }
+
+    .point-title {
+      margin: 0 0 var(--s-03);
+      color: var(--ink-01);
+      font-size: var(--fs-08);
+      line-height: var(--lh-title);
+      font-weight: var(--w-semi);
+    }
+
+    .point-copy {
+      margin: 0;
+      color: var(--ink-03);
+      font-size: var(--fs-06);
+      line-height: var(--lh-long);
+    }
+
+    .dark .point {
+      background: var(--dark-04);
+      border-color: rgba(255, 255, 255, 0.16);
+    }
+
+    .dark .point-title {
+      color: var(--white-01);
+    }
+
+    .dark .point-copy {
+      color: #d2d2d7;
+    }
+
+    .quote {
+      margin: 0;
+      color: var(--ink-01);
+      font-size: var(--fs-11);
+      line-height: 1.32;
+      font-weight: var(--w-semi);
+    }
+
+    .quote-note {
+      margin-top: var(--s-05);
+      color: var(--ink-04);
+      font-size: var(--fs-04);
+      line-height: var(--lh-body);
+    }
+
+    .action-list {
+      display: grid;
+      gap: var(--s-04);
+      counter-reset: action;
+    }
+
+    .action {
+      counter-increment: action;
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: var(--s-04);
+      align-items: start;
+      padding: var(--s-05);
+      background: var(--white-01);
+      border: 1px solid var(--line-01);
+    }
+
+    .action::before {
+      content: counter(action);
+      display: grid;
+      place-items: center;
+      width: 52px;
+      height: 52px;
+      background: var(--blue-01);
+      color: var(--white-01);
+      border-radius: 50%;
+      font-size: var(--fs-07);
+      font-weight: var(--w-semi);
+    }
+
+    .action-title {
+      margin: 0 0 var(--s-01);
+      color: var(--ink-01);
+      font-size: var(--fs-07);
+      line-height: var(--lh-title);
+      font-weight: var(--w-semi);
+    }
+
+    .action-copy {
+      margin: 0;
+      color: var(--ink-03);
+      font-size: var(--fs-05);
+      line-height: var(--lh-body);
+    }
+
+    .risk {
+      padding: var(--s-06);
+      background: var(--red-02);
+      border: 1px solid rgba(180, 35, 24, 0.16);
+      border-left: var(--mark-red);
+    }
+
+    .risk-title {
+      margin: 0 0 var(--s-03);
+      color: var(--red-01);
+      font-size: var(--fs-08);
+      line-height: var(--lh-title);
+      font-weight: var(--w-semi);
+    }
+
+    .risk-copy {
+      margin: 0;
+      color: var(--ink-03);
+      font-size: var(--fs-05);
+      line-height: var(--lh-long);
+    }
+
+    .footer {
+      padding: var(--s-07) var(--s-09);
+      background: var(--paper-01);
+      color: var(--ink-04);
+      font-size: var(--fs-02);
+      line-height: 1.5;
+      border-top: 1px solid var(--line-01);
+    }
+
+    @media (max-width: 980px) {
+      .hero {
+        min-height: 520px;
+        padding: var(--s-10) var(--s-07);
+      }
+
+      h1 {
+        font-size: var(--fs-13);
+      }
+
+      .content {
+        padding: var(--s-08) var(--s-06);
+      }
+
+      .tile {
+        padding: var(--s-07);
+      }
+
+      .meta-strip,
+      .grid-two {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 720px) {
+      .shell {
+        padding: var(--s-03);
+      }
+
+      .hero {
+        min-height: 460px;
+        padding: var(--s-09) var(--s-05);
+      }
+
+      h1 {
+        font-size: var(--fs-12);
+      }
+
+      .hero-copy {
+        font-size: var(--fs-07);
+      }
+
+      .meta-strip,
+      .grid-two {
+        grid-template-columns: 1fr;
+      }
+
+      .meta-item {
+        border-right: 0;
+        border-bottom: 1px solid var(--line-01);
+      }
+
+      .meta-item:last-child {
+        border-bottom: 0;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .hero {
+        min-height: 420px;
+      }
+
+      h1 {
+        font-size: var(--fs-11);
+      }
+
+      .content {
+        padding: var(--s-05);
+      }
+
+      .tile {
+        padding: var(--s-05);
+      }
+
+      .tile-title {
+        font-size: var(--fs-10);
+      }
+
+      .core-statement,
+      .quote {
+        font-size: var(--fs-08);
+      }
+
+      .action {
+        grid-template-columns: 44px 1fr;
+      }
+
+      .action::before {
+        width: 44px;
+        height: 44px;
+      }
+    }
+
+    @media (min-width: 1280px) {
+      .shell {
+        padding-top: var(--s-10);
+        padding-bottom: var(--s-10);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <article class="card">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">日省 · 2026-07-02</p>
+          <h1>真正卡住的不是项目，是没有长期指南针。</h1>
+          <p class="hero-copy">复盘已经够多了，下一步不是继续暴露问题，而是减少问题数量，集中迭代最重要的 1-3 件事。</p>
+        </div>
+      </header>
+
+      <section class="meta-strip">
+        <div class="meta-item">
+          <span class="meta-label">核心矛盾</span>
+          <span class="meta-value">现金流是底气，也是锁链</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">今日转向</span>
+          <span class="meta-value">复盘降频，迭代增量</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">关键动作</span>
+          <span class="meta-value">外包下班时段</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-label">待核方向</span>
+          <span class="meta-value">留学生与老板群体</span>
+        </div>
+      </section>
+
+      <div class="content">
+        <section class="tile dark">
+          <h2 class="tile-title">今天真正发生了什么</h2>
+          <p class="core-statement">你把几个底层问题放到了一张图里：<strong>长期目标缺失</strong>、复盘过量、代写现金流占住重心、下班时段仍被客户消息拖住、个人 IP 的发心还没有想清楚。项目没有爆发，但系统诊断更清楚了。</p>
+        </section>
+
+        <section class="tile">
+          <h2 class="tile-title">四个主判断</h2>
+          <p class="tile-subtitle">远看抓方向，中距离看结构，近距离看动作。</p>
+          <div class="grid-two">
+            <div class="point blue">
+              <h3 class="point-title">长期目标先于项目</h3>
+              <p class="point-copy">26、27、28、29 岁想成为什么样的人，想过什么生活，这比今天做哪个项目更底层。没有年级别目标，日计划会在当前环境里打转。</p>
+            </div>
+            <div class="point green">
+              <h3 class="point-title">迭代优先于复盘</h3>
+              <p class="point-copy">问题全部摊开会制造焦虑，不一定带来行动。每天只解决 1-3 个关键问题，让原则进入 Flomo 和实际动作。</p>
+            </div>
+            <div class="point orange">
+              <h3 class="point-title">现金流需要外包护栏</h3>
+              <p class="point-copy">代写业务是底气，但下班后仍要自己回消息。要做第二曲线，先把下班时段客服和执行性工作外包出去。</p>
+            </div>
+            <div class="point violet">
+              <h3 class="point-title">用户群体先于产品</h3>
+              <p class="point-copy">不要先定小红书虚拟、留学生产品或 AI 工作流。先问想帮助谁，能帮助谁，再围绕这群人衍生产品。</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="tile white">
+          <h2 class="tile-title">今日金句</h2>
+          <p class="quote">“复盘可以，但不要复盘得那么频繁，而是那么频繁地去迭代。”</p>
+          <p class="quote-note">这句话是今天的行为边界：复盘不是自我审判仪式，而是为了让下一次动作变得更准。</p>
+        </section>
+
+        <section class="tile">
+          <h2 class="tile-title">明日最小行动</h2>
+          <div class="action-list">
+            <div class="action">
+              <div>
+                <p class="action-title">发布公众号文章</p>
+                <p class="action-copy">已连续两天未完成。不要再因为“AI 辅助不费脑子”把它压低优先级。</p>
+              </div>
+            </div>
+            <div class="action">
+              <div>
+                <p class="action-title">写出 26-29 岁目标草图</p>
+                <p class="action-copy">不求完美，但必须覆盖生活状态、现金流、能力、关系和自由度。</p>
+              </div>
+            </div>
+            <div class="action">
+              <div>
+                <p class="action-title">设计下班时段外包方案</p>
+                <p class="action-copy">先列出下班后最常出现的客户动作，再判断哪些能交给兼职、助理或未来 Agent。</p>
+              </div>
+            </div>
+            <div class="action">
+              <div>
+                <p class="action-title">迁移任务系统</p>
+                <p class="action-copy">用飞书多维表格承接重要盒和待办盒，并准备接入“小龙虾”。</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="tile dark">
+          <h2 class="tile-title">方法论沉淀</h2>
+          <div class="grid-two">
+            <div class="point">
+              <h3 class="point-title">问题优先级收敛法</h3>
+              <p class="point-copy">每天只提取 1-3 个最重要问题集中解决。其他问题可以先搁置，不要把大脑喂成焦虑机器。</p>
+            </div>
+            <div class="point">
+              <h3 class="point-title">任务外驱力排序</h3>
+              <p class="point-copy">结算这类有外部压力的任务可以放低精力时段。高精力时段留给长期目标、第二曲线和输出。</p>
+            </div>
+            <div class="point">
+              <h3 class="point-title">施压梯度法</h3>
+              <p class="point-copy">先轻压，再加压。如果快把自己逼崩，就释放压力，换视角找路径。</p>
+            </div>
+            <div class="point">
+              <h3 class="point-title">大佬视角切换</h3>
+              <p class="point-copy">卡住时问“如果是艺人会怎么做”，能把问题从动作层拉回系统层。</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="tile">
+          <div class="risk">
+            <h2 class="risk-title">待核提醒</h2>
+            <p class="risk-copy">7 月是否真是外包淡季、GAP 是否固定两天一次、留学生需求是否成立、室友是否能稳定运营、Haiku / Hermes 带货剪辑工作流是否可行，这些都还不能写成结论。它们只是今天的线索。</p>
+          </div>
+        </section>
+      </div>
+
+      <footer class="footer">
+        来源：2026-07-02 日省。设计风格：apple。完全静态 HTML，无脚本、无跳转、无交互。核心保留比例约 20-30%。
+      </footer>
+    </article>
+  </main>
+</body>
+</html>
