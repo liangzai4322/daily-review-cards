@@ -1,0 +1,907 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>月省认知卡片 · 2026-06</title>
+  <style>
+    :root {
+      --paper-01: #f7f4ed;
+      --paper-02: #fcfbf8;
+      --paper-03: #f1ede4;
+      --paper-04: #ebe5da;
+      --paper-05: #ded6c9;
+      --ink-01: #1c1c1c;
+      --ink-02: rgba(28, 28, 28, 0.86);
+      --ink-03: rgba(28, 28, 28, 0.72);
+      --ink-04: rgba(28, 28, 28, 0.58);
+      --ink-05: rgba(28, 28, 28, 0.42);
+      --ink-06: rgba(28, 28, 28, 0.18);
+      --line-01: #eceae4;
+      --line-02: rgba(28, 28, 28, 0.32);
+      --line-03: rgba(28, 28, 28, 0.12);
+      --teal-01: #0f766e;
+      --teal-02: #e2f0ed;
+      --teal-03: #b9dcd5;
+      --rust-01: #9a3412;
+      --rust-02: #f6e2d5;
+      --rust-03: #e7b99f;
+      --blue-01: #1d4ed8;
+      --blue-02: #e1e7f7;
+      --blue-03: #b9c7ee;
+      --violet-01: #6d28d9;
+      --violet-02: #eee6fb;
+      --green-01: #166534;
+      --green-02: #e3efe4;
+      --gold-01: #a16207;
+      --gold-02: #f7edcf;
+      --red-01: #991b1b;
+      --red-02: #f5dddd;
+      --shadow-soft: rgba(28, 28, 28, 0.08);
+      --shadow-inner: rgba(255, 255, 255, 0.58);
+      --font-main: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+      --font-serif: ui-serif, Georgia, "Times New Roman", "SimSun", serif;
+      --fs-01: 12px;
+      --fs-02: 13px;
+      --fs-03: 14px;
+      --fs-04: 15px;
+      --fs-05: 16px;
+      --fs-06: 17px;
+      --fs-07: 18px;
+      --fs-08: 20px;
+      --fs-09: 22px;
+      --fs-10: 24px;
+      --fs-11: 28px;
+      --fs-12: 32px;
+      --fs-13: 38px;
+      --fs-14: 46px;
+      --fs-15: 56px;
+      --lh-tight: 1.08;
+      --lh-title: 1.18;
+      --lh-body: 1.62;
+      --lh-note: 1.48;
+      --w-regular: 400;
+      --w-medium: 520;
+      --w-semi: 600;
+      --w-bold: 700;
+      --sp-01: 4px;
+      --sp-02: 6px;
+      --sp-03: 8px;
+      --sp-04: 10px;
+      --sp-05: 12px;
+      --sp-06: 16px;
+      --sp-07: 20px;
+      --sp-08: 24px;
+      --sp-09: 28px;
+      --sp-10: 32px;
+      --sp-11: 40px;
+      --sp-12: 48px;
+      --sp-13: 56px;
+      --sp-14: 72px;
+      --mark-core: 6px solid var(--ink-01);
+      --mark-good: 6px solid var(--green-01);
+      --mark-risk: 6px solid var(--red-01);
+      --mark-action: 6px solid var(--blue-01);
+      --mark-insight: 6px solid var(--teal-01);
+      --mark-stop: 6px solid var(--rust-01);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      background: var(--paper-03);
+      color: var(--ink-01);
+      font-family: var(--font-main);
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        linear-gradient(180deg, rgba(247, 244, 237, 0.96), rgba(235, 229, 218, 0.98)),
+        radial-gradient(circle at 16% 0%, rgba(15, 118, 110, 0.11), transparent 26%),
+        radial-gradient(circle at 90% 18%, rgba(154, 52, 18, 0.12), transparent 30%),
+        var(--paper-01);
+    }
+
+    .page {
+      width: 100%;
+      padding: var(--sp-12) var(--sp-07);
+    }
+
+    .monthly-card {
+      width: min(1120px, 100%);
+      margin: 0 auto;
+      background: var(--paper-01);
+      border: 1px solid var(--line-02);
+      border-radius: 0;
+      box-shadow: 0 28px 80px var(--shadow-soft);
+      overflow: hidden;
+    }
+
+    .hero {
+      padding: var(--sp-12) var(--sp-12) var(--sp-10);
+      border-bottom: 1px solid var(--line-01);
+      background:
+        linear-gradient(90deg, rgba(255, 255, 255, 0.44), rgba(255, 255, 255, 0)),
+        var(--paper-01);
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--sp-03);
+      margin-bottom: var(--sp-08);
+      color: var(--ink-04);
+      font-size: var(--fs-03);
+      line-height: var(--lh-note);
+    }
+
+    .meta-pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: var(--sp-01) var(--sp-05);
+      border: 1px solid var(--line-01);
+      background: var(--paper-02);
+      border-radius: 999px;
+    }
+
+    .kicker {
+      margin: 0 0 var(--sp-04);
+      color: var(--teal-01);
+      font-size: var(--fs-04);
+      font-weight: var(--w-semi);
+      line-height: var(--lh-note);
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 920px;
+      color: var(--ink-01);
+      font-size: var(--fs-15);
+      line-height: var(--lh-tight);
+      font-weight: var(--w-semi);
+      letter-spacing: 0;
+    }
+
+    .hero-summary {
+      margin: var(--sp-08) 0 0;
+      max-width: 860px;
+      color: var(--ink-02);
+      font-size: var(--fs-08);
+      line-height: 1.5;
+    }
+
+    .signal-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-bottom: 1px solid var(--line-01);
+      background: var(--paper-02);
+    }
+
+    .signal {
+      padding: var(--sp-08);
+      border-right: 1px solid var(--line-01);
+    }
+
+    .signal:last-child {
+      border-right: 0;
+    }
+
+    .signal-num {
+      display: block;
+      color: var(--ink-01);
+      font-size: var(--fs-12);
+      line-height: var(--lh-tight);
+      font-weight: var(--w-semi);
+    }
+
+    .signal-label {
+      display: block;
+      margin-top: var(--sp-03);
+      color: var(--ink-04);
+      font-size: var(--fs-03);
+      line-height: var(--lh-note);
+    }
+
+    .content {
+      padding: var(--sp-12);
+    }
+
+    .section {
+      margin: 0 0 var(--sp-12);
+    }
+
+    .section:last-child {
+      margin-bottom: 0;
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 56px 1fr;
+      gap: var(--sp-06);
+      align-items: start;
+      margin-bottom: var(--sp-08);
+    }
+
+    .section-index {
+      display: grid;
+      place-items: center;
+      width: 56px;
+      height: 56px;
+      color: var(--paper-02);
+      background: var(--ink-01);
+      font-size: var(--fs-08);
+      font-weight: var(--w-semi);
+      line-height: 1;
+      box-shadow: inset 0 1px 0 var(--shadow-inner);
+    }
+
+    .section-title {
+      margin: 0;
+      color: var(--ink-01);
+      font-size: var(--fs-12);
+      line-height: var(--lh-title);
+      font-weight: var(--w-semi);
+      letter-spacing: 0;
+    }
+
+    .section-subtitle {
+      margin: var(--sp-03) 0 0;
+      color: var(--ink-04);
+      font-size: var(--fs-05);
+      line-height: var(--lh-body);
+    }
+
+    .core-box {
+      padding: var(--sp-10);
+      background: var(--paper-02);
+      border: 1px solid var(--line-02);
+      border-left: var(--mark-core);
+    }
+
+    .core-box strong {
+      color: var(--ink-01);
+      font-weight: var(--w-semi);
+    }
+
+    .core-box p {
+      margin: 0;
+      color: var(--ink-02);
+      font-size: var(--fs-09);
+      line-height: 1.52;
+      font-weight: var(--w-medium);
+    }
+
+    .orid-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--sp-07);
+    }
+
+    .orid-card {
+      min-height: 260px;
+      padding: var(--sp-08);
+      border: 1px solid var(--line-01);
+      background: rgba(252, 251, 248, 0.64);
+    }
+
+    .orid-card.objective {
+      border-top: 5px solid var(--blue-01);
+    }
+
+    .orid-card.reflective {
+      border-top: 5px solid var(--rust-01);
+    }
+
+    .orid-card.interpretive {
+      border-top: 5px solid var(--teal-01);
+    }
+
+    .orid-card.decisional {
+      border-top: 5px solid var(--green-01);
+    }
+
+    .orid-label {
+      margin: 0 0 var(--sp-05);
+      color: var(--ink-01);
+      font-size: var(--fs-10);
+      line-height: var(--lh-title);
+      font-weight: var(--w-semi);
+    }
+
+    .orid-card p {
+      margin: 0 0 var(--sp-05);
+      color: var(--ink-03);
+      font-size: var(--fs-05);
+      line-height: var(--lh-body);
+    }
+
+    .orid-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .goal-list {
+      display: grid;
+      gap: var(--sp-05);
+    }
+
+    .goal-item {
+      display: grid;
+      grid-template-columns: 112px 1fr;
+      gap: var(--sp-05);
+      padding: var(--sp-05);
+      border: 1px solid var(--line-01);
+      background: var(--paper-02);
+    }
+
+    .goal-name {
+      color: var(--ink-01);
+      font-size: var(--fs-04);
+      font-weight: var(--w-semi);
+      line-height: var(--lh-note);
+    }
+
+    .goal-text {
+      color: var(--ink-03);
+      font-size: var(--fs-04);
+      line-height: var(--lh-note);
+    }
+
+    .four-d {
+      display: grid;
+      gap: var(--sp-06);
+      padding: var(--sp-09);
+      background: linear-gradient(180deg, var(--rust-02), rgba(252, 251, 248, 0.72));
+      border: 1px solid var(--rust-03);
+      border-left: var(--mark-stop);
+    }
+
+    .four-d-row {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: var(--sp-07);
+      padding-bottom: var(--sp-06);
+      border-bottom: 1px solid rgba(154, 52, 18, 0.18);
+    }
+
+    .four-d-row:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .four-d-key {
+      color: var(--rust-01);
+      font-size: var(--fs-06);
+      line-height: var(--lh-note);
+      font-weight: var(--w-semi);
+    }
+
+    .four-d-copy {
+      color: var(--ink-02);
+      font-size: var(--fs-05);
+      line-height: var(--lh-body);
+    }
+
+    .quote-band {
+      display: grid;
+      gap: var(--sp-05);
+      padding: var(--sp-10);
+      background: var(--ink-01);
+      color: var(--paper-02);
+    }
+
+    .quote-band p {
+      margin: 0;
+      font-family: var(--font-serif);
+      font-size: var(--fs-11);
+      line-height: 1.38;
+    }
+
+    .quote-note {
+      color: rgba(252, 251, 248, 0.68);
+      font-family: var(--font-main);
+      font-size: var(--fs-03);
+      line-height: var(--lh-note);
+    }
+
+    .sks-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--sp-06);
+    }
+
+    .sks {
+      padding: var(--sp-07);
+      border: 1px solid var(--line-01);
+      background: var(--paper-02);
+    }
+
+    .sks.stop {
+      border-left: var(--mark-stop);
+    }
+
+    .sks.keep {
+      border-left: var(--mark-good);
+    }
+
+    .sks.start {
+      border-left: var(--mark-action);
+    }
+
+    .sks h3 {
+      margin: 0 0 var(--sp-05);
+      color: var(--ink-01);
+      font-size: var(--fs-09);
+      line-height: var(--lh-title);
+      font-weight: var(--w-semi);
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    li {
+      position: relative;
+      margin: 0 0 var(--sp-04);
+      padding-left: var(--sp-07);
+      color: var(--ink-03);
+      font-size: var(--fs-05);
+      line-height: var(--lh-body);
+    }
+
+    li:last-child {
+      margin-bottom: 0;
+    }
+
+    li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0.72em;
+      width: 8px;
+      height: 8px;
+      background: var(--ink-01);
+    }
+
+    .action-board {
+      display: grid;
+      gap: var(--sp-04);
+      counter-reset: action;
+    }
+
+    .action {
+      counter-increment: action;
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: var(--sp-05);
+      align-items: start;
+      padding: var(--sp-05);
+      border: 1px solid var(--line-01);
+      background: var(--paper-02);
+    }
+
+    .action::before {
+      content: counter(action);
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      color: var(--paper-02);
+      background: var(--blue-01);
+      font-size: var(--fs-07);
+      font-weight: var(--w-semi);
+    }
+
+    .action-title {
+      margin: 0 0 var(--sp-02);
+      color: var(--ink-01);
+      font-size: var(--fs-06);
+      line-height: var(--lh-title);
+      font-weight: var(--w-semi);
+    }
+
+    .action-copy {
+      margin: 0;
+      color: var(--ink-03);
+      font-size: var(--fs-04);
+      line-height: var(--lh-body);
+    }
+
+    .insight-cloud {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--sp-05);
+    }
+
+    .insight {
+      padding: var(--sp-06);
+      border: 1px solid var(--line-01);
+      background: var(--teal-02);
+      border-left: var(--mark-insight);
+      color: var(--ink-02);
+      font-size: var(--fs-05);
+      line-height: var(--lh-body);
+    }
+
+    .risk-box {
+      padding: var(--sp-07);
+      background: var(--red-02);
+      border: 1px solid rgba(153, 27, 27, 0.24);
+      border-left: var(--mark-risk);
+    }
+
+    .risk-box h3 {
+      margin: 0 0 var(--sp-04);
+      color: var(--red-01);
+      font-size: var(--fs-08);
+      line-height: var(--lh-title);
+    }
+
+    .risk-box p {
+      margin: 0;
+      color: var(--ink-03);
+      font-size: var(--fs-04);
+      line-height: var(--lh-body);
+    }
+
+    .footer {
+      padding: var(--sp-09) var(--sp-12);
+      border-top: 1px solid var(--line-01);
+      background: var(--paper-02);
+      color: var(--ink-04);
+      font-size: var(--fs-03);
+      line-height: var(--lh-note);
+    }
+
+    @media (max-width: 980px) {
+      .page {
+        padding: var(--sp-08) var(--sp-05);
+      }
+
+      .hero,
+      .content,
+      .footer {
+        padding-left: var(--sp-08);
+        padding-right: var(--sp-08);
+      }
+
+      h1 {
+        font-size: var(--fs-14);
+      }
+
+      .signal-bar,
+      .orid-grid,
+      .sks-grid,
+      .insight-cloud {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .hero,
+      .content,
+      .footer {
+        padding-left: var(--sp-06);
+        padding-right: var(--sp-06);
+      }
+
+      h1 {
+        font-size: var(--fs-13);
+      }
+
+      .hero-summary {
+        font-size: var(--fs-06);
+      }
+
+      .signal-bar,
+      .orid-grid,
+      .sks-grid,
+      .insight-cloud {
+        grid-template-columns: 1fr;
+      }
+
+      .signal {
+        border-right: 0;
+        border-bottom: 1px solid var(--line-01);
+      }
+
+      .signal:last-child {
+        border-bottom: 0;
+      }
+
+      .four-d-row,
+      .goal-item {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .page {
+        padding: var(--sp-04);
+      }
+
+      .hero {
+        padding-top: var(--sp-10);
+        padding-bottom: var(--sp-08);
+      }
+
+      h1 {
+        font-size: var(--fs-12);
+        line-height: var(--lh-title);
+      }
+
+      .section-head {
+        grid-template-columns: 44px 1fr;
+        gap: var(--sp-04);
+      }
+
+      .section-index {
+        width: 44px;
+        height: 44px;
+        font-size: var(--fs-06);
+      }
+
+      .section-title {
+        font-size: var(--fs-10);
+      }
+
+      .core-box,
+      .quote-band {
+        padding: var(--sp-06);
+      }
+
+      .core-box p,
+      .quote-band p {
+        font-size: var(--fs-07);
+      }
+    }
+
+    @media (min-width: 1280px) {
+      .page {
+        padding-top: var(--sp-14);
+        padding-bottom: var(--sp-14);
+      }
+
+      .monthly-card {
+        width: 1180px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <article class="monthly-card">
+      <header class="hero">
+        <div class="meta-row">
+          <span class="meta-pill">月省 · 2026 年 6 月</span>
+          <span class="meta-pill">读取 21 个日省文件</span>
+          <span class="meta-pill">真实月份 +1 天映射</span>
+          <span class="meta-pill">风格：lovable</span>
+        </div>
+        <p class="kicker">核心判断</p>
+        <h1>6 月真正完成的是系统转向，不是项目胜利。</h1>
+        <p class="hero-summary">你从“靠自己硬扛”走到“用 SOP、Skill、AI、复盘和个人 IP 做杠杆”的门口。7 月不能继续用认知兴奋感替代落地，必须用发布、数据、代理闭环和反馈传感器验证。</p>
+      </header>
+
+      <section class="signal-bar">
+        <div class="signal">
+          <span class="signal-num">21</span>
+          <span class="signal-label">实际读取日省文件</span>
+        </div>
+        <div class="signal">
+          <span class="signal-num">3</span>
+          <span class="signal-label">7 月主线：IP、SEO、计算机杠杆</span>
+        </div>
+        <div class="signal">
+          <span class="signal-num">1</span>
+          <span class="signal-label">关键失败：被“应该做”绑架</span>
+        </div>
+        <div class="signal">
+          <span class="signal-num">0</span>
+          <span class="signal-label">没有传感器的飞轮不计入成果</span>
+        </div>
+      </section>
+
+      <div class="content">
+        <section class="section">
+          <div class="section-head">
+            <div class="section-index">01</div>
+            <div>
+              <h2 class="section-title">ORID 月度主线</h2>
+              <p class="section-subtitle">先事实，后情绪，再解释意义，最后落到下月决策。</p>
+            </div>
+          </div>
+          <div class="orid-grid">
+            <div class="orid-card objective">
+              <h3 class="orid-label">O｜事实</h3>
+              <p>计算机业务仍能出钱，高客单方向明确；代理 SOP 初步跑通。SEO 站从想法走到上线，但搜索结构和反馈数据不足。小红书虚拟研究很多，结果物不足。复盘、Skill、卡片和部署流程持续变强。</p>
+            </div>
+            <div class="orid-card reflective">
+              <h3 class="orid-label">R｜感受</h3>
+              <p>成就感来自系统搭建：流程被固化、网页能部署、代理能复制。挫败感来自“知道重要但推不动”：小红书虚拟、公众号、SEO 内容和运动反复进计划，又反复被切碎。</p>
+            </div>
+            <div class="orid-card interpretive">
+              <h3 class="orid-label">I｜意义</h3>
+              <p>你不缺认知密度，缺的是把认知压进系统，让它在下一次同类场景里自动改变动作。状态好时猛，状态差时被消息、客服和多巴胺拖走，说明要靠触发器和传感器，不靠当天心情。</p>
+            </div>
+            <div class="orid-card decisional">
+              <h3 class="orid-label">D｜决策</h3>
+              <p>7 月主线收敛为个人 IP、自媒体输出；SEO 站先装数据传感器；计算机业务做代理 SOP 和客服标准化。小红书虚拟降级为证据触发项目，不再硬逼自己现在必须做。</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <div class="section-index">02</div>
+            <div>
+              <h2 class="section-title">GRAI 目标对齐</h2>
+              <p class="section-subtitle">目标和结果的差距，才是真正的月度信号。</p>
+            </div>
+          </div>
+          <div class="goal-list">
+            <div class="goal-item">
+              <div class="goal-name">计算机业务</div>
+              <div class="goal-text">有高客单、有利润、有代理起步；但自己仍被客服和临场问题拉回旧模式。下一步不是更努力回消息，而是字段、SOP、异常和核账标准化。</div>
+            </div>
+            <div class="goal-item">
+              <div class="goal-name">SEO / GEO 站</div>
+              <div class="goal-text">上线和域名是进展，但没有访问、收录、关键词和转化反馈，就不知道飞轮是否在转。7 月先装传感器，再补内容。</div>
+            </div>
+            <div class="goal-item">
+              <div class="goal-name">小红书虚拟</div>
+              <div class="goal-text">65 篇资料带来判断：泛资料、教培不是主线。没有真实抱怨和付费路径前，不写代码，不硬上架。</div>
+            </div>
+            <div class="goal-item">
+              <div class="goal-name">个人 IP</div>
+              <div class="goal-text">“流水的项目，铁打的 IP”成为方向转折。内容不是装饰，而是未来所有项目的信任资产。</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <div class="section-index">03</div>
+            <div>
+              <h2 class="section-title">4D 深挖：最关键卡点</h2>
+              <p class="section-subtitle">小红书虚拟推不动，不只是找品问题，而是“应该做”伪装成项目牵引。</p>
+            </div>
+          </div>
+          <div class="four-d">
+            <div class="four-d-row">
+              <div class="four-d-key">Describe</div>
+              <div class="four-d-copy">小红书虚拟多次进入计划，但长期没有稳定结果物。6 月 30 日采集 65 篇内容，7 月 1 日继续找需求仍然卡住，最终选择跳出来。</div>
+            </div>
+            <div class="four-d-row">
+              <div class="four-d-key">Diagnose</div>
+              <div class="four-d-copy">根因不是不会找品，而是目标来自“看到别人赚钱，我也应该做”。更深处是旧业务的客服、SOP、代理和核账还没系统化，新方向被用来逃避旧业务的脏问题。</div>
+            </div>
+            <div class="four-d-row">
+              <div class="four-d-key">Decide</div>
+              <div class="four-d-copy">小红书虚拟从每日主线降级为证据触发项目。任何新项目先填人群、抱怨、替代品、付费路径四个字段。</div>
+            </div>
+            <div class="four-d-row">
+              <div class="four-d-key">Deploy</div>
+              <div class="four-d-copy">每周只给小红书虚拟 2 小时证据采集。达不到 20 条真实抱怨和 5 个付费证据，不开发、不上架。</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="quote-band">
+            <p>“新方向卡住时，先别急着换方向，先看看它是不是在替你逃避旧业务的脏问题。”</p>
+            <div class="quote-note">月度记忆锚点：证据触发项目，不靠兴奋感启动。</div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <div class="section-index">04</div>
+            <div>
+              <h2 class="section-title">Stop / Keep / Start</h2>
+              <p class="section-subtitle">把月省压成下月可执行的行为边界。</p>
+            </div>
+          </div>
+          <div class="sks-grid">
+            <div class="sks stop">
+              <h3>Stop</h3>
+              <ul>
+                <li>停止把小红书虚拟当成“必须现在做”的主线。</li>
+                <li>停止在 AI 跑任务时刷短视频。</li>
+                <li>停止使用“找需求、做 SEO、写文章”这种模糊任务名。</li>
+              </ul>
+            </div>
+            <div class="sks keep">
+              <h3>Keep</h3>
+              <ul>
+                <li>保留日省、GAP、周省、月省节律，但降低入口摩擦。</li>
+                <li>保留 SEO 站作为长期信任资产和技术展示场。</li>
+                <li>保留代理 SOP 和脚本化方向。</li>
+              </ul>
+            </div>
+            <div class="sks start">
+              <h3>Start</h3>
+              <ul>
+                <li>每周发布一篇真实实操复盘。</li>
+                <li>给所有飞轮装反馈传感器。</li>
+                <li>新项目统一走证据采集表。</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <div class="section-index">05</div>
+            <div>
+              <h2 class="section-title">7 月最小行动清单</h2>
+              <p class="section-subtitle">动作要能验收，不靠情绪推动。</p>
+            </div>
+          </div>
+          <div class="action-board">
+            <div class="action">
+              <div>
+                <p class="action-title">代理 SOP v0.2</p>
+                <p class="action-copy">7 月第一周完成，上架、封面、话术、订单登记、退款、核账、异常升级都要有字段。</p>
+              </div>
+            </div>
+            <div class="action">
+              <div>
+                <p class="action-title">SEO 传感器</p>
+                <p class="action-copy">至少接入一种反馈：访问数据、收录数据、关键词排名或服务页转化记录。</p>
+              </div>
+            </div>
+            <div class="action">
+              <div>
+                <p class="action-title">每周一篇 IP 输出</p>
+                <p class="action-copy">只写真实实操：代理、SEO、小红书需求采集、AI 工作流，不额外造题。</p>
+              </div>
+            </div>
+            <div class="action">
+              <div>
+                <p class="action-title">小红书证据采集</p>
+                <p class="action-copy">每周 2 小时，20 条真实抱怨 + 5 个付费证据之前，不开发、不上架。</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <div class="section-index">06</div>
+            <div>
+              <h2 class="section-title">可沉淀认知</h2>
+              <p class="section-subtitle">这些规则会进入后续复盘和项目判断。</p>
+            </div>
+          </div>
+          <div class="insight-cloud">
+            <div class="insight">新项目启动前，先判断它是不是在帮你逃避旧业务的脏问题。</div>
+            <div class="insight">没有传感器的飞轮，不叫飞轮，叫自我感动。</div>
+            <div class="insight">代理管理能力来自标准，不来自信任。</div>
+            <div class="insight">系统必须降低摩擦，复杂度交给 AI、脚本和 skill。</div>
+            <div class="insight">个人 IP 是未来所有项目的信任资产。</div>
+            <div class="insight">需求不是硬找出来的，它来自具体人群的具体抱怨。</div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="risk-box">
+            <h3>待核提醒</h3>
+            <p>本次月省读取 21 个日省文件，6 月 2-5、7、9-11、14、20-21 缺失。GMV、利润、SEO 收录、Codex 额度等内容按日省记录保留，不作为最终财务或数据结论。</p>
+          </div>
+        </section>
+      </div>
+
+      <footer class="footer">
+        来源：2026-06-02 至 2026-07-01 日省文件。框架：ORID + GRAI + 4D + Stop / Keep / Start。生成时间：2026-07-01 14:52。
+      </footer>
+    </article>
+  </main>
+</body>
+</html>
