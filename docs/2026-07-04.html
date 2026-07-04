@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>认知卡片 · 2026-07-04</title>
+  <style>
+    :root {
+      --c-midnight-950: #150f23;
+      --c-midnight-900: #1f1633;
+      --c-midnight-840: #271b42;
+      --c-midnight-780: #30234d;
+      --c-midnight-720: #362d59;
+      --c-midnight-640: #422082;
+      --c-violet-560: #6a5fc1;
+      --c-violet-500: #79628c;
+      --c-violet-300: #b7a7d1;
+      --c-lime-500: #c2ef4e;
+      --c-lime-420: #d7ff78;
+      --c-lime-260: #e9f8bd;
+      --c-pink-500: #fa7faa;
+      --c-pink-260: #ffd1df;
+      --c-white: #ffffff;
+      --c-cloud-100: #f7f7fb;
+      --c-cloud-180: #ececf3;
+      --c-cloud-240: #e5e7eb;
+      --c-cloud-360: #cfcfdb;
+      --c-muted-dark: rgba(255, 255, 255, 0.72);
+      --c-faint-dark: rgba(255, 255, 255, 0.18);
+      --c-ghost-dark: rgba(255, 255, 255, 0.08);
+      --c-line-dark: rgba(255, 255, 255, 0.16);
+      --c-line-lime: rgba(194, 239, 78, 0.48);
+      --c-shadow-deep: rgba(0, 0, 0, 0.36);
+      --c-shadow-soft: rgba(0, 0, 0, 0.12);
+      --c-risk: #ffb4a8;
+      --c-action: #c2ef4e;
+      --c-method: #fa7faa;
+      --c-info: #9dc1f5;
+      --font-sans: Rubik, -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", system-ui, sans-serif;
+      --font-display: "Arial Black", Rubik, -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", system-ui, sans-serif;
+      --font-code: Monaco, Menlo, Consolas, monospace;
+      --fs-hero: 56px;
+      --fs-hero-sm: 42px;
+      --fs-xl: 34px;
+      --fs-lg: 28px;
+      --fs-md-title: 22px;
+      --fs-card: 19px;
+      --fs-body: 16px;
+      --fs-body-sm: 15px;
+      --fs-caption: 13px;
+      --fs-micro: 11px;
+      --fw-heavy: 800;
+      --fw-bold: 700;
+      --fw-semibold: 650;
+      --fw-medium: 560;
+      --fw-regular: 400;
+      --lh-tight: 1.12;
+      --lh-title: 1.22;
+      --lh-body: 1.72;
+      --lh-air: 1.95;
+      --ls-zero: 0;
+      --sp-1: 4px;
+      --sp-2: 8px;
+      --sp-3: 12px;
+      --sp-4: 16px;
+      --sp-5: 20px;
+      --sp-6: 24px;
+      --sp-7: 32px;
+      --sp-8: 40px;
+      --sp-9: 48px;
+      --sp-10: 56px;
+      --sp-11: 72px;
+      --sp-12: 96px;
+      --mark-bar: 5px solid var(--c-lime-500);
+      --mark-pink: 5px solid var(--c-pink-500);
+      --mark-violet: 5px solid var(--c-violet-560);
+      --radius-soft: 6px;
+      --radius-chip: 4px;
+      --radius-main: 0;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      margin: 0;
+      background: var(--c-midnight-950);
+      color: var(--c-white);
+      font-family: var(--font-sans);
+      letter-spacing: var(--ls-zero);
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      padding: var(--sp-8);
+      background:
+        radial-gradient(circle at 16% 10%, rgba(194, 239, 78, 0.16) 0 2px, transparent 3px),
+        radial-gradient(circle at 78% 18%, rgba(250, 127, 170, 0.2) 0 2px, transparent 3px),
+        radial-gradient(circle at 88% 72%, rgba(194, 239, 78, 0.12) 0 1px, transparent 2px),
+        linear-gradient(180deg, var(--c-midnight-900), var(--c-midnight-950));
+    }
+
+    .card-shell {
+      width: min(1080px, 100%);
+      margin: 0 auto;
+    }
+
+    .cognitive-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-main);
+      background: linear-gradient(180deg, var(--c-midnight-900), var(--c-midnight-950));
+      border: 1px solid var(--c-line-dark);
+      box-shadow: 0 30px 90px var(--c-shadow-deep);
+    }
+
+    .cognitive-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(90deg, transparent 0, rgba(255,255,255,0.05) 1px, transparent 1px),
+        linear-gradient(180deg, transparent 0, rgba(255,255,255,0.035) 1px, transparent 1px);
+      background-size: 44px 44px;
+      opacity: 0.28;
+      pointer-events: none;
+    }
+
+    .card-header,
+    .core-insight,
+    .argument-map,
+    .quote-band,
+    .method-system,
+    .action-risk,
+    .card-footer {
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-header {
+      padding: var(--sp-9) var(--sp-9) var(--sp-7);
+      border-bottom: 1px solid var(--c-line-dark);
+    }
+
+    .meta-row {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--sp-4);
+      align-items: center;
+      margin-bottom: var(--sp-7);
+      color: var(--c-muted-dark);
+      font-size: var(--fs-caption);
+      line-height: 1.5;
+    }
+
+    .status-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--sp-2);
+      min-height: 30px;
+      padding: var(--sp-1) var(--sp-3);
+      border-radius: var(--radius-chip);
+      background: var(--c-ghost-dark);
+      color: var(--c-white);
+      border: 1px solid var(--c-line-dark);
+      font-weight: var(--fw-semibold);
+      font-size: var(--fs-caption);
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background: var(--c-lime-500);
+      border-radius: 50%;
+    }
+
+    .hero-title {
+      margin: 0;
+      max-width: 900px;
+      font-family: var(--font-display);
+      font-size: var(--fs-hero);
+      font-weight: var(--fw-heavy);
+      line-height: var(--lh-tight);
+      letter-spacing: 0;
+    }
+
+    .lime-chip {
+      display: inline-block;
+      padding: 0 var(--sp-3);
+      border-radius: var(--radius-chip);
+      background: var(--c-lime-500);
+      color: var(--c-midnight-950);
+    }
+
+    .hero-subtitle {
+      max-width: 820px;
+      margin: var(--sp-5) 0 0;
+      color: var(--c-muted-dark);
+      font-size: var(--fs-card);
+      line-height: var(--lh-air);
+    }
+
+    .core-insight {
+      padding: var(--sp-7) var(--sp-9);
+    }
+
+    .insight-frame {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: var(--sp-5);
+      padding: var(--sp-7);
+      background: var(--c-white);
+      color: var(--c-midnight-900);
+      border-radius: 0;
+      border-left: var(--mark-bar);
+      box-shadow: 0 14px 34px var(--c-shadow-soft);
+    }
+
+    .eyebrow {
+      margin: 0;
+      color: var(--c-violet-560);
+      font-size: var(--fs-caption);
+      font-weight: var(--fw-bold);
+      line-height: 1.5;
+      letter-spacing: 0;
+    }
+
+    .insight-frame h2 {
+      margin: 0;
+      font-size: var(--fs-xl);
+      font-weight: var(--fw-bold);
+      line-height: var(--lh-title);
+      letter-spacing: 0;
+    }
+
+    .insight-frame p {
+      margin: 0;
+      color: rgba(31, 22, 51, 0.78);
+      font-size: var(--fs-body);
+      line-height: var(--lh-body);
+    }
+
+    .argument-map {
+      padding: 0 var(--sp-9) var(--sp-7);
+    }
+
+    .section-title {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: var(--sp-4);
+      align-items: center;
+      margin-bottom: var(--sp-5);
+    }
+
+    .section-num {
+      display: grid;
+      place-items: center;
+      width: 48px;
+      height: 48px;
+      border-radius: var(--radius-chip);
+      background: var(--c-lime-500);
+      color: var(--c-midnight-950);
+      font-family: var(--font-code);
+      font-size: var(--fs-body-sm);
+      font-weight: var(--fw-bold);
+    }
+
+    .section-title h2 {
+      margin: 0;
+      font-size: var(--fs-lg);
+      font-weight: var(--fw-bold);
+      line-height: var(--lh-title);
+      letter-spacing: 0;
+    }
+
+    .logic-stack {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--sp-4);
+    }
+
+    .logic-card {
+      display: grid;
+      grid-template-columns: 86px 1fr;
+      gap: var(--sp-5);
+      padding: var(--sp-5);
+      border-radius: var(--radius-soft);
+      background: rgba(255, 255, 255, 0.07);
+      border: 1px solid var(--c-line-dark);
+    }
+
+    .logic-key {
+      color: var(--c-lime-500);
+      font-family: var(--font-code);
+      font-size: var(--fs-caption);
+      font-weight: var(--fw-bold);
+      line-height: 1.6;
+    }
+
+    .logic-card h3 {
+      margin: 0 0 var(--sp-2);
+      color: var(--c-white);
+      font-size: var(--fs-md-title);
+      font-weight: var(--fw-semibold);
+      line-height: 1.32;
+      letter-spacing: 0;
+    }
+
+    .logic-card p {
+      margin: 0;
+      color: var(--c-muted-dark);
+      font-size: var(--fs-body);
+      line-height: var(--lh-body);
+    }
+
+    .quote-band {
+      margin: 0 var(--sp-9) var(--sp-7);
+      padding: var(--sp-7);
+      background: var(--c-lime-500);
+      color: var(--c-midnight-950);
+      border-radius: 0;
+    }
+
+    .quote-band span {
+      display: block;
+      margin-bottom: var(--sp-3);
+      font-size: var(--fs-caption);
+      font-weight: var(--fw-bold);
+      line-height: 1.5;
+    }
+
+    .quote-band blockquote {
+      margin: 0;
+      font-size: var(--fs-lg);
+      font-weight: var(--fw-bold);
+      line-height: 1.42;
+      letter-spacing: 0;
+    }
+
+    .method-system {
+      padding: 0 var(--sp-9) var(--sp-7);
+    }
+
+    .method-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-4);
+    }
+
+    .method-card {
+      min-height: 190px;
+      padding: var(--sp-5);
+      border-radius: var(--radius-soft);
+      background: var(--c-midnight-840);
+      border: 1px solid var(--c-line-dark);
+    }
+
+    .method-card:nth-child(1) {
+      border-top: var(--mark-pink);
+    }
+
+    .method-card:nth-child(2) {
+      border-top: var(--mark-violet);
+    }
+
+    .method-card:nth-child(3) {
+      border-top: var(--mark-bar);
+    }
+
+    .method-card:nth-child(4) {
+      border-top: 5px solid var(--c-info);
+    }
+
+    .method-card h3 {
+      margin: 0 0 var(--sp-3);
+      color: var(--c-white);
+      font-size: var(--fs-md-title);
+      font-weight: var(--fw-semibold);
+      line-height: 1.3;
+      letter-spacing: 0;
+    }
+
+    .method-card p {
+      margin: 0;
+      color: var(--c-muted-dark);
+      font-size: var(--fs-body-sm);
+      line-height: var(--lh-body);
+    }
+
+    .action-risk {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: var(--sp-4);
+      padding: 0 var(--sp-9) var(--sp-8);
+    }
+
+    .panel {
+      padding: var(--sp-6);
+      background: var(--c-white);
+      color: var(--c-midnight-900);
+      border-radius: 0;
+    }
+
+    .panel.risk {
+      background: var(--c-midnight-780);
+      color: var(--c-white);
+      border: 1px solid var(--c-line-dark);
+    }
+
+    .panel h2 {
+      margin: 0 0 var(--sp-4);
+      font-size: var(--fs-md-title);
+      font-weight: var(--fw-bold);
+      line-height: 1.32;
+      letter-spacing: 0;
+    }
+
+    .task-list,
+    .risk-list {
+      display: grid;
+      gap: var(--sp-3);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .task-list li,
+    .risk-list li {
+      display: grid;
+      grid-template-columns: 26px 1fr;
+      gap: var(--sp-3);
+      align-items: start;
+      font-size: var(--fs-body-sm);
+      line-height: var(--lh-body);
+    }
+
+    .task-list span,
+    .risk-list span {
+      display: grid;
+      place-items: center;
+      width: 26px;
+      height: 26px;
+      border-radius: var(--radius-chip);
+      font-family: var(--font-code);
+      font-size: var(--fs-micro);
+      font-weight: var(--fw-bold);
+    }
+
+    .task-list span {
+      background: var(--c-midnight-950);
+      color: var(--c-lime-500);
+    }
+
+    .risk-list span {
+      background: var(--c-risk);
+      color: var(--c-midnight-950);
+    }
+
+    .risk-list li {
+      color: var(--c-muted-dark);
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--sp-4);
+      padding: var(--sp-6) var(--sp-9) var(--sp-8);
+      border-top: 1px solid var(--c-line-dark);
+      color: var(--c-muted-dark);
+      font-size: var(--fs-caption);
+      line-height: 1.5;
+    }
+
+    .footer-mark {
+      color: var(--c-lime-500);
+      font-weight: var(--fw-bold);
+    }
+
+    @media (max-width: 980px) {
+      body {
+        padding: var(--sp-5);
+      }
+
+      .hero-title {
+        font-size: var(--fs-hero-sm);
+      }
+
+      .method-grid,
+      .action-risk {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 760px) {
+      .card-header,
+      .core-insight,
+      .argument-map,
+      .method-system {
+        padding-left: var(--sp-5);
+        padding-right: var(--sp-5);
+      }
+
+      .quote-band,
+      .action-risk {
+        margin-left: var(--sp-5);
+        margin-right: var(--sp-5);
+        padding-left: var(--sp-5);
+        padding-right: var(--sp-5);
+      }
+
+      .action-risk {
+        margin: 0;
+        padding-bottom: var(--sp-6);
+      }
+
+      .logic-card {
+        grid-template-columns: 1fr;
+      }
+
+      .card-footer,
+      .meta-row {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    @media (max-width: 560px) {
+      body {
+        padding: var(--sp-3);
+      }
+
+      .hero-title {
+        font-size: 34px;
+      }
+
+      .hero-subtitle {
+        font-size: var(--fs-body);
+      }
+
+      .insight-frame,
+      .quote-band,
+      .panel {
+        padding: var(--sp-5);
+      }
+
+      .section-title {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 420px) {
+      .hero-title {
+        font-size: 30px;
+      }
+
+      .quote-band blockquote {
+        font-size: var(--fs-md-title);
+      }
+
+      .task-list li,
+      .risk-list li {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="card-shell">
+    <article class="cognitive-card">
+      <header class="card-header">
+        <div class="meta-row">
+          <div class="status-chip"><span class="status-dot"></span><span>日省认知卡片</span></div>
+          <div>2026-07-04 · Sentri 风格 · 执行优先</div>
+        </div>
+        <h1 class="hero-title">没有结果反馈的原则修改，只是<span class="lime-chip">逻辑自嗨</span></h1>
+        <p class="hero-subtitle">今天的核心不是再发现一个新问题，而是看清一个更硬的标准，复盘必须回到执行结果。原则写得再漂亮，没有业务反馈、没有前后对照、没有行为记录，就不能算迭代。</p>
+      </header>
+
+      <section class="core-insight">
+        <div class="insight-frame">
+          <p class="eyebrow">最高层结论</p>
+          <h2>先大量执行，再拿结果回来复盘。顺序一反，复盘就会变成原地打转。</h2>
+          <p>你今天意识到，GAP 教练可能会误判你“只说没改”，因为复盘系统只记录问题，没有记录已解决的问题。真正要补的不是更多反思，而是把原则执行后的结果写回来。</p>
+        </div>
+      </section>
+
+      <section class="argument-map">
+        <div class="section-title">
+          <span class="section-num">01</span>
+          <h2>今天的三个主线判断</h2>
+        </div>
+        <div class="logic-stack">
+          <div class="logic-card">
+            <div class="logic-key">RESULT</div>
+            <div>
+              <h3>任务排序看结果价值，不看兴奋程度</h3>
+              <p>改提示词、迭代 GAP 教练会让人兴奋，但不一定离业务结果最近。主业平台、SEO 案例、结算和系统恢复，需要按长期收益排序。</p>
+            </div>
+          </div>
+          <div class="logic-card">
+            <div class="logic-key">SYSTEM</div>
+            <div>
+              <h3>盒子系统的问题是架构债，不是单点 bug</h3>
+              <p>JSONBin 100KB 限制、GitHub token 失效、Codex 额度反复消耗，指向同一个结论，临时存储方案已经撞到边界，后端数据库要进入待落地。</p>
+            </div>
+          </div>
+          <div class="logic-card">
+            <div class="logic-key">BALANCE</div>
+            <div>
+              <h3>压力需要中间值</h3>
+              <p>压力高时用蜉蝣视角减压，压力低时看头部玩家加压。重点不是躺平，也不是逼崩，而是把自己调到能持续行动的位置。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="quote-band">
+        <span>关键金句</span>
+        <blockquote>“如果你只是去做复盘，你觉得你有什么问题，但你没有去做，那你何来何谈迭代一谈呢？”</blockquote>
+      </section>
+
+      <section class="method-system">
+        <div class="section-title">
+          <span class="section-num">02</span>
+          <h2>可复用方法</h2>
+        </div>
+        <div class="method-grid">
+          <div class="method-card">
+            <h3>GAP 三维筛选</h3>
+            <p>代价维度看会在哪件事上吃亏，频率维度看是否反复出现，杠杆维度看修好后能否带动多个问题。</p>
+          </div>
+          <div class="method-card">
+            <h3>有效工作时长</h3>
+            <p>暂定标准是“产出结果是重要内容的工作时长”。这条还只是定义，下一步必须做记录模板。</p>
+          </div>
+          <div class="method-card">
+            <h3>额度使用法</h3>
+            <p>当前周期额度先用满，再衔接下一个刷新周期，避免因为误判时间让可用额度白白浪费。</p>
+          </div>
+          <div class="method-card">
+            <h3>记录闭环</h3>
+            <p>原则不能只写发现，也要写执行结果。否则已改的问题会在复盘系统里继续显示为未改。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="action-risk">
+        <div class="panel">
+          <h2>明日动作</h2>
+          <ul class="task-list">
+            <li><span>1</span><div>周六上午收尾节省文件导出、盒子 APP 恢复可用、营销库 JSON 合并。</div></li>
+            <li><span>2</span><div>继续上传 3 个案例到虚拟站，但要记录是否产生收录、检索或流量反馈。</div></li>
+            <li><span>3</span><div>给“有效工作时长”做记录模板，区分结果产出、事务处理和工具排障。</div></li>
+          </ul>
+        </div>
+        <div class="panel risk">
+          <h2>待核风险</h2>
+          <ul class="risk-list">
+            <li><span>?</span><div>盒子系统改自建数据库是正确止损，还是被工具故障情绪推着做过度重构，需要最小验证。</div></li>
+            <li><span>?</span><div>GAP 教练是否用错模型、错误模型输出是否仍值得采纳，需要重新确认。</div></li>
+            <li><span>?</span><div>牛奶加热水、血糖平稳和午后状态的关系，还需要查证，不能只靠体感。</div></li>
+          </ul>
+        </div>
+      </section>
+
+      <footer class="card-footer">
+        <span><span class="footer-mark">今日短句</span>，少一点复盘幻觉，多一点结果回填。</span>
+        <span>生成于 2026-07-04 01:25</span>
+      </footer>
+    </article>
+  </main>
+</body>
+</html>
