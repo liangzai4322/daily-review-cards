@@ -3,159 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>周省卡片目录</title>
-  <style>
-    :root {
-      --bg: #050505;
-      --panel: #0f0f0f;
-      --text: #f5f5f5;
-      --muted: #a7a7a7;
-      --line: rgba(255,255,255,.22);
-      --strong-line: rgba(255,255,255,.7);
-      --accent: #ffffff;
-      --font: Arial, "Microsoft YaHei", "PingFang SC", sans-serif;
-    }
-
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background: var(--bg);
-      color: var(--text);
-      font-family: var(--font);
-      line-height: 1.6;
-    }
-
-    main {
-      width: min(100%, 980px);
-      margin: 0 auto;
-      padding: 56px 24px 80px;
-    }
-
-    header {
-      border-bottom: 2px solid var(--strong-line);
-      padding-bottom: 32px;
-      margin-bottom: 32px;
-    }
-
-    .kicker {
-      margin: 0 0 10px;
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: clamp(36px, 8vw, 72px);
-      line-height: 1;
-      letter-spacing: .03em;
-    }
-
-    .summary {
-      margin: 20px 0 0;
-      max-width: 760px;
-      color: var(--muted);
-      font-size: 17px;
-    }
-
-    .grid {
-      display: grid;
-      gap: 16px;
-    }
-
-    .card {
-      display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 18px;
-      align-items: center;
-      border: 1px solid var(--line);
-      background: var(--panel);
-      padding: 22px;
-      color: var(--text);
-      text-decoration: none;
-    }
-
-    .card strong {
-      display: block;
-      margin-bottom: 6px;
-      font-size: 22px;
-      line-height: 1.25;
-    }
-
-    .card span {
-      display: block;
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .arrow {
-      color: var(--accent);
-      font-size: 24px;
-      font-weight: 700;
-    }
-
-    footer {
-      margin-top: 36px;
-      padding-top: 20px;
-      border-top: 1px solid var(--line);
-      color: var(--muted);
-      font-size: 13px;
-    }
-
-    @media (max-width: 640px) {
-      main {
-        padding: 40px 16px 56px;
-      }
-
-      .card {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+  <title>日省认知卡片</title>
 </head>
 <body>
   <main>
-    <header>
-      <p class="kicker">Weekly Review Cards</p>
-      <h1>周省卡片目录</h1>
-      <p class="summary">这里汇总按周生成的复盘卡片。当前根地址已作为周省入口，历史周省文件仍保留在 weekly 目录下。</p>
-    </header>
-
-    <section class="grid" aria-label="周省卡片列表">
-      <a class="card" href="weekly/weekly-2026-06-30_to_2026-07-06.html">
-        <span>
-          <strong>2026-06-30 至 2026-07-06</strong>
-          <span>真实周期：2026-06-29 至 2026-07-05 · 认知跃迁后的 24 小时验证</span>
-        </span>
-        <span class="arrow">→</span>
-      </a>
-
-      <a class="card" href="weekly/weekly-2026-06-23_to_2026-06-29.html">
-        <span>
-          <strong>2026-06-23 至 2026-06-29</strong>
-          <span>真实周期：2026-06-22 至 2026-06-28 · 周度复盘卡片</span>
-        </span>
-        <span class="arrow">→</span>
-      </a>
-
-      <a class="card" href="weekly/index.html">
-        <span>
-          <strong>weekly 原目录</strong>
-          <span>保留部署脚本生成的周省索引目录，作为备用入口。</span>
-        </span>
-        <span class="arrow">→</span>
-      </a>
-    </section>
-
-    <footer>
-      <span>GitHub Pages root index · daily-review-cards</span>
-    </footer>
+    <h1>日省认知卡片</h1>
+    <ul>
+      <li><a href="weekly-2026-06-30_to_2026-07-06.html">weekly-2026-06-30_to_2026-07-06.html</a></li>
+      <li><a href="weekly-2026-06-23_to_2026-06-29.html">weekly-2026-06-23_to_2026-06-29.html</a></li>
+      <li><a href="monthly-2026-06-02_to_2026-07-01.html">monthly-2026-06-02_to_2026-07-01.html</a></li>
+      <li><a href="2026-07-04.html">2026-07-04.html</a></li>
+      <li><a href="2026-07-03.html">2026-07-03.html</a></li>
+      <li><a href="2026-07-02.html">2026-07-02.html</a></li>
+      <li><a href="2026-07-01.html">2026-07-01.html</a></li>
+      <li><a href="2026-06-30.html">2026-06-30.html</a></li>
+      <li><a href="2026-06-29.html">2026-06-29.html</a></li>
+      <li><a href="2026-06-28.html">2026-06-28.html</a></li>
+      <li><a href="2026-06-27.html">2026-06-27.html</a></li>
+      <li><a href="2026-06-26.html">2026-06-26.html</a></li>
+      <li><a href="2026-06-25.html">2026-06-25.html</a></li>
+      <li><a href="2026-06-24.html">2026-06-24.html</a></li>
+      <li><a href="2026-06-23.html">2026-06-23.html</a></li>
+      <li><a href="2026-06-22.html">2026-06-22.html</a></li>
+      <li><a href="2026-06-19.html">2026-06-19.html</a></li>
+      <li><a href="2026-06-18.html">2026-06-18.html</a></li>
+      <li><a href="2026-06-17.html">2026-06-17.html</a></li>
+      <li><a href="2026-06-16.html">2026-06-16.html</a></li>
+      <li><a href="2026-06-15.html">2026-06-15.html</a></li>
+      <li><a href="2026-06-14-adhd-entp-result-system.html">2026-06-14-adhd-entp-result-system.html</a></li>
+      <li><a href="2026-06-13.html">2026-06-13.html</a></li>
+      <li><a href="2026-06-12.html">2026-06-12.html</a></li>
+      <li><a href="2026-06-11.html">2026-06-11.html</a></li>
+      <li><a href="2026-06-08.html">2026-06-08.html</a></li>
+    </ul>
   </main>
 </body>
 </html>
