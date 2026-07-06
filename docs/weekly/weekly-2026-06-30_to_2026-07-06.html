@@ -1,0 +1,594 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>周省卡片 · 2026-06-30 至 2026-07-06</title>
+  <style>
+    :root {
+      --ink-0: #000000;
+      --ink-1: #050505;
+      --ink-2: #101010;
+      --ink-3: #171717;
+      --ink-4: #232323;
+      --white-0: #ffffff;
+      --white-1: #f2f2f2;
+      --white-2: #d8d8d8;
+      --white-3: #b6b6b6;
+      --white-4: #8a8a8a;
+      --line-1: rgba(255,255,255,.92);
+      --line-2: rgba(255,255,255,.42);
+      --line-3: rgba(255,255,255,.18);
+      --line-4: rgba(255,255,255,.08);
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 20px;
+      --space-6: 24px;
+      --space-7: 32px;
+      --space-8: 40px;
+      --space-9: 56px;
+      --space-10: 72px;
+      --measure: 1120px;
+      --font-ui: Arial, Helvetica, "Microsoft YaHei", "PingFang SC", sans-serif;
+      --font-title: Impact, Haettenschweiler, "Arial Narrow Bold", "Microsoft YaHei", sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      background: var(--ink-0);
+      color: var(--white-0);
+      font-family: var(--font-ui);
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.055) 0 1px, transparent 1px 88px),
+        linear-gradient(90deg, rgba(255,255,255,.035) 0 1px, transparent 1px 88px),
+        var(--ink-0);
+    }
+
+    .page {
+      width: min(100%, var(--measure));
+      margin: 0 auto;
+      padding: var(--space-8) var(--space-6) var(--space-9);
+    }
+
+    .mission-card {
+      background: var(--ink-0);
+      border: 2px solid var(--line-1);
+      min-height: calc(100vh - 96px);
+    }
+
+    .hero {
+      padding: var(--space-8) var(--space-8) var(--space-7);
+      border-bottom: 1px solid var(--line-1);
+      display: grid;
+      gap: var(--space-6);
+    }
+
+    .mission-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      color: var(--white-2);
+      font-size: 12px;
+      line-height: 1.5;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .mission-meta span {
+      border: 1px solid var(--line-2);
+      padding: 6px 10px;
+      background: var(--ink-1);
+    }
+
+    .title-block {
+      display: grid;
+      gap: var(--space-4);
+      border-left: 8px solid var(--white-0);
+      padding-left: var(--space-6);
+    }
+
+    .eyebrow {
+      margin: 0;
+      color: var(--white-3);
+      font-size: 13px;
+      line-height: 1.4;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      font-weight: 700;
+    }
+
+    h1 {
+      margin: 0;
+      color: var(--white-0);
+      font-family: var(--font-title);
+      font-size: clamp(42px, 8vw, 92px);
+      line-height: .96;
+      letter-spacing: .02em;
+      font-weight: 900;
+    }
+
+    .verdict {
+      margin: 0;
+      max-width: 900px;
+      color: var(--white-1);
+      font-size: clamp(19px, 2.4vw, 30px);
+      line-height: 1.45;
+      font-weight: 800;
+    }
+
+    .body {
+      padding: var(--space-8);
+      display: grid;
+      gap: var(--space-8);
+    }
+
+    .section {
+      border-top: 1px solid var(--line-2);
+      padding-top: var(--space-6);
+      display: grid;
+      gap: var(--space-5);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 76px 1fr;
+      gap: var(--space-5);
+      align-items: baseline;
+    }
+
+    .section-code {
+      color: var(--white-0);
+      font-size: 12px;
+      letter-spacing: .16em;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .section h2 {
+      margin: 0;
+      color: var(--white-0);
+      font-family: var(--font-title);
+      font-size: clamp(26px, 4vw, 48px);
+      line-height: 1;
+      letter-spacing: .04em;
+      font-weight: 900;
+    }
+
+    .matrix {
+      display: grid;
+      gap: var(--space-4);
+    }
+
+    .root-cause {
+      display: grid;
+      grid-template-columns: 42px 1fr;
+      gap: var(--space-5);
+      padding: var(--space-5) 0;
+      border-top: 1px solid var(--line-4);
+    }
+
+    .root-cause:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .num {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--line-1);
+      color: var(--white-0);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: .08em;
+    }
+
+    .root-cause h3,
+    .wheel h3,
+    .ooda h3,
+    .actions h3 {
+      margin: 0 0 var(--space-2);
+      color: var(--white-0);
+      font-size: clamp(18px, 2.4vw, 24px);
+      line-height: 1.25;
+      font-weight: 900;
+    }
+
+    .root-cause p,
+    .wheel p,
+    .ooda p,
+    .actions p,
+    .note p {
+      margin: 0;
+      color: var(--white-2);
+      font-size: 16px;
+      line-height: 1.75;
+      font-weight: 500;
+    }
+
+    .root-cause strong,
+    .wheel strong,
+    .ooda strong,
+    .actions strong {
+      color: var(--white-0);
+      font-weight: 900;
+    }
+
+    .wheels {
+      display: grid;
+      gap: var(--space-4);
+    }
+
+    .wheel {
+      border: 1px solid var(--line-3);
+      background: linear-gradient(90deg, var(--ink-2), var(--ink-0));
+      padding: var(--space-5);
+    }
+
+    .wheel.negative {
+      background: linear-gradient(90deg, var(--ink-0), var(--ink-3));
+    }
+
+    .wheel-label {
+      display: inline-block;
+      margin-bottom: var(--space-3);
+      border-bottom: 2px solid var(--white-0);
+      color: var(--white-0);
+      font-size: 11px;
+      line-height: 1.4;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      font-weight: 900;
+    }
+
+    .ssc {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 1px solid var(--line-1);
+    }
+
+    .ssc-col {
+      padding: var(--space-5);
+      border-left: 1px solid var(--line-3);
+      min-height: 210px;
+    }
+
+    .ssc-col:first-child {
+      border-left: 0;
+    }
+
+    .ssc-col h3 {
+      margin: 0 0 var(--space-4);
+      color: var(--white-0);
+      font-family: var(--font-title);
+      font-size: 28px;
+      line-height: 1;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .ssc-col ul,
+    .action-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: var(--space-3);
+    }
+
+    .ssc-col li,
+    .action-list li {
+      position: relative;
+      padding-left: var(--space-5);
+      color: var(--white-2);
+      font-size: 15px;
+      line-height: 1.65;
+    }
+
+    .ssc-col li::before,
+    .action-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: .72em;
+      width: 8px;
+      height: 8px;
+      border: 1px solid var(--line-1);
+      background: var(--white-0);
+    }
+
+    .ooda-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--line-2);
+      border: 1px solid var(--line-2);
+    }
+
+    .ooda {
+      background: var(--ink-0);
+      padding: var(--space-5);
+      min-height: 180px;
+    }
+
+    .ooda h3 {
+      font-family: var(--font-title);
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .actions {
+      display: grid;
+      gap: var(--space-4);
+      padding: var(--space-6);
+      border: 2px solid var(--line-1);
+      background: var(--white-0);
+      color: var(--ink-0);
+    }
+
+    .actions h3,
+    .actions p,
+    .actions strong,
+    .action-list li {
+      color: var(--ink-0);
+    }
+
+    .action-list li::before {
+      border-color: var(--ink-0);
+      background: var(--ink-0);
+    }
+
+    .note {
+      padding: var(--space-5);
+      border-left: 6px solid var(--line-1);
+      background: var(--ink-2);
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-4);
+      padding: var(--space-6) var(--space-8) var(--space-8);
+      border-top: 1px solid var(--line-1);
+      color: var(--white-4);
+      font-size: 12px;
+      line-height: 1.5;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 860px) {
+      .page {
+        padding: var(--space-5) var(--space-4) var(--space-7);
+      }
+
+      .hero,
+      .body,
+      .footer {
+        padding-left: var(--space-5);
+        padding-right: var(--space-5);
+      }
+
+      .section-head {
+        grid-template-columns: 1fr;
+        gap: var(--space-2);
+      }
+
+      .ssc,
+      .ooda-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .ssc-col {
+        border-left: 0;
+        border-top: 1px solid var(--line-3);
+      }
+
+      .ssc-col:first-child {
+        border-top: 0;
+      }
+
+      .footer {
+        display: grid;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .mission-card {
+        border-width: 1px;
+      }
+
+      .title-block {
+        border-left-width: 5px;
+        padding-left: var(--space-4);
+      }
+
+      .hero {
+        padding-top: var(--space-7);
+      }
+
+      .body {
+        gap: var(--space-7);
+      }
+
+      .root-cause {
+        grid-template-columns: 1fr;
+        gap: var(--space-3);
+      }
+
+      .num {
+        width: 36px;
+        height: 36px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <article class="mission-card">
+      <header class="hero">
+        <div class="mission-meta">
+          <span>Weekly Review</span>
+          <span>2026-06-30 / 2026-07-06</span>
+          <span>Real Week: 06-29 / 07-05</span>
+          <span>Style: SpaceX</span>
+        </div>
+        <div class="title-block">
+          <p class="eyebrow">Mission Diagnosis</p>
+          <h1>想通不是推进</h1>
+          <p class="verdict">本周从复盘、工具和原则，推进到企业 AI 服务与结果反馈；真正要修的不是认知深度，而是认知跃迁后的外部验证速度。</p>
+        </div>
+      </header>
+
+      <div class="body">
+        <section class="section">
+          <div class="section-head">
+            <div class="section-code">01 / WHY</div>
+            <h2>三个根因</h2>
+          </div>
+          <div class="matrix">
+            <div class="root-cause">
+              <div class="num">01</div>
+              <div>
+                <h3>复盘制造了完成感</h3>
+                <p><strong>问题不是不知道做什么。</strong>问题是想通之后没有立刻变成公开帖子、服务挂出、真实询问或数据记录。下周每个新判断都要绑定 24 小时最小验证。</p>
+              </div>
+            </div>
+            <div class="root-cause">
+              <div class="num">02</div>
+              <div>
+                <h3>方向判断缺少付费链路</h3>
+                <p>企业 AI 服务逻辑已经通顺，但仍要回到具体场景：谁痛、为什么痛、愿不愿意付钱。装小龙虾只能算入口假设，必须验证咨询、升单和案例传播。</p>
+              </div>
+            </div>
+            <div class="root-cause">
+              <div class="num">03</div>
+              <div>
+                <h3>工具系统进入架构债阶段</h3>
+                <p>盒子、JSONBin、GitHub token、网络和额度问题集中出现，说明免费拼装方案接近上限。只修核心链路，不借重构逃避业务验证。</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <div class="section-code">02 / LOOP</div>
+            <h2>飞轮与漏能</h2>
+          </div>
+          <div class="wheels">
+            <div class="wheel">
+              <span class="wheel-label">Positive Flywheel</span>
+              <h3>真实痛点 → AI 解决 → 案例 → IP → 企业服务</h3>
+              <p>AI 对账、数据库迁移、卡片部署、批量发送都不是杂活，它们是 Learn in public 的案例燃料。把真实工作流做成可展示结果，才会反向带来更高价值需求。</p>
+            </div>
+            <div class="wheel negative">
+              <span class="wheel-label">Negative Flywheel</span>
+              <h3>想通 → 写漂亮复盘 → 延迟验证 → 继续复盘</h3>
+              <p>负向循环的核心是把内部清晰当成外部进展。真正的断点不是分析质量，而是决策到行动之间没有硬门槛。</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <div class="section-code">03 / SSC</div>
+            <h2>Start / Stop / Continue</h2>
+          </div>
+          <div class="ssc">
+            <div class="ssc-col">
+              <h3>Start</h3>
+              <ul>
+                <li>启动 24 小时最小验证规则：每个新方向都要产生外部反馈动作。</li>
+                <li>启动有效工作时长模板：业务推进、系统排障、复盘整理分开记录。</li>
+              </ul>
+            </div>
+            <div class="ssc-col">
+              <h3>Stop</h3>
+              <ul>
+                <li>停止在关键动作未完成前继续叠加新的复盘层级。</li>
+                <li>停止把“方向想清楚了”当成项目进展。</li>
+              </ul>
+            </div>
+            <div class="ssc-col">
+              <h3>Continue</h3>
+              <ul>
+                <li>继续用 Codex 解决真实工作问题，并沉淀成案例和内容。</li>
+                <li>继续保留高质量外部交流，但每次交流后必须落到行动门槛。</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <div class="section-code">04 / OODA</div>
+            <h2>OODA 校准</h2>
+          </div>
+          <div class="ooda-grid">
+            <div class="ooda">
+              <h3>Observe</h3>
+              <p>自我观察很强，市场观察偏弱。小龙虾和小红书都还缺一手客户反馈。</p>
+            </div>
+            <div class="ooda">
+              <h3>Orient</h3>
+              <p>定向从项目机会转向个人 IP、企业 AI 服务和结果反馈系统，但变化速度偏快。</p>
+            </div>
+            <div class="ooda">
+              <h3>Decide</h3>
+              <p>方向判断很快，约束条件不够硬。需要 DDL、验收标准和外部反馈。</p>
+            </div>
+            <div class="ooda">
+              <h3>Act</h3>
+              <p>AI 工具执行强，公开业务验证弱。下周要缩短决策到外部行动的距离。</p>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <div class="section-code">05 / NEXT</div>
+            <h2>下周最小动作</h2>
+          </div>
+          <div class="actions">
+            <h3>只看外部结果，不看内部兴奋。</h3>
+            <ul class="action-list">
+              <li>2026-07-07 18:00 前挂出第一条“装小龙虾”服务，并保存链接或截图。</li>
+              <li>完成批量发送消息脚本的最小可用版本，并用一个真实账号测试。</li>
+              <li>公开发布 1 条 AI 实操案例，优先从 AI 对账、盒子数据库迁移、日省卡片部署里选。</li>
+              <li>连续 3 天记录有效工作时长，区分业务推进、系统排障和复盘整理。</li>
+              <li>SEO 虚拟站连续 3 天每天上传至少 3 个案例；中断就记录真实原因。</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <div class="section-code">06 / CHECK</div>
+            <h2>待核风险</h2>
+          </div>
+          <div class="note">
+            <p>`2026-07-05.md` 缺失，本次按现有 6 份日省继续；企业 AI 服务和装小龙虾仍是入口假设，不能因为逻辑顺畅就提前放大；工具排障必须服务业务验证，不能吞掉下一周。</p>
+          </div>
+        </section>
+      </div>
+
+      <footer class="footer">
+        <span>Generated from weekly review markdown</span>
+        <span>No script · No interaction · Static card</span>
+      </footer>
+    </article>
+  </main>
+</body>
+</html>
