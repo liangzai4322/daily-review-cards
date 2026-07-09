@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>认知卡片 · 2026-07-10</title>
+  <style>
+    :root {
+      --aubergine-900: #3f0f40;
+      --aubergine-800: #4a154b;
+      --aubergine-700: #611f69;
+      --aubergine-600: #7a2c7f;
+      --aubergine-100: #f9f0ff;
+      --cream-200: #f4ede4;
+      --cream-100: #fbf7f0;
+      --canvas: #ffffff;
+      --ink-950: #111111;
+      --ink-850: #1d1d1d;
+      --ink-700: #3f3f3f;
+      --ink-600: #5f5f5f;
+      --ink-500: #696969;
+      --ink-300: #b7b7b7;
+      --ink-200: #d9d9d9;
+      --ink-100: #ededed;
+      --blue-700: #1264a3;
+      --blue-100: #eaf4ff;
+      --green-700: #007a5a;
+      --green-100: #e8f7f1;
+      --orange-700: #cc4117;
+      --orange-100: #fff1e8;
+      --lavender-mute: #d9bdde;
+      --mesh-peach: rgba(255, 209, 173, 0.62);
+      --mesh-lavender: rgba(224, 194, 255, 0.55);
+      --mesh-green: rgba(196, 228, 211, 0.42);
+      --shadow-soft: rgba(74, 21, 75, 0.12);
+      --shadow-ui: rgba(0, 0, 0, 0.08);
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 20px;
+      --space-6: 24px;
+      --space-7: 32px;
+      --space-8: 40px;
+      --space-9: 48px;
+      --space-10: 64px;
+      --text-1: 12px;
+      --text-2: 13px;
+      --text-3: 14px;
+      --text-4: 16px;
+      --text-5: 18px;
+      --text-6: 20px;
+      --text-7: 24px;
+      --text-8: 30px;
+      --text-9: 38px;
+      --text-10: 48px;
+      --weight-regular: 400;
+      --weight-medium: 550;
+      --weight-bold: 700;
+      --weight-black: 850;
+      --line-tight: 1.12;
+      --line-title: 1.24;
+      --line-body: 1.62;
+      --line-loose: 1.82;
+      --rule-light: 1px solid var(--ink-200);
+      --rule-dark: 2px solid var(--aubergine-800);
+      --mark-core: 10px;
+      --mark-point: 6px;
+      --mark-line: 4px;
+      --safe-edge: 40px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink-850);
+      background:
+        radial-gradient(circle at 12% 12%, var(--mesh-peach) 0 22%, transparent 42%),
+        radial-gradient(circle at 82% 8%, var(--mesh-lavender) 0 24%, transparent 46%),
+        radial-gradient(circle at 75% 88%, var(--mesh-green) 0 18%, transparent 40%),
+        linear-gradient(135deg, var(--cream-200), var(--aubergine-100) 58%, var(--canvas));
+      font-family: Inter, "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", Arial, sans-serif;
+      letter-spacing: 0;
+      padding: var(--space-8);
+    }
+
+    .card-shell {
+      width: min(1040px, 100%);
+      margin: 0 auto;
+    }
+
+    .cognitive-card {
+      background: var(--canvas);
+      border: var(--rule-dark);
+      border-radius: 0;
+      box-shadow: 0 24px 90px var(--shadow-soft);
+      overflow: hidden;
+    }
+
+    .header {
+      display: grid;
+      gap: var(--space-7);
+      padding: var(--safe-edge);
+      background:
+        linear-gradient(90deg, rgba(74, 21, 75, 0.06), transparent 58%),
+        var(--canvas);
+      border-bottom: var(--rule-light);
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-3);
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .badge-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: 0 var(--space-3);
+      color: var(--aubergine-800);
+      background: var(--cream-200);
+      border: 1px solid var(--aubergine-800);
+      font-size: var(--text-2);
+      font-weight: var(--weight-bold);
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .date {
+      color: var(--ink-500);
+      font-size: var(--text-3);
+      font-weight: var(--weight-bold);
+      line-height: 1.3;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 870px;
+      color: var(--aubergine-900);
+      font-size: var(--text-10);
+      font-weight: var(--weight-black);
+      line-height: var(--line-tight);
+      letter-spacing: 0;
+    }
+
+    .lead {
+      display: grid;
+      grid-template-columns: var(--mark-core) 1fr;
+      gap: var(--space-5);
+      max-width: 880px;
+      color: var(--ink-700);
+      font-size: var(--text-6);
+      font-weight: var(--weight-medium);
+      line-height: 1.58;
+      margin: 0;
+    }
+
+    .lead::before {
+      content: "";
+      display: block;
+      background: var(--aubergine-800);
+    }
+
+    .signal-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: var(--rule-light);
+      border-bottom: var(--rule-light);
+      background: var(--cream-100);
+    }
+
+    .signal {
+      min-height: 132px;
+      padding: var(--space-6);
+      border-right: var(--rule-light);
+      display: grid;
+      align-content: start;
+      gap: var(--space-3);
+    }
+
+    .signal:last-child {
+      border-right: 0;
+    }
+
+    .signal-key {
+      color: var(--aubergine-800);
+      font-size: var(--text-7);
+      font-weight: var(--weight-black);
+      line-height: 1.1;
+    }
+
+    .signal-copy {
+      color: var(--ink-600);
+      font-size: var(--text-3);
+      line-height: 1.55;
+      margin: 0;
+    }
+
+    .content {
+      display: grid;
+      gap: var(--space-8);
+      padding: var(--space-8) var(--safe-edge);
+    }
+
+    .section {
+      display: grid;
+      grid-template-columns: 146px 1fr;
+      gap: var(--space-7);
+      padding-top: var(--space-7);
+      border-top: var(--rule-light);
+    }
+
+    .section:first-child {
+      padding-top: 0;
+      border-top: 0;
+    }
+
+    .section-mark {
+      display: grid;
+      align-content: start;
+      gap: var(--space-3);
+    }
+
+    .section-no {
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      background: var(--aubergine-800);
+      color: var(--canvas);
+      font-size: var(--text-4);
+      font-weight: var(--weight-black);
+      line-height: 1;
+    }
+
+    .section-label {
+      color: var(--ink-500);
+      font-size: var(--text-2);
+      font-weight: var(--weight-bold);
+      line-height: 1.45;
+    }
+
+    .section-body {
+      display: grid;
+      gap: var(--space-5);
+    }
+
+    h2 {
+      margin: 0;
+      color: var(--ink-950);
+      font-size: var(--text-8);
+      font-weight: var(--weight-black);
+      line-height: var(--line-title);
+      letter-spacing: 0;
+    }
+
+    .body-copy {
+      margin: 0;
+      color: var(--ink-700);
+      font-size: var(--text-4);
+      line-height: var(--line-body);
+    }
+
+    .quote-band {
+      display: grid;
+      gap: var(--space-3);
+      padding: var(--space-6);
+      background: var(--aubergine-800);
+      color: var(--canvas);
+    }
+
+    .quote-band strong {
+      font-size: var(--text-7);
+      line-height: 1.42;
+      font-weight: var(--weight-black);
+    }
+
+    .quote-band span {
+      color: var(--lavender-mute);
+      font-size: var(--text-3);
+      line-height: 1.5;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-4);
+    }
+
+    .info-panel {
+      display: grid;
+      gap: var(--space-3);
+      padding: var(--space-5);
+      border: var(--rule-light);
+      background: var(--canvas);
+      box-shadow: 0 8px 26px var(--shadow-ui);
+    }
+
+    .info-panel b {
+      color: var(--aubergine-800);
+      font-size: var(--text-5);
+      line-height: 1.35;
+    }
+
+    .info-panel p {
+      margin: 0;
+      color: var(--ink-700);
+      font-size: var(--text-4);
+      line-height: var(--line-body);
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: 1fr 36px 1fr 36px 1fr;
+      align-items: stretch;
+      gap: var(--space-2);
+    }
+
+    .flow-node {
+      padding: var(--space-5);
+      border: 1px solid var(--aubergine-800);
+      background: var(--aubergine-100);
+      display: grid;
+      gap: var(--space-2);
+      align-content: start;
+    }
+
+    .flow-node b {
+      color: var(--aubergine-900);
+      font-size: var(--text-5);
+      line-height: 1.3;
+    }
+
+    .flow-node span {
+      color: var(--ink-600);
+      font-size: var(--text-3);
+      line-height: 1.55;
+    }
+
+    .flow-arrow {
+      display: grid;
+      place-items: center;
+      color: var(--aubergine-800);
+      font-size: var(--text-7);
+      font-weight: var(--weight-black);
+    }
+
+    .rule-list {
+      display: grid;
+      gap: var(--space-3);
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .rule-list li {
+      display: grid;
+      grid-template-columns: var(--mark-point) 1fr;
+      gap: var(--space-4);
+      align-items: start;
+      color: var(--ink-700);
+      font-size: var(--text-4);
+      line-height: var(--line-body);
+    }
+
+    .rule-list li::before {
+      content: "";
+      width: var(--mark-point);
+      height: 100%;
+      min-height: 22px;
+      background: var(--blue-700);
+      margin-top: 4px;
+    }
+
+    .risk-box {
+      padding: var(--space-5);
+      border: 2px solid var(--orange-700);
+      background: var(--orange-100);
+      display: grid;
+      gap: var(--space-3);
+    }
+
+    .risk-box b {
+      color: var(--orange-700);
+      font-size: var(--text-5);
+      line-height: 1.35;
+    }
+
+    .risk-box p {
+      margin: 0;
+      color: var(--ink-700);
+      font-size: var(--text-4);
+      line-height: var(--line-body);
+    }
+
+    .action-box {
+      padding: var(--space-5);
+      background: var(--green-100);
+      border: 2px solid var(--green-700);
+      display: grid;
+      gap: var(--space-3);
+    }
+
+    .action-box b {
+      color: var(--green-700);
+      font-size: var(--text-5);
+    }
+
+    .action-grid {
+      display: grid;
+      gap: var(--space-3);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .action-grid li {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: var(--space-3);
+      color: var(--ink-700);
+      font-size: var(--text-4);
+      line-height: var(--line-body);
+    }
+
+    .action-grid li::before {
+      content: "";
+      width: 18px;
+      height: 18px;
+      border: 2px solid var(--green-700);
+      background: var(--canvas);
+      margin-top: 5px;
+    }
+
+    .footer {
+      padding: var(--safe-edge);
+      background: var(--aubergine-800);
+      color: var(--canvas);
+      display: grid;
+      gap: var(--space-4);
+    }
+
+    .footer-title {
+      margin: 0;
+      font-size: var(--text-8);
+      font-weight: var(--weight-black);
+      line-height: var(--line-title);
+    }
+
+    .footer-copy {
+      margin: 0;
+      max-width: 840px;
+      color: var(--lavender-mute);
+      font-size: var(--text-5);
+      line-height: var(--line-body);
+    }
+
+    @media (min-width: 1280px) {
+      .card-shell {
+        width: min(1100px, 100%);
+      }
+    }
+
+    @media (max-width: 980px) {
+      body {
+        padding: var(--space-6);
+      }
+
+      h1 {
+        font-size: var(--text-9);
+      }
+
+      .signal-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .signal:nth-child(2) {
+        border-right: 0;
+      }
+
+      .signal:nth-child(1),
+      .signal:nth-child(2) {
+        border-bottom: var(--rule-light);
+      }
+
+      .section {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+      }
+
+      .section-mark {
+        grid-template-columns: 48px 1fr;
+        align-items: center;
+      }
+    }
+
+    @media (max-width: 720px) {
+      body {
+        padding: var(--space-4);
+      }
+
+      .header,
+      .content,
+      .footer {
+        padding: var(--space-6);
+      }
+
+      h1 {
+        font-size: var(--text-8);
+      }
+
+      h2 {
+        font-size: var(--text-7);
+      }
+
+      .lead {
+        font-size: var(--text-5);
+      }
+
+      .two-col,
+      .signal-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .signal {
+        border-right: 0;
+        border-bottom: var(--rule-light);
+      }
+
+      .signal:last-child {
+        border-bottom: 0;
+      }
+
+      .flow {
+        grid-template-columns: 1fr;
+      }
+
+      .flow-arrow {
+        min-height: 18px;
+      }
+    }
+
+    @media (max-width: 460px) {
+      body {
+        padding: var(--space-2);
+      }
+
+      .header,
+      .content,
+      .footer {
+        padding: var(--space-5);
+      }
+
+      h1 {
+        font-size: 28px;
+      }
+
+      .quote-band strong,
+      .footer-title {
+        font-size: var(--text-7);
+      }
+
+      .meta-row {
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="card-shell">
+    <article class="cognitive-card">
+      <header class="header">
+        <div class="meta-row">
+          <div class="badge-line">
+            <span class="badge">日省认知卡片</span>
+            <span class="badge">留学赛道</span>
+            <span class="badge">反脆弱</span>
+          </div>
+          <div class="date">2026-07-10</div>
+        </div>
+        <h1>你缺的不是更多资料，而是把资源接进工作流的触发机制。</h1>
+        <p class="lead">今天真正被打穿的不是某个留学赛道案例，而是一个长期盲区：有资源、有社群、有工具，但没有固定触发点，就会被傲慢、分心和夜间低精力时段拖成沉没成本。</p>
+      </header>
+
+      <section class="signal-strip">
+        <div class="signal">
+          <div class="signal-key">傲慢</div>
+          <p class="signal-copy">破局社群买了一年没认真看，今天才发现里面有真实案例和年轻人分享。</p>
+        </div>
+        <div class="signal">
+          <div class="signal-key">矩阵</div>
+          <p class="signal-copy">矩阵打量，IP 打深。单账号脆弱，组合系统才有反脆弱空间。</p>
+        </div>
+        <div class="signal">
+          <div class="signal-key">分心</div>
+          <p class="signal-copy">业务相关信息更危险，因为它看起来像工作，实际在偷走边界。</p>
+        </div>
+        <div class="signal">
+          <div class="signal-key">前置</div>
+          <p class="signal-copy">脚本 3.0 连续未跑通，不能继续放在夜里赌状态。</p>
+        </div>
+      </section>
+
+      <section class="content">
+        <article class="section">
+          <div class="section-mark">
+            <div class="section-no">01</div>
+            <div class="section-label">今天真正发生了什么</div>
+          </div>
+          <div class="section-body">
+            <h2>留学赛道只是入口，真正的问题是单兵作战太久。</h2>
+            <p class="body-copy">小韩、锦棠、05 后留学文书工作室这些案例触发了压力。你看到的不是单个项目，而是一种更大的做事方式：找赛道、搭团队、做内容、跑矩阵、沉淀 IP、链接大佬。过去的隐形天花板是自己摸索、自己执行，很少拿着足够大的问题去问更强的人。</p>
+            <div class="quote-band">
+              <strong>“我过去几年单兵作战太久了，大头兵思维，不要这样，要将军思维。”</strong>
+              <span>这句话是今天的核心转向，不是鸡血，是经营方式从执行者转向布局者。</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="section">
+          <div class="section-mark">
+            <div class="section-no">02</div>
+            <div class="section-label">资源与傲慢</div>
+          </div>
+          <div class="section-body">
+            <h2>社群没用，很多时候是因为你从没真正用过。</h2>
+            <p class="body-copy">破局社群不是今天突然变好了，而是今天终于被放进了真实问题里检索。留学赛道一搜，能用的帖子、案例和人就出现了。过去一年把它低估成“垃圾社群”，这里面既有傲慢，也有工作流缺失。</p>
+            <div class="two-col">
+              <div class="info-panel">
+                <b>旧模式</b>
+                <p>买了资源，偶尔想起来翻一下，没有固定触发点。时间一久，就给它贴上“没价值”的标签。</p>
+              </div>
+              <div class="info-panel">
+                <b>新规则</b>
+                <p>每当研究一个赛道，必须同步检索已有社群、课程、案例库和朋友圈样本，再判断资源价值。</p>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="section">
+          <div class="section-mark">
+            <div class="section-no">03</div>
+            <div class="section-label">反脆弱路线</div>
+          </div>
+          <div class="section-body">
+            <h2>矩阵负责规模，IP 负责穿越周期。</h2>
+            <p class="body-copy">一个账号很脆弱，500 个账号哪怕每个每天贡献很少，也能形成规模化收入。IP 的价值不在量，而在客户一想到某个问题就想到你。矩阵和 IP 不是二选一，前者打量，后者打深。</p>
+            <div class="flow">
+              <div class="flow-node">
+                <b>矩阵</b>
+                <span>批量内容、批量账号、分散风险。</span>
+              </div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-node">
+                <b>IP</b>
+                <span>持续出现、建立信任、被客户主动想起。</span>
+              </div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-node">
+                <b>私域</b>
+                <span>朋友圈和公众号长期蓄水，承接高客单。</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="section">
+          <div class="section-mark">
+            <div class="section-no">04</div>
+            <div class="section-label">行为缺口</div>
+          </div>
+          <div class="section-body">
+            <h2>今天最危险的分心，不是刷短视频，是业务相关信息。</h2>
+            <p class="body-copy">关键词验证、同行朋友圈、公众号、视频号、社群帖子，全都和业务有关，所以更难被识别为分心。它们让你感觉自己在推进，实际不断扩大任务边界，最后小红书第一篇帖子仍然没发。</p>
+            <div class="risk-box">
+              <b>重复模式，第 6 次出现</b>
+              <p>有明确任务，进入执行，被相关但非核心的信息拉走，任务未完成，复盘时识别。今天的新信息是：兴奋状态下的劫持比无聊状态更难察觉。</p>
+            </div>
+          </div>
+        </article>
+
+        <article class="section">
+          <div class="section-mark">
+            <div class="section-no">05</div>
+            <div class="section-label">方法论</div>
+          </div>
+          <div class="section-body">
+            <h2>所有系统都要有弹性，所有输入都要有输出。</h2>
+            <ul class="rule-list">
+              <li>输出优先原则：优质文章要阅读、复述输出、通读、再输出。没有复述，输入很难留下结构。</li>
+              <li>任务不中断原则：重要任务开始前，手机断网，物理隔绝中断源。</li>
+              <li>弹性缓冲原则：身体、饮食、睡眠、欲望、复盘和业务都不能绷到极限才处理。</li>
+              <li>压力控量原则：看强者案例可以加压，但只能稍微抬头看；看太多会瘫痪。</li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="section">
+          <div class="section-mark">
+            <div class="section-no">06</div>
+            <div class="section-label">明日动作</div>
+          </div>
+          <div class="section-body">
+            <h2>明天不要再用调研替代出手。</h2>
+            <div class="action-box">
+              <b>第一优先级</b>
+              <ul class="action-grid">
+                <li>先梳理任务优先级，再只选一个任务进入深度执行。</li>
+                <li>脚本 3.0 如果仍是关键任务，必须前置到下午精力更好的时段。</li>
+                <li>小红书留学赛道不要只研究关键词，要发出第一篇帖子。</li>
+                <li>朋友圈文案 skill 改造成自己的发圈 SOP，开始长期蓄水。</li>
+              </ul>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <footer class="footer">
+        <p class="footer-title">今日结论</p>
+        <p class="footer-copy">你的问题不是没有方向，而是方向一多就容易被兴奋牵走。明天要做的不是继续证明这些方向值得做，而是把一个任务前置、隔离中断、拿到外部结果。</p>
+      </footer>
+    </article>
+  </main>
+</body>
+</html>
