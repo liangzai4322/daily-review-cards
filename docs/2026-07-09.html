@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026-07-09 日省认知卡片</title>
+  <style>
+    :root {
+      --ink-950: #0a0a0a;
+      --ink-900: #111111;
+      --ink-800: #1f1f1f;
+      --ink-700: #343434;
+      --ink-600: #525252;
+      --ink-500: #737373;
+      --ink-400: #8a8a8a;
+      --ink-300: #b8b8b8;
+      --ink-200: #d7d7d7;
+      --ink-100: #eeeeee;
+      --paper-0: #ffffff;
+      --paper-50: #fafafa;
+      --paper-100: #f6f6f6;
+      --paper-200: #ededed;
+      --paper-300: #e5e5e5;
+      --green-700: #0f7a4f;
+      --green-600: #1b9d68;
+      --green-500: #3ecf8e;
+      --green-100: #e8fff4;
+      --green-50: #f4fff9;
+      --warn-600: #9a3412;
+      --warn-100: #fff7ed;
+      --blue-600: #2563eb;
+      --blue-100: #eff6ff;
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 20px;
+      --space-6: 24px;
+      --space-7: 32px;
+      --space-8: 40px;
+      --space-9: 48px;
+      --space-10: 64px;
+      --text-xs: 12px;
+      --text-sm: 14px;
+      --text-md: 16px;
+      --text-lg: 18px;
+      --text-xl: 22px;
+      --text-2xl: 28px;
+      --text-3xl: 36px;
+      --text-4xl: 46px;
+      --line-tight: 1.18;
+      --line-base: 1.62;
+      --line-loose: 1.86;
+      --rule-thin: 1px solid var(--ink-200);
+      --rule-mid: 2px solid var(--ink-950);
+      --shadow-quiet: 0 22px 80px rgba(0, 0, 0, 0.08);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      color: var(--ink-950);
+      background:
+        linear-gradient(90deg, rgba(62, 207, 142, 0.08) 0 1px, transparent 1px 100%),
+        linear-gradient(180deg, rgba(62, 207, 142, 0.06) 0 1px, transparent 1px 100%),
+        var(--paper-100);
+      background-size: 48px 48px;
+      font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans CJK SC", Arial, sans-serif;
+      letter-spacing: 0;
+      padding: var(--space-8);
+    }
+
+    .card {
+      width: min(980px, 100%);
+      margin: 0 auto;
+      background: var(--paper-0);
+      border: var(--rule-mid);
+      border-radius: 0;
+      box-shadow: var(--shadow-quiet);
+      overflow: hidden;
+    }
+
+    .topbar {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: var(--space-5);
+      align-items: center;
+      padding: var(--space-8) var(--space-8) var(--space-5);
+      border-bottom: var(--rule-thin);
+      background: linear-gradient(180deg, var(--paper-0), var(--paper-50));
+    }
+
+    .eyebrow {
+      display: inline-grid;
+      grid-auto-flow: column;
+      gap: var(--space-2);
+      align-items: center;
+      width: fit-content;
+      color: var(--green-700);
+      font-size: var(--text-xs);
+      font-weight: 800;
+      line-height: 1;
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      background: var(--green-500);
+      border: 2px solid var(--ink-950);
+    }
+
+    .date {
+      padding: var(--space-2) var(--space-3);
+      border: var(--rule-thin);
+      background: var(--paper-0);
+      color: var(--ink-700);
+      font-size: var(--text-sm);
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .hero {
+      padding: var(--space-5) var(--space-8) var(--space-8);
+      display: grid;
+      gap: var(--space-6);
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 820px;
+      color: var(--ink-950);
+      font-size: clamp(34px, 6vw, var(--text-4xl));
+      font-weight: 900;
+      line-height: var(--line-tight);
+      letter-spacing: 0;
+    }
+
+    .thesis {
+      display: grid;
+      grid-template-columns: 10px 1fr;
+      gap: var(--space-4);
+      align-items: stretch;
+      max-width: 860px;
+    }
+
+    .thesis::before {
+      content: "";
+      background: var(--green-500);
+      border: 2px solid var(--ink-950);
+    }
+
+    .thesis p {
+      margin: 0;
+      color: var(--ink-800);
+      font-size: var(--text-xl);
+      font-weight: 750;
+      line-height: 1.56;
+    }
+
+    .signal-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: var(--rule-thin);
+      border-bottom: var(--rule-thin);
+      background: var(--paper-50);
+    }
+
+    .signal {
+      min-height: 112px;
+      padding: var(--space-5);
+      border-right: var(--rule-thin);
+      display: grid;
+      align-content: start;
+      gap: var(--space-3);
+    }
+
+    .signal:last-child {
+      border-right: 0;
+    }
+
+    .signal b {
+      color: var(--ink-950);
+      font-size: var(--text-lg);
+      line-height: 1.25;
+    }
+
+    .signal span {
+      color: var(--ink-600);
+      font-size: var(--text-sm);
+      line-height: 1.55;
+    }
+
+    .body {
+      padding: var(--space-8);
+      display: grid;
+      gap: var(--space-7);
+    }
+
+    .section {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: var(--space-6);
+      align-items: start;
+      border-top: var(--rule-thin);
+      padding-top: var(--space-7);
+    }
+
+    .section:first-child {
+      border-top: 0;
+      padding-top: 0;
+    }
+
+    .index {
+      display: grid;
+      gap: var(--space-2);
+      position: relative;
+    }
+
+    .index .num {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      background: var(--ink-950);
+      color: var(--paper-0);
+      font-size: var(--text-sm);
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .index .label {
+      color: var(--ink-500);
+      font-size: var(--text-xs);
+      font-weight: 800;
+      line-height: 1.4;
+    }
+
+    h2 {
+      margin: 0 0 var(--space-4);
+      color: var(--ink-950);
+      font-size: var(--text-2xl);
+      font-weight: 900;
+      line-height: 1.22;
+      letter-spacing: 0;
+    }
+
+    .copy {
+      color: var(--ink-700);
+      font-size: var(--text-md);
+      line-height: var(--line-base);
+      margin: 0;
+    }
+
+    .module {
+      display: grid;
+      gap: var(--space-4);
+    }
+
+    .logic {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: var(--rule-thin);
+      background: var(--paper-0);
+    }
+
+    .logic-cell {
+      padding: var(--space-5);
+      border-right: var(--rule-thin);
+      display: grid;
+      gap: var(--space-3);
+      align-content: start;
+    }
+
+    .logic-cell:last-child {
+      border-right: 0;
+    }
+
+    .logic-cell strong {
+      color: var(--ink-950);
+      font-size: var(--text-lg);
+      line-height: 1.28;
+    }
+
+    .logic-cell small {
+      color: var(--ink-600);
+      font-size: var(--text-sm);
+      line-height: 1.55;
+    }
+
+    .quote {
+      border-left: 8px solid var(--green-500);
+      background: var(--green-50);
+      padding: var(--space-5) var(--space-6);
+      color: var(--ink-950);
+      font-size: var(--text-xl);
+      font-weight: 850;
+      line-height: 1.55;
+    }
+
+    .stack {
+      display: grid;
+      gap: var(--space-3);
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 132px 1fr;
+      gap: var(--space-4);
+      align-items: start;
+      padding: var(--space-4) 0;
+      border-bottom: var(--rule-thin);
+    }
+
+    .row:last-child {
+      border-bottom: 0;
+    }
+
+    .row b {
+      color: var(--ink-950);
+      font-size: var(--text-sm);
+      line-height: 1.45;
+    }
+
+    .row span {
+      color: var(--ink-700);
+      font-size: var(--text-md);
+      line-height: var(--line-base);
+    }
+
+    .terminal {
+      border: var(--rule-thin);
+      background: var(--ink-950);
+      color: var(--paper-0);
+      padding: var(--space-5);
+      display: grid;
+      gap: var(--space-3);
+      font-family: Consolas, "Microsoft YaHei", monospace;
+      font-size: var(--text-sm);
+      line-height: 1.7;
+    }
+
+    .terminal-line {
+      display: grid;
+      grid-template-columns: 92px 1fr;
+      gap: var(--space-3);
+    }
+
+    .terminal-line b {
+      color: var(--green-500);
+      font-weight: 900;
+    }
+
+    .terminal-line span {
+      color: var(--paper-200);
+    }
+
+    .warning {
+      border: 2px solid var(--warn-600);
+      background: var(--warn-100);
+      padding: var(--space-5);
+      display: grid;
+      gap: var(--space-3);
+    }
+
+    .warning b {
+      color: var(--warn-600);
+      font-size: var(--text-lg);
+    }
+
+    .warning p {
+      margin: 0;
+      color: var(--ink-800);
+      font-size: var(--text-md);
+      line-height: var(--line-base);
+    }
+
+    .action-list {
+      display: grid;
+      gap: var(--space-3);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .action-list li {
+      display: grid;
+      grid-template-columns: 26px 1fr;
+      gap: var(--space-3);
+      align-items: start;
+      color: var(--ink-750, #2b2b2b);
+      font-size: var(--text-md);
+      line-height: var(--line-base);
+    }
+
+    .action-list li::before {
+      content: "";
+      width: 16px;
+      height: 16px;
+      margin-top: 5px;
+      background: var(--green-500);
+      border: 2px solid var(--ink-950);
+    }
+
+    .footer {
+      padding: var(--space-8);
+      border-top: var(--rule-mid);
+      display: grid;
+      gap: var(--space-4);
+      background: var(--paper-50);
+    }
+
+    .footer-title {
+      color: var(--ink-950);
+      font-size: var(--text-2xl);
+      font-weight: 900;
+      line-height: 1.25;
+      margin: 0;
+    }
+
+    .footer-copy {
+      margin: 0;
+      color: var(--ink-700);
+      font-size: var(--text-lg);
+      line-height: 1.7;
+    }
+
+    .mark {
+      background: linear-gradient(180deg, transparent 54%, var(--green-100) 54%);
+      color: var(--ink-950);
+      font-weight: 900;
+    }
+
+    @media (max-width: 860px) {
+      body {
+        padding: var(--space-5);
+      }
+
+      .topbar,
+      .hero,
+      .body,
+      .footer {
+        padding-left: var(--space-6);
+        padding-right: var(--space-6);
+      }
+
+      .signal-grid,
+      .logic {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .section {
+        grid-template-columns: 1fr;
+        gap: var(--space-4);
+      }
+
+      .index {
+        grid-template-columns: 42px 1fr;
+        align-items: center;
+      }
+    }
+
+    @media (max-width: 560px) {
+      body {
+        padding: var(--space-3);
+      }
+
+      .topbar {
+        grid-template-columns: 1fr;
+      }
+
+      .topbar,
+      .hero,
+      .body,
+      .footer {
+        padding-left: var(--space-4);
+        padding-right: var(--space-4);
+      }
+
+      h1 {
+        font-size: 32px;
+      }
+
+      .thesis p,
+      .quote {
+        font-size: var(--text-lg);
+      }
+
+      .signal-grid,
+      .logic {
+        grid-template-columns: 1fr;
+      }
+
+      .signal,
+      .logic-cell {
+        border-right: 0;
+        border-bottom: var(--rule-thin);
+      }
+
+      .signal:last-child,
+      .logic-cell:last-child {
+        border-bottom: 0;
+      }
+
+      .row,
+      .terminal-line {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <header class="topbar">
+      <div class="eyebrow">DAILY REVIEW CARD</div>
+      <div class="date">2026-07-09</div>
+    </header>
+
+    <section class="hero">
+      <h1>AI 企业服务的难点不在 AI，而在业务抓手。</h1>
+      <div class="thesis">
+        <p>今天的战略价值不是“想了很多方向”，而是把模糊的新业务压回具体场景：飞书多维表格、企业工作流、客诉流程、脚本 3.0 和公众号私域兜底。</p>
+      </div>
+    </section>
+
+    <section class="signal-grid">
+      <div class="signal">
+        <b>主业</b>
+        <span>计算机代写从闲鱼单平台，改成闲鱼、小红书、公众号、海外 SEO 组合。</span>
+      </div>
+      <div class="signal">
+        <b>新线</b>
+        <span>AI 企业服务不做大词，先切飞书多维表格和企业工作流。</span>
+      </div>
+      <div class="signal">
+        <b>工具</b>
+        <span>脚本 3.0 从截图识别失败，转向影刀 PL 模板 + Codex 仿写。</span>
+      </div>
+      <div class="signal">
+        <b>风险</b>
+        <span>战略日必须被明天的执行验证，否则就是低执行的合理化包装。</span>
+      </div>
+    </section>
+
+    <section class="body">
+      <article class="section">
+        <div class="index">
+          <div class="num">01</div>
+          <div class="label">核心校正</div>
+        </div>
+        <div class="module">
+          <h2>客户买的不是 AI，而是业务被理解后的解决方案。</h2>
+          <p class="copy">AI 企业服务不能停在工具演示层。真正的壁垒是能不能进入客户流程，拆出输入、系统处理、输出结果和异常节点。飞书多维表格之所以值得切，是因为它能把企业流程、数据管理和协作问题具体化，案例也更容易复制。</p>
+          <div class="logic">
+            <div class="logic-cell">
+              <strong>不是技术展示</strong>
+              <small>会用 AI 只是基础，客户不为“你懂工具”付高价。</small>
+            </div>
+            <div class="logic-cell">
+              <strong>而是业务专家</strong>
+              <small>理解流程、识别痛点、给出可落地的自动化方案。</small>
+            </div>
+            <div class="logic-cell">
+              <strong>最终靠案例成交</strong>
+              <small>一个跑通案例，比十段宏大方案更能降低客户不确定感。</small>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="section">
+        <div class="index">
+          <div class="num">02</div>
+          <div class="label">AI 协作</div>
+        </div>
+        <div class="module">
+          <h2>给 AI 一个跑通案例，而不是继续堆提示词。</h2>
+          <div class="quote">当 AI 在复杂操作中卡住，下一步不是把提示词写得更长，而是给它一个人类跑通过的样例。</div>
+          <p class="copy">脚本 3.0 今天的突破是输入方式改变。截图识别企业微信控件失败，说明 AI 缺少稳定参照物；影刀先录制流程并导出 PL 文件，再让 Codex 读取仿写，能把“盲猜页面”变成“模仿模板”。</p>
+          <div class="terminal">
+            <div class="terminal-line"><b>旧路线</b><span>截图识别控件 → 盲猜坐标 → 调试失败 → 时间被吞掉</span></div>
+            <div class="terminal-line"><b>新路线</b><span>影刀跑通流程 → 导出 PL 文件 → Codex 读模板 → 仿写脚本</span></div>
+            <div class="terminal-line"><b>原则</b><span>复杂任务优先给案例，简单任务再给指令。</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="section">
+        <div class="index">
+          <div class="num">03</div>
+          <div class="label">主业系统</div>
+        </div>
+        <div class="module">
+          <h2>公众号不是流量入口，是平台风险的保险层。</h2>
+          <p class="copy">计算机主业的下一步不是继续加码单一闲鱼入口，而是把平台组合搭起来。闲鱼负责短期进线，小红书切留学生和高质量客户，海外 SEO 承接 SCI 与高客单需求，公众号负责写手、代理、客户三类入口的长期沉淀。</p>
+          <div class="stack">
+            <div class="row"><b>闲鱼</b><span>主力流量池，但导流提示必须当作停止线。</span></div>
+            <div class="row"><b>小红书</b><span>留学生个人 IP 和写手背书适合培养信任。</span></div>
+            <div class="row"><b>公众号</b><span>派单群和平台账号出问题时，保留客户、代理、写手的迁移节点。</span></div>
+            <div class="row"><b>海外 SEO</b><span>更适合 SCI、高客单和海外计算机需求。</span></div>
+          </div>
+        </div>
+      </article>
+
+      <article class="section">
+        <div class="index">
+          <div class="num">04</div>
+          <div class="label">行为缺口</div>
+        </div>
+        <div class="module">
+          <h2>知道重要，不等于能在现场执行。</h2>
+          <div class="warning">
+            <b>重复 Bug：闲鱼三号上品再次被推后。</b>
+            <p>这不是信息不足，而是简单高优任务缺少启动保护。明天不能再把它放到午睡后、刷资料后、再想清楚后。早上保护区先做，做完再打开信息流。</p>
+          </div>
+          <p class="copy">情绪熔断也是同一类问题。上午表现不满意后，第一反应仍是逃避。熔断机制不能只写进认知库，必须变成手串、固定动作或固定问题这种现场触发器。</p>
+        </div>
+      </article>
+
+      <article class="section">
+        <div class="index">
+          <div class="num">05</div>
+          <div class="label">明日动作</div>
+        </div>
+        <div class="module">
+          <h2>明天只看外部动作，不看脑内顺畅。</h2>
+          <ul class="action-list">
+            <li>三个闲鱼账号上架新品，其中一个号必须上 AI 企业服务。</li>
+            <li>用影刀录制企业微信自动化 PL 文件，交给 Codex 仿写脚本 3.0。</li>
+            <li>查清 chatlog 是否支持企业微信导出，不再停留在猜测。</li>
+            <li>研究戈飞海外 SEO 建站资料，开始高客单流量入口验证。</li>
+          </ul>
+        </div>
+      </article>
+    </section>
+
+    <footer class="footer">
+      <p class="footer-title">今日结论</p>
+      <p class="footer-copy">战略日可以存在，但必须被执行证伪。明天的标准不是“想得更清楚”，而是<span class="mark">闲鱼上品、脚本模板、飞书实操</span>有没有真实推进。</p>
+    </footer>
+  </main>
+</body>
+</html>
