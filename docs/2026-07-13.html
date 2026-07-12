@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>认知卡片 · 2026-07-13</title>
+  <style>
+    :root {
+      --ink-1000: #171717;
+      --ink-900: #242424;
+      --ink-800: #333333;
+      --gray-700: #4d4d4d;
+      --gray-600: #666666;
+      --gray-500: #888888;
+      --gray-400: #a1a1a1;
+      --gray-300: #c9c9c9;
+      --gray-200: #e1e1e1;
+      --gray-150: #ebebeb;
+      --gray-100: #f0f0f0;
+      --gray-075: #f5f5f5;
+      --gray-050: #fafafa;
+      --white: #ffffff;
+      --blue-700: #0761d1;
+      --blue-600: #0070f3;
+      --blue-200: #9cc6ff;
+      --blue-100: #d3e5ff;
+      --cyan-600: #00a99d;
+      --cyan-500: #00dfd8;
+      --cyan-300: #50e3c2;
+      --cyan-100: #aaffec;
+      --violet-700: #4c2889;
+      --violet-600: #7928ca;
+      --violet-200: #d8ccf1;
+      --pink-600: #ff0080;
+      --pink-500: #eb367f;
+      --pink-100: #ffe0ef;
+      --red-700: #c50000;
+      --red-600: #ee0000;
+      --red-300: #ff7b7b;
+      --red-100: #f7d4d6;
+      --coral-600: #ff4d4d;
+      --amber-700: #ab570a;
+      --amber-600: #f5a623;
+      --amber-400: #f9cb28;
+      --amber-100: #ffefcf;
+      --green-700: #08794f;
+      --green-600: #0c9b69;
+      --green-100: #d8f5e8;
+      --surface-page: #ececec;
+      --surface-card: #ffffff;
+      --surface-soft: #fafafa;
+      --surface-inset: #f5f5f5;
+      --surface-dark: #171717;
+      --border-soft: #ebebeb;
+      --border-medium: #c9c9c9;
+      --border-strong: #171717;
+      --text-primary: #171717;
+      --text-secondary: #4d4d4d;
+      --text-muted: #888888;
+      --text-inverse: #ffffff;
+      --info-bg: #d3e5ff;
+      --warning-bg: #ffefcf;
+      --risk-bg: #f7d4d6;
+      --success-bg: #d8f5e8;
+      --font-sans: Inter, "Microsoft YaHei", "PingFang SC", system-ui, sans-serif;
+      --font-mono: "Cascadia Code", "JetBrains Mono", Consolas, monospace;
+      --text-hero: 52px;
+      --text-display: 38px;
+      --text-h1: 32px;
+      --text-h2: 27px;
+      --text-h3: 22px;
+      --text-h4: 19px;
+      --text-lead: 18px;
+      --text-body-lg: 17px;
+      --text-body: 16px;
+      --text-body-sm: 14px;
+      --text-caption: 12px;
+      --text-micro: 11px;
+      --text-code: 13px;
+      --text-quote: 25px;
+      --text-stat: 30px;
+      --text-step: 23px;
+      --text-risk: 15px;
+      --text-action: 16px;
+      --text-label: 12px;
+      --text-footer: 12px;
+      --weight-regular: 400;
+      --weight-medium: 500;
+      --weight-semibold: 600;
+      --line-tight: 1.08;
+      --line-title: 1.22;
+      --line-body: 1.75;
+      --line-compact: 1.5;
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 20px;
+      --space-6: 24px;
+      --space-8: 32px;
+      --space-10: 40px;
+      --space-12: 48px;
+      --space-16: 64px;
+      --space-20: 80px;
+      --space-24: 96px;
+      --mark-core: 8px;
+      --mark-section: 4px;
+      --mark-command: 2px;
+      --mark-status: 6px;
+      --mark-quote: 8px;
+      --mark-risk: 8px;
+      --mark-action: 3px;
+      --mark-example: 1px;
+      --mark-divider: 1px;
+      --mark-progress: 10px;
+      --shadow-soft: 0 1px 1px #00000008, 0 2px 2px #0000000a;
+      --shadow-stack: 0 2px 2px #0000000a, 0 8px 16px -8px #00000012;
+      --mesh-gradient: linear-gradient(112deg, #0070f3 0%, #00dfd8 28%, #7928ca 53%, #ff0080 72%, #ff4d4d 86%, #f9cb28 100%);
+      --panel-shadow: 0 1px 1px #00000008, 0 2px 2px #0000000a;
+      --status-border: 1px solid #171717;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { background: var(--surface-page); }
+
+    body {
+      margin: 0;
+      max-width: 100%;
+      overflow-x: hidden;
+      color: var(--text-primary);
+      background: var(--surface-page);
+      font-family: var(--font-sans);
+      letter-spacing: 0;
+    }
+
+    .shell {
+      width: min(100%, 1080px);
+      max-width: 100%;
+      margin: 0 auto;
+      padding: var(--space-10) 0;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      background: var(--surface-card);
+      border: 1px solid var(--border-medium);
+      border-radius: 0;
+      box-shadow: var(--shadow-stack);
+      overflow: hidden;
+    }
+
+    .hero {
+      min-height: 700px;
+      padding: var(--space-10) var(--space-12) var(--space-12);
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      grid-template-columns: minmax(0, 1fr);
+      position: relative;
+      background: var(--surface-card);
+      overflow: hidden;
+    }
+
+    .mesh {
+      position: absolute;
+      inset: auto -10% -38% -10%;
+      height: 62%;
+      background: var(--mesh-gradient);
+      opacity: 0.93;
+    }
+
+    .hero-meta,
+    .hero-main,
+    .hero-status { position: relative; z-index: 1; min-width: 0; max-width: 100%; }
+
+    .hero-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-6);
+      padding-bottom: var(--space-5);
+      border-bottom: 1px solid var(--border-soft);
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: var(--text-caption);
+      line-height: var(--line-compact);
+    }
+
+    .hero-main {
+      align-self: center;
+      min-width: 0;
+      max-width: 900px;
+      padding: var(--space-20) 0 var(--space-24);
+    }
+
+    .terminal-label {
+      margin: 0 0 var(--space-6);
+      color: var(--blue-600);
+      font-family: var(--font-mono);
+      font-size: var(--text-label);
+      font-weight: var(--weight-medium);
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    h1 {
+      max-width: 900px;
+      margin: 0;
+      font-size: var(--text-hero);
+      font-weight: var(--weight-semibold);
+      line-height: var(--line-tight);
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .hero-lead {
+      max-width: 760px;
+      margin: var(--space-8) 0 0;
+      color: var(--text-secondary);
+      font-size: var(--text-lead);
+      line-height: var(--line-body);
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .hero-status {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: var(--status-border);
+      background: var(--surface-card);
+      box-shadow: var(--panel-shadow);
+    }
+
+    .status-cell {
+      min-width: 0;
+      min-height: 112px;
+      padding: var(--space-5);
+      border-right: 1px solid var(--border-strong);
+    }
+
+    .status-cell:last-child { border-right: 0; }
+
+    .status-cell strong {
+      display: block;
+      margin-bottom: var(--space-2);
+      font-size: var(--text-h4);
+      font-weight: var(--weight-semibold);
+    }
+
+    .status-cell span {
+      color: var(--text-secondary);
+      font-size: var(--text-body-sm);
+      line-height: var(--line-compact);
+    }
+
+    .status-cell:nth-child(1) { border-top: var(--mark-status) solid var(--cyan-500); }
+    .status-cell:nth-child(2) { border-top: var(--mark-status) solid var(--amber-600); }
+    .status-cell:nth-child(3) { border-top: var(--mark-status) solid var(--pink-600); }
+
+    .section {
+      min-width: 0;
+      padding: var(--space-16) var(--space-12);
+      border-top: var(--mark-divider) solid var(--border-soft);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 70px 1fr;
+      gap: var(--space-6);
+      align-items: start;
+      margin-bottom: var(--space-10);
+    }
+
+    .section-no {
+      padding-top: var(--space-2);
+      color: var(--blue-600);
+      font-family: var(--font-mono);
+      font-size: var(--text-caption);
+      border-top: var(--mark-section) solid currentColor;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: var(--text-display);
+      font-weight: var(--weight-semibold);
+      line-height: var(--line-title);
+      overflow-wrap: anywhere;
+    }
+
+    .section-lead {
+      max-width: 780px;
+      margin: var(--space-4) 0 0;
+      color: var(--text-secondary);
+      font-size: var(--text-body-lg);
+      line-height: var(--line-body);
+    }
+
+    .command {
+      color: var(--text-inverse);
+      background: var(--surface-dark);
+    }
+
+    .command .section-no { color: var(--cyan-300); }
+
+    .command-line {
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      border: var(--mark-command) solid var(--white);
+    }
+
+    .command-step {
+      min-height: 150px;
+      padding: var(--space-5) var(--space-4);
+      border-right: 1px solid #4d4d4d;
+    }
+
+    .command-step:last-child { border-right: 0; }
+
+    .command-step b {
+      display: block;
+      margin-bottom: var(--space-8);
+      color: var(--cyan-300);
+      font-family: var(--font-mono);
+      font-size: var(--text-caption);
+      font-weight: var(--weight-regular);
+    }
+
+    .command-step strong {
+      display: block;
+      margin-bottom: var(--space-2);
+      font-size: var(--text-body);
+      font-weight: var(--weight-medium);
+    }
+
+    .command-step span {
+      color: var(--gray-300);
+      font-size: var(--text-body-sm);
+      line-height: var(--line-compact);
+    }
+
+    .code-block {
+      margin-top: var(--space-8);
+      padding: var(--space-6);
+      color: var(--cyan-100);
+      background: var(--ink-900);
+      border-left: var(--mark-core) solid var(--pink-600);
+      font-family: var(--font-mono);
+      font-size: var(--text-code);
+      line-height: 1.8;
+      overflow-wrap: anywhere;
+    }
+
+    .deploy-grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: var(--space-6);
+    }
+
+    .panel {
+      min-width: 0;
+      padding: var(--space-8);
+      background: var(--surface-soft);
+      border: 1px solid var(--border-soft);
+      border-radius: 0;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .panel-dark {
+      color: var(--text-inverse);
+      background: var(--surface-dark);
+      border-color: var(--surface-dark);
+    }
+
+    .panel h3 {
+      margin: 0 0 var(--space-5);
+      font-size: var(--text-h3);
+      font-weight: var(--weight-semibold);
+      line-height: var(--line-title);
+    }
+
+    .panel p {
+      margin: 0;
+      color: var(--text-secondary);
+      font-size: var(--text-body);
+      line-height: var(--line-body);
+    }
+
+    .panel-dark p { color: var(--gray-300); }
+
+    .state-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: var(--space-6);
+    }
+
+    .state-table th,
+    .state-table td {
+      padding: var(--space-3) var(--space-2);
+      text-align: left;
+      border-top: 1px solid var(--border-soft);
+      vertical-align: top;
+    }
+
+    .state-table th {
+      color: var(--text-muted);
+      font-family: var(--font-mono);
+      font-size: var(--text-micro);
+      font-weight: var(--weight-regular);
+    }
+
+    .state-table td {
+      font-size: var(--text-body-sm);
+      line-height: var(--line-compact);
+    }
+
+    .state-ok { color: var(--green-700); font-weight: var(--weight-semibold); }
+    .state-pending { color: var(--amber-700); font-weight: var(--weight-semibold); }
+    .state-block { color: var(--red-700); font-weight: var(--weight-semibold); }
+
+    .baseline {
+      margin-top: var(--space-6);
+      padding: var(--space-5);
+      color: var(--text-primary);
+      background: var(--amber-100);
+      border-left: var(--mark-risk) solid var(--amber-600);
+      font-size: var(--text-body);
+      line-height: var(--line-body);
+    }
+
+    .refactor {
+      background: var(--surface-inset);
+    }
+
+    .known-unknown {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1px solid var(--border-strong);
+    }
+
+    .ku-column { padding: var(--space-8); }
+    .ku-column:first-child { border-right: 1px solid var(--border-strong); }
+
+    .ku-label {
+      margin: 0 0 var(--space-5);
+      color: var(--blue-600);
+      font-family: var(--font-mono);
+      font-size: var(--text-label);
+    }
+
+    .ku-column h3 {
+      margin: 0 0 var(--space-5);
+      font-size: var(--text-h2);
+      font-weight: var(--weight-semibold);
+      line-height: var(--line-title);
+    }
+
+    .ku-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .ku-list li {
+      padding: var(--space-4) 0;
+      border-top: 1px solid var(--border-medium);
+      color: var(--text-secondary);
+      font-size: var(--text-body);
+      line-height: var(--line-body);
+    }
+
+    .identity-map {
+      margin-top: var(--space-8);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: 1px solid var(--border-strong);
+      border-left: 1px solid var(--border-strong);
+    }
+
+    .identity-node {
+      min-height: 150px;
+      padding: var(--space-5);
+      background: var(--surface-card);
+      border-right: 1px solid var(--border-strong);
+      border-bottom: 1px solid var(--border-strong);
+    }
+
+    .identity-node b {
+      display: block;
+      margin-bottom: var(--space-6);
+      color: var(--violet-600);
+      font-family: var(--font-mono);
+      font-size: var(--text-caption);
+    }
+
+    .identity-node strong { display: block; margin-bottom: var(--space-2); font-size: var(--text-body); }
+    .identity-node span { color: var(--text-secondary); font-size: var(--text-body-sm); line-height: var(--line-compact); }
+
+    .split-check {
+      display: grid;
+      grid-template-columns: 1fr 54px 1fr;
+      align-items: stretch;
+      border: 1px solid var(--border-strong);
+    }
+
+    .check-side { padding: var(--space-8); }
+    .check-side h3 { margin: 0 0 var(--space-4); font-size: var(--text-h3); font-weight: var(--weight-semibold); }
+    .check-side p { margin: 0; color: var(--text-secondary); font-size: var(--text-body); line-height: var(--line-body); }
+
+    .versus {
+      display: grid;
+      place-items: center;
+      color: var(--text-inverse);
+      background: var(--surface-dark);
+      font-family: var(--font-mono);
+      font-size: var(--text-caption);
+      writing-mode: vertical-rl;
+    }
+
+    .truth-line {
+      margin-top: var(--space-6);
+      padding: var(--space-6);
+      background: var(--risk-bg);
+      border-left: var(--mark-risk) solid var(--red-600);
+      font-size: var(--text-body-lg);
+      line-height: var(--line-body);
+    }
+
+    .experiment {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border: 1px solid var(--border-strong);
+    }
+
+    .experiment-cell {
+      min-height: 200px;
+      padding: var(--space-6);
+      border-right: 1px solid var(--border-strong);
+    }
+
+    .experiment-cell:last-child { border-right: 0; }
+    .experiment-cell:nth-child(1) { background: var(--pink-100); }
+    .experiment-cell:nth-child(2) { background: var(--success-bg); }
+    .experiment-cell:nth-child(3) { background: var(--warning-bg); }
+
+    .experiment-cell b {
+      display: block;
+      margin-bottom: var(--space-8);
+      font-family: var(--font-mono);
+      font-size: var(--text-caption);
+      font-weight: var(--weight-regular);
+    }
+
+    .experiment-cell strong { display: block; margin-bottom: var(--space-3); font-size: var(--text-h4); }
+    .experiment-cell p { margin: 0; color: var(--text-secondary); font-size: var(--text-body-sm); line-height: var(--line-body); }
+
+    .quote-band {
+      padding: var(--space-16) var(--space-12);
+      color: var(--text-inverse);
+      background: var(--surface-dark);
+      border-left: var(--mark-quote) solid var(--cyan-500);
+    }
+
+    .quote-band blockquote {
+      max-width: 900px;
+      margin: 0;
+      font-size: var(--text-quote);
+      font-weight: var(--weight-medium);
+      line-height: 1.65;
+    }
+
+    .quote-band cite {
+      display: block;
+      margin-top: var(--space-6);
+      color: var(--gray-400);
+      font-family: var(--font-mono);
+      font-size: var(--text-caption);
+      font-style: normal;
+    }
+
+    .action-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      border-top: 1px solid var(--border-strong);
+    }
+
+    .action-list li {
+      display: grid;
+      grid-template-columns: 48px 1fr 150px;
+      gap: var(--space-4);
+      align-items: center;
+      padding: var(--space-5) 0;
+      border-bottom: 1px solid var(--border-medium);
+      font-size: var(--text-action);
+      line-height: var(--line-compact);
+    }
+
+    .action-box {
+      width: 26px;
+      height: 26px;
+      border: var(--mark-action) solid var(--ink-1000);
+    }
+
+    .action-tag {
+      color: var(--blue-600);
+      font-family: var(--font-mono);
+      font-size: var(--text-caption);
+      text-align: right;
+    }
+
+    .risk-grid {
+      margin-top: var(--space-8);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-4);
+    }
+
+    .risk-item {
+      padding: var(--space-5);
+      background: var(--risk-bg);
+      border-left: var(--mark-risk) solid var(--red-600);
+      font-size: var(--text-risk);
+      line-height: var(--line-body);
+    }
+
+    .footer {
+      padding: var(--space-10) var(--space-12);
+      border-top: 1px solid var(--border-soft);
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-6);
+      color: var(--text-muted);
+      background: var(--surface-soft);
+      font-family: var(--font-mono);
+      font-size: var(--text-footer);
+      line-height: var(--line-compact);
+    }
+
+    @media (max-width: 900px) {
+      .shell { padding: 0; }
+      .card { border-left: 0; border-right: 0; }
+      .command-line { grid-template-columns: repeat(3, 1fr); }
+      .command-step:nth-child(3) { border-right: 0; }
+      .command-step:nth-child(n+4) { border-top: 1px solid #4d4d4d; }
+      .identity-map { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 700px) {
+      :root { --text-hero: 43px; --text-display: 33px; }
+      .hero, .section, .quote-band, .footer { padding-left: var(--space-6); padding-right: var(--space-6); }
+      .hero { min-height: 640px; }
+      .hero-status, .deploy-grid, .experiment, .risk-grid { grid-template-columns: 1fr; }
+      .hero-status { width: 100%; }
+      .status-cell { min-height: 88px; border-right: 0; border-bottom: 1px solid var(--border-strong); }
+      .status-cell:last-child { border-bottom: 0; }
+      .panel { padding: var(--space-6); }
+      .experiment-cell { min-height: 0; border-right: 0; border-bottom: 1px solid var(--border-strong); }
+      .experiment-cell:last-child { border-bottom: 0; }
+      .action-list li { grid-template-columns: 40px 1fr; }
+      .action-tag { grid-column: 2; text-align: left; }
+    }
+
+    @media (max-width: 520px) {
+      :root { --text-hero: 36px; --text-display: 29px; --text-quote: 22px; }
+      .hero { min-height: 0; padding-top: var(--space-6); }
+      .hero-meta { display: grid; grid-template-columns: 1fr; gap: var(--space-2); }
+      .hero-main { padding: var(--space-16) 0 var(--space-20); }
+      .mesh { inset: auto -40% -24% -40%; height: 48%; }
+      .section { padding-top: var(--space-12); padding-bottom: var(--space-12); }
+      .section-head { grid-template-columns: 1fr; gap: var(--space-4); }
+      .section-no { width: 52px; }
+      .command-line, .known-unknown, .identity-map, .split-check { grid-template-columns: 1fr; }
+      .command-step, .command-step:nth-child(3) { min-height: 0; border-right: 0; border-top: 1px solid #4d4d4d; }
+      .command-step:first-child { border-top: 0; }
+      .ku-column:first-child { border-right: 0; border-bottom: 1px solid var(--border-strong); }
+      .versus { min-height: 42px; writing-mode: horizontal-tb; }
+      .footer { display: grid; grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 380px) {
+      :root { --text-hero: 32px; --text-display: 26px; --text-body: 15px; }
+      .hero, .section, .quote-band, .footer { padding-left: var(--space-5); padding-right: var(--space-5); }
+      .code-block { padding: var(--space-4); }
+      .action-list li { grid-template-columns: 34px 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <article class="card">
+      <header class="hero">
+        <div class="mesh"></div>
+        <div class="hero-meta"><span>DAILY REVIEW / 2026-07-13</span><span>STATUS: BUILDING, NOT FINISHED</span></div>
+        <div class="hero-main">
+          <p class="terminal-label">$ define --problem-before-solution</p>
+          <h1>给 AI 一张地图，也给自己一张地图。</h1>
+          <p class="hero-lead">脚本需要控件地图，目标需要生活结构，离场判断需要把内容价值和情绪触发分开。今天真正的进展，不是找到一个宏大答案，而是开始拒绝让模糊变量混在一起。</p>
+        </div>
+        <div class="hero-status">
+          <div class="status-cell"><strong>核心路径可行</strong><span>脚本前几次完成拉群、发消息、改群名</span></div>
+          <div class="status-cell"><strong>稳定性待验</strong><span>后续测试再次出错，尚不能交给员工</span></div>
+          <div class="status-cell"><strong>身份目标待核</strong><span>喜欢交流已知，喜欢投资仍不确定</span></div>
+        </div>
+      </header>
+
+      <section class="section command">
+        <div class="section-head">
+          <div class="section-no">01 / PROTOCOL</div>
+          <div><h2>正确闭环，不是一次跑通。</h2><p class="section-lead">把桌面自动化从盲人摸象，改成一条可观察、可回退、可验收的部署链。</p></div>
+        </div>
+        <div class="command-line">
+          <div class="command-step"><b>01</b><strong>保留基线</strong><span>先冻结当前可运行版本</span></div>
+          <div class="command-step"><b>02</b><strong>提供地图</strong><span>控件树、节点名、原流程</span></div>
+          <div class="command-step"><b>03</b><strong>限制自由</strong><span>禁截图、禁扩需求、禁盲试</span></div>
+          <div class="command-step"><b>04</b><strong>最小实现</strong><span>一次只增加一个动作</span></div>
+          <div class="command-step"><b>05</b><strong>实际运行</strong><span>激活前台并观察全过程</span></div>
+          <div class="command-step"><b>06</b><strong>稳定验收</strong><span>连续成功与异常恢复都通过</span></div>
+        </div>
+        <div class="code-block">input: 影刀控件节点 + 原流程<br>constraint: 不截图，不 OCR，不擅自加功能<br>output: 先产生一个可运行样本，再谈扩展</div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div class="section-no">02 / DEPLOY</div>
+          <div><h2>成功样本出现了，稳定系统还没有。</h2><p class="section-lead">今天最容易犯的错，是把“终于动了”提前命名为“已经完成”。</p></div>
+        </div>
+        <div class="deploy-grid">
+          <div class="panel">
+            <h3>脚本 3.0 当前状态</h3>
+            <table class="state-table">
+              <thead><tr><th>模块</th><th>观察</th><th>状态</th></tr></thead>
+              <tbody>
+                <tr><td>控件定位</td><td>影刀节点地图能减少盲试</td><td class="state-ok">可行</td></tr>
+                <tr><td>拉群与发消息</td><td>前几次连续动作成功</td><td class="state-ok">有样本</td></tr>
+                <tr><td>后续复测</td><td>再次出现不稳定</td><td class="state-pending">待定位</td></tr>
+                <tr><td>员工部署</td><td>异常与恢复尚未验收</td><td class="state-block">未开始</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="panel panel-dark">
+            <h3>为什么会倒退</h3>
+            <p>长会话被压缩后，部分实现细节丢失。直接在原流程上追加拉群功能，一度把已稳定部分一起改坏。Skill 里的少量说明不足以恢复全部上下文。</p>
+            <div class="baseline">新增功能前，先留下可运行基线。没有回退点，迭代就可能变成重做。</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section refactor">
+        <div class="section-head">
+          <div class="section-no">03 / REFACTOR</div>
+          <div><h2>把“投资人”从答案，退回假设。</h2><p class="section-lead">身份会让人兴奋，但只有日常结构能判断它是不是长期目标。</p></div>
+        </div>
+        <div class="known-unknown">
+          <div class="ku-column">
+            <p class="ku-label">KNOWN / 已知</p>
+            <h3>真正反复出现的偏好</h3>
+            <ul class="ku-list">
+              <li>喜欢和聪明的人深入交流</li>
+              <li>喜欢分析项目与商业模型</li>
+              <li>希望成为资源和价值供给方</li>
+              <li>不愿长期停留在重复、等待和低反馈里</li>
+            </ul>
+          </div>
+          <div class="ku-column">
+            <p class="ku-label">UNKNOWN / 未知</p>
+            <h3>仍不能确认的结论</h3>
+            <ul class="ku-list">
+              <li>是否真的喜欢投资行为本身</li>
+              <li>投资人是不是唯一承载方式</li>
+              <li>三年目标是 1000 万还是 2000 万</li>
+              <li>目标数字有没有收入结构与路径依据</li>
+            </ul>
+          </div>
+        </div>
+        <div class="identity-map">
+          <div class="identity-node"><b>WHO</b><strong>和谁交流</strong><span>创业者、操盘手、聪明的年轻人</span></div>
+          <div class="identity-node"><b>WHAT</b><strong>讨论什么</strong><span>业务模型、项目判断、增长路径</span></div>
+          <div class="identity-node"><b>VALUE</b><strong>提供什么</strong><span>资金、资源、判断或真实执行帮助</span></div>
+          <div class="identity-node"><b>INCOME</b><strong>靠什么收入</strong><span>仍需现实倒推，不能靠身份想象补齐</span></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div class="section-no">04 / DEBUG</div>
+          <div><h2>提前离场，有两个变量。</h2><p class="section-lead">内容价值低是真的，嫉妒与压抑也是真的。只承认其中一个，下一次还会误判。</p></div>
+        </div>
+        <div class="split-check">
+          <div class="check-side"><h3>变量 A：活动价值</h3><p>网络、key 和替换平台占用大量时间，教程路径已基本看懂，继续留下的边际收益偏低。</p></div>
+          <div class="versus">AND</div>
+          <div class="check-side"><h3>变量 B：情绪触发</h3><p>潜在合作对象与其他男性热烈互动，暴躁和压抑加速了离场，也影响了后续合作沟通。</p></div>
+        </div>
+        <div class="truth-line">理性止损和情绪逃离可以同时发生。以后离开前，两个问题分开回答、分开记录。</div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div class="section-no">05 / EXPERIMENT</div>
+          <div><h2>高刺激置换，是实验，不是结论。</h2><p class="section-lead">短剧、步行和爬楼叠加产生了强烈感受，但“付出体力”不自动等于“解决依赖”。</p></div>
+        </div>
+        <div class="experiment">
+          <div class="experiment-cell"><b>INPUT</b><strong>高刺激内容</strong><p>短剧和金句持续抬高兴奋，提供暂时的情绪出口。</p></div>
+          <div class="experiment-cell"><b>COST</b><strong>积分与体力</strong><p>估计步行约 5 公里、爬楼约一小时，为使用增加现实代价。</p></div>
+          <div class="experiment-cell"><b>VERIFY</b><strong>仍需观察</strong><p>是否减少后续使用、改善情绪，以及对睡眠和恢复有何影响。</p></div>
+        </div>
+      </section>
+
+      <section class="quote-band">
+        <blockquote>“给他地图，不给自由。”<br>对 AI 如此，对自己的目标也一样：先把变量看清，再允许系统往前跑。</blockquote>
+        <cite>今日记忆锚点 / 2026-07-13</cite>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div class="section-no">06 / NEXT</div>
+          <div><h2>下一步，只制造可判断的证据。</h2><p class="section-lead">不再增加宏大解释，先补齐失败位置、项目清单、目标数字和真实对话。</p></div>
+        </div>
+        <ul class="action-list">
+          <li><span class="action-box"></span><span>检查脚本最近一次失败日志，定位具体控件或步骤。</span><span class="action-tag">SCRIPT / NOW</span></li>
+          <li><span class="action-box"></span><span>保存可运行基线，写清连续成功和异常恢复验收标准。</span><span class="action-tag">BEFORE EXPAND</span></li>
+          <li><span class="action-box"></span><span>列出第二曲线候选，逐项检查喜欢、可积累、第一步和反馈周期。</span><span class="action-tag">PROJECT / THIS WEEK</span></li>
+          <li><span class="action-box"></span><span>确认三年采用 1000 万还是 2000 万，并写出数字依据。</span><span class="action-tag">TARGET / VERIFY</span></li>
+          <li><span class="action-box"></span><span>先明确能提供的具体价值，再发起一次合作对话。</span><span class="action-tag">RELATION / REAL SAMPLE</span></li>
+        </ul>
+        <div class="risk-grid">
+          <div class="risk-item">待核：脚本后几次测试究竟在哪一步失败，是否能稳定复现。</div>
+          <div class="risk-item">待核：投资人是长期工作偏好，还是吸引聪明人靠近的身份意象。</div>
+          <div class="risk-item">待核：多巴胺置换是否改善使用与情绪，还是延长了高刺激时段。</div>
+          <div class="risk-item">待核：合作推迟究竟是时机不对，还是在回避一次真实的人际反馈。</div>
+        </div>
+      </section>
+
+      <footer class="footer"><span>认知卡片 / 2026-07-13</span><span>风格参考：Vercel-Inspired design system</span></footer>
+    </article>
+  </main>
+</body>
+</html>
