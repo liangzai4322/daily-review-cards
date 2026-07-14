@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>认知卡片 · 2026-07-15</title>
+  <style>
+    :root {
+      --c-red: #e60012;
+      --c-red-dark: #9e0010;
+      --c-orange: #f68d1f;
+      --c-orange-dark: #bc5e00;
+      --c-amber: #ecab37;
+      --c-gold: #e48600;
+      --c-yellow-soft: #ffe7a6;
+      --c-canvas: #7a8aba;
+      --c-canvas-deep: #566aa5;
+      --c-canvas-soft: #9fbee7;
+      --c-periwinkle: #8ba1d4;
+      --c-lavender: #acace7;
+      --c-ice: #c0d5e6;
+      --c-indigo: #3d4f97;
+      --c-indigo-dark: #293568;
+      --c-indigo-muted: #60619c;
+      --c-platinum: #dedede;
+      --c-platinum-dark: #b9bdc9;
+      --c-white: #ffffff;
+      --c-white-soft: #f5f7ff;
+      --c-carbon: #21242e;
+      --c-carbon-soft: #303541;
+      --c-carbon-mid: #414754;
+      --c-ink: #171a22;
+      --c-ink-soft: #3d4f97;
+      --c-ink-muted: #5d6473;
+      --c-hairline: #5a5f8c;
+      --c-highlight: #dce8ff;
+      --c-shadow: #283665;
+      --c-shadow-deep: #121621;
+      --c-success: #18794e;
+      --c-success-soft: #dff6ea;
+      --c-info: #206479;
+      --c-info-soft: #d8f0f4;
+      --c-warning: #9a5900;
+      --c-warning-soft: #fff0c7;
+      --c-risk: #c52332;
+      --c-risk-soft: #ffe3e6;
+      --c-action: #f68d1f;
+      --c-action-soft: #fff0df;
+      --c-method: #3d4f97;
+      --c-method-soft: #e8edff;
+      --c-example: #6f4b97;
+      --c-example-soft: #f0e8fa;
+      --c-rule: #7e89aa;
+      --c-dot: rgba(255, 255, 255, 0.12);
+      --c-black-dot: rgba(0, 0, 0, 0.16);
+      --c-focus-line: #f68d1f;
+      --c-result-line: #18794e;
+      --c-risk-line: #e60012;
+      --c-quote-line: #ecab37;
+      --font-sans: Arial, "Microsoft YaHei", sans-serif;
+      --font-display: "Arial Black", "Microsoft YaHei", sans-serif;
+      --fs-01: 10px;
+      --fs-02: 11px;
+      --fs-03: 12px;
+      --fs-04: 13px;
+      --fs-05: 14px;
+      --fs-06: 15px;
+      --fs-07: 16px;
+      --fs-08: 18px;
+      --fs-09: 20px;
+      --fs-10: 22px;
+      --fs-11: 24px;
+      --fs-12: 28px;
+      --fs-13: 32px;
+      --fs-14: 36px;
+      --fs-15: 40px;
+      --fs-16: 44px;
+      --fs-17: 48px;
+      --fs-18: 52px;
+      --fs-19: 58px;
+      --fs-20: 64px;
+      --fw-light: 300;
+      --fw-normal: 400;
+      --fw-medium: 500;
+      --fw-bold: 700;
+      --fw-black: 900;
+      --lh-tight: 1.05;
+      --lh-heading: 1.22;
+      --lh-body: 1.72;
+      --lh-loose: 1.9;
+      --ls-zero: 0;
+      --sp-01: 2px;
+      --sp-02: 4px;
+      --sp-03: 6px;
+      --sp-04: 8px;
+      --sp-05: 10px;
+      --sp-06: 12px;
+      --sp-07: 16px;
+      --sp-08: 20px;
+      --sp-09: 24px;
+      --sp-10: 28px;
+      --sp-11: 32px;
+      --sp-12: 40px;
+      --sp-13: 48px;
+      --sp-14: 56px;
+      --sp-15: 64px;
+      --sp-16: 80px;
+      --mark-core: 8px solid var(--c-red);
+      --mark-action: 8px solid var(--c-action);
+      --mark-result: 8px solid var(--c-success);
+      --mark-method: 8px solid var(--c-method);
+      --mark-risk: 8px solid var(--c-risk);
+      --mark-quote: 8px solid var(--c-quote-line);
+      --mark-data: 3px solid var(--c-indigo-dark);
+      --mark-seam: 1px solid var(--c-hairline);
+      --mark-bevel-top: 2px solid var(--c-highlight);
+      --mark-bevel-bottom: 3px solid var(--c-shadow);
+      --mark-command: 4px solid var(--c-orange);
+      --mark-dotted: 1px dotted var(--c-indigo-muted);
+      --max-card: 980px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      background: var(--c-indigo-dark);
+      color: var(--c-ink);
+      font-family: var(--font-sans);
+      letter-spacing: var(--ls-zero);
+    }
+
+    body {
+      margin: 0;
+      min-width: 320px;
+      background-color: var(--c-indigo-dark);
+      background-image: radial-gradient(var(--c-dot) 1px, transparent 1px);
+      background-size: 8px 8px;
+    }
+
+    .card-shell {
+      width: 100%;
+      padding: var(--sp-13) var(--sp-08);
+    }
+
+    .cognitive-card {
+      width: min(100%, var(--max-card));
+      margin: 0 auto;
+      overflow: hidden;
+      border: 3px solid var(--c-carbon);
+      border-radius: 0;
+      background: var(--c-canvas);
+      box-shadow: 0 0 0 2px var(--c-highlight), 0 10px 0 var(--c-shadow-deep);
+    }
+
+    .utility-strip {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--sp-06);
+      min-height: 32px;
+      padding: var(--sp-04) var(--sp-07);
+      border-bottom: 2px solid var(--c-shadow-deep);
+      background-color: var(--c-carbon);
+      background-image: radial-gradient(var(--c-black-dot) 1px, transparent 1px);
+      background-size: 5px 5px;
+      color: var(--c-white);
+      font-size: var(--fs-02);
+      font-weight: var(--fw-bold);
+      line-height: 1.3;
+      text-transform: uppercase;
+    }
+
+    .utility-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--sp-04);
+      color: var(--c-amber);
+    }
+
+    .utility-light {
+      width: 10px;
+      height: 10px;
+      border: 2px solid var(--c-white);
+      border-radius: 50%;
+      background: var(--c-red);
+      flex: 0 0 auto;
+    }
+
+    .utility-date {
+      color: var(--c-canvas-soft);
+      font-weight: var(--fw-normal);
+    }
+
+    .process-strip {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      border-bottom: 2px solid var(--c-indigo-dark);
+      background: var(--c-canvas-soft);
+    }
+
+    .process-step {
+      padding: var(--sp-05) var(--sp-04);
+      border-right: 1px solid var(--c-indigo-muted);
+      color: var(--c-indigo-dark);
+      font-size: var(--fs-02);
+      font-weight: var(--fw-bold);
+      line-height: 1.3;
+      text-align: center;
+    }
+
+    .process-step:last-child {
+      border-right: 0;
+    }
+
+    .process-step strong {
+      display: block;
+      margin-bottom: var(--sp-01);
+      color: var(--c-carbon);
+      font-size: var(--fs-04);
+    }
+
+    .hero {
+      position: relative;
+      padding: var(--sp-15) var(--sp-12) var(--sp-13);
+      border-top: var(--mark-bevel-top);
+      border-bottom: 5px solid var(--c-indigo-dark);
+      background-color: var(--c-lavender);
+      background-image:
+        linear-gradient(90deg, rgba(61, 79, 151, 0.22) 1px, transparent 1px),
+        linear-gradient(rgba(61, 79, 151, 0.22) 1px, transparent 1px),
+        linear-gradient(135deg, rgba(255, 255, 255, 0.42), transparent 50%);
+      background-size: 26px 26px, 26px 26px, 100% 100%;
+    }
+
+    .hero-kicker {
+      display: inline-block;
+      margin-bottom: var(--sp-07);
+      padding: var(--sp-03) var(--sp-06);
+      border-top: 2px solid var(--c-yellow-soft);
+      border-right: 2px solid var(--c-orange-dark);
+      border-bottom: 3px solid var(--c-orange-dark);
+      border-left: 2px solid var(--c-yellow-soft);
+      background: var(--c-amber);
+      color: var(--c-carbon);
+      font-size: var(--fs-02);
+      font-weight: var(--fw-black);
+      line-height: 1;
+    }
+
+    .hero h1 {
+      max-width: 820px;
+      margin: 0;
+      color: var(--c-white);
+      font-family: var(--font-display);
+      font-size: var(--fs-18);
+      font-weight: var(--fw-black);
+      line-height: var(--lh-tight);
+      letter-spacing: 0;
+      -webkit-text-stroke: 2px var(--c-indigo-dark);
+      text-shadow: 4px 4px 0 var(--c-indigo-dark);
+    }
+
+    .hero h1 span {
+      color: var(--c-orange);
+      -webkit-text-stroke-color: var(--c-carbon);
+      text-shadow: 4px 4px 0 var(--c-carbon);
+    }
+
+    .hero-summary {
+      max-width: 760px;
+      margin: var(--sp-09) 0 0;
+      padding: var(--sp-07) var(--sp-08);
+      border-left: var(--mark-core);
+      background: rgba(255, 255, 255, 0.9);
+      color: var(--c-carbon);
+      font-size: var(--fs-08);
+      font-weight: var(--fw-bold);
+      line-height: 1.65;
+    }
+
+    .hero-note {
+      margin-top: var(--sp-06);
+      color: var(--c-indigo-dark);
+      font-size: var(--fs-04);
+      font-weight: var(--fw-bold);
+      line-height: 1.6;
+    }
+
+    .section {
+      margin: var(--sp-08);
+      border-top: var(--mark-bevel-top);
+      border-right: 2px solid var(--c-shadow);
+      border-bottom: var(--mark-bevel-bottom);
+      border-left: 2px solid var(--c-highlight);
+      background: var(--c-white-soft);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-06);
+      padding: var(--sp-06) var(--sp-07);
+      border-bottom: 2px solid var(--c-indigo-dark);
+      background: var(--c-canvas-deep);
+      color: var(--c-white);
+    }
+
+    .section-number {
+      display: grid;
+      width: 28px;
+      height: 28px;
+      place-items: center;
+      border-top: 2px solid var(--c-yellow-soft);
+      border-right: 2px solid var(--c-orange-dark);
+      border-bottom: 3px solid var(--c-orange-dark);
+      border-left: 2px solid var(--c-yellow-soft);
+      background: var(--c-amber);
+      color: var(--c-carbon);
+      font-size: var(--fs-04);
+      font-weight: var(--fw-black);
+      line-height: 1;
+      flex: 0 0 auto;
+    }
+
+    .section-title-wrap {
+      min-width: 0;
+    }
+
+    .section-title-wrap small {
+      display: block;
+      margin-bottom: var(--sp-01);
+      color: var(--c-canvas-soft);
+      font-size: var(--fs-01);
+      font-weight: var(--fw-bold);
+      line-height: 1.2;
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: var(--fs-09);
+      font-weight: var(--fw-black);
+      line-height: 1.25;
+    }
+
+    .section-body {
+      padding: var(--sp-08);
+    }
+
+    .result-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: var(--sp-04);
+    }
+
+    .result-cell {
+      min-width: 0;
+      padding: var(--sp-07) var(--sp-05);
+      border-top: 2px solid var(--c-white);
+      border-right: 2px solid var(--c-platinum-dark);
+      border-bottom: 3px solid var(--c-hairline);
+      border-left: 2px solid var(--c-white);
+      background: var(--c-platinum);
+      text-align: center;
+    }
+
+    .result-value {
+      display: block;
+      color: var(--c-indigo-dark);
+      font-family: var(--font-display);
+      font-size: var(--fs-13);
+      font-weight: var(--fw-black);
+      line-height: 1;
+    }
+
+    .result-value.is-warn {
+      color: var(--c-warning);
+      font-size: var(--fs-08);
+      line-height: 1.25;
+    }
+
+    .result-label {
+      display: block;
+      margin-top: var(--sp-04);
+      color: var(--c-carbon);
+      font-size: var(--fs-02);
+      font-weight: var(--fw-bold);
+      line-height: 1.35;
+    }
+
+    .result-proof {
+      display: block;
+      margin-top: var(--sp-03);
+      color: var(--c-ink-muted);
+      font-size: var(--fs-01);
+      line-height: 1.45;
+    }
+
+    .evidence-note {
+      margin: var(--sp-06) 0 0;
+      padding: var(--sp-06) var(--sp-07);
+      border-left: var(--mark-result);
+      background: var(--c-success-soft);
+      color: var(--c-carbon);
+      font-size: var(--fs-04);
+      line-height: 1.65;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+      gap: var(--sp-03);
+      counter-reset: flow;
+    }
+
+    .flow-item {
+      position: relative;
+      min-height: 126px;
+      padding: var(--sp-09) var(--sp-08) var(--sp-06) var(--sp-05);
+      border: 2px solid var(--c-indigo);
+      background: var(--c-method-soft);
+      counter-increment: flow;
+    }
+
+    .flow-item::before {
+      content: "0" counter(flow);
+      position: absolute;
+      top: 0;
+      left: 0;
+      padding: var(--sp-02) var(--sp-04);
+      background: var(--c-indigo);
+      color: var(--c-white);
+      font-size: var(--fs-01);
+      font-weight: var(--fw-black);
+      line-height: 1.2;
+    }
+
+    .flow-item::after {
+      content: ">";
+      position: absolute;
+      top: 48%;
+      right: var(--sp-02);
+      z-index: 2;
+      color: var(--c-orange);
+      font-family: var(--font-display);
+      font-size: var(--fs-08);
+      line-height: 1;
+    }
+
+    .flow-item:last-child::after {
+      content: "";
+    }
+
+    .flow-item strong {
+      display: block;
+      margin-bottom: var(--sp-04);
+      color: var(--c-indigo-dark);
+      font-size: var(--fs-05);
+      line-height: 1.35;
+    }
+
+    .flow-item span {
+      color: var(--c-ink-muted);
+      font-size: var(--fs-02);
+      line-height: 1.5;
+    }
+
+    .principle-list {
+      display: grid;
+      gap: var(--sp-05);
+    }
+
+    .principle {
+      display: grid;
+      grid-template-columns: 128px minmax(0, 1fr);
+      border: 2px solid var(--c-indigo);
+      background: var(--c-white);
+    }
+
+    .principle-label {
+      display: flex;
+      align-items: center;
+      padding: var(--sp-07);
+      background: var(--c-carbon);
+      color: var(--c-amber);
+      font-size: var(--fs-04);
+      font-weight: var(--fw-black);
+      line-height: 1.45;
+    }
+
+    .principle-copy {
+      padding: var(--sp-07) var(--sp-08);
+      color: var(--c-carbon);
+      font-size: var(--fs-05);
+      line-height: var(--lh-body);
+    }
+
+    .principle-copy strong {
+      color: var(--c-indigo-dark);
+    }
+
+    .split-logic {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-06);
+    }
+
+    .logic-plate {
+      border: 2px solid var(--c-indigo);
+      background: var(--c-white);
+    }
+
+    .logic-head {
+      padding: var(--sp-05) var(--sp-07);
+      border-bottom: 2px solid var(--c-indigo);
+      background: var(--c-canvas-soft);
+      color: var(--c-indigo-dark);
+      font-size: var(--fs-04);
+      font-weight: var(--fw-black);
+      line-height: 1.3;
+    }
+
+    .logic-body {
+      padding: var(--sp-07);
+    }
+
+    .logic-body p {
+      margin: 0;
+      color: var(--c-carbon);
+      font-size: var(--fs-05);
+      line-height: 1.7;
+    }
+
+    .logic-body p + p {
+      margin-top: var(--sp-05);
+      padding-top: var(--sp-05);
+      border-top: var(--mark-dotted);
+    }
+
+    .logic-signal {
+      display: inline-block;
+      margin-right: var(--sp-03);
+      padding: var(--sp-01) var(--sp-03);
+      background: var(--c-orange);
+      color: var(--c-white);
+      font-size: var(--fs-01);
+      font-weight: var(--fw-black);
+      vertical-align: 2px;
+    }
+
+    .quote-panel {
+      margin: var(--sp-08);
+      padding: var(--sp-11) var(--sp-10);
+      border-top: 3px solid var(--c-yellow-soft);
+      border-right: 3px solid var(--c-orange-dark);
+      border-bottom: 5px solid var(--c-orange-dark);
+      border-left: var(--mark-quote);
+      background: var(--c-amber);
+      color: var(--c-carbon);
+    }
+
+    .quote-label {
+      display: block;
+      margin-bottom: var(--sp-06);
+      font-size: var(--fs-02);
+      font-weight: var(--fw-black);
+      line-height: 1;
+    }
+
+    blockquote {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: var(--fs-11);
+      font-weight: var(--fw-black);
+      line-height: 1.5;
+    }
+
+    .quote-sub {
+      margin: var(--sp-06) 0 0;
+      padding-top: var(--sp-05);
+      border-top: 1px solid var(--c-warning);
+      font-size: var(--fs-04);
+      font-weight: var(--fw-bold);
+      line-height: 1.65;
+    }
+
+    .action-card {
+      border: 3px solid var(--c-orange-dark);
+      background: var(--c-action-soft);
+    }
+
+    .action-head {
+      display: flex;
+      align-items: center;
+      gap: var(--sp-05);
+      padding: var(--sp-05) var(--sp-07);
+      background: var(--c-orange);
+      color: var(--c-white);
+      font-size: var(--fs-04);
+      font-weight: var(--fw-black);
+      line-height: 1.3;
+    }
+
+    .action-arrow {
+      display: grid;
+      width: 24px;
+      height: 24px;
+      place-items: center;
+      border: 2px solid var(--c-white);
+      border-radius: 50%;
+      color: var(--c-white);
+      flex: 0 0 auto;
+    }
+
+    .action-main {
+      padding: var(--sp-09);
+    }
+
+    .action-main h3 {
+      margin: 0;
+      color: var(--c-carbon);
+      font-size: var(--fs-10);
+      font-weight: var(--fw-black);
+      line-height: 1.45;
+    }
+
+    .action-main p {
+      margin: var(--sp-05) 0 0;
+      color: var(--c-ink-muted);
+      font-size: var(--fs-04);
+      line-height: 1.65;
+    }
+
+    .acceptance {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: var(--sp-04);
+      margin-top: var(--sp-07);
+    }
+
+    .acceptance-item {
+      padding: var(--sp-05);
+      border: 1px solid var(--c-orange-dark);
+      background: var(--c-white);
+      color: var(--c-carbon);
+      font-size: var(--fs-02);
+      line-height: 1.5;
+    }
+
+    .acceptance-item strong {
+      display: block;
+      margin-bottom: var(--sp-02);
+      color: var(--c-orange-dark);
+      font-size: var(--fs-03);
+    }
+
+    .risk-stack {
+      display: grid;
+      gap: var(--sp-04);
+      margin-top: var(--sp-07);
+    }
+
+    .risk-row {
+      display: grid;
+      grid-template-columns: 96px minmax(0, 1fr);
+      border-left: var(--mark-risk);
+      background: var(--c-risk-soft);
+    }
+
+    .risk-key {
+      padding: var(--sp-05) var(--sp-06);
+      border-right: 1px solid var(--c-risk);
+      color: var(--c-risk);
+      font-size: var(--fs-02);
+      font-weight: var(--fw-black);
+      line-height: 1.45;
+    }
+
+    .risk-copy {
+      padding: var(--sp-05) var(--sp-07);
+      color: var(--c-carbon);
+      font-size: var(--fs-04);
+      line-height: 1.65;
+    }
+
+    .closing-bar {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: var(--sp-07);
+      align-items: center;
+      margin: var(--sp-08);
+      padding: var(--sp-08);
+      border-left: var(--mark-command);
+      background-color: var(--c-carbon);
+      background-image: radial-gradient(var(--c-dot) 1px, transparent 1px);
+      background-size: 6px 6px;
+      color: var(--c-white);
+    }
+
+    .closing-bar strong {
+      display: block;
+      color: var(--c-amber);
+      font-size: var(--fs-09);
+      line-height: 1.35;
+    }
+
+    .closing-bar span {
+      display: block;
+      margin-top: var(--sp-03);
+      color: var(--c-canvas-soft);
+      font-size: var(--fs-03);
+      line-height: 1.55;
+    }
+
+    .closing-badge {
+      padding: var(--sp-05) var(--sp-06);
+      border-top: 2px solid var(--c-yellow-soft);
+      border-right: 2px solid var(--c-orange-dark);
+      border-bottom: 3px solid var(--c-orange-dark);
+      border-left: 2px solid var(--c-yellow-soft);
+      background: var(--c-amber);
+      color: var(--c-carbon);
+      font-size: var(--fs-02);
+      font-weight: var(--fw-black);
+      line-height: 1.3;
+      text-align: center;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--sp-06);
+      padding: var(--sp-07);
+      border-top: 3px solid var(--c-shadow-deep);
+      background: var(--c-carbon);
+      color: var(--c-canvas-soft);
+      font-size: var(--fs-01);
+      line-height: 1.5;
+    }
+
+    @media (max-width: 920px) {
+      .card-shell {
+        padding: var(--sp-11) var(--sp-06);
+      }
+
+      .hero {
+        padding: var(--sp-13) var(--sp-09) var(--sp-11);
+      }
+
+      .hero h1 {
+        font-size: var(--fs-16);
+      }
+
+      .result-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .flow {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .flow-item:nth-child(3)::after,
+      .flow-item:last-child::after {
+        content: "";
+      }
+    }
+
+    @media (max-width: 720px) {
+      .utility-strip {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .process-strip {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .process-step:nth-child(2) {
+        border-right: 0;
+      }
+
+      .process-step:nth-child(-n+2) {
+        border-bottom: 1px solid var(--c-indigo-muted);
+      }
+
+      .hero h1 {
+        font-size: var(--fs-14);
+        -webkit-text-stroke-width: 1px;
+        text-shadow: 3px 3px 0 var(--c-indigo-dark);
+      }
+
+      .hero-summary {
+        font-size: var(--fs-07);
+      }
+
+      .result-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .flow {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .flow-item:nth-child(3)::after {
+        content: ">";
+      }
+
+      .flow-item:nth-child(even)::after,
+      .flow-item:last-child::after {
+        content: "";
+      }
+
+      .principle {
+        grid-template-columns: 1fr;
+      }
+
+      .principle-label {
+        border-bottom: 2px solid var(--c-indigo);
+      }
+
+      .split-logic {
+        grid-template-columns: 1fr;
+      }
+
+      .acceptance {
+        grid-template-columns: 1fr;
+      }
+
+      .closing-bar {
+        grid-template-columns: 1fr;
+      }
+
+      .closing-badge {
+        justify-self: start;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .card-shell {
+        padding: var(--sp-07) var(--sp-03);
+      }
+
+      .cognitive-card {
+        border-width: 2px;
+        box-shadow: 0 0 0 1px var(--c-highlight), 0 6px 0 var(--c-shadow-deep);
+      }
+
+      .hero {
+        padding: var(--sp-11) var(--sp-07) var(--sp-09);
+      }
+
+      .hero h1 {
+        font-size: var(--fs-12);
+        line-height: 1.14;
+        text-shadow: 2px 2px 0 var(--c-indigo-dark);
+      }
+
+      .hero-summary {
+        margin-top: var(--sp-07);
+        padding: var(--sp-06);
+        font-size: var(--fs-05);
+      }
+
+      .section,
+      .quote-panel,
+      .closing-bar {
+        margin: var(--sp-04);
+      }
+
+      .section-body {
+        padding: var(--sp-05);
+      }
+
+      .section-title {
+        font-size: var(--fs-07);
+      }
+
+      .result-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .result-cell {
+        display: grid;
+        grid-template-columns: 84px minmax(0, 1fr);
+        gap: var(--sp-05);
+        align-items: center;
+        text-align: left;
+      }
+
+      .result-value {
+        grid-row: 1 / 3;
+        font-size: var(--fs-11);
+        text-align: center;
+      }
+
+      .result-label,
+      .result-proof {
+        margin-top: 0;
+      }
+
+      .flow {
+        grid-template-columns: 1fr;
+      }
+
+      .flow-item {
+        min-height: 0;
+        padding: var(--sp-08) var(--sp-06) var(--sp-06) var(--sp-12);
+      }
+
+      .flow-item::after,
+      .flow-item:nth-child(3)::after {
+        content: "";
+      }
+
+      .quote-panel {
+        padding: var(--sp-08) var(--sp-07);
+      }
+
+      blockquote {
+        font-size: var(--fs-08);
+      }
+
+      .action-main {
+        padding: var(--sp-07);
+      }
+
+      .action-main h3 {
+        font-size: var(--fs-08);
+      }
+
+      .risk-row {
+        grid-template-columns: 1fr;
+      }
+
+      .risk-key {
+        border-right: 0;
+        border-bottom: 1px solid var(--c-risk);
+      }
+
+      .card-footer {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .process-strip {
+        grid-template-columns: 1fr;
+      }
+
+      .process-step {
+        border-right: 0;
+        border-bottom: 1px solid var(--c-indigo-muted);
+      }
+
+      .process-step:last-child {
+        border-bottom: 0;
+      }
+
+      .hero h1 {
+        font-size: var(--fs-11);
+      }
+
+      .result-cell {
+        grid-template-columns: 72px minmax(0, 1fr);
+      }
+
+      .principle-copy,
+      .logic-body p,
+      .risk-copy {
+        font-size: var(--fs-04);
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="card-shell">
+    <article class="cognitive-card">
+      <div class="utility-strip">
+        <span class="utility-brand"><span class="utility-light"></span>DAILY REVIEW CONSOLE</span>
+        <span class="utility-date">2026-07-15 · 外部结果 / 执行系统 / 待核风险</span>
+      </div>
+
+      <div class="process-strip" aria-label="今日执行链">
+        <div class="process-step"><strong>INPUT</strong>发现问题</div>
+        <div class="process-step"><strong>FILTER</strong>判断投产比</div>
+        <div class="process-step"><strong>EXECUTE</strong>拆成原子动作</div>
+        <div class="process-step"><strong>FEEDBACK</strong>回收外部结果</div>
+      </div>
+
+      <header class="hero">
+        <span class="hero-kicker">TODAY'S CORE / 今日核心</span>
+        <h1>复盘不是终点，<span>执行链才是。</span></h1>
+        <p class="hero-summary">今天真正跑通的，不是又想出一个方法，而是把问题送进了“投产比过滤 → AI 细化 → 原子任务 → 执行反馈”的链条。公众号和朋友圈都已发布，但下一步必须让系统建设继续让位给市场结果。</p>
+        <p class="hero-note">警惕：Token 越充裕，越容易把“能做更多系统”误认成“业务正在增长”。</p>
+      </header>
+
+      <section class="section">
+        <div class="section-head">
+          <span class="section-number">01</span>
+          <div class="section-title-wrap">
+            <small>EXTERNAL SCOREBOARD</small>
+            <h2 class="section-title">先看外部发生了什么</h2>
+          </div>
+        </div>
+        <div class="section-body">
+          <div class="result-grid">
+            <div class="result-cell">
+              <span class="result-value">2</span>
+              <span class="result-label">发布</span>
+              <span class="result-proof">公众号 1 次、朋友圈 1 条</span>
+            </div>
+            <div class="result-cell">
+              <span class="result-value">3</span>
+              <span class="result-label">有效对话</span>
+              <span class="result-proof">客户、合作方、闲鱼同行</span>
+            </div>
+            <div class="result-cell">
+              <span class="result-value">3</span>
+              <span class="result-label">反馈样本</span>
+              <span class="result-proof">导流、开票、课程合作</span>
+            </div>
+            <div class="result-cell">
+              <span class="result-value is-warn">未记录</span>
+              <span class="result-label">报价</span>
+              <span class="result-proof">不能默认填 0</span>
+            </div>
+            <div class="result-cell">
+              <span class="result-value is-warn">未记录</span>
+              <span class="result-label">成交</span>
+              <span class="result-proof">去年转账不是今日成交</span>
+            </div>
+          </div>
+          <p class="evidence-note"><strong>当前最强结果样本：</strong>公众号第一轮从约 8 个群导入约 100+ 人。但 3200 人、100+ 和约 3% 都是个人估算，必须用后台数据复核后才能作为转化基线。</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <span class="section-number">02</span>
+          <div class="section-title-wrap">
+            <small>EXECUTION CHAIN</small>
+            <h2 class="section-title">把复盘结论送进执行系统</h2>
+          </div>
+        </div>
+        <div class="section-body">
+          <div class="flow">
+            <div class="flow-item"><strong>发现问题</strong><span>复盘只负责暴露卡点，不负责制造完成感。</span></div>
+            <div class="flow-item"><strong>判断价值</strong><span>同时看即时收入、未来现金流、信任资产和反馈周期。</span></div>
+            <div class="flow-item"><strong>进入缓冲盒</strong><span>尚未证明值得做的想法，不直接占用执行队列。</span></div>
+            <div class="flow-item"><strong>AI 细化路径</strong><span>让 Codex 提供候选和步骤，人保留选择与取舍。</span></div>
+            <div class="flow-item"><strong>拆到原子动作</strong><span>写清前五分钟、触发锚点和完成证据。</span></div>
+            <div class="flow-item"><strong>执行并回收</strong><span>用发布、回复、咨询、成交和真实运行结果迭代。</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <span class="section-number">03</span>
+          <div class="section-title-wrap">
+            <small>RULE SYSTEM</small>
+            <h2 class="section-title">三条需要保住的规则</h2>
+          </div>
+        </div>
+        <div class="section-body">
+          <div class="principle-list">
+            <div class="principle">
+              <div class="principle-label">缓冲盒<br>不是待办箱</div>
+              <div class="principle-copy">它负责拦住尚未证明值得做的想法。<strong>如果所有想法最终都进入待办，缓冲盒只是在延迟堆积。</strong></div>
+            </div>
+            <div class="principle">
+              <div class="principle-label">AI 与脚本<br>按变化分工</div>
+              <div class="principle-copy">高变化、需要判断的环节由人和 AI 协同；规则固定、反复出现的环节优先脚本化。<strong>脚本的稳定仍要靠连续运行与异常样本验收。</strong></div>
+            </div>
+            <div class="principle">
+              <div class="principle-label">客群入口<br>逐段验证</div>
+              <div class="principle-copy">大学生可能经历作业、毕设、期刊和求职阶段，但共享私域入口不等于每个产品都成立。<strong>每一段都要重新验证需求、交付方、毛利和反馈周期。</strong></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <span class="section-number">04</span>
+          <div class="section-title-wrap">
+            <small>HUMAN / MACHINE SPLIT</small>
+            <h2 class="section-title">真正稀缺的已不是 Token</h2>
+          </div>
+        </div>
+        <div class="section-body">
+          <div class="split-logic">
+            <div class="logic-plate">
+              <div class="logic-head">交给人和 AI 协同</div>
+              <div class="logic-body">
+                <p><span class="logic-signal">判断</span>任务是否值得做，投产比看哪个时间尺度。</p>
+                <p><span class="logic-signal">取舍</span>Codex 给出多个方案后，决定做哪几个、取消哪几个。</p>
+                <p><span class="logic-signal">验收</span>定义什么叫发布、跑通、稳定和产生业务结果。</p>
+              </div>
+            </div>
+            <div class="logic-plate">
+              <div class="logic-head">优先沉淀为脚本</div>
+              <div class="logic-body">
+                <p><span class="logic-signal">重复</span>群聊回复、改群名等同类操作一次批量完成。</p>
+                <p><span class="logic-signal">稳定</span>规则不变的流程不必每次重新消耗模型额度。</p>
+                <p><span class="logic-signal">复用</span>AI 会换、账号会失效，可维护脚本能保留已验证流程。</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="quote-panel">
+        <span class="quote-label">MEMORY ANCHOR / 记忆锚点</span>
+        <blockquote>“突破自己的瓶颈，才是一天真正有价值的地方，不是堆工作量。”</blockquote>
+        <p class="quote-sub">但瓶颈突破之后，指标必须升级：从“敢不敢发布”切换到“有没有回复、咨询、转介绍和成交”。</p>
+      </div>
+
+      <section class="section">
+        <div class="section-head">
+          <span class="section-number">05</span>
+          <div class="section-title-wrap">
+            <small>NEXT ACTION</small>
+            <h2 class="section-title">明日只保护一个外部动作</h2>
+          </div>
+        </div>
+        <div class="section-body">
+          <div class="action-card">
+            <div class="action-head"><span class="action-arrow">&gt;</span>唯一动作，不再扩成任务树</div>
+            <div class="action-main">
+              <h3>完成公众号第二轮私域转化，并记录新增人数。</h3>
+              <p>在当天第一个 60—90 分钟保护时段内，向既定私域群发出第二轮公众号引导内容。第一轮已经产生约 100+ 的估算结果，下一步不是继续讨论 IP，而是建立可复查的数据基线。</p>
+              <div class="acceptance">
+                <div class="acceptance-item"><strong>前五分钟</strong>打开上一轮文案和公众号后台，记录开始前人数。</div>
+                <div class="acceptance-item"><strong>完成证据</strong>保留第二轮群发记录与发送后的新增人数。</div>
+                <div class="acceptance-item"><strong>维护动作</strong>发 1 条朋友圈；给求职陪跑合作方发 1 条推进语音。</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="risk-stack">
+            <div class="risk-row">
+              <div class="risk-key">数据口径</div>
+              <div class="risk-copy">公众号 3200 人、100+ 新增和约 3% 转化率仍是估算，没有后台核验前不得作为确定业绩。</div>
+            </div>
+            <div class="risk-row">
+              <div class="risk-key">合作条件</div>
+              <div class="risk-copy">求职陪跑约 4000 元究竟对应课程还是完整套餐，分成、首场安排和交付边界都未确定。</div>
+            </div>
+            <div class="risk-row">
+              <div class="risk-key">系统兴奋</div>
+              <div class="risk-copy">多账号、反代和 24 小时跑任务尚无成本与业务收益数据，不能因为 Token 充裕直接启动。</div>
+            </div>
+            <div class="risk-row">
+              <div class="risk-key">事实分离</div>
+              <div class="risk-copy">可以确认室友反馈让自己不舒服，但把反应归因于人格或成长经历没有证据。</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <div class="closing-bar">
+        <div>
+          <strong>先完成外部发布，再让 AI 解释结果。</strong>
+          <span>系统负责降低启动阻力，市场负责证明方向是否成立。</span>
+        </div>
+        <div class="closing-badge">NEXT SAVE<br>外部证据</div>
+      </div>
+
+      <footer class="card-footer">
+        <span>来源：2026-07-15 日省</span>
+        <span>视觉转译：Nintendo.com 2001 · 静态认知卡片</span>
+      </footer>
+    </article>
+  </main>
+</body>
+</html>
