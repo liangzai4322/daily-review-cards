@@ -7,28 +7,33 @@
   <title>周省｜2026-07-07 至 2026-07-13</title>
   <style>
     :root {
-      --ink: #111111;
-      --charcoal: #39393b;
-      --ash: #4b4b4d;
-      --mute: #707072;
-      --stone: #9e9ea0;
-      --hairline: #cacacb;
-      --hairline-soft: #e5e5e5;
-      --cloud: #f5f5f5;
-      --paper: #ffffff;
-      --risk: #d30005;
-      --success: #007d48;
-      --info: #1151ff;
-      --s-1: 4px;
-      --s-2: 8px;
-      --s-3: 12px;
-      --s-4: 16px;
-      --s-5: 24px;
-      --s-6: 32px;
-      --s-7: 48px;
-      --s-8: 64px;
-      --s-9: 80px;
-      --max: 1240px;
+      --yellow: #faff69;
+      --yellow-soft: #e6eb52;
+      --black: #0a0a0a;
+      --surface: #121212;
+      --card: #1a1a1a;
+      --elevated: #242424;
+      --white: #ffffff;
+      --body: #cccccc;
+      --strong: #e6e6e6;
+      --muted: #888888;
+      --muted-soft: #5a5a5a;
+      --line: #2a2a2a;
+      --line-strong: #3a3a3a;
+      --green: #22c55e;
+      --red: #ef4444;
+      --blue: #3b82f6;
+      --orange: #f59e0b;
+      --s1: 4px;
+      --s2: 8px;
+      --s3: 12px;
+      --s4: 16px;
+      --s5: 24px;
+      --s6: 32px;
+      --s7: 48px;
+      --s8: 64px;
+      --s9: 96px;
+      --max: 1280px;
     }
 
     * {
@@ -36,18 +41,18 @@
     }
 
     html {
-      background: var(--cloud);
-      color: var(--ink);
+      min-width: 320px;
+      background: var(--black);
+      color: var(--white);
     }
 
     body {
       margin: 0;
-      min-width: 320px;
-      background: var(--cloud);
-      color: var(--ink);
-      font-family: "Inter", "Helvetica Neue", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+      background: var(--black);
+      color: var(--body);
+      font-family: Inter, "Segoe UI", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
       font-size: 16px;
-      line-height: 1.65;
+      line-height: 1.6;
       letter-spacing: 0;
       text-rendering: optimizeLegibility;
     }
@@ -55,7 +60,8 @@
     main {
       width: min(100%, var(--max));
       margin: 0 auto;
-      background: var(--paper);
+      background: var(--black);
+      overflow: hidden;
     }
 
     h1,
@@ -72,10 +78,13 @@
     h2,
     h3,
     strong,
-    .metric-value,
-    .section-number,
-    .action-index {
-      font-weight: 800;
+    .stat-value,
+    .section-index,
+    .step-index,
+    .score-index {
+      color: var(--white);
+      font-weight: 700;
+      letter-spacing: 0;
     }
 
     p,
@@ -84,881 +93,1057 @@
     th,
     h1,
     h2,
-    h3 {
+    h3,
+    span {
       overflow-wrap: anywhere;
     }
 
-    .hero {
-      position: relative;
-      min-height: 600px;
+    .topbar {
+      min-height: 64px;
       display: flex;
-      flex-direction: column;
+      align-items: center;
       justify-content: space-between;
-      padding: var(--s-7) var(--s-8) var(--s-8);
-      background: var(--ink);
-      color: var(--paper);
-      border-bottom: 12px solid var(--paper);
-    }
-
-    .hero-topline {
-      display: flex;
-      justify-content: space-between;
-      gap: var(--s-5);
-      padding-bottom: var(--s-4);
-      border-bottom: 1px solid var(--ash);
-      color: var(--stone);
+      gap: var(--s5);
+      padding: 0 var(--s7);
+      border-bottom: 1px solid var(--line);
+      background: var(--black);
+      color: var(--muted);
       font-size: 13px;
-      font-weight: 700;
-      line-height: 1.4;
-      text-transform: uppercase;
+      font-weight: 600;
     }
 
-    .hero-kicker {
-      margin: var(--s-8) 0 var(--s-4);
-      color: var(--stone);
-      font-size: 14px;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: var(--s3);
+      color: var(--white);
+    }
+
+    .brand-mark {
+      width: 18px;
+      height: 32px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+    }
+
+    .brand-mark i {
+      display: block;
+      background: var(--yellow);
+    }
+
+    .brand-mark i:nth-child(2) {
+      margin-top: 8px;
+    }
+
+    .brand-mark i:nth-child(3) {
+      margin-top: 16px;
+    }
+
+    .hero {
+      padding: var(--s9) var(--s7) var(--s8);
+      background: var(--black);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 7fr) minmax(320px, 5fr);
+      gap: var(--s8);
+      align-items: end;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: var(--s5);
+      padding: 5px 11px;
+      border-radius: 9999px;
+      background: var(--yellow);
+      color: var(--black);
+      font-size: 12px;
       font-weight: 700;
-      line-height: 1.4;
+      line-height: 1.3;
     }
 
     .hero h1 {
-      max-width: 980px;
-      margin-bottom: var(--s-6);
-      color: var(--paper);
-      font-size: 84px;
-      line-height: 0.98;
-      letter-spacing: 0;
+      max-width: 760px;
+      margin-bottom: var(--s5);
+      font-size: 72px;
+      line-height: 1.04;
     }
 
     .hero h1 span {
       display: block;
+      color: var(--yellow);
     }
 
-    .hero-summary {
+    .hero-lead {
       max-width: 760px;
       margin-bottom: 0;
-      color: var(--hairline-soft);
-      font-size: 20px;
-      line-height: 1.55;
+      color: var(--body);
+      font-size: 19px;
+      line-height: 1.7;
     }
 
-    .hero-marker {
-      width: 104px;
-      height: 12px;
-      margin-bottom: var(--s-5);
-      background: var(--risk);
-    }
-
-    .metrics {
-      display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
-      background: var(--cloud);
-      border-top: 1px solid var(--hairline-soft);
-      border-bottom: 1px solid var(--hairline-soft);
-    }
-
-    .metric {
-      min-height: 174px;
-      padding: var(--s-5);
-      border-right: 1px solid var(--hairline-soft);
-    }
-
-    .metric:last-child {
-      border-right: 0;
-    }
-
-    .metric-value {
-      display: block;
-      margin-bottom: var(--s-3);
-      color: var(--ink);
-      font-size: 52px;
-      line-height: 1;
-    }
-
-    .metric-value.risk {
-      color: var(--risk);
-    }
-
-    .metric-value.success {
-      color: var(--success);
-    }
-
-    .metric-label {
-      display: block;
-      color: var(--charcoal);
+    .query-card {
+      padding: var(--s6);
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      background: var(--card);
+      color: var(--body);
+      font-family: "JetBrains Mono", Consolas, "Microsoft YaHei", monospace;
       font-size: 14px;
-      font-weight: 700;
-      line-height: 1.45;
+      line-height: 1.8;
     }
 
-    .metric-note {
-      display: block;
-      margin-top: var(--s-2);
-      color: var(--mute);
+    .query-head {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--s4);
+      margin-bottom: var(--s5);
+      padding-bottom: var(--s3);
+      border-bottom: 1px solid var(--line);
+      color: var(--muted);
+      font-family: Inter, "Microsoft YaHei", sans-serif;
       font-size: 12px;
-      line-height: 1.45;
+      font-weight: 600;
+    }
+
+    .query-line {
+      display: block;
+    }
+
+    .query-keyword {
+      color: var(--blue);
+    }
+
+    .query-string {
+      color: var(--yellow);
+    }
+
+    .query-result {
+      margin-top: var(--s5);
+      padding-top: var(--s4);
+      border-top: 1px solid var(--line);
+      color: var(--green);
     }
 
     .section {
-      padding: var(--s-9) var(--s-8);
-      border-bottom: 1px solid var(--hairline-soft);
+      padding: var(--s9) var(--s7);
+      border-bottom: 1px solid var(--line);
+      background: var(--black);
+    }
+
+    .section.alt {
+      background: var(--surface);
     }
 
     .section-head {
       display: grid;
-      grid-template-columns: 88px minmax(0, 1fr);
-      align-items: start;
-      gap: var(--s-5);
-      margin-bottom: var(--s-7);
+      grid-template-columns: 76px minmax(0, 1fr);
+      gap: var(--s5);
+      margin-bottom: var(--s7);
     }
 
-    .section-number {
-      color: var(--stone);
-      font-size: 36px;
-      line-height: 1;
-    }
-
-    .section-title-wrap {
-      padding-top: 2px;
-    }
-
-    .section-eyebrow {
-      display: block;
-      margin-bottom: var(--s-2);
-      color: var(--mute);
-      font-size: 12px;
-      font-weight: 800;
-      line-height: 1.4;
-      text-transform: uppercase;
-    }
-
-    .section h2 {
-      margin-bottom: var(--s-3);
-      font-size: 38px;
-      line-height: 1.14;
-      letter-spacing: 0;
-    }
-
-    .section-lead {
-      max-width: 800px;
-      margin-bottom: 0;
-      color: var(--mute);
+    .section-index {
+      color: var(--yellow);
       font-size: 18px;
-      line-height: 1.6;
-    }
-
-    .verdict {
-      background: var(--paper);
-    }
-
-    .verdict-box {
-      display: grid;
-      grid-template-columns: 8px minmax(0, 1fr);
-      gap: var(--s-5);
-      max-width: 980px;
-    }
-
-    .verdict-line {
-      background: var(--risk);
-    }
-
-    .verdict-copy {
-      margin: 0;
-      color: var(--ink);
-      font-size: 30px;
-      font-weight: 800;
-      line-height: 1.45;
-    }
-
-    .verdict-detail {
-      max-width: 900px;
-      margin: var(--s-6) 0 0 32px;
-      color: var(--charcoal);
-      font-size: 17px;
-      line-height: 1.85;
-    }
-
-    .why-list {
-      display: grid;
-      gap: var(--s-7);
-    }
-
-    .why-card {
-      display: grid;
-      grid-template-columns: 180px minmax(0, 1fr);
-      border-top: 3px solid var(--ink);
-      padding-top: var(--s-5);
-    }
-
-    .why-index {
-      color: var(--ink);
-      font-size: 64px;
-      font-weight: 800;
-      line-height: 1;
-    }
-
-    .why-content h3 {
-      margin-bottom: var(--s-4);
-      font-size: 25px;
       line-height: 1.3;
     }
 
-    .why-chain {
-      margin: 0 0 var(--s-5);
+    .section-kicker {
+      display: block;
+      margin-bottom: var(--s2);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .section h2 {
+      margin-bottom: var(--s3);
+      font-size: 40px;
+      line-height: 1.15;
+    }
+
+    .section-intro {
+      max-width: 820px;
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 17px;
+    }
+
+    .verdict-band {
+      padding: var(--s7);
+      background: var(--yellow);
+      color: var(--black);
+    }
+
+    .verdict-band blockquote {
+      max-width: 1080px;
+      margin-bottom: var(--s4);
+      color: var(--black);
+      font-size: 34px;
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .verdict-band p {
+      max-width: 960px;
+      margin-bottom: 0;
+      color: var(--black);
+      font-size: 17px;
+    }
+
+    .audit-table,
+    .data-table,
+    .resource-table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+      border: 1px solid var(--line-strong);
+      background: var(--card);
+    }
+
+    .audit-table th,
+    .audit-table td,
+    .data-table th,
+    .data-table td,
+    .resource-table th,
+    .resource-table td {
+      padding: var(--s4);
+      text-align: left;
+      vertical-align: top;
+      border-right: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .audit-table th:last-child,
+    .audit-table td:last-child,
+    .data-table th:last-child,
+    .data-table td:last-child,
+    .resource-table th:last-child,
+    .resource-table td:last-child {
+      border-right: 0;
+    }
+
+    .audit-table tr:last-child td,
+    .data-table tr:last-child td,
+    .resource-table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .audit-table th,
+    .data-table th,
+    .resource-table th {
+      background: var(--elevated);
+      color: var(--white);
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.4;
+    }
+
+    .audit-table td,
+    .data-table td,
+    .resource-table td {
+      color: var(--body);
+      font-size: 14px;
+      line-height: 1.55;
+    }
+
+    .audit-table th:nth-child(1) {
+      width: 25%;
+    }
+
+    .audit-table th:nth-child(2) {
+      width: 13%;
+    }
+
+    .audit-table th:nth-child(3) {
+      width: 36%;
+    }
+
+    .audit-table th:nth-child(4) {
+      width: 26%;
+    }
+
+    .status {
+      display: inline-block;
+      padding: 4px 10px;
+      border-radius: 9999px;
+      font-size: 11px;
+      font-weight: 700;
+      line-height: 1.3;
+      white-space: nowrap;
+    }
+
+    .status.done {
+      background: var(--green);
+      color: var(--black);
+    }
+
+    .status.partial {
+      background: var(--orange);
+      color: var(--black);
+    }
+
+    .status.unknown {
+      background: var(--line-strong);
+      color: var(--strong);
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 1px;
+      margin-bottom: var(--s6);
+      background: var(--line);
+      border: 1px solid var(--line);
+    }
+
+    .stat {
+      min-height: 164px;
+      padding: var(--s5);
+      background: var(--card);
+    }
+
+    .stat-value {
+      display: block;
+      margin-bottom: var(--s3);
+      color: var(--yellow);
+      font-size: 48px;
+      line-height: 1;
+    }
+
+    .stat-value.muted {
+      color: var(--muted);
+    }
+
+    .stat-label {
+      display: block;
+      margin-bottom: var(--s2);
+      color: var(--white);
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .stat-note {
+      display: block;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.5;
+    }
+
+    .data-table th:nth-child(1) {
+      width: 25%;
+    }
+
+    .data-table th:nth-child(2) {
+      width: 18%;
+    }
+
+    .data-table th:nth-child(3) {
+      width: 17%;
+    }
+
+    .data-table th:nth-child(4) {
+      width: 40%;
+    }
+
+    .warning {
+      margin-top: var(--s5);
+      padding: var(--s5);
+      border-left: 4px solid var(--orange);
+      background: var(--card);
+      color: var(--body);
+    }
+
+    .warning strong {
+      color: var(--yellow);
+    }
+
+    .why-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(300px, 2fr);
+      gap: var(--s6);
+    }
+
+    .why-list {
+      margin: 0;
       padding: 0;
       list-style: none;
       counter-reset: why;
     }
 
-    .why-chain li {
+    .why-list li {
       position: relative;
-      min-height: 42px;
-      padding: var(--s-3) 0 var(--s-3) 46px;
-      border-bottom: 1px solid var(--hairline-soft);
-      color: var(--charcoal);
+      min-height: 82px;
+      padding: var(--s5) var(--s4) var(--s5) 72px;
+      border-top: 1px solid var(--line-strong);
+      color: var(--body);
       counter-increment: why;
     }
 
-    .why-chain li::before {
+    .why-list li:last-child {
+      border-bottom: 1px solid var(--line-strong);
+    }
+
+    .why-list li::before {
       position: absolute;
+      top: 22px;
       left: 0;
-      top: 12px;
-      width: 28px;
-      height: 28px;
-      display: grid;
-      place-items: center;
-      border-radius: 9999px;
-      background: var(--ink);
-      color: var(--paper);
-      content: counter(why);
+      color: var(--yellow);
+      content: "0" counter(why);
+      font-family: "JetBrains Mono", Consolas, monospace;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .root-card {
+      align-self: stretch;
+      padding: var(--s6);
+      border-radius: 8px;
+      background: var(--yellow);
+      color: var(--black);
+    }
+
+    .root-card span {
+      display: block;
+      margin-bottom: var(--s4);
+      color: var(--black);
       font-size: 12px;
-      font-weight: 800;
-      line-height: 1;
+      font-weight: 700;
     }
 
-    .root-cause {
-      margin: 0;
-      padding: var(--s-5);
-      background: var(--cloud);
-      border-left: 4px solid var(--risk);
-      color: var(--ink);
-      font-size: 17px;
-      line-height: 1.65;
+    .root-card h3 {
+      margin-bottom: var(--s5);
+      color: var(--black);
+      font-size: 27px;
+      line-height: 1.35;
     }
 
-    .flywheels {
+    .root-card p {
+      margin-bottom: var(--s4);
+      color: var(--black);
+    }
+
+    .root-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .wheel-grid {
       display: grid;
-      gap: var(--s-6);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: var(--s5);
     }
 
-    .flywheel {
-      padding: var(--s-6);
-      border: 1px solid var(--hairline);
+    .wheel-card {
+      padding: var(--s6);
+      border: 1px solid var(--line-strong);
+      border-radius: 8px;
+      background: var(--card);
     }
 
-    .flywheel.positive {
-      border-top: 8px solid var(--success);
+    .wheel-card.positive {
+      border-top: 6px solid var(--green);
     }
 
-    .flywheel.negative {
-      border-top: 8px solid var(--risk);
+    .wheel-card.negative {
+      border-top: 6px solid var(--red);
     }
 
-    .flywheel-label {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: var(--s-4);
-      margin-bottom: var(--s-5);
-    }
-
-    .flywheel-label h3 {
-      margin: 0;
-      font-size: 24px;
-      line-height: 1.3;
-    }
-
-    .status-pill {
-      flex: 0 0 auto;
-      padding: 7px 14px;
-      border-radius: 9999px;
-      color: var(--paper);
-      font-size: 12px;
-      font-weight: 800;
-      line-height: 1.2;
-    }
-
-    .positive .status-pill {
-      background: var(--success);
-    }
-
-    .negative .status-pill {
-      background: var(--risk);
+    .wheel-card h3 {
+      margin-bottom: var(--s5);
+      font-size: 23px;
     }
 
     .flow {
       display: grid;
-      grid-template-columns: repeat(6, minmax(0, 1fr));
-      gap: var(--s-2);
-      margin-bottom: var(--s-5);
+      gap: var(--s2);
+      margin-bottom: var(--s5);
     }
 
     .flow-step {
       position: relative;
-      min-height: 104px;
-      display: flex;
-      align-items: flex-end;
-      padding: var(--s-3);
-      background: var(--cloud);
-      color: var(--ink);
+      padding: 12px 38px 12px 14px;
+      background: var(--elevated);
+      color: var(--strong);
       font-size: 13px;
-      font-weight: 700;
-      line-height: 1.45;
+      font-weight: 600;
     }
 
     .flow-step::after {
       position: absolute;
       top: 9px;
-      right: 10px;
-      color: var(--stone);
-      content: "→";
-      font-size: 18px;
-      font-weight: 800;
+      right: 13px;
+      color: var(--muted);
+      content: "↓";
+      font-size: 16px;
     }
 
     .flow-step:last-child::after {
       content: "↺";
     }
 
-    .flywheel p {
-      max-width: 900px;
+    .wheel-card p {
       margin-bottom: 0;
-      color: var(--charcoal);
+      color: var(--muted);
+      font-size: 14px;
     }
 
-    .accelerators {
+    .experiment {
+      padding: var(--s8) var(--s7);
+      background: var(--yellow);
+      color: var(--black);
+    }
+
+    .experiment .section-head {
+      margin-bottom: var(--s6);
+    }
+
+    .experiment .section-index,
+    .experiment .section-kicker,
+    .experiment h2,
+    .experiment .section-intro {
+      color: var(--black);
+    }
+
+    .experiment-grid {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: var(--s-2);
-      margin-top: var(--s-6);
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1px;
+      background: rgba(10, 10, 10, 0.35);
+      border: 1px solid rgba(10, 10, 10, 0.35);
     }
 
-    .accelerator {
-      min-height: 150px;
-      padding: var(--s-5);
-      background: var(--ink);
-      color: var(--paper);
+    .experiment-item {
+      min-height: 148px;
+      padding: var(--s5);
+      background: var(--yellow);
+      color: var(--black);
     }
 
-    .accelerator span {
+    .experiment-item span {
       display: block;
-      margin-bottom: var(--s-4);
-      color: var(--stone);
+      margin-bottom: var(--s3);
+      color: var(--black);
+      font-family: "JetBrains Mono", Consolas, monospace;
       font-size: 12px;
-      font-weight: 800;
+      font-weight: 700;
     }
 
-    .accelerator strong {
+    .experiment-item strong {
       display: block;
+      color: var(--black);
       font-size: 18px;
-      line-height: 1.45;
+      line-height: 1.5;
+    }
+
+    .decision-row {
+      margin-top: var(--s6);
+      padding: var(--s5);
+      border: 2px solid var(--black);
+      color: var(--black);
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .resource-table th:nth-child(1) {
+      width: 25%;
+    }
+
+    .resource-table th:nth-child(2) {
+      width: 12%;
+    }
+
+    .resource-table th:nth-child(3) {
+      width: 33%;
+    }
+
+    .resource-table th:nth-child(4) {
+      width: 30%;
+    }
+
+    .allocation {
+      display: flex;
+      align-items: center;
+      gap: var(--s3);
+    }
+
+    .allocation-track {
+      flex: 1 1 auto;
+      height: 8px;
+      background: var(--line-strong);
+    }
+
+    .allocation-fill {
+      height: 100%;
+      background: var(--yellow);
+    }
+
+    .w45 {
+      width: 45%;
+    }
+
+    .w25 {
+      width: 25%;
+    }
+
+    .w15 {
+      width: 15%;
+    }
+
+    .w10 {
+      width: 10%;
+    }
+
+    .w5 {
+      width: 5%;
+    }
+
+    .allocation b {
+      flex: 0 0 38px;
+      color: var(--yellow);
+      font-size: 13px;
+      text-align: right;
     }
 
     .ssc-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: var(--s-3);
+      gap: var(--s3);
+      margin-top: var(--s6);
     }
 
-    .ssc-column {
-      min-height: 460px;
-      padding: var(--s-6);
-      background: var(--cloud);
-      border-top: 10px solid var(--ink);
+    .ssc {
+      min-height: 210px;
+      padding: var(--s5);
+      border: 1px solid var(--line);
+      background: var(--card);
     }
 
-    .ssc-column.stop {
-      border-top-color: var(--risk);
+    .ssc h3 {
+      margin-bottom: var(--s5);
+      color: var(--yellow);
+      font-size: 20px;
     }
 
-    .ssc-column.continue {
-      border-top-color: var(--success);
+    .ssc.stop h3 {
+      color: var(--red);
     }
 
-    .ssc-column h3 {
-      margin-bottom: var(--s-5);
-      font-size: 34px;
-      line-height: 1;
-      text-transform: uppercase;
+    .ssc.continue h3 {
+      color: var(--green);
     }
 
-    .ssc-column ol {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      counter-reset: item;
+    .ssc p {
+      margin-bottom: 0;
+      color: var(--body);
+      font-size: 14px;
     }
 
-    .ssc-column li {
-      position: relative;
-      padding: var(--s-5) 0 var(--s-5) 46px;
-      border-top: 1px solid var(--hairline);
-      color: var(--charcoal);
-      counter-increment: item;
+    .ooda-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1px;
+      background: var(--line);
+      border: 1px solid var(--line);
     }
 
-    .ssc-column li::before {
-      position: absolute;
-      top: 23px;
-      left: 0;
-      color: var(--stone);
-      content: "0" counter(item);
-      font-size: 13px;
-      font-weight: 800;
+    .ooda-item {
+      min-height: 230px;
+      padding: var(--s5);
+      background: var(--card);
     }
 
-    .ssc-column li strong {
+    .ooda-item span {
       display: block;
-      margin-bottom: var(--s-2);
-      color: var(--ink);
-      font-size: 17px;
-      line-height: 1.45;
-    }
-
-    .ooda {
-      width: 100%;
-      border-collapse: collapse;
-      table-layout: fixed;
-    }
-
-    .ooda th,
-    .ooda td {
-      padding: var(--s-5);
-      text-align: left;
-      vertical-align: top;
-      border-bottom: 1px solid var(--hairline);
-    }
-
-    .ooda th {
-      background: var(--ink);
-      color: var(--paper);
+      margin-bottom: var(--s4);
+      color: var(--yellow);
       font-size: 13px;
-      line-height: 1.4;
-    }
-
-    .ooda td:first-child {
-      width: 18%;
-      color: var(--ink);
-      font-size: 19px;
-      font-weight: 800;
-    }
-
-    .ooda td:nth-child(2) {
-      width: 38%;
-      color: var(--charcoal);
-    }
-
-    .ooda td:nth-child(3) {
-      width: 44%;
-      color: var(--ink);
       font-weight: 700;
     }
 
-    .ooda-conclusion {
-      margin: var(--s-6) 0 0;
-      padding: var(--s-6);
-      background: var(--ink);
-      color: var(--paper);
-      font-size: 22px;
-      font-weight: 800;
-      line-height: 1.55;
+    .ooda-item h3 {
+      margin-bottom: var(--s3);
+      font-size: 19px;
+    }
+
+    .ooda-item p {
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 14px;
     }
 
     .scorecard {
-      background: var(--ink);
-      color: var(--paper);
+      padding: var(--s8) var(--s7);
+      background: var(--surface);
     }
 
-    .scorecard .section-number,
-    .scorecard .section-eyebrow,
-    .scorecard .section-lead {
-      color: var(--stone);
-    }
-
-    .scorecard h2 {
-      color: var(--paper);
-    }
-
-    .action-list {
+    .score-list {
       display: grid;
       gap: 1px;
-      background: var(--ash);
-      border: 1px solid var(--ash);
+      background: var(--line-strong);
+      border: 1px solid var(--line-strong);
     }
 
-    .action {
+    .score-row {
       display: grid;
-      grid-template-columns: 92px minmax(0, 1fr) 150px;
+      grid-template-columns: 80px minmax(0, 1fr) 180px;
       align-items: center;
-      gap: var(--s-5);
-      min-height: 134px;
-      padding: var(--s-5) var(--s-6);
-      background: var(--ink);
+      gap: var(--s5);
+      min-height: 118px;
+      padding: var(--s5);
+      background: var(--black);
     }
 
-    .action-index {
-      color: var(--stone);
-      font-size: 38px;
-      line-height: 1;
+    .score-index {
+      color: var(--yellow);
+      font-family: "JetBrains Mono", Consolas, monospace;
+      font-size: 28px;
     }
 
-    .action-copy strong {
+    .score-copy strong {
       display: block;
-      margin-bottom: var(--s-2);
-      color: var(--paper);
-      font-size: 20px;
-      line-height: 1.35;
+      margin-bottom: var(--s2);
+      color: var(--white);
+      font-size: 18px;
     }
 
-    .action-copy span {
+    .score-copy span {
       display: block;
-      color: var(--hairline);
-      font-size: 15px;
-      line-height: 1.55;
-    }
-
-    .action-deadline {
-      justify-self: end;
-      padding: 10px 18px;
-      border-radius: 9999px;
-      background: var(--paper);
-      color: var(--ink);
+      color: var(--muted);
       font-size: 13px;
-      font-weight: 800;
-      line-height: 1.2;
-      white-space: nowrap;
+    }
+
+    .score-target {
+      justify-self: end;
+      padding: 9px 13px;
+      border-radius: 9999px;
+      background: var(--yellow);
+      color: var(--black);
+      font-size: 12px;
+      font-weight: 700;
+      text-align: center;
     }
 
     .closing {
-      padding: var(--s-9) var(--s-8);
-      background: var(--paper);
-      color: var(--ink);
+      padding: var(--s9) var(--s7);
+      background: var(--black);
     }
 
-    .closing-label {
+    .closing span {
       display: block;
-      margin-bottom: var(--s-5);
-      color: var(--mute);
-      font-size: 13px;
-      font-weight: 800;
+      margin-bottom: var(--s5);
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
     }
 
-    .closing-quote {
-      max-width: 970px;
-      margin: 0;
-      font-size: 50px;
-      font-weight: 800;
-      line-height: 1.18;
-      letter-spacing: 0;
+    .closing blockquote {
+      max-width: 1000px;
+      margin-bottom: 0;
+      color: var(--white);
+      font-size: 44px;
+      font-weight: 700;
+      line-height: 1.3;
     }
 
-    .footer {
+    .closing blockquote em {
+      color: var(--yellow);
+      font-style: normal;
+    }
+
+    footer {
       display: flex;
       justify-content: space-between;
-      gap: var(--s-5);
-      padding: var(--s-5) var(--s-8) var(--s-7);
-      border-top: 1px solid var(--hairline-soft);
-      background: var(--paper);
-      color: var(--mute);
+      gap: var(--s5);
+      padding: var(--s5) var(--s7) var(--s7);
+      border-top: 1px solid var(--line);
+      background: var(--black);
+      color: var(--muted);
       font-size: 12px;
-      line-height: 1.5;
     }
 
-    @media (max-width: 1100px) {
-      .hero {
-        min-height: 540px;
-        padding-right: var(--s-7);
-        padding-left: var(--s-7);
+    @media (max-width: 1120px) {
+      .hero-grid {
+        grid-template-columns: minmax(0, 3fr) minmax(300px, 2fr);
+        gap: var(--s6);
       }
 
       .hero h1 {
-        font-size: 68px;
+        font-size: 58px;
       }
 
-      .section,
-      .closing {
-        padding-right: var(--s-7);
-        padding-left: var(--s-7);
-      }
-
-      .metrics {
+      .stats-grid {
         grid-template-columns: repeat(3, minmax(0, 1fr));
       }
 
-      .metric:nth-child(3) {
-        border-right: 0;
+      .stat:nth-child(4),
+      .stat:nth-child(5) {
+        min-height: 140px;
       }
 
-      .metric:nth-child(-n+3) {
-        border-bottom: 1px solid var(--hairline-soft);
-      }
-
-      .flow {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .accelerators {
+      .ooda-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
 
-    @media (max-width: 820px) {
-      .hero {
-        min-height: 500px;
-        padding: var(--s-6) var(--s-5) var(--s-7);
+    @media (max-width: 900px) {
+      .topbar,
+      .hero,
+      .section,
+      .experiment,
+      .scorecard,
+      .closing,
+      footer {
+        padding-right: var(--s6);
+        padding-left: var(--s6);
+      }
+
+      .hero-grid,
+      .why-grid {
+        grid-template-columns: 1fr;
       }
 
       .hero h1 {
-        font-size: 52px;
+        font-size: 50px;
       }
 
-      .hero-summary {
-        font-size: 18px;
+      .query-card {
+        max-width: 620px;
+      }
+
+      .wheel-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .resource-table {
+        table-layout: auto;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .topbar {
+        min-height: 76px;
+        align-items: flex-start;
+        flex-direction: column;
+        justify-content: center;
+        gap: var(--s1);
+        padding-top: var(--s3);
+        padding-bottom: var(--s3);
+      }
+
+      .hero {
+        padding-top: var(--s8);
+        padding-bottom: var(--s8);
+      }
+
+      .hero h1 {
+        font-size: 42px;
+      }
+
+      .hero-lead {
+        font-size: 16px;
       }
 
       .section,
+      .experiment,
+      .scorecard,
       .closing {
-        padding: var(--s-8) var(--s-5);
+        padding-top: var(--s8);
+        padding-bottom: var(--s8);
       }
 
       .section-head {
-        grid-template-columns: 60px minmax(0, 1fr);
+        grid-template-columns: 1fr;
+        gap: var(--s3);
       }
 
       .section h2 {
         font-size: 32px;
       }
 
-      .verdict-copy {
-        font-size: 25px;
+      .verdict-band {
+        padding: var(--s6);
       }
 
-      .why-card {
-        grid-template-columns: 100px minmax(0, 1fr);
+      .verdict-band blockquote {
+        font-size: 27px;
       }
 
-      .why-index {
-        font-size: 48px;
+      .stats-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .ssc-grid {
+      .stat:last-child {
+        grid-column: 1 / -1;
+      }
+
+      .experiment-grid,
+      .ssc-grid,
+      .ooda-grid {
         grid-template-columns: 1fr;
       }
 
-      .ssc-column {
-        min-height: 0;
-      }
-
-      .ooda,
-      .ooda tbody,
-      .ooda tr,
-      .ooda td {
+      .audit-table,
+      .audit-table tbody,
+      .audit-table tr,
+      .audit-table td,
+      .data-table,
+      .data-table tbody,
+      .data-table tr,
+      .data-table td,
+      .resource-table,
+      .resource-table tbody,
+      .resource-table tr,
+      .resource-table td {
         display: block;
         width: 100%;
       }
 
-      .ooda thead {
+      .audit-table thead,
+      .data-table thead,
+      .resource-table thead {
         display: none;
       }
 
-      .ooda tr {
-        padding: var(--s-5) 0;
-        border-bottom: 1px solid var(--hairline);
-      }
-
-      .ooda td,
-      .ooda td:first-child,
-      .ooda td:nth-child(2),
-      .ooda td:nth-child(3) {
-        width: 100%;
-        padding: var(--s-2) 0;
+      .audit-table,
+      .data-table,
+      .resource-table {
         border: 0;
+        background: transparent;
       }
 
-      .action {
-        grid-template-columns: 72px minmax(0, 1fr);
+      .audit-table tr,
+      .data-table tr,
+      .resource-table tr {
+        display: block;
+        margin-bottom: var(--s4);
+        border: 1px solid var(--line-strong);
+        background: var(--card);
       }
 
-      .action-deadline {
+      .audit-table td,
+      .data-table td,
+      .resource-table td {
+        position: relative;
+        min-height: 52px;
+        padding: var(--s3) var(--s3) var(--s3) 42%;
+        border-right: 0;
+        border-bottom: 1px solid var(--line);
+      }
+
+      .audit-table td:last-child,
+      .data-table td:last-child,
+      .resource-table td:last-child {
+        border-bottom: 0;
+      }
+
+      .audit-table td::before,
+      .data-table td::before,
+      .resource-table td::before {
+        position: absolute;
+        top: var(--s3);
+        left: var(--s3);
+        width: 35%;
+        color: var(--muted);
+        content: attr(data-label);
+        font-size: 11px;
+        font-weight: 600;
+      }
+
+      .score-row {
+        grid-template-columns: 56px minmax(0, 1fr);
+      }
+
+      .score-target {
         grid-column: 2;
         justify-self: start;
       }
 
-      .closing-quote {
-        font-size: 40px;
+      .closing blockquote {
+        font-size: 34px;
       }
 
-      .footer {
-        padding-right: var(--s-5);
-        padding-left: var(--s-5);
+      footer {
+        flex-direction: column;
       }
     }
 
-    @media (max-width: 560px) {
-      .hero {
-        min-height: 470px;
-      }
-
-      .hero-topline {
-        flex-direction: column;
-        gap: var(--s-1);
-      }
-
-      .hero-kicker {
-        margin-top: var(--s-7);
+    @media (max-width: 420px) {
+      .topbar,
+      .hero,
+      .section,
+      .experiment,
+      .scorecard,
+      .closing,
+      footer {
+        padding-right: var(--s4);
+        padding-left: var(--s4);
       }
 
       .hero h1 {
-        font-size: 42px;
-        line-height: 1.02;
+        font-size: 36px;
       }
 
-      .hero-summary {
-        font-size: 16px;
+      .query-card {
+        padding: var(--s4);
+        font-size: 12px;
       }
 
-      .metrics {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
-
-      .metric,
-      .metric:nth-child(3) {
-        min-height: 150px;
-        border-right: 1px solid var(--hairline-soft);
-        border-bottom: 1px solid var(--hairline-soft);
-      }
-
-      .metric:nth-child(even) {
-        border-right: 0;
-      }
-
-      .metric:last-child {
-        grid-column: 1 / -1;
-        border-right: 0;
-        border-bottom: 0;
-      }
-
-      .metric-value {
-        font-size: 44px;
-      }
-
-      .section,
-      .closing {
-        padding: var(--s-7) var(--s-4);
-      }
-
-      .section-head {
+      .stats-grid {
         grid-template-columns: 1fr;
-        gap: var(--s-3);
       }
 
-      .section-number {
-        font-size: 24px;
+      .stat:last-child {
+        grid-column: auto;
+      }
+
+      .stat {
+        min-height: 132px;
       }
 
       .section h2 {
         font-size: 28px;
       }
 
-      .section-lead {
-        font-size: 16px;
+      .why-list li {
+        padding-left: 54px;
       }
 
-      .verdict-box {
-        grid-template-columns: 5px minmax(0, 1fr);
-        gap: var(--s-4);
+      .root-card,
+      .wheel-card {
+        padding: var(--s5);
       }
 
-      .verdict-copy {
-        font-size: 22px;
+      .audit-table td,
+      .data-table td,
+      .resource-table td {
+        padding-left: 39%;
       }
 
-      .verdict-detail {
-        margin-left: 21px;
-        font-size: 16px;
-      }
-
-      .why-card {
-        grid-template-columns: 1fr;
-        gap: var(--s-4);
-      }
-
-      .why-index {
-        font-size: 40px;
-      }
-
-      .why-content h3 {
-        font-size: 22px;
-      }
-
-      .flywheel {
-        padding: var(--s-4);
-      }
-
-      .flywheel-label {
-        align-items: flex-start;
-        flex-direction: column;
-      }
-
-      .flow,
-      .accelerators {
+      .score-row {
         grid-template-columns: 1fr;
       }
 
-      .flow-step {
-        min-height: 76px;
-      }
-
-      .ssc-column {
-        padding: var(--s-5);
-      }
-
-      .action {
-        grid-template-columns: 1fr;
-        gap: var(--s-3);
-        padding: var(--s-5);
-      }
-
-      .action-deadline {
+      .score-target {
         grid-column: 1;
       }
 
-      .action-index {
-        font-size: 30px;
-      }
-
-      .closing-quote {
-        font-size: 32px;
-      }
-
-      .footer {
-        flex-direction: column;
-        padding: var(--s-5) var(--s-4) var(--s-6);
+      .closing blockquote {
+        font-size: 29px;
       }
     }
 
     @media print {
       html,
-      body {
-        background: var(--paper);
-      }
-
+      body,
       main {
-        width: 100%;
+        background: var(--black);
       }
 
       .section,
-      .hero,
+      .experiment,
       .scorecard {
         break-inside: avoid;
       }
@@ -967,312 +1152,431 @@
 </head>
 <body>
   <main>
-    <header class="hero">
-      <div>
-        <div class="hero-topline">
-          <span>Weekly Review / 2026 W28</span>
-          <span>记录窗口：07.07—07.13</span>
-        </div>
-        <p class="hero-kicker">本周核心命题</p>
-        <div class="hero-marker"></div>
-        <h1><span>先拿证据，</span><span>再谈方向。</span></h1>
+    <div class="topbar">
+      <div class="brand">
+        <span class="brand-mark" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span>WEEKLY REVIEW / EVIDENCE ENGINE</span>
       </div>
-      <p class="hero-summary">技术任务已经证明你能连续推进。真正的卡点，是市场和人际任务仍被排在可控完成感之后。</p>
+      <span>2026-07-07 至 2026-07-13 · 对应真实周期 07-06 至 07-12</span>
+    </div>
+
+    <header class="hero">
+      <div class="hero-grid">
+        <div>
+          <span class="eyebrow">本周经营裁决</span>
+          <h1>技术闭环已验证，<span>市场闭环仍欠账。</span></h1>
+          <p class="hero-lead">你不是没有执行。你已经证明自己能在有地图、有反馈的技术任务上持续推进；尚未证明的是，能否稳定把可能被拒绝的市场动作放到第一优先级。</p>
+        </div>
+        <div class="query-card">
+          <div class="query-head"><span>weekly_query.sql</span><span>W28</span></div>
+          <span class="query-line"><span class="query-keyword">SELECT</span> next_move</span>
+          <span class="query-line"><span class="query-keyword">FROM</span> weekly_evidence</span>
+          <span class="query-line"><span class="query-keyword">WHERE</span> external_feedback = <span class="query-string">'real'</span></span>
+          <span class="query-line"><span class="query-keyword">LIMIT</span> 1;</span>
+          <span class="query-result">RESULT: 发布 3 篇，先让现实回答。</span>
+        </div>
+      </div>
     </header>
 
-    <section class="metrics" aria-label="本周关键事实">
-      <div class="metric">
-        <span class="metric-value success">7</span>
-        <span class="metric-label">日省文件齐全</span>
-        <span class="metric-note">观察系统持续运转</span>
-      </div>
-      <div class="metric">
-        <span class="metric-value success">3</span>
-        <span class="metric-label">脚本核心动作出现成功</span>
-        <span class="metric-note">拉群、发消息、改群名</span>
-      </div>
-      <div class="metric">
-        <span class="metric-value success">1</span>
-        <span class="metric-label">朋友圈首次发布</span>
-        <span class="metric-note">私域从计划进入行动</span>
-      </div>
-      <div class="metric">
-        <span class="metric-value risk">0</span>
-        <span class="metric-label">小红书首帖</span>
-        <span class="metric-note">研究持续，样本未产生</span>
-      </div>
-      <div class="metric">
-        <span class="metric-value risk">0</span>
-        <span class="metric-label">合作对话样本</span>
-        <span class="metric-note">时机与情绪反复延后</span>
-      </div>
-    </section>
+    <div class="verdict-band">
+      <blockquote>下一个周期不再同时验证多个方向。唯一问题是：留学内容完成 3 次最小发布后，能否获得目标用户回应？</blockquote>
+      <p>如果没有发满 3 篇，结论只能是执行系统失败，不能用“赛道不成立”解释。</p>
+    </div>
 
-    <section class="section verdict">
+    <section class="section" aria-labelledby="audit-title">
       <div class="section-head">
-        <span class="section-number">00</span>
-        <div class="section-title-wrap">
-          <span class="section-eyebrow">Weekly verdict</span>
-          <h2>不是没执行，是执行顺序错了</h2>
-          <p class="section-lead">本周的努力密度不低，但业务证据的增长速度明显落后于内部系统的增长速度。</p>
-        </div>
-      </div>
-      <div class="verdict-box">
-        <div class="verdict-line"></div>
-        <blockquote class="verdict-copy">任务系统正在奖励“我能控制什么”，而不是“什么最能让现实回应我”。</blockquote>
-      </div>
-      <p class="verdict-detail">脚本、知识、工具不会拒绝你，所以可以连续投入三小时；发布、销售和合作会暴露不确定性，所以总被放到“准备更充分以后”。这不是性格定论，而是一套可以修改的排序规则。下周先改顺序，不再继续分析自己为什么不行动。</p>
-    </section>
-
-    <section class="section">
-      <div class="section-head">
-        <span class="section-number">01</span>
-        <div class="section-title-wrap">
-          <span class="section-eyebrow">5 Why / Root causes</span>
-          <h2>三个表象，一套底层机制</h2>
-          <p class="section-lead">外部动作延后、脚本提前宣布跑通、方向身份反复变化，最终都指向对不确定反馈的回避。</p>
+        <span class="section-index">01</span>
+        <div>
+          <span class="section-kicker">PREVIOUS COMMITMENT AUDIT</span>
+          <h2 id="audit-title">先验收旧承诺，再提出新计划</h2>
+          <p class="section-intro">上一份周省列了 7 项并行动作，却没有统一证据口径。本周仅 1 项可确认完成，数据缺失本身就是系统问题。</p>
         </div>
       </div>
 
-      <div class="why-list">
-        <article class="why-card">
-          <div class="why-index">01</div>
-          <div class="why-content">
-            <h3>为什么小红书与合作沟通总被延后？</h3>
-            <ol class="why-chain">
-              <li>研究与排障总有更明确的下一步。</li>
-              <li>明确任务反馈快、控制感强。</li>
-              <li>发布与沟通可能遭遇冷淡、拒绝或暴露能力缺口。</li>
-              <li>任务排序依据“容易完成”，不是“最能带来新证据”。</li>
-              <li>完成数量代替了市场反馈，外部指标没有进入记分牌。</li>
-            </ol>
-            <p class="root-cause"><strong>根因：</strong>任务奖励函数错配。修正方式不是继续打气，而是把发布、邀约、报价和回访锁进每天第一个保护时段。</p>
-          </div>
-        </article>
-
-        <article class="why-card">
-          <div class="why-index">02</div>
-          <div class="why-content">
-            <h3>为什么脚本有成功样本，却仍不能交付？</h3>
-            <ol class="why-chain">
-              <li>一次成功只证明路径可行，不证明能够重复。</li>
-              <li>等待过久后，首次闭环带来过强奖励。</li>
-              <li>“出现成功”被过早命名为“已经跑通”。</li>
-              <li>长会话继续扩功能，上下文压缩可能破坏稳定代码。</li>
-              <li>没有冻结基线、失败日志与连续运行验收。</li>
-            </ol>
-            <p class="root-cause"><strong>根因：</strong>缺少可复现的工程合同。稳定不是感觉，而是固定输入、连续成功次数、异常覆盖和明确回退路径。</p>
-          </div>
-        </article>
-
-        <article class="why-card">
-          <div class="why-index">03</div>
-          <div class="why-content">
-            <h3>为什么第二曲线与身份叙事持续变化？</h3>
-            <ol class="why-chain">
-              <li>新标签能快速提供清晰感与兴奋感。</li>
-              <li>标签没有被翻译成日常动作和第一份用户反馈。</li>
-              <li>困难出现后，取消项目会立即降低压力。</li>
-              <li>现实反馈到来前，项目已经被认知判断终止。</li>
-              <li>没有最小验证期，情绪可以直接改写战略。</li>
-            </ol>
-            <p class="root-cause"><strong>根因：</strong>用认知提前消灭不确定性。新方向必须先完成 7 天验证合同，再允许讨论长期身份。</p>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-head">
-        <span class="section-number">02</span>
-        <div class="section-title-wrap">
-          <span class="section-eyebrow">Flywheel / System view</span>
-          <h2>保护正向飞轮，切断负向飞轮</h2>
-          <p class="section-lead">真正有价值的系统不是让你一直忙，而是让节省的时间继续流向收入与能力。</p>
-        </div>
-      </div>
-
-      <div class="flywheels">
-        <article class="flywheel positive">
-          <div class="flywheel-label">
-            <h3>正向：真实问题驱动自动化</h3>
-            <span class="status-pill">已经验证</span>
-          </div>
-          <div class="flow" aria-label="正向飞轮">
-            <div class="flow-step">重复痛点出现</div>
-            <div class="flow-step">拆成明确流程</div>
-            <div class="flow-step">提供地图与案例</div>
-            <div class="flow-step">限制 AI 自由度</div>
-            <div class="flow-step">跑出最小样本</div>
-            <div class="flow-step">沉淀自动化能力</div>
-          </div>
-          <p><strong>优势：</strong>企业微信结算提速与脚本 3.0 都证明，你能把重复操作翻译成 AI 可执行的结构。<strong>缺口：</strong>省下来的时间尚未预先绑定获客、成交或交付改善。</p>
-        </article>
-
-        <article class="flywheel negative">
-          <div class="flywheel-label">
-            <h3>负向：可控完成感替代外部反馈</h3>
-            <span class="status-pill">必须切断</span>
-          </div>
-          <div class="flow" aria-label="负向飞轮">
-            <div class="flow-step">方向不确定</div>
-            <div class="flow-step">继续研究分析</div>
-            <div class="flow-step">转向系统任务</div>
-            <div class="flow-step">获得完成感</div>
-            <div class="flow-step">外部动作延后</div>
-            <div class="flow-step">证据继续为零</div>
-          </div>
-          <p><strong>代价：</strong>系统越来越完整，方向却越来越需要解释。小红书首帖和合作对话反复进入待办，就是这条飞轮最直接的证据。</p>
-        </article>
-      </div>
-
-      <div class="accelerators" aria-label="下周飞轮加速器">
-        <div class="accelerator"><span>ACCELERATOR 01</span><strong>外部证据先于内部优化</strong></div>
-        <div class="accelerator"><span>ACCELERATOR 02</span><strong>冻结可运行工程基线</strong></div>
-        <div class="accelerator"><span>ACCELERATOR 03</span><strong>新方向先签 7 天验证合同</strong></div>
-        <div class="accelerator"><span>ACCELERATOR 04</span><strong>省下时间至少一半投入增长</strong></div>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-head">
-        <span class="section-number">03</span>
-        <div class="section-title-wrap">
-          <span class="section-eyebrow">Start / Stop / Continue</span>
-          <h2>下周只改六件事</h2>
-          <p class="section-lead">每栏两项。数量越少，越能看清周末究竟有没有发生行为变化。</p>
-        </div>
-      </div>
-
-      <div class="ssc-grid">
-        <article class="ssc-column start">
-          <h3>Start</h3>
-          <ol>
-            <li><strong>外部证据第一小时</strong>每天第一个 60 至 90 分钟，只处理能被客户、读者或合作方看见的动作。</li>
-            <li><strong>双验收标准</strong>技术看稳定重复，方向看真实反馈，不再用内部步骤数代替结果。</li>
-          </ol>
-        </article>
-
-        <article class="ssc-column stop">
-          <h3>Stop</h3>
-          <ol>
-            <li><strong>停止用研究替代发布</strong>同一外部动作连续出现三天，自动升为次日第一任务。</li>
-            <li><strong>停止提前命名成功</strong>一次跑通不是稳定，一次兴奋不是方向，一个身份不是目标。</li>
-          </ol>
-        </article>
-
-        <article class="ssc-column continue">
-          <h3>Continue</h3>
-          <ol>
-            <li><strong>继续案例与地图优先</strong>给 AI 控件树、源码样本、禁止项和最小验收，再让它执行。</li>
-            <li><strong>继续用场域与运动切换</strong>图书馆、步行和线下交流可以恢复状态，但切换后必须留下一个输出。</li>
-          </ol>
-        </article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-head">
-        <span class="section-number">04</span>
-        <div class="section-title-wrap">
-          <span class="section-eyebrow">OODA / Loop calibration</span>
-          <h2>观察已经够快，现实进入循环太慢</h2>
-          <p class="section-lead">下周不是增加分析深度，而是缩短“看到问题”到“获得外部回应”的距离。</p>
-        </div>
-      </div>
-
-      <table class="ooda">
+      <table class="audit-table">
         <thead>
           <tr>
-            <th>环节</th>
-            <th>本周表现</th>
-            <th>下周校准</th>
+            <th>上周承诺</th>
+            <th>结果</th>
+            <th>证据</th>
+            <th>本周处理</th>
           </tr>
         </thead>
         <tbody>
           <tr>
-            <td>Observe<br>观察</td>
-            <td>情绪、卡点和行为记录很细，外部经营数据不足。</td>
-            <td>每日固定记录发布数、有效对话数、报价数、成交数。</td>
+            <td data-label="上周承诺">24 小时外部验证</td>
+            <td data-label="结果"><span class="status partial">部分完成</span></td>
+            <td data-label="证据">新品上架、朋友圈首帖发生；多个方向仍停在研究。</td>
+            <td data-label="本周处理">升级为外部证据第一时段。</td>
           </tr>
           <tr>
-            <td>Orient<br>定向</td>
-            <td>模型提炼快，但容易让新身份和当天情绪重写方向。</td>
-            <td>方向先放入“待验证”，连续 3 个外部样本后再升级判断。</td>
+            <td data-label="上周承诺">挂出“装小龙虾”服务</td>
+            <td data-label="结果"><span class="status unknown">无法判断</span></td>
+            <td data-label="证据">没有服务链接；出现 1 个“上门卸载”需求信号。</td>
+            <td data-label="本周处理">保留需求，不扩大叙事。</td>
           </tr>
           <tr>
-            <td>Decide<br>决策</td>
-            <td>决定很多，优先级会随兴奋与任务可控性变化。</td>
-            <td>每天只保留 1 个必须获得外部反馈的主任务。</td>
+            <td data-label="上周承诺">批量发送脚本真实测试</td>
+            <td data-label="结果"><span class="status done">完成</span></td>
+            <td data-label="证据">企业微信结算约从 30 分钟降至 5 分钟。</td>
+            <td data-label="本周处理">保留人工复核，停止扩功能。</td>
           </tr>
           <tr>
-            <td>Act<br>行动</td>
-            <td>技术闭环强，市场闭环与人际闭环弱。</td>
-            <td>发布、邀约和报价放到技术任务之前，并留下发送或上线证据。</td>
+            <td data-label="上周承诺">公开 AI 实操案例</td>
+            <td data-label="结果"><span class="status unknown">无法判断</span></td>
+            <td data-label="证据">朋友圈首帖已发，但未保存帖子内容或链接。</td>
+            <td data-label="本周处理">以后必须保存发布证据。</td>
+          </tr>
+          <tr>
+            <td data-label="上周承诺">连续 3 天有效工时</td>
+            <td data-label="结果"><span class="status unknown">无法判断</span></td>
+            <td data-label="证据">日省没有统一时长分类记录。</td>
+            <td data-label="本周处理">由新版外部记分牌替代。</td>
+          </tr>
+          <tr>
+            <td data-label="上周承诺">SEO 连续 3 天上传</td>
+            <td data-label="结果"><span class="status partial">部分完成</span></td>
+            <td data-label="证据">7 月 7 日明确上传，其他日期没有数量证据。</td>
+            <td data-label="本周处理">停止自动续期数量目标。</td>
+          </tr>
+          <tr>
+            <td data-label="上周承诺">关键动作前不扩系统</td>
+            <td data-label="结果"><span class="status unknown">无法判断</span></td>
+            <td data-label="证据">无法区分必要维护与功能扩张。</td>
+            <td data-label="本周处理">用 100% 资源配比设上限。</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="section alt" aria-labelledby="data-title">
+      <div class="section-head">
+        <span class="section-index">02</span>
+        <div>
+          <span class="section-kicker">EXTERNAL RESULT DASHBOARD</span>
+          <h2 id="data-title">外部证据不算少，经营数据仍不完整</h2>
+          <p class="section-intro">旧日省没有结构化记分牌，因此只统计文字中明确出现的最低值，不把“未记录”伪装成 0。</p>
+        </div>
+      </div>
+
+      <div class="stats-grid">
+        <div class="stat">
+          <span class="stat-value">6/7</span>
+          <span class="stat-label">外部证据天数</span>
+          <span class="stat-note">发布、客户、交流或真实运行</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">≥3</span>
+          <span class="stat-label">发布</span>
+          <span class="stat-note">SEO、新品、朋友圈</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">≥4</span>
+          <span class="stat-label">有效对话</span>
+          <span class="stat-note">客户需求与现场业务样本</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value muted">N/A</span>
+          <span class="stat-label">报价</span>
+          <span class="stat-note">本周没有结构化记录</span>
+        </div>
+        <div class="stat">
+          <span class="stat-value">1*</span>
+          <span class="stat-label">订单信号</span>
+          <span class="stat-note">付款与交付状态未记录</span>
+        </div>
+      </div>
+
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>指标</th>
+            <th>本周结果</th>
+            <th>完整性</th>
+            <th>关键证据</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="指标">主动作完成率</td>
+            <td data-label="本周结果">无法统计</td>
+            <td data-label="完整性">低</td>
+            <td data-label="关键证据">旧日省没有统一“明日唯一动作”与次日闭环字段。</td>
+          </tr>
+          <tr>
+            <td data-label="指标">真实反馈样本</td>
+            <td data-label="本周结果">至少 6</td>
+            <td data-label="完整性">中低</td>
+            <td data-label="关键证据">结算运行、卸载需求、脚本失败路线、现场样本、脚本成功与失败运行。</td>
+          </tr>
+          <tr>
+            <td data-label="指标">仍为零闭环</td>
+            <td data-label="本周结果">3 项</td>
+            <td data-label="完整性">高</td>
+            <td data-label="关键证据">小红书首帖、合作商业对话、脚本员工交付均未完成。</td>
           </tr>
         </tbody>
       </table>
 
-      <p class="ooda-conclusion">当前瓶颈不是看不见问题，而是定向过度、决策过多、外部行动太晚。</p>
+      <p class="warning"><strong>数据警报：</strong>报价、成交、渠道转化缺失。下周再忙，如果这三类数字仍为空，就仍然无法判断工作是否转化为现金结果。</p>
     </section>
 
-    <section class="section scorecard">
+    <section class="section" aria-labelledby="why-title">
       <div class="section-head">
-        <span class="section-number">05</span>
-        <div class="section-title-wrap">
-          <span class="section-eyebrow">Next-week scorecard</span>
-          <h2>四个“是 / 否”决定下周质量</h2>
-          <p class="section-lead">实际执行窗口：2026-07-13 至 2026-07-19。</p>
+        <span class="section-index">03</span>
+        <div>
+          <span class="section-kicker">PRIMARY BOTTLENECK / 5 WHY</span>
+          <h2 id="why-title">高不确定动作没有获得第一优先级</h2>
+          <p class="section-intro">小红书首帖和合作沟通不是“不知道怎么做”，而是被反馈更快、更可控的任务持续挤到后面。</p>
         </div>
       </div>
 
-      <div class="action-list">
-        <article class="action">
-          <span class="action-index">01</span>
-          <div class="action-copy">
-            <strong>发出小红书留学方向第一篇最小版本帖子</strong>
-            <span>内容不再以“准备完整”为前提，先拿到第一份公域反馈。</span>
+      <div class="why-grid">
+        <ol class="why-list">
+          <li>研究、脚本排障和系统整理总能提供更明确的下一步。</li>
+          <li>明确任务反馈快、可控制；市场和人可能冷淡、拒绝或不回应。</li>
+          <li>旧计划同时塞入 6 项动作，没有唯一实验、样本数量和失败阈值。</li>
+          <li>复盘系统擅长发现问题，却没有统一验收上一周期承诺。</li>
+          <li>系统最终奖励内部完成感，而不是外部世界是否提供新证据。</li>
+        </ol>
+
+        <aside class="root-card">
+          <span>ROOT CAUSE</span>
+          <h3>任务系统按可控性分配注意力，而不是按经营不确定性分配。</h3>
+          <p><strong>系统修正：</strong>只保留一个市场实验；发布进入当天第一个 60 至 90 分钟保护时段。</p>
+          <p><strong>验收：</strong>7 月 19 日前是否发满 3 篇，并获得 2 次有效互动或 1 次付费咨询。</p>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section alt" aria-labelledby="wheel-title">
+      <div class="section-head">
+        <span class="section-index">04</span>
+        <div>
+          <span class="section-kicker">VERIFIED FLYWHEELS</span>
+          <h2 id="wheel-title">一个飞轮该加速，一个飞轮必须切断</h2>
+          <p class="section-intro">正向飞轮有真实运行支持，负向飞轮有跨多日重复证据，两者都不是抽象感悟。</p>
+        </div>
+      </div>
+
+      <div class="wheel-grid">
+        <article class="wheel-card positive">
+          <h3>正向：真实痛点驱动自动化</h3>
+          <div class="flow">
+            <div class="flow-step">重复人工痛点</div>
+            <div class="flow-step">拆成明确步骤</div>
+            <div class="flow-step">提供控件地图与案例</div>
+            <div class="flow-step">限制 AI 自由度</div>
+            <div class="flow-step">跑出真实样本</div>
+            <div class="flow-step">节省时间并沉淀组件</div>
           </div>
-          <span class="action-deadline">7 月 14 日中午前</span>
+          <p>结算脚本真实提速，脚本 3.0 出现核心成功样本。下一步不是加功能，而是稳定验收。</p>
         </article>
 
-        <article class="action">
-          <span class="action-index">02</span>
-          <div class="action-copy">
-            <strong>发出一次明确的合作邀约</strong>
-            <span>写清我能提供什么、共同验证什么、下一步需要多长时间。</span>
+        <article class="wheel-card negative">
+          <h3>负向：可控完成感替代市场反馈</h3>
+          <div class="flow">
+            <div class="flow-step">方向不确定</div>
+            <div class="flow-step">继续研究分析</div>
+            <div class="flow-step">转向脚本与系统任务</div>
+            <div class="flow-step">获得完成感</div>
+            <div class="flow-step">发布与沟通延后</div>
+            <div class="flow-step">市场证据继续不足</div>
           </div>
-          <span class="action-deadline">7 月 15 日前</span>
+          <p>小红书、合作对话和身份叙事共同支持这条回路。切断点只能是先发布，再解释。</p>
         </article>
+      </div>
+    </section>
 
-        <article class="action">
-          <span class="action-index">03</span>
-          <div class="action-copy">
-            <strong>冻结脚本 3.0 基线并连续复测 10 次</strong>
-            <span>每次失败记录步骤、环境和日志，稳定前不交付员工。</span>
-          </div>
-          <span class="action-deadline">本周完成</span>
-        </article>
+    <section class="experiment" aria-labelledby="experiment-title">
+      <div class="section-head">
+        <span class="section-index">05</span>
+        <div>
+          <span class="section-kicker">ONE EXPERIMENT / SEVEN DAYS</span>
+          <h2 id="experiment-title">留学素人 IP 最小发布实验</h2>
+          <p class="section-intro">不是继续研究赛道，而是用 3 篇真实发布让市场回答。</p>
+        </div>
+      </div>
 
-        <article class="action">
-          <span class="action-index">04</span>
-          <div class="action-copy">
-            <strong>连续 5 天记录四个经营数字</strong>
-            <span>发布数、有效对话数、报价数、成交数。</span>
-          </div>
-          <span class="action-deadline">至少 5 天</span>
+      <div class="experiment-grid">
+        <div class="experiment-item">
+          <span>HYPOTHESIS</span>
+          <strong>连续 3 次解决具体问题的真实内容，可以获得目标用户有效回应。</strong>
+        </div>
+        <div class="experiment-item">
+          <span>SAMPLE</span>
+          <strong>7 月 14、16、18 日各发布 1 篇；保存链接及曝光、收藏、评论、私信、咨询。</strong>
+        </div>
+        <div class="experiment-item">
+          <span>SUCCESS</span>
+          <strong>至少 2 次目标用户有效互动，或 1 次明确付费咨询。</strong>
+        </div>
+        <div class="experiment-item">
+          <span>FAILURE</span>
+          <strong>3 篇全部发布，至 7 月 19 日仍为 0 次目标用户有效互动。</strong>
+        </div>
+      </div>
+
+      <div class="decision-row">到期决策：达标则继续两周；有 1 次互动则调整再测；发满但 0 反馈则重审人群、问题与渠道；没有发满则判定执行系统失败。</div>
+    </section>
+
+    <section class="section" aria-labelledby="resource-title">
+      <div class="section-head">
+        <span class="section-index">06</span>
+        <div>
+          <span class="section-kicker">RESOURCE ALLOCATION / 100%</span>
+          <h2 id="resource-title">注意力必须在日历上完成取舍</h2>
+          <p class="section-intro">从 7 月 14 日起执行。自动化省下的时间优先回流客户和市场实验，不再自动进入下一轮系统优化。</p>
+        </div>
+      </div>
+
+      <table class="resource-table">
+        <thead>
+          <tr>
+            <th>业务线</th>
+            <th>比例</th>
+            <th>时间块</th>
+            <th>预期证据</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td data-label="业务线">计算机主业现金流</td>
+            <td data-label="比例"><div class="allocation"><div class="allocation-track"><div class="allocation-fill w45"></div></div><b>45%</b></div></td>
+            <td data-label="时间块">工作日 11:00 至 12:30；16:00 消息批处理。</td>
+            <td data-label="预期证据">客户对话、报价、订单、代理推进。</td>
+          </tr>
+          <tr>
+            <td data-label="业务线">留学小红书实验</td>
+            <td data-label="比例"><div class="allocation"><div class="allocation-track"><div class="allocation-fill w25"></div></div><b>25%</b></div></td>
+            <td data-label="时间块">7/14、7/16、7/18 第一个 90 分钟。</td>
+            <td data-label="预期证据">3 个发布链接与反馈数据。</td>
+          </tr>
+          <tr>
+            <td data-label="业务线">脚本 3.0 稳定性</td>
+            <td data-label="比例"><div class="allocation"><div class="allocation-track"><div class="allocation-fill w15"></div></div><b>15%</b></div></td>
+            <td data-label="时间块">7/15、7/17 的 14:00 至 16:00。</td>
+            <td data-label="预期证据">冻结基线、10 次运行、失败日志。</td>
+          </tr>
+          <tr>
+            <td data-label="业务线">私域与合作沟通</td>
+            <td data-label="比例"><div class="allocation"><div class="allocation-track"><div class="allocation-fill w10"></div></div><b>10%</b></div></td>
+            <td data-label="时间块">7/15、7/17 的 16:30 至 17:30。</td>
+            <td data-label="预期证据">1 次价值邀约，至少 1 条朋友圈。</td>
+          </tr>
+          <tr>
+            <td data-label="业务线">复盘与系统维护</td>
+            <td data-label="比例"><div class="allocation"><div class="allocation-track"><div class="allocation-fill w5"></div></div><b>5%</b></div></td>
+            <td data-label="时间块">每晚 20 分钟；7/19 周省 60 分钟。</td>
+            <td data-label="预期证据">日省完整，无非必要系统扩张。</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="ssc-grid">
+        <article class="ssc">
+          <h3>START</h3>
+          <p>发布日的第一个保护时段只允许完成当日帖子并保存链接。</p>
         </article>
+        <article class="ssc stop">
+          <h3>STOP</h3>
+          <p>3 篇发布前，停止扩大留学、投资人、企业 AI 专家等身份叙事。</p>
+        </article>
+        <article class="ssc continue">
+          <h3>CONTINUE</h3>
+          <p>继续案例、控件地图、禁止项和可运行基线的 AI 协作方式。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section alt" aria-labelledby="ooda-title">
+      <div class="section-head">
+        <span class="section-index">07</span>
+        <div>
+          <span class="section-kicker">OODA CALIBRATION</span>
+          <h2 id="ooda-title">不是观察太慢，是现实进入循环太慢</h2>
+          <p class="section-intro">下一周期降低解释频率，提高外部回应进入判断的速度。</p>
+        </div>
+      </div>
+
+      <div class="ooda-grid">
+        <article class="ooda-item">
+          <span>OBSERVE</span>
+          <h3>经营数字缺失</h3>
+          <p>报价、成交、转化和主动作完成率未统一记录。新版日省先补数据。</p>
+        </article>
+        <article class="ooda-item">
+          <span>ORIENT</span>
+          <h3>身份升级过快</h3>
+          <p>一天的兴奋容易产生新身份。下周只允许实验结果修改方向。</p>
+        </article>
+        <article class="ooda-item">
+          <span>DECIDE</span>
+          <h3>决定数量过多</h3>
+          <p>只保留一个市场实验，其他工作按资源比例运行。</p>
+        </article>
+        <article class="ooda-item">
+          <span>ACT</span>
+          <h3>技术强，市场弱</h3>
+          <p>发布与价值邀约必须发生在脚本扩展之前。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="scorecard" aria-labelledby="score-title">
+      <div class="section-head">
+        <span class="section-index">08</span>
+        <div>
+          <span class="section-kicker">NEXT-WEEK SCORECARD</span>
+          <h2 id="score-title">四个结果，周日只看证据</h2>
+          <p class="section-intro">执行窗口：2026-07-13 至 2026-07-19。</p>
+        </div>
+      </div>
+
+      <div class="score-list">
+        <div class="score-row">
+          <span class="score-index">01</span>
+          <div class="score-copy">
+            <strong>发布 3 篇留学小红书帖子</strong>
+            <span>每篇保存公开链接，未发满不能评价赛道。</span>
+          </div>
+          <span class="score-target">3 个链接</span>
+        </div>
+        <div class="score-row">
+          <span class="score-index">02</span>
+          <div class="score-copy">
+            <strong>获得目标用户回应</strong>
+            <span>普通点赞不计，必须包含问题、需求、反对意见或付费意向。</span>
+          </div>
+          <span class="score-target">2 次互动 / 1 次咨询</span>
+        </div>
+        <div class="score-row">
+          <span class="score-index">03</span>
+          <div class="score-copy">
+            <strong>完成脚本稳定性验收</strong>
+            <span>冻结基线，连续复测，所有失败留下步骤、环境和日志。</span>
+          </div>
+          <span class="score-target">连续 10 次</span>
+        </div>
+        <div class="score-row">
+          <span class="score-index">04</span>
+          <div class="score-copy">
+            <strong>发出价值前置合作邀约</strong>
+            <span>记录对方回复或未回复状态，不再用猜测代替样本。</span>
+          </div>
+          <span class="score-target">1 次邀约</span>
+        </div>
       </div>
     </section>
 
     <section class="closing">
-      <span class="closing-label">下周唯一执行规则</span>
-      <blockquote class="closing-quote">先让现实回应你，<br>再让 AI 帮你解释。</blockquote>
+      <span>WEEKLY RULE</span>
+      <blockquote>先完成发布，<em>再让 AI 解释结果。</em></blockquote>
     </section>
 
-    <footer class="footer">
+    <footer>
       <span>周省 · 2026-07-07 至 2026-07-13</span>
-      <span>5 Why + Flywheel + Start / Stop / Continue + OODA</span>
+      <span>ClickHouse visual system · static evidence card</span>
     </footer>
   </main>
 </body>
