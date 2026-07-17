@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>认知卡片 · 2026-07-18</title>
+  <style>
+    :root {
+      --c-black: #000000;
+      --c-primary: #17171c;
+      --c-ink: #212121;
+      --c-deep-green: #003c33;
+      --c-dark-green: #002c26;
+      --c-navy: #071829;
+      --c-white: #ffffff;
+      --c-stone: #eeece7;
+      --c-stone-light: #f7f6f3;
+      --c-green-pale: #edfce9;
+      --c-blue-pale: #f1f5ff;
+      --c-coral: #ff7759;
+      --c-coral-soft: #ffad9b;
+      --c-coral-pale: #fff0ec;
+      --c-blue: #1863dc;
+      --c-blue-soft: #dce8ff;
+      --c-violet: #9b60aa;
+      --c-red: #b30000;
+      --c-red-pale: #fff0f0;
+      --c-amber: #9a6400;
+      --c-amber-pale: #fff7df;
+      --c-green: #177245;
+      --c-green-soft: #c9f1d8;
+      --c-text-1: #111114;
+      --c-text-2: #313136;
+      --c-text-3: #505057;
+      --c-text-4: #616168;
+      --c-text-5: #75758a;
+      --c-text-6: #93939f;
+      --c-rule-1: #b9b9c0;
+      --c-rule-2: #d9d9dd;
+      --c-rule-3: #e5e7eb;
+      --c-rule-4: #f2f2f2;
+      --c-surface-1: #ffffff;
+      --c-surface-2: #fafafa;
+      --c-surface-3: #f4f4f4;
+      --c-action-bg: #e8f1ff;
+      --c-method-bg: #edfce9;
+      --c-proof-bg: #eeece7;
+      --c-risk-bg: #fff7df;
+      --c-core-bg: #003c33;
+      --c-core-text: #ffffff;
+      --c-core-muted: #c7ddd8;
+      --c-shadow: rgba(0, 0, 0, 0.08);
+      --fs-1: 12px;
+      --fs-2: 13px;
+      --fs-3: 14px;
+      --fs-4: 15px;
+      --fs-5: 16px;
+      --fs-6: 17px;
+      --fs-7: 18px;
+      --fs-8: 20px;
+      --fs-9: 22px;
+      --fs-10: 24px;
+      --fs-11: 28px;
+      --fs-12: 32px;
+      --fs-13: 38px;
+      --fs-14: 46px;
+      --fs-15: 56px;
+      --fw-light: 300;
+      --fw-regular: 400;
+      --fw-medium: 500;
+      --fw-semi: 600;
+      --fw-bold: 700;
+      --lh-tight: 1.08;
+      --lh-title: 1.18;
+      --lh-heading: 1.3;
+      --lh-body: 1.72;
+      --lh-note: 1.55;
+      --track-zero: 0;
+      --track-label: 0.08em;
+      --sp-1: 4px;
+      --sp-2: 6px;
+      --sp-3: 8px;
+      --sp-4: 12px;
+      --sp-5: 16px;
+      --sp-6: 20px;
+      --sp-7: 24px;
+      --sp-8: 28px;
+      --sp-9: 32px;
+      --sp-10: 40px;
+      --sp-11: 48px;
+      --sp-12: 64px;
+      --sp-13: 80px;
+      --mark-core: 8px;
+      --mark-section: 4px;
+      --mark-rule: 1px;
+      --mark-heavy: 2px;
+      --mark-index: 36px;
+      --mark-dot: 7px;
+      --mark-quote: 6px;
+      --mark-action: 5px;
+      --mark-risk: 5px;
+      --mark-proof: 5px;
+      --card-width: 980px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      background: var(--c-stone-light);
+      color: var(--c-ink);
+      font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+      letter-spacing: var(--track-zero);
+    }
+
+    body {
+      margin: 0;
+      padding: var(--sp-10) var(--sp-6);
+      background: linear-gradient(90deg, var(--c-stone-light) 0 50%, var(--c-white) 50% 100%);
+    }
+
+    .card-shell {
+      width: min(100%, var(--card-width));
+      margin: 0 auto;
+      background: var(--c-white);
+      box-shadow: 0 18px 48px var(--c-shadow);
+    }
+
+    .cognitive-card {
+      border: var(--mark-rule) solid var(--c-rule-2);
+      border-radius: 0;
+      overflow: hidden;
+    }
+
+    .card-header {
+      padding: var(--sp-10) var(--sp-10) var(--sp-11);
+      border-top: var(--mark-core) solid var(--c-deep-green);
+      background: var(--c-white);
+    }
+
+    .eyebrow {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--sp-5);
+      padding-bottom: var(--sp-7);
+      color: var(--c-text-5);
+      font-family: Consolas, monospace;
+      font-size: var(--fs-2);
+      line-height: var(--lh-note);
+      letter-spacing: var(--track-label);
+      text-transform: uppercase;
+      border-bottom: var(--mark-rule) solid var(--c-rule-2);
+    }
+
+    h1, h2, h3, p, blockquote {
+      margin: 0;
+    }
+
+    h1 {
+      max-width: 820px;
+      margin-top: var(--sp-9);
+      color: var(--c-black);
+      font-size: var(--fs-15);
+      font-weight: var(--fw-medium);
+      line-height: var(--lh-tight);
+    }
+
+    .deck {
+      max-width: 760px;
+      margin-top: var(--sp-7);
+      color: var(--c-text-3);
+      font-size: var(--fs-8);
+      line-height: 1.55;
+    }
+
+    .core-insight {
+      padding: var(--sp-11) var(--sp-10);
+      color: var(--c-core-text);
+      background: var(--c-core-bg);
+    }
+
+    .core-label,
+    .section-kicker {
+      font-family: Consolas, monospace;
+      font-size: var(--fs-2);
+      line-height: var(--lh-note);
+      letter-spacing: var(--track-label);
+    }
+
+    .core-label {
+      color: var(--c-coral-soft);
+    }
+
+    .core-statement {
+      max-width: 800px;
+      margin-top: var(--sp-5);
+      font-size: var(--fs-12);
+      font-weight: var(--fw-medium);
+      line-height: var(--lh-title);
+    }
+
+    .core-proof {
+      margin-top: var(--sp-7);
+      padding-left: var(--sp-5);
+      color: var(--c-core-muted);
+      font-size: var(--fs-5);
+      line-height: var(--lh-body);
+      border-left: var(--mark-heavy) solid var(--c-coral);
+    }
+
+    .section {
+      padding: var(--sp-11) var(--sp-10);
+      border-bottom: var(--mark-rule) solid var(--c-rule-2);
+    }
+
+    .section-kicker {
+      color: var(--c-coral);
+    }
+
+    .section-title {
+      margin-top: var(--sp-2);
+      color: var(--c-text-1);
+      font-size: var(--fs-11);
+      font-weight: var(--fw-medium);
+      line-height: var(--lh-heading);
+    }
+
+    .signal-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      margin-top: var(--sp-8);
+      border-top: var(--mark-heavy) solid var(--c-primary);
+      border-bottom: var(--mark-rule) solid var(--c-rule-2);
+    }
+
+    .signal {
+      min-height: 148px;
+      padding: var(--sp-6);
+      border-right: var(--mark-rule) solid var(--c-rule-2);
+    }
+
+    .signal:last-child {
+      border-right: 0;
+    }
+
+    .signal-value {
+      color: var(--c-deep-green);
+      font-size: var(--fs-13);
+      font-weight: var(--fw-semi);
+      line-height: 1;
+    }
+
+    .signal-label {
+      margin-top: var(--sp-4);
+      color: var(--c-text-2);
+      font-size: var(--fs-5);
+      font-weight: var(--fw-medium);
+    }
+
+    .signal-note {
+      margin-top: var(--sp-2);
+      color: var(--c-text-5);
+      font-size: var(--fs-3);
+      line-height: var(--lh-note);
+    }
+
+    .mechanism-list {
+      margin-top: var(--sp-8);
+      border-top: var(--mark-rule) solid var(--c-rule-1);
+    }
+
+    .mechanism {
+      display: grid;
+      grid-template-columns: var(--mark-index) 1fr;
+      gap: var(--sp-6);
+      padding: var(--sp-7) 0;
+      border-bottom: var(--mark-rule) solid var(--c-rule-2);
+    }
+
+    .mechanism-index {
+      width: var(--mark-index);
+      height: var(--mark-index);
+      display: grid;
+      place-items: center;
+      color: var(--c-white);
+      background: var(--c-primary);
+      font-family: Consolas, monospace;
+      font-size: var(--fs-3);
+    }
+
+    .mechanism h3 {
+      color: var(--c-text-1);
+      font-size: var(--fs-9);
+      font-weight: var(--fw-medium);
+      line-height: var(--lh-heading);
+    }
+
+    .mechanism p {
+      margin-top: var(--sp-3);
+      color: var(--c-text-4);
+      font-size: var(--fs-5);
+      line-height: var(--lh-body);
+    }
+
+    .rule {
+      display: block;
+      margin-top: var(--sp-4);
+      padding: var(--sp-4) var(--sp-5);
+      color: var(--c-deep-green);
+      background: var(--c-method-bg);
+      border-left: var(--mark-action) solid var(--c-green);
+      font-size: var(--fs-4);
+      font-weight: var(--fw-semi);
+      line-height: var(--lh-note);
+    }
+
+    .quote-band {
+      padding: var(--sp-11) var(--sp-10);
+      color: var(--c-primary);
+      background: var(--c-stone);
+      border-bottom: var(--mark-rule) solid var(--c-rule-1);
+    }
+
+    .quote-band blockquote {
+      max-width: 780px;
+      padding-left: var(--sp-6);
+      font-size: var(--fs-12);
+      font-weight: var(--fw-medium);
+      line-height: 1.35;
+      border-left: var(--mark-quote) solid var(--c-coral);
+    }
+
+    .quote-note {
+      margin-top: var(--sp-5);
+      padding-left: calc(var(--sp-6) + var(--mark-quote));
+      color: var(--c-text-4);
+      font-size: var(--fs-4);
+      line-height: var(--lh-body);
+    }
+
+    .action-box {
+      margin-top: var(--sp-8);
+      padding: var(--sp-8);
+      background: var(--c-action-bg);
+      border-left: var(--mark-action) solid var(--c-blue);
+    }
+
+    .action-tag {
+      color: var(--c-blue);
+      font-family: Consolas, monospace;
+      font-size: var(--fs-2);
+      letter-spacing: var(--track-label);
+    }
+
+    .action-main {
+      margin-top: var(--sp-3);
+      color: var(--c-navy);
+      font-size: var(--fs-10);
+      font-weight: var(--fw-semi);
+      line-height: var(--lh-heading);
+    }
+
+    .action-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-5);
+      margin-top: var(--sp-6);
+    }
+
+    .meta-item {
+      padding-top: var(--sp-4);
+      color: var(--c-text-4);
+      font-size: var(--fs-4);
+      line-height: var(--lh-body);
+      border-top: var(--mark-rule) solid var(--c-blue);
+    }
+
+    .meta-item strong {
+      display: block;
+      color: var(--c-navy);
+      font-size: var(--fs-3);
+      font-weight: var(--fw-semi);
+    }
+
+    .maintenance {
+      margin: var(--sp-7) 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .maintenance li {
+      position: relative;
+      padding: var(--sp-4) 0 var(--sp-4) var(--sp-7);
+      color: var(--c-text-3);
+      font-size: var(--fs-5);
+      line-height: var(--lh-body);
+      border-bottom: var(--mark-rule) solid var(--c-rule-3);
+    }
+
+    .maintenance li::before {
+      position: absolute;
+      top: 22px;
+      left: 2px;
+      width: var(--mark-dot);
+      height: var(--mark-dot);
+      content: "";
+      background: var(--c-coral);
+    }
+
+    .risk-box {
+      margin-top: var(--sp-8);
+      padding: var(--sp-7);
+      background: var(--c-risk-bg);
+      border-left: var(--mark-risk) solid var(--c-amber);
+    }
+
+    .risk-title {
+      color: var(--c-amber);
+      font-size: var(--fs-3);
+      font-weight: var(--fw-bold);
+      letter-spacing: var(--track-label);
+    }
+
+    .risk-box ul {
+      margin: var(--sp-4) 0 0;
+      padding-left: var(--sp-6);
+      color: var(--c-text-3);
+      font-size: var(--fs-4);
+      line-height: var(--lh-body);
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--sp-5);
+      padding: var(--sp-10);
+      color: var(--c-text-6);
+      background: var(--c-white);
+      font-size: var(--fs-1);
+      line-height: var(--lh-note);
+    }
+
+    @media (max-width: 1024px) {
+      body { padding: var(--sp-8); }
+      h1 { font-size: var(--fs-14); }
+      .card-header, .core-insight, .section, .quote-band { padding-left: var(--sp-9); padding-right: var(--sp-9); }
+    }
+
+    @media (max-width: 768px) {
+      body { padding: var(--sp-5); }
+      h1 { font-size: var(--fs-13); }
+      .deck { font-size: var(--fs-7); }
+      .signal-row { grid-template-columns: 1fr; }
+      .signal { min-height: 0; border-right: 0; border-bottom: var(--mark-rule) solid var(--c-rule-2); }
+      .signal:last-child { border-bottom: 0; }
+      .action-meta { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 640px) {
+      body { padding: 0; background: var(--c-white); }
+      .card-shell { box-shadow: none; }
+      .cognitive-card { border-left: 0; border-right: 0; }
+      .card-header, .core-insight, .section, .quote-band { padding: var(--sp-9) var(--sp-6); }
+      h1 { font-size: var(--fs-12); }
+      .core-statement, .quote-band blockquote { font-size: var(--fs-10); }
+      .mechanism { gap: var(--sp-4); }
+      .card-footer { padding: var(--sp-9) var(--sp-6); }
+    }
+
+    @media (max-width: 425px) {
+      .card-header, .core-insight, .section, .quote-band { padding-left: var(--sp-5); padding-right: var(--sp-5); }
+      .eyebrow, .card-footer { flex-direction: column; }
+      h1 { font-size: var(--fs-11); }
+      .section-title { font-size: var(--fs-10); }
+      .action-box, .risk-box { padding: var(--sp-5); }
+      .mechanism { grid-template-columns: 30px 1fr; }
+      .mechanism-index { width: 30px; height: 30px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="card-shell">
+    <article class="cognitive-card">
+      <header class="card-header">
+        <div class="eyebrow"><span>DAILY COGNITIVE REVIEW</span><span>2026-07-18</span></div>
+        <h1>低谷不是解释，外部动作才是证据</h1>
+        <p class="deck">今天真正的进展，不是把系统想得更完整，而是在低状态中仍然完成了出门、工作、运动和复盘。下一步必须把恢复力转成市场动作。</p>
+      </header>
+
+      <section class="core-insight">
+        <div class="core-label">01 / CORE JUDGMENT</div>
+        <p class="core-statement">复盘的用途是修正系统，不是惩罚自己；行动的用途是产生证据，不是缓解焦虑。</p>
+        <p class="core-proof">朋友圈连续第三天未发布，而卡片、整理和脚本更容易获得可控反馈。真正的瓶颈不是缺少认知，而是可控任务持续挤占市场反馈。</p>
+      </section>
+
+      <section class="section">
+        <div class="section-kicker">02 / FACTS</div>
+        <h2 class="section-title">今天的事实仪表盘</h2>
+        <div class="signal-row">
+          <div class="signal"><div class="signal-value">2</div><div class="signal-label">外部发布</div><div class="signal-note">两次聚会已整理为 HTML 卡片</div></div>
+          <div class="signal"><div class="signal-value">1h</div><div class="signal-label">集中推进</div><div class="signal-note">主线梳理与 SEO 站转型，具体产出未记录</div></div>
+          <div class="signal"><div class="signal-value">3天</div><div class="signal-label">市场动作断档</div><div class="signal-note">朋友圈连续未发，已升级为明日唯一动作</div></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-kicker">03 / MECHANISMS</div>
+        <h2 class="section-title">三个需要验证的机制</h2>
+        <div class="mechanism-list">
+          <div class="mechanism">
+            <div class="mechanism-index">01</div>
+            <div><h3>把复盘从审判改成诊断</h3><p>逃避复盘，可能不是认为它无用，而是害怕再次面对“今天没做好”。降低评价，强化下一步，才能让复盘稳定发生。</p><span class="rule">规则：只追问事实、原因、下一步，不用人格评价解释一天。</span></div>
+          </div>
+          <div class="mechanism">
+            <div class="mechanism-index">02</div>
+            <div><h3>音乐必须连接五分钟动作</h3><p>音乐能改善感受，但只有播放后立即进入预先写好的首个动作，它才是启动器，而不是另一种消费。</p><span class="rule">验证：连续记录“播放后是否在 1 分钟内启动”和“是否完成首个 5 分钟”。</span></div>
+          </div>
+          <div class="mechanism">
+            <div class="mechanism-index">03</div>
+            <div><h3>低谷时保护最小系统</h3><p>低状态不要求正常发挥，只守住一个市场动作、一个身体动作和一次复盘，避免业务、健康与认知同时归零。</p><span class="rule">托底组合：外部动作 × 身体动作 × 当日复盘。</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="quote-band">
+        <blockquote>“复盘是我一天活过的证明。”</blockquote>
+        <p class="quote-note">但证明“活过”还不够。复盘最终要把混乱压缩成一个能在明天发生的动作。</p>
+      </section>
+
+      <section class="section">
+        <div class="section-kicker">04 / NEXT MOVE</div>
+        <h2 class="section-title">明日唯一动作：先发布，再优化</h2>
+        <div class="action-box">
+          <div class="action-tag">ONE COMMITMENT</div>
+          <p class="action-main">在开始任何工具优化前，发布 1 条朋友圈。</p>
+          <div class="action-meta">
+            <div class="meta-item"><strong>触发锚点</strong>当天第一个 60—90 分钟保护时段</div>
+            <div class="meta-item"><strong>完成证据</strong>发布截图，并记录至少 1 个后续指标；无回复也记录 0</div>
+          </div>
+        </div>
+        <ul class="maintenance">
+          <li>中午前修复脚本 3.0 分辨率适配，并在非原始分辨率下真实运行一次。</li>
+          <li>补齐广州返程票和酒店预订，保存订单信息。</li>
+        </ul>
+        <div class="risk-box">
+          <div class="risk-title">仍待验证，不可提前下结论</div>
+          <ul>
+            <li>“心理锚点缺失”是否真是驱动力波动的根因。</li>
+            <li>音乐启动法能否跨天提高启动率，而非单次兴奋。</li>
+            <li>SEO 站转型推进了什么，当前缺少可验收产出。</li>
+            <li>肠胃不适若持续或加重，应交由医生判断。</li>
+          </ul>
+        </div>
+      </section>
+
+      <footer class="card-footer"><span>来源：2026-07-18 日省 · 核心内容提炼</span><span>风格：Cohere editorial system</span></footer>
+    </article>
+  </main>
+</body>
+</html>
