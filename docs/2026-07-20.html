@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>认知卡片 · 2026-07-20</title>
+  <style>
+    :root {
+      --blue-1:#0070d1;--blue-2:#0064b7;--blue-3:#004d8d;--blue-4:#53b1ff;--blue-5:#dceeff;
+      --black-1:#000000;--black-2:#121314;--black-3:#181818;--black-4:#1f2024;--black-5:#2a2c31;
+      --white-1:#ffffff;--white-2:#fafafa;--white-3:#f5f7fa;--white-4:#f3f3f3;--white-5:#e9edf2;
+      --gray-1:#111111;--gray-2:#333333;--gray-3:#555555;--gray-4:#6b6b6b;--gray-5:#858585;
+      --gray-6:#a0a0a0;--gray-7:#b8b8b8;--gray-8:#cccccc;--gray-9:#e0e0e0;--gray-10:#eeeeee;
+      --orange-1:#d53b00;--orange-2:#aa2f00;--orange-3:#fff0e9;--red-1:#c81b3a;--red-2:#fff0f3;
+      --gold-1:#ffce21;--gold-2:#f5a623;--gold-3:#fff7d1;--green-1:#16834b;--green-2:#e8f8ef;
+      --text-dark:#000000;--text-mid:rgba(0,0,0,.64);--text-low:rgba(0,0,0,.48);
+      --text-light:#ffffff;--text-light-mid:rgba(255,255,255,.76);--text-light-low:rgba(255,255,255,.56);
+      --surface-core:#000000;--surface-action:#0070d1;--surface-proof:#f5f7fa;--surface-risk:#fff7d1;
+      --rule-light:#e1e4e8;--rule-dark:rgba(255,255,255,.22);--shadow:rgba(0,0,0,.12);
+      --fs-1:11px;--fs-2:12px;--fs-3:13px;--fs-4:14px;--fs-5:15px;--fs-6:16px;--fs-7:18px;
+      --fs-8:20px;--fs-9:22px;--fs-10:24px;--fs-11:28px;--fs-12:34px;--fs-13:42px;--fs-14:54px;
+      --fw-light:300;--fw-normal:400;--fw-medium:500;--fw-semi:600;--fw-bold:700;
+      --lh-tight:1.15;--lh-title:1.25;--lh-heading:1.35;--lh-body:1.7;--lh-note:1.5;
+      --track-0:0;--track-label:.12em;--track-button:.03em;
+      --sp-1:4px;--sp-2:8px;--sp-3:12px;--sp-4:16px;--sp-5:20px;--sp-6:24px;
+      --sp-7:32px;--sp-8:40px;--sp-9:48px;--sp-10:64px;--sp-11:80px;--sp-12:96px;
+      --mark-core:8px;--mark-section:4px;--mark-rule:1px;--mark-heavy:2px;--mark-index:38px;
+      --mark-quote:6px;--mark-action:6px;--mark-risk:5px;--mark-proof:5px;--mark-dot:8px;
+      --card-max:980px;
+    }
+    *{box-sizing:border-box}
+    html{background:var(--white-4);color:var(--text-dark);font-family:"Microsoft YaHei","PingFang SC",Arial,sans-serif;letter-spacing:var(--track-0)}
+    body{margin:0;padding:var(--sp-8) var(--sp-5);background:var(--white-4)}
+    .card-shell{width:min(100%,var(--card-max));margin:0 auto;box-shadow:0 18px 50px var(--shadow)}
+    .cognitive-card{overflow:hidden;border:var(--mark-rule) solid var(--gray-8);border-radius:0;background:var(--white-1)}
+    h1,h2,h3,p,blockquote{margin:0}
+    .hero{padding:var(--sp-10) var(--sp-9) var(--sp-11);color:var(--text-light);background:var(--surface-core);border-top:var(--mark-core) solid var(--blue-1)}
+    .meta{display:flex;justify-content:space-between;gap:var(--sp-4);padding-bottom:var(--sp-6);color:var(--text-light-low);font-size:var(--fs-2);line-height:var(--lh-note);letter-spacing:var(--track-label);border-bottom:var(--mark-rule) solid var(--rule-dark)}
+    .hero h1{max-width:800px;margin-top:var(--sp-8);font-size:var(--fs-14);font-weight:var(--fw-light);line-height:var(--lh-tight)}
+    .hero .lead{max-width:760px;margin-top:var(--sp-6);color:var(--text-light-mid);font-size:var(--fs-8);line-height:1.58}
+    .core-band{padding:var(--sp-9);color:var(--text-light);background:var(--surface-action)}
+    .label{font-size:var(--fs-2);font-weight:var(--fw-bold);line-height:var(--lh-note);letter-spacing:var(--track-label)}
+    .core-band .label{color:var(--blue-5)}
+    .core-band .statement{max-width:800px;margin-top:var(--sp-4);font-size:var(--fs-12);font-weight:var(--fw-light);line-height:var(--lh-title)}
+    .core-band .proof{max-width:760px;margin-top:var(--sp-6);padding-left:var(--sp-5);color:rgba(255,255,255,.82);font-size:var(--fs-6);line-height:var(--lh-body);border-left:var(--mark-heavy) solid var(--white-1)}
+    .section{padding:var(--sp-9);border-bottom:var(--mark-rule) solid var(--rule-light)}
+    .section .label{color:var(--blue-1)}
+    .section-title{margin-top:var(--sp-2);font-size:var(--fs-11);font-weight:var(--fw-light);line-height:var(--lh-heading)}
+    .scoreboard{display:grid;grid-template-columns:repeat(3,1fr);margin-top:var(--sp-7);border-top:var(--mark-heavy) solid var(--black-1);border-bottom:var(--mark-rule) solid var(--rule-light)}
+    .score{min-height:155px;padding:var(--sp-6);border-right:var(--mark-rule) solid var(--rule-light)}
+    .score:last-child{border-right:0}
+    .score strong{display:block;color:var(--blue-1);font-size:var(--fs-13);font-weight:var(--fw-light);line-height:1}
+    .score b{display:block;margin-top:var(--sp-3);font-size:var(--fs-6);font-weight:var(--fw-semi)}
+    .score span{display:block;margin-top:var(--sp-2);color:var(--text-mid);font-size:var(--fs-3);line-height:var(--lh-note)}
+    .chapter-list{margin-top:var(--sp-7);border-top:var(--mark-rule) solid var(--gray-7)}
+    .chapter{display:grid;grid-template-columns:var(--mark-index) 1fr;gap:var(--sp-5);padding:var(--sp-6) 0;border-bottom:var(--mark-rule) solid var(--rule-light)}
+    .chapter-index{width:var(--mark-index);height:var(--mark-index);display:grid;place-items:center;color:var(--white-1);background:var(--black-1);font-size:var(--fs-3);font-weight:var(--fw-bold)}
+    .chapter h3{font-size:var(--fs-9);font-weight:var(--fw-normal);line-height:var(--lh-heading)}
+    .chapter p{margin-top:var(--sp-2);color:var(--text-mid);font-size:var(--fs-6);line-height:var(--lh-body)}
+    .rule{display:block;margin-top:var(--sp-4);padding:var(--sp-3) var(--sp-4);color:var(--blue-3);background:var(--blue-5);border-left:var(--mark-proof) solid var(--blue-1);font-size:var(--fs-4);font-weight:var(--fw-semi);line-height:var(--lh-note)}
+    .quote-band{padding:var(--sp-9);color:var(--white-1);background:var(--black-2)}
+    .quote-band blockquote{max-width:790px;padding-left:var(--sp-5);font-size:var(--fs-12);font-weight:var(--fw-light);line-height:1.4;border-left:var(--mark-quote) solid var(--blue-4)}
+    .quote-band p{margin-top:var(--sp-5);padding-left:calc(var(--sp-5) + var(--mark-quote));color:var(--text-light-mid);font-size:var(--fs-5);line-height:var(--lh-body)}
+    .action{margin-top:var(--sp-7);padding:var(--sp-7);color:var(--white-1);background:var(--blue-1);border-left:var(--mark-action) solid var(--black-1)}
+    .action .label{color:var(--blue-5)}
+    .action-main{margin-top:var(--sp-3);font-size:var(--fs-10);font-weight:var(--fw-semi);line-height:var(--lh-heading)}
+    .action-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-5);margin-top:var(--sp-6)}
+    .action-item{padding-top:var(--sp-3);color:rgba(255,255,255,.82);font-size:var(--fs-4);line-height:var(--lh-body);border-top:var(--mark-rule) solid rgba(255,255,255,.55)}
+    .action-item b{display:block;color:var(--white-1);font-size:var(--fs-3);letter-spacing:var(--track-button)}
+    .maintenance{margin:var(--sp-6) 0 0;padding:0;list-style:none}
+    .maintenance li{position:relative;padding:var(--sp-4) 0 var(--sp-4) var(--sp-6);color:var(--text-mid);font-size:var(--fs-6);line-height:var(--lh-body);border-bottom:var(--mark-rule) solid var(--rule-light)}
+    .maintenance li:before{position:absolute;top:24px;left:0;width:var(--mark-dot);height:var(--mark-dot);content:"";background:var(--blue-1)}
+    .risk{margin-top:var(--sp-7);padding:var(--sp-6);background:var(--surface-risk);border-left:var(--mark-risk) solid var(--gold-2)}
+    .risk h3{color:#6e4a00;font-size:var(--fs-4);font-weight:var(--fw-bold);letter-spacing:var(--track-label)}
+    .risk ul{margin:var(--sp-3) 0 0;padding-left:var(--sp-5);color:var(--gray-2);font-size:var(--fs-4);line-height:var(--lh-body)}
+    .footer{display:flex;justify-content:space-between;gap:var(--sp-4);padding:var(--sp-8) var(--sp-9);color:var(--text-light-mid);background:var(--blue-1);font-size:var(--fs-2);line-height:var(--lh-note)}
+    @media(max-width:1024px){body{padding:var(--sp-7)}.hero,.core-band,.section,.quote-band{padding-left:var(--sp-8);padding-right:var(--sp-8)}.hero h1{font-size:var(--fs-13)}}
+    @media(max-width:768px){body{padding:var(--sp-4)}.scoreboard{grid-template-columns:1fr}.score{min-height:0;border-right:0;border-bottom:var(--mark-rule) solid var(--rule-light)}.score:last-child{border-bottom:0}.action-grid{grid-template-columns:1fr}.hero h1{font-size:var(--fs-12)}}
+    @media(max-width:640px){body{padding:0;background:var(--white-1)}.card-shell{box-shadow:none}.cognitive-card{border-left:0;border-right:0}.hero,.core-band,.section,.quote-band{padding:var(--sp-8) var(--sp-6)}.core-band .statement,.quote-band blockquote{font-size:var(--fs-10)}.footer{padding:var(--sp-7) var(--sp-6)}}
+    @media(max-width:425px){.hero,.core-band,.section,.quote-band{padding-left:var(--sp-5);padding-right:var(--sp-5)}.meta,.footer{flex-direction:column}.hero h1{font-size:var(--fs-11)}.section-title{font-size:var(--fs-10)}.chapter{grid-template-columns:32px 1fr;gap:var(--sp-3)}.chapter-index{width:32px;height:32px}.action,.risk{padding:var(--sp-5)}}
+  </style>
+</head>
+<body>
+  <main class="card-shell">
+    <article class="cognitive-card">
+      <header class="hero">
+        <div class="meta"><span>DAILY COGNITIVE REVIEW</span><span>2026-07-20</span></div>
+        <h1>战略兴奋，不是启动证据</h1>
+        <p class="lead">朋友圈、闲鱼和脚本已经重新产生外部结果。Web3 第二曲线下一步不需要更完整的故事，只需要第一张监控表和第一批真实样本。</p>
+      </header>
+      <section class="core-band">
+        <div class="label">01 / CORE JUDGMENT</div>
+        <p class="statement">框架越完整，越要防止“已经推进”的错觉。方向只有落成可检查证据，才算真正启动。</p>
+        <p class="proof">今天发布 3 次，脚本通过真实环境验证；但 Web3 仍停留在“工具 + 社群 + 量化”的框架层。差距不在认知，而在第一个数据样本。</p>
+      </section>
+      <section class="section">
+        <div class="label">02 / EXTERNAL RESULTS</div>
+        <h2 class="section-title">今天重新接上了外部世界</h2>
+        <div class="scoreboard">
+          <div class="score"><strong>3</strong><b>发布</b><span>朋友圈 2 条，闲鱼 1 条</span></div>
+          <div class="score"><strong>1</strong><b>真实运行样本</b><span>脚本 3.0 经 iPad 远程多单验证</span></div>
+          <div class="score"><strong>0</strong><b>第二曲线样本</b><span>Web3 框架已提出，监控表尚未建立</span></div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="label">03 / SYSTEM UPGRADES</div>
+        <h2 class="section-title">三个需要从感悟变成机制的判断</h2>
+        <div class="chapter-list">
+          <div class="chapter"><div class="chapter-index">01</div><div><h3>战略用最小证据启动</h3><p>“工具、社群、量化”只是方向描述。先建立监控表，录入真实账号、信号与结果，再讨论产品和社群。</p><span class="rule">证据链：第一张表 → 第一批样本 → 第一次判断 → 第一次真实反馈。</span></div></div>
+          <div class="chapter"><div class="chapter-index">02</div><div><h3>独处风险提前设防</h3><p>独处空转已经重复出现。进入低状态后再要求自律太晚，出门时间、地点和目的必须在前一晚确定。</p><span class="rule">不是提醒自己别躺，而是让醒来后的第一条路径已经被环境决定。</span></div></div>
+          <div class="chapter"><div class="chapter-index">03</div><div><h3>欲望用注意力切换处理</h3><p>理解、压制和搏斗让注意力继续停留在欲望上。健身完成了一次有效打断，但仍需跨场景验证。</p><span class="rule">识别后立即运动或出门；记录启动时间和恢复结果，不把单次有效写成永恒规律。</span></div></div>
+        </div>
+      </section>
+      <section class="quote-band">
+        <blockquote>“从不会到学会可能很简单，但学会到学得很熟练，路径反而会比较长。”</blockquote>
+        <p>游泳如此，业务也如此。知道方向只是入门，反复产出可验证结果才叫熟练。</p>
+      </section>
+      <section class="section">
+        <div class="label">04 / NEXT MOVE</div>
+        <h2 class="section-title">明日唯一动作：把第二曲线压成一张表</h2>
+        <div class="action">
+          <div class="label">ONE COMMITMENT</div>
+          <p class="action-main">建立 Web3 合约监控表，录入至少 3 个账号，每个账号记录 1 条历史喊单或持仓样本。</p>
+          <div class="action-grid">
+            <div class="action-item"><b>前五分钟</b>建立账号、时间、方向、价格区间、结果、来源六个字段。</div>
+            <div class="action-item"><b>完成证据</b>表格中存在 3 个账号、3 条带来源的真实样本。</div>
+          </div>
+        </div>
+        <ul class="maintenance">
+          <li>补齐广州返程票和酒店预订，保存订单信息。</li>
+          <li>独处日前一晚确定次日起床后的出门时间、地点和目的。</li>
+        </ul>
+        <div class="risk">
+          <h3>仍待验证，不提前宣布结论</h3>
+          <ul>
+            <li>监控大佬持仓与喊单的数据来源、历史准确率和合规风险。</li>
+            <li>运动是否能跨场景稳定打断强欲望，而非单次有效。</li>
+            <li>爱情短剧引发想哭的原因，目前只有猜测。</li>
+            <li>肠胃不适若持续或加重，应交由医生判断。</li>
+          </ul>
+        </div>
+      </section>
+      <footer class="footer"><span>来源：2026-07-20 日省 · 核心内容提炼</span><span>视觉参考：PlayStation design system</span></footer>
+    </article>
+  </main>
+</body>
+</html>
