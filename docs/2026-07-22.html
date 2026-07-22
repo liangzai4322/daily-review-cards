@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>认知卡片 · 2026-07-22</title>
+  <style>
+    :root{
+      --color-indigo:#533afd;--color-indigo-deep:#4434d4;--color-indigo-soft:#665efd;--color-navy:#0d253d;--color-navy-2:#1c1e54;--color-ink:#17263b;--color-ink-2:#273951;--color-muted:#64748d;--color-muted-2:#7b8798;--color-paper:#ffffff;--color-soft:#f6f9fc;--color-cream:#f5e9d4;--color-line:#e3e8ee;--color-blue-line:#a8c3de;--color-ruby:#ea2261;--color-magenta:#f96bee;--color-orange:#f4a35d;--color-lavender:#b9b9f9;--color-green:#0e9f6e;--color-yellow:#e9b949;--color-red:#c2413b;--color-cyan:#0b7894;--color-violet:#6d5dfc;--color-shadow:rgba(0,55,112,.08);--color-shadow-2:rgba(0,55,112,.04);--color-panel:#fbfdff;--color-dark-panel:#10183a;--color-dark-line:#283569;--color-dark-text:#eef3ff;--color-dark-muted:#a8b5d6;--color-action:#e9f7f1;--color-risk:#fff4f2;--color-quote:#f2f0ff;--color-method:#eef8ff;--color-example:#fffaf0;--color-grid:#edf2f7;--color-white:#fff;--color-black:#000;
+      --font-main:Inter,"SF Pro Display","Microsoft YaHei","PingFang SC",system-ui,sans-serif;--font-num:"SF Mono","Cascadia Mono",Consolas,monospace;
+      --text-hero:56px;--text-title:42px;--text-h1:34px;--text-h2:28px;--text-h3:22px;--text-h4:18px;--text-body-xl:19px;--text-body-lg:17px;--text-body:15px;--text-body-sm:14px;--text-caption:13px;--text-micro:11px;--text-chip:10px;--text-num-lg:32px;--text-num:24px;--text-quote:21px;--text-action:16px;--text-risk:15px;--weight-thin:300;--weight-regular:400;--weight-medium:500;--weight-bold:700;--line-tight:1.08;--line-title:1.18;--line-body:1.72;--line-card:1.55;--tracking-zero:0;
+      --space-1:2px;--space-2:4px;--space-3:8px;--space-4:12px;--space-5:16px;--space-6:20px;--space-7:24px;--space-8:32px;--space-9:40px;--space-10:48px;--space-11:64px;--space-12:80px;--safe-top:40px;--safe-bottom:40px;
+      --mark-core:6px solid var(--color-indigo);--mark-risk:6px solid var(--color-ruby);--mark-action:6px solid var(--color-green);--mark-method:6px solid var(--color-cyan);--mark-quote:6px solid var(--color-violet);--hairline:1px solid var(--color-line);--hairline-strong:2px solid var(--color-navy);--shadow-card:0 8px 24px var(--color-shadow),0 2px 6px var(--color-shadow-2);--shadow-soft:0 1px 3px var(--color-shadow);--gradient-mesh:radial-gradient(circle at 12% 12%,#f5e9d4 0 18%,transparent 34%),radial-gradient(circle at 34% 4%,#f4a35d 0 15%,transparent 32%),radial-gradient(circle at 58% 0,#b9b9f9 0 20%,transparent 38%),radial-gradient(circle at 78% 12%,#533afd 0 18%,transparent 36%),radial-gradient(circle at 96% 0,#ea2261 0 13%,transparent 30%),linear-gradient(180deg,#ffffff 0%,#f6f9fc 100%);
+    }
+    *{box-sizing:border-box}html{background:var(--color-soft)}body{margin:0;color:var(--color-ink);background:var(--color-soft);font-family:var(--font-main);font-feature-settings:"ss01";letter-spacing:var(--tracking-zero)}.card-shell{width:min(100%,1120px);margin:0 auto;padding:var(--space-10) var(--space-5)}.cognitive-card{overflow:hidden;background:var(--color-paper);border:var(--hairline-strong);border-radius:0;box-shadow:var(--shadow-card)}.mesh-band{min-height:340px;padding:var(--safe-top) var(--space-10) var(--space-9);background:var(--gradient-mesh);border-bottom:var(--hairline)}.meta-row{display:flex;justify-content:space-between;gap:var(--space-5);margin-bottom:var(--space-9);color:var(--color-muted);font-size:var(--text-caption);line-height:1.4}.source-tag{display:inline-block;padding:var(--space-2) var(--space-4);color:var(--color-indigo-deep);background:var(--color-lavender);border:var(--hairline);border-radius:999px;font-size:var(--text-chip);font-weight:var(--weight-bold)}.hero-title{max-width:820px;margin:0;color:var(--color-navy);font-size:var(--text-hero);font-weight:var(--weight-thin);line-height:var(--line-tight);letter-spacing:var(--tracking-zero)}.hero-lead{max-width:780px;margin:var(--space-7) 0 0;color:var(--color-ink-2);font-size:var(--text-body-xl);line-height:var(--line-body)}.score-strip{display:grid;grid-template-columns:repeat(4,1fr);border-top:var(--hairline);border-bottom:var(--hairline);background:var(--color-dark-panel)}.score-item{padding:var(--space-7);border-right:1px solid var(--color-dark-line);color:var(--color-dark-text)}.score-item:last-child{border-right:0}.score-item b{display:block;margin-bottom:var(--space-2);font-family:var(--font-num);font-size:var(--text-num);font-weight:var(--weight-regular);font-feature-settings:"tnum"}.score-item span{color:var(--color-dark-muted);font-size:var(--text-caption);line-height:1.5}.content{padding:var(--space-10)}.section{margin-bottom:var(--space-10)}.section:last-child{margin-bottom:0}.section-label{display:flex;align-items:center;gap:var(--space-3);margin-bottom:var(--space-5);color:var(--color-indigo);font-size:var(--text-chip);font-weight:var(--weight-bold);text-transform:uppercase}.section-label::before{width:28px;height:3px;background:currentColor;content:""}.section-title{margin:0 0 var(--space-6);color:var(--color-navy);font-size:var(--text-title);font-weight:var(--weight-thin);line-height:var(--line-title);letter-spacing:var(--tracking-zero)}.core-box{padding:var(--space-8);background:var(--color-soft);border-left:var(--mark-core);border-top:var(--hairline);border-right:var(--hairline);border-bottom:var(--hairline)}.core-box h2{margin:0 0 var(--space-5);color:var(--color-navy);font-size:var(--text-h1);font-weight:var(--weight-thin);line-height:var(--line-title)}.core-box p{margin:0;color:var(--color-ink-2);font-size:var(--text-body-lg);line-height:var(--line-body)}.argument-list{display:grid;gap:var(--space-5)}.argument{display:grid;grid-template-columns:90px 1fr;gap:var(--space-5);padding:var(--space-6);background:var(--color-panel);border:var(--hairline)}.argument-code{color:var(--color-indigo);font-family:var(--font-num);font-size:var(--text-num);font-feature-settings:"tnum"}.argument h3{margin:0 0 var(--space-3);color:var(--color-navy);font-size:var(--text-h3);font-weight:var(--weight-thin);line-height:1.25}.argument p{margin:0;color:var(--color-ink-2);font-size:var(--text-body);line-height:var(--line-body)}.quote-band{padding:var(--space-8);background:var(--color-quote);border-left:var(--mark-quote);color:var(--color-navy)}.quote-band p{margin:0 0 var(--space-5);font-size:var(--text-quote);font-weight:var(--weight-thin);line-height:1.55}.quote-band p:last-child{margin-bottom:0}.method-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-5)}.method,.risk,.action{padding:var(--space-6);border:var(--hairline);background:var(--color-method)}.method{border-left:var(--mark-method)}.method h3,.risk h3,.action h3{margin:0 0 var(--space-4);color:var(--color-navy);font-size:var(--text-h4);font-weight:var(--weight-medium)}.method p,.risk p,.action p{margin:0;color:var(--color-ink-2);font-size:var(--text-body);line-height:var(--line-card)}.action-risk{display:grid;grid-template-columns:1.2fr .8fr;gap:var(--space-5)}.action{background:var(--color-action);border-left:var(--mark-action)}.risk{background:var(--color-risk);border-left:var(--mark-risk)}.checkline{display:grid;grid-template-columns:140px 1fr;gap:var(--space-4);padding:var(--space-4) 0;border-bottom:var(--hairline);font-size:var(--text-body-sm);line-height:1.55}.checkline:last-child{border-bottom:0}.checkline b{color:var(--color-muted);font-weight:var(--weight-medium)}.footer{padding:var(--space-8) var(--space-10) var(--safe-bottom);color:var(--color-muted);background:var(--color-soft);border-top:var(--hairline);font-size:var(--text-caption);line-height:1.6}
+    @media(max-width:1040px){.card-shell{padding:var(--space-8) var(--space-5)}.mesh-band,.content,.footer{padding-left:var(--space-8);padding-right:var(--space-8)}.hero-title{font-size:48px}.section-title{font-size:36px}.score-strip{grid-template-columns:repeat(2,1fr)}.score-item:nth-child(2){border-right:0}.score-item:nth-child(1),.score-item:nth-child(2){border-bottom:1px solid var(--color-dark-line)}}@media(max-width:760px){.mesh-band,.content,.footer{padding-left:var(--space-6);padding-right:var(--space-6)}.hero-title{font-size:38px}.hero-lead{font-size:var(--text-body-lg)}.section-title{font-size:30px}.argument{grid-template-columns:1fr}.method-grid,.action-risk{grid-template-columns:1fr}.checkline{grid-template-columns:1fr;gap:var(--space-2)}}@media(max-width:520px){.card-shell{padding:0}.cognitive-card{border-left:0;border-right:0}.mesh-band{padding-top:var(--space-8)}.meta-row{display:grid;grid-template-columns:1fr;gap:var(--space-3);margin-bottom:var(--space-8)}.hero-title{font-size:32px}.core-box,.quote-band{padding:var(--space-6)}.score-strip{grid-template-columns:1fr}.score-item{border-right:0;border-bottom:1px solid var(--color-dark-line)}.score-item:last-child{border-bottom:0}}@media(max-width:390px){.mesh-band,.content,.footer{padding-left:var(--space-5);padding-right:var(--space-5)}.hero-title{font-size:29px}.section-title{font-size:27px}.argument-code{font-size:22px}.quote-band p{font-size:18px}}
+  </style>
+</head>
+<body>
+  <main class="card-shell">
+    <article class="cognitive-card">
+      <header class="mesh-band">
+        <div class="meta-row"><span class="source-tag">2026-07-22 日省</span><span>Stripe 风格转译 · 私有复盘提炼卡片</span></div>
+        <h1 class="hero-title">正确一次，不等于系统落地。</h1>
+        <p class="hero-lead">今天最重要的不是 ETH 判断对了，也不是又找到一个企微 CLI，而是看清：从认知到执行之间仍有一段很长的路。策略、关系、复盘和分享，只有变成可验证动作，才算真正沉淀。</p>
+      </header>
+      <section class="score-strip">
+        <div class="score-item"><b>1</b><span>发布数：已发一条甜点朋友圈</span></div>
+        <div class="score-item"><b>0</b><span>监控表证据：没有形成 Web3 样本表</span></div>
+        <div class="score-item"><b>2</b><span>连续未完成：Web3 监控表动作第二次卡住</span></div>
+        <div class="score-item"><b>1</b><span>明日主动作：只录入一条大卫样本</span></div>
+      </section>
+      <div class="content">
+        <section class="section">
+          <div class="section-label">Core Insight</div>
+          <div class="core-box">
+            <h2>别再让“判断正确”替代“系统有效”。</h2>
+            <p>ETH 开多小幅盈利，只能说明这一次判断有效；没有监控表、来源样本和后续复盘，它就还不是系统。真正的下一步不是继续研究策略，而是把第一条样本落到表里。</p>
+          </div>
+        </section>
+        <section class="section">
+          <div class="section-label">Argument Map</div>
+          <h2 class="section-title">四个今天真正变化的地方</h2>
+          <div class="argument-list">
+            <div class="argument"><div class="argument-code">01</div><div><h3>关系经营变成长期账户</h3><p>“存钱罐理论”让关系从临时取用变成主动存入。存入的是陪伴、信息、帮助、真实关心和共同经历；存量足够后，光利息就能产生价值。</p></div></div>
+            <div class="argument"><div class="argument-code">02</div><div><h3>复盘不能停在认知消费</h3><p>完整闭环应该是：复盘、意识到问题、明确改变、找到路径、次日检验。缺后三步，复盘就只是让大脑感觉自己努力过。</p></div></div>
+            <div class="argument"><div class="argument-code">03</div><div><h3>分享思维要在经历前触发</h3><p>吃甜点发朋友圈证明生活经历可以转成素材。关键不是事后硬想，而是开始前先问：我能从这里拿到什么？最低动作是拍照和一句真实感受。</p></div></div>
+            <div class="argument"><div class="argument-code">04</div><div><h3>工具替代要补安全评估</h3><p>企业微信官方 CLI 路径太重，转向第三方工具是合理绕路；但接入前必须验证安全性、合规性和真实可用性，不能因为“终于找到了”就直接信任。</p></div></div>
+          </div>
+        </section>
+        <section class="section">
+          <div class="section-label">Memory Lines</div>
+          <div class="quote-band">
+            <p>“你存的钱足够多以后，光利息可能就已经很多了。”</p>
+            <p>“原则应该设成不需要人类意志去控制，就可以达到的一种情况。”</p>
+            <p>“从我的认知到我的执行之间，为什么有一条那么长的路径？”</p>
+          </div>
+        </section>
+        <section class="section">
+          <div class="section-label">Method System</div>
+          <h2 class="section-title">今天留下的可复用方法</h2>
+          <div class="method-grid">
+            <div class="method"><h3>存钱罐模型</h3><p>关系是长期账户。不要只等需要时提款，平时就要持续存入真实价值。</p></div>
+            <div class="method"><h3>路上启动法</h3><p>移动中先清空轻量待办，到目的地后直接进入深度任务，减少启动摩擦。</p></div>
+            <div class="method"><h3>预演前置</h3><p>经历发生前先确认可沉淀素材，避免经历结束后才想起“这可以发”。</p></div>
+            <div class="method"><h3>复盘闭环</h3><p>每次复盘后必须留下改变路径和次日检验点，否则只算认知整理。</p></div>
+          </div>
+        </section>
+        <section class="section">
+          <div class="section-label">Action And Risk</div>
+          <div class="action-risk">
+            <div class="action">
+              <h3>明日唯一动作</h3>
+              <p>打开或新建 Web3 合约监控表，只录入“大卫 ETH 喊单/仓位”这 1 条样本，补齐账号、时间、方向、价格区间、后续结果和来源链接。</p>
+              <div class="checkline"><b>前五分钟</b><span>只建表头：账号、时间、方向、价格区间、后续结果、来源链接。</span></div>
+              <div class="checkline"><b>完成证据</b><span>表格文件或截图里能看到“大卫”这一行和可追溯来源。</span></div>
+            </div>
+            <div class="risk">
+              <h3>待核风险</h3>
+              <p>“大卫 1960 空”和“171930”之间数字口径不一致；企业微信第三方 CLI 的来源、安全性、合规性也尚未评估。不要把不确定信息写成确定结论。</p>
+            </div>
+          </div>
+        </section>
+      </div>
+      <footer class="footer">来源：D:\note_new\06-日常输入_输出\10-日省\2026-07-22.md。卡片只展示提炼后的复盘内容；完整日省已私有同步飞书，不公开部署。</footer>
+    </article>
+  </main>
+</body>
+</html>
