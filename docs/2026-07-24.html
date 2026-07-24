@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>认知卡片 · 2026-07-24</title>
+  <style>
+    :root {
+      --color-canvas: #f9f7f3;
+      --color-bone: #f3f0e8;
+      --color-card: #ffffff;
+      --color-ink: #202020;
+      --color-body: #3a3a3a;
+      --color-muted: #646464;
+      --color-ash: #8d8d8d;
+      --color-line: rgba(32, 32, 32, 0.14);
+      --color-line-strong: #202020;
+      --color-orange: #ea2804;
+      --color-orange-deep: #c01f00;
+      --color-orange-soft: #ffe2d9;
+      --color-green: #2b9a66;
+      --color-green-soft: #e4f3ec;
+      --color-yellow-soft: #fff2c7;
+      --color-red-soft: #ffe1dc;
+      --color-dark: #202020;
+      --color-black: #000000;
+      --color-white: #fcfcfc;
+      --font-display: "Arial Black", "Microsoft YaHei", "PingFang SC", sans-serif;
+      --font-body: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+      --font-mono: "JetBrains Mono", Consolas, monospace;
+      --text-hero: 52px;
+      --text-title: 34px;
+      --text-section: 24px;
+      --text-sub: 19px;
+      --text-body: 16px;
+      --text-small: 13px;
+      --text-micro: 11px;
+      --weight-heavy: 800;
+      --weight-bold: 700;
+      --weight-semi: 600;
+      --weight-normal: 400;
+      --line-tight: 1.08;
+      --line-title: 1.22;
+      --line-body: 1.72;
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 20px;
+      --space-6: 24px;
+      --space-7: 32px;
+      --space-8: 40px;
+      --space-9: 48px;
+      --space-10: 64px;
+      --radius-none: 0;
+      --radius-chip: 999px;
+      --mark-core: 8px solid var(--color-orange);
+      --mark-action: 8px solid var(--color-green);
+      --mark-risk: 8px solid var(--color-orange-deep);
+      --shadow-soft: 0 18px 50px rgba(32, 32, 32, 0.08);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--color-canvas);
+      color: var(--color-ink);
+      font-family: var(--font-body);
+      letter-spacing: 0;
+    }
+
+    .card-shell {
+      width: 100%;
+      min-height: 100vh;
+      padding: var(--space-8) var(--space-5);
+    }
+
+    .cognitive-card {
+      width: min(980px, 100%);
+      margin: 0 auto;
+      background: var(--color-card);
+      border: 1px solid var(--color-line-strong);
+      border-radius: var(--radius-none);
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+    }
+
+    .card-header {
+      padding: var(--space-8) var(--space-8) var(--space-7);
+      background: linear-gradient(135deg, var(--color-orange) 0%, #ff6945 58%, #f4a8a0 100%);
+      color: var(--color-white);
+      border-bottom: 1px solid var(--color-line-strong);
+    }
+
+    .meta-row {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-4);
+      align-items: center;
+      margin-bottom: var(--space-7);
+      font-family: var(--font-mono);
+      font-size: var(--text-small);
+    }
+
+    .meta-pill {
+      border: 1px solid rgba(255, 255, 255, 0.54);
+      border-radius: var(--radius-chip);
+      padding: var(--space-2) var(--space-4);
+      background: rgba(255, 255, 255, 0.12);
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 820px;
+      font-family: var(--font-display);
+      font-size: var(--text-hero);
+      line-height: var(--line-tight);
+      letter-spacing: 0;
+    }
+
+    .header-subtitle {
+      margin: var(--space-5) 0 0;
+      max-width: 720px;
+      color: rgba(252, 252, 252, 0.92);
+      font-size: var(--text-sub);
+      line-height: 1.56;
+      font-weight: var(--weight-semi);
+    }
+
+    .section {
+      padding: var(--space-7) var(--space-8);
+      border-bottom: 1px solid var(--color-line);
+    }
+
+    .section.dark {
+      background: var(--color-dark);
+      color: var(--color-white);
+    }
+
+    .section.bone {
+      background: var(--color-bone);
+    }
+
+    .section-title {
+      display: grid;
+      grid-template-columns: 44px 1fr;
+      gap: var(--space-4);
+      align-items: start;
+      margin-bottom: var(--space-5);
+    }
+
+    .num {
+      width: 44px;
+      height: 44px;
+      display: grid;
+      place-items: center;
+      border-radius: var(--radius-chip);
+      background: var(--color-ink);
+      color: var(--color-white);
+      font-family: var(--font-mono);
+      font-size: var(--text-small);
+      font-weight: var(--weight-bold);
+    }
+
+    .dark .num {
+      background: var(--color-orange);
+    }
+
+    h2 {
+      margin: 0;
+      font-family: var(--font-display);
+      font-size: var(--text-section);
+      line-height: var(--line-title);
+      letter-spacing: 0;
+    }
+
+    .section-kicker {
+      margin: var(--space-1) 0 0;
+      color: var(--color-muted);
+      font-size: var(--text-small);
+      line-height: 1.5;
+    }
+
+    .dark .section-kicker {
+      color: rgba(252, 252, 252, 0.68);
+    }
+
+    .core-box {
+      border-left: var(--mark-core);
+      background: var(--color-orange-soft);
+      padding: var(--space-6);
+      display: grid;
+      gap: var(--space-4);
+    }
+
+    .core-line {
+      margin: 0;
+      font-size: 25px;
+      line-height: 1.35;
+      font-weight: var(--weight-heavy);
+    }
+
+    .body-text {
+      margin: 0;
+      color: var(--color-body);
+      font-size: var(--text-body);
+      line-height: var(--line-body);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-4);
+    }
+
+    .insight-card {
+      background: var(--color-card);
+      border: 1px solid var(--color-line);
+      padding: var(--space-5);
+    }
+
+    .insight-card strong {
+      display: block;
+      margin-bottom: var(--space-3);
+      font-size: var(--text-sub);
+      line-height: 1.35;
+    }
+
+    .insight-card p {
+      margin: 0;
+      color: var(--color-body);
+      font-size: var(--text-body);
+      line-height: 1.65;
+    }
+
+    .flow {
+      display: grid;
+      gap: var(--space-3);
+    }
+
+    .flow-item {
+      display: grid;
+      grid-template-columns: 118px 1fr;
+      gap: var(--space-4);
+      align-items: stretch;
+      background: var(--color-card);
+      border: 1px solid var(--color-line);
+    }
+
+    .flow-label {
+      display: grid;
+      place-items: center;
+      background: var(--color-ink);
+      color: var(--color-white);
+      font-family: var(--font-mono);
+      font-size: var(--text-small);
+      padding: var(--space-4);
+    }
+
+    .flow-copy {
+      padding: var(--space-4) var(--space-5);
+      font-size: var(--text-body);
+      line-height: 1.65;
+      color: var(--color-body);
+    }
+
+    .quote-band {
+      display: grid;
+      gap: var(--space-4);
+    }
+
+    .quote {
+      margin: 0;
+      padding: var(--space-5);
+      border-left: 8px solid var(--color-orange);
+      background: #111111;
+      color: var(--color-white);
+      font-size: 22px;
+      line-height: 1.48;
+      font-weight: var(--weight-bold);
+    }
+
+    .method-list {
+      display: grid;
+      gap: var(--space-4);
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .method-list li {
+      padding: var(--space-5);
+      background: var(--color-card);
+      border: 1px solid var(--color-line);
+      border-left: var(--mark-action);
+      color: var(--color-body);
+      font-size: var(--text-body);
+      line-height: 1.65;
+    }
+
+    .method-list b {
+      color: var(--color-ink);
+      font-weight: var(--weight-bold);
+    }
+
+    .action-risk {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-5);
+    }
+
+    .panel {
+      background: var(--color-card);
+      border: 1px solid var(--color-line);
+      padding: var(--space-5);
+    }
+
+    .panel.action {
+      border-left: var(--mark-action);
+      background: var(--color-green-soft);
+    }
+
+    .panel.risk {
+      border-left: var(--mark-risk);
+      background: var(--color-red-soft);
+    }
+
+    .panel h3 {
+      margin: 0 0 var(--space-3);
+      font-size: var(--text-sub);
+      line-height: 1.35;
+      font-weight: var(--weight-heavy);
+    }
+
+    .panel p,
+    .panel li {
+      color: var(--color-body);
+      font-size: var(--text-body);
+      line-height: 1.62;
+    }
+
+    .panel ul {
+      margin: 0;
+      padding-left: var(--space-5);
+    }
+
+    .evidence-strip {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--color-line);
+      background: var(--color-card);
+    }
+
+    .evidence {
+      padding: var(--space-4);
+      border-right: 1px solid var(--color-line);
+    }
+
+    .evidence:last-child {
+      border-right: 0;
+    }
+
+    .evidence b {
+      display: block;
+      margin-bottom: var(--space-2);
+      font-family: var(--font-mono);
+      font-size: var(--text-small);
+      color: var(--color-orange);
+    }
+
+    .evidence span {
+      color: var(--color-body);
+      font-size: var(--text-small);
+      line-height: 1.5;
+    }
+
+    .footer {
+      padding: var(--space-8);
+      background: var(--color-black);
+      color: rgba(252, 252, 252, 0.76);
+      font-family: var(--font-mono);
+      font-size: var(--text-small);
+      line-height: 1.7;
+    }
+
+    @media (max-width: 920px) {
+      .grid,
+      .evidence-strip {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      .action-risk {
+        grid-template-columns: 1fr;
+      }
+      h1 {
+        font-size: 42px;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .card-shell {
+        padding: var(--space-5) var(--space-3);
+      }
+      .card-header,
+      .section,
+      .footer {
+        padding-left: var(--space-5);
+        padding-right: var(--space-5);
+      }
+      .meta-row {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+      h1 {
+        font-size: 34px;
+      }
+      .flow-item {
+        grid-template-columns: 1fr;
+      }
+      .flow-label {
+        place-items: start;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .grid,
+      .evidence-strip {
+        grid-template-columns: 1fr;
+      }
+      .evidence {
+        border-right: 0;
+        border-bottom: 1px solid var(--color-line);
+      }
+      .evidence:last-child {
+        border-bottom: 0;
+      }
+      h1 {
+        font-size: 30px;
+      }
+      .core-line {
+        font-size: 21px;
+      }
+      .quote {
+        font-size: 19px;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .card-header,
+      .section,
+      .footer {
+        padding-left: var(--space-4);
+        padding-right: var(--space-4);
+      }
+      .section-title {
+        grid-template-columns: 36px 1fr;
+      }
+      .num {
+        width: 36px;
+        height: 36px;
+      }
+      h1 {
+        font-size: 27px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main class="card-shell">
+    <article class="cognitive-card">
+      <header class="card-header">
+        <div class="meta-row">
+          <span class="meta-pill">2026-07-24</span>
+          <span class="meta-pill">线下 AI 服务 · 拆分执行 · 私域信任</span>
+        </div>
+        <h1>不是执行力差，是任务还没被拆到能落地</h1>
+        <p class="header-subtitle">今天的核心不是“做了很多事”，而是第一单线下服务把真正卡点暴露出来：客户买的不是工具能力，而是确定性、安全感和连续可用。</p>
+      </header>
+
+      <section class="section">
+        <div class="section-title">
+          <span class="num">01</span>
+          <div>
+            <h2>最高权重结论</h2>
+            <p class="section-kicker">远看先抓这一句：服务、执行、朋友圈，本质上都在补“定义清楚”这一层。</p>
+          </div>
+        </div>
+        <div class="core-box">
+          <p class="core-line">线下 AI 服务不是先装软件，而是先定义客户场景：设备、账号、数据、权限、验收标准。</p>
+          <p class="body-text">今天第一单能跑通，说明需求存在；但现场 3 小时暴露出账号链路没提前设计。对高价值客户来说，最敏感的不是价格，而是“账号在谁手里、数据会不会泄露、后续能不能自己持续使用”。</p>
+        </div>
+      </section>
+
+      <section class="section bone">
+        <div class="section-title">
+          <span class="num">02</span>
+          <div>
+            <h2>三个认知变化</h2>
+            <p class="section-kicker">中距离看框架：执行力、客户信任、朋友圈打法其实是同一个问题的三种表现。</p>
+          </div>
+        </div>
+        <div class="grid">
+          <div class="insight-card">
+            <strong>执行力问题改写</strong>
+            <p>写代码、搭云盘、企微解密都能快速推进，说明不是缺执行力。真正卡点是业务任务没有拆成五分钟动作和完成证据。</p>
+          </div>
+          <div class="insight-card">
+            <strong>客户安全感前置</strong>
+            <p>越有钱的客户越在意数据边界。本地部署、独立账号、退出检查和设备归属，是线下服务必须主动讲清的信任基础。</p>
+          </div>
+          <div class="insight-card">
+            <strong>朋友圈信任金字塔</strong>
+            <p>先让人相信你这个人，再看到你的交付过程，最后才相信专业结果。不要只发“团队很专业”，要发具体老师和真实场景。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-title">
+          <span class="num">03</span>
+          <div>
+            <h2>服务链路重排</h2>
+            <p class="section-kicker">把混乱现场拆成可复用顺序，下次就不靠临场救火。</p>
+          </div>
+        </div>
+        <div class="flow">
+          <div class="flow-item">
+            <div class="flow-label">DEFINE</div>
+            <div class="flow-copy">先确认客户设备、系统、账号归属、梯子环境、数据敏感点和服务边界。</div>
+          </div>
+          <div class="flow-item">
+            <div class="flow-label">ACCOUNT</div>
+            <div class="flow-copy">iOS 准备美区 Apple ID；Android 准备独立 Google 账号；服务者手机不长期保留客户账号。</div>
+          </div>
+          <div class="flow-item">
+            <div class="flow-label">INSTALL</div>
+            <div class="flow-copy">安装 Codex、小龙虾并绑定飞书和微信；让 AI 处理权限和配置，但人负责验收。</div>
+          </div>
+          <div class="flow-item">
+            <div class="flow-label">VERIFY</div>
+            <div class="flow-copy">客户设备能独立登录、独立使用，账号退出与数据隔离检查完成，才算服务交付结束。</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section dark">
+        <div class="section-title">
+          <span class="num">04</span>
+          <div>
+            <h2>今天的金句</h2>
+            <p class="section-kicker">这些句子是记忆锚点，也是明天行动的压缩提示。</p>
+          </div>
+        </div>
+        <div class="quote-band">
+          <p class="quote">“我缺的不是执行力，我缺的是把事情拆分成可执行单位的能力。”</p>
+          <p class="quote">“先从你这个人先相信你，再相信你的事情，一步步相信你的专业价值。”</p>
+          <p class="quote">“不要用看上去的勤奋来代替实际上需要去做的事情。”</p>
+        </div>
+      </section>
+
+      <section class="section bone">
+        <div class="section-title">
+          <span class="num">05</span>
+          <div>
+            <h2>可复用方法</h2>
+            <p class="section-kicker">近距离读规则：明天执行时只需要照这些判断。</p>
+          </div>
+        </div>
+        <ul class="method-list">
+          <li><b>拆分法则：</b>目标、债务、项目和压力都先拆到最小单位；大脑对拆分后的任务更容易启动。</li>
+          <li><b>路上任务三问：</b>这是想做的还是需要做的？投产比谁高？现在是否更该休息？</li>
+          <li><b>AI 工具替代路径：</b>现成工具跑不通时，不停在工具失效，让 AI 按原理重新实现。</li>
+          <li><b>同行验证优先：</b>AI 可以提醒风险，但排名靠前的同行已被市场检验，不能被规范性建议直接带偏。</li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <div class="section-title">
+          <span class="num">06</span>
+          <div>
+            <h2>明日动作与风险</h2>
+            <p class="section-kicker">行动要产生证据，风险要提前摆在桌上。</p>
+          </div>
+        </div>
+        <div class="action-risk">
+          <div class="panel action">
+            <h3>唯一动作</h3>
+            <p>给网球教培客户注册美区 Apple ID，跑通 iOS 端小龙虾安装与登录全流程，并整理 1 版可复用 SOP。</p>
+          </div>
+          <div class="panel risk">
+            <h3>待核风险</h3>
+            <ul>
+              <li>线下服务是否已实际收款，本次没有明确记录。</li>
+              <li>破盾、企微解密、Web3 APP 逆向都需要确认合规边界。</li>
+              <li>第二曲线仍可能从生态变成扩散，必须用最小样本约束。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section bone">
+        <div class="section-title">
+          <span class="num">07</span>
+          <div>
+            <h2>外部证据</h2>
+            <p class="section-kicker">不靠感觉判断一天，靠外部结果校准。</p>
+          </div>
+        </div>
+        <div class="evidence-strip">
+          <div class="evidence"><b>发布</b><span>上门安装小龙虾朋友圈内容出现并发布。</span></div>
+          <div class="evidence"><b>客户</b><span>网球教培客户完成线下服务第一单。</span></div>
+          <div class="evidence"><b>反馈</b><span>客户暴露账号安全顾虑，朋友反馈朋友圈打法被打通。</span></div>
+          <div class="evidence"><b>工具</b><span>小型云盘、企微解密新实现产生运行结果。</span></div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        来源：2026-07-24 日省。设计参考：Replicate warm cream developer-tools aesthetic。公开卡片只保留提炼后的认知与行动，不包含完整私密日省。
+      </footer>
+    </article>
+  </main>
+</body>
+</html>
