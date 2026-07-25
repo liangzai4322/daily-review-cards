@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>认知卡片 · 2026-07-25</title>
+  <style>
+    :root {
+      --primary: #5645d4; --primary-deep: #3a2a99; --navy: #0a1530; --navy-mid: #1a2a52;
+      --ink: #1a1a1a; --charcoal: #37352f; --slate: #5d5b54; --steel: #787671; --stone: #a4a097;
+      --canvas: #ffffff; --surface: #f6f5f4; --soft: #fafaf9; --line: #e5e3df; --line-strong: #c8c4be;
+      --peach: #ffe8d4; --rose: #fde0ec; --mint: #d9f3e1; --lavender: #e6e0f5; --sky: #dcecfa;
+      --yellow: #f9e79f; --cream: #f8f5e8; --orange: #dd5b00; --green: #1aae39; --error: #e03131;
+      --fs-hero: 44px; --fs-h1: 34px; --fs-h2: 24px; --fs-h3: 18px; --fs-body: 16px; --fs-small: 13px;
+      --lh-tight: 1.12; --lh-title: 1.22; --lh-body: 1.68; --w-regular: 400; --w-medium: 500; --w-bold: 700;
+      --s1: 4px; --s2: 8px; --s3: 12px; --s4: 16px; --s5: 20px; --s6: 24px; --s7: 32px; --s8: 40px; --s9: 56px;
+      --mark-a: 8px solid var(--primary); --mark-b: 8px solid var(--orange); --mark-c: 8px solid var(--green);
+      --shadow: 0 18px 50px rgba(15, 15, 15, 0.12);
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--surface); color: var(--charcoal); font-family: "Notion Sans", Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .page { padding: var(--s8) var(--s4); }
+    .card { max-width: 980px; margin: 0 auto; background: var(--canvas); border: 1px solid var(--line-strong); border-radius: 0; box-shadow: var(--shadow); overflow: hidden; }
+    .hero { background: var(--navy); color: white; padding: var(--s9) var(--s8) var(--s8); position: relative; }
+    .dotline { display: flex; gap: var(--s2); margin-bottom: var(--s6); }
+    .dotline span { width: 18px; height: 18px; display: block; }
+    .dotline span:nth-child(1) { background: var(--yellow); }
+    .dotline span:nth-child(2) { background: var(--rose); }
+    .dotline span:nth-child(3) { background: var(--mint); }
+    .dotline span:nth-child(4) { background: var(--lavender); }
+    .eyebrow { font-size: var(--fs-small); font-weight: var(--w-bold); color: #d6b6f6; margin-bottom: var(--s4); }
+    h1 { margin: 0; max-width: 780px; font-size: var(--fs-hero); line-height: var(--lh-tight); font-weight: var(--w-bold); letter-spacing: 0; }
+    .hero p { margin: var(--s5) 0 0; max-width: 760px; color: #d8d6d1; font-size: 18px; line-height: 1.6; }
+    .section { padding: var(--s8); border-bottom: 1px solid var(--line); }
+    .section-title { display: flex; align-items: center; gap: var(--s3); margin: 0 0 var(--s6); color: var(--ink); font-size: var(--fs-h2); line-height: var(--lh-title); }
+    .num { display: inline-grid; place-items: center; width: 34px; height: 34px; background: var(--primary); color: white; font-weight: var(--w-bold); }
+    .core { background: var(--yellow); border-left: var(--mark-a); padding: var(--s7); margin-bottom: var(--s6); }
+    .core strong { display: block; color: var(--ink); font-size: var(--fs-h1); line-height: var(--lh-title); margin-bottom: var(--s4); }
+    .core p, .block p, .quote p, .risk li, .action li { font-size: var(--fs-body); line-height: var(--lh-body); margin: 0; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s4); }
+    .block { padding: var(--s6); border: 1px solid var(--line); background: var(--soft); }
+    .block:nth-child(1) { background: var(--peach); border-left: var(--mark-b); }
+    .block:nth-child(2) { background: var(--mint); border-left: var(--mark-c); }
+    .block:nth-child(3) { background: var(--lavender); border-left: var(--mark-a); }
+    .block h3 { margin: 0 0 var(--s3); color: var(--ink); font-size: var(--fs-h3); }
+    .flow { display: grid; gap: var(--s3); }
+    .step { display: grid; grid-template-columns: 92px 1fr; gap: var(--s4); padding: var(--s5); border: 1px solid var(--line); background: var(--canvas); }
+    .label { font-size: var(--fs-small); font-weight: var(--w-bold); color: var(--primary-deep); }
+    .quote { background: var(--navy-mid); color: white; padding: var(--s7); border-left: 10px solid var(--primary); }
+    .quote p { font-size: 22px; line-height: 1.5; font-weight: var(--w-bold); }
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s5); }
+    .action, .risk { padding: var(--s6); border: 1px solid var(--line); }
+    .action { background: var(--sky); }
+    .risk { background: var(--cream); border-left: 8px solid var(--error); }
+    ul { margin: 0; padding-left: var(--s5); }
+    li { margin: var(--s2) 0; line-height: var(--lh-body); }
+    footer { padding: var(--s6) var(--s8); color: var(--steel); font-size: var(--fs-small); background: var(--soft); }
+    @media (max-width: 920px) { .grid, .split { grid-template-columns: 1fr; } .hero, .section { padding: var(--s7); } }
+    @media (max-width: 680px) { .page { padding: var(--s4); } h1 { font-size: 34px; } .core strong { font-size: 26px; } .step { grid-template-columns: 1fr; } }
+    @media (max-width: 480px) { .hero, .section { padding: var(--s5); } h1 { font-size: 30px; } .hero p { font-size: 16px; } .section-title { font-size: 21px; } }
+    @media (min-width: 1280px) { .card { max-width: 1040px; } .hero { padding-top: 72px; } }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <article class="card">
+      <header class="hero">
+        <div class="dotline"><span></span><span></span><span></span><span></span></div>
+        <div class="eyebrow">2026-07-25 · 日省认知卡片</div>
+        <h1>知道不等于执行，系统必须压到行动时刻。</h1>
+        <p>今天的核心不是又多想清楚了什么，而是看见了认知和具体行动之间的距离：起床、交易、社交、删减，都卡在同一个地方。</p>
+      </header>
+      <section class="section">
+        <div class="core">
+          <strong>删减思维第一次出现，但刀还没切到方向上。</strong>
+          <p>流程可以删，工具链可以删，复盘自动化也可以优化；真正需要追问的是 Web3、量化、工具站、APP 逆向、复盘 agent 是否又在用“不冲突”掩盖注意力扩散。</p>
+        </div>
+        <div class="grid">
+          <div class="block"><h3>信息滞后</h3><p>合约行情走完才看到消息，说明当前瓶颈不是判断，而是信号到达速度。</p></div>
+          <div class="block"><h3>真实触动</h3><p>聚会里“小卡拉咪”的感受、1 万单子的轻盈感、港股项目的眼馋，都是外部世界的直接反馈。</p></div>
+          <div class="block"><h3>纪律升级</h3><p>止损不是原则，是纪律。纪律破了就跑，不能靠临场解释保护亏损。</p></div>
+        </div>
+      </section>
+      <section class="section">
+        <h2 class="section-title"><span class="num">1</span> 今日飞轮</h2>
+        <div class="flow">
+          <div class="step"><div class="label">观察</div><div>出来见人，获得工具站、广告行业、港股打新的新样本。</div></div>
+          <div class="step"><div class="label">判断</div><div>钱来得快不是玄学，而是方向、圈层和信息差共同作用。</div></div>
+          <div class="step"><div class="label">缺口</div><div>Web3 方向已判断，但监控器还没写，知道和动手之间仍有空白。</div></div>
+          <div class="step"><div class="label">动作</div><div>明天先建合约监控表，录入 3 个账号和 3 条样本。</div></div>
+        </div>
+      </section>
+      <section class="section">
+        <h2 class="section-title"><span class="num">2</span> 记忆金句</h2>
+        <div class="quote"><p>“姿势对了，钱真是大风刮来的。”</p></div>
+      </section>
+      <section class="section">
+        <h2 class="section-title"><span class="num">3</span> 行动与风险</h2>
+        <div class="split">
+          <div class="action">
+            <h3>明日唯一动作</h3>
+            <ul>
+              <li>建立 Web3 合约监控表。</li>
+              <li>录入至少 3 个待跟踪账号。</li>
+              <li>每个账号记录 1 条历史喊单或持仓样本。</li>
+            </ul>
+          </div>
+          <div class="risk">
+            <h3>待核风险</h3>
+            <ul>
+              <li>欧意和 Debox 数据入口是否稳定可用。</li>
+              <li>港股打新收益数字来自转述，不能直接当事实。</li>
+              <li>交易纪律必须先小杠杆、严止损，再谈放大。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <footer>风格参考：Notion · 来源：2026-07-25 日省 Markdown · 完全静态 HTML</footer>
+    </article>
+  </main>
+</body>
+</html>
