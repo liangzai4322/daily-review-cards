@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>认知卡片 · 2026-07-29</title>
+<style>
+:root{--color-primary:#f54e00;--color-primary-soft:#fff0e8;--color-primary-active:#d04200;--color-ink:#26251e;--color-body:#5a5852;--color-body-strong:#26251e;--color-muted:#807d72;--color-muted-soft:#a09c92;--color-hairline:#e6e5e0;--color-hairline-soft:#efeee8;--color-hairline-strong:#cfcdc4;--color-canvas:#f7f7f4;--color-canvas-soft:#fafaf7;--color-card:#ffffff;--color-surface-strong:#e6e5e0;--color-thinking:#dfa88f;--color-grep:#9fc9a2;--color-read:#9fbbe0;--color-edit:#c0a8dd;--color-done:#c08532;--color-success:#1f8a65;--color-error:#cf2d56;--color-risk-bg:#fff7db;--color-risk-line:#c08532;--color-action-bg:#eef7f1;--color-action-line:#1f8a65;--color-quote-bg:#fff6f0;--color-method-bg:#f0f4fa;--color-example-bg:#fbfbf8;--font-sans:Inter,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI","Microsoft YaHei",sans-serif;--font-mono:"JetBrains Mono","SFMono-Regular",Consolas,monospace;--text-mega:64px;--text-hero:44px;--text-title:30px;--text-section:24px;--text-card:20px;--text-sub:18px;--text-body:16px;--text-small:14px;--text-caption:12px;--text-micro:11px;--weight-regular:400;--weight-medium:500;--weight-semibold:600;--weight-bold:700;--line-tight:1.08;--line-title:1.22;--line-body:1.72;--track-tight:-.04em;--track-title:-.02em;--track-wide:.12em;--space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:20px;--space-6:24px;--space-7:28px;--space-8:32px;--space-9:40px;--space-10:48px;--space-11:64px;--space-12:80px;--border-thin:1px solid var(--color-hairline);--border-strong:1px solid var(--color-hairline-strong);--mark-thick:6px;--mark-mid:3px;--card-width:980px;--safe-top:40px;--safe-bottom:40px;--shadow-none:none}
+*{box-sizing:border-box}html{background:var(--color-canvas);color:var(--color-ink);font-family:var(--font-sans)}body{margin:0;min-height:100vh;background:linear-gradient(180deg,var(--color-canvas) 0%,var(--color-canvas-soft) 100%);padding:var(--space-10) var(--space-5)}.card-shell{width:min(100%,var(--card-width));margin:0 auto}.cognitive-card{background:var(--color-card);border:var(--border-strong);border-radius:0;box-shadow:var(--shadow-none);padding:var(--safe-top) var(--space-10) var(--safe-bottom);position:relative}.cognitive-card:before{content:"";position:absolute;left:0;top:0;width:var(--mark-thick);height:100%;background:linear-gradient(180deg,var(--color-primary),var(--color-thinking),var(--color-grep),var(--color-read),var(--color-edit),var(--color-done))}.eyebrow{font-family:var(--font-mono);font-size:var(--text-micro);letter-spacing:var(--track-wide);text-transform:uppercase;color:var(--color-primary);font-weight:var(--weight-semibold);margin-bottom:var(--space-4)}.hero-title{font-size:var(--text-hero);line-height:var(--line-tight);letter-spacing:var(--track-tight);font-weight:var(--weight-regular);margin:0;color:var(--color-ink)}.hero-subtitle{font-size:var(--text-body);line-height:var(--line-body);color:var(--color-body);margin:var(--space-5) 0 0;max-width:760px}.meta-row{display:flex;flex-wrap:wrap;gap:var(--space-3);margin-top:var(--space-6)}.pill{font-family:var(--font-mono);font-size:var(--text-caption);line-height:1;padding:var(--space-2) var(--space-3);border:var(--border-thin);background:var(--color-canvas-soft);color:var(--color-body-strong)}.core-panel{margin-top:var(--space-10);border-top:4px solid var(--color-primary);border-bottom:var(--border-strong);padding:var(--space-8) 0}.core-label{font-size:var(--text-caption);letter-spacing:var(--track-wide);font-weight:var(--weight-bold);color:var(--color-muted);margin-bottom:var(--space-3)}.core-sentence{font-size:var(--text-title);line-height:var(--line-title);letter-spacing:var(--track-title);font-weight:var(--weight-regular);margin:0;color:var(--color-ink)}.core-sentence strong{color:var(--color-primary);font-weight:var(--weight-semibold)}.section{padding-top:var(--space-9);margin-top:var(--space-7);border-top:var(--border-thin)}.section-head{display:flex;align-items:flex-start;gap:var(--space-4);margin-bottom:var(--space-6)}.section-index{font-family:var(--font-mono);font-size:var(--text-caption);background:var(--color-ink);color:var(--color-canvas);padding:var(--space-2) var(--space-3);line-height:1}.section-title{font-size:var(--text-section);line-height:var(--line-title);letter-spacing:var(--track-title);font-weight:var(--weight-regular);margin:0}.section-note{font-size:var(--text-small);color:var(--color-muted);line-height:1.6;margin:var(--space-2) 0 0}.argument-grid{display:grid;gap:var(--space-4)}.argument{border:var(--border-thin);background:var(--color-canvas-soft);padding:var(--space-5);display:grid;grid-template-columns:88px 1fr;gap:var(--space-4)}.arg-tag{font-family:var(--font-mono);font-size:var(--text-micro);letter-spacing:.08em;color:var(--color-muted);font-weight:var(--weight-semibold)}.arg-title{font-size:var(--text-sub);font-weight:var(--weight-semibold);line-height:1.35;margin:0 0 var(--space-2)}.arg-text{font-size:var(--text-body);line-height:var(--line-body);color:var(--color-body);margin:0}.flow{display:grid;grid-template-columns:1fr 1fr 1fr;gap:var(--space-3)}.flow-step{border:var(--border-thin);padding:var(--space-5);background:var(--color-card);position:relative}.flow-step:before{content:attr(data-step);font-family:var(--font-mono);font-size:var(--text-micro);letter-spacing:var(--track-wide);color:var(--color-primary);display:block;margin-bottom:var(--space-3)}.flow-step h3{margin:0 0 var(--space-2);font-size:var(--text-sub);font-weight:var(--weight-semibold)}.flow-step p{margin:0;color:var(--color-body);line-height:1.65;font-size:var(--text-small)}.quote-band{background:var(--color-quote-bg);border-left:var(--mark-thick) solid var(--color-primary);padding:var(--space-7);display:grid;gap:var(--space-4)}.quote{font-size:22px;line-height:1.48;letter-spacing:var(--track-title);color:var(--color-ink);margin:0}.quote-small{font-size:var(--text-body);line-height:1.7;color:var(--color-body);margin:0;border-top:var(--border-thin);padding-top:var(--space-4)}.method-list{display:grid;gap:var(--space-3)}.method{display:grid;grid-template-columns:28px 1fr;gap:var(--space-3);align-items:start;padding:var(--space-4);background:var(--color-method-bg);border:var(--border-thin)}.method-num{font-family:var(--font-mono);font-size:var(--text-caption);color:var(--color-primary);font-weight:var(--weight-bold)}.method-text{font-size:var(--text-body);line-height:1.68;color:var(--color-body);margin:0}.split-block{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-4)}.action-box,.risk-box{padding:var(--space-6);border:var(--border-thin);background:var(--color-action-bg);border-top:4px solid var(--color-action-line)}.risk-box{background:var(--color-risk-bg);border-top-color:var(--color-risk-line)}.box-title{font-family:var(--font-mono);font-size:var(--text-caption);letter-spacing:var(--track-wide);font-weight:var(--weight-semibold);margin:0 0 var(--space-4);color:var(--color-ink)}.box-list{margin:0;padding-left:var(--space-5);color:var(--color-body);line-height:1.7;font-size:var(--text-small)}.box-list li{margin-bottom:var(--space-2)}.footer{margin-top:var(--space-10);padding-top:var(--space-6);border-top:var(--border-thin);display:flex;justify-content:space-between;gap:var(--space-4);flex-wrap:wrap;color:var(--color-muted);font-size:var(--text-caption);line-height:1.5}.mono{font-family:var(--font-mono)}strong{font-weight:var(--weight-semibold);color:var(--color-body-strong)}@media (max-width:640px){body{padding:var(--space-4)}.cognitive-card{padding:var(--space-9) var(--space-5) var(--space-9)}.hero-title{font-size:34px}.core-sentence{font-size:24px}.argument{grid-template-columns:1fr}.flow,.split-block{grid-template-columns:1fr}.quote{font-size:19px}}@media (min-width:641px) and (max-width:820px){.cognitive-card{padding:var(--space-9) var(--space-7)}.hero-title{font-size:40px}.flow{grid-template-columns:1fr}.split-block{grid-template-columns:1fr}}@media (min-width:821px) and (max-width:1100px){.cognitive-card{padding:var(--space-10) var(--space-8)}.hero-title{font-size:42px}}@media (min-width:1280px){body{padding:var(--space-12) var(--space-5)}.hero-title{font-size:52px}.core-sentence{font-size:34px}}
+</style>
+</head>
+<body>
+<main class="card-shell">
+<article class="cognitive-card">
+<header>
+<div class="eyebrow">DAILY REVIEW · CURSOR STYLE · 2026-07-29</div>
+<h1 class="hero-title">把所有导弹，从轨道起点发射出去</h1>
+<p class="hero-subtitle">这几天的核心不是旅游、交易或复盘本身，而是你同时看见了两件事：真实体验值得被保护，认知也必须被压成成果物。没有成果物，想得再清楚也只是停在轨道上。</p>
+<div class="meta-row"><span class="pill">目标日期 2026-07-29</span><span class="pill">风格：Cursor</span><span class="pill">来源：日省提炼</span></div>
+</header>
+<section class="core-panel">
+<div class="core-label">一级核心命题</div>
+<p class="core-sentence"><strong>认知闭环的终点不是“想明白”，而是一个可看见、可使用、可决策的成果物。</strong> 体验负责让人活着，成果物负责让系统前进。</p>
+</section>
+<section class="section">
+<div class="section-head"><div class="section-index">01</div><div><h2 class="section-title">三条主线正在合流</h2><p class="section-note">从感受、工具、运营三个方向形成同一个要求：不要再停留在分析层。</p></div></div>
+<div class="argument-grid">
+<div class="argument"><div class="arg-tag">体验</div><div><h3 class="arg-title">凌霄阁瞬间提醒你：钱不是唯一尺度</h3><p class="arg-text">香港风景台、耳边的风和别人的故事，构成了一次高质量感受。你没有为了几百块交易收益牺牲当下，这不是懈怠，而是重新校准人生权重。</p></div></div>
+<div class="argument"><div class="arg-tag">工具</div><div><h3 class="arg-title">OE 逆向把 Web3 监控从想法推到 MVP</h3><p class="arg-text">关键接口已可调用，邮件提醒版本已经能跑。下一步不是继续构想大系统，而是先确定过滤规则：哪些 ETH 转入触发邮件，哪些只入库。</p></div></div>
+<div class="argument"><div class="arg-tag">运营</div><div><h3 class="arg-title">员工休假不能凭感觉，要用订单图决策</h3><p class="arg-text">8 月是否放假半个月到一个月，必须由去年 7-9 月和今年同期的按天订单折线图决定。这是主线业务的真实经营动作。</p></div></div>
+</div>
+</section>
+<section class="section">
+<div class="section-head"><div class="section-index">02</div><div><h2 class="section-title">飞轮链路：从刺激到成果</h2><p class="section-note">不要让刺激只变成认知，要让它变成下一次可复用的系统。</p></div></div>
+<div class="flow">
+<div class="flow-step" data-step="STIMULUS"><h3>真实刺激</h3><p>香港 citywalk、暴雨爬山、交易盘面、员工请假，都是外部世界给你的输入。</p></div>
+<div class="flow-step" data-step="JUDGMENT"><h3>判断提炼</h3><p>从输入里提炼出“成果物思维、MVP 先行、弱关系期权、背后不说坏话”。</p></div>
+<div class="flow-step" data-step="OUTPUT"><h3>成果落地</h3><p>订单折线图、ETH 监控面板、暴雨 SOP、待办闭环，才是认知被兑现的形态。</p></div>
+</div>
+</section>
+<section class="section">
+<div class="section-head"><div class="section-index">03</div><div><h2 class="section-title">金句记忆锚点</h2><p class="section-note">这些句子是这次日省的情绪峰值和方法论入口。</p></div></div>
+<div class="quote-band">
+<p class="quote">“人生有的时候真的只活一个瞬间。”</p>
+<p class="quote-small">“没有以后，没有以前，只有耳边的风、眼前的风景，还有那些故事。”</p>
+<p class="quote-small">“所有导弹还在轨道起点，真正的问题是要把它们发射成可视化成果。”</p>
+</div>
+</section>
+<section class="section">
+<div class="section-head"><div class="section-index">04</div><div><h2 class="section-title">可复用方法论</h2><p class="section-note">保留能直接指导下一次行动的规则。</p></div></div>
+<div class="method-list">
+<div class="method"><div class="method-num">01</div><p class="method-text"><strong>MVP 先行：</strong>工具先跑通最短链路，再补过滤、面板和自动化。</p></div>
+<div class="method"><div class="method-num">02</div><p class="method-text"><strong>成果物思维：</strong>每条主线都要有可截图、可使用、可复盘的结果。</p></div>
+<div class="method"><div class="method-num">03</div><p class="method-text"><strong>近远双轨：</strong>10 年愿景提供方向，当下第一动作负责推进。</p></div>
+<div class="method"><div class="method-num">04</div><p class="method-text"><strong>帮人三次原则：</strong>主动帮助要有边界，超过三次容易变成越界。</p></div>
+</div>
+</section>
+<section class="section">
+<div class="section-head"><div class="section-index">05</div><div><h2 class="section-title">明日行动与待核风险</h2><p class="section-note">认知收束到一个主动作，避免继续扩散。</p></div></div>
+<div class="split-block">
+<div class="action-box"><h3 class="box-title">唯一主动作</h3><ul class="box-list"><li>读取去年 7-9 月与今年同期订单数据，生成按天折线图。</li><li>写出员工 8 月是否放假半月到一月的决策建议。</li></ul></div>
+<div class="risk-box"><h3 class="box-title">待核事项</h3><ul class="box-list"><li>平安银行香港开户羊毛 1000 元是否到账。</li><li>ETH 大额转入后的瀑布时间不确定，不能把信号误当成确定交易指令。</li><li>搬家、日醒、周醒会挤占工具推进时间，需要主动排优先级。</li></ul></div>
+</div>
+</section>
+<footer class="footer"><span>来源：2026-07-29 日省 Markdown</span><span class="mono">静态 HTML · 无脚本 · 单栏直角卡片</span></footer>
+</article>
+</main>
+</body>
+</html>
