@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>认知卡片 · 2026-07-30</title>
+  <style>
+    :root{
+      --black-000:#000000;--black-010:#050505;--black-020:#0b0b0b;--black-030:#111111;--black-040:#171717;--gray-090:#212121;--gray-110:#282828;--gray-130:#303030;--gray-150:#353535;--gray-190:#464646;--gray-230:#565656;--gray-270:#666666;--gray-310:#797979;--gray-350:#8a8a8a;--gray-390:#9b9b9b;--gray-430:#ababab;--gray-470:#b9b9b9;--gray-510:#c8c8c8;--gray-550:#d5d5d5;--gray-590:#e2e2e2;--gray-630:#ededed;--white:#ffffff;
+      --red-cta:#f36458;--red-deep:#dd0000;--red-dim:#3a1614;--red-line:#6d2823;--blue:#0052ef;--blue-soft:#55beff;--blue-fog:#afe3ff;--blue-dim:#071f57;--green:#19d600;--green-soft:#37cd84;--green-dim:#153d25;--orange:#ff5500;--orange-dim:#452111;--magenta:#f500ff;--magenta-dim:#3c123f;--amber:#ffb84d;--amber-dim:#3c2b10;--cyan:#18d7ff;--cyan-dim:#0b3640;--violet:#8d6bff;--violet-dim:#201a3f;
+      --surface-base:var(--black-020);--surface-raised:var(--gray-090);--surface-strong:var(--gray-150);--surface-invert:var(--white);--line-faint:var(--gray-090);--line-mid:var(--gray-150);--line-bright:var(--gray-470);--text-main:var(--white);--text-body:var(--gray-470);--text-muted:var(--gray-310);--text-faint:var(--gray-230);--text-dark:var(--black-020);
+      --font-display:"Inter","Space Grotesk","Microsoft YaHei",Arial,sans-serif;--font-body:"Inter","Microsoft YaHei",Arial,sans-serif;--font-mono:"IBM Plex Mono","Cascadia Mono",Consolas,monospace;
+      --fs-hero:64px;--fs-h1:48px;--fs-h2:34px;--fs-h3:25px;--fs-h4:21px;--fs-body-xl:20px;--fs-body-lg:18px;--fs-body:16px;--fs-body-sm:15px;--fs-caption:13px;--fs-micro:11px;--fs-code:12px;
+      --lh-hero:1.02;--lh-tight:1.12;--lh-title:1.22;--lh-body:1.68;--lh-caption:1.45;--lh-code:1.5;
+      --w-regular:400;--w-medium:500;--w-strong:560;--w-bold:620;--track-hero:0em;--track-title:.01em;--track-label:.11em;--track-code:.04em;
+      --s-1:1px;--s-2:2px;--s-3:4px;--s-4:6px;--s-5:8px;--s-6:12px;--s-7:16px;--s-8:20px;--s-9:24px;--s-10:32px;--s-11:40px;--s-12:48px;--s-13:64px;--s-14:80px;--s-15:96px;--s-16:120px;
+      --max-card:1060px;--safe-top:40px;--safe-side:42px;--safe-bottom:40px;--rule-strong:4px;--rule-mid:2px;--rule-thin:1px;--mark-core:12px;--mark-node:28px;--mark-dot:8px;--mark-bar:6px;--mark-number:38px;--mark-tag-pad-x:10px;--mark-tag-pad-y:5px;
+    }
+    *{box-sizing:border-box}
+    html{background:var(--surface-base);color:var(--text-main);font-family:var(--font-body);text-rendering:geometricPrecision;-webkit-font-smoothing:antialiased}
+    body{margin:0;min-height:100vh;background:linear-gradient(180deg,var(--black-000) 0%,var(--black-020) 44%,var(--black-030) 100%);padding:var(--s-12) var(--s-9)}
+    .card-shell{width:100%;max-width:var(--max-card);margin:0 auto}
+    .cognitive-card{background:var(--surface-base);border:var(--rule-thin) solid var(--line-mid);box-shadow:0 0 0 var(--rule-thin) var(--black-000),0 0 0 8px rgba(33,33,33,.42);padding:var(--safe-top) var(--safe-side) var(--safe-bottom);position:relative;overflow:hidden}
+    .cognitive-card::before{content:"";position:absolute;inset:0 0 auto 0;height:var(--rule-strong);background:linear-gradient(90deg,var(--red-cta),var(--blue),var(--green));display:block}
+    .cognitive-card::after{content:"";position:absolute;right:var(--safe-side);top:var(--safe-top);width:140px;height:140px;border:var(--rule-thin) solid var(--gray-150);background:linear-gradient(135deg,rgba(0,82,239,.12),rgba(25,214,0,.05));z-index:0}
+    header,.section,.footer{position:relative;z-index:1}
+    .system-strip{display:flex;align-items:center;justify-content:space-between;gap:var(--s-7);border-bottom:var(--rule-thin) solid var(--line-faint);padding-bottom:var(--s-7);margin-bottom:var(--s-11)}
+    .eyebrow,.meta-code,.tag,.kicker,.node-label,.risk-label{font-family:var(--font-mono);font-size:var(--fs-micro);line-height:var(--lh-code);letter-spacing:var(--track-label);text-transform:uppercase;color:var(--text-muted)}
+    .date-lock{font-family:var(--font-mono);font-size:var(--fs-code);line-height:var(--lh-code);letter-spacing:var(--track-code);color:var(--green);border:var(--rule-thin) solid var(--green-dim);padding:var(--mark-tag-pad-y) var(--mark-tag-pad-x);background:rgba(25,214,0,.06)}
+    h1{font-family:var(--font-display);font-size:var(--fs-hero);line-height:var(--lh-hero);font-weight:var(--w-regular);letter-spacing:var(--track-hero);margin:0 0 var(--s-9);max-width:820px;color:var(--white)}
+    .hero-summary{display:grid;grid-template-columns:1.25fr .75fr;gap:var(--s-9);align-items:stretch;margin-bottom:var(--s-11)}
+    .core-box{border-left:var(--mark-core) solid var(--red-cta);background:linear-gradient(90deg,rgba(243,100,88,.16),rgba(33,33,33,.6));padding:var(--s-9) var(--s-10);display:flex;flex-direction:column;gap:var(--s-7)}
+    .core-title{font-size:var(--fs-h2);line-height:var(--lh-title);font-weight:var(--w-medium);letter-spacing:var(--track-title);margin:0;color:var(--white)}
+    .core-copy{font-size:var(--fs-body-lg);line-height:var(--lh-body);color:var(--gray-550);margin:0}.core-copy strong{color:var(--white);font-weight:var(--w-bold)}
+    .signal-grid{display:grid;grid-template-columns:1fr;gap:var(--s-6)}
+    .signal{background:var(--surface-raised);border:var(--rule-thin) solid var(--line-mid);padding:var(--s-7)}
+    .signal strong{display:block;font-family:var(--font-display);font-size:var(--fs-h4);line-height:var(--lh-title);font-weight:var(--w-medium);color:var(--white);margin-top:var(--s-4)}
+    .signal span{display:block;color:var(--text-body);font-size:var(--fs-caption);line-height:var(--lh-caption);margin-top:var(--s-4)}
+    .section{padding:var(--s-11) 0;border-top:var(--rule-thin) solid var(--line-faint)}
+    .section-head{display:grid;grid-template-columns:92px 1fr;gap:var(--s-8);align-items:start;margin-bottom:var(--s-9)}
+    .section-number{height:var(--mark-number);width:var(--mark-number);display:grid;place-items:center;border:var(--rule-thin) solid var(--line-mid);font-family:var(--font-mono);font-size:var(--fs-code);color:var(--blue-soft);background:var(--black-010)}
+    h2{font-family:var(--font-display);font-size:var(--fs-h2);line-height:var(--lh-title);font-weight:var(--w-regular);letter-spacing:var(--track-title);margin:0;color:var(--white)}
+    .section-desc{font-size:var(--fs-body);line-height:var(--lh-body);color:var(--text-body);margin:var(--s-5) 0 0;max-width:760px}
+    .fact-stack{display:grid;grid-template-columns:1fr;gap:var(--s-7)}
+    .fact{display:grid;grid-template-columns:132px 1fr;gap:var(--s-8);border:var(--rule-thin) solid var(--line-faint);background:linear-gradient(90deg,rgba(33,33,33,.88),rgba(11,11,11,.8));padding:var(--s-8)}
+    .fact-index{font-family:var(--font-mono);font-size:var(--fs-code);line-height:var(--lh-code);color:var(--text-muted)}
+    .fact-title{font-size:var(--fs-h4);line-height:var(--lh-title);font-weight:var(--w-medium);color:var(--white);margin:0 0 var(--s-4)}
+    .fact p{font-size:var(--fs-body);line-height:var(--lh-body);color:var(--text-body);margin:0}.fact .highlight{color:var(--blue-soft);font-weight:var(--w-strong)}
+    .insight-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--s-7)}
+    .insight{border:var(--rule-thin) solid var(--line-mid);background:var(--surface-raised);padding:var(--s-8);display:grid;gap:var(--s-6)}
+    .insight .tag{display:inline-block;width:max-content;background:var(--black-020);border:var(--rule-thin) solid var(--line-faint);padding:var(--mark-tag-pad-y) var(--mark-tag-pad-x);color:var(--gray-470)}
+    .insight h3{font-family:var(--font-display);font-size:var(--fs-h3);line-height:var(--lh-title);font-weight:var(--w-medium);margin:0;color:var(--white)}
+    .insight p{margin:0;color:var(--text-body);font-size:var(--fs-body);line-height:var(--lh-body)}
+    .quote-band{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-7)}
+    blockquote{margin:0;border:var(--rule-thin) solid var(--line-mid);background:var(--black-010);padding:var(--s-9);min-height:168px;display:flex;flex-direction:column;justify-content:space-between}
+    blockquote p{font-family:var(--font-display);font-size:var(--fs-body-xl);line-height:1.46;font-weight:var(--w-regular);color:var(--white);margin:0}blockquote cite{font-style:normal;font-family:var(--font-mono);font-size:var(--fs-micro);letter-spacing:var(--track-label);color:var(--red-cta);margin-top:var(--s-7)}
+    .method-flow{border:var(--rule-thin) solid var(--line-mid);background:linear-gradient(180deg,var(--gray-090),var(--black-020));padding:var(--s-9);display:grid;gap:var(--s-7)}
+    .flow-row{display:grid;grid-template-columns:var(--mark-node) 1fr;gap:var(--s-7);align-items:start}.node{width:var(--mark-node);height:var(--mark-node);border:var(--rule-thin) solid var(--blue);display:grid;place-items:center;font-family:var(--font-mono);font-size:var(--fs-micro);color:var(--blue-soft);background:var(--blue-dim)}
+    .flow-copy{border-bottom:var(--rule-thin) solid var(--line-faint);padding-bottom:var(--s-7)}.flow-row:last-child .flow-copy{border-bottom:0;padding-bottom:0}.flow-copy h3{font-size:var(--fs-h4);line-height:var(--lh-title);font-weight:var(--w-medium);margin:0 0 var(--s-4);color:var(--white)}.flow-copy p{margin:0;color:var(--text-body);font-size:var(--fs-body);line-height:var(--lh-body)}
+    .action-panel{display:grid;grid-template-columns:1.15fr .85fr;gap:var(--s-7)}
+    .action-main{background:var(--surface-invert);color:var(--text-dark);padding:var(--s-9);border:var(--rule-thin) solid var(--white)}
+    .action-main .kicker{color:var(--blue);font-weight:var(--w-bold)}.action-main h3{font-size:var(--fs-h3);line-height:var(--lh-title);font-weight:var(--w-medium);margin:var(--s-5) 0 var(--s-6);color:var(--black-020)}.action-main p{font-size:var(--fs-body);line-height:var(--lh-body);margin:0;color:var(--gray-090)}
+    .proof-list{margin:var(--s-7) 0 0;padding:0;list-style:none;display:grid;gap:var(--s-5)}.proof-list li{display:grid;grid-template-columns:18px 1fr;gap:var(--s-5);font-size:var(--fs-body-sm);line-height:var(--lh-caption);color:var(--gray-090)}.proof-list li::before{content:"";width:var(--mark-dot);height:var(--mark-dot);background:var(--red-cta);margin-top:7px;display:block}
+    .risk-box{border:var(--rule-thin) solid var(--orange);background:var(--orange-dim);padding:var(--s-9);display:grid;gap:var(--s-7)}.risk-item{border-left:var(--mark-bar) solid var(--amber);padding-left:var(--s-7)}.risk-item p{margin:var(--s-4) 0 0;color:var(--gray-550);font-size:var(--fs-body-sm);line-height:var(--lh-body)}
+    .footer{border-top:var(--rule-thin) solid var(--line-faint);padding-top:var(--s-8);display:grid;grid-template-columns:1fr auto;gap:var(--s-7);align-items:end;color:var(--text-muted);font-size:var(--fs-caption);line-height:var(--lh-caption)}
+    .source-line{font-family:var(--font-mono);font-size:var(--fs-code);line-height:var(--lh-code);color:var(--text-faint)}
+    @media (min-width:1640px){:root{--max-card:1120px;--fs-hero:70px}.cognitive-card{padding-left:var(--s-12);padding-right:var(--s-12)}}
+    @media (max-width:1200px){:root{--fs-hero:56px;--fs-h1:42px;--fs-h2:31px}.hero-summary,.action-panel{grid-template-columns:1fr}.signal-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+    @media (max-width:960px){body{padding:var(--s-9) var(--s-7)}:root{--safe-side:28px;--fs-hero:46px;--fs-h2:28px;--fs-h3:23px}.section-head{grid-template-columns:58px 1fr}.fact{grid-template-columns:1fr}.insight-grid,.quote-band{grid-template-columns:1fr}.signal-grid{grid-template-columns:1fr}}
+    @media (max-width:768px){body{padding:var(--s-7) var(--s-5)}:root{--safe-top:40px;--safe-side:20px;--safe-bottom:40px;--fs-hero:38px;--fs-h2:25px;--fs-h3:21px;--fs-body-lg:17px}.system-strip{align-items:flex-start;flex-direction:column}.section{padding:var(--s-10) 0}.core-box,.signal,.fact,.insight,.method-flow,.action-main,.risk-box,blockquote{padding:var(--s-7)}}
+    @media (max-width:480px){body{padding:var(--s-5)}:root{--safe-side:16px;--fs-hero:32px;--fs-h2:23px;--fs-body:15px;--fs-caption:12px}.section-head{grid-template-columns:1fr;gap:var(--s-5)}.cognitive-card::after{width:92px;height:92px;right:16px;top:40px}.footer{grid-template-columns:1fr}.flow-row{grid-template-columns:24px 1fr;gap:var(--s-5)}.node{width:24px;height:24px}.fact-stack{gap:var(--s-5)}}
+  </style>
+</head>
+<body>
+  <main class="card-shell">
+    <article class="cognitive-card">
+      <header>
+        <div class="system-strip">
+          <div class="eyebrow">Daily Cognitive Review · Sanity Signal System</div>
+          <div class="date-lock">2026-07-30</div>
+        </div>
+        <h1>把卡点写出来，把结果物发出去</h1>
+        <div class="hero-summary">
+          <section class="core-box">
+            <p class="kicker">Level 1 · 今日核心命题</p>
+            <h2 class="core-title">真正的分水岭不是想清楚，而是让导弹离开发射架。</h2>
+            <p class="core-copy">这次复盘里，ETH 面板已经从想法变成可访问工具；但员工放假决策仍停在“需要数据”的入口。今天最该保留的判断是：<strong>卡点不显性化，系统就会用短视频和错误工具链逃跑；结果物上线，飞轮才开始转。</strong></p>
+          </section>
+          <section class="signal-grid">
+            <div class="signal"><span class="meta-code">Published</span><strong>1 个工具上线</strong><span>ETH 转入量与砸盘力度计算已形成 GitHub 前端 + 日本服务器后端。</span></div>
+            <div class="signal"><span class="meta-code">Blocked</span><strong>订单图未完成</strong><span>员工 8 月休假决策仍缺 2025 / 2026 年 7-9 月订单折线图。</span></div>
+            <div class="signal"><span class="meta-code">Next Lock</span><strong>12:00 前交付</strong><span>先找到数据源，产出粗图和 200 字以内建议，不追求完整分析。</span></div>
+          </section>
+        </div>
+      </header>
+
+      <section class="section">
+        <div class="section-head"><div class="section-number">01</div><div><h2>今日事实不是三件事，而是三条系统线</h2><p class="section-desc">香港、搬家、ETH 面板看似分散，实际分别对应“感受保存”“能量漏点”“结果物发射”。</p></div></div>
+        <div class="fact-stack">
+          <div class="fact"><div class="fact-index">感受线</div><div><h3 class="fact-title">香港风景台的瞬间值得被保存</h3><p>凌霄台那晚让你明确感到：人生不是只能靠赚钱、交易和成果证明价值。<span class="highlight">复盘有时不是为了分析，而是为了保存一个值得活过的瞬间。</span></p></div></div>
+          <div class="fact"><div class="fact-index">漏能线</div><div><h3 class="fact-title">小卡点没被写出来，大脑就转向信息流</h3><p>搬家、感冒、房间未整理，再叠加“去哪自习”“会员开不开”的未处理问题，最终变成刷短视频近 2 小时。问题不是自律差，而是卡点没有进入纸面。</p></div></div>
+          <div class="fact"><div class="fact-index">成果线</div><div><h3 class="fact-title">ETH 面板已经从设想进入真实运行</h3><p>前端静态页面、后端日本服务器、转入量到砸盘力度计算都已跑通；下一步不是再构想大系统，而是把大佬面板、转入监控、砸盘计算继续模块化。</p></div></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><div class="section-number">02</div><div><h2>四个可复用认知</h2><p class="section-desc">这些不是抽象鸡汤，而是本次输入里已经被事实撞出来的操作规则。</p></div></div>
+        <div class="insight-grid">
+          <div class="insight"><span class="tag">卡点显性化</span><h3>状态卡死时，先写正在回避什么</h3><p>不要先问“为什么不自律”，先把问题名写出来。没写出来的问题会以短视频、瞎折腾、工具链绕路的形式继续耗能。</p></div>
+          <div class="insight"><span class="tag">拆单再整合</span><h3>投资面板先做子模块，再谈总系统</h3><p>大佬面板、ETH 转入监控、砸盘计算各自跑通后再合并；过早做一体化，只会把不确定性打包成更大的不确定性。</p></div>
+          <div class="insight"><span class="tag">信号分权重</span><h3>ETH 指标与大佬信号冲突，就降仓</h3><p>两者一致时提高权重；两者相反时轻仓或观望。不是全信链上，也不是全信大佬，而是用冲突提醒自己降低确定性幻觉。</p></div>
+          <div class="insight"><span class="tag">享受也要选时机</span><h3>好状态里的享受，是恢复；坏状态里的享受，常变逃避</h3><p>香港的放松是高质量体验；感冒疲劳后的硬刷，是能量流失。区分这两者，比简单批判娱乐更重要。</p></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><div class="section-number">03</div><div><h2>三句必须留下的原话</h2><p class="section-desc">金句不是装饰，而是记忆索引：下次再陷入“只看成果”的窄框架时，用它们把视角拉回来。</p></div></div>
+        <div class="quote-band">
+          <blockquote><p>“人生有的时候真的就是只活一个瞬间。”</p><cite>Moment Anchor</cite></blockquote>
+          <blockquote><p>“钱没有感受重要。”</p><cite>Value Reset</cite></blockquote>
+          <blockquote><p>“每一颗导弹都还在轨道起点，我需要让它们发射出去。”</p><cite>Output Mandate</cite></blockquote>
+          <blockquote><p>“早买早享受，时间成本反而是最贵的。”</p><cite>Time Cost</cite></blockquote>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><div class="section-number">04</div><div><h2>明天只验证一个闭环</h2><p class="section-desc">别再把“运营决策”留在脑内；先出粗图，再写建议，完成证据必须可见。</p></div></div>
+        <div class="action-panel">
+          <div class="action-main">
+            <p class="kicker">Tomorrow Action · 12:00 Deadline</p>
+            <h3>找到订单数据源，生成 2025 / 2026 年 7-9 月按天订单粗折线图。</h3>
+            <p>写出一段不超过 200 字的员工 8 月放假建议。完成标准不是“研究过”，而是一张图或截图，加一段明确建议。</p>
+            <ul class="proof-list"><li>前五分钟：打开订单数据所在目录或表格。</li><li>确认字段：日期、订单数、金额、写手或员工参与情况。</li><li>维护动作：主动作完成后再找本地多账号 GPT IP 池教程。</li></ul>
+          </div>
+          <div class="risk-box">
+            <div class="risk-item"><span class="risk-label">Risk 01</span><p>大佬看多 / 看空准确率仍是主观样本，需要从现在开始记录每次出手及成败。</p></div>
+            <div class="risk-item"><span class="risk-label">Risk 02</span><p>ETH 大额转入后“必然砸盘”的判断需要更多样本验证，不能让单次强印象变成确定规则。</p></div>
+            <div class="risk-item"><span class="risk-label">Risk 03</span><p>平安银行香港开户羊毛、凌霄台票价等数字仍待核查，不能提前沉淀为事实型素材。</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><div class="section-number">05</div><div><h2>把本日判断压缩成一条飞轮</h2><p class="section-desc">卡点写清楚 → 行动变小 → 结果物出现 → 反馈变真实 → 下一步更稳。反过来，卡点不写 → 信息流逃避 → 决策悬空 → 自责加强。</p></div></div>
+        <div class="method-flow">
+          <div class="flow-row"><div class="node">A</div><div class="flow-copy"><h3>先显性化</h3><p>只要发现想逃避，先写出正在回避的具体问题，不急着找解决方案。</p></div></div>
+          <div class="flow-row"><div class="node">B</div><div class="flow-copy"><h3>再缩小</h3><p>把“完整分析”缩成“数据源 + 粗图 + 200 字建议”，让任务先能被交付。</p></div></div>
+          <div class="flow-row"><div class="node">C</div><div class="flow-copy"><h3>后发射</h3><p>真正改变系统的不是想法密度，而是结果物是否上线、是否被看见、是否能带来下一轮信息。</p></div></div>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <div>来源：D:\note_new\06-日常输入_输出\10-日省\2026-07-30.md；公开内容为提炼卡片，完整日省仅同步飞书私有文档。</div>
+        <div class="source-line">STYLE: SANITY · STATIC HTML</div>
+      </footer>
+    </article>
+  </main>
+</body>
+</html>
