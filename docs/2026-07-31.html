@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>认知卡片 · 2026-07-31</title>
+  <style>
+    :root {
+      --color-white: #ffffff;
+      --color-canvas: #f7f7f7;
+      --color-surface: #ffffff;
+      --color-surface-alt: #f4f4f4;
+      --color-surface-soft: #fafafa;
+      --color-carbon: #171a20;
+      --color-graphite: #393c41;
+      --color-pewter: #5c5e62;
+      --color-silver: #8e8e8e;
+      --color-cloud: #eeeeee;
+      --color-pale: #d0d1d2;
+      --color-ink-90: #202329;
+      --color-ink-80: #2b2e34;
+      --color-ink-70: #45484e;
+      --color-ink-60: #62656a;
+      --color-ink-50: #777a7f;
+      --color-ink-40: #96989c;
+      --color-ink-30: #b0b2b5;
+      --color-ink-20: #cacbcd;
+      --color-ink-10: #e5e5e6;
+      --color-blue: #3e6ae1;
+      --color-blue-dark: #3155b4;
+      --color-blue-soft: #edf2ff;
+      --color-blue-pale: #f5f7ff;
+      --color-blue-line: #b9c9f5;
+      --color-focus: #2e57c9;
+      --color-success: #2f6750;
+      --color-success-soft: #edf5f1;
+      --color-success-line: #b9d2c5;
+      --color-warning: #745d2b;
+      --color-warning-soft: #f7f3e9;
+      --color-warning-line: #d8cba9;
+      --color-risk: #7a3737;
+      --color-risk-soft: #f8eeee;
+      --color-risk-line: #ddbcbc;
+      --color-action: #274a9e;
+      --color-action-soft: #eef3ff;
+      --color-method: #3d4e59;
+      --color-method-soft: #eef2f4;
+      --color-example: #5b5549;
+      --color-example-soft: #f3f1ed;
+      --color-divider: #e1e1e1;
+      --color-progress-1: #171a20;
+      --color-progress-2: #3e6ae1;
+      --color-progress-3: #8e8e8e;
+
+      --font-family-display: "Universal Sans Display", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+      --font-family-text: "Universal Sans Text", "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+      --text-hero: 40px;
+      --text-thesis: 30px;
+      --text-section: 24px;
+      --text-module: 20px;
+      --text-submodule: 18px;
+      --text-lead: 17px;
+      --text-quote: 22px;
+      --text-data: 38px;
+      --text-rule: 16px;
+      --text-body-lg: 16px;
+      --text-body: 15px;
+      --text-body-sm: 14px;
+      --text-label: 13px;
+      --text-caption: 12px;
+      --text-micro: 11px;
+      --line-hero: 1.16;
+      --line-title: 1.28;
+      --line-lead: 1.65;
+      --line-body: 1.78;
+      --line-compact: 1.5;
+      --tracking-hero: 0;
+      --tracking-label: 0.08em;
+      --weight-regular: 400;
+      --weight-medium: 500;
+
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 20px;
+      --space-6: 24px;
+      --space-7: 32px;
+      --space-8: 40px;
+      --space-9: 48px;
+      --space-10: 64px;
+      --space-11: 80px;
+      --space-12: 96px;
+      --space-safe: 40px;
+      --space-indent: 28px;
+
+      --marker-core: 6px solid var(--color-blue);
+      --marker-insight: 2px solid var(--color-carbon);
+      --marker-method: 4px solid var(--color-method);
+      --marker-example: 4px solid var(--color-example);
+      --marker-action: 4px solid var(--color-blue);
+      --marker-risk: 4px solid var(--color-risk);
+      --marker-success: 4px solid var(--color-success);
+      --marker-warning: 4px solid var(--color-warning);
+      --marker-divider: 1px solid var(--color-divider);
+      --marker-strong: 2px solid var(--color-carbon);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { background: var(--color-canvas); color: var(--color-carbon); }
+
+    body {
+      margin: 0;
+      background: var(--color-canvas);
+      font-family: var(--font-family-text);
+      font-size: var(--text-body);
+      font-weight: var(--weight-regular);
+      line-height: var(--line-body);
+      text-rendering: optimizeLegibility;
+    }
+
+    .card-shell {
+      width: 100%;
+      padding: var(--space-8) var(--space-4);
+    }
+
+    .cognitive-card {
+      width: min(100%, 940px);
+      margin: 0 auto;
+      background: var(--color-surface);
+      border-radius: 0;
+      overflow: hidden;
+    }
+
+    .card-header {
+      min-height: 520px;
+      padding: var(--space-safe) clamp(28px, 7vw, 76px) var(--space-10);
+      color: var(--color-white);
+      background: var(--color-carbon);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .header-meta {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-4);
+      color: var(--color-ink-30);
+      font-size: var(--text-label);
+      font-weight: var(--weight-medium);
+      letter-spacing: var(--tracking-label);
+    }
+
+    .header-kicker {
+      margin: auto 0 var(--space-6);
+      color: var(--color-blue-line);
+      font-size: var(--text-label);
+      font-weight: var(--weight-medium);
+      letter-spacing: var(--tracking-label);
+    }
+
+    .card-title {
+      max-width: 760px;
+      margin: 0;
+      font-family: var(--font-family-display);
+      font-size: var(--text-hero);
+      font-weight: var(--weight-medium);
+      line-height: var(--line-hero);
+      letter-spacing: var(--tracking-hero);
+    }
+
+    .header-summary {
+      max-width: 680px;
+      margin: var(--space-6) 0 0;
+      color: var(--color-ink-20);
+      font-size: var(--text-lead);
+      line-height: var(--line-lead);
+    }
+
+    .reading-map {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-2);
+      padding: var(--space-5) clamp(28px, 7vw, 76px);
+      background: var(--color-surface-alt);
+    }
+
+    .reading-stage {
+      min-height: 72px;
+      padding: var(--space-3) var(--space-4);
+      background: var(--color-white);
+      border-top: var(--marker-strong);
+    }
+
+    .stage-number {
+      color: var(--color-blue);
+      font-size: var(--text-caption);
+      font-weight: var(--weight-medium);
+    }
+
+    .stage-name {
+      margin-top: var(--space-1);
+      color: var(--color-graphite);
+      font-size: var(--text-body-sm);
+      font-weight: var(--weight-medium);
+    }
+
+    .section {
+      padding: var(--space-10) clamp(28px, 7vw, 76px);
+      border-top: var(--marker-divider);
+    }
+
+    .section-label {
+      margin: 0 0 var(--space-3);
+      color: var(--color-blue);
+      font-size: var(--text-label);
+      font-weight: var(--weight-medium);
+      letter-spacing: var(--tracking-label);
+    }
+
+    .section-title {
+      max-width: 720px;
+      margin: 0;
+      font-family: var(--font-family-display);
+      font-size: var(--text-section);
+      font-weight: var(--weight-medium);
+      line-height: var(--line-title);
+    }
+
+    .section-intro {
+      max-width: 720px;
+      margin: var(--space-5) 0 0;
+      color: var(--color-pewter);
+      font-size: var(--text-body-lg);
+      line-height: var(--line-lead);
+    }
+
+    .core-insight {
+      background: var(--color-blue-pale);
+      border-left: var(--marker-core);
+    }
+
+    .core-statement {
+      max-width: 760px;
+      margin: var(--space-8) 0 0;
+      color: var(--color-carbon);
+      font-size: var(--text-thesis);
+      font-weight: var(--weight-medium);
+      line-height: var(--line-title);
+    }
+
+    .core-evidence {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: var(--space-7);
+      margin-top: var(--space-8);
+      padding-top: var(--space-7);
+      border-top: 1px solid var(--color-blue-line);
+    }
+
+    .evidence-number {
+      color: var(--color-blue);
+      font-family: var(--font-family-display);
+      font-size: var(--text-data);
+      font-weight: var(--weight-medium);
+      line-height: 1;
+    }
+
+    .evidence-caption {
+      margin-top: var(--space-2);
+      color: var(--color-ink-60);
+      font-size: var(--text-caption);
+    }
+
+    .evidence-text {
+      margin: 0;
+      color: var(--color-graphite);
+      font-size: var(--text-body-lg);
+    }
+
+    .argument-list {
+      display: grid;
+      gap: var(--space-7);
+      margin-top: var(--space-8);
+    }
+
+    .argument {
+      display: grid;
+      grid-template-columns: 48px 1fr;
+      gap: var(--space-5);
+      align-items: start;
+      padding-bottom: var(--space-7);
+      border-bottom: var(--marker-divider);
+    }
+
+    .argument:last-child { padding-bottom: 0; border-bottom: 0; }
+
+    .argument-index {
+      color: var(--color-blue);
+      font-size: var(--text-module);
+      font-weight: var(--weight-medium);
+      line-height: 1.3;
+    }
+
+    .argument-title {
+      margin: 0;
+      color: var(--color-carbon);
+      font-size: var(--text-module);
+      font-weight: var(--weight-medium);
+      line-height: var(--line-title);
+    }
+
+    .argument-body {
+      margin: var(--space-3) 0 0;
+      color: var(--color-pewter);
+      font-size: var(--text-body);
+    }
+
+    .argument-note {
+      display: inline-block;
+      margin-top: var(--space-4);
+      padding: var(--space-2) var(--space-3);
+      color: var(--color-method);
+      background: var(--color-method-soft);
+      font-size: var(--text-body-sm);
+      font-weight: var(--weight-medium);
+    }
+
+    .quote-band {
+      padding: var(--space-11) clamp(28px, 8vw, 88px);
+      color: var(--color-white);
+      background: var(--color-carbon);
+    }
+
+    .quote-mark {
+      color: var(--color-blue);
+      font-size: 46px;
+      font-weight: var(--weight-medium);
+      line-height: 0.8;
+    }
+
+    .quote-text {
+      max-width: 700px;
+      margin: var(--space-5) 0 0;
+      font-family: var(--font-family-display);
+      font-size: var(--text-quote);
+      font-weight: var(--weight-medium);
+      line-height: 1.55;
+    }
+
+    .quote-explain {
+      max-width: 680px;
+      margin: var(--space-5) 0 0;
+      color: var(--color-ink-30);
+      font-size: var(--text-body-sm);
+    }
+
+    .method-system { background: var(--color-surface-soft); }
+
+    .method-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-4);
+      margin-top: var(--space-8);
+    }
+
+    .method-card {
+      min-height: 210px;
+      padding: var(--space-6);
+      background: var(--color-white);
+      border-top: var(--marker-method);
+    }
+
+    .method-card.example { border-top: var(--marker-example); background: var(--color-example-soft); }
+    .method-card.action { border-top: var(--marker-action); background: var(--color-action-soft); }
+    .method-card.success { border-top: var(--marker-success); background: var(--color-success-soft); }
+
+    .method-tag {
+      color: var(--color-ink-60);
+      font-size: var(--text-caption);
+      font-weight: var(--weight-medium);
+      letter-spacing: var(--tracking-label);
+    }
+
+    .method-title {
+      margin: var(--space-3) 0 0;
+      color: var(--color-carbon);
+      font-size: var(--text-submodule);
+      font-weight: var(--weight-medium);
+      line-height: var(--line-title);
+    }
+
+    .method-body {
+      margin: var(--space-4) 0 0;
+      color: var(--color-graphite);
+      font-size: var(--text-body-sm);
+    }
+
+    .flow-strip {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      margin-top: var(--space-8);
+      background: var(--color-carbon);
+    }
+
+    .flow-step {
+      min-height: 104px;
+      padding: var(--space-4);
+      color: var(--color-white);
+      border-right: 1px solid var(--color-ink-70);
+    }
+
+    .flow-step:last-child { border-right: 0; }
+
+    .flow-num {
+      color: var(--color-blue-line);
+      font-size: var(--text-micro);
+      font-weight: var(--weight-medium);
+      letter-spacing: var(--tracking-label);
+    }
+
+    .flow-name {
+      margin-top: var(--space-3);
+      font-size: var(--text-body-sm);
+      font-weight: var(--weight-medium);
+      line-height: var(--line-compact);
+    }
+
+    .action-risk {
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: var(--space-6);
+      background: var(--color-surface-alt);
+    }
+
+    .action-panel,
+    .risk-panel {
+      padding: var(--space-7);
+      background: var(--color-white);
+    }
+
+    .action-panel { border-top: var(--marker-action); }
+    .risk-panel { border-top: var(--marker-risk); }
+
+    .panel-kicker {
+      color: var(--color-ink-60);
+      font-size: var(--text-caption);
+      font-weight: var(--weight-medium);
+      letter-spacing: var(--tracking-label);
+    }
+
+    .panel-title {
+      margin: var(--space-3) 0 var(--space-5);
+      color: var(--color-carbon);
+      font-size: var(--text-module);
+      font-weight: var(--weight-medium);
+      line-height: var(--line-title);
+    }
+
+    .action-item,
+    .risk-item {
+      position: relative;
+      margin-top: var(--space-4);
+      padding-left: var(--space-indent);
+      color: var(--color-graphite);
+      font-size: var(--text-body-sm);
+    }
+
+    .action-item::before,
+    .risk-item::before {
+      position: absolute;
+      left: 0;
+      top: 0;
+      font-weight: var(--weight-medium);
+    }
+
+    .action-item::before { content: "□"; color: var(--color-blue); }
+    .risk-item::before { content: "!"; color: var(--color-risk); }
+
+    .commitment {
+      margin-top: var(--space-6);
+      padding: var(--space-5);
+      color: var(--color-action);
+      background: var(--color-blue-soft);
+      border-left: var(--marker-action);
+      font-size: var(--text-rule);
+      font-weight: var(--weight-medium);
+    }
+
+    .status-row {
+      display: grid;
+      grid-template-columns: 150px 1fr;
+      gap: var(--space-5);
+      margin-top: var(--space-5);
+      padding-top: var(--space-5);
+      border-top: var(--marker-divider);
+    }
+
+    .status-label {
+      color: var(--color-ink-60);
+      font-size: var(--text-label);
+      font-weight: var(--weight-medium);
+    }
+
+    .status-value {
+      color: var(--color-warning);
+      font-size: var(--text-body-sm);
+      font-weight: var(--weight-medium);
+    }
+
+    .card-footer {
+      min-height: 120px;
+      padding: var(--space-8) clamp(28px, 7vw, 76px) var(--space-safe);
+      color: var(--color-ink-50);
+      background: var(--color-carbon);
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-6);
+      align-items: end;
+      font-size: var(--text-caption);
+    }
+
+    .footer-signature {
+      color: var(--color-white);
+      font-size: var(--text-body-sm);
+      font-weight: var(--weight-medium);
+    }
+
+    @media (max-width: 479px) {
+      :root {
+        --text-hero: 30px;
+        --text-thesis: 24px;
+        --text-section: 21px;
+        --space-safe: 28px;
+      }
+      .card-shell { padding: 0; }
+      .card-header { min-height: 480px; }
+      .header-meta { flex-direction: column; gap: var(--space-1); }
+      .reading-map { grid-template-columns: 1fr; }
+      .core-evidence,
+      .argument,
+      .status-row { grid-template-columns: 1fr; gap: var(--space-3); }
+      .method-grid,
+      .action-risk { grid-template-columns: 1fr; }
+      .flow-strip { grid-template-columns: 1fr; }
+      .flow-step { min-height: auto; border-right: 0; border-bottom: 1px solid var(--color-ink-70); }
+      .flow-step:last-child { border-bottom: 0; }
+      .card-footer { flex-direction: column; align-items: start; }
+    }
+
+    @media (min-width: 480px) and (max-width: 719px) {
+      :root { --text-hero: 34px; --text-thesis: 26px; }
+      .card-shell { padding: var(--space-4); }
+      .reading-map { grid-template-columns: 1fr; }
+      .method-grid,
+      .action-risk { grid-template-columns: 1fr; }
+      .flow-strip { grid-template-columns: repeat(2, 1fr); }
+      .flow-step:nth-child(2n) { border-right: 0; }
+    }
+
+    @media (min-width: 720px) and (max-width: 1023px) {
+      .card-shell { padding: var(--space-7); }
+      .card-header { min-height: 500px; }
+      .method-grid { grid-template-columns: repeat(2, 1fr); }
+      .flow-strip { grid-template-columns: repeat(5, 1fr); }
+    }
+
+    @media (min-width: 1024px) and (max-width: 1439px) {
+      .card-shell { padding: var(--space-10) var(--space-7); }
+      .cognitive-card { width: 920px; }
+    }
+
+    @media (min-width: 1440px) {
+      .card-shell { padding: var(--space-12) var(--space-8); }
+      .cognitive-card { width: 940px; }
+      .card-header { min-height: 560px; }
+      .section { padding-top: var(--space-11); padding-bottom: var(--space-11); }
+    }
+  </style>
+</head>
+<body>
+  <main class="card-shell">
+    <article class="cognitive-card">
+      <header class="card-header">
+        <div class="header-meta">
+          <span>DAILY REVIEW / 2026-07-31</span>
+          <span>认知卡片 031</span>
+        </div>
+        <div>
+          <p class="header-kicker">TODAY'S OPERATING PRINCIPLE</p>
+          <h1 class="card-title">系统的价值不在构想，<br>在推动现实完成。</h1>
+          <p class="header-summary">一把 39 元的伞解决了出门卡点；三条真实任务开始检验日省、盒子与人生参谋部是否真的打通。今天的分水岭，不是再多设计一个入口，而是让已有系统把现实事务往前推。</p>
+        </div>
+      </header>
+
+      <section class="reading-map" aria-label="阅读层级">
+        <div class="reading-stage"><div class="stage-number">01 / 扫描</div><div class="stage-name">先看核心命题</div></div>
+        <div class="reading-stage"><div class="stage-number">02 / 浏览</div><div class="stage-name">理解三条认知变化</div></div>
+        <div class="reading-stage"><div class="stage-number">03 / 深读</div><div class="stage-name">执行动作与待核风险</div></div>
+      </section>
+
+      <section class="section core-insight">
+        <p class="section-label">01 / CORE THESIS</p>
+        <h2 class="section-title">真正的进步，是把卡点从脑子里移到现实里解决</h2>
+        <p class="core-statement">低成本、可逆的问题，继续纠结往往比直接行动更贵。</p>
+        <div class="core-evidence">
+          <div>
+            <div class="evidence-number">¥39</div>
+            <div class="evidence-caption">一把伞的实际成本</div>
+          </div>
+          <p class="evidence-text">下雨、找不到伞、新住所不熟悉，让出门看起来像一个大问题。买完伞，障碍立刻消失。真正被识别出来的，是过去形成的资源稀缺判断仍在后台运行：舍不得几十元，却持续支付时间和注意力。</p>
+        </div>
+      </section>
+
+      <section class="section argument-map">
+        <p class="section-label">02 / COGNITIVE SHIFTS</p>
+        <h2 class="section-title">今天发生的三次认知校准</h2>
+        <div class="argument-list">
+          <article class="argument">
+            <div class="argument-index">01</div>
+            <div>
+              <h3 class="argument-title">从“先想清楚”切换到“先制造第一步”</h3>
+              <p class="argument-body">F凡指出，你被迫直接执行时效果也不错。“等完全想清楚”有时只是拖延穿上的合理外衣。对低风险、可逆的问题，先行动才能获得下一轮信息。</p>
+              <span class="argument-note">边界：高风险、不可逆决策不套用</span>
+            </div>
+          </article>
+          <article class="argument">
+            <div class="argument-index">02</div>
+            <div>
+              <h3 class="argument-title">从“面板搭出来”切换到“任务流得动”</h3>
+              <p class="argument-body">主参谋面板的价值不是好看，也不是接了多少系统。输入能进入盒子、任务只有一份、完成证据能回流，才算打通。否则只是在不同页面重复维护同一件事。</p>
+              <span class="argument-note">验收：输入 → 分发 → 执行 → 证据 → 去重</span>
+            </div>
+          </article>
+          <article class="argument">
+            <div class="argument-index">03</div>
+            <div>
+              <h3 class="argument-title">从“接触大佬”切换到“设计真实关系”</h3>
+              <p class="argument-body">五人均值可以作为环境提醒，但不是因果定律。真正可执行的是确定想接触的人群、自己能提供的价值、稳定出现的场域和第一次互动，而不是只购买联合办公座位。</p>
+              <span class="argument-note">下一步：把宏观愿望压成关系动作</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="quote-band">
+        <div class="quote-mark">“</div>
+        <p class="quote-text">先把书包丢到墙外，再考虑怎么翻出去。</p>
+        <p class="quote-explain">这不是鼓励鲁莽，而是提醒自己：对于可逆的小问题，行动本身就是信息。一直站在墙下评估，只会让起点越来越重。</p>
+      </section>
+
+      <section class="section method-system">
+        <p class="section-label">03 / OPERATING SYSTEM</p>
+        <h2 class="section-title">四条可以复用的行动规则</h2>
+        <p class="section-intro">把今天的顿悟压缩成可调用规则，下一次卡住时直接使用，不再依赖状态好坏。</p>
+        <div class="method-grid">
+          <article class="method-card action">
+            <div class="method-tag">RULE 01 / 买伞法则</div>
+            <h3 class="method-title">先问多少钱能买掉这个障碍</h3>
+            <p class="method-body">比较解决成本和继续卡住一小时的成本。低成本、可逆、能立刻恢复行动的问题，优先直接解决。</p>
+          </article>
+          <article class="method-card">
+            <div class="method-tag">RULE 02 / 书包丢墙外</div>
+            <h3 class="method-title">先做一个无法忽略的第一步</h3>
+            <p class="method-body">出门、发第一条消息、打开数据目录。第一步不是完成任务，而是把问题从想象变成真实反馈。</p>
+          </article>
+          <article class="method-card success">
+            <div class="method-tag">RULE 03 / 闭环验收</div>
+            <h3 class="method-title">只用真实任务验证系统</h3>
+            <p class="method-body">检查任务能否正确进入日期页和盒子，完成后证据能否回流，重复执行是否只更新而不复制。</p>
+          </article>
+          <article class="method-card example">
+            <div class="method-tag">RULE 04 / 数字决策</div>
+            <h3 class="method-title">把模糊纠结变成条件</h3>
+            <p class="method-body">联合办公算缺席天数和浪费金额，消费先定年度预算，电脑等下一波收益。数字不替你决定，但能结束假问题。</p>
+          </article>
+        </div>
+        <div class="flow-strip" aria-label="系统闭环流程">
+          <div class="flow-step"><div class="flow-num">01</div><div class="flow-name">日省识别<br>明确动作</div></div>
+          <div class="flow-step"><div class="flow-num">02</div><div class="flow-name">任务中枢<br>等待确认</div></div>
+          <div class="flow-step"><div class="flow-num">03</div><div class="flow-name">盒子执行<br>唯一记录</div></div>
+          <div class="flow-step"><div class="flow-num">04</div><div class="flow-name">完成证据<br>状态回流</div></div>
+          <div class="flow-step"><div class="flow-num">05</div><div class="flow-name">参谋部<br>校准下一步</div></div>
+        </div>
+      </section>
+
+      <section class="section action-risk">
+        <div class="action-panel">
+          <div class="panel-kicker">NEXT ACTION / 2026-07-31</div>
+          <h2 class="panel-title">先完成现实事务，再继续扩建系统</h2>
+          <div class="action-item">主动作：处理旧房退租及押金，记录处理结果、押金状态和下一节点。</div>
+          <div class="action-item">维护动作：恢复锻炼。</div>
+          <div class="action-item">维护动作：思考如何提升身边最亲近五个人的财富均值。</div>
+          <div class="commitment">完成证据不是“想清楚了”，而是盒子里出现真实状态、日期和下一步。</div>
+        </div>
+        <div class="risk-panel">
+          <div class="panel-kicker">RISKS / VERIFY</div>
+          <h2 class="panel-title">不要让新系统掩盖旧承诺</h2>
+          <div class="risk-item">订单数据折线图没有结果证据，本次只能标记为“无法判断”。</div>
+          <div class="risk-item">上一份日省承诺与人生参谋部今日承诺不一致，需要确认正式口径。</div>
+          <div class="risk-item">联合办公月费、返乡日期、Apple Watch 型号和价格仍待核。</div>
+          <div class="risk-item">“五人均值”是启发性模型，不是可直接证明的财富因果关系。</div>
+          <div class="status-row">
+            <div class="status-label">昨日承诺状态</div>
+            <div class="status-value">无法判断 · 不新增连续未完成次数</div>
+          </div>
+        </div>
+      </section>
+
+      <footer class="card-footer">
+        <div>
+          <div class="footer-signature">认知卡片 · 2026-07-31</div>
+          <div>来源：当日日省、人生参谋部事实包、盒子任务写入结果</div>
+        </div>
+        <div>视觉参考：Tesla / 极简、留白、单一电蓝强调</div>
+      </footer>
+    </article>
+  </main>
+</body>
+</html>
