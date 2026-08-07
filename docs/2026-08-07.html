@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>认知卡片 · 2026-08-07</title>
+  <style>
+    :root {
+      --ink-950:#171914;--ink-900:#24271f;--ink-800:#34382d;--ink-700:#4c5143;--ink-600:#676d5b;
+      --ink-500:#858b77;--ink-400:#a2a894;--ink-300:#c2c7b5;--ink-200:#d9ddcf;--ink-100:#eceee7;
+      --paper-50:#fbfaf6;--paper-100:#f5f2e9;--paper-200:#ece7d9;--paper-300:#ddd5c1;--white:#fff;
+      --green-900:#173e31;--green-800:#205240;--green-700:#2b6a52;--green-600:#378064;--green-500:#4a9878;
+      --green-300:#9bc5b2;--green-200:#c4ddcf;--green-100:#e5f0ea;--lime-700:#637b2b;--lime-500:#8ca94b;
+      --amber-900:#5a3d12;--amber-700:#8b5f19;--amber-500:#c08b31;--amber-200:#ecd8ad;--amber-100:#f8eed9;
+      --red-900:#632d2a;--red-700:#944640;--red-500:#bd665d;--red-200:#e7c4bf;--red-100:#f6e8e5;
+      --blue-900:#263f58;--blue-700:#3d6386;--blue-500:#6285a3;--blue-200:#c7d6e2;--blue-100:#e9f0f5;
+      --shadow:#1719141a;--line:#cfd3c5;--line-strong:#858b77;--core-bg:#173e31;--quote-bg:#f8eed9;
+      --fs-hero:36px;--fs-title:28px;--fs-deck:20px;--fs-h2:19px;--fs-h3:16px;--fs-body:15px;
+      --fs-lead:18px;--fs-quote:21px;--fs-label:11px;--fs-meta:12px;--fs-small:13px;--fs-number:24px;
+      --fs-action:16px;--fs-risk:14px;--fs-caption:11px;--fs-footer:11px;--fs-chip:11px;--fs-rule:14px;
+      --lh-tight:1.15;--lh-title:1.25;--lh-copy:1.75;--lh-quote:1.55;--lh-small:1.6;
+      --weight-regular:400;--weight-medium:500;--weight-semibold:600;--weight-bold:750;
+      --sp-1:4px;--sp-2:8px;--sp-3:12px;--sp-4:16px;--sp-5:20px;--sp-6:24px;
+      --sp-7:32px;--sp-8:40px;--sp-9:48px;--sp-10:56px;--sp-11:64px;--sp-12:80px;
+      --safe-x:40px;--safe-y:40px;--section-gap:38px;--block-gap:20px;--copy-gap:12px;
+      --mark-core:6px;--mark-argument:3px;--mark-quote:1px;--mark-method:4px;--mark-action:5px;
+      --mark-risk:5px;--mark-flow:2px;--mark-index:34px;--mark-divider:1px;--mark-footer:3px;
+    }
+    *{box-sizing:border-box}
+    html{background:var(--paper-200);color:var(--ink-900);font-family:"PingFang SC","Noto Sans CJK SC","Microsoft YaHei",sans-serif}
+    body{margin:0;padding:var(--sp-8) var(--sp-4);background:linear-gradient(90deg,var(--paper-200),var(--paper-100) 18%,var(--paper-100) 82%,var(--paper-200))}
+    .card-shell{max-width:920px;margin:0 auto}
+    .cognitive-card{background:var(--paper-50);border:1px solid var(--line-strong);box-shadow:0 18px 48px var(--shadow);border-radius:0;overflow:hidden}
+    .card-header{padding:var(--safe-y) var(--safe-x) var(--sp-8);border-top:8px solid var(--green-900);border-bottom:1px solid var(--line)}
+    .eyebrow{margin:0 0 var(--sp-4);font-size:var(--fs-label);font-weight:var(--weight-bold);letter-spacing:.14em;color:var(--green-700)}
+    h1{margin:0;max-width:760px;font-size:var(--fs-hero);line-height:var(--lh-tight);font-weight:var(--weight-bold);color:var(--ink-950)}
+    .deck{margin:var(--sp-5) 0 0;max-width:720px;font-size:var(--fs-deck);line-height:1.55;color:var(--ink-700)}
+    .meta{display:flex;gap:var(--sp-4);margin-top:var(--sp-6);font-size:var(--fs-meta);color:var(--ink-500)}
+    .content{padding:0 var(--safe-x) var(--safe-y)}
+    section{margin-top:var(--section-gap)}
+    .section-kicker{display:flex;align-items:center;gap:var(--sp-3);margin-bottom:var(--sp-5);font-size:var(--fs-label);font-weight:var(--weight-bold);letter-spacing:.12em;color:var(--green-700)}
+    .section-kicker::after{content:"";height:1px;flex:1;background:var(--line)}
+    .core{margin-left:calc(var(--safe-x) * -1);margin-right:calc(var(--safe-x) * -1);padding:var(--sp-8) var(--safe-x);background:var(--core-bg);color:var(--white);border-left:var(--mark-core) solid var(--lime-500)}
+    .core .section-kicker{color:var(--green-200)}
+    .core .section-kicker::after{background:var(--green-700)}
+    .core h2{margin:0;font-size:var(--fs-title);line-height:var(--lh-title);font-weight:var(--weight-bold)}
+    .core p{margin:var(--sp-4) 0 0;font-size:var(--fs-lead);line-height:var(--lh-copy);color:var(--green-100)}
+    .argument-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+    .argument{padding:var(--sp-5);border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--white)}
+    .argument-number{display:block;margin-bottom:var(--sp-4);font-size:var(--fs-number);font-weight:var(--weight-bold);color:var(--green-600)}
+    .argument h3{margin:0 0 var(--sp-2);font-size:var(--fs-h3);line-height:1.45;color:var(--ink-900)}
+    .argument p{margin:0;font-size:var(--fs-small);line-height:var(--lh-small);color:var(--ink-600)}
+    .flow{display:grid;grid-template-columns:1fr 32px 1fr 32px 1fr;align-items:stretch}
+    .flow-step{padding:var(--sp-4);background:var(--green-100);border-top:var(--mark-method) solid var(--green-700)}
+    .flow-step strong{display:block;margin-bottom:var(--sp-2);font-size:var(--fs-h3);color:var(--green-900)}
+    .flow-step span{font-size:var(--fs-small);line-height:var(--lh-small);color:var(--ink-700)}
+    .flow-arrow{display:flex;align-items:center;justify-content:center;font-size:var(--fs-number);color:var(--ink-400)}
+    .quote{padding:var(--sp-7);background:var(--quote-bg);border-left:var(--mark-action) solid var(--amber-500);font-family:"Songti SC","Noto Serif CJK SC",serif}
+    .quote p{margin:0;font-size:var(--fs-quote);line-height:var(--lh-quote);font-weight:var(--weight-semibold);color:var(--amber-900)}
+    .quote cite{display:block;margin-top:var(--sp-4);font-family:inherit;font-size:var(--fs-caption);font-style:normal;letter-spacing:.08em;color:var(--amber-700)}
+    .action{display:grid;grid-template-columns:42px 1fr;gap:var(--sp-4);padding:var(--sp-5);border:1px solid var(--green-300);border-left:var(--mark-action) solid var(--green-700);background:var(--green-100)}
+    .action-index{font-size:var(--fs-number);font-weight:var(--weight-bold);color:var(--green-700)}
+    .action h3{margin:0 0 var(--sp-2);font-size:var(--fs-action);color:var(--green-900)}
+    .action p{margin:0;font-size:var(--fs-body);line-height:var(--lh-copy);color:var(--ink-700)}
+    .evidence{display:grid;grid-template-columns:1fr 1fr;gap:var(--sp-4);margin-top:var(--sp-4)}
+    .evidence-box{padding:var(--sp-4);border-top:3px solid var(--blue-700);background:var(--blue-100)}
+    .evidence-box strong{display:block;margin-bottom:var(--sp-2);font-size:var(--fs-label);letter-spacing:.08em;color:var(--blue-900)}
+    .evidence-box p{margin:0;font-size:var(--fs-small);line-height:var(--lh-small);color:var(--ink-700)}
+    .risks{border:1px solid var(--red-200);background:var(--red-100)}
+    .risk{display:grid;grid-template-columns:28px 1fr;gap:var(--sp-3);padding:var(--sp-4);border-bottom:1px solid var(--red-200)}
+    .risk:last-child{border-bottom:0}.risk-mark{font-weight:var(--weight-bold);color:var(--red-700)}
+    .risk p{margin:0;font-size:var(--fs-risk);line-height:var(--lh-small);color:var(--red-900)}
+    .card-footer{display:flex;justify-content:space-between;gap:var(--sp-4);padding:var(--sp-5) var(--safe-x) var(--safe-y);border-top:3px solid var(--ink-900);font-size:var(--fs-footer);color:var(--ink-500)}
+    @media(max-width:760px){:root{--safe-x:28px;--safe-y:32px;--fs-hero:31px}.argument-grid{grid-template-columns:1fr}.flow{grid-template-columns:1fr}.flow-arrow{height:28px;transform:rotate(90deg)}.evidence{grid-template-columns:1fr}}
+    @media(max-width:560px){body{padding:0}:root{--safe-x:22px;--safe-y:28px;--fs-hero:28px;--fs-deck:18px;--section-gap:30px}.cognitive-card{border-left:0;border-right:0;box-shadow:none}.meta,.card-footer{flex-direction:column}.quote{padding:var(--sp-5)}}
+    @media(min-width:921px){.card-header{padding-top:var(--sp-10)}.content{padding-bottom:var(--sp-10)}.core{padding-top:var(--sp-9);padding-bottom:var(--sp-9)}}
+    @media(min-width:1200px){.card-shell{max-width:980px}:root{--safe-x:52px;--fs-hero:38px}}
+  </style>
+</head>
+<body>
+  <main class="card-shell">
+    <article class="cognitive-card">
+      <header class="card-header">
+        <p class="eyebrow">日省认知卡片 · 2026-08-07</p>
+        <h1>先质疑需求，再调动 AI</h1>
+        <p class="deck">AI 降低了执行门槛，但没有替你解决“什么值得现在做”。系统的成熟，也不是功能多，而是局部出错后仍能继续运转。</p>
+        <div class="meta"><span>来源：2026-08-07 正式日省</span><span>5 个来源 · 21 个事件</span></div>
+      </header>
+      <div class="content">
+        <section class="core">
+          <div class="section-kicker">01 · 核心命题</div>
+          <h2>容易做 ≠ 应该做</h2>
+          <p>需求已经开始、甚至看起来成熟，也不代表它不该被重新质疑。每一个 AI 任务都应先经过需求合理性和投入产出比两道闸门。</p>
+        </section>
+        <section>
+          <div class="section-kicker">02 · 三个判断</div>
+          <div class="argument-grid">
+            <div class="argument"><span class="argument-number">01</span><h3>需求可以被取消</h3><p>不要因为已经投入，就继续为低价值任务加码。</p></div>
+            <div class="argument"><span class="argument-number">02</span><h3>AI 也要排优先级</h3><p>多模板更好看，但当前的投产比低于智能客服。</p></div>
+            <div class="argument"><span class="argument-number">03</span><h3>成熟系统要能降级</h3><p>待确认项留在队列，不让一个堵点拖死全链路。</p></div>
+          </div>
+        </section>
+        <section>
+          <div class="section-kicker">03 · 决策路径</div>
+          <div class="flow">
+            <div class="flow-step"><strong>质疑</strong><span>这个需求本身合理吗？</span></div><div class="flow-arrow">→</div>
+            <div class="flow-step"><strong>排序</strong><span>它是当前投产比最高的事吗？</span></div><div class="flow-arrow">→</div>
+            <div class="flow-step"><strong>小试</strong><span>先在小范围跑通，再迁移放大。</span></div>
+          </div>
+        </section>
+        <section class="quote">
+          <p>“当我要做某件事的时候，第一反应应该是先停下来思考这个需求是不是合理的，而不是直接就开始干。”</p>
+          <cite>当日原话 · 需求质疑原则</cite>
+        </section>
+        <section>
+          <div class="section-kicker">04 · 明日验证</div>
+          <div class="action"><div class="action-index">01</div><div><h3>跑通智能客服最小链路</h3><p>用小梦的企微或闲鱼，选一个高频问题，完成从收到消息到生成可用回复的一轮测试。</p></div></div>
+          <div class="evidence">
+            <div class="evidence-box"><strong>触发锚点</strong><p>2026-08-08 第一个 60—90 分钟保护时段。</p></div>
+            <div class="evidence-box"><strong>完成证据</strong><p>保存一次完整的问题输入、回复生成与可用性测试记录。</p></div>
+          </div>
+        </section>
+        <section>
+          <div class="section-kicker">05 · 待核边界</div>
+          <div class="risks">
+            <div class="risk"><span class="risk-mark">!</span><p>日省系统被描述为有四个堵塞点，但当日输入没有列全，不应假设已完整诊断。</p></div>
+            <div class="risk"><span class="risk-mark">!</span><p>“超过一小时的飞书妙记自动转聚会”仍是待实现规则，不是已生效能力。</p></div>
+          </div>
+        </section>
+      </div>
+      <footer class="card-footer"><span>核心原则：需求合理性 → 投产比 → 小范围验证</span><span>2026-08-07 · 日省</span></footer>
+    </article>
+  </main>
+</body>
+</html>
