@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>认知卡片 · 2026-08-08</title>
+  <style>
+    :root {
+      --black:#000;--ink:#101010;--ink-soft:#3b3b3b;--ink-muted:#686868;--white:#fff;--canvas:#fff;
+      --line:#e6e6e6;--line-soft:#f1f1f1;--surface:#f7f7f5;--lime:#dceeb1;--lilac:#c5b0f4;
+      --cream:#f4ecd6;--pink:#efd4d4;--mint:#c8e6cd;--coral:#f3c9b6;--navy:#1f1d3d;
+      --magenta:#ff3d8b;--success:#1ea64a;--warning:#9c5b16;--warning-bg:#fff0d6;--danger:#9d2e36;
+      --danger-bg:#f9e7e8;--blue:#1d5fa7;--blue-bg:#e8f1fb;--shadow:#0000000f;--focus:#000;
+      --fact:#e8f1fb;--insight:#dceeb1;--quote:#c5b0f4;--method:#f4ecd6;--action:#c8e6cd;
+      --risk:#efd4d4;--context:#f7f7f5;--inverse:#fff;--progress:#ff3d8b;--progress-track:#e6e6e6;
+      --fs-display:52px;--fs-hero:38px;--fs-title:28px;--fs-section:23px;--fs-sub:19px;
+      --fs-lead:19px;--fs-body:16px;--fs-small:14px;--fs-label:11px;--fs-caption:12px;
+      --fs-quote:24px;--fs-number:31px;--fs-action:18px;--fs-risk:14px;--fs-meta:12px;
+      --fs-rule:16px;--fs-evidence:13px;--fs-footer:11px;--fs-tag:11px;--fs-note:13px;
+      --lh-display:1.03;--lh-title:1.22;--lh-lead:1.55;--lh-body:1.72;--lh-small:1.58;
+      --lh-quote:1.48;--lh-tight:1.2;--w-light:340;--w-regular:400;--w-medium:520;--w-bold:720;
+      --s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:20px;--s6:24px;--s7:32px;
+      --s8:40px;--s9:48px;--s10:56px;--s11:64px;--s12:80px;--safe-x:44px;--safe-y:44px;
+      --section-gap:56px;--block-gap:22px;--text-gap:12px;--mark-core:8px;--mark-section:3px;
+      --mark-quote:6px;--mark-method:5px;--mark-action:7px;--mark-risk:5px;--mark-divider:1px;
+      --mark-number:38px;--mark-progress:5px;--mark-footer:4px;
+    }
+    *{box-sizing:border-box}
+    html{background:var(--surface);color:var(--ink);font-family:Inter,"PingFang SC","Microsoft YaHei",system-ui,sans-serif}
+    body{margin:0;padding:var(--s8) var(--s4);background:var(--surface)}
+    .shell{max-width:940px;margin:0 auto}
+    .card{background:var(--canvas);border:1px solid var(--black);border-radius:0;box-shadow:0 12px 40px var(--shadow);overflow:hidden}
+    .header{padding:var(--safe-y) var(--safe-x) var(--s9);border-top:10px solid var(--black);border-bottom:1px solid var(--line)}
+    .eyebrow{margin:0 0 var(--s5);font-family:"SFMono-Regular",Consolas,monospace;font-size:var(--fs-label);font-weight:var(--w-bold);letter-spacing:.12em;text-transform:uppercase}
+    h1{margin:0;max-width:740px;font-size:var(--fs-display);line-height:var(--lh-display);font-weight:var(--w-light);letter-spacing:0}
+    .header strong{font-weight:var(--w-bold)}
+    .deck{margin:var(--s6) 0 0;max-width:740px;font-size:var(--fs-lead);line-height:var(--lh-lead);font-weight:var(--w-light)}
+    .meta{display:flex;flex-wrap:wrap;gap:var(--s2) var(--s5);margin-top:var(--s7);font-family:"SFMono-Regular",Consolas,monospace;font-size:var(--fs-meta);color:var(--ink-muted)}
+    .progress{height:var(--mark-progress);margin-top:var(--s7);background:var(--progress-track)}
+    .progress span{display:block;width:72%;height:100%;background:var(--progress)}
+    .content{padding:0 var(--safe-x) var(--safe-y)}
+    section{margin-top:var(--section-gap)}
+    .section-label{display:flex;align-items:center;gap:var(--s3);margin-bottom:var(--s5);font-family:"SFMono-Regular",Consolas,monospace;font-size:var(--fs-label);font-weight:var(--w-bold);letter-spacing:.12em;text-transform:uppercase}
+    .section-label::after{content:"";height:1px;flex:1;background:var(--black)}
+    .core{margin-left:calc(var(--safe-x) * -1);margin-right:calc(var(--safe-x) * -1);padding:var(--s9) var(--safe-x);background:var(--lime);border-left:var(--mark-core) solid var(--black)}
+    .core h2{margin:0;max-width:700px;font-size:var(--fs-hero);line-height:var(--lh-title);font-weight:var(--w-light)}
+    .core h2 strong{font-weight:var(--w-bold)}
+    .core p{margin:var(--s5) 0 0;max-width:720px;font-size:var(--fs-lead);line-height:var(--lh-lead)}
+    .insights{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--black);border-left:1px solid var(--black)}
+    .insight{min-height:220px;padding:var(--s5);border-right:1px solid var(--black);border-bottom:1px solid var(--black)}
+    .insight:nth-child(1){background:var(--lilac)}.insight:nth-child(2){background:var(--cream)}.insight:nth-child(3){background:var(--mint)}
+    .num{display:block;margin-bottom:var(--s7);font-family:"SFMono-Regular",Consolas,monospace;font-size:var(--fs-number);font-weight:var(--w-bold)}
+    .insight h3{margin:0 0 var(--s3);font-size:var(--fs-sub);line-height:var(--lh-tight)}
+    .insight p{margin:0;font-size:var(--fs-small);line-height:var(--lh-small)}
+    .quote{padding:var(--s8);background:var(--navy);color:var(--inverse);border-left:var(--mark-quote) solid var(--magenta)}
+    .quote p{margin:0;font-size:var(--fs-quote);line-height:var(--lh-quote);font-weight:var(--w-light)}
+    .quote cite{display:block;margin-top:var(--s5);font-family:"SFMono-Regular",Consolas,monospace;font-size:var(--fs-caption);font-style:normal;letter-spacing:.08em}
+    .switch{display:grid;grid-template-columns:1fr 56px 1fr;border:1px solid var(--black)}
+    .switch-block{padding:var(--s6)}
+    .switch-block:first-child{background:var(--cream)}.switch-block:last-child{background:var(--blue-bg)}
+    .switch-title{display:block;margin-bottom:var(--s3);font-size:var(--fs-sub);font-weight:var(--w-bold)}
+    .switch-copy{margin:0;font-size:var(--fs-body);line-height:var(--lh-body)}
+    .switch-center{display:flex;align-items:center;justify-content:center;background:var(--black);color:var(--white);font-family:monospace;font-weight:var(--w-bold)}
+    .method-list{counter-reset:method;border-top:1px solid var(--black)}
+    .method{counter-increment:method;display:grid;grid-template-columns:var(--mark-number) 1fr;gap:var(--s4);padding:var(--s5) 0;border-bottom:1px solid var(--line)}
+    .method::before{content:counter(method,decimal-leading-zero);font-family:"SFMono-Regular",Consolas,monospace;font-size:var(--fs-caption);font-weight:var(--w-bold);padding-top:var(--s1)}
+    .method strong{display:block;margin-bottom:var(--s2);font-size:var(--fs-rule)}
+    .method p{margin:0;font-size:var(--fs-small);line-height:var(--lh-small);color:var(--ink-soft)}
+    .action{padding:var(--s7);background:var(--action);border-left:var(--mark-action) solid var(--black)}
+    .action .mini{font-family:"SFMono-Regular",Consolas,monospace;font-size:var(--fs-label);font-weight:var(--w-bold);letter-spacing:.1em}
+    .action h3{margin:var(--s3) 0 var(--s4);font-size:var(--fs-title);line-height:var(--lh-title)}
+    .action p{margin:0;font-size:var(--fs-body);line-height:var(--lh-body)}
+    .evidence{display:grid;grid-template-columns:repeat(3,1fr);margin-top:var(--s5);border-top:1px solid var(--black);border-left:1px solid var(--black)}
+    .evidence div{padding:var(--s4);border-right:1px solid var(--black);border-bottom:1px solid var(--black);background:var(--white)}
+    .evidence strong{display:block;margin-bottom:var(--s2);font-family:"SFMono-Regular",Consolas,monospace;font-size:var(--fs-label);letter-spacing:.06em}
+    .evidence span{font-size:var(--fs-evidence);line-height:var(--lh-small)}
+    .risks{background:var(--risk);border-left:var(--mark-risk) solid var(--danger)}
+    .risk{display:grid;grid-template-columns:28px 1fr;gap:var(--s3);padding:var(--s4) var(--s5);border-bottom:1px solid #d8b7b9}
+    .risk:last-child{border-bottom:0}.risk b{font-family:monospace;color:var(--danger)}
+    .risk p{margin:0;font-size:var(--fs-risk);line-height:var(--lh-small)}
+    .footer{display:flex;justify-content:space-between;gap:var(--s5);padding:var(--s6) var(--safe-x) var(--safe-y);background:var(--black);color:var(--white);border-top:var(--mark-footer) solid var(--magenta);font-family:"SFMono-Regular",Consolas,monospace;font-size:var(--fs-footer);line-height:1.5}
+    @media(max-width:800px){:root{--safe-x:30px;--safe-y:34px;--fs-display:44px}.insights{grid-template-columns:1fr}.insight{min-height:0}.evidence{grid-template-columns:1fr}}
+    @media(max-width:620px){body{padding:0}:root{--safe-x:22px;--safe-y:28px;--fs-display:36px;--fs-hero:31px;--section-gap:42px}.card{border-left:0;border-right:0;box-shadow:none}.switch{grid-template-columns:1fr}.switch-center{height:42px}.footer,.meta{flex-direction:column}}
+    @media(min-width:941px){.header{padding-top:var(--s10)}.core{padding-top:var(--s10);padding-bottom:var(--s10)}}
+    @media(min-width:1280px){.shell{max-width:1000px}:root{--safe-x:56px;--fs-display:56px}}
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <article class="card">
+      <header class="header">
+        <p class="eyebrow">Daily cognition / 2026-08-08</p>
+        <h1><strong>输出</strong>，是状态的开关</h1>
+        <p class="deck">当想法只留在脑中，它们容易叠成混沌。把它们说出来，不只是分享，也是让认知成形、让工作状态重新启动。</p>
+        <div class="meta"><span>22 EVENTS</span><span>7 SOURCES</span><span>ACTIVITY 2026-08-08</span></div>
+        <div class="progress"><span></span></div>
+      </header>
+      <div class="content">
+        <section class="core">
+          <div class="section-label">01 / Core shift</div>
+          <h2>不输出，问题就只在脑中<strong>转圈</strong></h2>
+          <p>室友离开后，口述输出的空间恢复，整体状态也感觉好了不少。这次最值得保留的判断是：输出是思考工具，不是思考完成后的附属品。</p>
+        </section>
+        <section>
+          <div class="section-label">02 / Three insights</div>
+          <div class="insights">
+            <div class="insight"><span class="num">01</span><h3>输出让认知成形</h3><p>口述会逼使模糊想法被组织，同时加深记忆和理解。</p></div>
+            <div class="insight"><span class="num">02</span><h3>碎片时间要动态分配</h3><p>输入过量时留白消化；输入不足时，再用路上和空闲时间学习。</p></div>
+            <div class="insight"><span class="num">03</span><h3>主线前不留技术陷阱</h3><p>已有几十元的麦克风替代方案时，不让连接卡点继续吞掉主线时间。</p></div>
+          </div>
+        </section>
+        <section class="quote">
+          <p>“输出其实是我状态打开的一把钥匙。”</p>
+          <cite>当日原话 / 记忆锚点</cite>
+        </section>
+        <section>
+          <div class="section-label">03 / Cognitive switch</div>
+          <div class="switch">
+            <div class="switch-block"><span class="switch-title">消化不足</span><p class="switch-copy">短时间输入太多时，上厕所也不看手机，给大脑留出整理空间。</p></div>
+            <div class="switch-center">↔</div>
+            <div class="switch-block"><span class="switch-title">输入不足</span><p class="switch-copy">近期没有足够学习和摄入时，把路上、等待和其他空闲时间用于阅读、输出与反思。</p></div>
+          </div>
+        </section>
+        <section>
+          <div class="section-label">04 / Reusable rules</div>
+          <div class="method-list">
+            <div class="method"><div><strong>混沌时，先找未输出的想法</strong><p>不只问“怎么休息”，还要问“有哪些东西还没说清楚”。</p></div></div>
+            <div class="method"><div><strong>先看认知负荷，再分配碎片时间</strong><p>输入和留白都不是永久正解，要根据当前缺口切换。</p></div></div>
+            <div class="method"><div><strong>非主线技术卡点必须有停损</strong><p>可用低成本硬件替代时，就不再为了“集成得更漂亮”继续投入。</p></div></div>
+          </div>
+        </section>
+        <section>
+          <div class="section-label">05 / Next proof</div>
+          <div class="action">
+            <span class="mini">ONE MAIN ACTION</span>
+            <h3>跑通闲鱼智能客服的一个真实回复链路</h3>
+            <p>在小梦闲鱼上选一个高频问题，完成从收到问题、生成回复到得到可发送版本的全链路测试。</p>
+            <div class="evidence">
+              <div><strong>WHY</strong><span>当前投产比最高，且直接支撑主营业务。</span></div>
+              <div><strong>WHEN</strong><span>2026-08-09 第一个60—90分钟保护时段。</span></div>
+              <div><strong>PROOF</strong><span>保存问题、生成回复、人工修改与可发送版本。</span></div>
+            </div>
+          </div>
+        </section>
+        <section>
+          <div class="section-label">06 / Keep uncertain</div>
+          <div class="risks">
+            <div class="risk"><b>!</b><p>闲鱼智能客服已开工，但还没有“跑通”的完整验收证据。</p></div>
+            <div class="risk"><b>!</b><p>“周省精简和一些小功能已收工”中，具体小功能没有被列出。</p></div>
+            <div class="risk"><b>!</b><p>搬家后的恍惚状态是否主要由输出减少导致，目前仍是自我观察。</p></div>
+          </div>
+        </section>
+      </div>
+      <footer class="footer"><span>OUTPUT → CLARITY → ACTION</span><span>日省 · 2026-08-08 · FIGMA VISUAL SYSTEM</span></footer>
+    </article>
+  </main>
+</body>
+</html>
