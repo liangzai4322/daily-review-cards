@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>认知卡片 · 2026-08-11</title>
+  <style>
+    :root {
+      --c-black: #000000;
+      --c-ink: #171717;
+      --c-body: #525866;
+      --c-muted: #767d89;
+      --c-faint: #a3a9b2;
+      --c-white: #ffffff;
+      --c-canvas: #f5f7fa;
+      --c-panel: #ffffff;
+      --c-soft: #fafafa;
+      --c-line: #e6e8eb;
+      --c-line-strong: #cfd4da;
+      --c-sky-1: #e7f3ff;
+      --c-sky-2: #cfe7ff;
+      --c-blue: #0d74ce;
+      --c-blue-dark: #09599d;
+      --c-blue-soft: #edf7ff;
+      --c-green: #168543;
+      --c-green-soft: #eaf7ef;
+      --c-amber: #9a5800;
+      --c-amber-soft: #fff5df;
+      --c-red: #b42318;
+      --c-red-soft: #fff0ee;
+      --c-purple: #7047a3;
+      --c-purple-soft: #f5effc;
+      --c-dark-panel: #171717;
+      --c-dark-elevated: #242424;
+      --c-on-dark: #ffffff;
+      --c-on-dark-soft: #bbc0c8;
+      --c-fact: #0d74ce;
+      --c-insight: #7047a3;
+      --c-method: #168543;
+      --c-action: #000000;
+      --c-risk: #b42318;
+      --c-quote: #9a5800;
+      --c-complete: #168543;
+      --c-unknown: #9a5800;
+      --c-stop: #b42318;
+      --c-continue: #168543;
+      --c-shadow: rgba(23, 23, 23, 0.08);
+      --c-shadow-soft: rgba(23, 23, 23, 0.04);
+      --c-selection: #cfe7ff;
+      --font-display: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+      --font-body: -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+      --font-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      --fs-hero: 46px;
+      --fs-thesis: 30px;
+      --fs-section: 24px;
+      --fs-card: 19px;
+      --fs-sub: 17px;
+      --fs-body-lg: 17px;
+      --fs-body: 15px;
+      --fs-body-sm: 14px;
+      --fs-caption: 12px;
+      --fs-micro: 11px;
+      --fs-number: 28px;
+      --fs-quote: 21px;
+      --fs-action: 20px;
+      --fs-risk: 14px;
+      --fs-label: 12px;
+      --fs-code: 13px;
+      --fs-stat: 18px;
+      --fs-footer: 12px;
+      --fs-chip: 11px;
+      --fs-note: 13px;
+      --fw-regular: 400;
+      --fw-medium: 500;
+      --fw-semibold: 600;
+      --fw-bold: 700;
+      --lh-tight: 1.18;
+      --lh-title: 1.3;
+      --lh-body: 1.78;
+      --lh-compact: 1.55;
+      --sp-1: 4px;
+      --sp-2: 8px;
+      --sp-3: 12px;
+      --sp-4: 16px;
+      --sp-5: 20px;
+      --sp-6: 24px;
+      --sp-7: 32px;
+      --sp-8: 40px;
+      --sp-9: 48px;
+      --sp-10: 64px;
+      --sp-11: 80px;
+      --sp-12: 96px;
+      --mark-core: 6px solid var(--c-black);
+      --mark-insight: 4px solid var(--c-insight);
+      --mark-method: 4px solid var(--c-method);
+      --mark-risk: 4px solid var(--c-risk);
+      --mark-action: 4px solid var(--c-blue);
+      --mark-quote: 4px solid var(--c-quote);
+      --rule-thin: 1px solid var(--c-line);
+      --rule-strong: 1px solid var(--c-line-strong);
+      --rule-dark: 1px solid #3b3b3b;
+      --panel-shadow: 0 18px 60px var(--c-shadow);
+    }
+
+    * { box-sizing: border-box; }
+    html { background: var(--c-canvas); }
+    body {
+      margin: 0;
+      color: var(--c-body);
+      background: var(--c-canvas);
+      font-family: var(--font-body);
+      font-size: var(--fs-body);
+      font-weight: var(--fw-regular);
+      line-height: var(--lh-body);
+      letter-spacing: 0;
+    }
+    .card-shell { width: 100%; padding: var(--sp-8) var(--sp-5); }
+    .cognitive-card {
+      width: min(920px, 100%);
+      margin: 0 auto;
+      background: var(--c-panel);
+      border: var(--rule-strong);
+      border-radius: 0;
+      box-shadow: var(--panel-shadow);
+      overflow: hidden;
+    }
+    .card-header {
+      position: relative;
+      padding: var(--sp-9) var(--sp-9) var(--sp-8);
+      background: var(--c-sky-1);
+      border-bottom: 1px solid var(--c-sky-2);
+    }
+    .card-header::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 8px;
+      background: var(--c-blue);
+    }
+    .utility-row {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--sp-4);
+      margin-bottom: var(--sp-7);
+      font-family: var(--font-mono);
+      font-size: var(--fs-caption);
+      color: var(--c-blue-dark);
+    }
+    .status-code { font-weight: var(--fw-semibold); }
+    h1, h2, h3, p, blockquote { margin: 0; }
+    h1 {
+      max-width: 760px;
+      color: var(--c-ink);
+      font-family: var(--font-display);
+      font-size: var(--fs-hero);
+      font-weight: var(--fw-semibold);
+      line-height: var(--lh-tight);
+      letter-spacing: 0;
+    }
+    .header-summary {
+      max-width: 700px;
+      margin-top: var(--sp-5);
+      color: var(--c-body);
+      font-size: var(--fs-body-lg);
+      line-height: var(--lh-compact);
+    }
+    .system-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      background: var(--c-dark-panel);
+      color: var(--c-on-dark);
+      border-bottom: var(--rule-dark);
+    }
+    .system-cell { padding: var(--sp-5) var(--sp-6); border-right: var(--rule-dark); }
+    .system-cell:last-child { border-right: 0; }
+    .system-label {
+      display: block;
+      color: var(--c-on-dark-soft);
+      font-family: var(--font-mono);
+      font-size: var(--fs-micro);
+      line-height: 1.4;
+    }
+    .system-value {
+      display: block;
+      margin-top: var(--sp-1);
+      font-size: var(--fs-stat);
+      font-weight: var(--fw-semibold);
+      line-height: var(--lh-title);
+    }
+    .card-body { padding: var(--sp-9); }
+    .core-insight {
+      padding: var(--sp-7);
+      border-left: var(--mark-core);
+      background: var(--c-soft);
+    }
+    .eyebrow {
+      display: block;
+      margin-bottom: var(--sp-3);
+      color: var(--c-muted);
+      font-family: var(--font-mono);
+      font-size: var(--fs-label);
+      font-weight: var(--fw-semibold);
+      line-height: 1.4;
+    }
+    .core-insight h2 {
+      color: var(--c-ink);
+      font-size: var(--fs-thesis);
+      font-weight: var(--fw-semibold);
+      line-height: var(--lh-title);
+    }
+    .core-insight p { margin-top: var(--sp-4); font-size: var(--fs-body-lg); }
+    .section { margin-top: var(--sp-10); }
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      gap: var(--sp-4);
+      padding-bottom: var(--sp-4);
+      border-bottom: var(--rule-strong);
+    }
+    .section-index {
+      color: var(--c-blue);
+      font-family: var(--font-mono);
+      font-size: var(--fs-number);
+      font-weight: var(--fw-semibold);
+      line-height: 1;
+    }
+    .section-head h2 {
+      color: var(--c-ink);
+      font-size: var(--fs-section);
+      font-weight: var(--fw-semibold);
+      line-height: var(--lh-title);
+    }
+    .decision-flow { margin-top: var(--sp-7); border: var(--rule-strong); }
+    .flow-step {
+      display: grid;
+      grid-template-columns: 72px 1fr;
+      min-height: 112px;
+      border-bottom: var(--rule-thin);
+    }
+    .flow-step:last-child { border-bottom: 0; }
+    .flow-code {
+      display: grid;
+      place-items: center;
+      color: var(--c-on-dark);
+      background: var(--c-dark-panel);
+      font-family: var(--font-mono);
+      font-size: var(--fs-code);
+      font-weight: var(--fw-semibold);
+    }
+    .flow-content { padding: var(--sp-5) var(--sp-6); }
+    .flow-content h3 {
+      color: var(--c-ink);
+      font-size: var(--fs-card);
+      font-weight: var(--fw-semibold);
+      line-height: var(--lh-title);
+    }
+    .flow-content p { margin-top: var(--sp-2); }
+    .flow-step.is-alert .flow-code { background: var(--c-red); }
+    .flow-step.is-next .flow-code { background: var(--c-blue); }
+    .insight-grid { display: grid; gap: var(--sp-4); margin-top: var(--sp-7); }
+    .insight-item { padding: var(--sp-5) var(--sp-6); border: var(--rule-thin); }
+    .insight-item.communication { border-left: var(--mark-insight); }
+    .insight-item.system { border-left: var(--mark-method); }
+    .insight-item.pressure { border-left: var(--mark-quote); }
+    .insight-item h3 {
+      color: var(--c-ink);
+      font-size: var(--fs-sub);
+      font-weight: var(--fw-semibold);
+      line-height: var(--lh-title);
+    }
+    .insight-item p { margin-top: var(--sp-2); }
+    .quote-band {
+      margin-top: var(--sp-8);
+      padding: var(--sp-7);
+      color: var(--c-on-dark);
+      background: var(--c-dark-panel);
+      border-left: 8px solid var(--c-blue);
+    }
+    .quote-band blockquote {
+      font-size: var(--fs-quote);
+      font-weight: var(--fw-medium);
+      line-height: var(--lh-compact);
+    }
+    .quote-source {
+      display: block;
+      margin-top: var(--sp-4);
+      color: var(--c-on-dark-soft);
+      font-family: var(--font-mono);
+      font-size: var(--fs-caption);
+    }
+    .method-system { margin-top: var(--sp-7); border-top: 6px solid var(--c-method); }
+    .method-row {
+      display: grid;
+      grid-template-columns: 128px 1fr;
+      border-right: var(--rule-strong);
+      border-bottom: var(--rule-strong);
+      border-left: var(--rule-strong);
+    }
+    .method-key {
+      padding: var(--sp-4);
+      color: var(--c-green);
+      background: var(--c-green-soft);
+      font-family: var(--font-mono);
+      font-size: var(--fs-label);
+      font-weight: var(--fw-semibold);
+    }
+    .method-value { padding: var(--sp-4) var(--sp-5); color: var(--c-ink); }
+    .action-panel {
+      margin-top: var(--sp-7);
+      padding: var(--sp-7);
+      color: var(--c-on-dark);
+      background: var(--c-black);
+    }
+    .action-panel .eyebrow { color: var(--c-on-dark-soft); }
+    .action-title {
+      font-size: var(--fs-action);
+      font-weight: var(--fw-semibold);
+      line-height: var(--lh-title);
+    }
+    .action-meta {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-4);
+      margin-top: var(--sp-5);
+      padding-top: var(--sp-5);
+      border-top: var(--rule-dark);
+    }
+    .action-meta p { color: var(--c-on-dark-soft); font-size: var(--fs-note); line-height: var(--lh-compact); }
+    .action-meta strong { display: block; color: var(--c-on-dark); font-weight: var(--fw-medium); }
+    .risk-panel {
+      margin-top: var(--sp-5);
+      padding: var(--sp-5) var(--sp-6);
+      color: var(--c-red);
+      background: var(--c-red-soft);
+      border-left: var(--mark-risk);
+    }
+    .risk-panel h3 { font-size: var(--fs-sub); line-height: var(--lh-title); }
+    .risk-panel ul { margin: var(--sp-3) 0 0; padding-left: var(--sp-5); }
+    .risk-panel li { margin-top: var(--sp-2); color: var(--c-body); font-size: var(--fs-risk); }
+    .split-rule { display: grid; grid-template-columns: 1fr 1fr; gap: var(--sp-4); margin-top: var(--sp-7); }
+    .rule-box { padding: var(--sp-5); border: var(--rule-thin); }
+    .rule-box.stop { border-top: 4px solid var(--c-stop); }
+    .rule-box.continue { border-top: 4px solid var(--c-continue); }
+    .rule-box h3 { color: var(--c-ink); font-size: var(--fs-sub); }
+    .rule-box p { margin-top: var(--sp-2); font-size: var(--fs-body-sm); }
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--sp-4);
+      padding: var(--sp-6) var(--sp-9) var(--sp-8);
+      color: var(--c-muted);
+      background: var(--c-soft);
+      border-top: var(--rule-thin);
+      font-family: var(--font-mono);
+      font-size: var(--fs-footer);
+      line-height: var(--lh-compact);
+    }
+    @media (max-width: 520px) {
+      :root { --fs-hero: 32px; --fs-thesis: 24px; --fs-section: 21px; --fs-quote: 18px; }
+      .card-shell { padding: 0; }
+      .cognitive-card { border-right: 0; border-left: 0; box-shadow: none; }
+      .card-header, .card-body { padding: var(--sp-7) var(--sp-5); }
+      .utility-row, .card-footer { flex-direction: column; }
+      .system-strip { grid-template-columns: 1fr; }
+      .system-cell { border-right: 0; border-bottom: var(--rule-dark); }
+      .system-cell:last-child { border-bottom: 0; }
+      .flow-step { grid-template-columns: 52px 1fr; }
+      .method-row { grid-template-columns: 1fr; }
+      .method-key { border-bottom: var(--rule-thin); }
+      .action-meta, .split-rule { grid-template-columns: 1fr; }
+      .card-footer { padding: var(--sp-6) var(--sp-5); }
+    }
+    @media (min-width: 521px) and (max-width: 760px) {
+      :root { --fs-hero: 38px; --fs-thesis: 27px; }
+      .card-shell { padding: var(--sp-6) var(--sp-4); }
+      .card-header, .card-body { padding: var(--sp-8) var(--sp-7); }
+      .card-footer { padding-right: var(--sp-7); padding-left: var(--sp-7); }
+    }
+    @media (min-width: 761px) and (max-width: 1024px) {
+      .card-shell { padding: var(--sp-8) var(--sp-7); }
+      .cognitive-card { width: min(860px, 100%); }
+    }
+    @media (min-width: 1280px) {
+      .card-shell { padding-top: var(--sp-10); padding-bottom: var(--sp-10); }
+      .cognitive-card { width: 960px; }
+      .card-header, .card-body { padding-right: var(--sp-10); padding-left: var(--sp-10); }
+    }
+  </style>
+</head>
+<body>
+  <main class="card-shell">
+    <article class="cognitive-card">
+      <header class="card-header">
+        <div class="utility-row">
+          <span class="status-code">DAILY REVIEW / 2026-08-11</span>
+          <span>ACTIVITY 08-10 → 08-11</span>
+        </div>
+        <h1>先问，再买。<br>先定验收，再搭系统。</h1>
+        <p class="header-summary">今天暴露的是同一个底层问题：没有先确认真实条件，就开始扩展解决方案。住宿如此，自动回复系统也是如此。</p>
+      </header>
+
+      <div class="system-strip">
+        <div class="system-cell"><span class="system-label">PROMISE STATUS</span><span class="system-value">无法判断 · 连续第 3 轮</span></div>
+        <div class="system-cell"><span class="system-label">TASKBOX</span><span class="system-value">自动回复任务已存在</span></div>
+        <div class="system-cell"><span class="system-label">NEXT CONTROL</span><span class="system-value">只选 1 个首测渠道</span></div>
+      </div>
+
+      <div class="card-body">
+        <section class="core-insight">
+          <span class="eyebrow">CORE THESIS / 今日核心命题</span>
+          <h2>资源不足不是第一问题，未确认条件才是。</h2>
+          <p>到接待地点后才问住宿，导致思路绕到购买行军床；自动回复最小测试连续多轮没有完成证据，却持续扩展企微和闲鱼两条链路。两件事都需要把动作顺序倒回来。</p>
+        </section>
+
+        <section class="section">
+          <div class="section-head"><span class="section-index">01</span><h2>失速链与修复链</h2></div>
+          <div class="decision-flow">
+            <div class="flow-step is-alert">
+              <div class="flow-code">OLD</div>
+              <div class="flow-content"><h3>猜测条件 → 扩展方案 → 增加成本</h3><p>没先问公司能否睡觉，就开始考虑行军床；没先确定首测标准，就同时讨论企微和闲鱼系统。</p></div>
+            </div>
+            <div class="flow-step">
+              <div class="flow-code">WHY</div>
+              <div class="flow-content"><h3>沟通和裁决被推迟</h3><p>直接确认真实条件的动作很小，却被绕开；系统设计因此承担了本不该承担的不确定性。</p></div>
+            </div>
+            <div class="flow-step is-next">
+              <div class="flow-code">NEW</div>
+              <div class="flow-content"><h3>确认条件 → 定义验收 → 最小执行</h3><p>先问住宿；自动回复先二选一，再写输入样本、预期输出和通过条件。</p></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head"><span class="section-index">02</span><h2>三条可复用认知</h2></div>
+          <div class="insight-grid">
+            <div class="insight-item communication"><h3>沟通是最低成本的探测器</h3><p>现场问题先向直接信息源提问，再判断真实缺口。一次明确沟通，可能省掉采购、绕路和错误规划。</p></div>
+            <div class="insight-item system"><h3>机制替代记忆，验收约束系统</h3><p>通过机制而不是人脑记忆，通过习惯而不是意志力；自动化项目则通过唯一输入与通过条件约束扩张。</p></div>
+            <div class="insight-item pressure"><h3>适度紧绷可以推动成长</h3><p>不歌颂痛苦，也不合理化睡眠透支。保留能促使学习的轻度压力，排除明显伤害身体的过早行程。</p></div>
+          </div>
+          <div class="quote-band">
+            <blockquote>“我只需要问一嘴公司有没有睡觉的地方，为什么我兜了很大一个圈子去买了行军床，而不是直接问？”</blockquote>
+            <span class="quote-source">MEMORY ANCHOR / 沟通为何成了我的卡点</span>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head"><span class="section-index">03</span><h2>运行规则</h2></div>
+          <div class="method-system">
+            <div class="method-row"><div class="method-key">现场问题</div><div class="method-value">问清真实条件 → 判断缺口 → 最后才采购或改计划</div></div>
+            <div class="method-row"><div class="method-key">自动化启动</div><div class="method-value">选一个渠道 → 一个输入样本 → 一个预期输出 → 一个通过条件</div></div>
+            <div class="method-row"><div class="method-key">输入转资产</div><div class="method-value">高质量输入 → 提炼推理 → 代码／服务／工作流 → 长期复用</div></div>
+            <div class="method-row"><div class="method-key">压力校准</div><div class="method-value">保留促进专注的紧绷，停止透支睡眠的行程安排</div></div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head"><span class="section-index">04</span><h2>下一步与风险</h2></div>
+          <div class="action-panel">
+            <span class="eyebrow">NEXT MAIN ACTION / 明日唯一动作</span>
+            <p class="action-title">为自动回复任务只选一个首测渠道，并写下可验收的首测标准。</p>
+            <div class="action-meta">
+              <p><strong>触发</strong>第一个 60-90 分钟保护时段</p>
+              <p><strong>截止</strong>2026-08-12 12:00</p>
+              <p><strong>前五分钟</strong>打开盒子任务，在闲鱼与企微中二选一</p>
+              <p><strong>完成证据</strong>渠道、样本、输出、通过条件四项齐全</p>
+            </div>
+          </div>
+          <div class="risk-panel">
+            <h3>保持待核，不把未知写成事实</h3>
+            <ul>
+              <li>上一轮闲鱼最小测试是否做过，本次没有证据。</li>
+              <li>闲鱼还是企微更适合首测，仍需结合接口和真实样本裁决。</li>
+              <li>“早起伤害大脑”只是个人感受；可确认的是本次睡眠中断与疲惫。</li>
+            </ul>
+          </div>
+          <div class="split-rule">
+            <div class="rule-box stop"><h3>停止</h3><p>首测渠道和验收标准未确定前，不同时铺开两套自动回复系统。</p></div>
+            <div class="rule-box continue"><h3>继续</h3><p>用机制、习惯和系统替代临时记忆，并把高质量输入沉淀为生产资料。</p></div>
+          </div>
+        </section>
+      </div>
+
+      <footer class="card-footer">
+        <span>来源：2026-08-11 正式日省</span>
+        <span>STYLE: EXPO / STATIC COGNITIVE REPORT</span>
+      </footer>
+    </article>
+  </main>
+</body>
+</html>
