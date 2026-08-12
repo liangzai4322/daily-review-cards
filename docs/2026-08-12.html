@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>认知卡片 · 2026-08-12</title>
+  <style>
+    :root {
+      --ink:#23251d;--body:#4d4f46;--mute:#6c6e63;--ash:#9b9c92;--line:#bfc1b7;--line-soft:#dcdfd2;
+      --canvas:#eeefe9;--paper:#fcfcfa;--white:#fff;--dark:#23251d;--yellow:#f7a501;--yellow-soft:#fff1c7;
+      --red:#cd4239;--red-soft:#f7d6d3;--green:#2c8c66;--green-soft:#d9eddf;--blue:#2c84e0;--blue-soft:#dceaf6;
+      --purple:#7c44a6;--purple-soft:#e7d8ee;--font:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;
+      --mono:"SFMono-Regular",Consolas,monospace;--s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:24px;--s6:32px;--s7:48px;--s8:64px;
+      --hero:44px;--thesis:29px;--section:23px;--sub:18px;--body-lg:17px;--body-md:15px;--body-sm:13px;--micro:11px;
+    }
+    *{box-sizing:border-box}html{background:var(--canvas)}body{margin:0;background:var(--canvas);color:var(--body);font-family:var(--font);font-size:var(--body-md);line-height:1.72;letter-spacing:0}
+    .shell{width:100%;padding:40px 18px}.card{width:min(900px,100%);margin:0 auto;background:var(--paper);border:1px solid var(--line);border-radius:0;box-shadow:12px 12px 0 rgba(35,37,29,.09)}
+    header{padding:48px;border-bottom:5px solid var(--ink);background:linear-gradient(135deg,var(--yellow-soft) 0 36%,var(--paper) 36%)}
+    .meta{display:flex;justify-content:space-between;gap:16px;margin-bottom:36px;font:700 var(--micro)/1.4 var(--mono);color:var(--mute)}
+    h1,h2,h3,p,blockquote{margin:0}h1{max-width:720px;color:var(--ink);font-size:var(--hero);line-height:1.12;font-weight:800}.lead{max-width:700px;margin-top:18px;font-size:var(--body-lg);color:var(--body)}
+    .signal{display:grid;grid-template-columns:repeat(3,1fr);background:var(--dark);color:var(--white)}.signal div{padding:18px 22px;border-right:1px solid #4a4d43}.signal div:last-child{border:0}.signal small{display:block;color:#c4c7bc;font:600 var(--micro)/1.4 var(--mono)}.signal strong{display:block;margin-top:4px;font-size:16px}
+    main{padding:48px}.core{padding:28px;border:1px solid var(--line);border-left:7px solid var(--yellow);background:var(--white)}.label{display:block;margin-bottom:8px;color:var(--mute);font:700 var(--micro)/1.4 var(--mono)}
+    .core h2{color:var(--ink);font-size:var(--thesis);line-height:1.28}.core p{margin-top:12px;font-size:var(--body-lg)}
+    section{margin-top:58px}.head{display:flex;align-items:center;gap:14px;padding-bottom:12px;border-bottom:2px solid var(--ink)}.index{display:grid;place-items:center;width:34px;height:34px;background:var(--yellow);color:var(--ink);font:800 13px/1 var(--mono)}.head h2{color:var(--ink);font-size:var(--section)}
+    .compare{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px}.panel{padding:22px;border:1px solid var(--line)}.panel.old{background:var(--red-soft);border-top:5px solid var(--red)}.panel.new{background:var(--green-soft);border-top:5px solid var(--green)}.panel h3{color:var(--ink);font-size:var(--sub)}.panel p{margin-top:8px}
+    .insights{display:grid;gap:12px;margin-top:24px}.insight{display:grid;grid-template-columns:110px 1fr;border:1px solid var(--line);background:var(--white)}.insight b{padding:18px;color:var(--ink);font:700 12px/1.5 var(--mono);background:var(--yellow-soft)}.insight p{padding:18px}
+    blockquote{margin-top:22px;padding:26px 28px;color:var(--white);background:var(--dark);border-left:7px solid var(--yellow);font-size:20px;font-weight:600;line-height:1.5}
+    .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin-top:24px;background:var(--line);border:1px solid var(--line)}.flow div{padding:18px;background:var(--white)}.flow span{display:block;color:var(--blue);font:700 var(--micro)/1.4 var(--mono)}.flow strong{display:block;margin-top:7px;color:var(--ink);font-size:14px}
+    .action{margin-top:24px;padding:28px;color:var(--ink);background:var(--yellow);border:1px solid #c98300}.action h3{font-size:21px;line-height:1.35}.action-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px;padding-top:18px;border-top:1px solid rgba(35,37,29,.35)}.action-grid p{font-size:13px}.action-grid b{display:block;color:var(--ink)}
+    .risk{margin-top:14px;padding:20px;border-left:5px solid var(--red);background:var(--red-soft)}.risk h3{color:var(--red);font-size:16px}.risk ul{margin:10px 0 0;padding-left:20px}.risk li{margin-top:5px}
+    footer{display:flex;justify-content:space-between;gap:18px;padding:18px 48px;color:var(--mute);background:#e5e7e0;border-top:1px solid var(--line);font:600 11px/1.5 var(--mono)}
+    @media(max-width:520px){:root{--hero:31px;--thesis:23px;--section:20px}.shell{padding:0}.card{border-left:0;border-right:0;box-shadow:none}header,main{padding:28px 20px}.meta,footer{flex-direction:column}.signal{grid-template-columns:1fr}.signal div{border-right:0;border-bottom:1px solid #4a4d43}.compare,.action-grid{grid-template-columns:1fr}.insight{grid-template-columns:1fr}.flow{grid-template-columns:1fr 1fr}footer{padding:16px 20px}}
+    @media(min-width:521px) and (max-width:760px){header,main{padding:36px 30px}.flow{grid-template-columns:1fr 1fr}}
+    @media(min-width:761px) and (max-width:1024px){.card{width:min(860px,100%)}}
+    @media(min-width:1280px){.shell{padding:64px 24px}.card{width:940px}}
+  </style>
+</head>
+<body>
+  <div class="shell"><article class="card">
+    <header><div class="meta"><span>DAILY REVIEW / 2026-08-12</span><span>PERSONAL INPUT ONLY</span></div><h1>关系不必即时结算，系统不能跳过验收。</h1><p class="lead">今天两条看似无关的线指向同一问题：过早追求“完整”。关系里急着价值对等，技术里急着扩展功能，都会让真正的反馈来不及发生。</p></header>
+    <div class="signal"><div><small>PROMISE</small><strong>部分完成 · 连续第4轮</strong></div><div><small>SYSTEM</small><strong>闲鱼面板已安装</strong></div><div><small>FILTER</small><strong>学习语音房转聚会</strong></div></div>
+    <main>
+      <div class="core"><span class="label">CORE THESIS</span><h2>先允许真实关系和真实输入发生，再决定如何回报、归类或扩展。</h2><p>一条自然感谢比精确偿还更接近关系；一条可人工评价的回复草稿，比继续研究企微接口、派单和发货更接近业务结果。</p></div>
+      <section><div class="head"><span class="index">01</span><h2>两个旧模式，一个共同修正</h2></div><div class="compare"><div class="panel old"><h3>旧模式：先追求完整</h3><p>朋友帮忙后立即计算礼物和回报；自动回复面板安装后继续同时研究闲鱼、企微和实时接口。</p></div><div class="panel new"><h3>新模式：先拿到反馈</h3><p>自然表达感谢并观察关系；只用一条历史问题生成草稿，让人工先判断可不可用。</p></div></div></section>
+      <section><div class="head"><span class="index">02</span><h2>三条认知更新</h2></div><div class="insights"><div class="insight"><b>关系</b><p>价值对等如果要求即时、精确偿还，会把自然关系变成交易，也会把原本的亲近推远。</p></div><div class="insight"><b>定义</b><p>接受一个暂时定义不等于被永久定性。命名问题的目的，是获得一个可以尝试改变的入口。</p></div><div class="insight"><b>AI边界</b><p>AI对人的归类只是候选解释。元判断权仍在人：根据自身证据拒绝不匹配的结论。</p></div></div><blockquote>“很多问题你不去尝试解决，它就一直都在那里。”</blockquote></section>
+      <section><div class="head"><span class="index">03</span><h2>最小验收链</h2></div><div class="flow"><div><span>INPUT</span><strong>一条真实历史问题</strong></div><div><span>OUTPUT</span><strong>一条系统回复草稿</strong></div><div><span>JUDGMENT</span><strong>可用／不可用＋原因</strong></div><div><span>DECISION</span><strong>再决定是否扩展</strong></div></div></section>
+      <section><div class="head"><span class="index">04</span><h2>下一步与待核</h2></div><div class="action"><span class="label">NEXT MAIN ACTION</span><h3>在已安装的闲鱼面板里，用一条历史高频问题生成回复草稿并人工评价。</h3><div class="action-grid"><p><b>触发</b>第一个60—90分钟保护时段</p><p><b>截止</b>2026-08-13 12:00</p><p><b>前五分钟</b>打开面板并复制问题原文</p><p><b>完成证据</b>原文、草稿、结论、修改原因</p></div></div><div class="risk"><h3>仍保持待核</h3><ul><li>本地数据库约10分钟延迟只是估计。</li><li>企微实时触发和连续上下文尚未验证。</li><li>学习分流需要继续观察真实标题，避免误排个人复盘。</li></ul></div></section>
+    </main>
+    <footer><span>来源：2026-08-12 正式日省</span><span>STYLE: POSTHOG / STATIC ENGINEERING NOTE</span></footer>
+  </article></div>
+</body>
+</html>
