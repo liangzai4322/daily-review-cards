@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI工具使用与行业发展讨论</title>
+  <style>
+    :root {
+      --ink: #18211d;
+      --muted: #5e6b64;
+      --forest: #123b2b;
+      --green: #1f7a55;
+      --green-soft: #dcebdc;
+      --coral: #d95c3f;
+      --coral-soft: #f8e4de;
+      --sun: #f3c969;
+      --sun-soft: #fff3cb;
+      --sky: #dcecf2;
+      --paper: #ffffff;
+      --wash: #f4f7f4;
+      --line: #c9d3cd;
+      --font: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--font);
+      line-height: 1.82;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .masthead {
+      background: var(--forest);
+      color: #fff;
+      border-bottom: 8px solid var(--sun);
+    }
+
+    .masthead-inner,
+    .page-inner {
+      width: min(1080px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    .masthead-inner {
+      padding: 58px 0 44px;
+    }
+
+    .eyebrow {
+      margin: 0 0 18px;
+      color: var(--sun);
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      max-width: 920px;
+      margin: 0;
+      font-size: clamp(38px, 7vw, 72px);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .lead {
+      max-width: 860px;
+      margin: 24px 0 0;
+      color: #e6f0ea;
+      font-size: 19px;
+      font-weight: 600;
+    }
+
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1px;
+      margin-top: 34px;
+      border: 1px solid rgba(255, 255, 255, .28);
+      background: rgba(255, 255, 255, .28);
+    }
+
+    .meta-item {
+      min-width: 0;
+      padding: 14px 16px;
+      background: var(--forest);
+    }
+
+    .meta-label {
+      display: block;
+      color: #a8c7b7;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .meta-value {
+      display: block;
+      margin-top: 2px;
+      overflow-wrap: anywhere;
+      font-size: 15px;
+      font-weight: 800;
+    }
+
+    .page-inner {
+      padding: 42px 0 72px;
+    }
+
+    .notice {
+      margin: 0 0 38px;
+      padding: 14px 18px;
+      border-left: 5px solid var(--coral);
+      background: var(--coral-soft);
+      color: #573229;
+      font-size: 14px;
+    }
+
+    .section-title {
+      margin: 0 0 18px;
+      color: var(--forest);
+      font-size: 29px;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+      margin: 0 0 38px;
+    }
+
+    .flow-step {
+      position: relative;
+      min-height: 132px;
+      padding: 16px;
+      border-top: 6px solid var(--green);
+      background: var(--wash);
+    }
+
+    .flow-step:nth-child(2) {
+      border-color: var(--coral);
+      background: var(--coral-soft);
+    }
+
+    .flow-step:nth-child(3) {
+      border-color: #327a94;
+      background: var(--sky);
+    }
+
+    .flow-step:nth-child(4) {
+      border-color: #aa7b0a;
+      background: var(--sun-soft);
+    }
+
+    .flow-step:nth-child(5) {
+      border-color: var(--forest);
+      background: var(--green-soft);
+    }
+
+    .flow-num {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .flow-step strong {
+      display: block;
+      margin: 4px 0 6px;
+      color: var(--forest);
+      font-size: 17px;
+    }
+
+    .flow-step span:last-child {
+      display: block;
+      color: #415049;
+      font-size: 13px;
+      line-height: 1.55;
+    }
+
+    .digest {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px 34px;
+      margin: 0 0 44px;
+      padding: 26px 0;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .digest p {
+      margin: 0;
+      font-weight: 700;
+    }
+
+    .digest p::before {
+      content: "";
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      margin-right: 10px;
+      background: var(--coral);
+    }
+
+    .topic-index {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px 24px;
+      margin: 0 0 50px;
+      padding: 24px;
+      background: var(--forest);
+      color: #fff;
+    }
+
+    .topic-index a {
+      padding: 8px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, .22);
+      text-decoration: none;
+      font-weight: 700;
+    }
+
+    .topic-index a:hover,
+    .topic-index a:focus-visible {
+      color: var(--sun);
+    }
+
+    .topic {
+      display: grid;
+      grid-template-columns: 92px minmax(0, 1fr);
+      gap: 28px;
+      padding: 42px 0;
+      border-top: 1px solid var(--line);
+      scroll-margin-top: 16px;
+    }
+
+    .topic-number {
+      color: var(--coral);
+      font-size: 48px;
+      font-weight: 900;
+      line-height: 1;
+    }
+
+    .topic h2 {
+      margin: 0 0 18px;
+      color: var(--forest);
+      font-size: 30px;
+      line-height: 1.28;
+      letter-spacing: 0;
+    }
+
+    .speaker {
+      margin: 0 0 18px;
+      padding: 15px 18px;
+      border-left: 5px solid var(--green);
+      background: var(--green-soft);
+      color: #183e2f;
+      font-weight: 800;
+    }
+
+    .points {
+      margin: 0 0 20px;
+      padding: 18px 20px 18px 38px;
+      background: var(--wash);
+      color: #334139;
+    }
+
+    .points li {
+      margin: 6px 0;
+    }
+
+    .summary p {
+      margin: 0 0 14px;
+    }
+
+    .action-band {
+      margin-top: 46px;
+      padding: 32px;
+      background: var(--sun-soft);
+      border-top: 7px solid var(--sun);
+    }
+
+    .action-band ol {
+      margin: 16px 0 0;
+      padding-left: 22px;
+    }
+
+    .action-band li {
+      margin: 10px 0;
+      font-weight: 700;
+    }
+
+    footer {
+      margin-top: 44px;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    @media (max-width: 820px) {
+      .meta,
+      .flow {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .digest,
+      .topic-index {
+        grid-template-columns: 1fr;
+      }
+
+      .topic {
+        grid-template-columns: 58px minmax(0, 1fr);
+        gap: 16px;
+      }
+
+      .topic-number {
+        font-size: 36px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .masthead-inner,
+      .page-inner {
+        width: min(100% - 24px, 1080px);
+      }
+
+      .masthead-inner {
+        padding: 38px 0 32px;
+      }
+
+      h1 {
+        font-size: 39px;
+      }
+
+      .lead {
+        font-size: 17px;
+      }
+
+      .meta,
+      .flow {
+        grid-template-columns: 1fr;
+      }
+
+      .topic {
+        display: block;
+        padding: 34px 0;
+      }
+
+      .topic-number {
+        margin-bottom: 10px;
+      }
+
+      .topic h2 {
+        font-size: 26px;
+      }
+
+      .action-band,
+      .topic-index {
+        padding: 20px;
+      }
+    }
+
+    @media print {
+      .masthead {
+        background: #fff;
+        color: var(--ink);
+        border-bottom-color: var(--forest);
+      }
+
+      .lead,
+      .meta-label {
+        color: var(--muted);
+      }
+
+      .meta,
+      .meta-item {
+        background: #fff;
+        border-color: var(--line);
+      }
+
+      .topic-index {
+        background: #fff;
+        color: var(--ink);
+        border: 1px solid var(--line);
+      }
+
+      .topic {
+        break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="masthead">
+    <div class="masthead-inner">
+      <p class="eyebrow">聚会复盘 · 2026-07-10 深夜</p>
+      <h1>AI 进入真实业务后，问题不再只是会不会用</h1>
+      <p class="lead">这场三小时对话从保险保单、公司合规和线下组局，一路聊到模型选择、知识库、计算机代写、个人品牌和设计行业。最有价值的不是又记住了几个工具名，而是看见 AI 真正撞进业务以后，技术、制度、利益和人的主动性如何互相拉扯。</p>
+      <div class="meta" aria-label="会议信息">
+        <div class="meta-item"><span class="meta-label">会议主题</span><span class="meta-value">AI 工具与行业发展</span></div>
+        <div class="meta-item"><span class="meta-label">录音时长</span><span class="meta-value">03:02:54</span></div>
+        <div class="meta-item"><span class="meta-label">有效话题</span><span class="meta-value">16 个</span></div>
+        <div class="meta-item"><span class="meta-label">妙记标识</span><span class="meta-value">obcnql2y9rmo3m2dhazu615r</span></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="page-inner">
+    <p class="notice">说明，原始内容来自多人即兴对话，存在口语省略、说话人识别偏差和转写误差。涉及公司安全事件、厂商政策和人物背景的内容均按与会者转述整理，未做外部事实核验。</p>
+
+    <section aria-labelledby="thread-title">
+      <h2 class="section-title" id="thread-title">这场讨论的推进路径</h2>
+      <div class="flow" role="img" aria-label="从业务现场到人的价值的五阶段讨论路径">
+        <div class="flow-step"><span class="flow-num">01</span><strong>业务现场</strong><span>双语保单、数据边界和真实工作阻力</span></div>
+        <div class="flow-step"><span class="flow-num">02</span><strong>组织机制</strong><span>公司激励、线下组局和黑客松</span></div>
+        <div class="flow-step"><span class="flow-num">03</span><strong>个人工作流</strong><span>录音、CLI、知识库和定时任务</span></div>
+        <div class="flow-step"><span class="flow-num">04</span><strong>商业重构</strong><span>代写降价、工具替代和服务迁移</span></div>
+        <div class="flow-step"><span class="flow-num">05</span><strong>人的位置</strong><span>判断、信任、现场能力和持续学习</span></div>
+      </div>
+    </section>
+
+    <section aria-labelledby="digest-title">
+      <h2 class="section-title" id="digest-title">先看结论</h2>
+      <div class="digest">
+        <p>岗位和学历不自动带来 AI sense，持续动手才会。</p>
+        <p>企业 AI 项目先过数据、审计和激励三道门，再谈模型。</p>
+        <p>模型没有绝对总冠军，场景、数据源、成本和可靠性一起决定选择。</p>
+        <p>录音只有进入提炼、分类、调用和复盘链路，才会变成资产。</p>
+        <p>AI 会先压缩中间层需求，价值继续向业务理解、交付和责任上移。</p>
+        <p>工具越强，线下关系、现场判断和个人影响力反而越难替代。</p>
+      </div>
+    </section>
+
+    <nav class="topic-index" aria-label="话题目录">
+      <a href="#topic-1">01 双语保单与合规墙</a>
+      <a href="#topic-2">02 城市环境与行动密度</a>
+      <a href="#topic-3">03 线下局的产品化设计</a>
+      <a href="#topic-4">04 持续学习打破年龄滤镜</a>
+      <a href="#topic-5">05 按场景路由模型</a>
+      <a href="#topic-6">06 企业提效的激励悖论</a>
+      <a href="#topic-7">07 数据安全与治理成本</a>
+      <a href="#topic-8">08 黑客松与真实需求</a>
+      <a href="#topic-9">09 可带走的个人影响力</a>
+      <a href="#topic-10">10 录音到复盘资产</a>
+      <a href="#topic-11">11 CLI 与定时自动化</a>
+      <a href="#topic-12">12 知识库不是文件堆</a>
+      <a href="#topic-13">13 代写行业被重新定价</a>
+      <a href="#topic-14">14 Token 与生产资料</a>
+      <a href="#topic-15">15 工作流工具的代际变化</a>
+      <a href="#topic-16">16 AI 之后人的价值上移</a>
+    </nav>
+
+    <article class="topic" id="topic-1">
+      <div class="topic-number">01</div>
+      <div>
+        <h2>双语保单的 AI 机会，先撞上了合规墙</h2>
+        <p class="speaker">一位保险从业者提到「必须用监管机构报备过的中文条款」，而现实流程是逐条查找、粘贴，再把中文内容翻成英文。</p>
+        <ul class="points">
+          <li>中文报备条款才是权威来源，不能沿用旧版保单。</li>
+          <li>客户和保单数据不能直接上传外部模型。</li>
+          <li>内部工具与业务数据之间仍有权限和可用性断层。</li>
+        </ul>
+        <div class="summary">
+          <p>这类工作非常适合检索、比对和翻译辅助，却又正好处于最敏感的数据边界。真正的项目难点不是让模型写一份英文，而是让它只引用已批准条款、保留来源、记录修改痕迹，并且始终在公司允许的环境里运行。</p>
+          <p>如果要做最小可行版本，起点应该是脱敏样本、批准条款库、逐句引用和人工终审。先证明能把查找和初译时间压下来，再讨论更深的自动化，这比直接把完整保单丢给外部模型更接近企业真实采购逻辑。</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="topic" id="topic-2">
+      <div class="topic-number">02</div>
+      <div>
+        <h2>换城市，换的是默认行动密度</h2>
+        <p class="speaker">龙哥提到「在贵州有钱挣就行，在深圳会想把项目做得更好」，一年的安逸让他回来后明显感到 AI 圈已经变天。</p>
+        <ul class="points">
+          <li>员工接住日常业务后，老板很容易从一线退出。</li>
+          <li>周围人的目标强度会重写个人对「够用」的判断。</li>
+          <li>大城市的代价更高，但信息和反馈也更密集。</li>
+        </ul>
+        <div class="summary">
+          <p>这里讨论的不是哪座城市更高级，而是环境如何悄悄改写人的默认状态。身边老板都在躺，能稳定赚钱就会被视为完成任务；身边人不断试新模型、组局和做项目，原本的「够用」很快就显得不够。</p>
+          <p>环境不会代替执行，却会改变每天需要对抗的阻力。对容易被场域影响的人，搬家只是最重的一种做法，更轻的版本是固定参加高密度线下局、进入公开共学、让项目接受真实用户反馈。</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="topic" id="topic-3">
+      <div class="topic-number">03</div>
+      <div>
+        <h2>线下局从「轮流分享」进化到共同解决问题</h2>
+        <p class="speaker">一位组局者提到「就算技能上没学到，多认识一些这个圈子里的人也很好」，但好的流程仍会显著提高信息密度。</p>
+        <ul class="points">
+          <li>Codex 主题活动从不足 8 人发展到 20 人常常爆满。</li>
+          <li>新流程压缩自我介绍，让需求上墙、现场投票、分组讨论和最终展示形成闭环。</li>
+          <li>主持人要根据参与者水平临场调整内容，不能只照 PPT 讲。</li>
+        </ul>
+        <div class="summary">
+          <p>几次活动的对比很直观。只有每人讲需求，现场很容易在闲聊里结束；加上投票、分组和展示后，参与者会围绕同一个具体问题协作，半小时里甚至能找到现成工具或做出原型。</p>
+          <p>组局也是产品。报名人数不是唯一指标，真正该观察的是参与者有没有认识到关键的人、解决一个卡点、留下一个后续动作。场地、物料和主持技巧都重要，但流程能不能把人从「听众」推到「共同完成者」更重要。</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="topic" id="topic-4">
+      <div class="topic-number">04</div>
+      <div>
+        <h2>年龄不是技术边界，停止学习才是</h2>
+        <p class="speaker">一位参与者提到「等我 60 岁了，我也能被别人哇一下」，起因是在线下局遇到熟练使用海外工具的资深 IT 从业者。</p>
+        <ul class="points">
+          <li>与会者回忆，一位甲骨文早期从业者能快速指出现成插件，避免重复造轮子。</li>
+          <li>另一位从汇编时代走来的老程序员仍在参加 AI 活动。</li>
+          <li>相反，技术岗位和海外经历也不保证会主动探索新工具。</li>
+        </ul>
+        <div class="summary">
+          <p>这些故事打掉了两种滤镜。年轻、名校、算法岗不自动等于前沿；年纪大也不等于只能围观。真正拉开差距的，是一个人还会不会追问、试用、分享，并把新工具放进真实问题里。</p>
+          <p>线下交流的独特价值也在这里。履历只能提供一个粗糙标签，现场一起拆问题，几分钟就能看见对方有没有判断力、工具感和长期积累。</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="topic" id="topic-5">
+      <div class="topic-number">05</div>
+      <div>
+        <h2>模型没有总冠军，只有更合适的路由</h2>
+        <p class="speaker">龙哥提到「简单问题用豆包，工作往 Claude，代码往 Codex」，这句话把整晚零散的模型比较收成了一张场景地图。</p>
+        <ul class="points">
+          <li>本地生活和中文内容可利用国内平台的数据优势，但事实问题要核验。</li>
+          <li>高难度代码和复杂推理优先使用能力更强的模型。</li>
+          <li>DeepSeek 适合大量、低成本的接口调用和普通开发任务。</li>
+          <li>公众号、社交平台等封闭数据源会影响检索质量。</li>
+        </ul>
+        <div class="summary">
+          <p>会上对豆包的评价看似矛盾，一边说它会为了给答案而瞎编，一边又承认它在情绪沟通和简单中文场景里很好用。矛盾来自任务不同，不是评价失真。</p>
+          <p>更稳的做法是先按任务分流，再给高风险结果加核验。需要准确地点、政策、财务或客户信息时，模型只能做线索入口；需要草拟回复、整理表达时，可以更大胆地利用它的语言能力。模型选择不是站队，是把质量、数据源、成本和风险一起算。</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="topic" id="topic-6">
+      <div class="topic-number">06</div>
+      <div>
+        <h2>企业 AI 提效最难的一关，是激励不一致</h2>
+        <p class="speaker">一位金融从业者提到「你懂得越多，就让你干得越多」，另一位保险从业者提交提效项目时，也担心领导会先联想到裁员。</p>
+        <ul class="points">
+          <li>代码量和加班时长在 AI 编程时代已经很难代表贡献。</li>
+          <li>员工展示效率，可能换来更多工作，而不是更高回报。</li>
+          <li>部门展示人力节省，可能被理解为「可以继续减员」。</li>
+          <li>要求员工自费 Token，会进一步削弱采用意愿。</li>
+        </ul>
+        <div class="summary">
+          <p>公司口头上鼓励提效，个人却可能因为提效承担更多任务，部门还可能因为提效失去编制。于是最理性的局部选择，反而是少暴露能力、少报项目。工具没卡住，激励先卡住了。</p>
+          <p>企业 AI 项目要同时写清三本账，客户和质量得到了什么，员工获得了什么，组织释放的产能去哪里。只写「节省多少人力」，很容易把创新项目写成一份裁员建议书。</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="topic" id="topic-7">
+      <div class="topic-number">07</div>
+      <div>
+        <h2>数据安全不是一句「不让用」，而是一整套治理成本</h2>
+        <p class="speaker">一位从业者提到「公司什么都说是信息安全」，包括外网、手机 Wi-Fi、沙箱和文件流转都受到限制。</p>
+        <ul class="points">
+          <li>安全限制能降低数据外传，但也会让业务人员绕开官方工具。</li>
+          <li>沙箱若需要个人账号和个人额度，合规体验与使用体验会同时变差。</li>
+          <li>会上还转述了公司遭遇数据勒索后的内部讨论，该事件未经核验。</li>
+          <li>上市公司还要面对审计、监管报告和责任归属。</li>
+        </ul>
+        <div class="summary">
+          <p>讨论里最有启发的不是某个传闻细节，而是安全决策从来不只有技术判断。报不报告、付不付款、谁来审批、怎样通过审计，每一步都牵着组织责任。</p>
+          <p>同样的逻辑也适用于日常 AI。只封出口却不给可用替代方案，业务人员会自带电脑、自带网络和自费账号，风险并没有消失，只是从可见系统转入不可见角落。有效治理要同时提供可用工具、清晰边界和事件响应路径。</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="topic" id="topic-8">
+      <div class="topic-number">08</div>
+      <div>
+        <h2>黑客松真正训练的，是需求判断和有限时间交付</h2>
+        <p class="speaker">一位获奖参与者提到「第一天晚上没跑代码，光讨论需求」，团队先访谈女性长辈，再确认痛点和产品链路。</p>
+        <ul class="points">
+          <li>先分辨真实需求和伪需求，再做 PRD 和任务拆分。</li>
+          <li>AI 降低了开发门槛，但没有替代用户调研和产品选择。</li>
+          <li>奖项为非技术背景的参与者提供了可被外界识别的能力证据。</li>
+          <li>企业内部黑客松也可能承担宣传和战略展示功能。</li>
+        </ul>
+        <div class="summary">
+          <p>AI 让文科生也能在短时间内做出产品，但团队没有急着开跑，反而把最稀缺的第一晚花在确认痛点上。这个选择很朴素，做错方向时，代码跑得越快，浪费得越快。</p>
+          <p>黑客松还有第二层收益。一次可展示的交付，会改变别人对参与者的能力判断，尤其适合还没有传统技术履历的人。奖项不是终点，它更像一张进入下一次合作和对话的门票。</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="topic" id="topic-9">
+      <div class="topic-number">09</div>
+      <div>
+        <h2>平台资源带不走，个人影响力可以</h2>
+        <p class="speaker">一位保险内容创作者提到「资源是公司的，我带不走，不如发展自己的个人影响力」，因为海外 B2B 客户首要认可的是平台品牌。</p>
+        <ul class="points">
+          <li>公司客户、渠道和合同关系不等于个人资产。</li>
+          <li>大公司对员工公开表达和垂直内容存在品牌约束。</li>
+          <li>AI 与职场内容比直接讲公司业务更容易形成个人表达空间。</li>
+          <li>表达能力、语言能力和持续输出会沉淀成可迁移资产。</li>
+        </ul>
+        <div class="summary">
+          <p>这不是鼓励员工把公司资源私有化，恰恰相反，是先承认边界。既然客户信任主要属于平台，那个人更应该积累不依附某份合同的能力，包括公开表达、跨语言沟通、案例和稳定的内容身份。</p>
+          <p>个人品牌也不是追求所有平台同时开花。公司政策、身份暴露和内容风险都要算进去，先选一个能长期更新、不会反噬主业的主题，比短期追热点更稳。</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="topic" id="topic-10">
+      <div class="topic-number">10</div>
+      <div>
+        <h2>录音豆不是终点，复盘资产链才是</h2>
+        <p class="speaker">龙哥提到「聚会回去整理成一个可视化网页」，每天的录音还会进入日省、周复盘和月复盘。</p>
+        <ul class="points">
+          <li>一键录音降低了复盘启动阻力。</li>
+          <li>聚会生成 HTML，日省生成卡片，周月继续汇总。</li>
+          <li>原始转写保留证据，提炼结果进入本地知识资产。</li>
+          <li>漂亮页面的价值不是装饰，而是提高回看概率。</li>
+        </ul>
+        <div class="summary">
+          <p>大多数录音只完成了「记下来」，这套流程多走了三步，整理、沉淀和复用。网页让一次聚会变得容易回看，五库让其中的选题、案例、金句和方法论可以在未来写作时被再次调用。</p>
+          <p>真正值得复制的是链路，不是某个硬件。手机录音、飞书妙记或其他设备都可以，关键是每条输入最后有明确去向，并且在下一次行动里能被找回来。</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="topic" id="topic-11">
+      <div class="topic-number">11</div>
+      <div>
+        <h2>CLI 和定时任务，把碎片输入接回主系统</h2>
+        <p class="speaker">龙哥提到「每天 12 点把 vivo 备忘录导到飞书」，前提是先确认云端接口，再接入飞书 CLI 和固定文档。</p>
+        <ul class="points">
+          <li>先查官方接口或 CLI，避免长期依赖脆弱的界面自动化。</li>
+          <li>明确源数据、目标文档、同步频率和授权范围。</li>
+          <li>定时任务可以把「记得整理」改成系统自动执行。</li>
+          <li>失败日志、重复检测和人工抽查决定长期稳定性。</li>
+        </ul>
+        <div class="summary">
+          <p>现场讨论给出的是一条很实用的自动化判断顺序，先看官方能力，再看云端数据，之后才考虑模拟操作。接口越稳定，维护成本越低，也更容易控制权限。</p>
+          <p>真正上线时还要补上讨论里没有展开的部分，去重、失败重试、日志和抽查。定时任务不是设完时间就结束，它必须让人一眼知道昨天有没有成功，失败后该从哪里续跑。</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="topic" id="topic-12">
+      <div class="topic-number">12</div>
+      <div>
+        <h2>知识库不是文件堆，而是按需调用的结构</h2>
+        <p class="speaker">龙哥提到「要分成素材、案例、金句，分门别类放进去」，否则几小时转写下一次仍然无法直接使用。</p>
+        <ul class="points">
+          <li>原始文本太长，不能每次整包喂给模型。</li>
+          <li>选题、素材、弹药、人设和认知承担不同检索任务。</li>
+          <li>分类可以由 AI 初做，人负责修正边界和命名。</li>
+          <li>写作时按需求取一小块，比全量搜索更稳。</li>
+        </ul>
+        <div class="summary">
+          <p>文件夹只解决了「放在哪里」，知识库还要回答「什么时候拿哪一段」。一篇文章需要案例时去素材库，需要钩子时去弹药库，需要保持语气时去人设库，这才出现了可调用性。</p>
+          <p>对不爱整理的人，AI 最适合做第一轮脏活。它可以识别类型、补标签和归档，但目录不应该无限细化。分类一旦让人找不到东西，就失去了知识库原本要降低摩擦的意义。</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="topic" id="topic-13">
+      <div class="topic-number">13</div>
+      <div>
+        <h2>AI 先压缩了代写行业的中间客群</h2>
+        <p class="speaker">龙哥提到「前年一千五到五千，今年两百到一千」，计算机毕设和普通作业的价格被快速打了下来。</p>
+        <ul class="points">
+          <li>原本有动手能力但不愿学习的中间客户，开始用 DeepSeek 自助完成。</li>
+          <li>需求从整套开发转向修 Bug、验收和最后一公里交付。</li>
+          <li>商单、会议期刊和高要求项目仍需要更强能力与责任。</li>
+          <li>低成本 API 让标准化生产进一步流水线化。</li>
+        </ul>
+        <div class="summary">
+          <p>AI 没有把所有需求同时消灭，它先吃掉最标准、最容易描述、最不需要责任承担的那一层。原本愿意花钱省学习时间的人，现在可以自己生成第一版，只在跑不通时购买修复。</p>
+          <p>服务商的价值因此从「我会写」迁移到「我能理解你的问题、选择更强模型、修到可用并承担交付」。价格下降不是偶然促销，而是供给方式改变后的重新定价。</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="topic" id="topic-14">
+      <div class="topic-number">14</div>
+      <div>
+        <h2>Token 已经是生产资料，但不是使用越多越好</h2>
+        <p class="speaker">一位参与者提到「对他们来说这是生产资料，对我们来说也是生产资料」，大家随后比较了会员、Coding Plan、API 和国产模型套餐。</p>
+        <ul class="points">
+          <li>高频开发适合固定套餐，大批量低难度任务适合低成本模型。</li>
+          <li>顶级模型用在复杂判断和最终验收，才能把钱花在差异上。</li>
+          <li>账号政策和访问稳定性会直接影响工作连续性。</li>
+          <li>为了排行榜空耗 Token，不等于产生了业务价值。</li>
+        </ul>
+        <div class="summary">
+          <p>会上对额度的讨论很像早期创业者谈服务器，既兴奋又精打细算。它确实已经成为生产资料，但采购逻辑仍应该回到任务量、质量要求和停机成本，而不是看到别人用得多就追着买。</p>
+          <p>稳定性同样重要。依赖任何单一海外账号、非正式渠道或随时变化的政策，都会让核心流程脆弱。重要工作应保留合规账号、可替代模型和本地原始数据，访问问题不要演变成资产丢失。</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="topic" id="topic-15">
+      <div class="topic-number">15</div>
+      <div>
+        <h2>工作流工具没有突然消失，学习重点已经上移</h2>
+        <p class="speaker">龙哥提到「刚开始学 N8N，Claude Code 出来了」，过去需要手动连节点的工作，现在越来越多可以由 Agent 直接搭建。</p>
+        <ul class="points">
+          <li>Coze 仍有大众认知和低门槛优势。</li>
+          <li>N8N 仍适合可视化、可审计和稳定运行的集成流程。</li>
+          <li>Claude Code、Codex 等 Agent 降低了搭建和维护门槛。</li>
+          <li>长期价值从记住界面，转向理解输入、权限、状态和业务结果。</li>
+        </ul>
+        <div class="summary">
+          <p>「学得慢一点，工具就被替代了」是个好笑又真实的感受，但它不代表什么都不用学。节点、触发器、接口、错误处理和权限这些概念仍在，只是越来越多由自然语言驱动。</p>
+          <p>最耐用的学习对象不是某个按钮放在哪里，而是怎样把一个业务拆成输入、处理、状态、输出和验收。掌握这层结构，换工具时只是换施工方式，不用把整套理解推倒重来。</p>
+        </div>
+      </div>
+    </article>
+
+    <article class="topic" id="topic-16">
+      <div class="topic-number">16</div>
+      <div>
+        <h2>AI 越强，人的价值越往策略、现场和关系上移</h2>
+        <p class="speaker">一位设计从业者提到「我们现在往规划层面走，往现场走，AI 不能去现场」，这句话也回应了整晚关于组局和个人影响力的讨论。</p>
+        <ul class="points">
+          <li>平面和基础代码产出会继续被压缩。</li>
+          <li>业务定义、取舍、责任和现场协调更难被完整外包。</li>
+          <li>人与人的信任连接成为线下聚会的核心价值。</li>
+          <li>AI 迭代按月发生，持续学习比一次掌握更重要。</li>
+        </ul>
+        <div class="summary">
+          <p>散场时遇到建筑和平面设计从业者，讨论自然落到了同一个方向。执行层被自动化后，人并不会凭空消失，而是被迫往更靠近客户、更靠近现场、更需要承担判断的位置移动。</p>
+          <p>这条路不轻松，因为它要求的不只是学会新工具。要理解业务，要敢于表达，要在线下建立信任，还要对最终结果负责。AI 把许多中间步骤压短以后，人的判断会更直接地暴露出来。</p>
+        </div>
+      </div>
+    </article>
+
+    <section class="action-band" aria-labelledby="action-title">
+      <h2 class="section-title" id="action-title">会后最值得落地的四件事</h2>
+      <ol>
+        <li>给双语保单场景做一份脱敏流程图，标出权威条款源、数据边界、人工复核点和可量化工时。</li>
+        <li>把常用任务做成模型路由表，明确简单问答、复杂工作、代码、批量接口和高风险事实各用什么。</li>
+        <li>继续跑通录音到 HTML、五库、日省、周省和月省的自动链路，并保留失败日志和抽查。</li>
+        <li>组局时固定使用需求收集、限时陈述、投票、分组解决和成果展示，让交流留下可验证产物。</li>
+      </ol>
+    </section>
+
+    <footer>
+      <p>来源，飞书妙记《AI工具使用与行业发展讨论》 · 录制时间 2026-07-10 23:50 CST · 整理日期 2026-07-11</p>
+    </footer>
+  </main>
+</body>
+</html>
