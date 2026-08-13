@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI 工具使用心得与产品分享 · 2026-05-09</title>
+  <style>
+    :root {
+      --bg: #f4f6f8;
+      --paper: #ffffff;
+      --ink: #1f2933;
+      --muted: #667085;
+      --line: #d8dee8;
+      --blue: #2458a6;
+      --green: #26735b;
+      --amber: #9b5c14;
+      --soft-blue: #e9f1ff;
+      --soft-green: #e8f5ef;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: "Microsoft YaHei", "PingFang SC", "Noto Sans SC", sans-serif;
+      line-height: 1.78;
+    }
+    .page {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 44px 24px 72px;
+    }
+    header {
+      padding: 42px 44px;
+      background: linear-gradient(135deg, #ffffff 0%, #eef5ff 100%);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      box-shadow: 0 18px 44px rgba(24, 39, 75, 0.08);
+    }
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--blue);
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+    h1 {
+      margin: 0;
+      font-size: 36px;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+    .meta {
+      margin: 16px 0 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+    .summary {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 24px;
+    }
+    .summary div {
+      min-height: 112px;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: rgba(255, 255, 255, 0.8);
+    }
+    .summary strong {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--green);
+      font-size: 14px;
+    }
+    nav {
+      margin: 24px 0 0;
+      padding: 16px 18px;
+      border-radius: 8px;
+      background: var(--soft-blue);
+    }
+    nav a {
+      display: inline-block;
+      margin: 4px 14px 4px 0;
+      color: var(--blue);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+    }
+    section {
+      margin-top: 26px;
+      padding: 32px 38px;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+    }
+    h2 {
+      margin: 0 0 18px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--line);
+      font-size: 24px;
+      line-height: 1.35;
+      letter-spacing: 0;
+    }
+    h3 {
+      margin: 24px 0 8px;
+      color: var(--blue);
+      font-size: 18px;
+      letter-spacing: 0;
+    }
+    p { margin: 10px 0; }
+    ul { margin: 10px 0 0; padding-left: 22px; }
+    li { margin: 7px 0; }
+    .quote {
+      margin: 14px 0;
+      padding: 14px 18px;
+      border-left: 4px solid var(--amber);
+      background: #fff8eb;
+      border-radius: 0 8px 8px 0;
+      color: #3c3329;
+    }
+    .tag {
+      display: inline-block;
+      margin: 0 8px 8px 0;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--soft-green);
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 700;
+    }
+    @media (max-width: 860px) {
+      .summary { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 640px) {
+      .page { padding: 28px 14px 48px; }
+      header, section { padding: 24px 18px; }
+      h1 { font-size: 28px; }
+      .summary { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <p class="eyebrow">聚会学习总结</p>
+      <h1>AI 工具使用心得与产品分享</h1>
+      <p class="meta">录音时间：2026-05-09 14:11 - 16:34 · 处理时间：2026-05-10 · 来源：会议文字记录</p>
+      <div class="summary">
+        <div><strong>工具层</strong>Claude Code、Codex、Workbody、爱马仕、RPA、飞书、微信入口和本地脚本。</div>
+        <div><strong>产品层</strong>AI 视频工具、企业知识库、业务调研 skill、自动发帖和爆款数据采集。</div>
+        <div><strong>变现层</strong>咨询、培训、企业知识库、skill 模板、企业定制、运维费和客服外包。</div>
+        <div><strong>壁垒层</strong>架构经验、业务理解、客户筛选、前后端分离、长期数据和交付稳定性。</div>
+      </div>
+      <nav>
+        <a href="#participants">成员画像</a>
+        <a href="#host">工具工作流</a>
+        <a href="#business-flow">企业业务流 Skill</a>
+        <a href="#remote-agent">远程 Agent</a>
+        <a href="#longwei">Codex 自动化</a>
+        <a href="#video-product">AI 视频产品</a>
+        <a href="#rpa">RPA 发帖</a>
+        <a href="#enterprise">企业 AI 服务</a>
+        <a href="#longwei-business">代写业务</a>
+        <a href="#takeaways">沉淀结论</a>
+      </nav>
+    </header>
+
+    <section id="participants">
+      <h2>成员画像</h2>
+      <p>龙伟提到自己主要做计算机代做和代写，覆盖编程、小程序、App 开发等需求，这次来是为了学习 AI 工具在工作和业务里的实际用法。</p>
+      <p>林峰提到自己刚毕业，目前在一家 AI 视频工具公司做海外推广，能提供海外视频商单和接广资源。他来参加的核心目标，是学习客户端工具如何提升工作效率。</p>
+      <p>星辰提到自己本名郭伟，长期在 IT 互联网行业，从销售慢慢转到交付和架构，主要负责企业定制项目的整体架构设计和交付落地。他的视角不是“AI 帮我写代码”，而是“AI 帮我把企业业务流程固化成可交付系统”。</p>
+      <p>蔡一航提到自己做站外推广，公司帖子多、重复工作多，正在用 CodeX / Code 叉一类工具写自动化，目标是减少上帖、填表、复制粘贴这类重复劳动。</p>
+      <p>说话人 1 提到自己从 YouTube 视频自动化开始接触 Claude Code，后来做了数据采集、爆款分析、微信日报、企业知识库、飞书妙记转写、本地 ASR、资讯站和小红书推广工具。这个人更像“工具型产品孵化者”，不断把自己的重复任务变成脚本、插件或工作流。</p>
+    </section>
+
+    <section id="host">
+      <h2>说话人 1 的工具工作流</h2>
+      <p>说话人 1 提到自己一开始只是做一些“比较基础”的小工具，但对没有编程背景的人来说，能用 Claude Code 把插件、爬虫、数据采集做出来，会产生很强的兴奋感。他后来把爆款视频采集、提示词分析和写脚本质检都做成工作流。</p>
+      <p>说话人 1 提到一个关键坑：让 AI “自己写、自己检查”基本只是走形式，不能真的保证质检到位。后来他改成独立第三方 agent 检查，并且设计了三层检查，因为一次检查太多维度也会漏。</p>
+      <p>说话人 1 提到自己做了一个读取微信群聊天记录的桌面工具，可以刷新电脑端微信聊天记录，选择重点群或重点联系人后，让 AI 按要求分析。它每天会生成日报，从生财/航海群、公众号文章、朋友圈信息里提取有价值内容和行动建议。</p>
+      <p>说话人 1 提到自己的每日复盘来源有三类：飞书妙记和本地语音识别、Claude Code / Codex 对话记录、过去 24 小时的微信聊天记录。这三类信息合在一起，基本能还原一个人当天做了什么、想了什么、遇到什么问题。</p>
+      <p>说话人 1 提到企业知识库的链路也已经聊通：员工数据沉淀到飞书，老板电脑自动同步到自己的本地知识库；员工只能看到公司公开内容和自己部门内容，老板能看到全局内容。后续还可以通过微信或飞书接入大模型，让员工按部门知识库提问。</p>
+      <p>说话人 1 提到当前已有两个变现线索：企业知识库和咨询。咨询来自朋友介绍和公众号文章，虽然公众号只发了一篇，但已经带来需求。他也提到自己有 60 多个沉淀下来的公众号账号，后续可能做 AI 公众号矩阵。</p>
+    </section>
+
+    <section id="business-flow">
+      <h2>星辰的企业业务流 Skill</h2>
+      <p>星辰提到自己在 Workbody 里内置了一个 business flow skill，只要发一段唤醒词，它就会按固定步骤启动。他强调的不是“AI 随便帮我想方案”，而是每次必须按固定流程执行，并且产出格式稳定。</p>
+      <p>星辰提到这个业务流有多个节点。第一步是搜索公司名称和业务范围，输出客户简报，用于判断公司值不值得合作。AI 会分析客户基本信息、IT 认知水平、关键角色、负面信息、竞对和行业背景。IT 认知高就直接聊技术，IT 认知低就先解释技术，或者直接决定不跟。</p>
+      <p>星辰提到第二步是客户访谈和需求理解。他会把和客户聊出来的资料丢给 AI，让 AI 输出需求理解；如果理解有误，人再纠正；如果没问题，再让它输出功能清单、功能架构图和业务流程图。这些产物既能用于签合同，也能交给后端工程师开发。</p>
+      <p>星辰提到这个 skill 不是一次写出来的，而是一个节点一个节点训练出来的。他先单独测试“找资料”是否靠谱，发现 agent 会调用不合适的工具，就让它在这个场景下禁用对应工具。每个节点格式稳定后，再组合成大的 skill 文件。</p>
+      <p>星辰提到，现在公司每天可能有 2 到 3 个客资，以前客户线上聊 30 到 40 分钟后，还要花很多时间出方案；现在边聊边把信息给 AI，会议结束方案也差不多出来，再交给销售。这就是 AI 提效最实在的一层：先把自己的效率提上来。</p>
+    </section>
+
+    <section id="remote-agent">
+      <h2>远程 Agent 和多工具分工</h2>
+      <p>星辰提到自己把“爱马仕/Hermes”类工具部署在云服务器上，接 DeepSeek V4 API，再和飞书打通。这样他在外面用手机也能让 AI 写内容、写文档、生成 PPT 或处理任务。</p>
+      <p>星辰提到远程 agent 的难点不是“能不能聊天”，而是文件、图片、视频、权限、服务进程和执行反馈。比如发图片给 agent，原生能力不一定能识别，需要先让它写兜底代码，再教它怎么捕获文件、存储文件、调模型和调用 key。</p>
+      <p>星辰提到长任务必须有状态反馈。他让 agent 规划了子进程监听对话，如果 30 秒内没有回复，就先回一条“处理中”，避免自己反复追问“在吗”。这不是装饰，而是远程协作体验的底层设计。</p>
+      <p>星辰提到一个重要原则：不要跟模型说废话，描述要像手术刀一样精准。你越像朋友聊天一样长篇铺垫，模型越容易理解歪；你只要告诉它要什么、怎么做，剩下的让它自己考虑。</p>
+      <p>星辰提到自己不会让一个工具干所有活。Workbody 负责业务流和 PPT，爱马仕负责远程写作和飞书交互，CodeX / Codex 负责写代码。每个工具卡定用途，像多个员工分工，而不是把所有任务都塞给一个模型。</p>
+    </section>
+
+    <section id="longwei">
+      <h2>龙伟的 Codex 自动化</h2>
+      <p>龙伟提到自己最震撼的一个 Codex 用法，是让它导出百度网盘客户端里的视频文稿。过去需要打开客户端，一个视频一个视频点文稿导出；现在只要给它一个课程文件夹位置，就能把所有视频文稿批量导出来。</p>
+      <p>龙伟提到这些课程文稿导出后，会丢给 NotebookLM，再用 Claude 生成问题来帮助掌握课程。NotebookLM 的关键价值不是给摘要，而是能把答案指回原文，让自己看到知识点在视频文稿里的原始上下文。</p>
+      <p>龙伟提到自己还用 Codex 采集过付费网站里的公众号爆款标题。网站按 27 个领域分类，包含低粉爆款、10 万加文章等数据。原始目的不是收藏标题，而是让 AI 总结不同领域标题背后的爆款逻辑，形成可调用标题库。</p>
+      <p>龙伟提到自己把一个国外爆火的“强制休息小猫插件”改成本地桌面工具。它可以不局限在浏览器里，而是在全局场景定时弹出，强行打断连续工作，解决一忙几个小时后疲惫崩掉的问题。</p>
+      <p>龙伟提到小龙虾/微信入口最适合做低摩擦输入：发语音就能记笔记、加积分、消耗积分、记录灵感、生成当天笔记文件。他自己的日省 skill 会读取收件箱内容，再沉淀到选题、素材、弹药、人设、认知五个库里。</p>
+    </section>
+
+    <section id="video-product">
+      <h2>AI 视频产品和海外推广</h2>
+      <p>林峰提到自己公司的 AI 视频产品主要面向海外，偏卡通和动画视频生成。产品优势是长视频和角色一致性，可以做 10 分钟以上，甚至更长的视频；但生成过程仍然像抽卡，需要反复调整和消耗积分。</p>
+      <p>林峰提到不同模型的积分消耗差异很大，模型越好成本越高。现场算了一下，低模型做一集 10 分钟左右的视频，可能需要 3 万积分，折合成本大约几百元；口型重新同步等局部编辑也会按分镜继续扣积分。</p>
+      <p>林峰提到这个产品对纯小白并不等于“自动起号神器”。它更像生产力工具，能帮创作者生成素材和长视频，但好的内容、脚本、分镜和人工干预仍然重要。没有内容创作能力，直接靠工具做 IP 并不现实。</p>
+      <p>林峰提到公司推广主要是找海外 KOL，通过邮箱联系，并用带埋点的链接追踪转化来源。国内版本因为付费率低，已经不怎么运营，海外用户的付费率更高。</p>
+      <p>现场还提到 AI 视频赛道入局者很多，每月都有不少新产品出现。星辰补充说，产品多不代表机会消失，但要先理解底层原理，否则只会在抽卡和积分消耗里被动试错。</p>
+    </section>
+
+    <section id="rpa">
+      <h2>蔡一航的 RPA 发帖自动化</h2>
+      <p>蔡一航提到公司站外推广有大量帖子需要上到网站，一个人操作七八十个帖子可能要花一两个小时。他用 CodeX / Code 叉写了一个 Windows 自动化工具，可以自动填信息、提交内容，把重复发帖流程跑起来。</p>
+      <p>蔡一航提到 RPA 的边界也很明确：没有严格机器人验证的网站能跑，有验证码或机器人检测的网站就不行；图片抓取、复制粘贴和后端数据读取也需要分别处理。自动化不是魔法，能不能跑取决于目标网站交互复杂度。</p>
+      <p>蔡一航提到自己想把多个 AI 工具组合起来：某些工具写前端更好，CodeX 写后端更顺，Claude 适合写流程。后续还想通过飞书聊天控制本地电脑，让出门时也能用手机给电脑下任务。</p>
+      <p>现场讨论到本地和服务器的区别：本地电脑关机就不能用，服务器更适合 24 小时在线；但本地环境有预览、文件和公司电脑权限优势。选择哪种，不是看哪个更高级，而是看任务对在线时间、权限和预览的要求。</p>
+    </section>
+
+    <section id="enterprise">
+      <h2>企业 AI 服务、收费和壁垒</h2>
+      <p>星辰提到现在 AI 赛道虽然挤，但仍然值得挤，因为别的赛道可能更难挤。他也提到两类最直接的变现：卖 token 和卖课。卖课入门培训可以收一两千，企业知识库搭建和企业 agent 流程更能收高价。</p>
+      <p>星辰提到自己刚演示的 Workbody agent，已经有人愿意为 skill 模板付费。对不懂的人来说，只要能用，复制一套本地 skill 模板就有价值；懂的人不会找你，不懂的人买的是可用结果。</p>
+      <p>星辰提到企业软件外包的低价单正在被会用 AI coding 的个人开发者冲击，但真正高价的企业定制不只看代码。ERP、CRM、客户管理这些系统，涉及资料管理、权限控制、事件触发、部门流程和长期运维，不是“GitHub copy 一套”就能解决。</p>
+      <p>星辰提到十几万的企业单通常会收 10% 到 20% 的年运维费。独立开发者很难承接这种长期售后和复杂交付，所以更适合做小工具或单点需求；企业级系统的价值在架构、稳定性、业务理解和长期维护。</p>
+      <p>星辰提到经验本身就是 AI 时代的壁垒。客户业务、部门习惯、报表需求、同行做法这些长期积累，AI coding 不能瞬间复制。别人可以用 AI 抢低价单，但抢不走深度理解客户业务的人。</p>
+      <p>星辰提到个人开发者想接企业 AI 单，不要去硬刚旧世界的 CRM / ERP 复杂定制，而要做新世界里的 AI 单一场景。比如中移动级 AI 客服背后可能是几千个 agent，那种复杂度个人团队根本不该碰；小团队先接单一场景，才有活路。</p>
+      <p>星辰提到 ToB 合作第一步要先做客户背调。很多客户前期聊得热闹，一到合同金额就消失。先判断公司规模、业务实力、IT 认知和付费可能性，再决定要不要继续谈，可以少浪费大量时间。</p>
+    </section>
+
+    <section id="longwei-business">
+      <h2>龙伟的代写业务拆分</h2>
+      <p>龙伟提到自己当前主要接学生单，包括毕设和期末相关需求。他不直接写，而是中介模式：闲鱼店铺负责获客，客服负责前端对接，技术写手负责交付。</p>
+      <p>龙伟提到自己有 5 个闲鱼店铺，流量好的有 3 个。客服不是自动机器人，而是在贵州线下招的员工，正常上班时间回复。用人的原因很直接：自动机器人容易被平台发现并封号，找人两三千一个月，反而更稳。</p>
+      <p>龙伟提到这个客服不用接触核心资产。闲鱼号是自己的，流量是自己的，写手也是自己的；客服只负责登录账号聊天，把客户信息传过来。前端接单和后端交付分开，一个人掌握不了全流程，也就撬不走模式。</p>
+      <p>龙伟提到选择贵州是因为人力成本低。之前在杭州做这个事，客服成本高，利润很容易被员工成本吃掉；回到贵州后，场地费和人工费都低，淡季也能赚钱。这本质是区域成本套利。</p>
+      <p>现场也讨论到代写市场的先发优势。闲鱼某个领域一个月几千万市场份额不算夸张，但长期吃蛋糕的是那批先做起来的人。后面进来的人不是不能吃，而是很难吃到更大的份额。</p>
+    </section>
+
+    <section id="takeaways">
+      <h2>沉淀结论</h2>
+      <div>
+        <span class="tag">AI 工具分工</span>
+        <span class="tag">企业服务</span>
+        <span class="tag">自动化</span>
+        <span class="tag">AI 视频</span>
+        <span class="tag">业务壁垒</span>
+        <span class="tag">代写模型</span>
+      </div>
+      <ul>
+        <li>AI 工具不要一个包打天下，要像员工一样分工：写代码、写文档、做 PPT、远程任务、业务流分析分别用最合适的工具。</li>
+        <li>工作流 skill 的价值不在提示词华丽，而在固定流程、稳定产出、可复用节点和可检查日志。</li>
+        <li>自动化之前先做最小场景测试，尤其要测试工具调用、权限、验证码、账号安全和失败兜底。</li>
+        <li>企业 AI 服务不要一上来接复杂大系统，先切单一场景，踩出流程和交付边界。</li>
+        <li>AI coding 会冲击低价开发，但业务理解、架构经验、长期运维和客户信任仍然是高价交付的壁垒。</li>
+        <li>付费客户筛选是 ToB 的第一步。客户背调不是礼貌动作，是避免白聊和低质量客户消耗。</li>
+        <li>代写中介模式的安全点在前后端拆分：客服只拿前端流程，写手只拿交付任务，核心账号、流量和资源池留在自己手里。</li>
+      </ul>
+    </section>
+  </main>
+</body>
+</html>
