@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>认知卡片 · 2026-08-13</title>
+  <style>
+    :root {
+      --black:#000;--ink:#212121;--deep:#003c33;--navy:#071829;--white:#fff;--stone:#eeece7;--green:#edfce9;--blue:#f1f5ff;--line:#d9d9dd;--line-soft:#e5e7eb;--muted:#75758a;--quiet:#93939f;--coral:#ff7759;--coral-soft:#ffad9b;--action:#1863dc;--risk:#8f291d;--risk-bg:#fff1ed;--good:#176b51;--good-bg:#e8f8f0;--shadow:rgba(0,0,0,.08);
+      --fs-hero:44px;--fs-title:32px;--fs-h2:25px;--fs-h3:20px;--fs-lead:19px;--fs-body:16px;--fs-small:14px;--fs-micro:12px;--fw-regular:400;--fw-medium:560;--fw-bold:720;--lh-tight:1.08;--lh-title:1.22;--lh-body:1.72;--lh-small:1.55;
+      --s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:20px;--s6:24px;--s7:32px;--s8:40px;--s9:48px;--s10:64px;--safe:40px;--max:920px;--rule:1px;--heavy:6px;--marker:12px;--num:36px;
+    }
+    *{box-sizing:border-box}
+    html{background:var(--stone);color:var(--ink)}
+    body{margin:0;padding:var(--s8) var(--s4);font-family:"PingFang SC","Noto Sans CJK SC","Microsoft YaHei",Arial,sans-serif;line-height:var(--lh-body);letter-spacing:0}
+    .shell{width:min(100%,var(--max));margin:0 auto;background:var(--white);box-shadow:0 18px 60px var(--shadow)}
+    .card{border:var(--rule) solid var(--line);border-radius:0;overflow:hidden}
+    .header{padding:var(--safe);border-bottom:var(--rule) solid var(--line);position:relative}
+    .header:before{content:"DAILY REVIEW / 0813";display:block;font:var(--fw-medium) var(--fs-micro)/1.4 ui-monospace,SFMono-Regular,monospace;color:var(--coral);margin-bottom:var(--s8)}
+    .kicker{font-size:var(--fs-small);color:var(--muted);margin:0 0 var(--s3)}
+    h1{font-size:var(--fs-hero);font-weight:var(--fw-regular);line-height:var(--lh-tight);margin:0;max-width:760px}
+    .dek{font-size:var(--fs-lead);line-height:1.5;color:var(--muted);max-width:720px;margin:var(--s6) 0 0}
+    .core{background:var(--deep);color:var(--white);padding:var(--s8) var(--safe)}
+    .eyebrow{font:var(--fw-medium) var(--fs-micro)/1.4 ui-monospace,SFMono-Regular,monospace;color:var(--coral-soft);margin-bottom:var(--s3)}
+    .core h2{font-size:var(--fs-title);font-weight:var(--fw-regular);line-height:var(--lh-title);margin:0 0 var(--s5)}
+    .core p{font-size:var(--fs-lead);margin:0;max-width:760px;color:#e8f5f1}
+    .section{padding:var(--s8) var(--safe);border-bottom:var(--rule) solid var(--line)}
+    .section-title{display:flex;align-items:baseline;gap:var(--s4);margin-bottom:var(--s7)}
+    .section-no{font:var(--fw-medium) var(--fs-small)/1 ui-monospace,SFMono-Regular,monospace;color:var(--coral)}
+    h2{font-size:var(--fs-h2);line-height:var(--lh-title);font-weight:var(--fw-medium);margin:0}
+    h3{font-size:var(--fs-h3);line-height:1.35;font-weight:var(--fw-medium);margin:0 0 var(--s3)}
+    p{font-size:var(--fs-body);margin:0 0 var(--s4)}
+    .signal{display:grid;grid-template-columns:var(--num) 1fr;gap:var(--s4);padding:var(--s5) 0;border-top:var(--rule) solid var(--line-soft)}
+    .signal:first-of-type{border-top:0;padding-top:0}
+    .signal-index{width:var(--num);height:var(--num);background:var(--stone);display:grid;place-items:center;font:var(--fw-medium) var(--fs-small)/1 ui-monospace,SFMono-Regular,monospace}
+    .signal p{color:#4c4c52;margin:0}
+    .flow{display:grid;grid-template-columns:repeat(3,1fr);border:var(--rule) solid var(--line)}
+    .flow-step{padding:var(--s5);min-height:150px;border-left:var(--rule) solid var(--line)}
+    .flow-step:first-child{border-left:0}
+    .flow-step strong{display:block;font-size:var(--fs-h3);font-weight:var(--fw-medium);margin:var(--s3) 0}
+    .flow-step span{font-size:var(--fs-small);color:var(--muted)}
+    .quote{padding:var(--s8) var(--safe);background:var(--stone);border-bottom:var(--rule) solid var(--line)}
+    blockquote{font-size:var(--fs-title);line-height:1.35;font-weight:var(--fw-regular);margin:0;max-width:790px}
+    blockquote:before{content:"“";color:var(--coral);margin-right:var(--s2)}
+    .action-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:var(--s5)}
+    .action{background:var(--green);border-top:var(--heavy) solid var(--good);padding:var(--s6)}
+    .risk{background:var(--risk-bg);border-top:var(--heavy) solid var(--coral);padding:var(--s6)}
+    .label{font:var(--fw-medium) var(--fs-micro)/1.4 ui-monospace,SFMono-Regular,monospace;color:var(--muted);margin-bottom:var(--s3)}
+    .action strong{font-size:var(--fs-h3);line-height:1.4;display:block}
+    ul{padding:0;margin:var(--s4) 0 0;list-style:none}
+    li{position:relative;padding-left:var(--s5);margin-top:var(--s3);font-size:var(--fs-small);line-height:var(--lh-small)}
+    li:before{content:"";position:absolute;left:0;top:.65em;width:var(--s2);height:var(--s2);background:var(--coral)}
+    .evidence{display:grid;grid-template-columns:1fr 1fr;gap:var(--s5)}
+    .note{border-top:var(--heavy) solid var(--navy);padding:var(--s5);background:var(--blue)}
+    .note p{font-size:var(--fs-small);color:var(--muted);margin:0}
+    footer{padding:var(--safe);display:flex;justify-content:space-between;gap:var(--s5);font-size:var(--fs-micro);color:var(--quiet)}
+    @media(max-width:760px){:root{--fs-hero:36px;--fs-title:28px;--safe:28px}.flow,.action-grid,.evidence{grid-template-columns:1fr}.flow-step{border-left:0;border-top:var(--rule) solid var(--line)}.flow-step:first-child{border-top:0}}
+    @media(max-width:560px){body{padding:0}:root{--fs-hero:31px;--fs-title:24px;--fs-h2:22px;--safe:22px}.shell{width:100%}.card{border-left:0;border-right:0}footer{display:block}footer span{display:block;margin-top:var(--s2)}}
+    @media(min-width:1000px){body{padding:var(--s10) var(--s6)}.header{padding-top:var(--s10);padding-bottom:var(--s10)}.section{padding-top:var(--s9);padding-bottom:var(--s9)}}
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <article class="card">
+      <header class="header">
+        <p class="kicker">认知卡片 · 2026-08-13</p>
+        <h1>恢复方式不预设，注意力就会被默认入口接管</h1>
+        <p class="dek">高温劳作后的疲惫不是问题，真正的漏洞是：短视频成了最低阻力的恢复方式。靠压制只能延后反弹，环境设计才能改变默认路径。</p>
+      </header>
+      <section class="core">
+        <div class="eyebrow">CORE JUDGMENT</div>
+        <h2>不要只要求自己“忍住”，要重新分配行为阻力。</h2>
+        <p>让短视频更难进入，让学习、音乐、风景和冥想更容易开始。先用真实场景验证，再把有效做法固化成原则。</p>
+      </section>
+      <section class="section">
+        <div class="section-title"><span class="section-no">01</span><h2>今天暴露的三层问题</h2></div>
+        <div class="signal"><span class="signal-index">A</span><div><h3>表层：注意力泄漏</h3><p>户外劳作后刷视频号约 2—3 小时，短暂放松演变成长时间占用。</p></div></div>
+        <div class="signal"><span class="signal-index">B</span><div><h3>中层：压制后的反弹</h3><p>试图持续压住欲望，却感到约七成压制之后更容易陷进去。问题不只是意志力，而是恢复场景没有替代方案。</p></div></div>
+        <div class="signal"><span class="signal-index">C</span><div><h3>深层：外部结果稀缺</h3><p>行业萎缩与收入停滞带来焦虑，但当天没有发布、客户反馈、报价或成交记录，压力没有落到可验证动作上。</p></div></div>
+      </section>
+      <section class="section">
+        <div class="section-title"><span class="section-no">02</span><h2>把意志力问题改写成环境问题</h2></div>
+        <div class="flow">
+          <div class="flow-step"><span>STEP 1</span><strong>识别触发</strong><span>高温劳作、疲惫、低精力，是短视频进入的真实前置条件。</span></div>
+          <div class="flow-step"><span>STEP 2</span><strong>反向设阻</strong><span>提高短视频进入阻力，同时降低学习、音乐、风景和冥想的启动阻力。</span></div>
+          <div class="flow-step"><span>STEP 3</span><strong>验证再固化</strong><span>只测试一次真实场景，观察是否减少泄漏，再决定要不要写入原则库。</span></div>
+        </div>
+      </section>
+      <section class="quote"><blockquote>决策权始终在人手里，AI 只是把判断的材料摆到他面前。</blockquote></section>
+      <section class="section">
+        <div class="section-title"><span class="section-no">03</span><h2>系统认知：可信度来自可追溯</h2></div>
+        <div class="evidence">
+          <div class="note"><h3>定制系统的价值</h3><p>不是功能比 SaaS 多，而是把管理思想变成代码约束，让 SOP 不再依赖人工盯守。</p></div>
+          <div class="note"><h3>AI 建议的边界</h3><p>同时标注来源与把握程度。高把握可直接使用，低把握触发复核，最终判断仍由人完成。</p></div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="section-title"><span class="section-no">04</span><h2>明日行动与风险</h2></div>
+        <div class="action-grid">
+          <div class="action"><div class="label">ONE MAIN ACTION</div><strong>早餐后完成与小七的合账，保存双方确认后的金额记录。</strong><ul><li>前五分钟：找出最近一笔未核对记录。</li><li>完成证据：核对清单与小七确认结果。</li></ul></div>
+          <div class="risk"><div class="label">VERIFY FIRST</div><h3>不要过早固化</h3><ul><li>“短视频必须难受”可能引起更强反弹。</li><li>“非必要不回家”仍可能只是短期情绪。</li><li>闲鱼面板仍缺单样本验收证据。</li></ul></div>
+        </div>
+      </section>
+      <footer><span>来源：2026-08-13 正式日省</span><span>设计参考：Cohere · 静态认知卡片</span></footer>
+    </article>
+  </main>
+</body>
+</html>
