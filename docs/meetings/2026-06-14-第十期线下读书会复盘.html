@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>第十期线下读书会复盘 · 2026-06-14</title>
+  <style>
+    :root {
+      --bg: #f4f1ea;
+      --paper: #fffdf8;
+      --ink: #22231f;
+      --muted: #6f706b;
+      --line: #d9d1c2;
+      --accent: #24635c;
+      --accent-2: #a94d32;
+      --accent-3: #465c90;
+      --soft: #e9f2ef;
+      --warm: #f7e8d7;
+      --blue: #e8eef7;
+      --shadow: 0 18px 42px rgba(39, 34, 26, 0.08);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--ink);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", sans-serif;
+      line-height: 1.78;
+    }
+    .page {
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 48px 22px 76px;
+    }
+    header {
+      border-bottom: 2px solid var(--ink);
+      padding-bottom: 24px;
+      margin-bottom: 28px;
+    }
+    .eyebrow {
+      color: var(--accent-2);
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      margin-bottom: 8px;
+    }
+    h1 {
+      font-size: clamp(32px, 5.2vw, 58px);
+      line-height: 1.08;
+      margin: 0 0 16px;
+      letter-spacing: 0;
+    }
+    .meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+    .meta span {
+      border: 1px solid var(--line);
+      background: var(--paper);
+      padding: 5px 10px;
+      border-radius: 4px;
+    }
+    .lead {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      border-left: 7px solid var(--accent);
+      box-shadow: var(--shadow);
+      padding: 20px 22px;
+      margin: 28px 0;
+      font-size: 17px;
+    }
+    nav {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 10px;
+      margin: 28px 0 34px;
+    }
+    nav a {
+      color: var(--accent);
+      text-decoration: none;
+      background: var(--paper);
+      border: 1px solid var(--line);
+      padding: 10px 12px;
+      border-radius: 4px;
+      font-weight: 700;
+    }
+    section {
+      background: var(--paper);
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+      margin: 18px 0;
+      padding: 26px;
+      border-radius: 8px;
+    }
+    h2 {
+      margin: 0 0 14px;
+      font-size: clamp(22px, 3vw, 32px);
+      line-height: 1.24;
+    }
+    h3 {
+      margin: 22px 0 10px;
+      font-size: 20px;
+      color: var(--accent);
+    }
+    p { margin: 10px 0; }
+    ul { margin: 10px 0 0; padding-left: 20px; }
+    li { margin: 6px 0; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 14px;
+    }
+    .card {
+      background: #fff9ef;
+      border: 1px solid var(--line);
+      padding: 16px;
+      border-radius: 6px;
+    }
+    .card strong { color: var(--accent-2); }
+    .quote {
+      border-left: 5px solid var(--accent-2);
+      background: var(--warm);
+      padding: 14px 16px;
+      margin: 14px 0;
+      font-weight: 700;
+    }
+    .topic {
+      border-top: 1px solid var(--line);
+      padding-top: 20px;
+      margin-top: 20px;
+    }
+    .topic:first-of-type {
+      border-top: 0;
+      padding-top: 0;
+      margin-top: 0;
+    }
+    .topic-title {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 8px;
+    }
+    .topic-index {
+      color: var(--accent-2);
+      font-weight: 900;
+      font-size: 15px;
+      letter-spacing: 0.08em;
+    }
+    .topic-title h3 {
+      margin: 0;
+      color: var(--ink);
+    }
+    .note {
+      background: var(--soft);
+      border: 1px solid #c8ddd4;
+      padding: 14px 16px;
+      border-radius: 6px;
+      color: #26443c;
+    }
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--line);
+      background: var(--blue);
+      color: var(--accent-3);
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 13px;
+      font-weight: 700;
+    }
+    .footer {
+      color: var(--muted);
+      text-align: center;
+      margin-top: 28px;
+      font-size: 13px;
+    }
+    @media (max-width: 680px) {
+      .page { padding: 30px 14px 56px; }
+      section { padding: 20px 16px; }
+      .lead { padding: 16px; }
+      nav { grid-template-columns: 1fr; }
+      .topic-title { align-items: flex-start; flex-direction: column; gap: 2px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <header>
+      <div class="eyebrow">聚会学习总结</div>
+      <h1>第十期线下读书会复盘</h1>
+      <div class="meta">
+        <span>处理日期：2026-06-14</span>
+        <span>活动形式：线下读书会</span>
+        <span>流程：自我介绍、书籍分享、问题互动</span>
+        <span>高价值主题：14 个</span>
+      </div>
+    </header>
+
+    <div class="lead">
+      这场读书会表面上是在分享书，实际聊的是每个人正在面对的人生和事业问题。AI Skill、赚钱、独立创业、人与人的连接、股权分配、中年转型和未来十年选择，都从书里伸出来，落到了具体的人身上。
+    </div>
+
+    <nav>
+      <a href="#summary">核心判断</a>
+      <a href="#people">参与者画像</a>
+      <a href="#books">书籍与问题</a>
+      <a href="#topics">逐主题纪要</a>
+      <a href="#actions">可执行动作</a>
+    </nav>
+
+    <section id="summary">
+      <h2>核心判断</h2>
+      <div class="grid">
+        <div class="card">
+          <strong>读书会不是交换知识点</strong>
+          <p>真正被记住的不是书名，而是为什么这个人在这个阶段会读这本书。书只是入口，背后是转型、创业、关系、低谷和长期选择。</p>
+        </div>
+        <div class="card">
+          <strong>关系不是加微信</strong>
+          <p>加微信只是一条连接线，关系要靠帮助、合作、共同经历和持续行动慢慢长出来。</p>
+        </div>
+        <div class="card">
+          <strong>不要等完全准备好再见人</strong>
+          <p>刚离职、刚创业、业务还不稳的时候，更需要进入真实关系和市场反馈。成熟不是连接的前提，连接本身就是成熟的一部分。</p>
+        </div>
+      </div>
+      <div class="quote">一句话沉淀：一个人可以独立工作，但不能孤立成长。</div>
+    </section>
+
+    <section id="people">
+      <h2>参与者画像</h2>
+      <p>这场读书会的跨度很大。有人做 AI 和独立站，有人做公众号日更和 YouTube 美金，有人做 AI 培训、智能体工作流和 GEO，有人做建筑、制造业、外贸、影视传媒和 AI 产品经理。</p>
+      <div class="grid">
+        <div class="card"><strong>一林</strong><p>计算机专业出身，在深圳做了三年跨境电商独立站，刚离开职场，开始尝试 AI + 跨境电商独立站服务。</p></div>
+        <div class="card"><strong>小水</strong><p>AI 产品经理，关注 AI 工作流、个人知识库、Obsidian、飞书和 AI Agent，希望把经历、观点、选题和案例沉淀成系统。</p></div>
+        <div class="card"><strong>书情小跟班</strong><p>程序员，公众号日更，同时运营社群、知识星球、小报童，正在深耕 YouTube 赚美金。</p></div>
+        <div class="card"><strong>司强</strong><p>连续创业十年，长期扎根 AI 培训、智能体工作流定制和 GEO，具备企业服务和创业实战经验。</p></div>
+      </div>
+      <div class="pill-row">
+        <span class="pill">AI Skill</span>
+        <span class="pill">跨境独立站</span>
+        <span class="pill">个人商业化</span>
+        <span class="pill">线下连接</span>
+        <span class="pill">职业转型</span>
+        <span class="pill">长期主义</span>
+      </div>
+    </section>
+
+    <section id="books">
+      <h2>书籍与问题</h2>
+      <ul>
+        <li>AI Skill 与知识沉淀，如何把个人经验变成可重复调用的操作手册。</li>
+        <li>赚钱与个人商业化，如何从提供价值走到获得收入。</li>
+        <li>《悉达多》，人生经验不能完全从别人那里获得，必须自己走一遍。</li>
+        <li>王阳明心学，真正的成长发生在具体事情和困境里。</li>
+        <li>《道德经》，有些书只有经历失败和低谷后才能真正读进去。</li>
+        <li>《别独自用餐》，主动连接不是展示自己，而是理解别人并尊重边界。</li>
+      </ul>
+    </section>
+
+    <section id="topics">
+      <h2>逐主题纪要</h2>
+
+      <div class="topic">
+        <div class="topic-title"><span class="topic-index">TOPIC 01</span><h3>参与者跨度：不同阶段的人都在找长期选择</h3></div>
+        <p>一林提到「年龄、经历、资源和所处阶段都不相同」，但大家反复出现的关键词是转型、连接、长期主义和主动选择。</p>
+        <p>这场读书会的底色不是读书技巧，而是每个人都在用一本书解释自己当下的处境。有人刚离开职场，有人仍在职，有人创业十年，有人还在找长期赛道。不同背景混在一起，反而让问题更真实。</p>
+      </div>
+
+      <div class="topic">
+        <div class="topic-title"><span class="topic-index">TOPIC 02</span><h3>AI Skill：把经验变成可复用系统</h3></div>
+        <p>小水提到「Skill 的意义，就是把个人经验整理成一份可执行、可重复调用的操作手册」。这句话很准。我们每次跟 AI 重新解释背景、风格、流程和要求，本质上都在浪费上下文。</p>
+        <p>对个人创业者来说，Skill 不是提示词炫技，而是把自己的经验资产化。重复三次的沟通、流程和判断，都应该逐渐沉淀成可调用的系统。这样一个人才能从纯时间交付里慢慢松出来。</p>
+      </div>
+
+      <div class="topic">
+        <div class="topic-title"><span class="topic-index">TOPIC 03</span><h3>赚钱：技巧背后是价值交换</h3></div>
+        <p>书情小跟班提到，普通人赚钱不只是掌握工具或者找到项目，更重要的是理解「你能为谁提供什么价值」。</p>
+        <p>很多人卡在这里。项目看了很多，方法听了很多，但没有完成从提供价值到获得收入的最小闭环。一个小结果跑通后，才谈得上内容、投放、团队和产品化放大。</p>
+      </div>
+
+      <div class="topic">
+        <div class="topic-title"><span class="topic-index">TOPIC 04</span><h3>《悉达多》：人生答案不能完全外包</h3></div>
+        <p>大鹏提到，《悉达多》打动他的地方在于，主人公经历苦行、财富、欲望和失落后，才重新理解人生。</p>
+        <p>有些道理不是没听过，而是没经历过，所以听了也只是文字。建筑行业受限、小红书、贸易、服装出海这些尝试，最后都要回到一个现实问题，趋势和自身能力之间有没有交叉点。</p>
+      </div>
+
+      <div class="topic">
+        <div class="topic-title"><span class="topic-index">TOPIC 05</span><h3>心学：成长发生在事上磨</h3></div>
+        <p>现场有朋友提到王阳明心学，并结合婚姻、家庭、育儿和事业低谷说，人的成长不是在顺利时完成的，而是在具体问题里一点点磨出来的。</p>
+        <p>很多人总想等状态好了再处理问题，但能力、韧性和判断力恰恰是在处理问题时形成。读书会最有用的地方，也许就是把书里的抽象道理重新拉回生活现场。</p>
+      </div>
+
+      <div class="topic">
+        <div class="topic-title"><span class="topic-index">TOPIC 06</span><h3>《道德经》：经历之后才读得进去</h3></div>
+        <p>普田提到，自己理工科背景，过去不太喜欢读书，经历创业失败、股市亏损和人生低谷后，才开始读懂《道德经》。</p>
+        <p>同一本书在不同阶段读，可能完全不是同一本书。年轻时读到的是文字，经历事情之后读到的是自己。这也是读书会的价值，书不是孤立的，它会被每个人的人生重新解释。</p>
+      </div>
+
+      <div class="topic">
+        <div class="topic-title"><span class="topic-index">TOPIC 07</span><h3>《别独自用餐》：主动连接不是主动打扰</h3></div>
+        <p>一林提到，他一开始以为《别独自用餐》是教人混圈子、积累人脉、认识大佬的书，后来发现它真正讲的是「不要把自己封闭起来」。</p>
+        <p>他也复盘了自己过去的误区，曾经把主动链接理解成主动展示自己，分享文章、活动和内容时更多考虑自己想不想表达，却没想对方是否需要。真正的连接不是不断告诉别人我能做什么，而是先理解对方正在做什么、需要什么，并尊重边界。</p>
+      </div>
+
+      <div class="topic">
+        <div class="topic-title"><span class="topic-index">TOPIC 08</span><h3>长期朋友：关系深度不只来自联系频率</h3></div>
+        <p>问题互动里有人提到，交往时间最长的朋友可能几年不联系，但真正需要帮助时仍然能直接开口。</p>
+        <p>这让讨论转向一个问题，关系深度究竟来自联系频率，还是长期建立起来的信任。很多真正重要的人，不一定是新认识的大佬，而是那些陪自己很久、但逐渐被忽略的老朋友。</p>
+      </div>
+
+      <div class="topic">
+        <div class="topic-title"><span class="topic-index">TOPIC 09</span><h3>未来十年：趋势、能力、资源和需求的交叉点</h3></div>
+        <p>一林提到，未来十年最重要的是个人成长和事业发展，先把跨境电商独立站服务做扎实，形成客户来源、交付能力和现金流。</p>
+        <p>其他人的答案各不相同，有人关心医疗产品落地，有人想找长期赛道，有人计划离开职场，也有人强调不坑人、不害人。现场最后形成的判断是，热门赛道不一定适合所有人，真正要找的是趋势、能力、资源和需求的交叉点。</p>
+      </div>
+
+      <div class="topic">
+        <div class="topic-title"><span class="topic-index">TOPIC 10</span><h3>主动联系：机会不只等于订单</h3></div>
+        <p>Holly 提到，做外贸时在展会或平台上拿到客户信息后，会第一时间联系、问候、发邮件和报价。主动跟进不一定马上成交，但会让客户产生需求时想到你。</p>
+        <p>也有人分享，主动联系带来了旅行、合作、长期关系，甚至也包括向九年前伤害过的人道歉。主动联系带来的不一定只是订单，也可能是理解、修复和新的生活体验。</p>
+      </div>
+
+      <div class="topic">
+        <div class="topic-title"><span class="topic-index">TOPIC 11</span><h3>股权分配：不是表达感情，而是约束责任</h3></div>
+        <p>现场有人问，新公司应该如何分配股权。讨论里的共识很现实，股权不能只按初期承诺分，要结合责任、能力和结果，也要预留后续激励。</p>
+        <p>这类问题没有标准答案，但底线很清楚。合作之前要讲职责、考核和退出规则。股权不是用来表达感情的，它是用来约束责任、收益和长期合作关系的。</p>
+      </div>
+
+      <div class="topic">
+        <div class="topic-title"><span class="topic-index">TOPIC 12</span><h3>中年转型：不要等被迫离开才准备第二曲线</h3></div>
+        <p>现场提到，中年危机和职业转型很现实。行业下行、家庭压力、房贷和收入压力叠在一起，想走又不能轻易走。</p>
+        <p>更稳的路径是在主业还在时，就开始建立副业、作品、客户来源和案例。离开组织之后，真正能托住一个人的，不是简历上的岗位，而是工作之外已经积累的技能、关系、内容和交付记录。</p>
+      </div>
+
+      <div class="topic">
+        <div class="topic-title"><span class="topic-index">TOPIC 13</span><h3>趋势判断：关注圈和影响圈要分开</h3></div>
+        <p>现场有人认为创业要分析产业方向、市场增量和政策支持，也有人提醒，与其把大量精力放在无法影响的宏观局势上，不如区分关注圈和影响圈。</p>
+        <p>这两种观点并不冲突。了解趋势是为了选方向，但行动必须回到今天能做什么、能服务谁、能创造什么结果。只看趋势容易漂，只看兴趣也容易付出高成本。</p>
+      </div>
+
+      <div class="topic">
+        <div class="topic-title"><span class="topic-index">TOPIC 14</span><h3>组织复盘：好的聚会交换真实问题</h3></div>
+        <p>一林提到，好的聚会不是交换名片，而是交换真实问题。今天大家分享了迷茫、低谷、失败、婚姻压力、创业困境和职业焦虑，正是这些不够光鲜的部分，让交流变得真实。</p>
+        <p>他也复盘了下一期可以优化的地方，减少新朋友的信息差，书籍分享只讲一个核心观点加一个真实经历，问题互动控制单题时间。读书会不是一次性热闹，真正有用的是会后有没有具体行动。</p>
+      </div>
+    </section>
+
+    <section id="actions">
+      <h2>可执行动作</h2>
+      <ul>
+        <li>把每次读书分享限制为一个核心观点加一个真实经历，减少发散，提高记忆点。</li>
+        <li>读书会后列出 3 个可以继续连接的人，写清楚对方正在做什么、你能提供什么、下一步怎么联系。</li>
+        <li>把自己的重复 AI 沟通流程整理成 Skill，先从一个最常用任务开始。</li>
+        <li>做事业选择时，用“趋势、能力、资源、需求”四项交叉检查，不只追热点。</li>
+        <li>对老朋友做一次关系盘点，不只扩新关系，也修复和维护长期信任关系。</li>
+      </ul>
+      <div class="note">处理说明：本总结过滤了复盘中的重复表述，保留了书籍观点、人物经历、互动问题、组织复盘和可沉淀方法论。</div>
+    </section>
+
+    <div class="footer">生成文件：2026-06-14-第十期线下读书会复盘.html</div>
+  </main>
+</body>
+</html>
