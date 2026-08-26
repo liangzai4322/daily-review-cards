@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>认知卡片 · 2026-08-27</title>
+  <style>
+    :root {
+      --blue-900: #002f99;
+      --blue-800: #003ecc;
+      --blue-700: #0052ff;
+      --blue-600: #1769ff;
+      --blue-500: #3b7cff;
+      --blue-400: #6a9aff;
+      --blue-300: #9bbcff;
+      --blue-200: #c8d9ff;
+      --blue-100: #e8efff;
+      --blue-050: #f4f7ff;
+      --ink-950: #0a0b0d;
+      --ink-900: #16181c;
+      --ink-800: #25282d;
+      --ink-700: #3c4048;
+      --ink-600: #5b616e;
+      --ink-500: #707680;
+      --ink-400: #8b9098;
+      --ink-300: #a8acb3;
+      --ink-200: #c8cbd0;
+      --ink-100: #dee1e6;
+      --ink-075: #e7e9ed;
+      --ink-050: #eef0f3;
+      --white: #ffffff;
+      --canvas: #f7f7f7;
+      --surface: #ffffff;
+      --surface-soft: #f4f6f8;
+      --surface-blue: #f4f7ff;
+      --surface-dark: #0a0b0d;
+      --surface-dark-2: #16181c;
+      --green-700: #087a4b;
+      --green-600: #05a663;
+      --green-500: #05b169;
+      --green-100: #dcf7eb;
+      --red-700: #a91826;
+      --red-600: #cf202f;
+      --red-100: #fde7e9;
+      --yellow-700: #8a6100;
+      --yellow-500: #f4b000;
+      --yellow-100: #fff3cf;
+      --violet-600: #6548c7;
+      --violet-100: #eee9ff;
+      --line: #dee1e6;
+      --line-soft: #eef0f3;
+      --line-strong: #a8acb3;
+      --shadow: rgba(10, 11, 13, 0.08);
+      --focus: #0052ff;
+      --fact: #0052ff;
+      --insight: #6548c7;
+      --action: #05a663;
+      --risk: #cf202f;
+      --verify: #8a6100;
+      --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      --fs-hero: 44px;
+      --fs-display: 34px;
+      --fs-title-1: 28px;
+      --fs-title-2: 23px;
+      --fs-title-3: 19px;
+      --fs-body-lg: 18px;
+      --fs-body: 16px;
+      --fs-body-sm: 15px;
+      --fs-label: 13px;
+      --fs-caption: 12px;
+      --fs-micro: 11px;
+      --fw-light: 300;
+      --fw-regular: 400;
+      --fw-medium: 500;
+      --fw-semibold: 600;
+      --fw-bold: 700;
+      --lh-tight: 1.15;
+      --lh-title: 1.3;
+      --lh-body: 1.75;
+      --lh-loose: 1.9;
+      --ls-zero: 0;
+      --sp-1: 4px;
+      --sp-2: 8px;
+      --sp-3: 12px;
+      --sp-4: 16px;
+      --sp-5: 20px;
+      --sp-6: 24px;
+      --sp-7: 28px;
+      --sp-8: 32px;
+      --sp-9: 40px;
+      --sp-10: 48px;
+      --sp-11: 64px;
+      --sp-12: 80px;
+      --mark-core: 6px solid var(--blue-700);
+      --mark-insight: 4px solid var(--violet-600);
+      --mark-action: 4px solid var(--green-600);
+      --mark-risk: 4px solid var(--red-600);
+      --mark-verify: 4px solid var(--yellow-500);
+      --rule-primary: 2px solid var(--ink-950);
+      --rule-soft: 1px solid var(--line);
+      --rule-blue: 1px solid var(--blue-300);
+      --badge-bg: var(--blue-100);
+      --quote-bg: var(--surface-dark);
+      --page-max: 920px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { background: var(--canvas); color: var(--ink-950); }
+
+    body {
+      margin: 0;
+      padding: var(--sp-10) var(--sp-5);
+      background: var(--canvas);
+      font-family: var(--font-ui);
+      font-size: var(--fs-body);
+      font-weight: var(--fw-regular);
+      line-height: var(--lh-body);
+      letter-spacing: var(--ls-zero);
+    }
+
+    .card-shell {
+      width: 100%;
+      max-width: var(--page-max);
+      margin: 0 auto;
+    }
+
+    .cognitive-card {
+      width: 100%;
+      overflow: hidden;
+      background: var(--surface);
+      border: var(--rule-primary);
+      border-radius: 0;
+      box-shadow: 0 18px 55px var(--shadow);
+    }
+
+    .card-header {
+      position: relative;
+      min-height: 330px;
+      padding: var(--sp-12) var(--sp-10) var(--sp-11);
+      color: var(--white);
+      background: var(--surface-dark);
+      border-bottom: 10px solid var(--blue-700);
+    }
+
+    .card-header::before {
+      content: "27";
+      position: absolute;
+      top: 22px;
+      right: 34px;
+      color: var(--surface-dark-2);
+      font-size: 150px;
+      font-weight: var(--fw-bold);
+      line-height: 1;
+    }
+
+    .eyebrow {
+      position: relative;
+      display: inline-block;
+      padding: var(--sp-1) var(--sp-3);
+      color: var(--white);
+      background: var(--blue-700);
+      font-size: var(--fs-label);
+      font-weight: var(--fw-semibold);
+      line-height: 1.5;
+    }
+
+    .card-title {
+      position: relative;
+      max-width: 700px;
+      margin: var(--sp-7) 0 var(--sp-5);
+      font-size: var(--fs-hero);
+      font-weight: var(--fw-regular);
+      line-height: var(--lh-tight);
+      letter-spacing: var(--ls-zero);
+    }
+
+    .card-deck {
+      position: relative;
+      max-width: 650px;
+      margin: 0;
+      color: var(--ink-300);
+      font-size: var(--fs-body-lg);
+      line-height: 1.65;
+    }
+
+    .meta-row {
+      position: relative;
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--sp-3);
+      margin-top: var(--sp-8);
+      color: var(--ink-300);
+      font-size: var(--fs-caption);
+    }
+
+    .meta-item { padding-right: var(--sp-3); border-right: 1px solid var(--ink-700); }
+    .meta-item:last-child { border-right: 0; }
+
+    .section {
+      padding: var(--sp-10);
+      border-bottom: var(--rule-soft);
+    }
+
+    .section:last-of-type { border-bottom: 0; }
+
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      gap: var(--sp-4);
+      margin-bottom: var(--sp-7);
+    }
+
+    .section-index {
+      color: var(--blue-700);
+      font-size: var(--fs-label);
+      font-weight: var(--fw-bold);
+    }
+
+    .section-title {
+      margin: 0;
+      font-size: var(--fs-title-1);
+      font-weight: var(--fw-regular);
+      line-height: var(--lh-title);
+    }
+
+    .section-note {
+      margin-left: auto;
+      color: var(--ink-500);
+      font-size: var(--fs-caption);
+    }
+
+    .core-insight {
+      padding-left: var(--sp-7);
+      border-left: var(--mark-core);
+    }
+
+    .core-label {
+      margin-bottom: var(--sp-3);
+      color: var(--blue-700);
+      font-size: var(--fs-label);
+      font-weight: var(--fw-bold);
+    }
+
+    .core-copy {
+      margin: 0;
+      max-width: 720px;
+      font-size: var(--fs-display);
+      font-weight: var(--fw-regular);
+      line-height: 1.35;
+    }
+
+    .core-proof {
+      margin: var(--sp-6) 0 0;
+      max-width: 700px;
+      color: var(--ink-600);
+      font-size: var(--fs-body-sm);
+    }
+
+    .argument-list { display: grid; gap: var(--sp-6); }
+
+    .argument {
+      display: grid;
+      grid-template-columns: 64px 1fr;
+      gap: var(--sp-5);
+      padding: var(--sp-6) 0;
+      border-top: var(--rule-soft);
+    }
+
+    .argument:first-child { border-top: 0; padding-top: 0; }
+
+    .argument-number {
+      color: var(--blue-700);
+      font-size: var(--fs-title-2);
+      font-weight: var(--fw-medium);
+      line-height: 1.2;
+    }
+
+    .argument-title {
+      margin: 0 0 var(--sp-2);
+      font-size: var(--fs-title-3);
+      font-weight: var(--fw-semibold);
+      line-height: var(--lh-title);
+    }
+
+    .argument-copy { margin: 0; color: var(--ink-600); }
+
+    .signal-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: var(--rule-soft);
+    }
+
+    .signal {
+      min-height: 150px;
+      padding: var(--sp-6);
+      border-right: var(--rule-soft);
+    }
+
+    .signal:last-child { border-right: 0; }
+    .signal:nth-child(1) { border-top: 4px solid var(--violet-600); }
+    .signal:nth-child(2) { border-top: 4px solid var(--green-600); }
+    .signal:nth-child(3) { border-top: 4px solid var(--yellow-500); }
+
+    .signal-tag {
+      margin-bottom: var(--sp-3);
+      color: var(--ink-500);
+      font-size: var(--fs-micro);
+      font-weight: var(--fw-bold);
+    }
+
+    .signal strong {
+      display: block;
+      margin-bottom: var(--sp-2);
+      font-size: var(--fs-body-lg);
+      line-height: var(--lh-title);
+    }
+
+    .signal p { margin: 0; color: var(--ink-600); font-size: var(--fs-body-sm); }
+
+    .quote-band {
+      padding: var(--sp-10);
+      color: var(--white);
+      background: var(--quote-bg);
+      border-left: 12px solid var(--blue-700);
+    }
+
+    .quote-mark {
+      color: var(--blue-500);
+      font-size: var(--fs-title-2);
+      font-weight: var(--fw-bold);
+    }
+
+    .quote-text {
+      max-width: 710px;
+      margin: var(--sp-3) 0 0;
+      font-size: var(--fs-title-1);
+      font-weight: var(--fw-regular);
+      line-height: 1.5;
+    }
+
+    .method-flow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-top: var(--rule-primary);
+      border-bottom: var(--rule-primary);
+    }
+
+    .method-step {
+      position: relative;
+      min-height: 145px;
+      padding: var(--sp-6) var(--sp-5);
+      border-right: var(--rule-soft);
+    }
+
+    .method-step:last-child { border-right: 0; }
+
+    .step-no {
+      display: block;
+      margin-bottom: var(--sp-4);
+      color: var(--blue-700);
+      font-size: var(--fs-caption);
+      font-weight: var(--fw-bold);
+    }
+
+    .step-title {
+      display: block;
+      margin-bottom: var(--sp-2);
+      font-size: var(--fs-title-3);
+      font-weight: var(--fw-semibold);
+    }
+
+    .step-copy { color: var(--ink-600); font-size: var(--fs-body-sm); line-height: 1.55; }
+
+    .action-panel {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: var(--sp-8);
+    }
+
+    .action-main {
+      padding: var(--sp-7);
+      background: var(--surface-blue);
+      border-left: var(--mark-action);
+    }
+
+    .action-kicker {
+      color: var(--green-700);
+      font-size: var(--fs-label);
+      font-weight: var(--fw-bold);
+    }
+
+    .action-title {
+      margin: var(--sp-2) 0 var(--sp-4);
+      font-size: var(--fs-title-1);
+      font-weight: var(--fw-semibold);
+    }
+
+    .action-detail { margin: 0; color: var(--ink-600); }
+
+    .maintenance {
+      padding: var(--sp-7);
+      border: var(--rule-soft);
+    }
+
+    .maintenance-title {
+      margin: 0 0 var(--sp-4);
+      font-size: var(--fs-title-3);
+      font-weight: var(--fw-semibold);
+    }
+
+    .check-list { margin: 0; padding: 0; list-style: none; }
+
+    .check-list li {
+      position: relative;
+      padding: var(--sp-3) 0 var(--sp-3) var(--sp-7);
+      color: var(--ink-600);
+      border-top: var(--rule-soft);
+    }
+
+    .check-list li::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 19px;
+      width: 12px;
+      height: 12px;
+      border: 2px solid var(--green-600);
+    }
+
+    .risk-box {
+      padding: var(--sp-7);
+      background: var(--yellow-100);
+      border-left: var(--mark-verify);
+    }
+
+    .risk-title {
+      margin: 0 0 var(--sp-4);
+      color: var(--yellow-700);
+      font-size: var(--fs-title-3);
+      font-weight: var(--fw-semibold);
+    }
+
+    .risk-list { margin: 0; padding-left: var(--sp-6); color: var(--ink-700); }
+    .risk-list li { margin: var(--sp-2) 0; padding-left: var(--sp-2); }
+
+    .status-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      background: var(--surface-soft);
+      border-top: var(--rule-soft);
+    }
+
+    .status-item { padding: var(--sp-5); border-right: var(--rule-soft); }
+    .status-item:last-child { border-right: 0; }
+    .status-value { display: block; color: var(--ink-950); font-weight: var(--fw-semibold); }
+    .status-label { color: var(--ink-500); font-size: var(--fs-caption); }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--sp-5);
+      padding: var(--sp-9) var(--sp-10);
+      color: var(--ink-500);
+      background: var(--surface-soft);
+      border-top: var(--rule-primary);
+      font-size: var(--fs-caption);
+    }
+
+    .footer-mark { color: var(--blue-700); font-weight: var(--fw-bold); }
+
+    @media (max-width: 860px) {
+      body { padding: var(--sp-8) var(--sp-4); }
+      .card-header, .section, .quote-band { padding-left: var(--sp-8); padding-right: var(--sp-8); }
+      .method-flow { grid-template-columns: repeat(2, 1fr); }
+      .method-step:nth-child(2) { border-right: 0; }
+      .method-step:nth-child(-n+2) { border-bottom: var(--rule-soft); }
+      .action-panel { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 680px) {
+      :root { --fs-hero: 36px; --fs-display: 29px; --fs-title-1: 25px; }
+      .card-header { min-height: 300px; padding-top: var(--sp-11); }
+      .card-header::before { font-size: 110px; right: 18px; }
+      .signal-row { grid-template-columns: 1fr; }
+      .signal { min-height: auto; border-right: 0; border-bottom: var(--rule-soft); }
+      .signal:last-child { border-bottom: 0; }
+      .argument { grid-template-columns: 48px 1fr; }
+      .status-strip { grid-template-columns: 1fr; }
+      .status-item { border-right: 0; border-bottom: var(--rule-soft); }
+      .status-item:last-child { border-bottom: 0; }
+    }
+
+    @media (max-width: 480px) {
+      body { padding: 0; }
+      .cognitive-card { border-left: 0; border-right: 0; }
+      .card-header, .section, .quote-band { padding-left: var(--sp-5); padding-right: var(--sp-5); }
+      .section { padding-top: var(--sp-9); padding-bottom: var(--sp-9); }
+      .section-head { display: block; }
+      .section-note { display: block; margin: var(--sp-2) 0 0; }
+      .method-flow { grid-template-columns: 1fr; }
+      .method-step { border-right: 0; border-bottom: var(--rule-soft); }
+      .method-step:last-child { border-bottom: 0; }
+      .core-insight { padding-left: var(--sp-5); }
+      .card-footer { display: block; padding: var(--sp-8) var(--sp-5); }
+    }
+
+    @media (min-width: 1100px) {
+      body { padding-top: var(--sp-12); padding-bottom: var(--sp-12); }
+      .card-header { padding-left: var(--sp-11); padding-right: var(--sp-11); }
+      .section, .quote-band { padding-left: var(--sp-11); padding-right: var(--sp-11); }
+    }
+  </style>
+</head>
+<body>
+  <main class="card-shell">
+    <article class="cognitive-card">
+      <header class="card-header">
+        <div class="eyebrow">DAILY REVIEW · 2026-08-27</div>
+        <h1 class="card-title">权限必须与责任匹配</h1>
+        <p class="card-deck">自动系统不只需要“能创建”，还必须拥有可靠的识别、纠错与清退闭环。今天把任务判断权真正收回到正式日省。</p>
+        <div class="meta-row">
+          <span class="meta-item">活动日 2026-08-26</span>
+          <span class="meta-item">11 个来源</span>
+          <span class="meta-item">1 个明确任务</span>
+        </div>
+      </header>
+
+      <section class="section">
+        <div class="section-head">
+          <span class="section-index">01</span>
+          <h2 class="section-title">今日核心命题</h2>
+          <span class="section-note">远看抓核心</span>
+        </div>
+        <div class="core-insight">
+          <div class="core-label">SYSTEM JUDGMENT</div>
+          <p class="core-copy">Lite 可以发现信号，但正式日省必须负责裁决。</p>
+          <p class="core-proof">本轮 5 条历史候选均为叙述、设想或 AI 推导；唯一明确任务是用户原话“明天洗一下袜子”。正确系统不是把所有候选交回用户，而是先完成可证明的判断。</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <span class="section-index">02</span>
+          <h2 class="section-title">三个认知变化</h2>
+          <span class="section-note">中距离看框架</span>
+        </div>
+        <div class="argument-list">
+          <div class="argument">
+            <div class="argument-number">01</div>
+            <div>
+              <h3 class="argument-title">任务治理：创建只是半个闭环</h3>
+              <p class="argument-copy">用户明确动作才进入盒子；事实、感想、第三方话术和 ASR 残句直接清退；真正不确定时再交给用户。</p>
+            </div>
+          </div>
+          <div class="argument">
+            <div class="argument-number">02</div>
+            <div>
+              <h3 class="argument-title">学习效率：实操提供理解坐标</h3>
+              <p class="argument-copy">单独阅读交易材料时难以吸收；开始交易和盯盘后，同样的信息会与真实问题连接，更容易形成顿悟。</p>
+            </div>
+          </div>
+          <div class="argument">
+            <div class="argument-number">03</div>
+            <div>
+              <h3 class="argument-title">恢复机制：状态下降就是锚点</h3>
+              <p class="argument-copy">下午、地铁和午睡前都主动冥想。疲劳不再只是被动承受，而是触发恢复流程的明确信号。</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <span class="section-index">03</span>
+          <h2 class="section-title">事实信号</h2>
+          <span class="section-note">证据不越界</span>
+        </div>
+        <div class="signal-row">
+          <div class="signal">
+            <div class="signal-tag">表达</div>
+            <strong>主动连接</strong>
+            <p>活动中意识到表达者红利，也确认继续留场能接触真实市场视角。</p>
+          </div>
+          <div class="signal">
+            <div class="signal-tag">恢复</div>
+            <strong>冥想有效</strong>
+            <p>疲劳时冥想后主观状态回升；先冥想再休息的体验更好。</p>
+          </div>
+          <div class="signal">
+            <div class="signal-tag">身体</div>
+            <strong>腰椎需关注</strong>
+            <p>腰椎有点疼，篮球后缓解；这只是反馈，不代表已经确认病因。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="quote-band">
+        <div class="quote-mark">原话</div>
+        <p class="quote-text">“一边实操一边学习效果是最好的。”</p>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <span class="section-index">04</span>
+          <h2 class="section-title">任务裁决闭环</h2>
+          <span class="section-note">可复用规则</span>
+        </div>
+        <div class="method-flow">
+          <div class="method-step">
+            <span class="step-no">STEP 01</span>
+            <span class="step-title">取原话</span>
+            <span class="step-copy">回到原始事件，确认是谁说的、说了什么。</span>
+          </div>
+          <div class="method-step">
+            <span class="step-no">STEP 02</span>
+            <span class="step-title">判动作</span>
+            <span class="step-copy">检查是否具备可执行动作、对象或完成结果。</span>
+          </div>
+          <div class="method-step">
+            <span class="step-no">STEP 03</span>
+            <span class="step-title">做分流</span>
+            <span class="step-copy">明确任务写盒；明显非任务清退；真不确定才询问。</span>
+          </div>
+          <div class="method-step">
+            <span class="step-no">STEP 04</span>
+            <span class="step-title">留证据</span>
+            <span class="step-copy">用原始事件 ID 幂等，并保留写入或删除理由。</span>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <span class="section-index">05</span>
+          <h2 class="section-title">明日行动</h2>
+          <span class="section-note">一个主动作</span>
+        </div>
+        <div class="action-panel">
+          <div class="action-main">
+            <div class="action-kicker">MAIN ACTION</div>
+            <h3 class="action-title">洗袜子</h3>
+            <p class="action-detail">第一次处理家务时开始；完成证据是袜子清洗并晾晒。该任务已写入待办盒。</p>
+          </div>
+          <div class="maintenance">
+            <h3 class="maintenance-title">两个维护动作</h3>
+            <ul class="check-list">
+              <li>久坐时检查坐姿，不适时起身活动。</li>
+              <li>精力下降时先冥想，再决定工作或休息。</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <span class="section-index">06</span>
+          <h2 class="section-title">保持待核</h2>
+          <span class="section-note">不把观察写成规律</span>
+        </div>
+        <div class="risk-box">
+          <h3 class="risk-title">VERIFY BEFORE BELIEF</h3>
+          <ul class="risk-list">
+            <li>腰椎疼痛是否持续、是否与久坐姿势有关。</li>
+            <li>砸盘承接、上涨受阻等盘面判断需要更多样本验证。</li>
+            <li>胜率、带单规模和跟单用户收益与长期盈亏的关系仍未验证。</li>
+            <li>昨日两个闲鱼账号的发布／擦亮结果本次无法判断。</li>
+          </ul>
+        </div>
+      </section>
+
+      <div class="status-strip">
+        <div class="status-item">
+          <span class="status-value">5 条</span>
+          <span class="status-label">明显非任务，已自动移除</span>
+        </div>
+        <div class="status-item">
+          <span class="status-value">1 条</span>
+          <span class="status-label">用户明确任务，已写盒</span>
+        </div>
+        <div class="status-item">
+          <span class="status-value">0 条</span>
+          <span class="status-label">需要用户裁决</span>
+        </div>
+      </div>
+
+      <footer class="card-footer">
+        <span><span class="footer-mark">DAILY REVIEW</span> · 认知优化卡片</span>
+        <span>视觉参考：Coinbase · 静态单栏</span>
+      </footer>
+    </article>
+  </main>
+</body>
+</html>
