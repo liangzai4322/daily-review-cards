@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>认知卡片 · 2026-09-01</title>
+  <style>
+    :root {
+      --ink-950:#151718;--ink-900:#202426;--ink-800:#303638;--ink-700:#444c4f;--ink-600:#5c6669;--ink-500:#778184;--ink-400:#959da0;--ink-300:#b7bdbe;--ink-200:#d6dadb;--ink-100:#eceeef;--ink-50:#f7f8f8;
+      --paper:#ffffff;--canvas:#f1f3f2;--line:#cfd5d3;--line-strong:#8e9996;--green-900:#133e34;--green-800:#195344;--green-700:#1f6955;--green-600:#2c8069;--green-500:#3d967d;--green-200:#b9ddcf;--green-100:#dcefe8;--green-50:#eef8f4;
+      --yellow-900:#5b4311;--yellow-700:#88651c;--yellow-500:#c59a32;--yellow-200:#efdca5;--yellow-100:#f8edce;--yellow-50:#fcf7e9;--red-900:#612b2b;--red-700:#914040;--red-500:#bd5c5c;--red-200:#e8baba;--red-100:#f5dddd;--red-50:#fbefef;
+      --blue-900:#183b53;--blue-700:#275e81;--blue-500:#4385aa;--blue-200:#bdd8e6;--blue-100:#dcebf2;--blue-50:#eef6f9;--shadow:rgba(25,35,32,.10);
+      --fs-hero:42px;--fs-title:30px;--fs-lead:22px;--fs-h2:20px;--fs-h3:17px;--fs-body:16px;--fs-small:14px;--fs-caption:12px;--fs-label:11px;
+      --fw-light:300;--fw-normal:400;--fw-medium:500;--fw-semibold:600;--fw-bold:700;--fw-black:800;--lh-tight:1.18;--lh-title:1.3;--lh-body:1.75;--lh-small:1.6;
+      --s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:20px;--s6:24px;--s7:32px;--s8:40px;--s9:48px;--s10:64px;--s11:80px;--s12:96px;
+      --rule-core:6px;--rule-section:3px;--rule-note:1px;--marker-size:32px;--quote-rule:5px;--action-rule:4px;--risk-rule:4px;--label-pad:6px 9px;--panel-pad:24px;--safe-top:40px;--safe-bottom:40px;
+    }
+    *{box-sizing:border-box}
+    html{background:var(--canvas);color:var(--ink-900);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;letter-spacing:0}
+    body{margin:0;padding:var(--s7) var(--s4)}
+    .card-shell{max-width:920px;margin:0 auto}
+    .cognitive-card{background:var(--paper);border:1px solid var(--line-strong);border-radius:0;box-shadow:0 18px 50px var(--shadow)}
+    .card-header{padding:var(--safe-top) var(--s8) var(--s8);border-top:10px solid var(--green-800);border-bottom:1px solid var(--line)}
+    .eyebrow{display:flex;justify-content:space-between;gap:var(--s3);font-size:var(--fs-label);font-weight:var(--fw-bold);color:var(--green-700);text-transform:uppercase}
+    h1{max-width:760px;margin:var(--s5) 0 var(--s4);font-size:var(--fs-hero);line-height:var(--lh-tight);font-weight:var(--fw-black)}
+    .deck{max-width:720px;margin:0;color:var(--ink-600);font-size:var(--fs-lead);line-height:1.55}
+    section{padding:var(--s8);border-bottom:1px solid var(--line)}
+    .core{background:var(--green-900);color:var(--paper);border-left:var(--rule-core) solid var(--yellow-500)}
+    .core-label,.section-kicker{font-size:var(--fs-label);font-weight:var(--fw-bold);letter-spacing:0;text-transform:uppercase}
+    .core-label{color:var(--yellow-200)}
+    .core p{max-width:760px;margin:var(--s3) 0 0;font-size:var(--fs-title);line-height:var(--lh-title);font-weight:var(--fw-bold)}
+    .section-head{display:flex;align-items:center;gap:var(--s3);margin-bottom:var(--s6)}
+    .index{display:grid;place-items:center;width:var(--marker-size);height:var(--marker-size);background:var(--green-800);color:var(--paper);font-size:var(--fs-small);font-weight:var(--fw-bold)}
+    h2{margin:0;font-size:var(--fs-h2);line-height:var(--lh-title);font-weight:var(--fw-bold)}
+    .argument-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s4)}
+    .argument{padding:var(--panel-pad);border-top:var(--rule-section) solid var(--green-700);background:var(--ink-50)}
+    .argument strong{display:block;margin-bottom:var(--s3);font-size:var(--fs-h3)}
+    .argument p{margin:0;font-size:var(--fs-body);line-height:var(--lh-body);color:var(--ink-700)}
+    .flow{display:grid;grid-template-columns:repeat(5,1fr);border:1px solid var(--line)}
+    .flow-step{position:relative;padding:var(--s5) var(--s3);text-align:center;border-right:1px solid var(--line);background:var(--paper)}
+    .flow-step:last-child{border-right:0;background:var(--green-50)}
+    .flow-step b{display:block;margin-bottom:var(--s2);font-size:var(--fs-h3);color:var(--green-800)}
+    .flow-step span{font-size:var(--fs-small);line-height:var(--lh-small);color:var(--ink-600)}
+    .quote{padding:var(--s8);background:var(--yellow-50);border-left:var(--quote-rule) solid var(--yellow-500)}
+    blockquote{margin:0;font-size:var(--fs-title);line-height:1.45;font-weight:var(--fw-bold);color:var(--yellow-900)}
+    .quote-note{margin-top:var(--s4);font-size:var(--fs-small);color:var(--yellow-700)}
+    .method-list{display:grid;gap:var(--s3)}
+    .method{display:grid;grid-template-columns:150px 1fr;gap:var(--s5);padding:var(--s4) 0;border-top:1px solid var(--line)}
+    .method:first-child{border-top:var(--rule-section) solid var(--blue-700)}
+    .method-name{font-size:var(--fs-h3);font-weight:var(--fw-bold);color:var(--blue-900)}
+    .method-copy{font-size:var(--fs-body);line-height:var(--lh-body);color:var(--ink-700)}
+    .decision{display:grid;grid-template-columns:1.2fr .8fr;gap:var(--s5)}
+    .action-box,.risk-box{padding:var(--panel-pad)}
+    .action-box{background:var(--green-50);border-left:var(--action-rule) solid var(--green-600)}
+    .risk-box{background:var(--red-50);border-left:var(--risk-rule) solid var(--red-500)}
+    .box-label{font-size:var(--fs-label);font-weight:var(--fw-bold);margin-bottom:var(--s3)}
+    .action-box .box-label{color:var(--green-700)}
+    .risk-box .box-label{color:var(--red-700)}
+    .action-box h3,.risk-box h3{margin:0 0 var(--s3);font-size:var(--fs-h3)}
+    .action-box p,.risk-box p{margin:0;font-size:var(--fs-body);line-height:var(--lh-body);color:var(--ink-700)}
+    .status{display:inline-block;margin-top:var(--s4);padding:var(--label-pad);background:var(--yellow-100);color:var(--yellow-900);font-size:var(--fs-caption);font-weight:var(--fw-bold)}
+    .evidence{padding:var(--s6) var(--s8);background:var(--ink-50);font-size:var(--fs-small);line-height:var(--lh-small);color:var(--ink-600)}
+    .evidence b{color:var(--ink-800)}
+    .card-footer{display:flex;justify-content:space-between;gap:var(--s4);padding:var(--s6) var(--s8) var(--safe-bottom);font-size:var(--fs-caption);color:var(--ink-500)}
+    @media(max-width:760px){body{padding:0}.cognitive-card{border-left:0;border-right:0;box-shadow:none}.card-header,section{padding-left:var(--s6);padding-right:var(--s6)}h1{font-size:34px}.argument-grid{grid-template-columns:1fr}.flow{grid-template-columns:1fr}.flow-step{border-right:0;border-bottom:1px solid var(--line)}.flow-step:last-child{border-bottom:0}.decision{grid-template-columns:1fr}.method{grid-template-columns:1fr;gap:var(--s2)}.card-footer{padding-left:var(--s6);padding-right:var(--s6)}}
+    @media(min-width:761px) and (max-width:980px){.argument-grid{grid-template-columns:1fr 1fr}.argument:last-child{grid-column:1/-1}.flow-step{padding-left:var(--s2);padding-right:var(--s2)}}
+    @media(max-width:460px){.card-header,section{padding:var(--s7) var(--s5)}h1{font-size:30px}.deck{font-size:19px}.core p,blockquote{font-size:24px}.eyebrow,.card-footer{flex-direction:column}.action-box,.risk-box,.argument{padding:var(--s5)}}
+    @media(min-width:1200px){body{padding-top:var(--s10);padding-bottom:var(--s10)}.card-header{padding-left:var(--s10);padding-right:var(--s10)}section{padding-left:var(--s10);padding-right:var(--s10)}}
+  </style>
+</head>
+<body>
+  <main class="card-shell">
+    <article class="cognitive-card">
+      <header class="card-header">
+        <div class="eyebrow"><span>日省认知卡片</span><span>2026-09-01 · 覆盖 08-27 至 09-01</span></div>
+        <h1>不要再学更多，先让一个知识点产生一次真实结果</h1>
+        <p class="deck">这一轮不是缺少模型，而是学习、系统构想和复盘尚未穿过执行层。真正的突破口，是把一个知识点压缩成当天可执行、可反馈、可淘汰的最小闭环。</p>
+      </header>
+
+      <section class="core">
+        <div class="core-label">今日核心判断</div>
+        <p>新增系统想法不是进展。只有行为发生变化，或外部世界给出反馈，知识才完成了转化。</p>
+      </section>
+
+      <section>
+        <div class="section-head"><span class="index">01</span><h2>问题不是认知不足，而是三处断点</h2></div>
+        <div class="argument-grid">
+          <div class="argument"><strong>学习断在总结</strong><p>广东学习收获很大，但最后主要留下了材料和 HTML，没有形成使用结果。</p></div>
+          <div class="argument"><strong>系统断在构想</strong><p>日报、故障处理、动态调度和机器人方向不断增加，却没有选出一个最小版本运行。</p></div>
+          <div class="argument"><strong>精力断在基础状态</strong><p>困倦、延迟进食和售后冲突叠加后，注意力被迅速抽走，高认知任务继续堆积。</p></div>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-head"><span class="index">02</span><h2>学习转化的最短路径</h2></div>
+        <div class="flow">
+          <div class="flow-step"><b>选一条</b><span>只取一个知识点</span></div>
+          <div class="flow-step"><b>定动作</b><span>动作脱离上下文也能执行</span></div>
+          <div class="flow-step"><b>当天做</b><span>不等待完整系统</span></div>
+          <div class="flow-step"><b>收反馈</b><span>保留真实结果与偏差</span></div>
+          <div class="flow-step"><b>再系统化</b><span>有效才固化，无效就删除</span></div>
+        </div>
+      </section>
+
+      <section class="quote">
+        <blockquote>“想都是问题，做才是答案。”</blockquote>
+        <div class="quote-note">这句话不是行动口号，而是本轮所有系统设计的验收标准。</div>
+      </section>
+
+      <section>
+        <div class="section-head"><span class="index">03</span><h2>三条可复用规则</h2></div>
+        <div class="method-list">
+          <div class="method"><div class="method-name">决策日志四问</div><div class="method-copy">现在掌握什么信息？可能结果有哪些？各自概率是多少？什么信息会改变判断？交易后再补实际结果，防止后见之明改写当时判断。</div></div>
+          <div class="method"><div class="method-name">系统边际递减</div><div class="method-copy">投入两倍精力不等于两倍产出。先删除无效工作和干扰，再优化反馈、休息和关键入口。</div></div>
+          <div class="method"><div class="method-name">状态证据分层</div><div class="method-copy">技术老师完成或群名“已拍”只进入待收货；只有客户明确确认或提供截图，才进入已收货。</div></div>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-head"><span class="index">04</span><h2>下一步与风险</h2></div>
+        <div class="decision">
+          <div class="action-box">
+            <div class="box-label">建议的最小实验</div>
+            <h3>用“决策日志四问”跑第一条学习转化样例</h3>
+            <p>它已有清晰结构、真实使用场景和后续反馈，不需要先开发新平台。连续记录后再判断是否值得系统化。</p>
+            <span class="status">尚未设为明日唯一动作</span>
+          </div>
+          <div class="risk-box">
+            <div class="box-label">当前最高风险</div>
+            <h3>用系统建设替代业务结果</h3>
+            <p>本轮没有可确认的发布、报价、成交、交付或回款结果。明日唯一业务动作仍待选择。</p>
+          </div>
+        </div>
+      </section>
+
+      <div class="evidence"><b>待核：</b>售后方是否存在恶意行为不能凭感受定性；投资走势与做市商动机仍是当时判断；录音房调用 Codex 的研究任务是否值得写盒，尚待决定。</div>
+      <footer class="card-footer"><span>来源：2026-09-01 正式日省</span><span>完整日省保持飞书私有，卡片为公开提炼版</span></footer>
+    </article>
+  </main>
+</body>
+</html>
