@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2026-09-02 认知卡片</title>
+  <style>
+    :root {
+      --black: #000000;
+      --night-1: #070707;
+      --night-2: #0d0d0f;
+      --night-3: #151518;
+      --night-4: #1d1d21;
+      --night-5: #27272c;
+      --line-1: #34343a;
+      --line-2: #47474e;
+      --white: #ffffff;
+      --white-1: #f7f7fa;
+      --white-2: #ededf2;
+      --white-3: #ddddE5;
+      --gray-1: #c5c5cf;
+      --gray-2: #ababB6;
+      --gray-3: #92929e;
+      --gray-4: #777782;
+      --gray-5: #62626d;
+      --cyan-1: #dffbff;
+      --cyan-2: #9eeef8;
+      --cyan-3: #4ed9ea;
+      --cyan-4: #16a9bd;
+      --blue-1: #e7efff;
+      --blue-2: #9dbbff;
+      --blue-3: #5e8cff;
+      --blue-4: #315ec9;
+      --green-1: #e4f8ed;
+      --green-2: #8de4b2;
+      --green-3: #38bb75;
+      --green-4: #16804a;
+      --amber-1: #fff4d5;
+      --amber-2: #ffd978;
+      --amber-3: #f0ad24;
+      --amber-4: #9a6610;
+      --red-1: #ffe8e8;
+      --red-2: #ff9f9f;
+      --red-3: #ef5555;
+      --red-4: #a72d2d;
+      --violet-1: #f1eaff;
+      --violet-2: #c7adff;
+      --violet-3: #8f67e8;
+      --violet-4: #5b39aa;
+      --font-display: "Arial Narrow", "PingFang SC", "Microsoft YaHei", sans-serif;
+      --font-body: Arial, "PingFang SC", "Microsoft YaHei", sans-serif;
+      --text-hero: 56px;
+      --text-title: 36px;
+      --text-section: 25px;
+      --text-subsection: 19px;
+      --text-lead: 18px;
+      --text-body: 16px;
+      --text-small: 14px;
+      --text-micro: 12px;
+      --weight-light: 300;
+      --weight-regular: 400;
+      --weight-medium: 500;
+      --weight-semibold: 600;
+      --weight-bold: 700;
+      --leading-tight: 1.08;
+      --leading-title: 1.22;
+      --leading-body: 1.72;
+      --leading-small: 1.55;
+      --tracking-display: 1px;
+      --tracking-label: .8px;
+      --tracking-body: 0;
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 20px;
+      --space-6: 24px;
+      --space-7: 32px;
+      --space-8: 40px;
+      --space-9: 48px;
+      --space-10: 56px;
+      --space-11: 64px;
+      --space-12: 80px;
+      --max-card: 940px;
+      --marker-core: 6px solid var(--white);
+      --marker-insight: 3px solid var(--cyan-3);
+      --marker-risk: 3px solid var(--amber-3);
+      --marker-action: 3px solid var(--green-3);
+      --marker-quote: 1px solid var(--line-2);
+      --divider: 1px solid var(--line-1);
+      --panel: var(--night-2);
+      --panel-raised: var(--night-3);
+      --panel-risk: #19150b;
+      --panel-action: #0c1811;
+    }
+    * { box-sizing: border-box; }
+    html { background: var(--black); color: var(--white); }
+    body { margin: 0; background: var(--black); font-family: var(--font-body); font-size: var(--text-body); line-height: var(--leading-body); letter-spacing: var(--tracking-body); }
+    .shell { width: min(100%, var(--max-card)); margin: 0 auto; background: var(--night-1); }
+    .card { min-height: 100vh; border: 1px solid var(--line-1); border-radius: 0; overflow: hidden; }
+    .hero { min-height: 520px; padding: var(--space-8) var(--space-8) var(--space-11); display: flex; flex-direction: column; justify-content: space-between; background: var(--black); border-bottom: var(--divider); }
+    .eyebrow { color: var(--gray-2); font-size: var(--text-micro); font-weight: var(--weight-bold); letter-spacing: var(--tracking-label); text-transform: uppercase; }
+    .hero h1 { max-width: 780px; margin: var(--space-12) 0 var(--space-6); font-family: var(--font-display); font-size: var(--text-hero); line-height: var(--leading-tight); letter-spacing: var(--tracking-display); }
+    .hero-lead { max-width: 690px; margin: 0; color: var(--white-2); font-size: var(--text-lead); }
+    .hero-rule { width: 120px; height: 5px; margin-top: var(--space-9); background: var(--white); }
+    .section { padding: var(--space-10) var(--space-8); border-bottom: var(--divider); }
+    .section-index { display: block; margin-bottom: var(--space-3); color: var(--gray-3); font-size: var(--text-micro); font-weight: var(--weight-bold); letter-spacing: var(--tracking-label); }
+    .section h2 { margin: 0 0 var(--space-7); font-family: var(--font-display); font-size: var(--text-section); line-height: var(--leading-title); letter-spacing: var(--tracking-display); }
+    .core { padding-left: var(--space-6); border-left: var(--marker-core); }
+    .core strong { display: block; margin-bottom: var(--space-3); font-size: var(--text-title); line-height: var(--leading-title); }
+    .core p { max-width: 710px; margin: 0; color: var(--gray-1); }
+    .flow { display: grid; grid-template-columns: repeat(3, 1fr); border: var(--divider); }
+    .flow-step { min-height: 150px; padding: var(--space-6); background: var(--panel); border-right: var(--divider); }
+    .flow-step:last-child { border-right: 0; }
+    .flow-number { display: block; color: var(--cyan-3); font-size: var(--text-micro); font-weight: var(--weight-bold); letter-spacing: var(--tracking-label); }
+    .flow-step h3 { margin: var(--space-4) 0 var(--space-2); font-size: var(--text-subsection); line-height: var(--leading-title); }
+    .flow-step p { margin: 0; color: var(--gray-2); font-size: var(--text-small); line-height: var(--leading-small); }
+    .insights { display: grid; gap: var(--space-4); }
+    .insight { padding: var(--space-5) var(--space-6); background: var(--panel); border-left: var(--marker-insight); }
+    .insight b { color: var(--cyan-2); }
+    .quote { margin: var(--space-8) 0 0; padding: var(--space-7); border: var(--marker-quote); background: var(--black); font-family: var(--font-display); font-size: var(--text-subsection); font-weight: var(--weight-semibold); line-height: 1.55; }
+    .quote-mark { display: block; margin-bottom: var(--space-3); color: var(--gray-4); font-size: 32px; line-height: 1; }
+    .action { padding: var(--space-7); background: var(--panel-action); border-left: var(--marker-action); }
+    .action-label { color: var(--green-2); font-size: var(--text-micro); font-weight: var(--weight-bold); letter-spacing: var(--tracking-label); }
+    .action h3 { margin: var(--space-3) 0 var(--space-5); font-size: var(--text-section); line-height: var(--leading-title); }
+    .action-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-6); }
+    .fact-label { display: block; color: var(--gray-3); font-size: var(--text-micro); font-weight: var(--weight-bold); }
+    .fact-value { display: block; margin-top: var(--space-1); color: var(--white-2); font-size: var(--text-small); }
+    .risk { margin-top: var(--space-5); padding: var(--space-6); background: var(--panel-risk); border-left: var(--marker-risk); }
+    .risk h3 { margin: 0 0 var(--space-3); color: var(--amber-2); font-size: var(--text-subsection); }
+    .risk ul, .review ul { margin: 0; padding-left: var(--space-5); }
+    .risk li, .review li { margin: var(--space-2) 0; color: var(--gray-1); }
+    .review { display: grid; gap: var(--space-5); }
+    .review-block { padding: var(--space-6); background: var(--panel); }
+    .review-block h3 { margin: 0 0 var(--space-3); font-size: var(--text-subsection); }
+    .review-block p { margin: 0; color: var(--gray-1); }
+    .bug { border-left: 3px solid var(--red-3); }
+    .advice { border-left: 3px solid var(--violet-2); }
+    .checklist { border-left: var(--marker-action); }
+    .footer { padding: var(--space-8); color: var(--gray-4); font-size: var(--text-small); border-top: 1px solid var(--line-1); }
+    @media (max-width: 960px) {
+      :root { --text-hero: 46px; }
+      .hero { min-height: 470px; }
+    }
+    @media (max-width: 760px) {
+      :root { --text-hero: 40px; --text-title: 30px; --text-section: 23px; }
+      .hero, .section, .footer { padding-left: var(--space-6); padding-right: var(--space-6); }
+      .flow { grid-template-columns: 1fr; }
+      .flow-step { min-height: auto; border-right: 0; border-bottom: var(--divider); }
+      .flow-step:last-child { border-bottom: 0; }
+      .action-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 520px) {
+      :root { --text-hero: 34px; --text-title: 26px; --text-body: 15px; }
+      .card { border-left: 0; border-right: 0; }
+      .hero { min-height: 430px; padding-top: var(--space-7); padding-bottom: var(--space-9); }
+      .hero h1 { margin-top: var(--space-10); }
+      .section { padding-top: var(--space-9); padding-bottom: var(--space-9); }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <article class="card">
+      <header class="hero">
+        <div class="eyebrow">DAILY REVIEW / 2026-09-02</div>
+        <div>
+          <h1>别再设计更多系统，先让一个样例真正运行</h1>
+          <p class="hero-lead">今天的输入把日报、调度、作息节律、故障接管和企微入口连成了一张系统图。下一步不是继续扩图，而是用一个可打开、可验收的静态日报验证核心假设。</p>
+          <div class="hero-rule"></div>
+        </div>
+      </header>
+
+      <section class="section">
+        <span class="section-index">01 / CORE</span>
+        <div class="core">
+          <strong>设计已经足够多，当前缺的是运行证据。</strong>
+          <p>本轮没有记录发布、客户对话、报价、成交或真实反馈样本。因此，系统价值还不能由设计完整度证明，只能由下一个可验证运行结果证明。</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <span class="section-index">02 / OPERATING LOGIC</span>
+        <h2>从构想到闭环，只走三步</h2>
+        <div class="flow">
+          <div class="flow-step">
+            <span class="flow-number">STEP 01</span>
+            <h3>各系统声明能力</h3>
+            <p>用最小说明回答“我能提供什么”，并提供稳定系统 ID。</p>
+          </div>
+          <div class="flow-step">
+            <span class="flow-number">STEP 02</span>
+            <h3>按优先级调度</h3>
+            <p>分类、整合后再调度；非关键任务降级模型，休息时可停消费者。</p>
+          </div>
+          <div class="flow-step">
+            <span class="flow-number">STEP 03</span>
+            <h3>用回执证明运行</h3>
+            <p>静态日报先展示真实状态；故障保留幂等回执，只在必要时通知人。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <span class="section-index">03 / INSIGHTS</span>
+        <h2>今天值得留下的三个判断</h2>
+        <div class="insights">
+          <div class="insight"><b>跨系统协作：</b>能力声明和系统 ID 是沟通前提，不是后续文档饰品。</div>
+          <div class="insight"><b>时间节律：</b>可以使用日省线索，但不能把无活动直接推断为已入睡。</div>
+          <div class="insight"><b>任务组织：</b>少量大任务用于保留方向，需要时再拆；平铺过多小任务会增加整体放弃概率。</div>
+        </div>
+        <blockquote class="quote"><span class="quote-mark">“</span>不要设置太多的任务，不然你的前额叶一烦躁，就不想做任务了，就全都不做了。</blockquote>
+      </section>
+
+      <section class="section">
+        <span class="section-index">04 / NEXT ACTION</span>
+        <h2>明日不要完成全局，只要完成样例</h2>
+        <div class="action">
+          <span class="action-label">ONE VERIFIABLE ACTION</span>
+          <h3>产出一份可运行的跨系统日报静态样例</h3>
+          <div class="action-grid">
+            <div><span class="fact-label">范围</span><span class="fact-value">投资、执行、健康三类状态</span></div>
+            <div><span class="fact-label">触发锚点</span><span class="fact-value">当天第一个 60-90 分钟保护时段</span></div>
+            <div><span class="fact-label">前五分钟</span><span class="fact-value">先写每个系统唯一必需字段</span></div>
+            <div><span class="fact-label">完成证据</span><span class="fact-value">可打开文件，真实值或 unknown 均明示</span></div>
+          </div>
+        </div>
+        <div class="risk">
+          <h3>待核与风险</h3>
+          <ul>
+            <li>“35 个较大任务”可能是“3-5 个”的语音转写，未核实前不作为规则。</li>
+            <li>早投资、午主业、晚系统的节律只是思路，尚未经实际执行验证。</li>
+            <li>录音房调用 Codex 模型是否值得投入，仍需决定。</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section">
+        <span class="section-index">05 / THIRD-PERSON REVIEW</span>
+        <h2>从第三人称看这一天</h2>
+        <div class="review">
+          <div class="review-block">
+            <h3>行为模式与思维习惯</h3>
+            <p>这个人擅长快速发现系统之间的缺口，并用组件、调度和入口将问题结构化。但他也会在真实样例出现之前，连续打开多个高抽象度课题。</p>
+          </div>
+          <div class="review-block bug">
+            <h3>最大的 Bug</h3>
+            <ul>
+              <li>主要问题：设计数量和抽象度同时上升，外部结果未同步增加。</li>
+              <li>最迫切：只选一个最小样例真正运行，避免复现任务过载。</li>
+              <li>长期最重要：用真实使用数据和外部结果约束系统扩张。</li>
+            </ul>
+          </div>
+          <div class="review-block advice">
+            <h3>给他的建议</h3>
+            <p>把每个“新系统”翻译成一个三天可验证样例：第一天做静态输出，第二天接一个真实数据源，第三天按使用反馈决定保留或删除。</p>
+          </div>
+          <div class="review-block checklist">
+            <h3>行动清单</h3>
+            <ul><li>产出跨系统日报的三系统静态样例，并以可打开文件作为验收证据。</li></ul>
+          </div>
+        </div>
+      </section>
+
+      <footer class="footer">2026-09-02 · 认知卡片 · 事实、行动与待核边界均源自当日正式日省</footer>
+    </article>
+  </main>
+</body>
+</html>
