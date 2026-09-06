@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>认知卡片 · 2026-09-07</title>
+  <style>
+    :root {
+      --green-900:#142f29;--green-800:#1e3932;--green-700:#006241;--green-600:#00754a;--green-500:#198754;--green-400:#4d9d78;--green-300:#8bc5a8;--green-200:#d4e9e2;--green-100:#e8f3ef;--green-050:#f3f8f6;
+      --gold-700:#896a32;--gold-600:#a37e3d;--gold-500:#cba258;--gold-400:#dfc49d;--gold-300:#ead8ba;--gold-200:#f4ead7;--gold-100:#faf6ee;
+      --cream-500:#e2ded6;--cream-400:#e7e3dc;--cream-300:#edebe9;--cream-200:#f2f0eb;--cream-100:#f8f6f2;--white:#fff;
+      --ink-900:#171b19;--ink-800:#252b28;--ink-700:#37413d;--ink-600:#4d5954;--ink-500:#68736e;--ink-400:#87908c;--ink-300:#a7afab;--ink-200:#c9cecb;--ink-100:#e4e7e5;
+      --red-700:#9d1912;--red-600:#c82014;--red-100:#fae8e6;--amber-700:#7a5810;--amber-500:#d69e1f;--amber-100:#fff5d8;--blue-700:#245a73;--blue-100:#e6f2f7;
+      --shadow:#142f291c;--line:#1e393233;--line-soft:#1e393218;--focus:#00754a;--surface:#fff;--canvas:#f2f0eb;--quiet:#edebe9;--risk:#fff5d8;--action:#e8f3ef;
+      --fs-hero:42px;--fs-title:30px;--fs-lead:22px;--fs-h2:20px;--fs-h3:17px;--fs-body:16px;--fs-small:14px;--fs-micro:12px;
+      --lh-tight:1.15;--lh-title:1.25;--lh-lead:1.45;--lh-body:1.7;--lh-small:1.55;--weight-black:800;--weight-bold:700;--weight-semibold:600;--weight-regular:400;
+      --text-hero:var(--fs-hero)/var(--lh-tight);--text-title:var(--fs-title)/var(--lh-title);--text-lead:var(--fs-lead)/var(--lh-lead);--text-section:var(--fs-h2)/1.35;--text-sub:var(--fs-h3)/1.45;--text-body:var(--fs-body)/var(--lh-body);--text-small:var(--fs-small)/var(--lh-small);--text-micro:var(--fs-micro)/1.5;
+      --space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:20px;--space-6:24px;--space-7:32px;--space-8:40px;--space-9:48px;--space-10:64px;--space-11:80px;--space-12:96px;
+      --mark-core:8px;--mark-section:4px;--mark-rule:1px;--mark-number:34px;--mark-quote:5px;--mark-action:6px;--mark-risk:6px;--mark-meta:1px;--mark-band:12px;--mark-footer:2px;
+    }
+    *{box-sizing:border-box}html{background:var(--canvas);color:var(--ink-900);font-family:Inter,"Helvetica Neue",Arial,"PingFang SC",sans-serif}body{margin:0;padding:var(--space-8) var(--space-4)}
+    .shell{max-width:920px;margin:0 auto;background:var(--surface);box-shadow:0 10px 36px var(--shadow)}
+    .card{border-radius:0;border-top:var(--mark-band) solid var(--green-700)}
+    .hero{padding:var(--space-10) var(--space-9) var(--space-9);background:var(--green-800);color:var(--white)}
+    .eyebrow{font:var(--text-micro);font-weight:var(--weight-bold);color:var(--green-300);text-transform:uppercase}
+    h1{margin:var(--space-3) 0 var(--space-5);font:var(--text-hero);font-weight:var(--weight-black);max-width:680px}
+    .hero p{margin:0;max-width:720px;font:var(--text-lead);color:#ffffffe0}
+    .date{margin-top:var(--space-7);padding-top:var(--space-4);border-top:var(--mark-meta) solid #ffffff33;font:var(--text-small);color:#ffffffb8}
+    .section{padding:var(--space-8) var(--space-9);border-bottom:var(--mark-rule) solid var(--line-soft)}
+    .section-label{display:flex;align-items:center;gap:var(--space-3);margin-bottom:var(--space-6);font:var(--text-section);font-weight:var(--weight-bold);color:var(--green-800)}
+    .number{display:grid;place-items:center;width:var(--mark-number);height:var(--mark-number);background:var(--green-700);color:var(--white);font-weight:var(--weight-bold)}
+    .core{border-left:var(--mark-core) solid var(--gold-500);background:var(--gold-100);padding:var(--space-7)}
+    .core strong{display:block;color:var(--green-800);font:var(--text-title);font-weight:var(--weight-black);margin-bottom:var(--space-3)}
+    .core p{margin:0;font:var(--text-body);color:var(--ink-700)}
+    .flow{display:grid;grid-template-columns:repeat(3,1fr);border:var(--mark-rule) solid var(--line)}
+    .step{padding:var(--space-6);min-height:150px;background:var(--white)}.step+ .step{border-left:var(--mark-rule) solid var(--line)}
+    .step b{display:block;font:var(--text-sub);color:var(--green-700);margin-bottom:var(--space-3)}.step p{margin:0;font:var(--text-small);color:var(--ink-600)}
+    .quote{margin:0;padding:var(--space-6) var(--space-7);border-left:var(--mark-quote) solid var(--green-600);background:var(--green-050);font:var(--text-lead);font-family:Georgia,"Songti SC",serif;color:var(--green-800)}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--space-5)}
+    .panel{padding:var(--space-6);border-top:var(--mark-section) solid var(--green-600);background:var(--cream-100)}
+    .panel.warn{border-top-color:var(--amber-500);background:var(--amber-100)}.panel h3{margin:0 0 var(--space-4);font:var(--text-sub);font-weight:var(--weight-bold)}
+    .panel ul,.action-list{margin:0;padding-left:20px;font:var(--text-body)}.panel li+li,.action-list li+li{margin-top:var(--space-2)}
+    .action{background:var(--action);border-left:var(--mark-action) solid var(--green-600);padding:var(--space-7)}
+    .action h3{margin:0 0 var(--space-4);font:var(--text-section);font-weight:var(--weight-bold);color:var(--green-800)}
+    .action-list li::marker{color:var(--green-700)}
+    .risk{margin-top:var(--space-5);padding:var(--space-5) var(--space-6);border-left:var(--mark-risk) solid var(--amber-500);background:var(--risk);font:var(--text-small);color:var(--amber-700)}
+    footer{padding:var(--space-6) var(--space-9);border-bottom:var(--mark-footer) solid var(--green-800);background:var(--cream-300);font:var(--text-micro);color:var(--ink-500)}
+    @media(max-width:720px){body{padding:0}.hero,.section{padding-left:var(--space-6);padding-right:var(--space-6)}.flow,.grid{grid-template-columns:1fr}.step+ .step{border-left:0;border-top:var(--mark-rule) solid var(--line)}h1{font-size:34px}}
+    @media(min-width:721px) and (max-width:960px){body{padding:var(--space-5)}.hero,.section{padding-left:var(--space-8);padding-right:var(--space-8)}}
+    @media(max-width:420px){.hero{padding-top:var(--space-8)}h1{font-size:30px}.hero p{font-size:19px}.section{padding-top:var(--space-7);padding-bottom:var(--space-7)}.core{padding:var(--space-5)}}
+    @media(min-width:1200px){body{padding-top:var(--space-10);padding-bottom:var(--space-10)}.shell{max-width:960px}}
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <article class="card">
+      <header class="hero">
+        <div class="eyebrow">今日复盘 · 任务澄清</div>
+        <h1>别让“弄一下”成为执行边界</h1>
+        <p>意图已经被记下，但动作、对象和完成证据仍需补齐。</p>
+        <div class="date">2026-09-07 · 活动日 2026-09-06 · 次日归档</div>
+      </header>
+      <section class="section">
+        <div class="core"><strong>核心判断</strong><p>只有方向、没有完成边界的待办，不应被系统猜测并自动执行。先澄清，才能真正验收。</p></div>
+      </section>
+      <section class="section">
+        <div class="section-label"><span class="number">01</span><span>从提醒词到可执行任务</span></div>
+        <div class="flow">
+          <div class="step"><b>动作</b><p>要做什么？“整一下”需要换成具体动作。</p></div>
+          <div class="step"><b>对象</b><p>针对什么？“平安”是银行、保险、证券还是其他事项？</p></div>
+          <div class="step"><b>证据</b><p>怎样算做完？金额、渠道、回执或可查结果必须明确。</p></div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="section-label"><span class="number">02</span><span>原话与认知锚点</span></div>
+        <blockquote class="quote">“明天整一下港币兑换，然后弄一下平安。”</blockquote>
+      </section>
+      <section class="section">
+        <div class="section-label"><span class="number">03</span><span>当前状态</span></div>
+        <div class="grid">
+          <div class="panel"><h3>已确定</h3><ul><li>用户有处理港币兑换的次日意图。</li><li>该事项暂时保留为候选，未自动入盒。</li></ul></div>
+          <div class="panel warn"><h3>尚未确定</h3><ul><li>港币兑换的金额、方式和验收标准。</li><li>“平安”的具体业务对象和动作。</li></ul></div>
+        </div>
+      </section>
+      <section class="section">
+        <div class="section-label"><span class="number">04</span><span>行动清单</span></div>
+        <div class="action"><h3>先澄清，再执行</h3><ol class="action-list"><li>补充港币兑换的金额、方式和验收结果。</li><li>说明“平安”具体是什么，以及需要完成的动作。</li><li>核对公开输出研究第一轮采集是否已完成。</li></ol></div>
+        <div class="risk"><b>待核风险：</b>本轮没有证据证明上一轮唯一承诺已完成，不得将“未提及”改写为“未完成”。</div>
+      </section>
+      <footer>来源：2026-09-07 正式日省 · 视觉参考：Starbucks 温暖零售标识系统 · 静态卡片</footer>
+    </article>
+  </main>
+</body>
+</html>
