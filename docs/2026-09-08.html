@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>认知卡片 · 2026-09-08</title>
+  <style>
+    :root {
+      --green-950: #102d26;
+      --green-900: #173c32;
+      --green-850: #1e493d;
+      --green-800: #245648;
+      --green-700: #006241;
+      --green-650: #00754a;
+      --green-600: #16845b;
+      --green-500: #3a9a72;
+      --green-400: #6db597;
+      --green-300: #9bcdb9;
+      --green-200: #c2dfd4;
+      --green-150: #d4e9e2;
+      --green-100: #e6f2ed;
+      --green-050: #f2f8f5;
+      --gold-700: #8b682d;
+      --gold-600: #a9813b;
+      --gold-500: #cba258;
+      --gold-400: #d8b97e;
+      --gold-300: #e4cda5;
+      --gold-200: #efdfc3;
+      --gold-100: #faf1df;
+      --cream-500: #e0ddd6;
+      --cream-400: #e8e5df;
+      --cream-300: #edebe9;
+      --cream-200: #f2f0eb;
+      --cream-100: #f8f6f1;
+      --white: #ffffff;
+      --ink-950: #111714;
+      --ink-900: #18211d;
+      --ink-800: #26322d;
+      --ink-700: #37443e;
+      --ink-600: #4c5953;
+      --ink-500: #65716b;
+      --ink-400: #7e8984;
+      --ink-300: #a0a8a4;
+      --line-strong: #73857d;
+      --line-medium: #adb9b3;
+      --line-soft: #d2d9d5;
+      --line-faint: #e6eae8;
+      --danger-700: #8d281f;
+      --danger-500: #c82014;
+      --danger-100: #f7e7e4;
+      --warning-700: #7a5712;
+      --warning-500: #d59b21;
+      --warning-100: #fff2d5;
+      --info-700: #225d76;
+      --info-100: #e5f1f5;
+      --shadow: rgba(16, 45, 38, 0.12);
+      --text-display: 46px;
+      --text-hero: 32px;
+      --text-title: 26px;
+      --text-section: 21px;
+      --text-subsection: 18px;
+      --text-lead: 17px;
+      --text-body: 16px;
+      --text-small: 14px;
+      --text-micro: 12px;
+      --weight-black: 900;
+      --weight-bold: 760;
+      --weight-semi: 650;
+      --weight-medium: 560;
+      --weight-regular: 420;
+      --line-display: 1.08;
+      --line-title: 1.25;
+      --line-body: 1.72;
+      --line-tight: 1.45;
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 20px;
+      --space-6: 24px;
+      --space-7: 32px;
+      --space-8: 40px;
+      --space-9: 48px;
+      --space-10: 64px;
+      --space-11: 80px;
+      --space-12: 96px;
+      --rule-core: 8px;
+      --rule-section: 3px;
+      --rule-detail: 1px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { background: var(--cream-400); }
+
+    body {
+      margin: 0;
+      color: var(--ink-900);
+      background: var(--cream-400);
+      font-family: Inter, "PingFang SC", "Microsoft YaHei", Arial, sans-serif;
+      letter-spacing: 0;
+    }
+
+    .shell {
+      width: min(100%, 980px);
+      margin: 0 auto;
+      padding: var(--space-8) var(--space-5);
+    }
+
+    .card {
+      overflow: hidden;
+      background: var(--cream-100);
+      border: 1px solid var(--line-medium);
+      border-radius: 0;
+      box-shadow: 0 18px 50px var(--shadow);
+    }
+
+    .hero {
+      min-height: 420px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: var(--space-10);
+      color: var(--white);
+      background: var(--green-900);
+      border-left: var(--rule-core) solid var(--gold-500);
+    }
+
+    .eyebrow,
+    .meta,
+    .kicker {
+      font-size: var(--text-micro);
+      font-weight: var(--weight-bold);
+      line-height: var(--line-tight);
+      text-transform: uppercase;
+    }
+
+    .eyebrow { color: var(--gold-300); }
+
+    h1 {
+      max-width: 760px;
+      margin: var(--space-7) 0 var(--space-5);
+      font-family: Georgia, "Songti SC", serif;
+      font-size: var(--text-display);
+      font-weight: var(--weight-bold);
+      line-height: var(--line-display);
+    }
+
+    .hero-lead {
+      max-width: 720px;
+      margin: 0;
+      color: var(--green-100);
+      font-size: var(--text-lead);
+      font-weight: var(--weight-medium);
+      line-height: var(--line-body);
+    }
+
+    .hero-rule {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: var(--space-5);
+      align-items: center;
+      margin-top: var(--space-9);
+    }
+
+    .hero-rule strong {
+      color: var(--gold-300);
+      font-size: var(--text-small);
+    }
+
+    .hero-rule span { height: 1px; background: var(--green-500); }
+
+    .content { padding: 0 var(--space-10) var(--space-10); }
+
+    .section {
+      padding: var(--space-9) 0;
+      border-bottom: var(--rule-detail) solid var(--line-soft);
+    }
+
+    .section:last-child { border-bottom: 0; }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 52px 1fr;
+      gap: var(--space-5);
+      align-items: start;
+      margin-bottom: var(--space-7);
+    }
+
+    .number {
+      color: var(--green-700);
+      font-size: var(--text-section);
+      font-weight: var(--weight-black);
+      line-height: 1;
+      border-top: var(--rule-section) solid var(--green-700);
+      padding-top: var(--space-2);
+    }
+
+    h2 {
+      margin: 0;
+      color: var(--green-900);
+      font-size: var(--text-title);
+      font-weight: var(--weight-bold);
+      line-height: var(--line-title);
+    }
+
+    .section-intro {
+      max-width: 710px;
+      margin: var(--space-2) 0 0;
+      color: var(--ink-500);
+      font-size: var(--text-small);
+      line-height: var(--line-body);
+    }
+
+    .main-action {
+      display: grid;
+      grid-template-columns: 10px 1fr;
+      background: var(--green-100);
+      border: 1px solid var(--green-300);
+    }
+
+    .main-action::before { content: ""; background: var(--green-650); }
+
+    .main-action-body { padding: var(--space-7); }
+
+    .kicker { color: var(--green-700); }
+
+    .action-title {
+      margin: var(--space-2) 0 var(--space-5);
+      color: var(--ink-950);
+      font-size: var(--text-hero);
+      font-weight: var(--weight-black);
+      line-height: var(--line-title);
+    }
+
+    .action-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-4);
+    }
+
+    .datum {
+      padding-top: var(--space-3);
+      border-top: 1px solid var(--green-400);
+    }
+
+    .datum-label {
+      display: block;
+      margin-bottom: var(--space-1);
+      color: var(--ink-500);
+      font-size: var(--text-micro);
+      font-weight: var(--weight-bold);
+    }
+
+    .datum-value {
+      color: var(--ink-800);
+      font-size: var(--text-small);
+      font-weight: var(--weight-semi);
+      line-height: var(--line-tight);
+    }
+
+    .signal-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-4);
+    }
+
+    .signal {
+      padding: var(--space-6);
+      background: var(--white);
+      border-top: var(--rule-section) solid var(--green-700);
+      border-right: 1px solid var(--line-soft);
+      border-bottom: 1px solid var(--line-soft);
+      border-left: 1px solid var(--line-soft);
+    }
+
+    .signal.gold { border-top-color: var(--gold-500); }
+    .signal.red { border-top-color: var(--danger-500); }
+
+    .signal h3 {
+      margin: 0 0 var(--space-3);
+      font-size: var(--text-subsection);
+      line-height: var(--line-title);
+    }
+
+    .signal p,
+    .body-copy,
+    li {
+      margin: 0;
+      color: var(--ink-700);
+      font-size: var(--text-body);
+      line-height: var(--line-body);
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border: 1px solid var(--line-medium);
+    }
+
+    .flow-step {
+      min-height: 170px;
+      padding: var(--space-6);
+      background: var(--white);
+      border-right: 1px solid var(--line-medium);
+    }
+
+    .flow-step:last-child { border-right: 0; background: var(--green-900); color: var(--white); }
+
+    .flow-step b {
+      display: block;
+      margin-bottom: var(--space-4);
+      color: var(--green-700);
+      font-size: var(--text-small);
+    }
+
+    .flow-step:last-child b { color: var(--gold-300); }
+    .flow-step:last-child p { color: var(--green-100); }
+
+    .quote {
+      padding: var(--space-9);
+      color: var(--white);
+      background: var(--green-700);
+      border-left: var(--rule-core) solid var(--gold-500);
+      font-family: Georgia, "Songti SC", serif;
+      font-size: var(--text-hero);
+      font-weight: var(--weight-bold);
+      line-height: 1.42;
+    }
+
+    .quote small {
+      display: block;
+      margin-top: var(--space-5);
+      color: var(--green-150);
+      font-family: Inter, "PingFang SC", sans-serif;
+      font-size: var(--text-micro);
+      font-weight: var(--weight-medium);
+    }
+
+    .rules {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--space-5);
+    }
+
+    .rule {
+      padding: var(--space-6);
+      background: var(--cream-200);
+      border-left: var(--rule-section) solid var(--gold-600);
+    }
+
+    .rule strong {
+      display: block;
+      margin-bottom: var(--space-2);
+      color: var(--green-900);
+      font-size: var(--text-subsection);
+    }
+
+    .checklist,
+    .risk-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .checklist li,
+    .risk-list li {
+      position: relative;
+      padding: var(--space-4) var(--space-4) var(--space-4) 46px;
+      border-bottom: 1px solid var(--line-soft);
+    }
+
+    .checklist li::before {
+      content: "";
+      position: absolute;
+      left: var(--space-3);
+      top: 23px;
+      width: 14px;
+      height: 14px;
+      border: 2px solid var(--green-650);
+    }
+
+    .risk-box {
+      padding: var(--space-6);
+      background: var(--warning-100);
+      border: 1px solid var(--gold-400);
+      border-left: var(--rule-core) solid var(--warning-500);
+    }
+
+    .risk-box h3 { margin: 0 0 var(--space-4); color: var(--warning-700); }
+
+    .risk-list li { padding-left: var(--space-5); border-color: var(--gold-300); }
+    .risk-list li::before { content: "?"; position: absolute; left: 0; color: var(--warning-700); font-weight: var(--weight-black); }
+
+    .diagnosis {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-5);
+    }
+
+    .diagnosis-panel { padding: var(--space-7); background: var(--green-050); border: 1px solid var(--green-300); }
+    .diagnosis-panel.urgent { background: var(--danger-100); border-color: #e9b5af; }
+    .diagnosis-panel h3 { margin: 0 0 var(--space-3); font-size: var(--text-subsection); }
+
+    .footer {
+      padding: var(--space-7) var(--space-10);
+      color: var(--green-150);
+      background: var(--green-950);
+      font-size: var(--text-micro);
+      line-height: var(--line-body);
+    }
+
+    @media (max-width: 760px) {
+      :root { --text-display: 38px; --text-hero: 27px; --text-title: 23px; }
+      .shell { padding: 0; }
+      .hero, .content { padding-left: var(--space-7); padding-right: var(--space-7); }
+      .hero { min-height: 380px; padding-top: var(--space-9); padding-bottom: var(--space-9); }
+      .action-grid, .flow, .rules, .diagnosis { grid-template-columns: 1fr; }
+      .flow-step { min-height: auto; border-right: 0; border-bottom: 1px solid var(--line-medium); }
+      .flow-step:last-child { border-bottom: 0; }
+      .footer { padding: var(--space-7); }
+    }
+
+    @media (max-width: 560px) {
+      :root { --text-display: 32px; --text-hero: 23px; --text-body: 15px; }
+      .hero, .content { padding-left: var(--space-5); padding-right: var(--space-5); }
+      .section { padding: var(--space-8) 0; }
+      .section-head { grid-template-columns: 38px 1fr; gap: var(--space-3); }
+      .signal-grid { grid-template-columns: 1fr; }
+      .main-action-body, .quote, .diagnosis-panel { padding: var(--space-5); }
+      .footer { padding: var(--space-6) var(--space-5); }
+    }
+
+    @media (min-width: 1100px) {
+      .shell { padding-top: var(--space-10); padding-bottom: var(--space-10); }
+      .hero { min-height: 460px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <article class="card">
+      <header class="hero">
+        <div>
+          <div class="eyebrow">认知复盘 / 2026-09-08 / 9.07-9.09 合并</div>
+          <h1>先知道要什么，再让 AI 放大</h1>
+          <p class="hero-lead">这几天最重要的纠偏，不是把系统搭得更多，而是让每次建设都从真实需求、现成方案和可验证结果出发。</p>
+        </div>
+        <div class="hero-rule"><strong>核心命题</strong><span></span></div>
+      </header>
+
+      <div class="content">
+        <section class="section">
+          <div class="section-head">
+            <div class="number">01</div>
+            <div><h2>明日只保护一个外部结果</h2><p class="section-intro">上一轮没有形成唯一承诺。本轮从已有 TaskBox 任务中，选择唯一直接产生发布结果的动作。</p></div>
+          </div>
+          <div class="main-action">
+            <div class="main-action-body">
+              <div class="kicker">唯一动作</div>
+              <div class="action-title">更新并发布两篇抖音帖子</div>
+              <div class="action-grid">
+                <div class="datum"><span class="datum-label">触发</span><span class="datum-value">当天第一个 60-90 分钟保护时段</span></div>
+                <div class="datum"><span class="datum-label">限流处理</span><span class="datum-value">设为仅自己可见后重新发布</span></div>
+                <div class="datum"><span class="datum-label">完成证据</span><span class="datum-value">两条发布记录与必要的重发结果</span></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <div class="number">02</div>
+            <div><h2>三个反复出现的信号</h2><p class="section-intro">远看是系统问题，近看分别落在需求、注意力与经营约束上。</p></div>
+          </div>
+          <div class="signal-grid">
+            <div class="signal"><h3>重复造轮子</h3><p>投入约两天后发现已有实现；自述约 70% 的手搓内容可能已有更成熟方案。</p></div>
+            <div class="signal red"><h3>注意力泄漏</h3><p>执行 todo 时进入推特信息流；晚归后刷短剧到凌晨 3 点，次日启动与睡眠一起受损。</p></div>
+            <div class="signal gold"><h3>成本压力</h3><p>员工、房租与联合办公带来约 7000-8000 元口述月支出估算，工资投产比尚无完整数据。</p></div>
+            <div class="signal"><h3>正向修正</h3><p>开始提前复盘、等待交易机会，并把对别人项目的判断回流到自己的放大路径。</p></div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <div class="number">03</div>
+            <div><h2>新的建设顺序</h2><p class="section-intro">AI 不是需求生成器，而是已经清楚的目标和流程的放大器。</p></div>
+          </div>
+          <div class="flow">
+            <div class="flow-step"><b>先定义</b><p>说清楚真实需求、使用场景与完成后能看到的结果。</p></div>
+            <div class="flow-step"><b>再搜索</b><p>检查 GitHub、现成产品与可复用源码，比较复用、改造和自建。</p></div>
+            <div class="flow-step"><b>后放大</b><p>先小范围跑通，再自动化、全局化和多电脑部署。</p></div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="quote">“一定是把已经跑通了的东西自动／AI 化，而不是直接把还没跑通的东西 AI 化。”<small>本轮记忆锚点</small></div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <div class="number">04</div>
+            <div><h2>可复用的五条规则</h2><p class="section-intro">把反思变成下一次能直接调用的动作边界。</p></div>
+          </div>
+          <div class="rules">
+            <div class="rule"><strong>需求先行</strong><p class="body-copy">我要什么、为什么要、做完看到什么。</p></div>
+            <div class="rule"><strong>搜索先行</strong><p class="body-copy">开发前先确认有没有成熟轮子。</p></div>
+            <div class="rule"><strong>最小放大</strong><p class="body-copy">先找最简单、最好上手的一条路径。</p></div>
+            <div class="rule"><strong>激光执行</strong><p class="body-copy">路径明确后，不在过程中进入信息流。</p></div>
+            <div class="rule"><strong>小范围跑通</strong><p class="body-copy">单流程稳定后再扩大，不一开始就全局化。</p></div>
+            <div class="rule"><strong>判断回流</strong><p class="body-copy">把看别人项目的洞察，同样用于自己的项目。</p></div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <div class="number">05</div>
+            <div><h2>停止、继续、行动</h2><p class="section-intro">先保护注意力和外部结果，再处理系统维护与新想法。</p></div>
+          </div>
+          <ul class="checklist">
+            <li><strong>停止：</strong>在任务中借查看书签进入信息流。</li>
+            <li><strong>停止：</strong>没有明确需求和验收结果时扩建系统。</li>
+            <li><strong>继续：</strong>低能量或晚归前提前记录与复盘。</li>
+            <li><strong>继续：</strong>等待明确交易机会，不制造频繁操作。</li>
+            <li><strong>维护：</strong>同步日程消耗到日勤系统；完成小梦自动转发。</li>
+          </ul>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <div class="number">06</div>
+            <div><h2>仍需核清的决策</h2><p class="section-intro">不确定状态保持不确定，不替未来的自己伪造答案。</p></div>
+          </div>
+          <div class="risk-box">
+            <h3>决策前补字段</h3>
+            <ul class="risk-list">
+              <li>袁铁柱账号监控：平台、通知对象和验收标准是什么？</li>
+              <li>联合办公：现在加入还是国庆后加入，真实可用天数与计费规则是什么？</li>
+              <li>员工投产比：本周投入、任务、流量和成交结果分别是多少？</li>
+              <li>港币兑换与“平安”事项仍缺少具体对象和完成证据。</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <div class="number">07</div>
+            <div><h2>第三人称审视</h2><p class="section-intro">不是人格判断，而是从这几天的行为证据识别系统性约束。</p></div>
+          </div>
+          <div class="diagnosis">
+            <div class="diagnosis-panel urgent"><h3>最迫切</h3><p class="body-copy">控制夜间短剧和任务中的信息流切换，否则睡眠与当天执行会持续被侵蚀。</p></div>
+            <div class="diagnosis-panel"><h3>长期最重要</h3><p class="body-copy">把强系统化能力改造成需求驱动、结果驱动的能力，每个系统都必须改变一个真实决策或外部结果。</p></div>
+          </div>
+        </section>
+      </div>
+
+      <footer class="footer">认知卡片 · 2026-09-08｜活动范围 2026-09-07 至 2026-09-09｜来源：正式日省 Lite 冻结交接与用户原始记录｜待核内容未被改写为事实</footer>
+    </article>
+  </main>
+</body>
+</html>
