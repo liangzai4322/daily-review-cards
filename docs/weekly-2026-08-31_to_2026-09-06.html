@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>周省 · 2026-08-31 至 2026-09-06</title>
+  <style>
+    :root {
+      --paper: #f3f7fb;
+      --ink: #10243e;
+      --muted: #60748b;
+      --line: #cad6e2;
+      --blue: #155eef;
+      --coral: #e85d4a;
+      --mint: #dff7ee;
+      --white: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { background: var(--paper); }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(90deg, transparent 0 47px, rgba(21, 94, 239, 0.08) 47px 48px, transparent 48px),
+        var(--paper);
+      font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+      line-height: 1.65;
+    }
+
+    .sheet {
+      width: min(1120px, calc(100% - 32px));
+      margin: 32px auto;
+      background: var(--white);
+      border: 1px solid var(--line);
+      box-shadow: 14px 14px 0 rgba(16, 36, 62, 0.08);
+    }
+
+    .masthead {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 28px;
+      align-items: end;
+      padding: 44px 48px 34px;
+      border-bottom: 4px solid var(--ink);
+    }
+
+    .eyebrow,
+    .meta,
+    .section-label,
+    .metric-label,
+    .threshold-label {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: "Songti SC", "STSong", serif;
+      font-size: clamp(44px, 7vw, 78px);
+      font-weight: 900;
+      line-height: 0.98;
+    }
+
+    .meta {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      text-align: right;
+    }
+
+    .verdict {
+      display: grid;
+      grid-template-columns: 116px minmax(0, 1fr);
+      gap: 28px;
+      padding: 38px 48px;
+      color: var(--white);
+      background: var(--ink);
+    }
+
+    .section-label {
+      margin: 5px 0 0;
+      color: #91b8ff;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+    }
+
+    .verdict p {
+      margin: 0;
+      font-family: "Songti SC", "STSong", serif;
+      font-size: clamp(24px, 3.4vw, 39px);
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .content { padding: 14px 48px 48px; }
+
+    .block {
+      display: grid;
+      grid-template-columns: 116px minmax(0, 1fr);
+      gap: 28px;
+      padding: 32px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .block:last-child { border-bottom: 0; }
+
+    .block .section-label { color: var(--blue); }
+
+    h2 {
+      margin: 0 0 16px;
+      font-size: 25px;
+      line-height: 1.3;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .metric {
+      min-height: 96px;
+      padding: 16px;
+      background: #edf3fa;
+      border-left: 3px solid var(--blue);
+    }
+
+    .metric-label {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .metric strong { font-size: 22px; }
+
+    .bottleneck {
+      padding: 24px;
+      background: #fff2ef;
+      border: 1px solid #f3b7ae;
+    }
+
+    .bottleneck h2 { color: #9e2f22; }
+
+    .root-cause {
+      margin: 14px 0 0;
+      color: #6f342d;
+    }
+
+    .experiment {
+      position: relative;
+      padding: 28px;
+      background: var(--mint);
+      border: 1px solid #9dddc7;
+    }
+
+    .experiment::before {
+      content: "NEXT";
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 5px 10px;
+      color: var(--white);
+      background: var(--blue);
+      font: 700 11px/1 "SFMono-Regular", Consolas, monospace;
+      letter-spacing: 0.1em;
+    }
+
+    .thresholds {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1px;
+      margin-top: 22px;
+      background: #a8d8c8;
+      border: 1px solid #a8d8c8;
+    }
+
+    .threshold {
+      padding: 14px;
+      background: #f7fffc;
+    }
+
+    .threshold-label {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+    }
+
+    .stop {
+      margin-bottom: 18px;
+      padding: 14px 16px;
+      color: #7b261c;
+      background: #fff2ef;
+      border-left: 4px solid var(--coral);
+    }
+
+    .scoreboard {
+      display: grid;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .scoreboard li {
+      position: relative;
+      padding: 10px 12px 10px 40px;
+      border: 1px solid var(--line);
+    }
+
+    .scoreboard li::before {
+      content: "";
+      position: absolute;
+      left: 14px;
+      top: 14px;
+      width: 13px;
+      height: 13px;
+      border: 2px solid var(--blue);
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 16px 48px;
+      color: var(--muted);
+      background: #edf3fa;
+      font-size: 12px;
+    }
+
+    @media (max-width: 760px) {
+      .sheet { width: min(100% - 16px, 1120px); margin: 8px auto; box-shadow: none; }
+      .masthead, .verdict, .block { grid-template-columns: 1fr; gap: 12px; }
+      .masthead, .verdict, .content { padding-left: 24px; padding-right: 24px; }
+      .meta { text-align: left; }
+      .metrics, .thresholds { grid-template-columns: 1fr; }
+      .footer { flex-direction: column; padding: 14px 24px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="sheet">
+    <header class="masthead">
+      <div>
+        <p class="eyebrow">Weekly operating review</p>
+        <h1>周省</h1>
+      </div>
+      <p class="meta">2026-08-31 至 2026-09-06<br>2026-09-12 12:20 +08:00  <br>数据覆盖 未记录</p>
+    </header>
+
+    <section class="verdict">
+      <p class="section-label">01 / 判决</p>
+      <p>本周最重要的产出不是新增系统，而是逐步明确了“一个小助理统一接收，再向人生参谋部和专业系统分发”的协作方向，以及“需要知道、需要决定、需要做、系统状态”四类信息入口。真正的执行结果仍偏少，跨系统日报、公开输出研究和学习转化都没有完整验收证据。</p>
+    </section>
+
+    <div class="content">
+      <section class="block">
+        <p class="section-label">02 / 结果</p>
+        <div>
+          <h2>外部世界留下了什么</h2>
+          <div class="metrics"><div class="metric"><span class="metric-label">外部结果</span><strong>未记录</strong></div></div>
+        </div>
+      </section>
+
+      <section class="block">
+        <p class="section-label">03 / 瓶颈</p>
+        <div class="bottleneck">
+          <h2>设计不断增加，但最小可运行结果没有及时验收</h2>
+          <p class="root-cause"><strong>根因：</strong>把“系统边界想清楚”误当成“系统已经产生结果”；同时保留过多未验收支线。</p>
+        </div>
+      </section>
+
+      <section class="block">
+        <p class="section-label">04 / 实验</p>
+        <div class="experiment">
+          <h2>定义每类一个最小字段，读取现有可用状态，生成静态页面，连续使用 3 天。</h2>
+          <div class="thresholds">
+            <div class="threshold"><span class="threshold-label">SUCCESS</span>页面可打开；三类状态均有真实值或明确 `unknown`；每天能据此做出至少一个明确判断。</div>
+            <div class="threshold"><span class="threshold-label">FAILURE</span>字段无法稳定取得、页面无法打开，或连续 3 天仍无法改变任何行动。</div>
+            <div class="threshold"><span class="threshold-label">DEADLINE</span>2026-09-13。</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="block">
+        <p class="section-label">05 / 护栏</p>
+        <div>
+          <div class="stop"><strong>停止：</strong>未记录</div>
+          <ul class="scoreboard"></ul>
+        </div>
+      </section>
+
+      <section class="block">
+        <p class="section-label">06 / 审视</p>
+        <div><p>本期未生成第三人称审视。</p></div>
+      </section>
+    </div>
+
+    <footer class="footer">
+      <span>缺失与待核：无</span>
+      <span>瓶颈 → 根因 → 实验</span>
+    </footer>
+  </main>
+</body>
+</html>
