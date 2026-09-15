@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>认知卡片 · 2026-09-16</title>
+  <style>
+    :root {
+      --red:#e60012;--orange:#f68d1f;--amber:#ecab37;--gold:#e48600;
+      --canvas:#7a8aba;--canvas-soft:#9fbee7;--lavender:#acace7;--ice:#c0d5e6;
+      --peri:#8ba1d4;--indigo:#3d4f97;--muted-indigo:#60619c;--platinum:#dedede;
+      --white:#fff;--carbon:#21242e;--hairline:#5a5f8c;--teal:#206479;
+      --green:#286348;--green-soft:#dcebdc;--risk:#9b2f36;--risk-soft:#f5dde0;
+      --ink:#21242e;--ink-soft:#3d4f97;--ink-muted:#646b81;--line:#8795bc;
+      --line-light:#d9e2f1;--shadow:#313c78;--highlight:#d4e5fa;--panel:#edf2f8;
+      --panel-2:#f7f8fb;--action:#f68d1f;--action-dark:#b95100;--fact:#dce8f6;
+      --decision:#fff0ce;--health:#dcece6;--question:#f4e1e3;--quote:#ebe4f7;
+      --fs-display:48px;--fs-hero:30px;--fs-title:25px;--fs-section:20px;
+      --fs-sub:17px;--fs-lead:18px;--fs-body:15px;--fs-small:13px;--fs-micro:11px;
+      --lh-tight:1.12;--lh-title:1.3;--lh-body:1.75;--lh-small:1.55;
+      --fw-black:900;--fw-bold:760;--fw-semi:650;--fw-normal:400;
+      --s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:20px;--s6:24px;
+      --s7:32px;--s8:40px;--s9:48px;--s10:64px;--page-x:clamp(16px,5vw,64px);
+      --max:940px;--bevel-light:2px solid var(--highlight);--bevel-dark:3px solid var(--shadow);
+    }
+    *{box-sizing:border-box}
+    html{background:var(--carbon)}
+    body{margin:0;color:var(--ink);font-family:Arial,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--canvas);line-height:var(--lh-body)}
+    .shell{width:min(100%,var(--max));margin:0 auto;padding:var(--s4) var(--page-x) var(--s9)}
+    .card{background:var(--panel);border-radius:0;border-top:var(--bevel-light);border-left:var(--bevel-light);border-right:var(--bevel-dark);border-bottom:var(--bevel-dark);box-shadow:10px 12px 0 rgba(33,36,46,.22)}
+    .command{background-color:var(--carbon);background-image:radial-gradient(#424755 1px,transparent 1px);background-size:5px 5px;color:var(--white);padding:var(--s3) var(--s5);border-bottom:4px solid var(--indigo)}
+    .command-row{display:flex;justify-content:space-between;gap:var(--s4);align-items:center;flex-wrap:wrap}
+    .brand{font-size:var(--fs-small);font-weight:var(--fw-black);color:var(--red);background:var(--white);border:3px solid var(--red);padding:2px 14px;border-radius:999px}
+    .command-label{font-size:var(--fs-micro);font-weight:var(--fw-bold);color:var(--amber);letter-spacing:.5px}
+    .hero{background:var(--teal);color:var(--white);padding:var(--s8) var(--s7);border-top:3px solid #56a4b8;border-bottom:6px solid #143e58;position:relative;overflow:hidden}
+    .hero:after{content:"";position:absolute;inset:0;background-image:linear-gradient(90deg,transparent 49%,rgba(255,255,255,.08) 50%,transparent 51%),linear-gradient(transparent 49%,rgba(255,255,255,.06) 50%,transparent 51%);background-size:28px 28px;pointer-events:none}
+    .kicker{position:relative;z-index:1;font-size:var(--fs-small);font-weight:var(--fw-bold);color:var(--amber);letter-spacing:.5px}
+    h1{position:relative;z-index:1;margin:var(--s3) 0 var(--s4);font-size:var(--fs-display);line-height:var(--lh-tight);font-weight:var(--fw-black);letter-spacing:0;text-shadow:3px 3px 0 #152d59,-1px -1px 0 #152d59,1px -1px 0 #152d59,-1px 1px 0 #152d59}
+    .hero p{position:relative;z-index:1;margin:0;max-width:720px;font-size:var(--fs-lead);font-weight:var(--fw-semi)}
+    .signal{display:inline-block;margin-top:var(--s5);padding:var(--s2) var(--s4);background:var(--orange);color:var(--white);font-weight:var(--fw-black);font-size:var(--fs-small);border:2px solid #ffd29b;box-shadow:3px 3px 0 var(--action-dark)}
+    .body{padding:var(--s7)}
+    .status-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s3);margin-bottom:var(--s7)}
+    .status{background:var(--canvas-soft);border-top:2px solid var(--highlight);border-left:2px solid var(--highlight);border-right:3px solid var(--indigo);border-bottom:3px solid var(--indigo);padding:var(--s4)}
+    .status b{display:block;font-size:var(--fs-micro);letter-spacing:.5px;color:var(--ink-soft);margin-bottom:var(--s2)}
+    .status strong{font-size:var(--fs-sub);line-height:var(--lh-title)}
+    section{margin-top:var(--s8)}
+    h2{margin:0 0 var(--s4);padding:var(--s2) var(--s3);font-size:var(--fs-section);line-height:var(--lh-title);background:var(--canvas);color:var(--carbon);border-top:2px solid var(--highlight);border-bottom:3px solid var(--indigo);letter-spacing:0}
+    h2 span{display:inline-block;background:var(--orange);color:var(--white);padding:1px 7px;margin-right:var(--s2);box-shadow:2px 2px 0 var(--action-dark)}
+    h3{font-size:var(--fs-sub);line-height:var(--lh-title);margin:var(--s5) 0 var(--s2);color:var(--indigo)}
+    p{margin:var(--s2) 0}
+    .flow{border-left:5px solid var(--indigo);margin-left:var(--s3)}
+    .flow-item{display:grid;grid-template-columns:48px 1fr;border-bottom:1px dotted var(--muted-indigo);background:var(--white)}
+    .num{display:grid;place-items:center;background:var(--carbon);color:var(--amber);font-weight:var(--fw-black);font-size:var(--fs-sub)}
+    .flow-copy{padding:var(--s4)}
+    .flow-copy strong{display:block;font-size:var(--fs-sub);margin-bottom:var(--s1)}
+    .flow-copy p{color:var(--ink-muted);font-size:var(--fs-small);line-height:var(--lh-small)}
+    .plate{margin:var(--s3) 0;padding:var(--s4) var(--s5);background:var(--white);border-left:6px solid var(--indigo);border-top:1px solid var(--line-light);border-bottom:2px solid var(--line)}
+    .plate.action{border-left-color:var(--orange);background:var(--decision)}
+    .plate.risk{border-left-color:var(--risk);background:var(--risk-soft)}
+    .plate.health{border-left-color:var(--green);background:var(--health)}
+    .plate b{font-size:var(--fs-sub)}
+    .quote{margin:var(--s5) 0;background:var(--quote);border-top:3px solid var(--indigo);border-bottom:3px solid var(--indigo);padding:var(--s6);font-size:var(--fs-title);font-weight:var(--fw-black);line-height:1.45;color:var(--indigo)}
+    ul{margin:var(--s2) 0;padding-left:var(--s6)}
+    li{margin:var(--s2) 0}
+    .checklist{list-style:none;padding:0}
+    .checklist li{position:relative;padding:var(--s3) var(--s3) var(--s3) 42px;margin:var(--s2) 0;background:var(--white);border-bottom:2px solid var(--line)}
+    .checklist li:before{content:"";position:absolute;left:var(--s3);top:17px;width:16px;height:16px;border:3px solid var(--orange);background:var(--panel)}
+    .bug{display:grid;grid-template-columns:150px 1fr;gap:0;margin:var(--s2) 0;border-bottom:1px solid var(--line)}
+    .bug b{padding:var(--s3);background:var(--carbon);color:var(--amber);font-size:var(--fs-small)}
+    .bug p{padding:var(--s3);margin:0;background:var(--white)}
+    .footer{margin-top:var(--s8);background-color:var(--carbon);background-image:radial-gradient(#424755 1px,transparent 1px);background-size:5px 5px;color:var(--canvas-soft);padding:var(--s5);font-size:var(--fs-micro);line-height:var(--lh-small)}
+    .tag{display:inline-block;padding:3px 8px;margin:0 var(--s1) var(--s1) 0;background:var(--amber);color:var(--carbon);font-weight:var(--fw-bold)}
+    @media(max-width:760px){:root{--fs-display:40px;--fs-title:22px}.status-grid{grid-template-columns:1fr}.body{padding:var(--s5)}.hero{padding:var(--s7) var(--s5)}}
+    @media(max-width:520px){:root{--fs-display:34px;--fs-section:18px;--fs-body:14px}.shell{padding-left:10px;padding-right:10px}.body{padding:var(--s4)}.bug{grid-template-columns:1fr}.flow-item{grid-template-columns:38px 1fr}.quote{padding:var(--s4)}}
+    @media(min-width:1000px){.shell{padding-top:var(--s7)}.body{padding:var(--s8)}.hero{padding:var(--s9) var(--s8)}}
+  </style>
+</head>
+<body>
+  <main class="shell">
+    <article class="card">
+      <header class="command">
+        <div class="command-row"><span class="brand">DAILY REVIEW</span><span class="command-label">2026.09.12—09.15 / 归属 2026.09.16</span></div>
+      </header>
+      <div class="hero">
+        <div class="kicker">当前关卡 / 从平台判断走向真实反馈</div>
+        <h1>先发一条，<br>再谈矩阵。</h1>
+        <p>B站与代写客群高度匹配只是一个假设。下一步不是继续研究平台，而是发布一条真实内容，拿到播放、互动和咨询证据。</p>
+        <div class="signal">NEXT：完成一条B站测试视频</div>
+      </div>
+      <div class="body">
+        <div class="status-grid">
+          <div class="status"><b>已确认进展</b><strong>完成一篇重要文章，并形成B站流量判断</strong></div>
+          <div class="status"><b>关键缺口</b><strong>没有真实视频链接与首轮反馈</strong></div>
+          <div class="status"><b>风险边界</b><strong>利润案例、保险与健康问题均待核验</strong></div>
+        </div>
+
+        <section>
+          <h2><span>01</span>业务闭环正在成形</h2>
+          <div class="flow">
+            <div class="flow-item"><div class="num">A</div><div class="flow-copy"><strong>AI自媒体：流量端</strong><p>用前沿信息、真实经验和平台内容吸引大学生与潜在客户。</p></div></div>
+            <div class="flow-item"><div class="num">B</div><div class="flow-copy"><strong>代写业务：交付与现金流</strong><p>真实客户问题既产生收入，也提供可持续的案例与内容素材。</p></div></div>
+            <div class="flow-item"><div class="num">C</div><div class="flow-copy"><strong>培训 / 产品：增量变现</strong><p>只有前两端验证后再扩展，不同时搭建完整三端系统。</p></div></div>
+          </div>
+          <div class="plate action"><b>本轮裁决</b><br>先验证“B站内容 → 私信咨询 → 代写需求”这一条边，不把设想直接升级为长期矩阵。</div>
+        </section>
+
+        <section>
+          <h2><span>02</span>这几天真正发生了什么</h2>
+          <div class="plate"><b>输出与平台</b><br>完成一篇文章；开始把B站大学生用户与小程序、App、计算机作业和学术辅导等需求连接起来。长教程和资料钩子短期先不做，先测账号与内容流量。</div>
+          <div class="plate"><b>客户与经营</b><br>一名预算低、要求多的客户最终未成交，暴露出客户筛选和止损边界不足。外部团队“年利润200万元”等案例口径未核验，不能写成自己的经营结果。</div>
+          <div class="plate health"><b>作息与环境</b><br>反复按10分钟闹钟会削弱起床信号；更合理的方向是渐进调整睡眠，并借助工作场所、同伴与物理隔离提升行动稳定性。</div>
+          <div class="plate risk"><b>健康与保障</b><br>自由职业者保险和流鼻血成为风险议题，但日省不能替代专业保险或医疗判断。先盘点事实，再咨询专业人士。</div>
+        </section>
+
+        <section>
+          <h2><span>03</span>三个记忆锚点</h2>
+          <div class="quote">本人能做到，是能力；换个人按SOP也能做到，才是系统。</div>
+          <div class="quote">在新兴领域，不必等到90分才分享；可以把真实的20分讲给10分的人。</div>
+          <div class="quote">环境是比意志力更稳定的杠杆，验证是比想象更可靠的方向盘。</div>
+        </section>
+
+        <section>
+          <h2><span>04</span>明日行动协议</h2>
+          <div class="plate action"><b>唯一动作</b><br>发布一条面向大学生代写需求的B站测试视频。</div>
+          <ul class="checklist">
+            <li>从“客户怕被骗”出发，选择一个真实接单经历或避坑主题。</li>
+            <li>保存视频链接、标题、封面和发布时间。</li>
+            <li>记录首轮播放、互动、私信或咨询数据。</li>
+            <li>恢复小梦闲鱼自动回复，保留一次真实会话回执。</li>
+            <li>盘点现有保险事实，只形成咨询问题，不直接作购买决定。</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2><span>05</span>第三人称审视</h2>
+          <p>这个人善于从零散信息里拼出商业闭环，但联想速度经常快于验证速度：一个尚未发布的视频，很快就会被扩展为矩阵、IP、课程、产品和长期战略。</p>
+          <div class="bug"><b>最迫切</b><p>B站与AI自媒体仍缺第一条真实发布和外部反馈。</p></div>
+          <div class="bug"><b>长期最重要</b><p>缺少严格的项目进入与退出门槛，多个合理方向容易同时成为主线。</p></div>
+          <div class="bug"><b>持续风险</b><p>低价值客户、睡眠拖延和健康隐患的止损与预防仍不够前置。</p></div>
+          <h3>给他的建议</h3>
+          <ul>
+            <li>新平台只问一个问题：24小时内能拿到什么外部证据。</li>
+            <li>每个“研究一下”都必须补范围、产物、时限和停止条件。</li>
+            <li>先验证业务闭环的一条边，再建设完整系统。</li>
+            <li>客户、作息和健康都预设触发阈值，触发后执行既定动作。</li>
+          </ul>
+        </section>
+      </div>
+      <footer class="footer">
+        <span class="tag">B站流量</span><span class="tag">证据闭环</span><span class="tag">代写业务</span><span class="tag">环境杠杆</span><br><br>
+        公开提炼卡片 · 事实以私有日省原文为准 · Nintendo.com 2001 控制台面板风格
+      </footer>
+    </article>
+  </main>
+</body>
+</html>
