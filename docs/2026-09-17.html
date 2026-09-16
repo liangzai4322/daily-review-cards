@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>认知卡片 · 2026-09-17</title>
+  <style>
+    :root {
+      --ink-1000:#000000;--ink-950:#010120;--ink-900:#11111f;--ink-800:#26263a;--ink-700:#313641;
+      --gray-700:#555563;--gray-600:#70707c;--gray-500:#8d8d98;--gray-400:#adadb5;--gray-300:#d1d1d6;
+      --gray-200:#e4e4e8;--gray-150:#ebebee;--gray-100:#f3f3f5;--gray-050:#fafafa;--white:#ffffff;
+      --orange:#fc4c02;--orange-soft:#fff0e9;--magenta:#ef2cc1;--magenta-soft:#fdeafa;--periwinkle:#bdbbff;
+      --periwinkle-soft:#efefff;--mint:#c8f6f9;--mint-soft:#e9fcfd;--blue:#276ef1;--blue-soft:#eaf1ff;
+      --green:#137a4b;--green-soft:#e8f7ef;--yellow:#b86800;--yellow-soft:#fff5dc;--red:#bd2434;
+      --red-soft:#fff0f2;--violet:#6347c7;--violet-soft:#f1edff;--cyan:#007a84;--cyan-soft:#e2f7f8;
+      --fact:#276ef1;--insight:#6347c7;--action:#137a4b;--risk:#bd2434;--quote:#ef2cc1;
+      --canvas:#f3f3f5;--surface:#ffffff;--surface-dark:#010120;--line:#d8d8de;--line-dark:#313641;
+      --shadow:rgba(1,1,32,.10);--overlay:rgba(1,1,32,.72);--gradient-a:#fc4c02;--gradient-b:#ef2cc1;--gradient-c:#bdbbff;
+      --fs-hero:64px;--fs-display:42px;--fs-h1:34px;--fs-h2:27px;--fs-h3:21px;--fs-lead:19px;
+      --fs-body:16px;--fs-body-sm:15px;--fs-caption:13px;--fs-micro:11px;--fs-quote:25px;
+      --lh-tight:1.08;--lh-title:1.2;--lh-body:1.75;--lh-compact:1.5;--lh-caption:1.55;
+      --fw-regular:400;--fw-medium:500;--fw-semibold:650;--fw-bold:750;--track-normal:0;--track-label:.08em;
+      --s-1:4px;--s-2:8px;--s-3:12px;--s-4:16px;--s-5:20px;--s-6:24px;--s-7:32px;
+      --s-8:40px;--s-9:48px;--s-10:64px;--s-11:80px;--s-12:96px;--page-pad:24px;--content-pad:56px;
+      --mark-core:8px;--mark-section:3px;--mark-rule:1px;--mark-number:38px;--mark-risk:6px;--mark-action:6px;
+      --mark-quote:10px;--mark-data:2px;--mark-chip:1px;--mark-footer:12px;
+    }
+    *{box-sizing:border-box}
+    html{background:var(--canvas);color:var(--ink-1000);font-family:Inter,"PingFang SC","Microsoft YaHei",Arial,sans-serif}
+    body{margin:0;padding:var(--page-pad);background:var(--canvas)}
+    .card-shell{max-width:980px;margin:0 auto}
+    .cognitive-card{background:var(--surface);border:1px solid var(--line);border-radius:0;overflow:hidden;box-shadow:0 8px 30px var(--shadow)}
+    .hero{position:relative;padding:var(--s-10) var(--content-pad) var(--s-11);background:var(--surface-dark);color:var(--white)}
+    .hero::after{content:"";position:absolute;left:0;right:0;bottom:0;height:12px;background:linear-gradient(90deg,var(--gradient-a),var(--gradient-b),var(--gradient-c))}
+    .eyebrow,.section-label,.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:var(--fs-micro);font-weight:var(--fw-semibold);letter-spacing:var(--track-label);text-transform:uppercase}
+    .eyebrow{color:var(--periwinkle);margin-bottom:var(--s-7)}
+    .hero h1{max-width:780px;margin:0;font-size:var(--fs-hero);font-weight:var(--fw-medium);line-height:var(--lh-tight);letter-spacing:0}
+    .hero-lead{max-width:720px;margin:var(--s-7) 0 0;font-size:var(--fs-lead);line-height:var(--lh-body);color:var(--gray-300)}
+    .hero-meta{display:flex;gap:var(--s-6);flex-wrap:wrap;margin-top:var(--s-8);font-size:var(--fs-caption);color:var(--gray-400)}
+    .band{padding:var(--s-10) var(--content-pad);border-bottom:1px solid var(--line)}
+    .band:last-child{border-bottom:0}
+    .section-label{color:var(--gray-600);margin-bottom:var(--s-3)}
+    .section-title{margin:0 0 var(--s-7);font-size:var(--fs-h2);line-height:var(--lh-title);font-weight:var(--fw-medium)}
+    .core{display:grid;grid-template-columns:120px 1fr;border-top:1px solid var(--ink-1000);border-bottom:1px solid var(--ink-1000)}
+    .core-index{padding:var(--s-6) var(--s-4);font-size:var(--fs-display);font-weight:var(--fw-medium);border-right:1px solid var(--ink-1000)}
+    .core-copy{padding:var(--s-6)}
+    .core-copy strong{display:block;font-size:var(--fs-h1);line-height:var(--lh-title);font-weight:var(--fw-medium)}
+    .core-copy p{margin:var(--s-4) 0 0;color:var(--gray-700);font-size:var(--fs-body);line-height:var(--lh-body)}
+    .score{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--line)}
+    .score-item{min-height:132px;padding:var(--s-6);border-right:1px solid var(--line)}
+    .score-item:last-child{border-right:0}
+    .score-value{display:block;font-size:var(--fs-display);line-height:1;font-weight:var(--fw-medium)}
+    .score-name{display:block;margin-top:var(--s-4);font-size:var(--fs-caption);color:var(--gray-600);line-height:var(--lh-caption)}
+    .score-item.focus{background:var(--mint)}
+    .flow{display:grid;gap:0;border-top:1px solid var(--line)}
+    .flow-row{display:grid;grid-template-columns:64px 170px 1fr;align-items:start;border-bottom:1px solid var(--line)}
+    .flow-no{padding:var(--s-6) var(--s-3);font-family:ui-monospace,monospace;font-size:var(--fs-caption);color:var(--gray-600)}
+    .flow-key{padding:var(--s-6);font-size:var(--fs-h3);font-weight:var(--fw-medium)}
+    .flow-copy{padding:var(--s-6);border-left:1px solid var(--line);font-size:var(--fs-body);line-height:var(--lh-body);color:var(--gray-700)}
+    .quote-band{padding:var(--s-9) var(--content-pad);background:var(--surface-dark);color:var(--white);border-bottom:12px solid var(--magenta)}
+    .quote-band blockquote{margin:0;max-width:800px;font-size:var(--fs-quote);line-height:1.55;font-weight:var(--fw-medium)}
+    .quote-band cite{display:block;margin-top:var(--s-5);font-size:var(--fs-caption);font-style:normal;color:var(--gray-400)}
+    .rule-grid{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line)}
+    .rule{padding:var(--s-7);min-height:180px}
+    .rule:nth-child(odd){border-right:1px solid var(--line)}
+    .rule:nth-child(-n+2){border-bottom:1px solid var(--line)}
+    .rule-num{display:inline-block;margin-bottom:var(--s-5);font-family:ui-monospace,monospace;color:var(--violet);font-size:var(--fs-caption);font-weight:var(--fw-bold)}
+    .rule h3{margin:0 0 var(--s-3);font-size:var(--fs-h3);font-weight:var(--fw-medium)}
+    .rule p{margin:0;color:var(--gray-700);font-size:var(--fs-body-sm);line-height:var(--lh-body)}
+    .action-box{border:1px solid var(--ink-1000);display:grid;grid-template-columns:170px 1fr}
+    .action-label{padding:var(--s-7);background:var(--ink-1000);color:var(--white)}
+    .action-label strong{display:block;font-size:var(--fs-h2);line-height:var(--lh-title);font-weight:var(--fw-medium)}
+    .action-copy{padding:var(--s-7)}
+    .action-copy h3{margin:0 0 var(--s-4);font-size:var(--fs-h3);font-weight:var(--fw-medium)}
+    .action-copy ul{margin:0;padding-left:1.2em;color:var(--gray-700);line-height:var(--lh-body)}
+    .guardrails{display:grid;grid-template-columns:1fr 1fr;margin-top:var(--s-7);border:1px solid var(--line)}
+    .guard{padding:var(--s-6)}
+    .guard:first-child{border-right:1px solid var(--line);background:var(--red-soft)}
+    .guard:last-child{background:var(--green-soft)}
+    .guard h3{margin:0 0 var(--s-3);font-size:var(--fs-h3);font-weight:var(--fw-medium)}
+    .guard p{margin:0;font-size:var(--fs-body-sm);line-height:var(--lh-body)}
+    .risk-list{display:grid;gap:var(--s-3)}
+    .risk{padding:var(--s-5) var(--s-6);border-left:var(--mark-risk) solid var(--red);background:var(--red-soft);font-size:var(--fs-body-sm);line-height:var(--lh-body)}
+    .third-person{background:var(--mint-soft)}
+    .third-person .diagnosis{font-size:var(--fs-lead);line-height:var(--lh-body);max-width:800px;margin:0}
+    .bug-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s-3);margin-top:var(--s-7)}
+    .bug{padding:var(--s-6);background:var(--white);border-top:3px solid var(--ink-1000)}
+    .bug small{display:block;color:var(--gray-600);font-family:ui-monospace,monospace;font-size:var(--fs-micro);letter-spacing:var(--track-label)}
+    .bug strong{display:block;margin-top:var(--s-3);font-size:var(--fs-body);line-height:var(--lh-body)}
+    .footer{padding:var(--s-8) var(--content-pad);background:var(--white)}
+    .footer strong{font-size:var(--fs-h2);font-weight:var(--fw-medium);color:var(--gray-300)}
+    .footer p{margin:var(--s-3) 0 0;font-size:var(--fs-caption);line-height:var(--lh-caption);color:var(--gray-600)}
+    @media(max-width:760px){:root{--fs-hero:44px;--fs-display:34px;--fs-h1:29px;--content-pad:32px}.score{grid-template-columns:1fr}.score-item{border-right:0;border-bottom:1px solid var(--line)}.score-item:last-child{border-bottom:0}.flow-row{grid-template-columns:52px 1fr}.flow-copy{grid-column:1/-1;border-left:0;border-top:1px solid var(--line)}.bug-grid{grid-template-columns:1fr}}
+    @media(max-width:560px){:root{--fs-hero:36px;--fs-h1:26px;--fs-h2:24px;--content-pad:22px;--page-pad:0}.cognitive-card{border-left:0;border-right:0}.hero{padding-top:var(--s-9)}.core{grid-template-columns:1fr}.core-index{border-right:0;border-bottom:1px solid var(--ink-1000)}.rule-grid,.action-box,.guardrails{grid-template-columns:1fr}.rule:nth-child(odd),.guard:first-child{border-right:0}.rule{border-bottom:1px solid var(--line)}.rule:last-child{border-bottom:0}.action-label{padding:var(--s-5) var(--s-6)}.hero-meta{display:grid;gap:var(--s-2)}}
+    @media(min-width:1200px){:root{--content-pad:72px}.hero{padding-top:var(--s-11);padding-bottom:var(--s-12)}}
+  </style>
+</head>
+<body>
+  <main class="card-shell">
+    <article class="cognitive-card">
+      <header class="hero">
+        <div class="eyebrow">Daily review / 2026-09-17</div>
+        <h1>不是再理解一点，<br>而是把这一条发出去。</h1>
+        <p class="hero-lead">AI 已经把选题、文案和制作门槛压低。当前真正的约束，是研究和系统构想持续挤占最后的发布动作。</p>
+        <div class="hero-meta"><span>活动范围 09.15—09.17</span><span>状态：上一承诺部分完成</span><span>核心对象：B站测试视频</span></div>
+      </header>
+
+      <section class="band">
+        <div class="section-label">01 / CORE CLAIM</div>
+        <h2 class="section-title">今日核心命题</h2>
+        <div class="core">
+          <div class="core-index">2/3</div>
+          <div class="core-copy"><strong>制作路径已经成立，市场验证尚未开始。</strong><p>本地已有两到三条 AI 视频样本，当前目标视频约完成三分之二。没有发布链接、数据截图或客户反馈，因此不能把“路径跑通”写成“业务验证完成”。</p></div>
+        </div>
+      </section>
+
+      <section class="band">
+        <div class="section-label">02 / EXTERNAL SCORE</div>
+        <h2 class="section-title">把内部进展换算成外部结果</h2>
+        <div class="score">
+          <div class="score-item focus"><span class="score-value">2—3</span><span class="score-name">本地 AI 视频样本<br>说明制作能力已具备</span></div>
+          <div class="score-item"><span class="score-value">1</span><span class="score-name">一次 B 站运行更新<br>不等于目标视频发布</span></div>
+          <div class="score-item"><span class="score-value">?</span><span class="score-name">咨询、报价、成交与真实反馈<br>本轮均未记录</span></div>
+        </div>
+      </section>
+
+      <section class="band">
+        <div class="section-label">03 / CAUSAL CHAIN</div>
+        <h2 class="section-title">为什么停在发布前</h2>
+        <div class="flow">
+          <div class="flow-row"><div class="flow-no">01</div><div class="flow-key">继续研究</div><div class="flow-copy">为了看对标和补足信息，阅读、视频与平台研究超过原先预期。</div></div>
+          <div class="flow-row"><div class="flow-no">02</div><div class="flow-key">焦虑升高</div><div class="flow-copy">意识到实操进度落后后开始着急，但没有立即缩小动作。</div></div>
+          <div class="flow-row"><div class="flow-no">03</div><div class="flow-key">信息流止痛</div><div class="flow-copy">用短视频缓解着急，导致真正的制作和发布进一步延迟。</div></div>
+          <div class="flow-row"><div class="flow-no">04</div><div class="flow-key">重新拉回</div><div class="flow-copy">能够主动恢复注意力，并完成约三分之二。这证明可恢复，但还没有形成稳定护栏。</div></div>
+        </div>
+      </section>
+
+      <section class="quote-band">
+        <div class="eyebrow">MEMORY ANCHOR</div>
+        <blockquote>“不要用加班时间去衡量，<br>要用你的产出物去衡量。”</blockquote>
+        <cite>今日原话 · 效率不等于工时</cite>
+      </section>
+
+      <section class="band">
+        <div class="section-label">04 / OPERATING RULES</div>
+        <h2 class="section-title">四条可复用规则</h2>
+        <div class="rule-grid">
+          <div class="rule"><span class="rule-num">RULE 01</span><h3>先定义外部证据</h3><p>发布链接、数据截图、客户回应、报价或成交，至少出现一个，才算业务向前移动。</p></div>
+          <div class="rule"><span class="rule-num">RULE 02</span><h3>研究只解除一个阻塞</h3><p>研究达到足以修改当前视频的最低信息量后退出，不再顺手扩展赛道、账号和系统。</p></div>
+          <div class="rule"><span class="rule-num">RULE 03</span><h3>复用，不重造</h3><p>参考已验证的爆款结构，用 AI 完成选题、文案和可视化，再由自己完成判断、口播和发布。</p></div>
+          <div class="rule"><span class="rule-num">RULE 04</span><h3>记录，不抢跑归因</h3><p>白天困倦、咖啡后仍困和缺少运动都是真实信号；原因未知，先记录睡眠、饮食和时间再判断。</p></div>
+        </div>
+      </section>
+
+      <section class="band">
+        <div class="section-label">05 / NEXT ACTION</div>
+        <h2 class="section-title">下一步只有一个</h2>
+        <div class="action-box">
+          <div class="action-label"><strong>发布</strong><span class="mono">Before day end</span></div>
+          <div class="action-copy"><h3>完成并发布当前已做到约 2/3 的 B 站测试视频</h3><ul><li>前五分钟：只列阻碍发布的三个问题，立即修第一个。</li><li>不扩展新选题、新平台或新制作流程。</li><li>验收：发布链接 + 时间截图 + 标题封面 + 首轮数据。</li></ul></div>
+        </div>
+        <div class="guardrails">
+          <div class="guard"><h3>停止</h3><p>在发布前扩展网站赛道、批量账号、系统架构；把刷对标视频当作缓解焦虑的方式。</p></div>
+          <div class="guard"><h3>继续</h3><p>被信息流带走后主动拉回；复用成熟结构和已有 AI 工具，不从零重造生产流程。</p></div>
+        </div>
+      </section>
+
+      <section class="band">
+        <div class="section-label">06 / OPEN RISKS</div>
+        <h2 class="section-title">现在不能写成结论的事</h2>
+        <div class="risk-list">
+          <div class="risk">喝咖啡后仍困的原因未知；需要睡眠时长、咖啡时间与剂量、饮食记录。</div>
+          <div class="risk">每月不足 3000 元只是基本支出粗算，未包含社保、医疗、交通、设备、税费和意外支出。</div>
+          <div class="risk">B 站账号权重、引流行为和等级影响仍需真实发布实验验证。</div>
+        </div>
+      </section>
+
+      <section class="band third-person">
+        <div class="section-label">07 / THIRD-PERSON REVIEW</div>
+        <h2 class="section-title">这个人的模式</h2>
+        <p class="diagnosis">他擅长快速提炼模型、寻找复利和杠杆，也能在注意力偏离后重新拉回。最大的风险不是缺少想法，而是认知与系统构想增长得比公开发布和真实反馈更快。</p>
+        <div class="bug-grid">
+          <div class="bug"><small>主要问题</small><strong>内部确定感正在替代外部验证。</strong></div>
+          <div class="bug"><small>最迫切</small><strong>把当前视频发出去，拿到第一份平台反馈。</strong></div>
+          <div class="bug"><small>长期关键</small><strong>每新增一个模型或系统，都必须对应一个外部结果。</strong></div>
+        </div>
+      </section>
+
+      <footer class="footer"><strong>从 2/3 到已发布</strong><p>认知卡片 · 2026-09-17 · 来源：正式日省。事实、候选与推断已分层；待核内容未被改写为结论。</p></footer>
+    </article>
+  </main>
+</body>
+</html>
