@@ -1,0 +1,600 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>认知卡片 · 2026-09-19</title>
+  <style>
+    :root {
+      --green-900: #064e3b;
+      --green-800: #065f46;
+      --green-700: #047857;
+      --green-600: #059669;
+      --green-500: #10b981;
+      --green-400: #34d399;
+      --green-300: #6ee7b7;
+      --green-200: #a7f3d0;
+      --green-100: #d1fae5;
+      --green-050: #ecfdf5;
+      --ink-950: #111111;
+      --ink-900: #171717;
+      --ink-800: #262626;
+      --ink-700: #404040;
+      --ink-600: #525252;
+      --ink-500: #737373;
+      --ink-400: #a3a3a3;
+      --ink-300: #d4d4d4;
+      --ink-200: #e5e5e5;
+      --ink-100: #f5f5f5;
+      --paper: #ffffff;
+      --paper-soft: #fafafa;
+      --paper-warm: #f8faf9;
+      --night: #1c1c1c;
+      --night-soft: #242424;
+      --line: #dedede;
+      --line-soft: #ededed;
+      --line-strong: #bfbfbf;
+      --success: #0f9f6e;
+      --success-soft: #e8fbf3;
+      --warning: #a16207;
+      --warning-soft: #fef9c3;
+      --danger: #b42318;
+      --danger-soft: #fff1f0;
+      --info: #175cd3;
+      --info-soft: #eff6ff;
+      --violet: #6941c6;
+      --violet-soft: #f4f3ff;
+      --orange: #c2410c;
+      --orange-soft: #fff7ed;
+      --shadow: rgba(17, 17, 17, .08);
+      --shadow-deep: rgba(17, 17, 17, .15);
+      --fs-hero: 54px;
+      --fs-display: 38px;
+      --fs-title: 28px;
+      --fs-section: 22px;
+      --fs-subtitle: 18px;
+      --fs-lead: 18px;
+      --fs-body: 16px;
+      --fs-small: 14px;
+      --fs-caption: 13px;
+      --fs-micro: 12px;
+      --lh-tight: 1.15;
+      --lh-title: 1.3;
+      --lh-body: 1.72;
+      --lh-small: 1.58;
+      --weight-normal: 400;
+      --weight-medium: 500;
+      --weight-strong: 650;
+      --weight-black: 760;
+      --space-1: 4px;
+      --space-2: 8px;
+      --space-3: 12px;
+      --space-4: 16px;
+      --space-5: 20px;
+      --space-6: 24px;
+      --space-8: 32px;
+      --space-10: 40px;
+      --space-12: 48px;
+      --space-16: 64px;
+      --space-20: 80px;
+      --content: 920px;
+      --rule-thin: 1px;
+      --rule-strong: 3px;
+      --accent-bar: 5px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { background: var(--paper-soft); color: var(--ink-900); }
+
+    body {
+      margin: 0;
+      font-family: Inter, "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+      font-size: var(--fs-body);
+      line-height: var(--lh-body);
+      letter-spacing: 0;
+      background: var(--paper-soft);
+    }
+
+    .card-shell {
+      width: 100%;
+      padding: var(--space-10) var(--space-5);
+    }
+
+    .cognitive-card {
+      width: min(100%, var(--content));
+      margin: 0 auto;
+      background: var(--paper);
+      border: var(--rule-thin) solid var(--line);
+      border-radius: 0;
+      box-shadow: 0 18px 50px var(--shadow);
+    }
+
+    .card-header {
+      padding: var(--space-16) var(--space-12) var(--space-12);
+      border-bottom: var(--rule-thin) solid var(--line);
+    }
+
+    .eyebrow,
+    .module-index,
+    .status,
+    .meta {
+      font-size: var(--fs-micro);
+      line-height: 1.4;
+      font-weight: var(--weight-strong);
+      text-transform: uppercase;
+      color: var(--green-700);
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1 {
+      max-width: 760px;
+      margin: var(--space-4) 0 var(--space-5);
+      font-size: var(--fs-hero);
+      line-height: var(--lh-tight);
+      font-weight: var(--weight-medium);
+      letter-spacing: 0;
+    }
+
+    .dek {
+      max-width: 730px;
+      margin-bottom: var(--space-8);
+      font-size: var(--fs-lead);
+      line-height: 1.65;
+      color: var(--ink-600);
+    }
+
+    .signal-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: var(--rule-thin) solid var(--line-soft);
+      border-bottom: var(--rule-thin) solid var(--line-soft);
+    }
+
+    .signal {
+      min-height: 108px;
+      padding: var(--space-5);
+      border-right: var(--rule-thin) solid var(--line-soft);
+    }
+
+    .signal:last-child { border-right: 0; }
+
+    .signal-label {
+      margin-bottom: var(--space-2);
+      font-size: var(--fs-caption);
+      color: var(--ink-500);
+    }
+
+    .signal-value {
+      font-size: var(--fs-subtitle);
+      line-height: 1.45;
+      font-weight: var(--weight-strong);
+    }
+
+    .section {
+      padding: var(--space-12);
+      border-bottom: var(--rule-thin) solid var(--line);
+    }
+
+    .section-head {
+      display: grid;
+      grid-template-columns: 58px 1fr;
+      align-items: start;
+      gap: var(--space-4);
+      margin-bottom: var(--space-8);
+    }
+
+    .section-number {
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      background: var(--night);
+      color: var(--paper);
+      font: var(--weight-medium) var(--fs-small)/1 ui-monospace, monospace;
+    }
+
+    h2 {
+      margin-bottom: var(--space-2);
+      font-size: var(--fs-title);
+      line-height: var(--lh-title);
+      font-weight: var(--weight-medium);
+      letter-spacing: 0;
+    }
+
+    .section-summary {
+      margin-bottom: 0;
+      color: var(--ink-500);
+      font-size: var(--fs-small);
+    }
+
+    .core-panel {
+      display: grid;
+      grid-template-columns: 6px 1fr;
+      background: var(--green-050);
+      border: var(--rule-thin) solid var(--green-200);
+    }
+
+    .core-panel::before { content: ""; background: var(--green-500); }
+
+    .core-content { padding: var(--space-8); }
+
+    .core-title {
+      margin-bottom: var(--space-3);
+      font-size: var(--fs-display);
+      line-height: 1.22;
+      font-weight: var(--weight-medium);
+      letter-spacing: 0;
+    }
+
+    .core-copy { margin-bottom: 0; font-size: var(--fs-lead); color: var(--ink-700); }
+
+    .evidence-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-4);
+    }
+
+    .evidence {
+      padding: var(--space-6);
+      border: var(--rule-thin) solid var(--line);
+      background: var(--paper);
+    }
+
+    .evidence.dark { background: var(--night); border-color: var(--night); color: var(--paper); }
+
+    .evidence.accent { border-top: var(--rule-strong) solid var(--green-500); }
+
+    .evidence h3 {
+      margin-bottom: var(--space-3);
+      font-size: var(--fs-subtitle);
+      line-height: 1.4;
+      font-weight: var(--weight-strong);
+    }
+
+    .evidence p { margin-bottom: 0; color: var(--ink-600); }
+    .evidence.dark p { color: var(--ink-300); }
+
+    .quote-band {
+      padding: var(--space-10);
+      color: var(--paper);
+      background: var(--night);
+      border-left: var(--accent-bar) solid var(--green-400);
+    }
+
+    .quote-mark {
+      color: var(--green-400);
+      font: var(--weight-medium) 54px/0.7 Georgia, serif;
+    }
+
+    blockquote {
+      margin: var(--space-4) 0 0;
+      font-size: var(--fs-title);
+      line-height: 1.45;
+      font-weight: var(--weight-medium);
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: var(--rule-thin) solid var(--line);
+    }
+
+    .flow-step {
+      position: relative;
+      min-height: 150px;
+      padding: var(--space-6);
+      border-right: var(--rule-thin) solid var(--line);
+    }
+
+    .flow-step:last-child { border-right: 0; }
+
+    .flow-step strong {
+      display: block;
+      margin: var(--space-3) 0 var(--space-2);
+      font-size: var(--fs-subtitle);
+    }
+
+    .flow-step p { margin-bottom: 0; font-size: var(--fs-small); color: var(--ink-600); }
+
+    .action-box {
+      background: var(--night);
+      color: var(--paper);
+      padding: var(--space-10);
+      border-left: var(--accent-bar) solid var(--green-400);
+    }
+
+    .action-kicker { color: var(--green-300); font-size: var(--fs-caption); font-weight: var(--weight-strong); }
+
+    .action-title {
+      margin: var(--space-3) 0 var(--space-5);
+      font-size: var(--fs-display);
+      line-height: 1.25;
+      font-weight: var(--weight-medium);
+    }
+
+    .action-spec {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-5);
+      padding-top: var(--space-5);
+      border-top: var(--rule-thin) solid var(--ink-700);
+    }
+
+    .spec-label { display: block; color: var(--ink-400); font-size: var(--fs-micro); }
+    .spec-value { display: block; margin-top: var(--space-1); font-size: var(--fs-small); }
+
+    .risk-list,
+    .check-list { margin: 0; padding: 0; list-style: none; }
+
+    .risk-list li,
+    .check-list li {
+      display: grid;
+      grid-template-columns: 28px 1fr;
+      gap: var(--space-3);
+      padding: var(--space-4) 0;
+      border-bottom: var(--rule-thin) solid var(--line-soft);
+    }
+
+    .risk-list li:last-child,
+    .check-list li:last-child { border-bottom: 0; }
+
+    .risk-icon,
+    .check-icon {
+      width: 22px;
+      height: 22px;
+      display: grid;
+      place-items: center;
+      font: var(--weight-strong) var(--fs-micro)/1 ui-monospace, monospace;
+    }
+
+    .risk-icon { background: var(--warning-soft); color: var(--warning); }
+    .check-icon { background: var(--green-100); color: var(--green-800); }
+
+    .observer {
+      display: grid;
+      grid-template-columns: 1.25fr .75fr;
+      gap: var(--space-8);
+    }
+
+    .observer-copy { font-size: var(--fs-lead); color: var(--ink-700); }
+
+    .bug-box {
+      padding: var(--space-6);
+      background: var(--danger-soft);
+      border-top: var(--rule-strong) solid var(--danger);
+    }
+
+    .bug-box strong { display: block; margin-bottom: var(--space-2); font-size: var(--fs-subtitle); }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      gap: var(--space-4);
+      padding: var(--space-6) var(--space-12);
+      color: var(--ink-500);
+      font-size: var(--fs-caption);
+      background: var(--paper-warm);
+    }
+
+    @media (max-width: 760px) {
+      :root { --fs-hero: 40px; --fs-display: 30px; --fs-title: 24px; }
+      .card-shell { padding: var(--space-4); }
+      .card-header, .section { padding: var(--space-8) var(--space-6); }
+      .signal-row, .evidence-grid, .observer { grid-template-columns: 1fr; }
+      .signal { border-right: 0; border-bottom: var(--rule-thin) solid var(--line-soft); }
+      .signal:last-child { border-bottom: 0; }
+      .flow { grid-template-columns: 1fr 1fr; }
+      .flow-step:nth-child(2) { border-right: 0; }
+      .flow-step:nth-child(-n+2) { border-bottom: var(--rule-thin) solid var(--line); }
+      .action-spec { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 520px) {
+      :root { --fs-hero: 34px; --fs-display: 27px; --fs-title: 22px; --fs-lead: 17px; }
+      .card-shell { padding: 0; }
+      .cognitive-card { border-left: 0; border-right: 0; box-shadow: none; }
+      .card-header, .section { padding: var(--space-8) var(--space-5); }
+      .section-head { grid-template-columns: 42px 1fr; }
+      .flow { grid-template-columns: 1fr; }
+      .flow-step { border-right: 0; border-bottom: var(--rule-thin) solid var(--line); }
+      .flow-step:last-child { border-bottom: 0; }
+      .core-content, .quote-band, .action-box { padding: var(--space-6); }
+      .card-footer { display: block; padding: var(--space-5); }
+    }
+
+    @media (min-width: 1100px) {
+      .card-shell { padding-top: var(--space-16); padding-bottom: var(--space-16); }
+      .card-header { padding-top: var(--space-20); }
+    }
+  </style>
+</head>
+<body>
+  <main class="card-shell">
+    <article class="cognitive-card">
+      <header class="card-header">
+        <div class="eyebrow">Daily cognition review · 2026.09.19</div>
+        <h1>把潜力压进一个<br>可验收的目标</h1>
+        <p class="dek">今天真正的进展不是“想得更多”，而是已经完成一次真实发布、结束一段失去契约基础的合作，并准备把高目标从观点变成实验。</p>
+        <div class="signal-row">
+          <div class="signal">
+            <div class="signal-label">真实进展</div>
+            <div class="signal-value">至少 1 条 AI 视频已发布</div>
+          </div>
+          <div class="signal">
+            <div class="signal-label">当前瓶颈</div>
+            <div class="signal-value">证据沉淀与单点收敛</div>
+          </div>
+          <div class="signal">
+            <div class="signal-label">明日第一动作</div>
+            <div class="signal-value">写出可验收的挑战目标</div>
+          </div>
+        </div>
+      </header>
+
+      <section class="section">
+        <div class="section-head">
+          <div class="section-number">01</div>
+          <div>
+            <h2>核心判断</h2>
+            <p class="section-summary">目标不是一句更狠的话，而是一套会改变资源配置的约束。</p>
+          </div>
+        </div>
+        <div class="core-panel">
+          <div class="core-content">
+            <div class="module-index">CORE INSIGHT</div>
+            <div class="core-title">高目标必须同时具备<br>期限、结果与失败边界。</div>
+            <p class="core-copy">它要显著拉高要求，但仍能被拆分、验证和修正。否则所谓“挑战”只是情绪强度，无法形成真正的执行反馈。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div class="section-number">02</div>
+          <div>
+            <h2>今天的三个事实</h2>
+            <p class="section-summary">事实先于解释，证据先于结论。</p>
+          </div>
+        </div>
+        <div class="evidence-grid">
+          <div class="evidence accent">
+            <div class="status">OUTPUT</div>
+            <h3>完成一次真实发布</h3>
+            <p>AI 视频已经生成并发布，说明生产路径不再只停留在样本和讨论。缺口是发布链接与首轮数据尚未同步。</p>
+          </div>
+          <div class="evidence">
+            <div class="status">BOUNDARY</div>
+            <h3>结束失去契约基础的合作</h3>
+            <p>订单完成、全款支付后，面对持续施压和利益追加，选择停止后续合作，把沉没成本与未来风险分开。</p>
+          </div>
+          <div class="evidence">
+            <div class="status">DEBUG</div>
+            <h3>桥接故障仍未收敛</h3>
+            <p>Codex 网页连接多次尝试失败，但尚未冻结输入、保存错误并逐层排除 bridge、gateway 与认证。</p>
+          </div>
+          <div class="evidence dark">
+            <div class="status">CAPACITY</div>
+            <h3>疲劳直接降低信息收益</h3>
+            <p>前夜争执持续到凌晨，下午听分享时困倦、恍惚。情绪后来恢复，但精力不足已经影响判断和吸收。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="quote-band">
+          <div class="quote-mark">“</div>
+          <blockquote>这也并不意味着我马上就要定一个根本无法完成的目标。</blockquote>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div class="section-number">03</div>
+          <div>
+            <h2>最短执行路径</h2>
+            <p class="section-summary">从输入到外部反馈，只保留四个必要节点。</p>
+          </div>
+        </div>
+        <div class="flow">
+          <div class="flow-step">
+            <div class="module-index">A</div>
+            <strong>读完</strong>
+            <p>提取文章中真正改变判断的一条原则。</p>
+          </div>
+          <div class="flow-step">
+            <div class="module-index">B</div>
+            <strong>写清</strong>
+            <p>写出期限、结果指标和失败边界。</p>
+          </div>
+          <div class="flow-step">
+            <div class="module-index">C</div>
+            <strong>拆分</strong>
+            <p>反推首周唯一领先指标与第一个动作。</p>
+          </div>
+          <div class="flow-step">
+            <div class="module-index">D</div>
+            <strong>验证</strong>
+            <p>用真实发布、客户回应或运行结果校准。</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="action-box">
+          <div class="action-kicker">明日唯一动作</div>
+          <div class="action-title">看完目标文章，写出一条可验收的挑战目标。</div>
+          <div class="action-spec">
+            <div>
+              <span class="spec-label">触发锚点</span>
+              <span class="spec-value">早上第一个工作时段</span>
+            </div>
+            <div>
+              <span class="spec-label">最晚时间</span>
+              <span class="spec-value">上午结束前</span>
+            </div>
+            <div>
+              <span class="spec-label">完成证据</span>
+              <span class="spec-value">期限 + 指标 + 失败边界</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div class="section-number">04</div>
+          <div>
+            <h2>行动护栏</h2>
+            <p class="section-summary">停止无证据重试，继续真实发布与低刺激节律。</p>
+          </div>
+        </div>
+        <ul class="check-list">
+          <li><span class="check-icon">1</span><span>给已发布视频补齐链接、标题、发布时间和首轮数据。</span></li>
+          <li><span class="check-icon">2</span><span>桥接问题只复现一次，保存完整请求、错误和环境信息。</span></li>
+          <li><span class="check-icon">3</span><span>保持减少短视频和高刺激内容，不用即时奖励缓解执行压力。</span></li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div class="section-number">05</div>
+          <div>
+            <h2>待核风险</h2>
+            <p class="section-summary">没有证据的部分保持未知，不让推断替代事实。</p>
+          </div>
+        </div>
+        <ul class="risk-list">
+          <li><span class="risk-icon">?</span><span>已发布 AI 视频是否就是上一轮指定的 B 站测试视频。</span></li>
+          <li><span class="risk-icon">?</span><span>网页桥接故障位于客户端、bridge、gateway、认证还是网页端。</span></li>
+          <li><span class="risk-icon">?</span><span>高目标能否提升实际产出，仍需一次限时实验而不是继续引用案例。</span></li>
+          <li><span class="risk-icon">!</span><span>前夜睡眠被冲突压缩，若困倦持续，需要单独记录睡眠与精力。</span></li>
+        </ul>
+      </section>
+
+      <section class="section">
+        <div class="section-head">
+          <div class="section-number">06</div>
+          <div>
+            <h2>第三人称审视</h2>
+            <p class="section-summary">看见模式，但不把推断写成人格结论。</p>
+          </div>
+        </div>
+        <div class="observer">
+          <p class="observer-copy">这个人善于从冲突、工具和文章中迅速提炼系统性解释，也愿意真实发布和及时止损。但他仍容易在新想法与技术排障间切换，完成证据经常落后于实际行动。</p>
+          <div class="bug-box">
+            <strong>最大 Bug</strong>
+            <p>做过的事情没有同步形成证据，导致系统无法区分“推进过”与“已经闭环”。</p>
+          </div>
+        </div>
+      </section>
+
+      <footer class="card-footer">
+        <span>认知卡片 · 2026-09-19</span>
+        <span>来源：完整日省 · Supabase-inspired visual system</span>
+      </footer>
+    </article>
+  </main>
+</body>
+</html>
