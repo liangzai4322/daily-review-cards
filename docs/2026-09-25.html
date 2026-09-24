@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>认知卡片 · 2026-09-25</title>
+  <style>
+    :root {
+      --c-canvas: #07080a;
+      --c-surface: #0d0d0d;
+      --c-raised: #101111;
+      --c-card: #121212;
+      --c-panel: #161718;
+      --c-panel-2: #191a1c;
+      --c-ink: #f4f4f6;
+      --c-white: #ffffff;
+      --c-body: #cdcdcd;
+      --c-body-strong: #dedee1;
+      --c-muted: #9c9c9d;
+      --c-ash: #737476;
+      --c-stone: #4c4d4f;
+      --c-hairline: #242728;
+      --c-hairline-soft: rgba(255,255,255,0.08);
+      --c-hairline-strong: rgba(255,255,255,0.16);
+      --c-red: #ff6161;
+      --c-red-deep: #a1131a;
+      --c-red-soft: rgba(255,97,97,0.14);
+      --c-blue: #57c1ff;
+      --c-blue-soft: rgba(87,193,255,0.14);
+      --c-green: #59d499;
+      --c-green-soft: rgba(89,212,153,0.14);
+      --c-yellow: #ffc533;
+      --c-yellow-soft: rgba(255,197,51,0.14);
+      --c-violet: #a78bfa;
+      --c-violet-soft: rgba(167,139,250,0.14);
+      --c-cyan: #69e3e0;
+      --c-cyan-soft: rgba(105,227,224,0.12);
+      --c-orange: #ff9d57;
+      --c-orange-soft: rgba(255,157,87,0.13);
+      --c-success-line: #2b6e51;
+      --c-warning-line: #7a5e18;
+      --c-danger-line: #733838;
+      --c-info-line: #285c78;
+      --c-neutral-line: #343638;
+      --c-hero-start: #ff5757;
+      --c-hero-mid: #d22f39;
+      --c-hero-end: #711017;
+      --c-glow-red: rgba(255,87,87,0.18);
+      --c-glow-white: rgba(255,255,255,0.04);
+      --c-print: #0a0a0a;
+      --c-selection: #232529;
+
+      --t-display: 64px;
+      --t-hero: 40px;
+      --t-kicker: 12px;
+      --t-section: 24px;
+      --t-subsection: 18px;
+      --t-core: 26px;
+      --t-argument: 17px;
+      --t-body: 16px;
+      --t-body-small: 14px;
+      --t-caption: 12px;
+      --t-quote: 24px;
+      --t-number: 13px;
+      --t-metric: 30px;
+      --w-regular: 400;
+      --w-medium: 500;
+      --w-semibold: 600;
+      --w-bold: 700;
+      --lh-tight: 1.12;
+      --lh-heading: 1.3;
+      --lh-body: 1.72;
+      --lh-relaxed: 1.9;
+      --ls-display: -0.025em;
+      --ls-title: -0.012em;
+      --ls-label: 0.15em;
+      --ls-body: 0.015em;
+
+      --s-1: 4px;
+      --s-2: 8px;
+      --s-3: 12px;
+      --s-4: 16px;
+      --s-5: 20px;
+      --s-6: 24px;
+      --s-7: 32px;
+      --s-8: 40px;
+      --s-9: 48px;
+      --s-10: 64px;
+      --s-11: 80px;
+      --s-12: 96px;
+      --safe-x: 48px;
+      --module-gap: 24px;
+
+      --mark-core: 6px solid var(--c-red);
+      --mark-argument: 1px solid var(--c-hairline);
+      --mark-method: 3px solid var(--c-blue);
+      --mark-action: 3px solid var(--c-green);
+      --mark-risk: 3px solid var(--c-yellow);
+      --mark-quote: 1px solid var(--c-hairline-strong);
+      --mark-evidence: 2px solid var(--c-violet);
+      --mark-divider: 1px solid var(--c-hairline);
+      --mark-label: 1px solid var(--c-neutral-line);
+      --mark-result: 3px solid var(--c-cyan);
+      --mark-warning: 1px solid var(--c-warning-line);
+      --mark-footer: 1px solid var(--c-hairline-soft);
+    }
+
+    * { box-sizing: border-box; }
+    html { background: var(--c-canvas); color-scheme: dark; }
+    body {
+      margin: 0;
+      background: var(--c-canvas);
+      color: var(--c-body);
+      font-family: Inter, "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+      font-size: var(--t-body);
+      font-weight: var(--w-regular);
+      line-height: var(--lh-body);
+      letter-spacing: var(--ls-body);
+      font-feature-settings: "calt", "kern", "liga", "ss03";
+    }
+
+    .card-shell { width: 100%; padding: var(--s-10) var(--safe-x); }
+    .cognitive-card {
+      width: min(100%, 980px);
+      margin: 0 auto;
+      background: var(--c-surface);
+      border: 1px solid var(--c-hairline);
+      border-radius: 0;
+    }
+    .hero-stripes {
+      height: 14px;
+      background: repeating-linear-gradient(112deg, var(--c-hero-start) 0 52px, var(--c-hero-mid) 52px 88px, var(--c-hero-end) 88px 124px, var(--c-canvas) 124px 146px);
+      border-bottom: var(--mark-divider);
+    }
+    .card-header { padding: var(--s-10) var(--s-9) var(--s-8); border-bottom: var(--mark-divider); background: var(--c-canvas); }
+    .kicker { color: var(--c-red); font-size: var(--t-kicker); font-weight: var(--w-semibold); letter-spacing: var(--ls-label); text-transform: uppercase; }
+    h1 { margin: var(--s-3) 0 var(--s-4); color: var(--c-ink); font-size: var(--t-hero); line-height: var(--lh-tight); letter-spacing: var(--ls-display); font-weight: var(--w-semibold); }
+    .lead { max-width: 760px; margin: 0; color: var(--c-body-strong); font-size: var(--t-subsection); line-height: var(--lh-body); }
+    .meta-row { display: flex; flex-wrap: wrap; gap: var(--s-2); margin-top: var(--s-6); }
+    .meta-chip { padding: var(--s-1) var(--s-3); border: var(--mark-label); color: var(--c-muted); background: var(--c-raised); font-size: var(--t-caption); letter-spacing: 0.04em; }
+
+    .content { padding: var(--s-9); }
+    .section { margin-top: var(--s-11); }
+    .section:first-child { margin-top: 0; }
+    .section-head { display: grid; grid-template-columns: 46px 1fr; gap: var(--s-4); align-items: end; margin-bottom: var(--s-6); }
+    .section-no { color: var(--c-ash); font-size: var(--t-number); font-weight: var(--w-semibold); letter-spacing: var(--ls-label); border-bottom: var(--mark-divider); padding-bottom: var(--s-2); }
+    h2 { margin: 0; color: var(--c-ink); font-size: var(--t-section); line-height: var(--lh-heading); font-weight: var(--w-medium); letter-spacing: var(--ls-title); }
+    h3 { margin: 0 0 var(--s-2); color: var(--c-ink); font-size: var(--t-subsection); line-height: var(--lh-heading); font-weight: var(--w-medium); }
+    p { margin: 0; }
+
+    .core-insight { padding: var(--s-7); border-left: var(--mark-core); border-top: var(--mark-quote); border-right: var(--mark-quote); border-bottom: var(--mark-quote); background: linear-gradient(135deg, var(--c-red-soft), var(--c-raised) 48%, var(--c-card)); }
+    .core-insight .command { color: var(--c-white); font-size: var(--t-core); line-height: var(--lh-heading); font-weight: var(--w-semibold); letter-spacing: var(--ls-title); }
+    .core-insight .explain { margin-top: var(--s-4); color: var(--c-body); font-size: var(--t-body); }
+
+    .result-strip { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: var(--s-3); margin-top: var(--s-5); }
+    .metric { padding: var(--s-5); background: var(--c-raised); border-top: var(--mark-result); border-right: var(--mark-argument); border-bottom: var(--mark-argument); border-left: var(--mark-argument); }
+    .metric-value { color: var(--c-white); font-size: var(--t-metric); line-height: var(--lh-tight); font-weight: var(--w-semibold); }
+    .metric-label { margin-top: var(--s-2); color: var(--c-muted); font-size: var(--t-caption); }
+    .metric-source { margin-top: var(--s-3); color: var(--c-ash); font-size: var(--t-caption); line-height: 1.55; }
+
+    .argument-list { display: grid; gap: var(--s-3); }
+    .argument { display: grid; grid-template-columns: 34px 1fr; gap: var(--s-4); padding: var(--s-5); border: var(--mark-argument); background: var(--c-card); }
+    .argument .key { width: 34px; height: 34px; display: grid; place-items: center; color: var(--c-ink); background: var(--c-selection); border: 1px solid var(--c-hairline-strong); font-size: var(--t-number); font-weight: var(--w-semibold); }
+    .argument .title { color: var(--c-ink); font-size: var(--t-argument); font-weight: var(--w-medium); }
+    .argument .copy { margin-top: var(--s-2); color: var(--c-body); font-size: var(--t-body-small); }
+    .argument.red { border-left: 3px solid var(--c-red); }
+    .argument.blue { border-left: 3px solid var(--c-blue); }
+    .argument.green { border-left: 3px solid var(--c-green); }
+    .argument.yellow { border-left: 3px solid var(--c-yellow); }
+
+    .flow-band { display: grid; grid-template-columns: repeat(4, 1fr); border: var(--mark-argument); background: var(--c-raised); }
+    .flow-step { padding: var(--s-5); border-right: var(--mark-divider); }
+    .flow-step:last-child { border-right: 0; }
+    .flow-index { color: var(--c-blue); font-size: var(--t-number); font-weight: var(--w-semibold); letter-spacing: var(--ls-label); }
+    .flow-title { margin-top: var(--s-2); color: var(--c-ink); font-size: var(--t-body); font-weight: var(--w-medium); }
+    .flow-copy { margin-top: var(--s-2); color: var(--c-muted); font-size: var(--t-caption); line-height: 1.6; }
+
+    .quote-band { padding: var(--s-8); border: var(--mark-quote); background: var(--c-canvas); }
+    blockquote { margin: 0; color: var(--c-white); font-size: var(--t-quote); line-height: 1.55; font-weight: var(--w-medium); letter-spacing: var(--ls-title); }
+    .quote-note { margin-top: var(--s-4); color: var(--c-red); font-size: var(--t-caption); letter-spacing: var(--ls-label); }
+
+    .split { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s-4); }
+    .method-box, .action-box, .risk-box, .evidence-box { padding: var(--s-6); background: var(--c-card); border-top: var(--mark-argument); border-right: var(--mark-argument); border-bottom: var(--mark-argument); }
+    .method-box { border-left: var(--mark-method); }
+    .action-box { border-left: var(--mark-action); }
+    .risk-box { border-left: var(--mark-risk); background: linear-gradient(90deg, var(--c-yellow-soft), var(--c-card) 35%); }
+    .evidence-box { border-left: var(--mark-evidence); }
+    .box-label { color: var(--c-muted); font-size: var(--t-caption); font-weight: var(--w-semibold); letter-spacing: var(--ls-label); }
+    .box-title { margin-top: var(--s-2); color: var(--c-ink); font-size: var(--t-subsection); font-weight: var(--w-medium); }
+    .box-copy { margin-top: var(--s-3); color: var(--c-body); font-size: var(--t-body-small); }
+    ul { margin: var(--s-4) 0 0; padding-left: var(--s-5); }
+    li { margin-top: var(--s-2); color: var(--c-body); font-size: var(--t-body-small); }
+    li::marker { color: var(--c-green); }
+    .risk-box li::marker { color: var(--c-yellow); }
+
+    .action-primary { margin-bottom: var(--s-4); padding: var(--s-7); background: var(--c-white); color: var(--c-print); border-left: 6px solid var(--c-green); }
+    .action-primary .box-label { color: #4b4d50; }
+    .action-primary .box-title { color: var(--c-print); font-size: var(--t-core); }
+    .action-primary .box-copy { color: #36383b; }
+    .proof { margin-top: var(--s-4); padding-top: var(--s-4); border-top: 1px solid #d8d8dc; color: #252629; font-size: var(--t-body-small); font-weight: var(--w-medium); }
+
+    .decision-grid { display: grid; gap: var(--s-2); }
+    .decision-row { padding: var(--s-4); border: var(--mark-warning); background: var(--c-raised); }
+    .decision-title { color: var(--c-ink); font-size: var(--t-body); font-weight: var(--w-medium); }
+    .decision-copy { margin-top: var(--s-1); color: var(--c-muted); font-size: var(--t-caption); }
+
+    .card-footer { padding: var(--s-7) var(--s-9); border-top: var(--mark-footer); background: var(--c-canvas); color: var(--c-ash); font-size: var(--t-caption); line-height: 1.7; }
+    .footer-strong { color: var(--c-muted); }
+
+    @media (max-width: 1100px) {
+      :root { --safe-x: 32px; --t-hero: 38px; }
+      .card-shell { padding-top: var(--s-9); padding-bottom: var(--s-9); }
+    }
+    @media (max-width: 800px) {
+      :root { --safe-x: 24px; --t-hero: 34px; --t-core: 23px; --t-quote: 21px; --t-section: 22px; }
+      .card-header, .content { padding-left: var(--s-7); padding-right: var(--s-7); }
+      .result-strip, .split { grid-template-columns: 1fr; }
+      .flow-band { grid-template-columns: 1fr 1fr; }
+      .flow-step:nth-child(2) { border-right: 0; }
+      .flow-step:nth-child(-n+2) { border-bottom: var(--mark-divider); }
+    }
+    @media (max-width: 560px) {
+      :root { --safe-x: 12px; --t-hero: 30px; --t-core: 21px; --t-body: 15px; --module-gap: 16px; }
+      .card-shell { padding-top: var(--s-5); padding-bottom: var(--s-5); }
+      .card-header, .content, .card-footer { padding-left: var(--s-5); padding-right: var(--s-5); }
+      .card-header { padding-top: var(--s-8); }
+      .section { margin-top: var(--s-10); }
+      .core-insight, .quote-band, .action-primary { padding: var(--s-5); }
+      .section-head { grid-template-columns: 36px 1fr; }
+      .argument { grid-template-columns: 30px 1fr; gap: var(--s-3); padding: var(--s-4); }
+      .argument .key { width: 30px; height: 30px; }
+    }
+    @media (max-width: 420px) {
+      :root { --t-hero: 27px; --t-section: 20px; --t-subsection: 17px; --t-quote: 19px; --t-metric: 26px; }
+      .flow-band { grid-template-columns: 1fr; }
+      .flow-step { border-right: 0; border-bottom: var(--mark-divider); }
+      .flow-step:last-child { border-bottom: 0; }
+      .meta-chip { width: 100%; }
+      .metric { padding: var(--s-4); }
+    }
+  </style>
+</head>
+<body>
+  <main class="card-shell">
+    <article class="cognitive-card">
+      <div class="hero-stripes"></div>
+      <header class="card-header">
+        <div class="kicker">DAILY REVIEW / 2026-09-25</div>
+        <h1>别再扩张可能性，先跑通一个结果</h1>
+        <p class="lead">这几天真正的进展，不是又看见了多少平台，而是 B 站链路跑过一次、成交约 3–4 单，也更清楚地看见：主线正在被消息、信息流和新想法共同切碎。</p>
+        <div class="meta-row">
+          <span class="meta-chip">活动范围 09.21—09.25</span>
+          <span class="meta-chip">31 个来源 / 184 个事件</span>
+          <span class="meta-chip">事实、任务与待核分层保留</span>
+        </div>
+      </header>
+
+      <div class="content">
+        <section class="section">
+          <div class="core-insight">
+            <div class="kicker">TODAY'S COMMAND</div>
+            <p class="command">用一张目标卡，把“十倍增长”压缩成一个渠道、一个 7 天实验、一个停止条件。</p>
+            <p class="explain">多平台、多账号、多设备都只是放大器。没有明确基线、内容实验和外部证据时，继续扩张只会制造更多管理对象。</p>
+          </div>
+          <div class="result-strip">
+            <div class="metric">
+              <div class="metric-value">3–4 单</div>
+              <div class="metric-label">记录到的成交</div>
+              <div class="metric-source">用户原话；客单价与回款未记录</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">7–8</div>
+              <div class="metric-label">流量 / 咨询进入</div>
+              <div class="metric-source">是否都算有效对话仍待核</div>
+            </div>
+            <div class="metric">
+              <div class="metric-value">1 次</div>
+              <div class="metric-label">B站链路真实运行</div>
+              <div class="metric-source">购买、登录、分身路径已跑过</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <div class="section-no">01</div>
+            <h2>四个判断，决定下一步</h2>
+          </div>
+          <div class="argument-list">
+            <div class="argument red">
+              <div class="key">⌘1</div>
+              <div><div class="title">知道，不等于会用</div><div class="copy">真正重要的东西，要写下来、拆开、推演，再放进真实情境里调用。只留下总结，认知不会自动变成结果。</div></div>
+            </div>
+            <div class="argument blue">
+              <div class="key">⌘2</div>
+              <div><div class="title">当前瓶颈更像流量端</div><div class="copy">交付、写手和群资源被认为相对成熟；增长需要验证的是内容如何被看见、如何进入咨询，而不是再抽象讨论“做平台”。</div></div>
+            </div>
+            <div class="argument green">
+              <div class="key">⌘3</div>
+              <div><div class="title">矩阵的最小单位是内容</div><div class="copy">更多账号没有持续内容，只会增加成本、规则风险和维护复杂度。账号数量不是领先指标，稳定发布和真实咨询才是。</div></div>
+            </div>
+            <div class="argument yellow">
+              <div class="key">⌘4</div>
+              <div><div class="title">注意力问题要从流程解决</div><div class="copy">客户消息持续打断主线，夜间又被抖音乘车码带入短剧。仅靠意志力拉回，损耗已经高于任务本身。</div></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <div class="section-no">02</div>
+            <h2>从目标到证据的最短闭环</h2>
+          </div>
+          <div class="flow-band">
+            <div class="flow-step"><div class="flow-index">STEP 01</div><div class="flow-title">定基线</div><div class="flow-copy">当前月成交、收入、线索分别是多少</div></div>
+            <div class="flow-step"><div class="flow-index">STEP 02</div><div class="flow-title">选渠道</div><div class="flow-copy">只选一个首发渠道，不同时铺开</div></div>
+            <div class="flow-step"><div class="flow-index">STEP 03</div><div class="flow-title">跑实验</div><div class="flow-copy">连续 7 天，用一种内容和同一口径</div></div>
+            <div class="flow-step"><div class="flow-index">STEP 04</div><div class="flow-title">看证据</div><div class="flow-copy">发布、咨询、报价、成交、回款</div></div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="quote-band">
+            <blockquote>“你知道不等于你理解，不等于你会用。”</blockquote>
+            <div class="quote-note">记忆锚点 · 用在什么地方，比知道了什么更重要</div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <div class="section-no">03</div>
+            <h2>可以复用的方法</h2>
+          </div>
+          <div class="split">
+            <div class="method-box">
+              <div class="box-label">人机协作</div>
+              <div class="box-title">先独立，再合并</div>
+              <div class="box-copy">人先想出一版；AI 在不知道人类方案时再想一版；最后合并。这样能减少相互锚定，也保留人的场景判断。</div>
+            </div>
+            <div class="evidence-box">
+              <div class="box-label">行为设计</div>
+              <div class="box-title">强提示 + 轻启动</div>
+              <div class="box-copy">把新行为挂到稳定旧行为上，并把第一步缩小到随时能做。提示、能力和动机缺一不可。</div>
+            </div>
+            <div class="method-box">
+              <div class="box-label">内容增长</div>
+              <div class="box-title">搜索与推荐分开测</div>
+              <div class="box-copy">“用户主动搜到我”与“平台把我推给用户”是两条不同路径，需要不同选题、指标与停止条件。</div>
+            </div>
+            <div class="evidence-box">
+              <div class="box-label">注意力</div>
+              <div class="box-title">移除触发入口</div>
+              <div class="box-copy">夜间不用抖音乘车码，直接改用微信或支付宝；流程能消掉的诱因，不交给意志力反复对抗。</div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <div class="section-no">04</div>
+            <h2>唯一动作与完成证据</h2>
+          </div>
+          <div class="action-primary">
+            <div class="box-label">10:00—11:00 · 书房规划时段</div>
+            <div class="box-title">写完业务十倍增长 30 天目标卡</div>
+            <div class="box-copy">只填五项：当前基线、十倍口径、唯一首发渠道、7 天实验、停止条件。前五分钟先写基线，不先研究更多平台。</div>
+            <div class="proof">完成证据：一页目标卡，五个字段全部非空，并明确一个首发渠道。</div>
+          </div>
+          <div class="split">
+            <div class="action-box">
+              <div class="box-label">维护动作</div>
+              <div class="box-title">保护身体与注意力</div>
+              <ul>
+                <li>午饭、晚饭前移，为训练留窗口；不在不适时硬顶强度。</li>
+                <li>夜间乘车不用抖音码，避开短剧入口。</li>
+              </ul>
+            </div>
+            <div class="risk-box">
+              <div class="box-label">停止做</div>
+              <div class="box-title">不要在主动作前扩平台</div>
+              <ul>
+                <li>不继续加账号、设备和系统方案。</li>
+                <li>不在没有垫子时去草坪打坐。</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <div class="section-no">05</div>
+            <h2>仍然不能当成事实</h2>
+          </div>
+          <div class="risk-box">
+            <div class="box-label">待核 / 风险</div>
+            <ul>
+              <li>“每天半小时无氧 + 一小时有氧”是否适合当前状态，不能由 AI 直接定论。</li>
+              <li>鼻咽相关疑问如果持续或加重，需要专业医疗评估。</li>
+              <li>约 7–8 个“流量”是否都算有效对话，需要统一口径。</li>
+              <li>多账号的设备、IP、手机号与平台规则判断，仍只是个人观察或博主说法。</li>
+              <li>睡眠差与晚间运动、进食、冰水之间的因果关系尚未验证。</li>
+            </ul>
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-head">
+            <div class="section-no">06</div>
+            <h2>五个待决项目</h2>
+          </div>
+          <div class="decision-grid">
+            <div class="decision-row"><div class="decision-title">养起 B 站账号</div><div class="decision-copy">缺账号范围与养成标准 · 写盒 / 删除 / 保留</div></div>
+            <div class="decision-row"><div class="decision-title">让 AI 拆解并复刻“该视频”</div><div class="decision-copy">缺视频链接或稳定引用 · 写盒 / 删除 / 保留</div></div>
+            <div class="decision-row"><div class="decision-title">员工投产比最小看板</div><div class="decision-copy">缺真实工时与可归因产出 · 开展 / 删除 / 保留</div></div>
+            <div class="decision-row"><div class="decision-title">已发布视频证据补全</div><div class="decision-copy">缺平台、链接与首轮数据 · 开展 / 删除 / 保留</div></div>
+            <div class="decision-row"><div class="decision-title">十倍增长目标卡压力测试</div><div class="decision-copy">当前只作为 AI 推导提案，不自动进入 TaskBox</div></div>
+          </div>
+        </section>
+      </div>
+
+      <footer class="card-footer">
+        <span class="footer-strong">今日复盘 · 2026-09-25</span><br>
+        来源：冻结 handoff、聚合 preview、连续性胶囊与正式日省。视觉参考：Raycast dark canvas。公开卡片只保留提炼内容，不包含凭据、Token 或原始全文。
+      </footer>
+    </article>
+  </main>
+</body>
+</html>
