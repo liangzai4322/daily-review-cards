@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>认知卡片 · 2026-09-24</title>
+  <style>
+    :root {
+      --black:#000;--white:#fff;--paper:#f7f5ec;--red:#e91d2a;--yellow:#fcc20f;
+      --olive:#8e8a25;--sage:#b3bd95;--salmon:#d77a7a;--peach:#e6915d;
+      --lime:#c0d4a7;--sky:#9ab6c8;--steel:#a5b8c0;--peri:#8c9ae0;
+      --gray-1:#eee;--gray-2:#ccc;--gray-3:#999;--gray-4:#555;--brown:#563b1f;
+      --green:#2d6d34;--blue:#253f8f;--purple:#6a26a4;--orange:#f05a24;
+      --danger:#a40000;--safe:#165c2b;--info:#174c7c;--risk:#725000;
+      --fact-bg:#dfe8eb;--insight-bg:#d9d0ef;--action-bg:#f1c9a9;--risk-bg:#f4df9e;
+      --text-main:#000;--text-invert:#fff;--line:#000;--shadow:rgba(0,0,0,.25);
+      --fs-display:52px;--fs-hero:34px;--fs-h1:28px;--fs-h2:22px;--fs-h3:18px;
+      --fs-lead:19px;--fs-body-lg:17px;--fs-body:16px;--fs-small:14px;--fs-caption:12px;
+      --fs-micro:11px;--fs-stat:30px;--fs-quote:24px;--fs-label:13px;--fs-choice:16px;
+      --sp-1:4px;--sp-2:8px;--sp-3:12px;--sp-4:16px;--sp-5:20px;--sp-6:24px;
+      --sp-7:32px;--sp-8:40px;--sp-9:48px;--sp-10:64px;--page-pad:18px;--card-pad:34px;
+      --border-thin:1px;--border-mid:2px;--border-thick:6px;--marker:14px;
+    }
+    *{box-sizing:border-box}
+    html{background:var(--black)}
+    body{margin:0;background:var(--black);color:var(--text-main);font-family:"Times New Roman","Songti SC",serif;font-size:var(--fs-body);line-height:1.58;letter-spacing:0}
+    .shell{width:100%;padding:var(--page-pad)}
+    .card{width:min(100%,900px);margin:0 auto;background:var(--paper);border:var(--border-thick) solid var(--black);box-shadow:10px 10px 0 var(--shadow)}
+    .topline{display:flex;justify-content:space-between;gap:12px;padding:9px 16px;background:var(--black);color:var(--white);font-family:Arial,sans-serif;font-size:var(--fs-caption);font-weight:700}
+    .hero{position:relative;padding:var(--sp-9) var(--card-pad);background:var(--white);border-bottom:var(--border-thick) solid var(--black);overflow:hidden}
+    .burst{position:absolute;right:22px;top:18px;display:grid;place-items:center;width:76px;height:76px;background:var(--yellow);border:3px solid var(--black);font-family:"Arial Black",Arial,sans-serif;font-size:13px;font-weight:900;transform:rotate(7deg);text-align:center;line-height:1.1}
+    .kicker{margin:0 0 10px;color:var(--red);font-family:Arial,sans-serif;font-size:var(--fs-label);font-weight:800;text-transform:uppercase}
+    h1{max-width:690px;margin:0;color:var(--black);font-family:"Arial Black",Arial,sans-serif;font-size:var(--fs-display);font-weight:900;line-height:1.02;letter-spacing:0}
+    .deck{max-width:690px;margin:22px 0 0;font-size:var(--fs-lead);line-height:1.55}
+    .meta{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:26px;font-family:Arial,sans-serif;font-size:var(--fs-caption);font-weight:700}
+    .section{padding:var(--sp-8) var(--card-pad);border-bottom:var(--border-thick) solid var(--black)}
+    .section:last-of-type{border-bottom:0}
+    .ribbon{display:grid;grid-template-columns:64px 1fr;margin:-40px -34px 28px;border-bottom:3px solid var(--black)}
+    .num{display:grid;place-items:center;background:var(--black);color:var(--white);font-family:"Arial Black",Arial,sans-serif;font-size:22px}
+    .ribbon h2{margin:0;padding:18px 20px;background:var(--sage);font-family:"Arial Black",Arial,sans-serif;font-size:var(--fs-h1);line-height:1.08}
+    .ribbon.salmon h2{background:var(--salmon)}.ribbon.sky h2{background:var(--sky)}.ribbon.peri h2{background:var(--peri)}.ribbon.peach h2{background:var(--peach)}.ribbon.lime h2{background:var(--lime)}
+    .core{padding:26px;background:var(--black);color:var(--white);border:6px solid var(--red)}
+    .core strong{display:block;font-family:"Arial Black",Arial,sans-serif;font-size:var(--fs-hero);line-height:1.12}
+    .core p{margin:14px 0 0;color:var(--gray-1);font-size:var(--fs-body-lg)}
+    .stats{display:grid;grid-template-columns:repeat(3,1fr);border:3px solid var(--black);border-top:0}
+    .stat{min-height:130px;padding:18px;background:var(--sage);border-right:2px solid var(--black)}
+    .stat:nth-child(2){background:var(--salmon)}.stat:nth-child(3){background:var(--sky);border-right:0}
+    .stat small{display:block;font-family:Arial,sans-serif;font-size:var(--fs-micro);font-weight:800;text-transform:uppercase}
+    .stat b{display:block;margin-top:8px;font-family:"Arial Black",Arial,sans-serif;font-size:var(--fs-stat);line-height:1.05}
+    .stat span{display:block;margin-top:7px;font-size:var(--fs-small)}
+    .catalog{display:grid;gap:14px}
+    .item{display:grid;grid-template-columns:18px 1fr;border:2px solid var(--black);background:var(--white)}
+    .stripe{background:var(--purple)}.item:nth-child(2) .stripe{background:var(--red)}.item:nth-child(3) .stripe{background:var(--green)}.item:nth-child(4) .stripe{background:var(--orange)}
+    .copy{padding:18px 20px}.copy h3{margin:0;font-family:Arial,sans-serif;font-size:var(--fs-h3);line-height:1.25}.copy p{margin:8px 0 0}
+    .quote{padding:28px;background:var(--yellow);border:4px solid var(--black);box-shadow:7px 7px 0 var(--black)}
+    blockquote{margin:0;font-family:"Arial Black",Arial,sans-serif;font-size:var(--fs-quote);line-height:1.35}.quote p{margin:13px 0 0;font-size:var(--fs-small)}
+    .plan{display:grid;grid-template-columns:repeat(3,1fr);border:3px solid var(--black)}
+    .step{min-height:190px;padding:20px;border-right:2px solid var(--black);background:var(--fact-bg)}
+    .step:nth-child(2){background:var(--insight-bg)}.step:nth-child(3){background:var(--action-bg);border-right:0}
+    .step b{display:block;font-family:"Arial Black",Arial,sans-serif;font-size:var(--fs-h2)}.step span{display:block;margin-top:10px}
+    .choice{border:3px solid var(--black);background:var(--risk-bg)}
+    .choice-head{padding:14px 18px;background:var(--black);color:var(--yellow);font-family:"Arial Black",Arial,sans-serif;font-size:var(--fs-h3)}
+    .choice-row{display:grid;grid-template-columns:44px 1fr;border-bottom:2px solid var(--black)}.choice-row:last-child{border-bottom:0}
+    .key{display:grid;place-items:center;background:var(--red);color:var(--white);font-family:"Arial Black",Arial,sans-serif}.choice-copy{padding:15px 18px;font-size:var(--fs-choice)}
+    .warning{margin-top:20px;padding:18px;background:var(--white);border:4px double var(--danger)}
+    .warning b{font-family:Arial,sans-serif;color:var(--danger)}
+    .profile{display:grid;gap:12px}.profile-row{padding:18px;border-left:14px solid var(--black);background:var(--white)}
+    .profile-row.urgent{border-left-color:var(--red)}.profile-row.long{border-left-color:var(--blue)}
+    .profile-row b{display:block;font-family:Arial,sans-serif;font-size:var(--fs-label);text-transform:uppercase}.profile-row p{margin:6px 0 0}
+    .checklist{margin:0;padding:0;list-style:none;border:2px solid var(--black)}
+    .checklist li{position:relative;padding:15px 18px 15px 50px;border-bottom:1px solid var(--black);background:var(--white)}.checklist li:last-child{border-bottom:0}
+    .checklist li:before{content:"";position:absolute;left:17px;top:17px;width:16px;height:16px;border:2px solid var(--black);background:var(--lime)}
+    footer{padding:24px var(--card-pad);background:var(--black);color:var(--white);font-family:Arial,sans-serif;font-size:var(--fs-caption)}
+    @media(max-width:760px){:root{--card-pad:24px;--fs-display:42px}.ribbon{margin:-40px -24px 26px}.stats,.plan{grid-template-columns:1fr}.stat,.step{border-right:0;border-bottom:2px solid var(--black)}.stat:last-child,.step:last-child{border-bottom:0}.burst{width:62px;height:62px;font-size:11px}}
+    @media(max-width:520px){:root{--page-pad:0;--card-pad:18px;--fs-display:34px;--fs-hero:28px}.card{border-left:0;border-right:0;box-shadow:none}.topline{display:grid}.hero{padding-top:86px}.ribbon{margin:-40px -18px 24px;grid-template-columns:48px 1fr}.ribbon h2{font-size:23px;padding:16px}.core{padding:20px}.choice-copy{padding:13px}.meta{display:grid}}
+    @media(min-width:1100px){:root{--page-pad:42px;--card-pad:46px}.ribbon{margin:-40px -46px 30px}}
+  </style>
+</head>
+<body>
+  <main class="shell"><article class="card">
+    <div class="topline"><span>DAILY REVIEW CATALOG</span><span>2026-09-24 / RANGE: 09-20—09-23</span></div>
+    <header class="hero"><div class="burst">NEW!<br>30 DAYS</div><p class="kicker">Business × Health × Execution</p><h1>十倍目标，<br>先写清基线。</h1><p class="deck">方向已经从“做更多事”收敛到“一个月业务十倍增长”。下一步不是再开四个平台，而是定义一个数字、一个渠道和一个七天实验。</p><div class="meta"><span>飞书新增 4 份复盘</span><span>明确任务 1 条</span><span>外部发布 0 条</span><span>健康风险 1 项</span></div></header>
+
+    <section class="section"><div class="ribbon"><div class="num">01</div><h2>核心判断 / THE BIG IDEA</h2></div><div class="core"><strong>没有基线、单一实验和停止条件，十倍仍只是口号。</strong><p>激进目标真正有价值的部分，是压缩反馈周期并集中资源，而不是把闲鱼、B站、抖音和小红书同时启动。</p></div><div class="stats"><div class="stat"><small>Direction</small><b>已收敛</b><span>阶段目标明确选择赚钱</span></div><div class="stat"><small>Evidence</small><b>仍不足</b><span>没有新增发布、成交或回款</span></div><div class="stat"><small>Capacity</small><b>先保底</b><span>进食不足已影响工作状态</span></div></div></section>
+
+    <section class="section"><div class="ribbon salmon"><div class="num">02</div><h2>真实结果 / WHAT CHANGED</h2></div><div class="catalog"><div class="item"><div class="stripe"></div><div class="copy"><h3>网页端 × 本地 Codex 跑通最低可用路径</h3><p>网页端负责大批量阅读，本地负责出处校验、纠错与成册；先完成任务，不再无限排障。</p></div></div><div class="item"><div class="stripe"></div><div class="copy"><h3>业务方向形成三层框架</h3><p>多账号、多平台、多品类已经被识别，但还缺一条在七天内能够验证的主路径。</p></div></div><div class="item"><div class="stripe"></div><div class="copy"><h3>银行事务完成</h3><p>完成智能柜台改密、APP购汇与柜台取泰铢流程核验，代价是较长排队时间。</p></div></div><div class="item"><div class="stripe"></div><div class="copy"><h3>身体信号不再适合忽略</h3><p>多次在进食不足后出现头昏或能量被抽空，进食后缓解；已建立“随身应急食品”任务，但不把自我判断写成诊断。</p></div></div></div></section>
+
+    <section class="section"><div class="quote"><blockquote>“如果只能选一样，我选 money。”</blockquote><p>记忆锚点：一个阶段只允许一个激进目标，但它必须转换为可以被数字和证据否证的实验。</p></div></section>
+
+    <section class="section"><div class="ribbon sky"><div class="num">03</div><h2>30天目标卡 / MINIMUM PLAN</h2></div><div class="plan"><div class="step"><b>01 基线</b><span>写清当前月收入、订单、有效线索与主渠道数据。</span></div><div class="step"><b>02 实验</b><span>只选闲鱼或B站中的一个，执行七天最小增长实验。</span></div><div class="step"><b>03 证据</b><span>每天记录领先指标、外部反馈和停止条件，不用忙碌感替代结果。</span></div></div></section>
+
+    <section class="section"><div class="ribbon peri"><div class="num">04</div><h2>需要决定 / OPEN CHOICES</h2></div><div class="choice"><div class="choice-head">三项候选，均未自动写成一次性任务</div><div class="choice-row"><div class="key">A</div><div class="choice-copy"><b>十倍增长：</b>先补基线与目标口径，再决定是否进入主动作。</div></div><div class="choice-row"><div class="key">B</div><div class="choice-copy"><b>每日无氧：</b>先完成一次30分钟训练，再选择周期任务或健康规则承载。</div></div><div class="choice-row"><div class="key">C</div><div class="choice-copy"><b>归档简化：</b>先核对现有自动化；若已按人物保存，则删除重复候选。</div></div></div><div class="warning"><b>健康边界：</b>饥饿后头昏只有主观症状与进食后缓解证据，没有血糖测量或医学诊断。反复出现、加重或伴随意识异常时，应优先就医核验。</div></section>
+
+    <section class="section"><div class="ribbon peach"><div class="num">05</div><h2>第三人称观察 / BEHAVIOR PROFILE</h2></div><div class="profile"><div class="profile-row"><b>行为模式</b><p>他擅长从底层原理构建系统，也能快速生成多条增长路径；但外部结果尚未出现时，容易继续扩展工具、渠道和研究范围。</p></div><div class="profile-row urgent"><b>迫在眉睫</b><p>先解决进食不足导致的头昏，并把十倍目标压缩成一张可验收目标卡。</p></div><div class="profile-row long"><b>长期最重要</b><p>建立“一个主目标、一个反馈周期、一个外部结果”的节律，让系统服务业务，而不是让业务等待系统完善。</p></div></div></section>
+
+    <section class="section"><div class="ribbon lime"><div class="num">06</div><h2>行动清单 / NEXT MOVES</h2></div><ul class="checklist"><li>写完业务十倍增长30天目标卡。</li><li>准备随身应急食品，并设置合理进食节点。</li><li>完成一次30分钟无氧训练，记录动作、时长和次日反馈。</li><li>选择闲鱼或B站作为首个七天实验，不同时启动两条。</li><li>核对大V习惯归档是否已经取消周/月重复汇总。</li></ul></section>
+
+    <footer>来源：2026-09-24 正式日省 · 活动范围 2026-09-20 至 2026-09-23 · Dell 1996 Inspired / Static Cognitive Card</footer>
+  </article></main>
+</body>
+</html>
