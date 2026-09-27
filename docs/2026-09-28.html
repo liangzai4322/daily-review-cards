@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>认知卡片 · 2026-09-28</title>
+  <style>
+    :root {
+      --c-orange: #ea2804;
+      --c-orange-deep: #c01f00;
+      --c-orange-soft: #ff6a3d;
+      --c-orange-wash: #ffe5dc;
+      --c-pink-warm: #f4a8a0;
+      --c-ink: #202020;
+      --c-ink-2: #292929;
+      --c-body: #3a3a3a;
+      --c-charcoal: #575757;
+      --c-muted: #646464;
+      --c-ash: #8d8d8d;
+      --c-stone: #bbbbbb;
+      --c-cloud: #dedbd4;
+      --c-paper: #f9f7f3;
+      --c-bone: #f3f0e8;
+      --c-white: #ffffff;
+      --c-black: #000000;
+      --c-dark: #202020;
+      --c-dark-2: #303030;
+      --c-dark-text: #fcfcfc;
+      --c-dark-muted: #c9c7c3;
+      --c-line: #d9d5cd;
+      --c-line-strong: #202020;
+      --c-line-soft: #ebe7de;
+      --c-success: #2b9a66;
+      --c-success-bg: #e1f3e9;
+      --c-warning: #9a5a00;
+      --c-warning-bg: #fff0d5;
+      --c-risk: #9f2817;
+      --c-risk-bg: #fbe6df;
+      --c-info: #315f8c;
+      --c-info-bg: #e6eef7;
+      --c-neutral-bg: #efede7;
+      --c-review: #70502f;
+      --c-review-bg: #f1e8dc;
+      --c-task: #4f477e;
+      --c-task-bg: #ebe8f7;
+      --c-evidence: #1f6a5a;
+      --c-evidence-bg: #e2f1ed;
+      --c-shadow: rgba(32, 32, 32, 0.08);
+      --c-shadow-deep: rgba(32, 32, 32, 0.16);
+      --c-clear: rgba(255, 255, 255, 0);
+
+      --t-hero-size: 64px;
+      --t-hero-weight: 800;
+      --t-hero-line: 0.98;
+      --t-hero-track: -2.6px;
+      --t-title-size: 36px;
+      --t-title-weight: 760;
+      --t-title-line: 1.06;
+      --t-title-track: -1px;
+      --t-section-size: 26px;
+      --t-section-weight: 760;
+      --t-section-line: 1.2;
+      --t-sub-size: 19px;
+      --t-sub-weight: 700;
+      --t-sub-line: 1.35;
+      --t-body-lg-size: 18px;
+      --t-body-lg-line: 1.72;
+      --t-body-size: 16px;
+      --t-body-line: 1.72;
+      --t-body-sm-size: 14px;
+      --t-body-sm-line: 1.58;
+      --t-label-size: 12px;
+      --t-label-weight: 750;
+      --t-label-track: 1.5px;
+      --t-number-size: 34px;
+      --t-number-weight: 800;
+      --t-quote-size: 23px;
+      --t-quote-line: 1.5;
+      --t-meta-size: 12px;
+      --t-meta-line: 1.5;
+      --t-note-size: 13px;
+      --t-note-line: 1.62;
+      --t-mono-size: 12px;
+      --t-mono-track: 0.4px;
+
+      --s-1: 4px;
+      --s-2: 8px;
+      --s-3: 12px;
+      --s-4: 16px;
+      --s-5: 20px;
+      --s-6: 24px;
+      --s-7: 32px;
+      --s-8: 40px;
+      --s-9: 48px;
+      --s-10: 64px;
+      --s-11: 80px;
+      --s-12: 96px;
+      --s-safe: 28px;
+      --s-indent: 18px;
+
+      --m-heavy: 8px;
+      --m-medium: 4px;
+      --m-thin: 1px;
+      --m-number: 44px;
+      --m-stamp: 30px;
+      --m-divider: 2px;
+      --m-risk: 6px;
+      --m-action: 6px;
+      --m-evidence: 6px;
+      --m-quote: 10px;
+      --m-progress: 5px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { background: var(--c-paper); color: var(--c-ink); }
+
+    body {
+      margin: 0;
+      background: var(--c-paper);
+      font-family: "Avenir Next", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+      font-size: var(--t-body-size);
+      line-height: var(--t-body-line);
+    }
+
+    .card-shell {
+      width: 100%;
+      padding: var(--s-10) var(--s-safe);
+    }
+
+    .cognitive-card {
+      width: min(980px, 100%);
+      margin: 0 auto;
+      background: var(--c-white);
+      border: var(--m-thin) solid var(--c-line-strong);
+      box-shadow: 12px 12px 0 var(--c-dark);
+    }
+
+    .hero {
+      position: relative;
+      padding: var(--s-10) var(--s-9) var(--s-9);
+      background: var(--c-orange);
+      color: var(--c-white);
+      border-bottom: var(--m-heavy) solid var(--c-dark);
+    }
+
+    .eyebrow,
+    .section-kicker,
+    .mini-label,
+    .status-label {
+      font-size: var(--t-label-size);
+      font-weight: var(--t-label-weight);
+      letter-spacing: var(--t-label-track);
+      text-transform: uppercase;
+    }
+
+    .eyebrow { margin-bottom: var(--s-5); }
+
+    .hero h1 {
+      max-width: 780px;
+      margin: 0;
+      font-size: var(--t-hero-size);
+      font-weight: var(--t-hero-weight);
+      line-height: var(--t-hero-line);
+      letter-spacing: var(--t-hero-track);
+    }
+
+    .hero p {
+      max-width: 680px;
+      margin: var(--s-6) 0 0;
+      font-size: var(--t-body-lg-size);
+      line-height: var(--t-body-lg-line);
+    }
+
+    .date-stamp {
+      display: inline-block;
+      margin-top: var(--s-7);
+      padding: var(--s-2) var(--s-3);
+      background: var(--c-dark);
+      color: var(--c-dark-text);
+      font-family: "SFMono-Regular", Consolas, monospace;
+      font-size: var(--t-mono-size);
+      letter-spacing: var(--t-mono-track);
+    }
+
+    .progress-strip {
+      display: grid;
+      grid-template-columns: 1fr 2fr 1fr;
+      height: var(--m-progress);
+    }
+
+    .progress-strip span:nth-child(1) { background: var(--c-dark); }
+    .progress-strip span:nth-child(2) { background: var(--c-orange); }
+    .progress-strip span:nth-child(3) { background: var(--c-bone); }
+
+    .section {
+      padding: var(--s-9);
+      border-bottom: var(--m-thin) solid var(--c-line);
+    }
+
+    .section:last-child { border-bottom: 0; }
+
+    .section-head {
+      display: flex;
+      align-items: baseline;
+      gap: var(--s-4);
+      margin-bottom: var(--s-7);
+    }
+
+    .section-number {
+      flex: 0 0 var(--m-number);
+      color: var(--c-orange);
+      font-size: var(--t-number-size);
+      font-weight: var(--t-number-weight);
+      line-height: 1;
+    }
+
+    .section h2 {
+      margin: 0;
+      font-size: var(--t-section-size);
+      font-weight: var(--t-section-weight);
+      line-height: var(--t-section-line);
+    }
+
+    .thesis {
+      padding: var(--s-8);
+      background: var(--c-dark);
+      color: var(--c-dark-text);
+      border-left: var(--m-heavy) solid var(--c-orange);
+    }
+
+    .thesis strong {
+      display: block;
+      margin-bottom: var(--s-3);
+      font-size: var(--t-title-size);
+      font-weight: var(--t-title-weight);
+      line-height: var(--t-title-line);
+      letter-spacing: var(--t-title-track);
+    }
+
+    .thesis p { margin: 0; color: var(--c-dark-muted); }
+
+    .metric-list {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      border-top: var(--m-thin) solid var(--c-line-strong);
+      border-left: var(--m-thin) solid var(--c-line-strong);
+    }
+
+    .metric {
+      min-height: 142px;
+      padding: var(--s-5);
+      background: var(--c-bone);
+      border-right: var(--m-thin) solid var(--c-line-strong);
+      border-bottom: var(--m-thin) solid var(--c-line-strong);
+    }
+
+    .metric-value {
+      display: block;
+      margin: var(--s-3) 0 var(--s-2);
+      color: var(--c-ink);
+      font-size: var(--t-number-size);
+      font-weight: var(--t-number-weight);
+      line-height: 1;
+    }
+
+    .metric-note { color: var(--c-muted); font-size: var(--t-note-size); line-height: var(--t-note-line); }
+
+    .evidence-box,
+    .risk-box,
+    .action-box,
+    .review-box {
+      padding: var(--s-6);
+      border: var(--m-thin) solid var(--c-line-strong);
+    }
+
+    .evidence-box { background: var(--c-evidence-bg); border-left: var(--m-evidence) solid var(--c-evidence); }
+    .risk-box { background: var(--c-risk-bg); border-left: var(--m-risk) solid var(--c-risk); }
+    .action-box { background: var(--c-orange-wash); border-left: var(--m-action) solid var(--c-orange); }
+    .review-box { background: var(--c-review-bg); border-left: var(--m-medium) solid var(--c-review); }
+
+    .box-title {
+      margin: 0 0 var(--s-3);
+      font-size: var(--t-sub-size);
+      font-weight: var(--t-sub-weight);
+      line-height: var(--t-sub-line);
+    }
+
+    .box-copy { margin: 0; }
+
+    .result-table {
+      width: 100%;
+      border-collapse: collapse;
+      border: var(--m-thin) solid var(--c-line-strong);
+    }
+
+    .result-table th,
+    .result-table td {
+      padding: var(--s-3) var(--s-4);
+      text-align: left;
+      border-bottom: var(--m-thin) solid var(--c-line);
+    }
+
+    .result-table th {
+      background: var(--c-bone);
+      font-size: var(--t-body-sm-size);
+    }
+
+    .result-table td:last-child { color: var(--c-muted); }
+
+    .decision-flow {
+      display: grid;
+      gap: var(--s-4);
+      counter-reset: item;
+    }
+
+    .decision {
+      position: relative;
+      padding: var(--s-5) var(--s-5) var(--s-5) calc(var(--s-5) + 48px);
+      background: var(--c-neutral-bg);
+      border: var(--m-thin) solid var(--c-line);
+      counter-increment: item;
+    }
+
+    .decision::before {
+      content: counter(item, decimal-leading-zero);
+      position: absolute;
+      top: var(--s-5);
+      left: var(--s-4);
+      color: var(--c-orange);
+      font-weight: var(--t-number-weight);
+      font-size: var(--t-sub-size);
+    }
+
+    .decision h3 {
+      margin: 0 0 var(--s-2);
+      font-size: var(--t-sub-size);
+      line-height: var(--t-sub-line);
+    }
+
+    .decision p { margin: 0; color: var(--c-charcoal); }
+    .decision .kind { color: var(--c-review); font-size: var(--t-body-sm-size); font-weight: 700; }
+
+    .quote {
+      margin: 0;
+      padding: var(--s-7) var(--s-7) var(--s-7) calc(var(--s-7) + var(--m-quote));
+      background: var(--c-paper);
+      border-left: var(--m-quote) solid var(--c-orange);
+      color: var(--c-ink);
+      font-size: var(--t-quote-size);
+      line-height: var(--t-quote-line);
+      font-weight: 700;
+    }
+
+    .rule-band {
+      display: grid;
+      grid-template-columns: 160px 1fr;
+      gap: var(--s-6);
+      align-items: stretch;
+      margin-top: var(--s-6);
+      border: var(--m-thin) solid var(--c-line-strong);
+    }
+
+    .rule-band .rule-key {
+      display: grid;
+      place-items: center;
+      padding: var(--s-5);
+      background: var(--c-orange);
+      color: var(--c-white);
+      font-size: var(--t-sub-size);
+      font-weight: 800;
+    }
+
+    .rule-band .rule-copy { padding: var(--s-5); }
+    .rule-band p { margin: 0; }
+
+    .risk-list {
+      margin: var(--s-4) 0 0;
+      padding-left: var(--s-indent);
+    }
+
+    .risk-list li + li { margin-top: var(--s-2); }
+
+    .footer {
+      padding: var(--s-8) var(--s-9);
+      background: var(--c-black);
+      color: var(--c-dark-text);
+    }
+
+    .footer strong { display: block; font-size: var(--t-sub-size); margin-bottom: var(--s-2); }
+    .footer p { margin: 0; color: var(--c-dark-muted); font-size: var(--t-meta-size); line-height: var(--t-meta-line); }
+
+    @media (max-width: 425px) {
+      :root { --t-hero-size: 42px; --t-title-size: 28px; --t-section-size: 22px; --s-safe: 12px; }
+      .card-shell { padding-top: var(--s-4); padding-bottom: var(--s-6); }
+      .cognitive-card { box-shadow: 6px 6px 0 var(--c-dark); }
+      .hero, .section, .footer { padding: var(--s-6); }
+      .metric-list { grid-template-columns: 1fr; }
+      .metric { min-height: 0; }
+      .rule-band { grid-template-columns: 1fr; gap: 0; }
+      .section-head { gap: var(--s-2); }
+    }
+
+    @media (min-width: 426px) and (max-width: 767px) {
+      :root { --t-hero-size: 50px; --s-safe: 18px; }
+      .hero, .section, .footer { padding: var(--s-7); }
+      .metric-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (min-width: 768px) and (max-width: 1023px) {
+      :root { --t-hero-size: 58px; }
+      .metric-list { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (min-width: 1024px) and (max-width: 1439px) {
+      .cognitive-card { width: min(920px, 100%); }
+    }
+
+    @media (min-width: 1440px) {
+      :root { --t-hero-size: 72px; }
+      .card-shell { padding-top: var(--s-12); padding-bottom: var(--s-12); }
+    }
+  </style>
+</head>
+<body>
+  <main class="card-shell">
+    <article class="cognitive-card">
+      <header class="hero">
+        <div class="eyebrow">今日复盘 · 证据边界</div>
+        <h1>没有证据，<br>不替今天补结论。</h1>
+        <p>本轮没有可进入正式日省的新事件。真正重要的不是把空白填满，而是把“未记录”“无法判断”和“仍待决定”清楚分开。</p>
+        <div class="date-stamp">2026-09-28 · 活动范围 2026-09-27 · RANGE</div>
+      </header>
+
+      <div class="progress-strip" aria-label="阅读进程"><span></span><span></span><span></span></div>
+
+      <section class="section">
+        <div class="section-head"><span class="section-number">01</span><h2>今天最确定的事实</h2></div>
+        <div class="thesis">
+          <strong>输入为空，不等于结果为零。</strong>
+          <p>发布、客户对话、报价、成交和真实反馈都只能写“未记录”；不能把缺少信息改写成 0，也不能把旧承诺补成已完成或未完成。</p>
+        </div>
+        <div class="metric-list" style="margin-top: 24px;">
+          <div class="metric"><span class="status-label">合并交接</span><span class="metric-value">1</span><span class="metric-note">2026-09-27 未消费 handoff</span></div>
+          <div class="metric"><span class="status-label">有效事件</span><span class="metric-value">0</span><span class="metric-note">冻结包没有可归档事件</span></div>
+          <div class="metric"><span class="status-label">任务写入</span><span class="metric-value">0</span><span class="metric-note">TaskBox 未新增任务</span></div>
+          <div class="metric"><span class="status-label">待决候选</span><span class="metric-value">5</span><span class="metric-note">2 项任务候选，3 项 AI 方案</span></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><span class="section-number">02</span><h2>昨日承诺：保持未知</h2></div>
+        <div class="evidence-box">
+          <h3 class="box-title">承诺</h3>
+          <p class="box-copy">在书房规划时段写出业务十倍增长 30 天目标卡，明确基线、十倍口径、唯一首发渠道、7 天实验和停止条件。</p>
+        </div>
+        <blockquote class="quote" style="margin-top: 20px;">结果：无法判断。<br>本次输入没有完成证据，也没有明确未执行。</blockquote>
+        <div class="rule-band">
+          <div class="rule-key">判断规则</div>
+          <div class="rule-copy"><p>沉默不是失败，重要也不是完成。状态只能跟着证据走。</p></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><span class="section-number">03</span><h2>外部结果记分牌</h2></div>
+        <table class="result-table">
+          <thead><tr><th>指标</th><th>结果</th><th>证据</th></tr></thead>
+          <tbody>
+            <tr><td>发布数</td><td>未记录</td><td>无相关输入</td></tr>
+            <tr><td>有效客户 / 合作对话</td><td>未记录</td><td>无相关输入</td></tr>
+            <tr><td>报价数</td><td>未记录</td><td>无相关输入</td></tr>
+            <tr><td>成交数</td><td>未记录</td><td>无相关输入</td></tr>
+            <tr><td>新增真实反馈样本</td><td>未记录</td><td>无相关输入</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><span class="section-number">04</span><h2>五个决定，不替你拍板</h2></div>
+        <div class="decision-flow">
+          <div class="decision"><h3>养起 B 账号</h3><p class="kind">任务候选</p><p>账号范围与验收结果不明确。</p></div>
+          <div class="decision"><h3>拆解并复刻指定视频</h3><p class="kind">不确定任务</p><p>缺少“该视频”的稳定引用。</p></div>
+          <div class="decision"><h3>十倍增长目标卡生成与压力测试</h3><p class="kind">AI 推导</p><p>缺少当前基线与渠道真实数据。</p></div>
+          <div class="decision"><h3>员工投产比最小看板</h3><p class="kind">AI 推导</p><p>缺少员工实际工时与产出数据。</p></div>
+          <div class="decision"><h3>已发布视频证据补全</h3><p class="kind">AI 推导</p><p>缺少发布链接或目标账号。</p></div>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><span class="section-number">05</span><h2>明日动作：先不硬填</h2></div>
+        <div class="action-box">
+          <h3 class="box-title">明日唯一动作</h3>
+          <p class="box-copy"><strong>待用户决定（本轮无投产比达标任务）</strong></p>
+          <p class="box-copy" style="margin-top: 8px;">没有新任务通过“24 小时内产生发布、客户回应、报价、成交、交付或真实运行结果”的准入门槛。</p>
+        </div>
+        <div class="risk-box" style="margin-top: 20px;">
+          <h3 class="box-title">当前风险</h3>
+          <ul class="risk-list">
+            <li>flomo 最终增量导出失败，本轮证据可能不完整。</li>
+            <li>鼻咽症状、7–8 个流量是否有效、B 站养号范围仍待核。</li>
+            <li>飞书“63 条作品音频合并”没有进入日省，避免把学习或素材转写重复并入。</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-head"><span class="section-number">06</span><h2>第三人称审视</h2></div>
+        <div class="review-box">
+          <h3 class="box-title">这一天无法被完整判断</h3>
+          <p class="box-copy">最大的 Bug 不是“没做事”，而是缺少可核验输入。最稳妥的改进，是补充真实外部结果或明确说明当天无活动，让连续性不再只剩未验证承诺。</p>
+        </div>
+      </section>
+
+      <footer class="footer">
+        <strong>日省认知卡片 · 2026-09-28</strong>
+        <p>来源：正式日省 Markdown。事实、未知、候选与建议保持分层；没有新增 TaskBox 任务。</p>
+      </footer>
+    </article>
+  </main>
+</body>
+</html>
