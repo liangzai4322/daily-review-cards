@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>今日复盘 · 2026-09-30</title>
+  <style>
+    :root {
+      --c-canvas: #faf9f5;
+      --c-canvas-deep: #f5f0e8;
+      --c-paper: #fffdf8;
+      --c-card: #efe9de;
+      --c-card-strong: #e8e0d2;
+      --c-coral: #cc785c;
+      --c-coral-deep: #a9583e;
+      --c-coral-soft: #f1d8ce;
+      --c-coral-pale: #f8ebe6;
+      --c-ink: #141413;
+      --c-ink-2: #252523;
+      --c-body: #3d3d3a;
+      --c-muted: #6c6a64;
+      --c-muted-2: #8e8b82;
+      --c-line: #ded6ca;
+      --c-line-soft: #ebe6df;
+      --c-dark: #181715;
+      --c-dark-2: #252320;
+      --c-dark-3: #1f1e1b;
+      --c-dark-line: #3b3833;
+      --c-on-dark: #faf9f5;
+      --c-on-dark-soft: #c7c1b7;
+      --c-teal: #5db8a6;
+      --c-teal-deep: #2e7d70;
+      --c-teal-soft: #dceeea;
+      --c-amber: #e8a55a;
+      --c-amber-deep: #9f651f;
+      --c-amber-soft: #f8ead5;
+      --c-green: #5db872;
+      --c-green-deep: #357945;
+      --c-green-soft: #e0efe3;
+      --c-red: #c64545;
+      --c-red-deep: #8f2d2d;
+      --c-red-soft: #f5dddd;
+      --c-blue: #5477a6;
+      --c-blue-soft: #e1e8f2;
+      --c-violet: #766796;
+      --c-violet-soft: #e9e4f1;
+      --c-sand: #d7c4a8;
+      --c-sand-soft: #f3ede3;
+      --c-white: #ffffff;
+      --c-black: #000000;
+      --c-shadow: rgba(20, 20, 19, 0.10);
+      --c-shadow-deep: rgba(20, 20, 19, 0.18);
+      --c-coral-shadow: rgba(204, 120, 92, 0.22);
+      --c-teal-shadow: rgba(93, 184, 166, 0.18);
+
+      --ff-display: Georgia, "Times New Roman", "Songti SC", serif;
+      --ff-body: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+      --ff-mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+      --fs-hero: 54px;
+      --fs-display: 40px;
+      --fs-h1: 32px;
+      --fs-h2: 25px;
+      --fs-h3: 19px;
+      --fs-lead: 20px;
+      --fs-body-lg: 17px;
+      --fs-body: 15px;
+      --fs-body-sm: 14px;
+      --fs-caption: 12px;
+      --fs-label: 11px;
+      --fw-regular: 400;
+      --fw-medium: 500;
+      --fw-semibold: 600;
+      --fw-bold: 700;
+      --lh-tight: 1.08;
+      --lh-title: 1.25;
+      --lh-lead: 1.55;
+      --lh-body: 1.75;
+      --lh-compact: 1.48;
+      --ls-display: -0.035em;
+      --ls-title: -0.015em;
+      --ls-label: 0.16em;
+      --ls-body: 0.01em;
+
+      --sp-1: 4px;
+      --sp-2: 8px;
+      --sp-3: 12px;
+      --sp-4: 16px;
+      --sp-5: 20px;
+      --sp-6: 24px;
+      --sp-7: 32px;
+      --sp-8: 40px;
+      --sp-9: 48px;
+      --sp-10: 64px;
+      --sp-11: 80px;
+      --sp-12: 96px;
+      --sp-safe: clamp(18px, 4vw, 56px);
+
+      --mark-core: 8px solid var(--c-coral);
+      --mark-proof: 4px solid var(--c-teal);
+      --mark-action: 4px solid var(--c-coral);
+      --mark-risk: 4px solid var(--c-amber);
+      --mark-quote: 3px solid var(--c-coral);
+      --mark-rule: 1px solid var(--c-line);
+      --mark-dark-rule: 1px solid var(--c-dark-line);
+      --mark-index: 32px;
+      --mark-signal: 10px;
+      --mark-section: 52px;
+      --mark-frame: 2px solid var(--c-ink);
+      --mark-soft-frame: 1px solid var(--c-line-soft);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { background: var(--c-canvas-deep); }
+
+    body {
+      margin: 0;
+      color: var(--c-body);
+      background:
+        linear-gradient(90deg, var(--c-canvas-deep) 0, var(--c-canvas) 18%, var(--c-canvas) 82%, var(--c-canvas-deep) 100%);
+      font-family: var(--ff-body);
+      font-size: var(--fs-body);
+      line-height: var(--lh-body);
+      letter-spacing: var(--ls-body);
+    }
+
+    .card-shell {
+      width: min(100%, 980px);
+      margin: 0 auto;
+      padding: var(--sp-safe);
+    }
+
+    .cognitive-card {
+      overflow: hidden;
+      border: var(--mark-frame);
+      border-radius: 0;
+      background: var(--c-paper);
+      box-shadow: 0 18px 60px var(--c-shadow);
+    }
+
+    .card-header {
+      padding: var(--sp-10) var(--sp-9) var(--sp-9);
+      border-bottom: var(--mark-rule);
+      background: var(--c-canvas);
+    }
+
+    .eyebrow,
+    .section-kicker,
+    .metric-label,
+    .risk-label,
+    .footer-label {
+      margin: 0 0 var(--sp-3);
+      color: var(--c-coral-deep);
+      font-size: var(--fs-label);
+      font-weight: var(--fw-bold);
+      letter-spacing: var(--ls-label);
+      line-height: var(--lh-compact);
+      text-transform: uppercase;
+    }
+
+    h1,
+    h2,
+    h3,
+    p { margin-top: 0; }
+
+    h1 {
+      max-width: 780px;
+      margin-bottom: var(--sp-5);
+      color: var(--c-ink);
+      font-family: var(--ff-display);
+      font-size: var(--fs-hero);
+      font-weight: var(--fw-regular);
+      line-height: var(--lh-tight);
+      letter-spacing: var(--ls-display);
+    }
+
+    h2 {
+      margin-bottom: var(--sp-5);
+      color: var(--c-ink);
+      font-family: var(--ff-display);
+      font-size: var(--fs-h1);
+      font-weight: var(--fw-regular);
+      line-height: var(--lh-title);
+      letter-spacing: var(--ls-title);
+    }
+
+    h3 {
+      margin-bottom: var(--sp-3);
+      color: var(--c-ink-2);
+      font-size: var(--fs-h3);
+      font-weight: var(--fw-semibold);
+      line-height: var(--lh-title);
+    }
+
+    .deck {
+      max-width: 720px;
+      margin-bottom: var(--sp-7);
+      color: var(--c-body-strong, var(--c-ink-2));
+      font-size: var(--fs-lead);
+      line-height: var(--lh-lead);
+    }
+
+    .date-line {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--sp-3) var(--sp-5);
+      padding-top: var(--sp-5);
+      border-top: var(--mark-rule);
+      color: var(--c-muted);
+      font-family: var(--ff-mono);
+      font-size: var(--fs-caption);
+      line-height: var(--lh-compact);
+    }
+
+    .core-insight {
+      padding: var(--sp-9);
+      border-left: var(--mark-core);
+      background: var(--c-coral-pale);
+    }
+
+    .core-status {
+      display: inline-block;
+      margin-bottom: var(--sp-5);
+      padding: var(--sp-2) var(--sp-3);
+      border: 1px solid var(--c-coral);
+      border-radius: 0;
+      color: var(--c-coral-deep);
+      background: var(--c-white);
+      font-size: var(--fs-caption);
+      font-weight: var(--fw-bold);
+      letter-spacing: 0.08em;
+    }
+
+    .core-statement {
+      max-width: 760px;
+      margin-bottom: var(--sp-5);
+      color: var(--c-ink);
+      font-family: var(--ff-display);
+      font-size: var(--fs-display);
+      line-height: 1.18;
+      letter-spacing: var(--ls-display);
+    }
+
+    .core-note {
+      margin-bottom: 0;
+      color: var(--c-body);
+      font-size: var(--fs-body-lg);
+      line-height: var(--lh-lead);
+    }
+
+    .section {
+      padding: var(--sp-9);
+      border-top: var(--mark-rule);
+    }
+
+    .section-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: var(--mark-index);
+      height: var(--mark-index);
+      margin-bottom: var(--sp-4);
+      border: 1px solid var(--c-ink);
+      border-radius: 0;
+      color: var(--c-ink);
+      background: var(--c-canvas);
+      font-family: var(--ff-mono);
+      font-size: var(--fs-caption);
+      font-weight: var(--fw-bold);
+    }
+
+    .proof-block,
+    .action-block,
+    .risk-block,
+    .rule-block,
+    .quote-block {
+      margin-top: var(--sp-6);
+      padding: var(--sp-6);
+      border-radius: 0;
+    }
+
+    .proof-block {
+      border-left: var(--mark-proof);
+      background: var(--c-teal-soft);
+    }
+
+    .proof-block strong { color: var(--c-teal-deep); }
+
+    .action-block {
+      border: 2px solid var(--c-coral);
+      border-left: var(--mark-action);
+      background: var(--c-white);
+      box-shadow: 8px 8px 0 var(--c-coral-soft);
+    }
+
+    .risk-block {
+      border-left: var(--mark-risk);
+      background: var(--c-amber-soft);
+    }
+
+    .risk-label { color: var(--c-amber-deep); }
+
+    .rule-block {
+      border: var(--mark-soft-frame);
+      background: var(--c-sand-soft);
+    }
+
+    .quote-block {
+      border-left: var(--mark-quote);
+      background: var(--c-card);
+      color: var(--c-ink-2);
+      font-family: var(--ff-display);
+      font-size: var(--fs-h2);
+      line-height: 1.45;
+      letter-spacing: var(--ls-title);
+    }
+
+    .metric-list,
+    .step-list,
+    .compact-list,
+    .guard-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .metric-list li {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: var(--sp-5);
+      padding: var(--sp-4) 0;
+      border-bottom: var(--mark-rule);
+    }
+
+    .metric-list li:last-child { border-bottom: 0; }
+
+    .metric-label {
+      margin: 0;
+      color: var(--c-muted);
+      letter-spacing: 0.08em;
+    }
+
+    .metric-value {
+      color: var(--c-ink);
+      font-size: var(--fs-body-lg);
+      font-weight: var(--fw-semibold);
+      text-align: right;
+    }
+
+    .step-list { counter-reset: step; }
+
+    .step-list li {
+      position: relative;
+      min-height: var(--mark-section);
+      padding: var(--sp-3) 0 var(--sp-5) 58px;
+      border-left: 1px solid var(--c-line);
+      margin-left: 18px;
+      counter-increment: step;
+    }
+
+    .step-list li::before {
+      position: absolute;
+      top: var(--sp-2);
+      left: -18px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 36px;
+      height: 36px;
+      border: 1px solid var(--c-coral);
+      border-radius: 0;
+      color: var(--c-white);
+      background: var(--c-coral);
+      content: counter(step, decimal-leading-zero);
+      font-family: var(--ff-mono);
+      font-size: var(--fs-caption);
+      font-weight: var(--fw-bold);
+    }
+
+    .step-list li:last-child { border-left-color: transparent; }
+
+    .compact-list li,
+    .guard-list li {
+      position: relative;
+      padding: var(--sp-3) 0 var(--sp-3) 28px;
+      border-bottom: 1px solid var(--c-line-soft);
+    }
+
+    .compact-list li::before,
+    .guard-list li::before {
+      position: absolute;
+      top: 22px;
+      left: 2px;
+      width: var(--mark-signal);
+      height: var(--mark-signal);
+      border: 2px solid var(--c-coral);
+      background: transparent;
+      content: "";
+    }
+
+    .guard-list li::before { border-color: var(--c-amber-deep); }
+
+    .compact-list li:last-child,
+    .guard-list li:last-child { border-bottom: 0; }
+
+    .dark-band {
+      padding: var(--sp-9);
+      border-top: var(--mark-dark-rule);
+      color: var(--c-on-dark-soft);
+      background: var(--c-dark);
+    }
+
+    .dark-band h2,
+    .dark-band h3 { color: var(--c-on-dark); }
+
+    .dark-band .section-kicker { color: var(--c-coral); }
+
+    .dark-rule {
+      margin: var(--sp-6) 0;
+      border: 0;
+      border-top: var(--mark-dark-rule);
+    }
+
+    .evidence-code {
+      padding: var(--sp-5);
+      border: 1px solid var(--c-dark-line);
+      border-radius: 0;
+      color: var(--c-on-dark);
+      background: var(--c-dark-3);
+      font-family: var(--ff-mono);
+      font-size: var(--fs-body-sm);
+      line-height: var(--lh-body);
+    }
+
+    .third-person {
+      padding: var(--sp-9);
+      border-top: 8px solid var(--c-ink);
+      background: var(--c-card-strong);
+    }
+
+    .bug-line {
+      margin: var(--sp-6) 0;
+      padding: var(--sp-6);
+      border: 2px solid var(--c-ink);
+      border-radius: 0;
+      color: var(--c-ink);
+      background: var(--c-white);
+      font-size: var(--fs-body-lg);
+      font-weight: var(--fw-medium);
+    }
+
+    .card-footer {
+      padding: var(--sp-6) var(--sp-9);
+      border-top: var(--mark-dark-rule);
+      color: var(--c-on-dark-soft);
+      background: var(--c-dark-2);
+      font-size: var(--fs-caption);
+      line-height: var(--lh-body);
+    }
+
+    .footer-label { color: var(--c-coral); }
+    .card-footer p { margin-bottom: var(--sp-2); }
+    .card-footer p:last-child { margin-bottom: 0; }
+
+    .muted { color: var(--c-muted); }
+    .coral { color: var(--c-coral-deep); }
+    .strong { color: var(--c-ink); font-weight: var(--fw-semibold); }
+
+    @media (max-width: 479px) {
+      :root {
+        --fs-hero: 36px;
+        --fs-display: 30px;
+        --fs-h1: 26px;
+        --fs-h2: 21px;
+        --fs-lead: 17px;
+        --fs-body-lg: 16px;
+        --fs-body: 14px;
+      }
+      .card-shell { padding: 0; }
+      .cognitive-card { border-left: 0; border-right: 0; box-shadow: none; }
+      .card-header,
+      .core-insight,
+      .section,
+      .dark-band,
+      .third-person { padding: var(--sp-7) var(--sp-5); }
+      .card-footer { padding: var(--sp-6) var(--sp-5); }
+      .metric-list li { display: block; }
+      .metric-value { display: block; margin-top: var(--sp-1); text-align: left; }
+      .step-list li { padding-left: 48px; }
+    }
+
+    @media (min-width: 480px) and (max-width: 767px) {
+      :root {
+        --fs-hero: 42px;
+        --fs-display: 34px;
+        --fs-h1: 28px;
+      }
+      .card-header,
+      .core-insight,
+      .section,
+      .dark-band,
+      .third-person { padding: var(--sp-8) var(--sp-7); }
+      .card-footer { padding: var(--sp-6) var(--sp-7); }
+    }
+
+    @media (min-width: 768px) and (max-width: 1023px) {
+      :root {
+        --fs-hero: 48px;
+        --fs-display: 37px;
+      }
+      .card-shell { width: min(100%, 860px); }
+    }
+
+    @media (min-width: 1024px) {
+      .card-shell { padding-top: var(--sp-11); padding-bottom: var(--sp-11); }
+      .card-header { padding-top: var(--sp-11); }
+      .section,
+      .dark-band,
+      .third-person { padding-top: var(--sp-10); padding-bottom: var(--sp-10); }
+    }
+  </style>
+</head>
+<body>
+  <main class="card-shell">
+    <article class="cognitive-card">
+      <header class="card-header">
+        <p class="eyebrow">Daily review · 2026-09-30</p>
+        <h1>完成制作，不等于完成发布</h1>
+        <p class="deck">今天真正跑通的是两支视频的生产流程；尚未闭环的是三个账号全部上线，以及每个账号的公开证据。</p>
+        <div class="date-line">
+          <span>复盘归属：2026-09-30</span>
+          <span>活动范围：09-28 → 09-30</span>
+          <span>状态：正式日省</span>
+        </div>
+      </header>
+
+      <section class="core-insight">
+        <span class="core-status">昨日承诺 · 部分完成</span>
+        <p class="core-statement">下一步不是继续研究三个账号，而是让剩余两个账号各出现一个可见结果。</p>
+        <p class="core-note">保留既有任务，不重复建项。明日唯一动作只认两种证据：公开链接，或带账号与发布时间的上线截图。</p>
+      </section>
+
+      <section class="section">
+        <span class="section-number">01</span>
+        <p class="section-kicker">Commitment loop</p>
+        <h2>承诺闭环：制作已成，发布待证</h2>
+        <div class="proof-block">
+          <h3>已经发生</h3>
+          <p><strong>两支视频制作完成。</strong>既有脚本、手机端 PPT、录制、剪辑、字幕、隐私打码与手机端遮罩被串成了一条可重复流程。</p>
+        </div>
+        <div class="risk-block">
+          <p class="risk-label">仍未证实</p>
+          <p>没有三个账号全部上线的链接或截图；“把视频更新了”不能自动等同于公开发布。</p>
+        </div>
+        <ul class="metric-list">
+          <li><span class="metric-label">发布数</span><span class="metric-value">未记录</span></li>
+          <li><span class="metric-label">客户 / 合作有效对话</span><span class="metric-value">未记录</span></li>
+          <li><span class="metric-label">报价 / 成交</span><span class="metric-value">未记录</span></li>
+          <li><span class="metric-label">真实反馈样本</span><span class="metric-value">未记录</span></li>
+        </ul>
+      </section>
+
+      <section class="dark-band">
+        <p class="section-kicker">What actually happened</p>
+        <h2>今天把“想做视频”变成了生产链路</h2>
+        <div class="evidence-code">
+          既有脚本 → 手机端 PPT 提词 → 手机录制 → 剪辑与字幕<br>
+          → 昵称与题目打码 → 手机端中间内容区适配 → 待公开证据
+        </div>
+        <hr class="dark-rule">
+        <p>计划被打乱后仍然起床、出发并去公司；剪辑虽然耗时三到四小时，但两支视频最终完成。真正缺少的不是更多制作方法，而是发布后的证据收尾。</p>
+      </section>
+
+      <section class="section">
+        <span class="section-number">02</span>
+        <p class="section-kicker">Tomorrow's one move</p>
+        <h2>明日唯一动作</h2>
+        <div class="action-block">
+          <h3>完成剩余两个账号各一次更新</h3>
+          <p class="strong">并为每个账号保存公开链接或上线截图。</p>
+          <ul class="compact-list">
+            <li><strong>触发锚点：</strong>当天第一个 90 分钟保护时段。</li>
+            <li><strong>最晚时间：</strong>2026-09-30 18:00 CST。</li>
+            <li><strong>前五分钟：</strong>列出剩余两个账号、现成素材与证据保存位置。</li>
+            <li><strong>TaskBox：</strong>沿用既有任务 36796f55…d219。</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="section">
+        <span class="section-number">03</span>
+        <p class="section-kicker">Execution pattern</p>
+        <h2>最大的泄漏，不是没目标，而是入口失控</h2>
+        <ol class="step-list">
+          <li><h3>知道要做什么</h3><p>目标感并不弱，三个账号与视频方向都很清楚。</p></li>
+          <li><h3>从工作入口进入娱乐平台</h3><p>打开 B 站原本为了研究或养号，却被短视频带走注意力。</p></li>
+          <li><h3>把执行问题改写成意义问题</h3><p>从“不想做”转向追问野心、动力与为什么做，绕开眼前动作。</p></li>
+          <li><h3>重新回到制作并完成交付</h3><p>一旦进入脚本、录制与剪辑链路，任务就重新开始前进。</p></li>
+        </ol>
+        <div class="rule-block">
+          <h3>新的执行规则</h3>
+          <p>打开 B 站前先写“本次唯一操作”；完成后立即退出并保存证据。已经进入执行阶段，就不要重新讨论整个目标的意义。</p>
+        </div>
+      </section>
+
+      <section class="section">
+        <span class="section-number">04</span>
+        <p class="section-kicker">Reusable methods</p>
+        <h2>今天留下的三个可复用方法</h2>
+        <ul class="compact-list">
+          <li><strong>案例项目沟通：</strong>需求 → 报价 → 下单 → 交付/测试 → 部署 → 售后；部署范围必须在最开始说清。</li>
+          <li><strong>案例内容隐私：</strong>隐藏昵称、题目与敏感信息，只保留能说明交付能力的部分。</li>
+          <li><strong>视频迭代：</strong>先用现成脚本与轻量设备完成第一版，再根据真实数据继续优化，不把“一次做完美”当成起点。</li>
+        </ul>
+        <div class="quote-block">“如果已经到了执行阶段，就不要去探讨这种问题了。”</div>
+        <div class="quote-block">“你一开始可能做得很差很垃圾，慢慢地迭代得越来越好。”</div>
+      </section>
+
+      <section class="section">
+        <span class="section-number">05</span>
+        <p class="section-kicker">Guardrails</p>
+        <h2>停止、继续与待核</h2>
+        <h3 class="coral">停止做</h3>
+        <ul class="guard-list">
+          <li>在一天开始或执行阶段后刷 B 站短视频。</li>
+          <li>已经知道要做什么时，用野心和意义问题代替执行。</li>
+        </ul>
+        <h3 class="coral">继续做</h3>
+        <ul class="compact-list">
+          <li>沿用已经想好的脚本和手机端 PPT，先交付再迭代。</li>
+          <li>继续保留字幕、隐私打码与手机端内容区适配。</li>
+        </ul>
+        <div class="risk-block">
+          <p class="risk-label">事实边界</p>
+          <p>“Sonnet 5.5 最便宜且最好用”、模型蒸馏关系、手机用户只看画面中间等说法均没有可靠证据，继续保持待核。</p>
+        </div>
+      </section>
+
+      <section class="third-person">
+        <p class="section-kicker">Third-person review</p>
+        <h2>第三人称审视</h2>
+        <p>这个人有很强的目标叙事，也能在计划被打乱后继续行动。但他常把高刺激平台当作工作入口，又在执行起点转向研究和意义追问。</p>
+        <div class="bug-line">最大 Bug：把“研究清楚、剪完、流程跑通”与“已经产生外部发布结果”混在一起。</div>
+        <p><strong>最迫切的修复：</strong>每次账号更新都必须以公开链接或上线截图收尾。不要再同时设计三个账号的完整打法；先让剩余两个账号各出现一个可见结果。</p>
+      </section>
+
+      <footer class="card-footer">
+        <p class="footer-label">Source & boundary</p>
+        <p>来源：2026-09-30 正式日省。活动范围 2026-09-28 至 2026-09-30。</p>
+        <p>卡片只提炼已记录事实、判断与行动；未把讨论写成决定，也未把制作完成写成公开发布。</p>
+      </footer>
+    </article>
+  </main>
+</body>
+</html>
