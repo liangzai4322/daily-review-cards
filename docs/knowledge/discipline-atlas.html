@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#f6f7fc">
+<title>学科图谱 · 人类知识的连接地图</title>
+<style>
+:root{--ink:#263149;--muted:#788399;--line:#e4e8f2;--paper:#fff;--ground:#f6f7fc;--accent:#7060b5;--accent-soft:#efecf8;--body:"PingFang SC","Microsoft YaHei",system-ui,sans-serif;--display:"Iowan Old Style","Songti SC","Noto Serif CJK SC",serif;--mono:"SFMono-Regular",Consolas,monospace}
+*{box-sizing:border-box}body{margin:0;color:var(--ink);font:14px/1.6 var(--body);background:var(--ground)}button,input{font:inherit}button{cursor:pointer}button,a,input{outline-offset:4px}button:focus-visible,a:focus-visible,input:focus-visible,[role=button]:focus-visible{outline:2px solid var(--accent)}button{color:inherit}button:disabled{opacity:.4;cursor:default}button svg{width:18px;height:18px;vertical-align:middle;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}.topbar{height:98px;display:flex;align-items:center;justify-content:space-between;padding:0 30px;gap:24px;border-bottom:1px solid var(--line);background:var(--paper)}.brand{display:flex;align-items:center;gap:15px;flex-shrink:0}.brand-mark{width:41px;height:41px;color:var(--accent)}.brand h1{font:600 30px/1.2 var(--display);letter-spacing:2px;margin:0}.brand-sub{font-size:11px;color:var(--muted);margin-top:7px;letter-spacing:.8px}.brand-sub span{font:10px var(--mono);margin-right:9px;color:var(--accent)}.header-right{display:flex;align-items:center;gap:25px}.header-note{color:var(--muted);font-size:12px;max-width:250px}.search-wrap{position:relative;width:310px}.search-box{display:flex;gap:10px;align-items:center;background:var(--ground);border:1px solid var(--line);border-radius:10px;padding:11px 12px}.search-box:focus-within{border-color:#a59acb;box-shadow:0 0 0 3px var(--accent-soft)}.search-box svg{width:18px;stroke:var(--muted);fill:none;stroke-width:1.7;flex-shrink:0}.search-box input{width:100%;border:0;outline:none;background:transparent;color:var(--ink);font-size:13px;min-width:0}.search-box kbd{font:11px var(--mono);padding:1px 5px;border:1px solid #d9ddea;border-radius:4px;color:var(--muted)}.search-results{position:absolute;z-index:40;top:54px;left:0;width:100%;max-height:390px;overflow:auto;background:white;border:1px solid var(--line);border-radius:12px;box-shadow:0 14px 40px #26314918;padding:7px}.search-results[hidden]{display:none}.search-result{width:100%;border:0;background:transparent;text-align:left;padding:10px;border-radius:6px;display:flex;align-items:center;gap:10px}.search-result:hover,.search-result.active{background:var(--accent-soft)}.result-name{font-weight:550}.result-path{font-size:10px;color:var(--muted);line-height:1.5}.result-dot{height:8px;width:8px;border-radius:50%;flex-shrink:0}.empty-search{padding:16px;font-size:12px;color:var(--muted)}
+.workspace{height:calc(100dvh - 98px);min-height:540px;display:grid;grid-template-columns:200px minmax(0,1fr) 310px}.directory{background:#fff;border-right:1px solid var(--line);display:flex;flex-direction:column;padding:26px 16px 18px;overflow:auto}.section-label{font-size:10px;color:var(--muted);letter-spacing:1.4px;margin:0 10px 12px}.all-disciplines{display:flex;justify-content:space-between;align-items:center;width:100%;border:0;background:var(--accent-soft);color:var(--accent);border-radius:8px;padding:11px 12px;text-align:left;margin-bottom:18px;font-size:13px;font-weight:550}.all-disciplines span{font:10px var(--mono)}.family-item{margin:2px 0}.family-button{display:flex;align-items:center;gap:9px;width:100%;border:0;background:transparent;border-radius:7px;text-align:left;padding:10px 8px;font-size:12px}.family-button:hover,.family-button.selected{background:var(--ground)}.family-button.selected{font-weight:600}.family-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}.family-count{margin-left:auto;font:10px var(--mono);color:var(--muted)}.family-chevron{font-size:12px;color:#98a0b0}.family-children{padding:3px 0 8px 22px}.family-children[hidden]{display:none}.directory-child{display:block;width:100%;background:transparent;border:0;text-align:left;padding:5px 8px;color:var(--muted);font-size:11px;border-left:1px solid var(--line)}.directory-child:hover,.directory-child.selected{color:var(--accent);border-left-color:var(--accent);background:var(--accent-soft)}.directory-foot{margin-top:auto;padding:24px 9px 0;font-size:10px;color:var(--muted)}.directory-foot strong{font-weight:500;color:#59667f}.map-area{position:relative;min-width:0;display:flex;flex-direction:column;overflow:hidden;background:#fafbff}.map-toolbar{position:relative;z-index:3;display:flex;justify-content:space-between;gap:12px;align-items:center;padding:20px 24px 0}.level-switch{display:flex;gap:3px;background:#eceff7;border-radius:9px;padding:4px}.level-switch button{font-size:11px;white-space:nowrap;border:0;background:transparent;color:var(--muted);border-radius:6px;padding:7px 12px}.level-switch button.active{background:#fff;color:var(--ink);box-shadow:0 2px 5px #26314908}.cross-toggle{border:1px solid var(--line);border-radius:8px;padding:8px 10px;background:white;white-space:nowrap;font-size:11px;display:flex;align-items:center;gap:7px}.toggle-indicator{width:22px;height:12px;border-radius:7px;background:#d1d7e5;position:relative;transition:background .15s}.toggle-indicator:after{content:"";position:absolute;left:2px;top:2px;width:8px;height:8px;background:#fff;border-radius:50%;transition:transform .15s}.cross-toggle[aria-pressed=true] .toggle-indicator{background:var(--accent)}.cross-toggle[aria-pressed=true] .toggle-indicator:after{transform:translateX(10px)}.map-heading{position:absolute;z-index:2;top:83px;left:28px;pointer-events:none}.map-heading h2{font:500 18px var(--display);margin:0 0 7px}.map-heading p{margin:0;font-size:10px;color:var(--muted);max-width:270px}.map-heading strong{font-weight:500;color:var(--accent)}.graph-shell{position:relative;flex:1;min-height:0;overflow:hidden}.graph{width:100%;height:100%;display:block;touch-action:none;cursor:grab}.graph.is-dragging{cursor:grabbing}.graph .node{cursor:pointer;outline:none}.graph .node:focus-visible .node-shape{stroke:#263149;stroke-width:3}.node-halo{opacity:0}.node:hover .node-halo,.node:focus-visible .node-halo{opacity:1}.node-text{font-family:var(--body);font-weight:500;fill:#45526c;pointer-events:none}.tree-edge{fill:none;stroke-width:1.15;opacity:.27;pointer-events:none}.cross-edge{fill:none;stroke-width:1.15;stroke-dasharray:4 5;opacity:.22;pointer-events:none}.cross-edge.active{stroke-width:2.1;opacity:.85;stroke-dasharray:5 4}.node.dim{opacity:.19}.tree-edge.dim{opacity:.07}.tree-edge.active{opacity:.8;stroke-width:1.7}.node.selected .node-shape{stroke-width:3}.node.selected .node-halo{opacity:1}.ring{fill:none;stroke:#e9edf6;stroke-width:1;stroke-dasharray:2 7;pointer-events:none}.legend{position:absolute;left:24px;bottom:18px;z-index:2;display:flex;flex-wrap:wrap;gap:13px;color:var(--muted);font-size:10px;pointer-events:none;background:#fafbffe8;border-radius:6px;padding:5px 7px}.legend-item{display:flex;align-items:center;gap:6px}.legend-line{width:19px;height:0;border-top:1px solid #909cb6}.legend-line.cross{border-top-style:dashed;border-top-color:#9a8bbe}.legend-dot{width:7px;height:7px;border:1px solid #9a8bbe;border-radius:50%}.legend-dot.large{width:12px;height:12px;margin-left:-4px}.zoom-controls{position:absolute;right:23px;bottom:23px;z-index:4;display:flex;align-items:center;background:#fff;border:1px solid var(--line);border-radius:9px;box-shadow:0 5px 15px #26314906;overflow:hidden}.zoom-controls button{width:35px;height:35px;border:0;background:white;display:grid;place-items:center}.zoom-controls button:hover{background:var(--ground)}.zoom-value{font:10px var(--mono);color:var(--muted);min-width:37px;text-align:center}.zoom-separator{height:18px;width:1px;background:var(--line)}.focus-chip{position:absolute;left:50%;top:12px;transform:translateX(-50%);z-index:4;border:1px solid #d6cdeb;box-shadow:0 4px 12px #7060b511;background:white;border-radius:30px;padding:7px 12px;color:var(--accent);font-size:11px;max-width:90%;white-space:nowrap}.focus-chip[hidden]{display:none}.focus-chip button{background:transparent;border:0;margin-left:9px;color:var(--muted);font-size:14px}.map-footer{height:37px;flex-shrink:0;border-top:1px solid var(--line);padding:0 26px;display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:10px;background:#fff}.map-footer .counts{font-family:var(--mono)}
+.inspector{background:white;border-left:1px solid var(--line);padding:25px 25px 22px;overflow:auto;position:relative;scrollbar-width:thin}.inspector-close{display:none}.detail-eyebrow{display:flex;align-items:center;gap:7px;font-size:10px;color:var(--muted);margin-bottom:12px}.detail-eyebrow .tiny-dot{width:6px;height:6px;border-radius:50%}.inspector h2{font:600 29px/1.35 var(--display);letter-spacing:1px;margin:0 0 8px}.english-name{font:10px var(--mono);color:var(--muted);letter-spacing:.3px;margin-bottom:21px}.detail-intro{font-size:12px;line-height:1.95;margin:0;color:#59657b}.detail-section{margin-top:25px}.detail-section h3{font-size:10px;letter-spacing:1px;color:var(--muted);font-weight:500;margin:0 0 11px}.detail-section p{font-size:12px;line-height:1.8;color:#59657b;margin:0}.breadcrumb{display:flex;flex-wrap:wrap;align-items:center;gap:6px;font-size:10px;color:#a0a8b8;margin-top:22px}.breadcrumb button{background:none;border:0;padding:0;color:var(--muted);font-size:10px}.breadcrumb button:hover{color:var(--accent)}.detail-tags{display:flex;flex-wrap:wrap;gap:6px}.detail-tag{padding:4px 8px;background:var(--ground);border:1px solid #e8ebf3;border-radius:5px;font-size:10px;color:#65718a}.child-grid{display:flex;flex-wrap:wrap;gap:7px}.child-link{background:var(--ground);border:1px solid var(--line);border-radius:6px;font-size:11px;padding:6px 9px;text-align:left}.child-link:hover{border-color:#b8add6;color:var(--accent)}.related-link{border:0;border-bottom:1px solid #edf0f6;background:white;display:block;text-align:left;width:100%;padding:11px 0}.related-link:last-child{border-bottom:0}.related-heading{display:flex;align-items:center;gap:6px;font-size:12px}.related-heading .related-type{margin-left:auto;font-size:9px;color:var(--muted);background:var(--ground);border-radius:4px;padding:2px 5px}.related-link:hover .related-heading{color:var(--accent)}.related-reason{font-size:10px;color:var(--muted);line-height:1.7;margin-top:5px}.detail-actions{display:flex;gap:8px;margin-top:21px}.action-button{border:1px solid var(--line);background:white;padding:8px 10px;border-radius:7px;font-size:11px;flex:1}.action-button.primary{border-color:#ddd5f0;background:var(--accent-soft);color:var(--accent)}.action-button:hover{border-color:#b8add6}.intro-divider{width:30px;height:2px;background:#b7a8dc;margin:22px 0}.guide-steps{display:grid;gap:16px;margin-top:25px}.guide-step{display:flex;gap:12px;align-items:flex-start}.guide-icon{background:var(--ground);border:1px solid var(--line);width:29px;height:29px;flex-shrink:0;display:grid;place-items:center;border-radius:7px;color:var(--accent);font-size:13px}.guide-step strong{font-size:11px;font-weight:550}.guide-step p{color:var(--muted);font-size:10px;line-height:1.8;margin:3px 0 0}.recommended{display:flex;flex-direction:column;gap:8px}.recommend-button{display:flex;justify-content:space-between;align-items:center;background:white;border:1px solid var(--line);border-radius:7px;text-align:left;padding:10px;font-size:11px}.recommend-button:hover{border-color:#b8add6;background:var(--ground)}.recommend-button span:last-child{color:var(--accent)}.scope-note{color:#929aac;font-size:10px;line-height:1.8;border-top:1px solid var(--line);padding-top:17px;margin-top:26px}.mobile-directory-button{display:none}.mobile-backdrop{display:none}.toast{position:fixed;z-index:70;bottom:28px;left:50%;transform:translateX(-50%);padding:9px 16px;border:1px solid var(--line);border-radius:9px;background:white;font-size:12px;box-shadow:0 8px 30px #26314915}.toast[hidden]{display:none}.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+@media(min-width:1650px){.workspace{grid-template-columns:222px minmax(0,1fr) 345px}.inspector{padding:29px}.map-toolbar{padding:23px 30px 0}.map-heading{left:35px;top:88px}.directory{padding-top:30px}.header-note{max-width:none}}
+@media(max-width:1200px){.workspace{grid-template-columns:175px minmax(0,1fr) 280px}.directory{padding-left:10px;padding-right:10px}.inspector{padding:23px 21px}.header-note{display:none}.map-toolbar{padding:17px 16px 0}.level-switch button{padding:6px 9px}.map-heading{left:21px;top:77px}.legend{left:12px;bottom:14px;gap:8px}.zoom-controls{right:14px;bottom:50px}.map-footer{padding:0 16px}.inspector h2{font-size:26px}}
+@media(max-width:1000px){.workspace{grid-template-columns:180px minmax(0,1fr)}.inspector{position:fixed;z-index:30;right:0;top:98px;bottom:0;width:320px;box-shadow:-10px 0 40px #26314912;transform:translateX(105%);transition:transform .2s}.inspector.is-open{transform:translateX(0)}.inspector-close{display:grid;place-items:center;position:absolute;right:14px;top:14px;z-index:2;width:27px;height:27px;border:0;background:var(--ground);border-radius:50%;color:var(--muted);font-size:18px}.header-right{gap:0}.topbar{padding:0 24px}.map-heading p{max-width:none}.map-toolbar{padding:20px 20px 0}.map-heading{left:25px;top:83px}.zoom-controls{bottom:23px}.legend{left:17px;bottom:18px}.map-footer .footer-hint{display:none}}
+@media(max-width:680px){.topbar{height:117px;padding:15px 18px;display:block}.brand{gap:10px}.brand-mark{width:30px;height:30px}.brand h1{font-size:25px}.brand-sub{font-size:9px;margin-top:3px;letter-spacing:0}.brand-sub span{font-size:9px}.header-right{margin-top:12px}.search-wrap{width:100%}.search-box{padding:7px 11px;border-radius:7px}.search-box input{font-size:12px}.search-box kbd{display:none}.search-results{top:42px}.workspace{height:calc(100dvh - 117px);min-height:410px;display:block}.map-area{height:100%}.directory{position:fixed;z-index:45;left:0;top:117px;bottom:0;width:235px;box-shadow:10px 0 30px #26314915;transform:translateX(-105%);transition:transform .2s}.directory.is-open{transform:translateX(0)}.mobile-backdrop.is-open{display:block;position:fixed;inset:117px 0 0;background:#26314935;z-index:44}.mobile-directory-button{display:flex;justify-content:center;align-items:center;width:31px;height:32px;border:1px solid var(--line);border-radius:7px;background:white;flex-shrink:0}.map-toolbar{gap:7px;justify-content:flex-start;padding:14px 12px 0}.level-switch{padding:3px;gap:0}.level-switch button{font-size:10px;padding:6px 8px}.cross-toggle{margin-left:auto;padding:7px;font-size:10px;gap:5px}.toggle-indicator{width:19px}.cross-toggle[aria-pressed=true] .toggle-indicator:after{transform:translateX(7px)}.map-heading{top:68px;left:17px}.map-heading h2{font-size:16px;margin-bottom:4px}.map-heading p{font-size:9px;max-width:245px}.inspector{top:auto;bottom:0;right:0;width:100%;max-height:65dvh;transform:translateY(105%);border:1px solid var(--line);border-bottom:0;border-radius:18px 18px 0 0;padding:24px;box-shadow:0 -10px 40px #26314915}.inspector.is-open{transform:translateY(0)}.inspector h2{font-size:27px}.english-name{margin-bottom:15px}.detail-section{margin-top:19px}.detail-intro{font-size:12px}.map-footer{height:34px;padding:0 14px;font-size:9px}.map-footer .counts{font-size:9px}.legend{bottom:12px;left:11px;font-size:8px;gap:10px;max-width:210px;padding:4px}.legend-item.size-legend{display:none}.zoom-controls{right:12px;bottom:15px}.zoom-controls button{width:30px;height:31px}.zoom-value{font-size:9px;min-width:31px}.focus-chip{top:6px;font-size:10px}.toast{bottom:18px;max-width:90%;width:max-content;font-size:11px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;animation:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<header class="topbar">
+ <div class="brand"><svg class="brand-mark" viewBox="0 0 44 44" aria-hidden="true"><g stroke="currentColor" fill="none" stroke-width="1.2"><ellipse cx="22" cy="22" rx="18" ry="8" transform="rotate(-35 22 22)"/><ellipse cx="22" cy="22" rx="18" ry="8" transform="rotate(35 22 22)"/><circle cx="22" cy="22" r="4" fill="currentColor"/><circle cx="36" cy="12" r="2.5" fill="#fff"/><circle cx="8" cy="12" r="2.5" fill="#fff"/></g></svg><div><h1>学科图谱</h1><div class="brand-sub"><span>THE KNOWLEDGE ATLAS</span>人类知识的连接地图</div></div></div>
+ <div class="header-right"><div class="header-note">从一门学科出发，<br>看见它与整个知识世界的关系。</div><div class="search-wrap"><label class="search-box"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><span class="sr-only">搜索学科、研究方向或英文名称</span><input id="search" type="search" autocomplete="off" placeholder="寻找一门学科…" aria-controls="search-results" aria-expanded="false" role="combobox" aria-autocomplete="list"><kbd>/</kbd></label><div id="search-results" class="search-results" role="listbox" hidden></div></div></div>
+</header>
+<main class="workspace">
+ <nav class="directory" id="directory" aria-label="学科目录"><div class="section-label">探索知识领域</div><button class="all-disciplines" id="all-disciplines">全部学科 <span id="total-count"></span></button><div id="family-list"></div><div class="directory-foot"><strong>知识的边界是开放的。</strong><br>同一学科可以与多个领域相连。<br>这里的归属，是一种阅读路径。</div></nav>
+ <section class="map-area" aria-label="交互学科地图">
+  <div class="map-toolbar"><button class="mobile-directory-button" id="open-directory" aria-label="打开学科目录" aria-expanded="false"><svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h16"/></svg></button><div class="level-switch" aria-label="显示层级"><button data-depth="1" aria-pressed="false">知识领域</button><button data-depth="2" class="active" aria-pressed="true">主要学科</button><button data-depth="3" aria-pressed="false">研究方向</button></div><button class="cross-toggle" id="cross-toggle" aria-pressed="true"><span class="toggle-indicator" aria-hidden="true"></span>交叉联系</button></div>
+  <div class="map-heading"><h2 id="map-title">知识从不孤立生长。</h2><p id="map-description">点击节点查看简介 · 拖动平移 · 滚轮或双指缩放</p></div>
+  <div class="graph-shell" id="graph-shell"><svg class="graph" id="graph" aria-label="学科层级与交叉关系图"><defs><pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r=".6" fill="#dce1ef" opacity=".6"/></pattern><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="5" markerHeight="5" orient="auto-start-reverse"><path d="M 1 1 L 9 5 L 1 9" fill="none" stroke="#9989bb" stroke-width="1.4"/></marker></defs><rect width="100%" height="100%" fill="url(#dots)"/><g id="world"><g id="rings"></g><g id="cross-edges"></g><g id="tree-edges"></g><g id="nodes"></g></g></svg><div class="focus-chip" id="focus-chip" hidden><span id="focus-name"></span><button id="leave-focus" aria-label="返回全景">×</button></div><div class="legend"><span class="legend-item"><i class="legend-line"></i>包含与分支</span><span class="legend-item"><i class="legend-line cross"></i>交叉与支撑</span><span class="legend-item size-legend"><i class="legend-dot large"></i><i class="legend-dot"></i>层级 / 分支规模</span></div><div class="zoom-controls"><button id="zoom-out" aria-label="缩小"><svg viewBox="0 0 24 24"><path d="M5 12h14"/></svg></button><span class="zoom-value" id="zoom-value">100%</span><button id="zoom-in" aria-label="放大"><svg viewBox="0 0 24 24"><path d="M5 12h14M12 5v14"/></svg></button><span class="zoom-separator"></span><button id="fit" aria-label="适应画面"><svg viewBox="0 0 24 24"><path d="M8 4H4v4M16 4h4v4M4 16v4h4M20 16v4h-4"/></svg></button></div></div>
+  <div class="map-footer"><span class="counts" id="map-counts"></span><span class="footer-hint">大小不代表重要性 · 选中后突出相关联系</span><button id="show-guide" style="border:0;background:none;color:var(--accent);font-size:10px;padding:0">读图说明 ↗</button></div>
+ </section>
+ <aside class="inspector" id="inspector" aria-label="学科简介"><button class="inspector-close" id="close-inspector" aria-label="关闭简介">×</button><div id="detail-content"></div></aside>
+</main>
+<div class="mobile-backdrop" id="mobile-backdrop"></div><div class="toast" id="toast" role="status" hidden></div><div class="sr-only" id="selection-status" role="status" aria-live="polite"></div>
+<script>
+'use strict';
+const families=[
+ ['formal','形式科学','Formal sciences','#7764b5','研究抽象结构、推理规则与一般系统，为其他学科提供表达、证明和量化工具。'],
+ ['physical','物质科学','Physical sciences','#538fbd','研究物质、能量及其相互作用，从微观粒子延伸到材料、恒星与宇宙。'],
+ ['life','生命科学','Life sciences','#569b83','研究生命的结构、功能、遗传、演化与相互依存，连接分子、个体和生态系统。'],
+ ['earth','地球与环境','Earth & environment','#659fba','研究地球各圈层、空间分布与环境变化，理解人类赖以生存的行星系统。'],
+ ['engineering','工程与技术','Engineering & technology','#be9760','运用科学原理设计、建造和优化机器、基础设施及技术系统，兼顾安全、成本与约束。'],
+ ['computing','计算与信息','Computing & information','#7a8ec8','研究计算、数据、信息与智能，关注如何表示、传递、处理和保护信息。'],
+ ['health','医学与健康','Medicine & health','#bf7c95','研究疾病、治疗和健康维护，从个体诊疗延伸到人群预防、照护与康复。'],
+ ['social','社会科学','Social sciences','#c08068','研究个人、组织、制度与社会的运行，解释行为、资源分配及社会变迁。'],
+ ['humanities','人文科学','Humanities','#a781b4','研究人类的思想、语言、历史与文化，通过解释、论证和文本理解经验与意义。'],
+ ['arts','艺术与设计','Arts & design','#ba89a0','研究并创造视觉、声音、表演与空间体验，连接表达、审美、技术和日常生活。'],
+ ['agriculture','农业与食品','Agriculture & food','#94a262','研究作物、森林、动物与食品系统，连接生物资源、生产技术、生态和营养。']
+];
+const nodes=[{id:'knowledge',name:'人类知识',en:'Human knowledge',depth:0,parent:null,summary:'一张用于探索的学科关系地图。由知识领域进入主要学科，再深入具体研究方向；跨越树状边界的连线，展示方法、问题和应用如何把学科连接起来。',children:[]}];
+for(const [id,name,en,color,summary] of families)nodes.push({id,name,en,color,summary,depth:1,parent:'knowledge',children:[]});
+function subject(family,id,name,en,summary,question,methods,branches){
+ nodes.push({id,name,en,summary,question,methods:methods.split('、'),depth:2,parent:family,children:[]});
+ for(const [key,label,desc] of branches)nodes.push({id:key,name:label,summary:desc,depth:3,parent:id,children:[]});
+}
+subject('formal','math','数学','Mathematics','研究数量、结构、空间与变化，借助定义和严格证明揭示抽象对象之间的关系。','哪些结构是共同的？一个命题为什么必然成立？','公理化、数学证明、建模',[
+ ['algebra','代数学','研究群、环、域等代数结构及其运算规律，是编码、密码和对称性研究的重要语言。'],['analysis','数学分析','研究极限、连续、微分、积分与函数空间，为描述连续变化提供工具。'],['geometry','几何与拓扑','研究空间的形状、度量以及连续变形下保持不变的性质。'],['optimization','运筹与优化','在资源和规则约束下寻找最优或近似最优方案，服务于调度、物流与决策。']]);
+subject('formal','statistics','统计学','Statistics','研究如何从有不确定性的数据中获得可靠结论，包括抽样、估计、检验和预测。','观测到的差异是真实规律，还是随机波动？','概率模型、统计推断、实验设计',[
+ ['probability','概率论','建立描述随机事件与随机过程的数学框架，为统计推断和风险分析提供基础。'],['inference','统计推断','根据样本估计总体性质，利用置信区间、假设检验和贝叶斯方法表达不确定性。'],['causal','因果推断','研究如何识别干预的影响，区分相关关系与因果关系。']]);
+subject('formal','logic','逻辑学','Logic','研究有效推理、形式语言与证明，分析前提如何支持结论以及推理的边界。','什么样的推理有效？一个形式系统能证明什么？','形式化、演绎证明、模型论',[
+ ['formal-logic','数理逻辑','利用形式语言研究证明、模型、集合与可计算性。'],['philosophical-logic','哲学逻辑','研究模态、时间、知识和义务等推理形式及其哲学含义。'],['verification','形式化验证','用数学证明或模型检查验证软件与硬件是否满足规定性质。']]);
+subject('formal','systems','系统科学','Systems science','研究由相互作用的部分组成的整体，关注反馈、涌现、稳定性与复杂性。','局部规则如何产生整体行为？反馈何时导致失稳？','动力系统、网络分析、系统建模',[
+ ['complexity','复杂系统','研究许多相互作用单元形成的涌现、适应和自组织行为。'],['control','控制理论','利用反馈调节动态系统，使其在扰动与约束下达到目标。'],['network-science','网络科学','研究节点与连接组成的网络结构及其传播、鲁棒性和演化。']]);
+subject('physical','physics','物理学','Physics','研究物质、能量、运动与时空的基本规律，用理论与实验建立可检验的解释。','自然界的基本规律是什么？不同尺度如何连接？','实验测量、数学模型、数值模拟',[
+ ['classical','经典力学','研究宏观物体的运动、受力与能量，构成许多工程分析的基础。'],['quantum','量子物理','研究微观体系的量子态、测量与相互作用，解释原子、电子和光的行为。'],['condensed','凝聚态物理','研究大量粒子组成的物质体系及其集体性质，如超导、磁性和半导体行为。'],['thermodynamics','热力学与统计物理','联系能量、熵和微观统计，解释宏观物质状态与热过程。']]);
+subject('physical','chemistry','化学','Chemistry','研究物质的组成、结构、性质与反应，解释化学键如何使物质发生转化。','分子结构如何决定性质？怎样控制化学反应？','合成实验、光谱分析、计算化学',[
+ ['organic','有机化学','研究碳化合物的结构、反应与合成，连接药物、材料和生命分子。'],['inorganic','无机化学','研究元素及无机化合物，关注配位、固体结构、催化和功能材料。'],['physical-chem','物理化学','运用热力学、动力学和量子理论解释化学体系的性质与反应。'],['analytical','分析化学','发展识别与定量测量物质组成的方法，包括色谱、光谱和质谱。']]);
+subject('physical','astronomy','天文学','Astronomy','研究天体、宇宙结构及其演化，主要通过观测光、电磁波和其他信号认识宇宙。','恒星和星系如何形成？宇宙如何演化？','天文观测、光谱分析、宇宙模拟',[
+ ['astrophysics','天体物理','用物理规律解释恒星、黑洞、星系和高能天体现象。'],['cosmology','宇宙学','研究宇宙整体的起源、组成、结构与演化。'],['planetary','行星科学','研究行星、卫星和小天体的形成、内部结构、表面与大气。']]);
+subject('physical','materials','材料科学','Materials science','研究材料的结构、制备、性能与使用条件，寻找从微观结构到宏观功能的联系。','怎样通过结构设计获得需要的材料性能？','材料表征、制备实验、多尺度模拟',[
+ ['metals','金属材料','研究金属与合金的组织、力学行为、腐蚀与加工。'],['polymers','高分子材料','研究聚合物的结构、合成、加工与性能，覆盖塑料、橡胶和功能高分子。'],['nanomaterials','纳米材料','研究纳米尺度材料及其尺度相关的光、电、磁和力学性质。']]);
+subject('life','biology','生物学','Biology','研究生命的组织、功能、演化与多样性，连接分子机制、细胞活动和个体生存。','生命如何运行？生物多样性如何形成？','观察实验、显微成像、比较分析',[
+ ['cell-bio','细胞生物学','研究细胞结构、信号传递、分裂与细胞之间的相互作用。'],['evolution','进化生物学','研究遗传变异、自然选择和物种演化，解释生命多样性的历史。'],['comp-bio','计算生物学','通过算法、模型和模拟研究复杂生命过程与生物数据。']]);
+subject('life','genetics','遗传学','Genetics','研究遗传信息如何传递、表达和变化，以及基因与环境如何共同影响性状。','性状怎样遗传？基因变化如何影响功能？','遗传实验、测序分析、群体模型',[
+ ['molecular-genetics','分子遗传学','研究DNA、RNA及基因表达调控的分子机制。'],['genomics','基因组学','从全基因组尺度研究序列、结构、功能和群体差异。'],['population-genetics','群体遗传学','研究群体中遗传变异的分布及选择、漂变、迁移等过程。']]);
+subject('life','ecology','生态学','Ecology','研究生物与环境、生物之间的关系，以及种群、群落和生态系统的变化。','物种如何共存？生态系统如何响应扰动？','野外调查、生态实验、动力学建模',[
+ ['population-ecology','种群与群落生态','研究种群数量、物种相互作用、群落组成和多样性。'],['ecosystems','生态系统生态','研究生态系统中的能量流动、物质循环及生态功能。'],['conservation','保护生物学','研究如何保护物种、遗传多样性与栖息地，减少生物多样性损失。']]);
+subject('life','biochemistry','生物化学','Biochemistry','研究生命活动中的化学过程，解释蛋白质、核酸和代谢网络如何实现生物功能。','生命分子如何协同完成代谢与调控？','生化实验、结构解析、酶动力学',[
+ ['structural-bio','结构生物学','研究生物大分子的三维结构及其与功能的关系。'],['metabolism','代谢生物学','研究细胞与生物体内物质、能量的转化及代谢调控。'],['proteomics','蛋白质组学','从整体尺度研究蛋白质的组成、数量、修饰和相互作用。']]);
+subject('life','neuroscience','神经科学','Neuroscience','研究神经系统从分子、细胞到网络和行为的机制，连接生物学、认知与医学。','大脑如何产生感知、学习、记忆和行为？','神经记录、脑成像、计算建模',[
+ ['cognitive-neuro','认知神经科学','研究注意、记忆、语言和决策等认知功能的神经基础。'],['computational-neuro','计算神经科学','建立神经元和神经网络的数学模型，解释神经编码与计算。'],['neurobiology','神经生物学','研究神经细胞、突触和神经回路的发育、结构与功能。']]);
+subject('earth','geology','地质学','Geology','研究地球的物质组成、内部结构、形成历史和地质过程，理解岩石记录的行星演化。','地球如何形成与变化？地质记录说明了什么？','野外地质、地球物理探测、年代测定',[
+ ['geophysics','地球物理学','用物理方法研究地球内部和地表过程，包括地震、重力与地磁。'],['geochemistry','地球化学','研究元素和同位素在地球各圈层的分布、迁移与循环。'],['paleontology','古生物学','研究化石及古代生命，重建演化历史与古环境。']]);
+subject('earth','geography','地理学','Geography','研究自然与人文现象的空间分布、地方差异，以及人类活动与环境的关系。','现象为什么分布在这里？空间关系如何影响生活？','空间分析、实地调查、遥感与GIS',[
+ ['physical-geography','自然地理学','研究地貌、气候、水文、土壤与生态等自然地理系统。'],['human-geography','人文地理学','研究人口、经济、文化与城市活动的空间组织。'],['gis','地理信息科学','研究地理数据的获取、表示、分析和可视化，支持空间决策。']]);
+subject('earth','atmosphere','大气科学','Atmospheric sciences','研究大气的运动、物理化学过程、天气与气候，解释大气和其他圈层的相互作用。','天气怎样变化？气候为何发生长期改变？','气象观测、数值预报、气候模拟',[
+ ['meteorology','气象学','研究天气过程及预报，包括降水、风暴和大气环流。'],['climatology','气候学','研究气候系统、长期变化与自然及人类因素的影响。'],['atmos-chem','大气化学','研究大气物质组成、化学反应及其与空气质量和气候的联系。']]);
+subject('earth','ocean','海洋科学','Ocean sciences','研究海洋的物理、化学、生物与地质过程，理解海洋在地球系统中的作用。','海洋如何循环？海洋生命与环境如何相互影响？','海洋观测、采样分析、海洋模拟',[
+ ['physical-ocean','物理海洋学','研究海流、波浪、潮汐与海洋热量输送。'],['marine-bio','海洋生物学','研究海洋生物的适应、多样性与生态关系。'],['marine-geology','海洋地质学','研究海底地形、沉积、构造与海洋地质资源。']]);
+subject('earth','environment','环境科学','Environmental science','研究污染、资源利用和人类活动对环境的影响，为保护与治理提供科学依据。','污染怎样迁移？如何降低环境与健康风险？','环境监测、风险评估、生命周期评价',[
+ ['pollution','污染控制','研究污染物的来源、迁移和处理技术，降低空气、水与土壤污染。'],['env-risk','环境风险评估','分析环境暴露、危害和不确定性，评估生态与人群风险。'],['sustainability','可持续发展研究','研究生态承载、社会需求和资源利用之间的长期协调。']]);
+subject('engineering','mechanical','机械工程','Mechanical engineering','研究机械系统的设计、制造和运行，将力学、材料和控制知识转化为设备与生产能力。','怎样设计可靠、高效且可制造的机器？','工程设计、有限元分析、制造实验',[
+ ['manufacturing','先进制造','研究精密加工、增材制造和智能生产等制造方法与系统。'],['robotics','机器人学','研究机器人的感知、运动、控制与交互，连接机械、计算和电子。'],['mechanics','工程力学','运用力学分析结构与流体的受力、变形和运动。']]);
+subject('engineering','electrical','电气工程','Electrical engineering','研究电能的产生、转换、传输和利用，设计电机、电力网络与电能变换系统。','如何稳定、高效地供应和使用电能？','电路分析、电磁建模、系统仿真',[
+ ['power-systems','电力系统','研究电网运行、保护、稳定性与新能源接入。'],['power-electronics','电力电子','利用电子器件高效转换和控制电能。'],['motors','电机与驱动','研究电机的电磁设计、运动控制与驱动系统。']]);
+subject('engineering','electronics','电子工程','Electronic engineering','研究电子器件、电路与电子系统，构建感知、通信和计算所需的硬件。','如何将物理信号变成可处理的信息？','电路设计、器件测试、信号分析',[
+ ['semiconductors','半导体与微电子','研究半导体器件、集成电路设计与制造。'],['embedded','嵌入式系统','研究嵌入设备中的计算、实时控制和软硬件协同。'],['optoelectronics','光电工程','研究光与电子技术的结合，服务于成像、传感、通信和显示。']]);
+subject('engineering','civil','土木工程','Civil engineering','研究建筑物、道路、桥梁等基础设施的设计、建设与维护，保障结构安全和使用性能。','基础设施如何在荷载和环境作用下保持安全？','结构分析、工程试验、施工管理',[
+ ['structures','结构工程','研究建筑与桥梁等结构的承载、抗震和耐久性。'],['geotechnical','岩土工程','研究土与岩石的工程行为，设计地基、边坡和地下工程。'],['transport','交通工程','研究交通基础设施、流量组织、安全与运输系统优化。']]);
+subject('engineering','chemical-eng','化学工程','Chemical engineering','研究把化学、生物或物理转化放大为可运行的工业过程，关注传递、反应、分离和安全。','如何把实验室反应变成稳定、高效的生产过程？','过程模拟、传递分析、反应器设计',[
+ ['reaction-eng','反应工程','研究反应器内反应、流动与传递的耦合，实现反应过程优化。'],['separation','分离工程','研究蒸馏、膜分离、吸附等分离与纯化方法。'],['bioengineering','生物工程','利用细胞、微生物与酶设计生物生产和转化过程。']]);
+subject('engineering','energy','能源工程','Energy engineering','研究能源的获取、转换、存储和使用，兼顾效率、环境影响及系统可靠性。','怎样构建低排放且可靠的能源系统？','能量分析、系统优化、工程试验',[
+ ['renewables','可再生能源','研究太阳能、风能等可再生资源的开发、转换与系统集成。'],['storage','储能技术','研究电池、热储能及其他能量存储方式的性能和使用。'],['nuclear','核工程','研究核能系统、反应堆、辐射应用与核安全。']]);
+subject('engineering','aerospace','航空航天','Aerospace engineering','研究飞行器、航天器及其运行系统，连接空气动力、结构、推进、控制与轨道。','飞行器如何安全飞行并完成任务？','风洞实验、飞行仿真、轨道分析',[
+ ['aerodynamics','空气动力学','研究空气与运动物体的相互作用，分析升力、阻力和流动。'],['propulsion','推进技术','研究发动机和推进系统的能量转换、燃烧与性能。'],['spaceflight','航天与轨道','研究航天器轨道、任务设计、姿态控制和空间环境。']]);
+subject('computing','cs','计算机科学','Computer science','研究计算的原理、算法、程序与计算系统，探索怎样有效地解决可计算问题。','哪些问题能够计算？如何高效、可靠地计算？','算法分析、程序构造、系统实验',[
+ ['algorithms','算法与数据结构','研究问题求解步骤、数据组织和时间空间效率。'],['software','软件工程','研究软件的需求、设计、开发、测试与维护，管理复杂性。'],['computer-systems','计算机系统','研究操作系统、体系结构、并行和分布式计算。']]);
+subject('computing','ai','人工智能','Artificial intelligence','研究使机器进行感知、学习、推理和行动的方法，关注能力、可靠性与使用边界。','机器如何从数据和经验中学习并完成任务？','机器学习、搜索推理、实验评估',[
+ ['ml','机器学习','研究从数据中学习模式、预测和决策规则的算法与理论。'],['nlp','自然语言处理','研究计算机对人类语言的分析、理解和生成。'],['vision','计算机视觉','研究从图像与视频中识别、理解和重建视觉信息。'],['ai-safety','AI安全与治理','研究人工智能的可靠性、对齐、社会影响和治理机制。']]);
+subject('computing','data','数据科学','Data science','结合统计、计算与领域知识，从数据获取、清洗到建模和解释，形成可行动的认识。','怎样从复杂数据中提取可靠且有用的知识？','数据分析、统计建模、可视化',[
+ ['data-mining','数据挖掘','研究从大规模数据中发现模式、关联、结构和异常。'],['data-eng','数据工程','研究数据管道、存储、质量管理和可扩展处理。'],['visualization','数据可视化','研究如何用图形表达数据结构、规律和不确定性。']]);
+subject('computing','information','信息与通信','Information & communication','研究信息的度量、编码、传输和处理，分析带宽、噪声与可靠性约束。','在噪声与资源约束下，信息能如何可靠传输？','信息论、信号处理、通信实验',[
+ ['information-theory','信息论','研究信息、熵、编码和信道容量的数学规律。'],['signal','信号处理','研究信号的表示、滤波、估计、压缩和特征提取。'],['telecom','通信网络','研究有线与无线网络的传输、协议、资源分配和性能。']]);
+subject('computing','security','网络与信息安全','Cybersecurity','研究计算与信息系统的安全，保护机密性、完整性、可用性和隐私。','系统如何抵御攻击？敏感信息如何受到保护？','威胁建模、密码分析、安全测试',[
+ ['cryptography','密码学','研究加密、签名、认证与安全协议，为数字系统提供数学保障。'],['network-security','网络安全','研究网络、系统和应用的漏洞、防护、检测与响应。'],['privacy','隐私计算','研究在保护个人或机构数据的条件下进行统计与计算的方法。']]);
+subject('computing','hci','人机交互','Human–computer interaction','研究人与计算技术的互动，设计和评估可理解、可用、可访问的交互系统。','怎样让技术适合人的能力、需求与使用情境？','用户研究、交互设计、可用性评估',[
+ ['interaction','交互设计','研究交互流程、反馈和操作方式，使用户能够有效完成任务。'],['ux','用户体验研究','通过访谈、观察和实验理解使用情境、需求与体验。'],['accessibility','无障碍与包容设计','研究如何让不同能力、年龄和情境的人平等使用技术。']]);
+subject('health','medicine','医学','Medicine','研究人体、疾病的机制、诊断与治疗，将基础知识和临床证据应用于个体诊疗。','疾病怎样发生？哪种诊断和治疗对患者有效？','临床研究、实验医学、循证评价',[
+ ['basic-med','基础医学','研究人体结构、功能和疾病机制，涵盖解剖、生理、病理等方向。'],['clinical','临床医学','研究疾病诊断、治疗和患者管理，连接临床证据与医疗实践。'],['precision','精准医学','综合分子、临床和环境信息，研究更有针对性的预防与治疗。']]);
+subject('health','public-health','公共卫生','Public health','研究人群健康及其决定因素，通过预防、监测和政策减少疾病与健康不平等。','怎样减少人群疾病负担并改善健康公平？','人群调查、流行病学、干预评价',[
+ ['epidemiology','流行病学','研究疾病和健康事件在人群中的分布、影响因素及预防措施。'],['health-policy','卫生政策','研究医疗卫生制度、资源配置、服务可及性与政策效果。'],['nutrition','营养学','研究食物、营养素与健康之间的关系，支持膳食与营养干预。']]);
+subject('health','pharmacy','药学','Pharmacy','研究药物的发现、制备、作用、安全性与合理使用，连接化学、生命科学和临床。','怎样找到安全有效的药物，并正确使用它？','药物实验、药代动力学、临床评价',[
+ ['pharmacology','药理学','研究药物与生物体的相互作用、作用机制及剂量效应。'],['medicinal-chem','药物化学','研究药物分子的设计、合成、结构与活性关系。'],['pharmaceutics','药剂学','研究药物剂型、制剂、递送和释放，提高使用性能。']]);
+subject('health','nursing','护理学','Nursing science','研究以人为中心的照护，支持疾病管理、健康促进、康复和生命各阶段的生活质量。','怎样提供安全、连续且符合个体需求的照护？','护理评估、照护干预、质性研究',[
+ ['clinical-nursing','临床护理','研究患者监测、症状管理、护理技术与照护安全。'],['community-nursing','社区护理','研究社区与家庭中的健康促进、慢病管理和连续照护。'],['gerontology','老年照护','研究老龄化、功能变化与照护需求，支持自主生活和生活质量。']]);
+subject('health','rehabilitation','康复科学','Rehabilitation sciences','研究功能受限后的评估、训练与支持，帮助恢复活动能力和社会参与。','怎样改善身体功能、日常活动和参与能力？','功能评估、运动训练、辅助技术',[
+ ['physical-therapy','物理治疗','运用运动、手法和物理因子改善运动功能与疼痛。'],['occupational','作业治疗','围绕日常活动与环境适配，改善生活、学习和工作参与。'],['biomechanics','生物力学','用力学方法研究人体运动、组织受力和功能，支持康复与器械设计。']]);
+subject('social','economics','经济学','Economics','研究稀缺资源下的选择、生产、交换和分配，分析市场、制度与政策的效果。','资源怎样分配？激励和制度如何影响选择？','理论建模、计量分析、实验研究',[
+ ['microeconomics','微观经济学','研究个人与企业的选择、市场结构、价格和资源配置。'],['macroeconomics','宏观经济学','研究增长、通胀、就业、经济波动与宏观政策。'],['econometrics','计量经济学','用统计与经济理论分析数据，估计经济关系并评估政策。'],['finance','金融学','研究资产定价、投融资、金融机构、市场与风险管理。']]);
+subject('social','sociology','社会学','Sociology','研究社会关系、群体、组织和制度，解释结构如何塑造行为及社会如何变迁。','社会秩序如何形成？不平等为什么持续或改变？','社会调查、质性访谈、比较研究',[
+ ['social-stratification','社会分层','研究阶层、地位、不平等及社会流动。'],['anthropology','人类学','通过田野与比较研究人类文化、社会生活和生物文化差异。'],['demography','人口学','研究人口规模、结构、迁移、生育和死亡及其社会影响。']]);
+subject('social','politics','政治学','Political science','研究权力、国家、政治制度与公共决策，分析治理、代表、冲突和国际秩序。','权力如何组织？公共决策如何形成与受到约束？','制度分析、比较政治、案例研究',[
+ ['comparative-politics','比较政治','比较国家与地区的制度、政治行为及发展路径。'],['international','国际关系','研究国家、国际组织及跨国力量之间的合作、冲突与秩序。'],['public-admin','公共管理','研究公共部门的组织、政策执行、服务与治理绩效。']]);
+subject('social','law','法学','Law','研究法律规范、制度及其解释适用，分析权利义务、争议解决与社会秩序。','权利如何被界定和保护？法律怎样回应新问题？','规范解释、案例分析、比较法',[
+ ['civil-law','民商法','研究私人主体的权利义务、财产、合同与商业活动规则。'],['criminal-law','刑法与刑事司法','研究犯罪、刑罚、刑事程序和司法保障。'],['constitutional','宪法与行政法','研究国家权力、基本权利、行政行为与监督。']]);
+subject('social','psychology','心理学','Psychology','研究心理过程与行为，解释认知、情绪、人格、发展及人与情境的互动。','人如何感知、思考、行动，又为何彼此不同？','行为实验、心理测量、观察访谈',[
+ ['cognitive-psych','认知心理学','研究注意、知觉、记忆、思维、语言与决策等心理过程。'],['developmental','发展心理学','研究生命历程中的认知、情感与社会性变化。'],['social-psych','社会心理学','研究社会情境、群体与他人如何影响个体心理和行为。'],['clinical-psych','临床心理学','研究心理困难的评估、机制和干预，以证据改善心理健康。']]);
+subject('social','education','教育学','Education','研究学习、教学与教育制度，探索如何促进发展并改善教育机会与质量。','人如何学习？教学和制度怎样支持更好的学习？','教学研究、教育测量、行动研究',[
+ ['learning','学习科学','综合认知、教育和技术研究学习机制与学习环境。'],['curriculum','课程与教学','研究课程目标、内容、教学方法与学习评价。'],['edtech','教育技术','研究技术支持的教学、学习资源与学习环境设计。']]);
+subject('social','management','管理学','Management','研究组织中的协调、决策和资源配置，分析战略、运营、人员及组织绩效。','组织如何协同行动，并在变化中实现目标？','组织研究、决策分析、运营建模',[
+ ['strategy','战略管理','研究组织定位、竞争、资源能力与长期发展。'],['operations','运营管理','研究流程、产能、供应链、质量和服务系统。'],['organizational','组织行为','研究组织中个人、团队、领导与文化对行为的影响。'],['accounting','会计学','研究财务信息的计量、报告、审计及其对决策的支持。']]);
+subject('social','communication','新闻传播学','Communication studies','研究信息、媒介与社会的关系，分析新闻、传播过程、公众理解和媒介制度。','信息如何传播，又如何塑造认知与公共生活？','内容分析、受众研究、传播实验',[
+ ['journalism','新闻学','研究新闻生产、事实核实、专业规范和新闻制度。'],['media','媒介研究','研究媒介技术、文化、平台及其社会影响。'],['communication-theory','传播理论','研究传播过程、传播效果、人际与群体沟通。']]);
+subject('humanities','philosophy','哲学','Philosophy','通过概念分析和论证研究存在、知识、价值与理性，追问各学科的前提和意义。','什么可以被知道？什么是正当、真实或有价值的？','概念分析、逻辑论证、思想实验',[
+ ['epistemology','认识论','研究知识、信念、证据、怀疑及认识的边界。'],['ethics','伦理学','研究善、正当行动、责任与价值判断。'],['phil-science','科学哲学','研究科学解释、证据、模型、理论与科学方法。']]);
+subject('humanities','history','历史学','History','依据史料重建并解释过去，理解事件、制度和生活如何随时间变化。','过去发生了什么？变化为何出现，如何被记述？','史料批判、档案研究、历史比较',[
+ ['world-history','世界史','研究跨地区的历史过程、互动与全球联系。'],['social-history','社会与经济史','研究社会生活、群体、生产与经济制度的历史变迁。'],['history-science','科技史','研究科学知识、技术实践及其社会背景的历史。']]);
+subject('humanities','linguistics','语言学','Linguistics','研究语言的结构、意义、使用、习得与演变，解释人类语言的共性和差异。','语言如何组织意义？语言能力如何形成与变化？','语料分析、田野调查、语言实验',[
+ ['syntax','句法与语义','研究语言结构的组合规则及意义的构成和解释。'],['sociolinguistics','社会语言学','研究语言变体、身份、群体与社会情境的关系。'],['psycholinguistics','心理语言学','研究语言理解、生成与习得的认知机制。']]);
+subject('humanities','literature','文学','Literary studies','研究文学作品、体裁、创作及阅读，通过文本理解语言艺术、经验和文化意义。','文本怎样创造意义？文学如何回应时代与生活？','文本细读、文学批评、比较研究',[
+ ['literary-theory','文学理论','研究文学的形式、意义、审美与阐释框架。'],['comparative-lit','比较文学','研究不同语言与文化之间的文学交流、异同与影响。'],['creative-writing','创意写作','研究并实践叙事、诗歌、戏剧等语言创作。']]);
+subject('humanities','archaeology','考古学','Archaeology','通过物质遗存研究过去的人类生活，结合遗址、器物和环境重建历史。','留下的物质痕迹揭示了怎样的社会与生活？','考古发掘、年代测定、遗物分析',[
+ ['field-archaeology','田野考古','研究遗址调查、发掘、记录及空间关系。'],['archaeometry','科技考古','利用自然科学方法研究遗物材料、年代、来源与古环境。'],['heritage','文化遗产研究','研究遗产价值、保护、利用及其与当代社会的关系。']]);
+subject('humanities','religion','宗教学','Religious studies','从历史、社会和思想等角度研究宗教的信仰、实践、文本与制度。','宗教如何赋予经验意义，并参与社会生活？','文本研究、历史比较、田野调查',[
+ ['comparative-religion','比较宗教学','比较不同宗教的思想、仪式、制度与历史。'],['religion-society','宗教社会学','研究宗教与群体、组织、身份和社会变迁的关系。'],['religious-thought','宗教思想史','研究宗教观念、经典阐释和思想传统的历史发展。']]);
+subject('arts','design','设计学','Design studies','研究如何创造适合人、情境和目标的物品、信息、服务与系统。','怎样把人的需求转化为可使用、有意义的方案？','设计研究、原型制作、迭代评估',[
+ ['industrial-design','工业设计','研究产品的功能、形态、使用体验与制造条件。'],['visual-design','视觉传达','通过文字、图像和布局组织信息，形成可理解的视觉表达。'],['service-design','服务设计','研究服务流程、接触点与组织协作，改善整体服务体验。']]);
+subject('arts','visual-arts','美术与视觉艺术','Visual arts','通过绘画、雕塑、影像等媒介创造视觉表达，研究形式、感知和艺术意义。','视觉形式如何表达经验、观念与情感？','艺术实践、形式分析、艺术批评',[
+ ['painting','绘画与雕塑','研究平面与立体形式、材料、技法和视觉表达。'],['art-history','艺术史','研究艺术作品、风格、制度及其历史与文化背景。'],['digital-art','数字艺术','利用数字媒介、算法和互动系统开展艺术创作。']]);
+subject('arts','music','音乐学','Music','研究声音的组织、音乐创作、表演与文化，连接听觉、审美和社会经验。','音乐如何组织声音并产生审美与文化意义？','音乐分析、创作表演、民族志',[
+ ['music-theory','音乐理论','研究节奏、旋律、和声、曲式及其分析方法。'],['ethnomusicology','民族音乐学','研究不同文化中的音乐实践及其社会意义。'],['music-tech','音乐科技','研究录音、合成、音频处理和计算音乐系统。']]);
+subject('arts','performing','戏剧与影视','Performing arts & film','研究表演、戏剧和影视的创作与传播，利用时间、叙事、身体和视听语言表达。','表演与视听叙事如何组织经验并影响观众？','创作实践、文本分析、观众研究',[
+ ['theatre','戏剧与表演','研究舞台叙事、演员表演、导演与剧场体验。'],['film','电影与电视','研究影视语言、制作、叙事、产业与文化。'],['dance','舞蹈学','研究身体动作、编舞、表演及其审美与文化。']]);
+subject('arts','architecture','建筑与城乡规划','Architecture & planning','研究空间、建筑与城市的设计，协调人的生活、文化、结构、环境和公共利益。','空间怎样支持生活？城市如何更宜居和可持续？','空间设计、场地分析、规划评估',[
+ ['architectural-design','建筑设计','研究建筑空间、形态、功能、环境与建造方式。'],['urban-planning','城乡规划','研究城乡空间组织、土地利用、基础设施与公共政策。'],['landscape','风景园林','研究景观空间、生态过程与户外生活环境的规划设计。']]);
+subject('agriculture','agronomy','农学','Agronomy','研究作物生产、育种、土壤和栽培，提升农业产量、质量与资源使用效率。','如何在环境与资源约束下稳定生产优质作物？','田间试验、育种选择、土壤分析',[
+ ['breeding','作物育种','通过遗传改良选育适合生产需求和环境的作物品种。'],['soil','土壤学','研究土壤形成、性质、养分和管理，连接地球、生态与农业。'],['plant-protection','植物保护','研究作物病虫害、杂草与综合防治。']]);
+subject('agriculture','forestry','林学','Forestry','研究森林培育、经营、保护与利用，协调木材生产、生态功能和社会需求。','怎样维持森林健康、生产力与生态服务？','森林调查、经营试验、遥感监测',[
+ ['silviculture','森林培育','研究森林更新、造林、抚育及树木生长。'],['forest-management','森林经营','研究森林资源规划、采伐、保护和多目标管理。'],['forest-ecology','森林生态','研究森林生物与环境的关系、碳循环和生态功能。']]);
+subject('agriculture','animal-science','动物科学','Animal science','研究动物生产、遗传、营养和饲养，兼顾生产效率、动物福利与环境影响。','如何兼顾动物健康、福利与可持续生产？','饲养试验、遗传分析、营养评估',[
+ ['animal-breeding','动物遗传育种','研究畜禽遗传改良、性状选择与种质资源。'],['animal-nutrition','动物营养','研究动物营养需要、饲料利用与代谢。'],['aquaculture','水产养殖','研究水生动物的繁育、养殖环境、营养与健康管理。']]);
+subject('agriculture','veterinary','兽医学','Veterinary medicine','研究动物疾病的预防、诊断和治疗，并关注动物、人类与环境健康之间的联系。','如何保护动物健康并降低跨物种疾病风险？','动物诊疗、病原检测、流行病调查',[
+ ['veterinary-clinical','兽医临床','研究动物内外科、诊断、治疗与临床照护。'],['veterinary-prevention','预防兽医学','研究动物传染病、寄生虫病、免疫与疾病预防。'],['one-health','同一健康','以跨学科方式研究人、动物与环境健康的相互依存。']]);
+subject('agriculture','food','食品科学','Food science','研究食品的组成、加工、品质与安全，连接原料、制造、感官和营养。','如何让食品安全、稳定、适口并保留营养？','食品分析、加工试验、感官评价',[
+ ['food-eng','食品工程','研究食品加工、保存、包装和生产设备。'],['food-safety','食品安全','研究食品危害、检测、风险控制和食品安全管理。'],['fermentation','发酵科学','研究微生物驱动的物质转化，应用于食品和生物制造。']]);
+
+const relations=[];
+function link(a,b,type,reason,featured=false){relations.push({a,b,type,reason,featured});}
+link('math','physics','方法支撑','微分方程、几何和对称性为物理规律提供精确语言。',true);
+link('statistics','data','方法支撑','统计推断帮助数据科学量化不确定性并检验结论。',true);
+link('physics','chemistry','共同问题','量子理论和热力学解释分子结构、化学键与反应。');
+link('chemistry','biochemistry','交叉研究','化学反应与分子结构构成理解生命活动的基础。',true);
+link('neuroscience','psychology','共同问题','两者从神经机制和心理行为层面共同研究认知。',true);
+link('linguistics','ai','交叉研究','语言结构、语义和语料分析支持自然语言智能。',true);
+link('economics','psychology','交叉研究','行为经济学研究认知偏差、激励和真实选择行为。',true);
+link('ecology','environment','共同问题','生态系统响应与污染治理共同涉及环境变化。',true);
+link('materials','mechanical','应用转化','材料性能与加工能力约束并支持机械设计。');
+link('design','hci','交叉研究','设计研究和交互评估共同改善人的技术体验。',true);
+link('medicine','genetics','交叉研究','遗传变异与分子机制支持疾病研究和精准诊疗。',true);
+link('philosophy','ai','共同问题','智能、责任与价值问题连接哲学和人工智能。',true);
+link('geography','architecture','共同问题','空间分析与人居设计共同研究城市与地方。',true);
+link('statistics','public-health','方法支撑','抽样与推断支撑人群健康研究和干预评价。',true);
+link('chemistry','pharmacy','方法支撑','分子设计、合成和分析支撑药物发现与开发。',true);
+link('agronomy','genetics','交叉研究','遗传规律与基因组技术用于作物育种。',true);
+link('food','nutrition','应用转化','食品组成与加工影响膳食质量、营养和健康。',true);
+link('systems','management','方法支撑','反馈、系统建模与复杂性分析支持组织和运营研究。');
+link('math','cs','方法支撑','离散数学、逻辑和复杂性分析支撑算法与计算理论。');
+link('math','economics','方法支撑','优化、博弈和动态模型用于描述经济决策。');
+link('logic','cs','方法支撑','形式语言、可计算性和证明支撑程序与计算理论。');
+link('logic','philosophy','共同问题','有效论证和知识基础同时属于逻辑与哲学的核心问题。');
+link('statistics','psychology','方法支撑','实验设计、心理测量和统计推断支持行为研究。');
+link('statistics','economics','方法支撑','统计估计与因果分析构成计量经济研究的核心工具。');
+link('statistics','ai','方法支撑','概率建模和统计学习支持机器学习的训练与评估。');
+link('systems','ecology','方法支撑','动力学与网络模型描述种群、食物网和生态稳定性。');
+link('systems','electrical','方法支撑','反馈与稳定性分析支持电力系统和电机控制。');
+link('physics','astronomy','方法支撑','引力、核反应和辐射理论解释天体与宇宙现象。');
+link('physics','materials','共同问题','凝聚态物理连接材料微观结构与宏观性能。');
+link('physics','electronics','应用转化','半导体、电磁和光学原理转化为电子与光电器件。');
+link('chemistry','materials','交叉研究','化学合成与结构调控创造新的功能材料。');
+link('chemistry','chemical-eng','应用转化','化学反应与热力学转化为反应器、分离和工业过程。');
+link('chemistry','environment','方法支撑','分析化学和反应机制支持污染监测与治理。');
+link('materials','energy','应用转化','电池、光伏和催化等能源技术依赖材料性能。');
+link('biology','medicine','方法支撑','细胞、发育和生命机制研究支撑医学解释。');
+link('genetics','biology','共同问题','遗传、发育与演化共同解释生命多样性。');
+link('genetics','biochemistry','共同问题','基因表达和蛋白质功能连接遗传信息与分子过程。');
+link('biology','cs','交叉研究','计算生物学运用算法与模型研究生命过程。');
+link('ecology','geography','共同问题','生态分布与景观格局依赖空间和环境条件。');
+link('ecology','agronomy','共同问题','农业生态研究生产活动与生态功能的协调。');
+link('neuroscience','ai','交叉研究','神经计算启发学习模型，AI也用于分析神经数据。');
+link('biochemistry','pharmacy','方法支撑','酶、受体和代谢机制支持药物靶点与作用研究。');
+link('geology','civil','应用转化','地质条件与岩土性质决定地基和地下工程设计。');
+link('geology','astronomy','交叉研究','行星科学使用地质与天文方法研究其他天体。');
+link('geography','sociology','共同问题','人口、城市与社会差异同时具有空间与社会结构。');
+link('geography','computing','交叉研究','空间数据处理连接地理信息与计算技术。');
+link('atmosphere','ocean','共同问题','海气相互作用共同影响环流、天气和气候。');
+link('atmosphere','physics','方法支撑','流体动力学与辐射物理解释大气运动和能量收支。');
+link('atmosphere','environment','共同问题','空气污染与气候变化涉及共同的大气过程。');
+link('ocean','ecology','共同问题','海洋食物网、生物多样性与生态变化连接两者。');
+link('environment','economics','共同问题','外部性、环境政策和资源配置连接环境与经济。');
+link('environment','law','共同问题','环境标准、责任与资源治理需要法律规范。');
+link('mechanical','cs','交叉研究','机器人与智能制造结合机械系统、算法和感知。');
+link('electrical','energy','共同问题','电网、储能与能源转换共同构成电力能源系统。');
+link('electronics','information','应用转化','电路与器件实现信号处理和通信传输。');
+link('electronics','cs','交叉研究','芯片、嵌入式系统与计算架构连接硬件和计算。');
+link('civil','architecture','交叉研究','空间设计与结构技术共同形成可建造、安全的建筑。');
+link('civil','environment','共同问题','水处理、基础设施和城市环境治理连接两者。');
+link('chemical-eng','biochemistry','交叉研究','生物制造将酶、细胞与代谢机制用于工业过程。');
+link('energy','environment','共同问题','能源系统的排放、资源消耗和生态影响需要共同评估。');
+link('aerospace','physics','方法支撑','流体力学、热学和动力学支撑飞行器设计。');
+link('aerospace','electronics','应用转化','传感、导航和电子系统支持飞行与任务运行。');
+link('cs','ai','方法支撑','算法、计算平台和软件系统支撑智能模型。');
+link('data','ai','共同问题','数据处理、模型学习与实验评估连接两者。');
+link('information','math','共同问题','信息论利用概率和数学分析描述编码与容量。');
+link('security','math','方法支撑','数论、代数和概率为密码机制提供基础。');
+link('security','law','共同问题','数据保护、网络犯罪和平台责任需要技术与法律协作。');
+link('hci','psychology','方法支撑','认知、注意和行为研究帮助设计可用的交互。');
+link('hci','education','应用转化','交互系统与学习环境设计支持教育技术。');
+link('medicine','pharmacy','共同问题','药物疗效、安全与临床使用连接诊疗和药学。');
+link('medicine','nursing','共同问题','患者照护、治疗与健康管理需要临床协作。');
+link('medicine','rehabilitation','共同问题','疾病治疗与功能恢复共同支持患者生活。');
+link('public-health','sociology','共同问题','社会条件、不平等和群体行为影响人群健康。');
+link('public-health','environment','共同问题','污染暴露和环境变化影响疾病风险。');
+link('rehabilitation','mechanical','交叉研究','辅助器具、运动分析和康复机器人结合工程与功能训练。');
+link('psychology','medicine','共同问题','身心互动和精神健康连接心理与医学。');
+link('economics','management','共同问题','激励、组织与资源配置共同影响企业决策。');
+link('sociology','politics','共同问题','社会结构、权力与制度共同影响公共生活。');
+link('politics','law','共同问题','国家权力、公共制度和基本权利连接政治与法律。');
+link('politics','history','共同问题','历史路径帮助理解制度形成和政治变迁。');
+link('education','psychology','方法支撑','认知与发展研究支持学习、教学和评价。');
+link('communication','sociology','共同问题','媒介、社会网络和公众参与共同塑造社会关系。');
+link('communication','psychology','共同问题','注意、态度与说服机制影响传播效果。');
+link('philosophy','law','共同问题','正义、责任与权利的论证连接伦理和法律。');
+link('history','archaeology','共同问题','文献和物质遗存提供互补的过去证据。');
+link('linguistics','psychology','共同问题','语言理解、生成与习得涉及认知过程。');
+link('literature','linguistics','共同问题','语言形式、语义与修辞共同参与文本意义的形成。');
+link('religion','history','共同问题','宗教传统的形成与变化需要历史解释。');
+link('religion','sociology','共同问题','宗教组织、身份与实践连接信仰和社会生活。');
+link('design','management','应用转化','服务设计和设计管理帮助组织改善产品与流程。');
+link('visual-arts','history','共同问题','艺术作品与历史语境共同构成艺术史研究。');
+link('music','physics','方法支撑','声学解释声音产生、传播与乐器行为。');
+link('music','psychology','共同问题','听觉、情绪与记忆影响音乐体验。');
+link('performing','literature','交叉研究','剧本、叙事与表演将语言文本转化为视听体验。');
+link('architecture','environment','共同问题','建筑能耗、城市生态与人居质量需要环境研究。');
+link('agronomy','environment','共同问题','土壤、水资源与农业投入影响生产和生态。');
+link('forestry','ecology','共同问题','森林经营依赖物种关系、生态过程与多样性知识。');
+link('animal-science','genetics','应用转化','遗传规律和基因组方法用于动物育种。');
+link('veterinary','public-health','共同问题','人畜共患病与公共卫生需要跨物种监测和防控。');
+link('food','chemistry','方法支撑','组成分析、反应与物性解释加工和品质变化。');
+link('food','chemical-eng','应用转化','传递、分离与过程控制支持食品规模化生产。');
+link('ml','statistics','方法支撑','统计学习、概率模型和推断支撑模型泛化与评估。');
+link('nlp','linguistics','交叉研究','语言结构与语义研究帮助分析和生成文本。');
+link('vision','optoelectronics','交叉研究','成像传感和视觉算法共同实现机器感知。');
+link('robotics','control','方法支撑','反馈控制帮助机器人稳定运动和完成任务。');
+link('robotics','ai','交叉研究','学习、规划和感知为机器人提供智能行动能力。');
+link('genomics','data','交叉研究','海量测序数据需要统计建模、计算与数据管理。');
+link('epidemiology','causal','方法支撑','因果方法帮助识别暴露、干预与健康结果之间的联系。');
+link('cryptography','algebra','方法支撑','代数结构参与密码方案、编码和安全协议的构造。');
+link('verification','software','方法支撑','形式化方法验证程序性质，补充软件测试。');
+link('computational-neuro','ml','共同问题','两者共同研究表示、学习和信息处理，但目标与模型并不相同。');
+link('ai-safety','ethics','共同问题','价值、责任与公平问题影响人工智能治理。');
+link('ai-safety','law','共同问题','风险分类、数据权利与责任规则需要法律治理。');
+link('one-health','ecology','共同问题','动物、人群与生态环境中的健康风险相互联系。');
+link('urban-planning','geography','方法支撑','空间分析与人文地理支持土地利用和城市规划。');
+link('music-tech','signal','方法支撑','音频滤波、编码与合成依赖信号处理方法。');
+link('visualization','visual-design','交叉研究','视觉编码、排版与感知规律共同影响数据表达。');
+link('econometrics','causal','方法支撑','因果识别与统计估计帮助评估经济政策和干预。');
+link('comp-bio','algorithms','方法支撑','序列分析、网络和模拟需要高效算法。');
+link('archaeometry','analytical','方法支撑','元素、同位素和材料分析帮助研究遗物来源与技术。');
+
+const byId=new Map(nodes.map(n=>[n.id,n]));
+for(const n of nodes){if(n.parent){byId.get(n.parent).children.push(n.id);n.color=n.color||byId.get(n.parent).color||'#7060b5';}}
+function descend(id){const n=byId.get(id);return [id,...n.children.flatMap(descend)];}
+function ancestors(id){const result=[];let n=byId.get(id);while(n){result.unshift(n.id);n=byId.get(n.parent);}return result;}
+function familyOf(id){const path=ancestors(id);return byId.get(path[1])||byId.get('knowledge');}
+function subtreeWeight(id){return descend(id).length-1;}
+const leafCount=nodes.filter(n=>n.depth===3).length;
+const subjectCount=nodes.filter(n=>n.depth===2).length;
+const state={depth:window.innerWidth<=680?1:2,selected:null,focus:null,cross:true,width:0,height:0,view:{x:0,y:0,k:1},visible:new Set(),searchIndex:-1,searchMatches:[]};
+const $=id=>document.getElementById(id);const NS='http://www.w3.org/2000/svg';
+function svg(tag,attrs={},text){const el=document.createElementNS(NS,tag);for(const [k,v]of Object.entries(attrs))el.setAttribute(k,v);if(text!==undefined)el.textContent=text;return el;}
+function make(tag,cls,text){const el=document.createElement(tag);if(cls)el.className=cls;if(text!==undefined)el.textContent=text;return el;}
+function button(text,cls,fn){const b=make('button',cls,text);b.addEventListener('click',fn);return b;}
+function polar(radius,angle){const rad=angle*Math.PI/180;return{x:Math.cos(rad)*radius,y:Math.sin(rad)*radius};}
+function layout(){
+ const total=nodes.filter(n=>n.depth===3).length;let cursor=-106;
+ byId.get('knowledge').x=0;byId.get('knowledge').y=0;
+ for(const f of families){const family=byId.get(f[0]);const familyLeaves=descend(family.id).map(id=>byId.get(id)).filter(n=>n.depth===3).length;const span=360*familyLeaves/total;const center=cursor+span/2;family.angle=center;Object.assign(family,polar(215,center));let subCursor=cursor+2;
+  for(const id of family.children){const n=byId.get(id);const subSpan=(span-4)*n.children.length/familyLeaves;n.angle=subCursor+subSpan/2;Object.assign(n,polar(447,n.angle));let leafCursor=subCursor;
+   for(const child of n.children){const c=byId.get(child);c.angle=leafCursor+subSpan/n.children.length/2;Object.assign(c,polar(750,c.angle));leafCursor+=subSpan/n.children.length;}subCursor+=subSpan;
+  }cursor+=span;
+ }
+}
+function displayEndpoint(id){let n=byId.get(id);while(n&&!state.visible.has(n.id))n=byId.get(n.parent);return n;}
+function getRelations(id){const scope=new Set(descend(id));return relations.filter(r=>(scope.has(r.a)||scope.has(r.b))&&!(scope.has(r.a)&&scope.has(r.b)));}
+function computeVisible(){
+ let allowed=null;if(state.focus){allowed=new Set([...descend(state.focus),...ancestors(state.focus)]);if(state.cross)for(const r of getRelations(state.focus)){for(const id of [r.a,r.b])for(const a of ancestors(id))allowed.add(a);}}
+ state.visible=new Set(nodes.filter(n=>n.depth<=state.depth&&(!allowed||allowed.has(n.id))).map(n=>n.id));
+}
+function radius(n){return n.depth===0?61:n.depth===1?Math.min(35,28+subtreeWeight(n.id)*.12):n.depth===2?8+Math.sqrt(n.children.length)*1.4:5;}
+function treePath(n){const p=byId.get(n.parent);if(p.depth===0)return`M${p.x},${p.y}L${n.x},${n.y}`;const r=p.depth===1?330:590;const a=polar(r,p.angle),b=polar(r,n.angle);return`M${p.x},${p.y}C${a.x},${a.y} ${b.x},${b.y} ${n.x},${n.y}`;}
+function crossPath(a,b){const m={x:(a.x+b.x)*.5,y:(a.y+b.y)*.5};const factor=.33;return`M${a.x},${a.y}Q${m.x*factor},${m.y*factor} ${b.x},${b.y}`;}
+function renderMap(){
+ computeVisible();$('rings').replaceChildren();$('nodes').replaceChildren();$('tree-edges').replaceChildren();$('cross-edges').replaceChildren();
+ if(!state.focus)for(const r of [215,447,...(state.depth===3?[750]:[])])$('rings').append(svg('circle',{cx:0,cy:0,r,class:'ring'}));
+ const selectedScope=state.selected?new Set(descend(state.selected)):null;
+ const connected=new Set();if(state.selected){for(const id of ancestors(state.selected))connected.add(id);for(const id of selectedScope)connected.add(id);if(state.cross)for(const r of getRelations(state.selected))for(const id of [r.a,r.b])for(const a of ancestors(id))connected.add(a);}
+ const drawnCross=new Set();let edgeCount=0;
+ if(state.cross){let displayed=state.selected?getRelations(state.selected):relations.filter(r=>r.featured);if(state.focus)displayed=displayed.filter(r=>state.visible.has(r.a)||state.visible.has(r.b));
+  for(const r of displayed){const a=displayEndpoint(r.a),b=displayEndpoint(r.b);if(!a||!b||a.id===b.id||a.depth===0||b.depth===0)continue;const key=[a.id,b.id].sort().join('|');if(drawnCross.has(key))continue;drawnCross.add(key);const el=svg('path',{d:crossPath(a,b),class:'cross-edge'+(state.selected?' active':''),stroke:state.selected?byId.get(state.selected).color:'#9989bb'});$('cross-edges').append(el);edgeCount++;}
+ }
+ for(const n of nodes){if(!state.visible.has(n.id))continue;if(n.parent&&state.visible.has(n.parent))$('tree-edges').append(svg('path',{d:treePath(n),class:'tree-edge'+(state.selected?(connected.has(n.id)?' active':' dim'):''),stroke:n.color}));
+  const r=radius(n),isSelected=state.selected===n.id;const g=svg('g',{transform:`translate(${n.x} ${n.y})`,class:'node'+(isSelected?' selected':'')+(state.selected&&!connected.has(n.id)?' dim':''),'data-id':n.id,role:'button',tabindex:'0','aria-label':`${n.name}，${['知识总览','知识领域','主要学科','研究方向'][n.depth]}，点击查看简介`,'aria-pressed':String(isSelected)});
+  g.append(svg('circle',{r:r+7,fill:n.color||'#7060b5','fill-opacity':'.1',class:'node-halo'}));
+  if(n.depth===0){g.append(svg('circle',{r,class:'node-shape',fill:'#fff',stroke:'#c9c0df','stroke-width':'1.4'}));g.append(svg('circle',{r:r-7,fill:'none',stroke:'#eeeaf7','stroke-width':'1'}));g.append(svg('text',{x:0,y:-8,'text-anchor':'middle',style:'font:10px var(--mono);letter-spacing:1.4px;fill:#9485b8'},'KNOWLEDGE'));g.append(svg('text',{x:0,y:16,'text-anchor':'middle',style:'font:500 23px var(--display);fill:#5b4c88'},'人类知识'));}
+  else if(n.depth===1){g.append(svg('circle',{r,class:'node-shape',fill:'#fff',stroke:n.color,'stroke-width':'1.6'}));g.append(svg('circle',{r:r-5,fill:n.color,'fill-opacity':'.065'}));g.append(svg('text',{y:5,'text-anchor':'middle',style:`font:500 13px var(--mono);fill:${n.color}`},String(subtreeWeight(n.id))));g.append(svg('text',{x:0,y:r+25,'text-anchor':'middle',class:'node-text','font-size':'21',fill:n.color},n.name));}
+  else {g.append(svg('circle',{r:Math.max(r+7,18),fill:'transparent'}));g.append(svg('circle',{r,class:'node-shape',fill:isSelected?n.color:'#fff',stroke:n.color,'stroke-width':n.depth===2?'2':'1.5'}));const left=Math.cos(n.angle*Math.PI/180)<-.06;const angle=left?n.angle+180:n.angle;const text=svg('text',{transform:`rotate(${angle})`,x:left?-r-9:r+9,y:'6','text-anchor':left?'end':'start',class:'node-text','font-size':n.depth===2?'21':'18'} ,n.name);g.append(text);}
+  g.append(svg('title',{},`${n.name}\n${n.summary}`));g.addEventListener('click',()=>{if(!dragMoved)selectNode(n.id);});g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();selectNode(n.id);}});$('nodes').append(g);
+ }
+ $('map-counts').textContent=`${state.visible.size-1} / ${nodes.length-1} 学科节点 · ${edgeCount} 条${state.selected?'相关':'代表性'}交叉线`;
+ $('focus-chip').hidden=!state.focus;if(state.focus)$('focus-name').textContent=`正在探索 · ${byId.get(state.focus).name}`;
+ $('map-title').textContent=state.selected?byId.get(state.selected).name+'，与世界相连。':'知识从不孤立生长。';
+ $('map-description').textContent=state.depth===3?'研究方向已展开 · 放大阅读名称 · 点击查看联系':'点击节点查看简介 · 拖动平移 · 滚轮或双指缩放';
+ updateTransform();updateDirectory();
+}
+function renderDirectory(){
+ $('total-count').textContent=String(nodes.length-1);$('family-list').replaceChildren();
+ for(const f of families){const n=byId.get(f[0]);const item=make('div','family-item');const b=button('', 'family-button',()=>{selectNode(n.id);const el=$('children-'+n.id);el.hidden=!el.hidden;b.setAttribute('aria-expanded',String(!el.hidden));if(window.innerWidth<=680)toggleDirectory(false);});b.dataset.id=n.id;b.setAttribute('aria-expanded','false');const dot=make('i','family-dot');dot.style.background=n.color;b.append(dot,make('span','',n.name),make('span','family-count',String(subtreeWeight(n.id))),make('span','family-chevron','›'));const children=make('div','family-children');children.id='children-'+n.id;children.hidden=true;
+  for(const id of n.children){const c=byId.get(id);const child=button(c.name,'directory-child',()=>{selectNode(id);ensureVisible(id);if(window.innerWidth<=680)toggleDirectory(false);});child.dataset.id=id;children.append(child);}item.append(b,children);$('family-list').append(item);
+ }
+}
+function updateDirectory(){for(const b of document.querySelectorAll('[data-id]')){if(b.closest('#family-list'))b.classList.toggle('selected',b.dataset.id===state.selected);} }
+function renderGuide(){
+ const c=$('detail-content');c.replaceChildren();const eyebrow=make('div','detail-eyebrow');const dot=make('i','tiny-dot');dot.style.background='var(--accent)';eyebrow.append(dot,'地图阅读指南');c.append(eyebrow,make('h2','', '知识，有脉络。'),make('div','english-name','EVERY DISCIPLINE IS A DOORWAY'),make('p','detail-intro',`从 ${families.length} 个知识领域、${subjectCount} 门主要学科出发，探索 ${leafCount} 个研究方向和 ${relations.length} 组学科联系。点击任何节点，打开一扇新的门。`),make('div','intro-divider'));
+ const steps=make('div','guide-steps');for(const [icon,title,desc] of [['◎','由大到小，逐层深入','中心是知识总览，向外依次是领域、主要学科与研究方向。'],['⌁','跨越边界，寻找联系','实线表示包含与分支；虚线表示方法支撑、交叉研究、共同问题或应用转化。'],['↗','点击一门学科，读懂它','查看简介、典型问题、常用方法、分支及相关学科。选中后，地图突出相关联系。']]){const step=make('div','guide-step');const text=make('div');text.append(make('strong','',title),make('p','',desc));step.append(make('span','guide-icon',icon),text);steps.append(step);}c.append(steps);
+ const sec=make('section','detail-section');sec.append(make('h3','','从这些交叉点开始'));const rec=make('div','recommended');for(const [id,label]of [['ai','人工智能 × 语言 × 认知'],['public-health','公共卫生 × 统计 × 社会'],['architecture','建筑 × 工程 × 人居环境']]){const b=button('','recommend-button',()=>{selectNode(id);ensureVisible(id);});b.append(make('span','',label),make('span','','↗'));rec.append(b);}sec.append(rec);c.append(sec);
+ c.append(make('p','scope-note','这是一份探索性的知识地图，不是官方学科目录。学科划分因国家、机构和研究传统而异；树上的位置是一种阅读归属，并非排他的分类。节点大小表示层级与分支规模，不表示重要性、难度或学科价值。连线是精选关系，未画线不等于没有联系。'));
+}
+function detailSection(title){const s=make('section','detail-section');s.append(make('h3','',title));return s;}
+function renderDetail(id){
+ const n=byId.get(id);if(id==='knowledge'){renderGuide();return;}const c=$('detail-content');c.replaceChildren();const f=familyOf(id);const eyebrow=make('div','detail-eyebrow');const dot=make('i','tiny-dot');dot.style.background=n.color;eyebrow.append(dot,`${f.name} / ${n.depth===1?'知识领域':n.depth===2?'主要学科':'研究方向'}`);c.append(eyebrow,make('h2','',n.name));if(n.en)c.append(make('div','english-name',n.en));c.append(make('p','detail-intro',n.summary));
+ const crumb=make('div','breadcrumb');const path=ancestors(id);path.forEach((pid,i)=>{if(i)crumb.append(make('span','','›'));if(pid===id)crumb.append(make('span','',byId.get(pid).name));else crumb.append(button(byId.get(pid).name,'',()=>{selectNode(pid);ensureVisible(pid);}));});c.append(crumb);
+ if(n.question){const s=detailSection('它关心什么');s.append(make('p','',n.question));c.append(s);}const m=n.methods||(n.depth===3?byId.get(n.parent).methods:null);if(m){const s=detailSection(n.depth===3?'所属学科的常用方法':'常用方法');const tags=make('div','detail-tags');for(const t of m)tags.append(make('span','detail-tag',t));s.append(tags);c.append(s);}
+ if(n.children.length){const s=detailSection(n.depth===1?'主要学科 · '+n.children.length:'继续深入 · '+n.children.length);const grid=make('div','child-grid');for(const cid of n.children)grid.append(button(byId.get(cid).name,'child-link',()=>{selectNode(cid);ensureVisible(cid);}));s.append(grid);c.append(s);}
+ const related=getRelations(id);if(related.length){const s=detailSection(`跨学科连接 · ${related.length}`);const scope=new Set(descend(id));for(const r of related){const other=scope.has(r.a)?r.b:r.a;const target=byId.get(other);const b=button('','related-link',()=>{selectNode(other);ensureVisible(other);});const heading=make('div','related-heading');const dot=make('i','family-dot');dot.style.background=target.color;heading.append(dot,make('span','',target.name),make('span','related-type',r.type));b.append(heading,make('div','related-reason',r.reason));s.append(b);}c.append(s);}
+ else{const s=detailSection('探索相邻知识');s.append(make('p','',n.depth===3?'此方向暂无单独绘制的交叉连线，可进入所属学科查看更广的联系。':'从下方分支继续探索具体研究方向与跨学科关系。'));if(n.depth===3)s.append(button('查看'+byId.get(n.parent).name+'的联系','child-link',()=>{selectNode(n.parent);ensureVisible(n.parent);}));c.append(s);}
+ const actions=make('div','detail-actions');if(n.children.length)actions.append(button('聚焦这条分支','action-button primary',()=>focusBranch(id)));actions.append(button('定位到地图','action-button',()=>{ensureVisible(id);if(window.innerWidth<=680)$('inspector').classList.remove('is-open');}));c.append(actions);c.append(make('p','scope-note','分类用于阅读与探索；连线为代表性关系，并非穷尽所有联系。'));$('inspector').scrollTop=0;
+}
+function selectNode(id,{open=true}={}){if(!byId.has(id))return;if(id==='knowledge'){state.selected=null;renderGuide();}else{state.selected=id;renderDetail(id);}renderMap();if(open)$('inspector').classList.add('is-open');$('selection-status').textContent=id==='knowledge'?'知识地图总览':`已选择${byId.get(id).name}。${byId.get(id).summary}`;}
+function setDepth(depth,{fit=true}={}){state.depth=depth;for(const b of document.querySelectorAll('[data-depth]')){const active=Number(b.dataset.depth)===depth;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active));}renderMap();if(fit)fitMap();}
+function focusBranch(id){state.focus=id;setDepth(Math.min(3,byId.get(id).depth+1));fitMap();if(window.innerWidth<=1000)$('inspector').classList.remove('is-open');}
+function resetMap(){state.selected=null;state.focus=null;state.cross=true;$('cross-toggle').setAttribute('aria-pressed','true');setDepth(window.innerWidth<=680?1:2);renderGuide();$('inspector').classList.remove('is-open');$('search').value='';hideSearch();toggleDirectory(false);}
+function updateTransform(){const v=state.view;$('world').setAttribute('transform',`translate(${v.x},${v.y}) scale(${v.k})`);$('zoom-value').textContent=Math.round(v.k*100)+'%';}
+function fitMap(){const ns=[...state.visible].map(id=>byId.get(id));const ext=ns.map(n=>({x:n.x,y:n.y,pad:n.depth===1?85:n.depth===0?65:n.depth===3?165:160}));const minX=Math.min(...ext.map(n=>n.x-n.pad)),maxX=Math.max(...ext.map(n=>n.x+n.pad)),minY=Math.min(...ext.map(n=>n.y-n.pad)),maxY=Math.max(...ext.map(n=>n.y+n.pad));const availableHeight=Math.max(180,state.height-112);const k=Math.max(.14,Math.min(1.5,(state.width-36)/(maxX-minX),availableHeight/(maxY-minY)));state.view={k,x:state.width/2-(maxX+minX)*.5*k,y:state.height*.54-(maxY+minY)*.5*k};updateTransform();}
+function zoom(factor,x=state.width/2,y=state.height/2){const v=state.view;const k=Math.max(.14,Math.min(3.5,v.k*factor));const ratio=k/v.k;state.view={k,x:x-(x-v.x)*ratio,y:y-(y-v.y)*ratio};updateTransform();}
+function ensureVisible(id){const n=byId.get(id);const leavingFocus=state.focus&&!state.visible.has(id);if(leavingFocus)state.focus=null;if(n.depth>state.depth)setDepth(n.depth,{fit:n.depth<3});else{renderMap();if(leavingFocus&&n.depth<3)fitMap();}if(id==='knowledge'){fitMap();return;}const sx=n.x*state.view.k+state.view.x,sy=n.y*state.view.k+state.view.y;if(n.depth<3&&sx>45&&sx<state.width-45&&sy>50&&sy<state.height-40)return;const k=Math.max(state.view.k,n.depth===3?1.05:.65);state.view={k,x:state.width*.5-n.x*k,y:state.height*.5-n.y*k};updateTransform();}
+function toggleDirectory(open){$('directory').classList.toggle('is-open',open);$('mobile-backdrop').classList.toggle('is-open',open);$('open-directory').setAttribute('aria-expanded',String(open));}
+function normalize(s){return s.toLowerCase().replace(/[\s–—-]/g,'');}
+function renderSearch(){const q=normalize($('search').value.trim());const list=$('search-results');list.replaceChildren();state.searchIndex=-1;if(!q){hideSearch();return;}state.searchMatches=nodes.filter(n=>n.depth>0&&normalize(n.name+' '+(n.en||'')+' '+(n.summary||'')).includes(q)).sort((a,b)=>{const exact=(n)=>normalize(n.name)===q?0:normalize(n.name).startsWith(q)?1:normalize(n.name+(n.en||'')).includes(q)?2:3;return exact(a)-exact(b)||a.depth-b.depth;}).slice(0,16);list.hidden=false;$('search').setAttribute('aria-expanded','true');if(!state.searchMatches.length){list.append(make('div','empty-search','没有找到这个学科。试试更短的关键词，例如“认知”或“材料”。'));return;}
+ state.searchMatches.forEach((n,i)=>{const b=button('','search-result',()=>chooseSearch(i));b.setAttribute('role','option');b.setAttribute('aria-selected','false');b.id='search-option-'+i;const dot=make('i','result-dot');dot.style.background=n.color;const text=make('div');text.append(make('div','result-name',n.name),make('div','result-path',ancestors(n.id).slice(1,-1).map(id=>byId.get(id).name).join(' › ')||'知识领域'));b.append(dot,text);list.append(b);});
+}
+function hideSearch(){$('search-results').hidden=true;$('search').setAttribute('aria-expanded','false');$('search').removeAttribute('aria-activedescendant');}
+function chooseSearch(i){const n=state.searchMatches[i];if(!n)return;$('search').value=n.name;hideSearch();selectNode(n.id);ensureVisible(n.id);$('search').blur();}
+$('search').addEventListener('input',renderSearch);$('search').addEventListener('focus',()=>{if($('search').value.trim())renderSearch();});$('search').addEventListener('keydown',e=>{if(e.key==='Escape'){hideSearch();return;}if(e.key==='ArrowDown'||e.key==='ArrowUp'){e.preventDefault();if(!state.searchMatches.length)return;state.searchIndex=(state.searchIndex+(e.key==='ArrowDown'?1:-1)+state.searchMatches.length)%state.searchMatches.length;[...$('search-results').children].forEach((el,i)=>{el.classList.toggle('active',i===state.searchIndex);el.setAttribute('aria-selected',String(i===state.searchIndex));if(i===state.searchIndex){el.scrollIntoView({block:'nearest'});$('search').setAttribute('aria-activedescendant',el.id);}});}else if(e.key==='Enter'&&state.searchMatches.length){e.preventDefault();chooseSearch(Math.max(0,state.searchIndex));}});
+document.addEventListener('click',e=>{if(!e.target.closest('.search-wrap'))hideSearch();});
+for(const b of document.querySelectorAll('[data-depth]'))b.addEventListener('click',()=>setDepth(Number(b.dataset.depth)));
+$('cross-toggle').addEventListener('click',()=>{state.cross=!state.cross;$('cross-toggle').setAttribute('aria-pressed',String(state.cross));renderMap();});$('zoom-in').addEventListener('click',()=>zoom(1.3));$('zoom-out').addEventListener('click',()=>zoom(1/1.3));$('fit').addEventListener('click',fitMap);$('all-disciplines').addEventListener('click',resetMap);$('leave-focus').addEventListener('click',()=>{state.focus=null;renderMap();fitMap();});$('show-guide').addEventListener('click',()=>{state.selected=null;renderGuide();renderMap();$('inspector').classList.add('is-open');});$('close-inspector').addEventListener('click',()=>{$('inspector').classList.remove('is-open');const selected=$('nodes').querySelector(`[data-id="${state.selected||'knowledge'}"]`);if(selected)selected.focus({preventScroll:true});});$('open-directory').addEventListener('click',()=>toggleDirectory(!$('directory').classList.contains('is-open')));$('mobile-backdrop').addEventListener('click',()=>toggleDirectory(false));
+document.addEventListener('keydown',e=>{if(e.target.closest('input,textarea'))return;if(e.key==='/'){e.preventDefault();$('search').focus();}if(e.key==='Escape'){hideSearch();toggleDirectory(false);$('inspector').classList.remove('is-open');}if(e.key==='f'||e.key==='F')fitMap();if(e.key==='+'||e.key==='=')zoom(1.2);if(e.key==='-')zoom(1/1.2);});
+let dragMoved=false;let pointerStart=null;let pinchStart=null;let pinchUsed=false;const pointers=new Map();const graph=$('graph');
+function localPoint(e){const rect=graph.getBoundingClientRect();return{x:e.clientX-rect.left,y:e.clientY-rect.top};}
+graph.addEventListener('wheel',e=>{e.preventDefault();const p=localPoint(e);zoom(Math.exp(-e.deltaY*.0015),p.x,p.y);},{passive:false});
+graph.addEventListener('pointerdown',e=>{if(e.button!==0&&e.pointerType==='mouse')return;const p=localPoint(e);pointers.set(e.pointerId,p);dragMoved=false;pinchUsed=false;pointerStart={...p,v:{...state.view}};graph.setPointerCapture(e.pointerId);if(pointers.size===2){pinchUsed=true;const [a,b]=[...pointers.values()];pinchStart={distance:Math.hypot(a.x-b.x,a.y-b.y),mid:{x:(a.x+b.x)/2,y:(a.y+b.y)/2},v:{...state.view}};}graph.classList.add('is-dragging');});
+graph.addEventListener('pointermove',e=>{if(!pointers.has(e.pointerId))return;pointers.set(e.pointerId,localPoint(e));if(pointers.size===2&&pinchStart){dragMoved=true;pinchUsed=true;const [a,b]=[...pointers.values()];const k=Math.max(.14,Math.min(3.5,pinchStart.v.k*Math.hypot(a.x-b.x,a.y-b.y)/Math.max(1,pinchStart.distance)));const mid={x:(a.x+b.x)/2,y:(a.y+b.y)/2};const ratio=k/pinchStart.v.k;state.view={k,x:mid.x-(pinchStart.mid.x-pinchStart.v.x)*ratio,y:mid.y-(pinchStart.mid.y-pinchStart.v.y)*ratio};updateTransform();}else if(pointerStart){const p=localPoint(e),dx=p.x-pointerStart.x,dy=p.y-pointerStart.y;if(Math.hypot(dx,dy)>4){dragMoved=true;state.view={...pointerStart.v,x:pointerStart.v.x+dx,y:pointerStart.v.y+dy};updateTransform();}}});
+function endPointer(e){pointers.delete(e.pointerId);if(!pointers.size){graph.classList.remove('is-dragging');pointerStart=null;pinchStart=null;if(!dragMoved&&!pinchUsed){const hit=document.elementFromPoint(e.clientX,e.clientY);const n=hit&&hit.closest('.node');if(n){selectNode(n.dataset.id);dragMoved=true;}}}else{const p=[...pointers.values()][0];pointerStart={...p,v:{...state.view}};pinchStart=null;}}
+graph.addEventListener('pointerup',endPointer);graph.addEventListener('pointercancel',e=>{pointers.delete(e.pointerId);pointerStart=null;pinchStart=null;dragMoved=true;graph.classList.remove('is-dragging');});
+layout();renderDirectory();renderGuide();setDepth(state.depth,{fit:false});
+const resizeObserver=new ResizeObserver(()=>{const rect=$('graph-shell').getBoundingClientRect();const oldWidth=state.width,oldHeight=state.height;state.width=rect.width;state.height=rect.height;graph.setAttribute('viewBox',`0 0 ${state.width} ${state.height}`);if(!oldWidth)fitMap();else{state.view.x+=(state.width-oldWidth)/2;state.view.y+=(state.height-oldHeight)/2;updateTransform();}});resizeObserver.observe($('graph-shell'));
+</script>
+</body>
+</html>
