@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>先让结果落地 · 2026-10-10 认知卡片</title>
+<style>
+:root{
+--canvas:#fbfbf9;--paper:#ffffff;--ink:#000000;--body:#33332e;--soft-ink:#211922;--mute:#62625b;--meta:#746c6c;--hairline:#dadad3;--soft-line:#e5e5e0;--cream:#f6f6f3;
+--accent:#e60023;--accent-deep:#cc001f;--accent-pale:#fff2f4;--accent-edge:#efbdc5;--hero-ink:#261319;--hero-note:#754b54;--quote-bg:#262622;--quote-ink:#ffffff;--quote-source:#d8d7d0;--quote-mark:#ff8497;
+--fact-bg:#f5f8f4;--fact-ink:#103c25;--fact-line:#bfd6c6;--fact-note:#52645b;--method-bg:#f7f5fb;--method-ink:#6845ab;--method-line:#d8cfe5;--method-note:#63576b;--action-bg:#fff7ef;--action-ink:#82380b;
+--action-line:#eed2b7;--action-note:#78593c;--risk-bg:#fffbef;--risk-ink:#715200;--risk-line:#e2d5a9;--risk-note:#786c4e;--aside-bg:#f1f1ed;--aside-ink:#494940;--aside-line:#ccccc0;--aside-note:#707063;--footer-line:#c8c8c1;--footer-ink:#67675b;
+--title-size:54px;--title-weight:750;--title-height:1.15;--title-space:-1.8px;--subtitle-size:21px;--section-size:28px;--section-weight:700;--sub-size:20px;--lead-size:24px;--body-size:17px;--body-height:1.85;--body-weight:400;--label-size:13px;--label-weight:700;--meta-size:12px;--caption-size:14px;--quote-size:29px;--quote-height:1.6;--number-size:34px;--action-size:22px;--risk-size:16px;--mini-size:15px;
+--outer:36px;--pad:48px;--module:44px;--paragraph:15px;--small:10px;--tiny:5px;--box:24px;--indent:22px;--rule-gap:30px;--header-gap:23px;--footer-gap:32px;--label-gap:12px;
+--border:1px;--accent-rule:6px;--section-rule:2px;--quote-rule:4px;--marker-size:38px;--marker-gap:13px;--fact-rule:3px;--method-rule:3px;--action-rule:5px;--risk-rule:3px;--aside-rule:2px;
+}
+*{box-sizing:border-box}body{margin:0;background:var(--canvas);color:var(--body);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;font-size:var(--body-size);font-weight:var(--body-weight);line-height:var(--body-height)}
+main{max-width:900px;margin:var(--outer) auto;padding:0 var(--small)}article{background:var(--paper);border:var(--border) solid var(--hairline);border-top:var(--accent-rule) solid var(--accent);padding:var(--pad);border-radius:0}
+header{margin-bottom:var(--header-gap)}.eyebrow{color:var(--accent-deep);font-size:var(--label-size);font-weight:var(--label-weight);letter-spacing:2px;margin:0 0 var(--label-gap)}h1{color:var(--ink);font-size:var(--title-size);font-weight:var(--title-weight);line-height:var(--title-height);letter-spacing:var(--title-space);margin:0 0 var(--header-gap)}.subtitle{font-size:var(--subtitle-size);color:var(--soft-ink);margin:0 0 var(--small)}.meta{color:var(--meta);font-size:var(--meta-size);margin:0}.lead{font-size:var(--lead-size);line-height:1.6;color:var(--hero-ink);font-weight:600;margin:0}.hero{background:var(--accent-pale);border:var(--border) solid var(--accent-edge);padding:var(--box)}.hero small{display:block;color:var(--hero-note);font-size:var(--caption-size);margin-top:var(--small)}
+section{margin-top:var(--module)}h2{color:var(--ink);font-size:var(--section-size);font-weight:var(--section-weight);line-height:1.3;margin:0 0 var(--paragraph);padding-bottom:var(--small);border-bottom:var(--section-rule) solid var(--soft-line)}h2 .marker{display:inline-block;min-width:var(--marker-size);margin-right:var(--marker-gap);color:var(--accent);font-size:var(--number-size)}h3{font-size:var(--sub-size);color:var(--soft-ink);margin:var(--paragraph) 0 var(--tiny)}p{margin:0 0 var(--paragraph)}.label{font-size:var(--label-size);font-weight:var(--label-weight);margin-bottom:var(--tiny)}.caption{font-size:var(--caption-size);color:var(--mute)}.fact{padding:var(--box);background:var(--fact-bg);border-left:var(--fact-rule) solid var(--fact-line);margin-bottom:var(--small)}.fact .label{color:var(--fact-ink)}.fact .caption{color:var(--fact-note)}.facts-count{font-size:var(--number-size);font-weight:700;color:var(--fact-ink);line-height:1.3}.event{border-bottom:var(--border) solid var(--hairline);padding:var(--small) 0}.event:last-child{border-bottom:0}.event strong{color:var(--ink)}.comparison{padding:var(--box);background:var(--cream)}.comparison h3{margin-top:0}.comparison p:last-child,.hero p:last-child,.fact p:last-child{margin-bottom:0}
+blockquote{margin:var(--rule-gap) 0 0;padding:var(--box);background:var(--quote-bg);color:var(--quote-ink);border-left:var(--quote-rule) solid var(--quote-mark);font-size:var(--quote-size);line-height:var(--quote-height);font-weight:600}blockquote cite{display:block;font-style:normal;font-weight:400;font-size:var(--meta-size);color:var(--quote-source);margin-top:var(--label-gap)}.method{background:var(--method-bg);border-left:var(--method-rule) solid var(--method-line);padding:var(--box);margin-top:var(--small)}.method h3{color:var(--method-ink);margin-top:0}.method .caption{color:var(--method-note)}ol,ul{padding-left:var(--indent);margin:var(--small) 0}li{margin-bottom:var(--small)}li:last-child{margin-bottom:0}.action{padding:var(--box);background:var(--action-bg);border-left:var(--action-rule) solid var(--action-line)}.action .label,.action-title{color:var(--action-ink)}.action-title{font-size:var(--action-size);font-weight:700;line-height:1.6}.action .caption{color:var(--action-note)}.risk{padding:var(--box);background:var(--risk-bg);border-left:var(--risk-rule) solid var(--risk-line);font-size:var(--risk-size);margin-top:var(--small)}.risk .label{color:var(--risk-ink)}.risk .caption{color:var(--risk-note)}.aside{padding:var(--box);background:var(--aside-bg);border-left:var(--aside-rule) solid var(--aside-line)}.aside h3{color:var(--aside-ink);margin-top:0}.aside .caption{color:var(--aside-note)}.verdict{font-size:var(--mini-size);border-top:var(--border) solid var(--soft-line);padding-top:var(--paragraph);margin-top:var(--paragraph)}footer{margin-top:var(--footer-gap);border-top:var(--border) solid var(--footer-line);padding-top:var(--label-gap);color:var(--footer-ink);font-size:var(--meta-size)}
+@media(max-width:399px){:root{--outer:12px;--pad:19px;--title-size:34px;--section-size:23px;--lead-size:20px;--quote-size:23px;--body-size:16px;--box:18px;--module:31px;--title-space:-1px}}
+@media(min-width:400px) and (max-width:599px){:root{--outer:18px;--pad:25px;--title-size:40px;--section-size:25px;--box:20px;--module:36px;--lead-size:21px;--quote-size:25px}}
+@media(min-width:600px) and (max-width:899px){:root{--outer:26px;--pad:35px;--title-size:46px;--module:39px}}
+@media(min-width:1200px){:root{--outer:52px;--pad:58px;--module:50px;--title-size:60px}}
+</style>
+</head>
+<body>
+<main><article>
+<header><p class="eyebrow">今日复盘 · 认知与行动</p><h1>先让结果落地，<br>再决定怎么用力。</h1><p class="subtitle">发布、恢复、积累：把想法接到可验证的现实。</p><p class="meta">归属日 2026年10月10日 · 活动记录主要来自10月9日 · 最终增量截至10月10日凌晨</p></header>
+<div class="hero"><p class="lead">有两平台手动发布的自述；有电脑恢复可用的自述；案例切分仍缺公开页面。</p><small>今天的核心提醒：将已经做出的东西留下证据，再判断该加投入，还是先消除阻塞。没有记录的成交、报价与客户反馈，保持未记录。</small></div>
+<section><h2><span class="marker">01</span>先分清：做了什么</h2>
+<div class="fact"><p class="label">真实发布 · 本人自述</p><p class="facts-count">抖音 + B站</p><p>调了封面，手动更新，并说「手动发完以后」。没有公开链接和上线截图；实际作品数与上轮剩余账号的对应关系仍待核。</p><p class="caption">上轮承诺要求「剩余两个账号各一次公开更新并保存证据」。本轮无法确认完整闭环；不把这件事写成未完成，也不替 TaskBox 勾选完成。</p></div>
+<div class="event"><p><strong>工具恢复：</strong>上午急用电脑，却在同一问题上反复卸载重装。晚间本人称安装更新后可用；工具名、版本关系和具体故障因果仍未核实。</p></div>
+<div class="event"><p><strong>案例进度：</strong>晚间说案例数据昨天已切分，一个案例一个视频。素材切分不等于案例站上线；没有公开页面证据。</p></div>
+<div class="event"><p><strong>身体与恢复：</strong>等待时约十分钟站桩，晚间有冥想与休息，自感状态较好。约八点篮球没有去，吃饭、路程与剩余窗口挤在一起。</p></div>
+<p class="caption">新增客户对话、报价、成交和真实反馈样本：未记录。朋友聊天和视频中的他人成果不计入自身业务结果。</p>
+</section>
+<section><h2><span class="marker">02</span>满分的一天，是假设</h2>
+<div class="comparison"><h3>幻想的版本</h3><p>每天精力满分，所有安排都按预期运行，没有意外，不会刷视频，也不需要为疲累留空间。</p><h3>讨论中的现实版本</h3><p>先保护最重要的结果，再给意外与恢复留余量。「上午三小时完成主线」是本人和 AI 讨论的设想，尚未证明实行，更没有证明现金流已覆盖生活。</p></div>
+<h3>增加投入，先问能否放大结果</h3><p>本人提出：已经在做的项目，如果多投入能放大结果，这份时间才值得。「十小时与三小时产出一样」是例子，没有本轮实测数据。长工时、兴奋感和工具忙碌，都不能替代真正上线或客户回应。</p>
+<h3>积累信任，需要可见的载体</h3><p>希望通过多平台内容和案例持续出现，让别人看到自己的工作。今天有两平台发布自述；案例站公开入口与新增转化反馈尚未出现，不能把愿景写成壁垒已经建立。</p>
+<blockquote>「就是你的工作和你的休息一定要达成一种平衡。」<cite>本人原话 · 晚间个人复盘</cite></blockquote>
+</section>
+<section><h2><span class="marker">03</span>把阻力拆成具体一环</h2>
+<div class="method"><h3>排障：重复之前，先取得新证据</h3><ol><li>通过一个确实可用的入口说明当前报错。</li><li>提出具体假设，再检查一次改动后的真实运行结果。</li><li>记录「报错—改动—结果」，避免同一问题反复重装。</li></ol><p class="caption">源于本轮排障经历的建议。具体工具、命令与技术根因未核实；不包装成已验证教程。</p></div>
+<div class="method"><h3>运动：带了装备，还缺什么</h3><p>准备装备减少了一部分难度；但地点有距离、没有明确提示，晚饭又占住原窗口。本人用福格模型复盘了这一点，说明这次失败有具体安排因素，不能归因为一个人的自律或性格。</p><p class="caption">下一次时间安排应把用餐、路程和剩余窗口一起考虑。这是建议，还没有新增日历或长期训练规则。</p></div>
+<div class="method"><h3>决策：让欲望过峰，再看还想不想做</h3><p>flomo 里留下的提醒：「不要在欲望强烈的时候做决策……当你欲望下去了，你依旧觉得要做，那就做。」作为个人观察保留，不自动变成任务。</p></div>
+</section>
+<section><h2><span class="marker">04</span>下一步，只形成一个入口</h2>
+<div class="action"><p class="label">主动作建议 · 尚未批准</p><p class="action-title">将一个已切分案例视频发布到自己的案例站，并保存公开链接。</p><ol><li><strong>前五分钟：</strong>选一个已切分的视频，确认可公开内容和现有案例站入口。</li><li><strong>触发建议：</strong>当天第一个60—90分钟保护时段；系统默认建议，未写日历。</li><li><strong>完成定义：</strong>可访问的案例页面链接 + 视频能播放的截图。草稿、素材和上传等待不算上线。</li></ol><p class="caption">来自已有网站案例候选；保持 AI 建议和待批准状态。按归属日，建议驾驶舱日期为10月11日，未形成用户新承诺，也未创建 TaskBox 任务。</p></div>
+<h3>已经记录的两项本人任务</h3><ul><li>申请200港币香港离境税退款：已写入 TaskBox，未指定排期；尚无申请提交回执。</li><li>10月10日进行一次运动：本人10月9日说「明天」，已按10月10日记录；不顺延到11日，不规定必须练到酸痛。</li></ul><p class="caption">记录任务不等于立即执行或完成。自动发布抖音与B站仍是可做设想；没有获得实施授权。</p>
+<div class="risk"><p class="label">保留边界 · 不把观点当事实</p><p>冥想后状态变好是主观观察，没有对照验证。睡眠时长、精力评分和明日容量仍未知；固定算力百分比、肌肉必须酸、快速减重故事与饮食建议，不写成健康结论。</p><p class="caption">币价、59.6连接阈值和他人创业数据未核实。今天没有新增真实客户反馈，不能用 AI 的评价补上。</p></div>
+</section>
+<section><h2><span class="marker">05</span>第三人称审视</h2>
+<div class="aside"><h3>一天的模式</h3><p>他上午被急用工具的问题牵住，进行了重复重装，晚间记录恢复；同时把两个平台的内容手动发了出去。对 AI、信任和斗志的讨论很多，也开始辨认自己对满精力一天的假设。休息、用餐和路程仍会改变安排。</p><h3>最大的具体问题</h3><p>排障重复动作与想法扩展占住注意力，而已发布、已切分的东西没有稳定验收入口。最迫切的是保存公开证据；长期要用发布与真实反馈判断投入价值。</p><h3>给他的建议</h3><p>批准后先用一个现有素材形成公开案例，再评价是否值得加速或自动化。疲累时休息的个人经验可以继续观察，不把一次感受推广成固定规则。</p><p class="verdict"><strong>可选行动：</strong>为一次电脑恢复留一条「原报错—改动—真实运行结果」记录。属于 AI 建议，未入盒。</p><p class="caption">只根据本轮行为与结果审视，不作人格定性、心理诊断或无证据动机推断。</p></div>
+</section>
+<footer>来源：2026年10月10日正式日省 · 提炼卡片 · Pinterest视觉参考（暖白、红色强调、清晰层级） · 私有完整档案单独保存</footer>
+</article></main>
+</body>
+</html>
