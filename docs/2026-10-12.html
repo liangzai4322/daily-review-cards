@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026-10-12 · 有效工作与踩刹车</title>
+<style>
+:root{
+--canvas:#f2f0eb;--paper:#fff;--ceramic:#edebe9;--brand:#006241;--accent:#00754a;--house:#1e3932;--uplift:#2b5148;--mint:#d4e9e2;--ink:#202822;--muted:#59645d;--quiet:#67736c;--inverse:#fff;--inverse-soft:#d4e4dc;--rule:#d4dad3;--rule-dark:#416157;--hero-bg:#1e3932;--hero-title:#fff;--hero-text:#d4e9e2;--core-bg:#edf5ef;--core-title:#006241;--core-text:#24463a;--quote-bg:#006241;--quote-text:#fff;--quote-cite:#d4e9e2;--fact-bg:#f7f6f2;--fact-border:#d9ddd2;--fact-label:#4c6457;--fact-text:#283e33;--method-bg:#eff6f1;--method-border:#b7d7c3;--method-number:#00754a;--method-text:#2b5148;--risk-bg:#faf6ee;--risk-border:#dfc49d;--risk-title:#805b28;--risk-text:#67533a;--action-bg:#f0f4f1;--action-border:#bdcbc1;--action-title:#33433d;--action-text:#334b3d;
+--t-title:42px;--t-subtitle:19px;--t-date:13px;--t-heading:25px;--t-subheading:18px;--t-core:29px;--t-body:16px;--t-note:13px;--t-quote:23px;--t-label:12px;--w-title:800;--w-heading:700;--w-body:400;--lh-title:1.3;--lh-core:1.5;--lh-body:1.9;--lh-note:1.75;--ls-title:-.8px;--ls-label:1.4px;--t-number:19px;
+--s-outer:40px;--s-inner:42px;--s-module:34px;--s-paragraph:14px;--s-list:12px;--s-indent:22px;--s-divider:28px;--s-label:8px;--s-block:24px;--s-quote:30px;--s-footer:22px;--s-small:6px;
+--m-core-line:5px;--m-quote-line:3px;--m-rule-line:1px;--m-number:30px;--m-label-line:2px;--m-risk-line:4px;--m-action-line:3px;--m-method-line:2px;--m-cite-line:1px;--m-section-line:1px
+}
+*{box-sizing:border-box}body{margin:0;background:var(--canvas);color:var(--ink);font-family:"PingFang SC","Noto Sans CJK SC","Microsoft YaHei",sans-serif;font-size:var(--t-body);font-weight:var(--w-body);line-height:var(--lh-body)}main{max-width:890px;margin:var(--s-outer) auto;padding:0 var(--s-paragraph)}article{background:var(--paper);border:var(--m-rule-line) solid var(--rule)}header{background:var(--hero-bg);padding:var(--s-inner);border-top:8px solid var(--accent)}.eyebrow{color:var(--hero-text);font-size:var(--t-label);letter-spacing:var(--ls-label);margin-bottom:var(--s-list);border-left:var(--m-label-line) solid var(--mint);padding-left:var(--s-label)}h1{color:var(--hero-title);font-size:var(--t-title);font-weight:var(--w-title);line-height:var(--lh-title);letter-spacing:var(--ls-title);margin:0 0 var(--s-paragraph)}.subtitle{font-size:var(--t-subtitle);color:var(--inverse-soft);margin:0}.date{color:var(--hero-text);font-size:var(--t-date);margin-top:var(--s-paragraph);padding-top:var(--s-list);border-top:var(--m-rule-line) solid var(--rule-dark)}.content{padding:var(--s-inner)}section{margin:0 0 var(--s-module)}h2{font-size:var(--t-heading);font-weight:var(--w-heading);color:var(--brand);line-height:var(--lh-title);margin:0 0 var(--s-paragraph)}h3{font-size:var(--t-subheading);font-weight:var(--w-heading);margin:0 0 var(--s-label)}p{margin:0 0 var(--s-paragraph)}.caption{font-size:var(--t-note);color:var(--muted);line-height:var(--lh-note)}.core{padding:var(--s-block);background:var(--core-bg);border-left:var(--m-core-line) solid var(--brand)}.core-title{font-size:var(--t-core);font-weight:var(--w-heading);line-height:var(--lh-core);color:var(--core-title);margin-bottom:var(--s-paragraph)}.core-body{color:var(--core-text)}.section-label{font-size:var(--t-label);letter-spacing:var(--ls-label);color:var(--quiet);padding-bottom:var(--s-label);margin-bottom:var(--s-paragraph);border-bottom:var(--m-section-line) solid var(--ceramic)}.point{padding:var(--s-paragraph) 0;border-bottom:var(--m-rule-line) solid var(--rule)}.point:last-child{border-bottom:0}.point-title{color:var(--uplift);font-size:var(--t-subheading);font-weight:var(--w-heading)}.point-body{margin-top:var(--s-small)}.quote{background:var(--quote-bg);color:var(--quote-text);padding:var(--s-quote);border-left:var(--m-quote-line) solid var(--mint)}blockquote{font-size:var(--t-quote);font-weight:var(--w-heading);line-height:var(--lh-core);margin:0 0 var(--s-paragraph)}.cite{font-size:var(--t-note);color:var(--quote-cite);padding-top:var(--s-label);border-top:var(--m-cite-line) solid var(--uplift)}.fact{background:var(--fact-bg);border:var(--m-rule-line) solid var(--fact-border);padding:var(--s-block)}.fact-label{font-size:var(--t-label);color:var(--fact-label);letter-spacing:var(--ls-label);margin-bottom:var(--s-label)}.fact-body{color:var(--fact-text)}.fact-detail{color:var(--muted);font-size:var(--t-note)}.method{background:var(--method-bg);border:var(--m-method-line) solid var(--method-border);padding:var(--s-block)}.method-row{margin-bottom:var(--s-list);padding-left:var(--s-indent);border-left:var(--m-rule-line) solid var(--mint)}.number{display:inline-block;min-width:var(--m-number);color:var(--method-number);font-size:var(--t-number);font-weight:var(--w-heading)}.method-text{color:var(--method-text)}.rule-note{font-size:var(--t-note);line-height:var(--lh-note);color:var(--quiet);margin-top:var(--s-list)}.risk{background:var(--risk-bg);border-left:var(--m-risk-line) solid var(--risk-border);padding:var(--s-block);margin-top:var(--s-list)}.risk-title{font-size:var(--t-subheading);color:var(--risk-title);font-weight:var(--w-heading)}.risk-body{color:var(--risk-text);font-size:var(--t-body)}.risk-note{font-size:var(--t-note);color:var(--risk-title)}.action{background:var(--action-bg);border-left:var(--m-action-line) solid var(--action-border);padding:var(--s-block)}.action-title{color:var(--action-title);font-size:var(--t-subheading);font-weight:var(--w-heading)}.action-text{color:var(--action-text)}.status{display:inline-block;border:var(--m-rule-line) solid var(--action-border);padding:var(--s-small) var(--s-list);font-size:var(--t-label);color:var(--action-title);margin-bottom:var(--s-list)}.pending{font-size:var(--t-note);line-height:var(--lh-note);color:var(--muted);margin:var(--s-list) 0}.audit{padding-top:var(--s-divider);border-top:var(--m-section-line) solid var(--rule)}.audit-title{font-size:var(--t-subheading);color:var(--house);font-weight:var(--w-heading)}.audit-body{font-size:var(--t-body);color:var(--ink)}.audit-note{font-size:var(--t-note);color:var(--quiet)}footer{background:var(--house);color:var(--inverse-soft);padding:var(--s-footer) var(--s-inner);font-size:var(--t-note);line-height:var(--lh-note)}.footer-label{font-size:var(--t-label);color:var(--inverse);letter-spacing:var(--ls-label);margin-bottom:var(--s-label)}strong{font-weight:var(--w-heading)}section:last-child{margin-bottom:0}
+@media(max-width:375px){:root{--t-title:28px;--t-core:22px;--t-heading:21px;--t-quote:20px;--s-inner:20px;--s-block:17px;--s-outer:12px;--s-module:25px}}
+@media(min-width:376px) and (max-width:540px){:root{--t-title:31px;--t-core:23px;--t-heading:22px;--s-inner:24px;--s-block:20px;--s-outer:16px;--s-module:28px}}
+@media(min-width:541px) and (max-width:800px){:root{--t-title:37px;--s-inner:34px;--s-outer:28px}}
+@media(min-width:1100px){:root{--t-title:45px;--s-inner:48px;--s-module:40px;--s-outer:48px}}
+</style>
+</head>
+<body>
+<main><article>
+<header>
+<div class="eyebrow">每日复盘 · 认知与证据</div>
+<h1>工作了多久之后，<br>还要看做出了什么。</h1>
+<p class="subtitle">更在意有效工作，也需要有给自己踩刹车的能力。</p>
+<div class="date">归属 2026 年 10 月 12 日 · 活动记录来自 10 月 11 日 · 截止次日凌晨</div>
+</header>
+<div class="content">
+<section class="core">
+<div class="core-title">投入可以持续，<br>结果仍要留证据。</div>
+<p class="core-body">本人已经提出“有效工作时长”和“记录产出物”的方向。此次没有记录发布、客户下一步、报价或成交，能确认的是反思，业务产出仍然未知。</p>
+<div class="caption">没有记录，不填成零；没有提到完成，也不判定失败。</div>
+</section>
+<section>
+<div class="section-label">一 · 今天看见的三个问题</div>
+<h2>把注意力放回自己</h2>
+<div class="point"><div class="point-title">连续投入时，记得停一下</div><p class="point-body">本人感觉已经工作差不多一个小时，大脑一直受杂念和事物干扰，却没有休息。“给自己踩刹车”是本次明确的认知。</p><p class="caption">口述时刻与记录创建时刻不同，保留“约一小时”，不计算精确专注分钟。</p></div>
+<div class="point"><div class="point-title">看整体时，换一个环境</div><p class="point-body">长内容在手机上容易被信息流打断。本人觉得电脑大排版更方便扫整体，手机更适合复习细节。</p><p class="caption">这是本人阅读体验，没有量化效率提升结果。</p></div>
+<div class="point"><div class="point-title">提醒别人，也检查自己</div><p class="point-body">“该严肃的时候还是在打岔”；提醒别人别落东西，自己却把东西落下了。记录的是具体行为反思，不作人格判断。</p></div>
+</section>
+<section class="quote">
+<blockquote>“比起工作时长，<br>我更在意有效工作时长”</blockquote>
+<div class="cite">本人原话 · 当日笔记</div>
+</section>
+<section class="fact">
+<div class="fact-label">二 · 策略仍在试行意向中</div>
+<h3>做愿意做、有挑战的事情</h3>
+<p class="fact-body">本人打算试运行一种安排：约七成时间希望有好的产出，另外约三成允许做不一定有即时产出的事情。他认为持续快乐地学习、工作，可能比硬逼自己更能产出。</p>
+<p class="fact-detail">“打算”“可能”保留原义：没有试行周期、统计口径或效果证据；不写成已经执行、已经有效或已生效长期规则。</p>
+<div class="risk"><div class="risk-title">设备到货，不等于数据接入</div><p class="risk-body">手环提前到货，佩戴后蛮兴奋，也拉走了注意力。心率、跑步、睡眠上传健康系统是未来用途讨论。</p><div class="risk-note">本次没有实测睡眠、心率、运动数据；健康容量保持未知。</div></div>
+</section>
+<section class="method">
+<div class="section-label">三 · 可复用的方法碎片</div>
+<h2>暂停 → 看整体 → 留产物</h2>
+<div class="method-row"><span class="number">01</span><strong>有意识暂停</strong><p class="method-text">本人举例“每半个小时一次”，也允许专注一小时后再休息。保留弹性，不设成固定医学标准。</p></div>
+<div class="method-row"><span class="number">02</span><strong>整体先于细节</strong><p class="method-text">电脑先扫整体，手机复习细节。把工具使用方式与阅读目的对应起来。</p></div>
+<div class="method-row"><span class="number">03</span><strong>产物需要可核验</strong><p class="method-text">“记录产出物”是本人方向。补充建议是给做出来的东西保留证据；当前没有具体产物清单。</p></div>
+<div class="rule-note">本人还提出：系统核心利益与骨架正确时，可用更好的人工智能升级细节。具体升级对象、开始授权均未给出。</div>
+</section>
+<section>
+<div class="section-label">四 · 行动与不确定</div>
+<div class="action"><div class="status">主动作待用户决定</div><div class="action-title">本轮没有达标的未来任务</div><p class="action-text">不把学习、设备接入构想或花完额度当作外部结果主动作。上一轮也没有可执行唯一承诺，本次无法判定完成，不增加未完成次数。</p><p class="pending">六项跨日候选继续保留：案例发布、代发、账号、视频复刻，以及员工看板、十倍目标卡。缺对象或开展批准，不自动执行或排期。</p></div>
+<div class="risk"><div class="risk-title">两处原文仍待核</div><p class="risk-body">“记录产出物，而不是产出市场”的后半句疑似错字，保留原文，不擅自改成另一个确定词。记录创建时刻与口述时刻不同，不据此安排具体时间。</p><p class="risk-note">关于模型智能与费用趋势的判断，本轮未核验，不作为公开市场事实。</p></div>
+</section>
+<section class="audit">
+<div class="section-label">五 · 第三人称审视</div>
+<h2>方向说清了，证据还需要补齐</h2>
+<div class="audit-title">这一天的行为与思维</div><p class="audit-body">他能观察工作中的暂停、阅读环境和自身遗漏，也在尝试寻找愿意持续投入的方式。能确认这些反思；还无法判断业务产出。</p>
+<div class="audit-title">主要问题</div><p class="audit-body">已经说更重视有效工作与产出物，本次却没有可验证产物或外部结果记录。这是记录缺口，不等于整天没有产出。</p>
+<div class="audit-title">最迫切与长期问题</div><p class="audit-body">最迫切是给具体产物保留证据。长期要用持续投入和真实结果检验工作策略，不能提前断言七三安排有效。</p>
+<div class="audit-title">建议 · 尚未批准</div><p class="audit-body">下一次记录同时写“做了什么”与“证据在哪”。在严肃或检查物品的场景，先检查自己。用真实产物判断方法是否值得持续。</p>
+<div class="audit-note">不新增独立行动清单，不重复前文行为护栏，不自动写入任务。</div>
+</section>
+</div>
+<footer><div class="footer-label">来源与边界</div>四份本人记录的当日复盘提炼 · 完整日省私有保存<br>本卡片不含学习访谈转写；事实、试行意向、建议与待核状态分别保留。</footer>
+</article></main>
+</body>
+</html>
