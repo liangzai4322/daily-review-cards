@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>即时快乐与工作的回甘 · 2026-10-13认知卡片</title>
+<style>
+:root {
+ --canvas:#ffffff;--page:#fafafa;--ink:#171717;--body:#60646c;--muted:#686c74;--soft:#f5f5f7;--line:#dcdee0;--line-soft:#f0f0f3;
+ --sky-light:#cfe7ff;--sky-mid:#a8c8e8;--blue:#0d74ce;--black:#000000;--on-black:#ffffff;--on-dark-soft:#c9ced5;--dark:#171717;--dark-elevated:#1a1a1a;
+ --hero-ink:#171717;--deck-ink:#404852;--label-ink:#355b7c;--date-ink:#60646c;--h2-ink:#171717;--h3-ink:#353b43;--argument-ink:#303840;--example-ink:#485566;
+ --quote-ink:#ffffff;--quote-line:#6c7c8f;--rule-bg:#f5f8fc;--rule-line:#b8c8d9;--rule-ink:#283f54;--step-bg:#e9f2fb;--step-ink:#355b7c;--step-line:#c9d9e9;
+ --action-bg:#fafafa;--action-line:#dcdee0;--action-ink:#262b32;--status-bg:#f0f0f3;--status-ink:#4c535c;--risk-bg:#fff9ef;--risk-line:#e6c38b;--risk-ink:#7c4b00;
+ --review-bg:#fafafa;--review-line:#d4d8dd;--review-ink:#353b43;--foot-ink:#686c74;
+ --t-display:56px;--t-deck:21px;--t-lead:23px;--t-h2:27px;--t-h3:19px;--t-body:16px;--t-argument:18px;--t-quote:25px;--t-rule:17px;--t-action:18px;
+ --t-risk:15px;--t-label:12px;--t-date:13px;--t-caption:13px;--t-example:15px;--t-foot:12px;--t-aside:14px;--t-number:12px;--t-status:13px;--t-closing:17px;
+ --s-page:36px;--s-shell:60px;--s-hero:56px;--s-section:42px;--s-block:24px;--s-para:14px;--s-list:10px;--s-indent:20px;--s-gap:8px;--s-small:4px;--s-rule:18px;--s-footer:28px;
+ --m-accent:4px;--m-border:1px;--m-number:28px;--m-label:2px;--m-rule:2px;--m-quote:3px;--m-step:1px;--m-risk:4px;--m-divider:1px;--m-action:3px;
+}
+*{box-sizing:border-box}body{margin:0;background:var(--page);color:var(--body);font:400 var(--t-body)/1.8 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;padding:var(--s-page)}
+main{max-width:860px;margin:auto;background:var(--canvas);border:var(--m-border) solid var(--line);border-radius:0;overflow-wrap:anywhere}
+header{padding:var(--s-hero) var(--s-shell);background:linear-gradient(135deg,var(--sky-light),var(--canvas) 74%);border-top:var(--m-accent) solid var(--black)}
+.label{font-size:var(--t-label);font-weight:600;letter-spacing:var(--m-label);color:var(--label-ink);margin:0 0 var(--s-para)}
+.date{font-size:var(--t-date);color:var(--date-ink);padding-bottom:var(--s-block);border-bottom:var(--m-divider) solid var(--sky-mid)}
+h1{font-size:var(--t-display);font-weight:600;line-height:1.15;letter-spacing:-1.4px;color:var(--hero-ink);margin:var(--s-block) 0}
+.deck{font-size:var(--t-deck);line-height:1.6;color:var(--deck-ink);margin:0}
+.lead{font-size:var(--t-lead);font-weight:600;line-height:1.6;color:var(--ink);margin:var(--s-block) 0 var(--s-gap)}
+.caption{font-size:var(--t-caption);color:var(--muted);margin:0}
+section{padding:var(--s-section) var(--s-shell);border-top:var(--m-divider) solid var(--line-soft)}
+h2{font-size:var(--t-h2);font-weight:600;line-height:1.4;color:var(--h2-ink);margin:0 0 var(--s-block)}
+h3{font-size:var(--t-h3);font-weight:600;color:var(--h3-ink);margin:var(--s-block) 0 var(--s-gap)}
+p{margin:0 0 var(--s-para)}.argument{font-size:var(--t-argument);color:var(--argument-ink)}
+.number{display:inline-flex;width:var(--m-number);height:var(--m-number);align-items:center;justify-content:center;background:var(--black);color:var(--on-black);font:600 var(--t-number)/1 ui-monospace,monospace;margin-right:var(--s-gap);vertical-align:middle}
+.example{font-size:var(--t-example);color:var(--example-ink);background:var(--soft);border:var(--m-border) solid var(--line-soft);padding:var(--s-rule)}
+.quote{background:var(--dark);color:var(--quote-ink);padding:var(--s-block);border-left:var(--m-quote) solid var(--quote-line);margin:var(--s-block) 0}
+blockquote{font-size:var(--t-quote);line-height:1.6;font-weight:600;margin:0;background:var(--dark-elevated)}
+.quote-note{font-size:var(--t-caption);color:var(--on-dark-soft);margin:var(--s-para) 0 0}
+.rule{background:var(--rule-bg);border:var(--m-rule) solid var(--rule-line);color:var(--rule-ink);font-size:var(--t-rule);padding:var(--s-rule)}
+.sequence{display:block;background:var(--step-bg);color:var(--step-ink);border-bottom:var(--m-step) solid var(--step-line);padding:var(--s-gap) var(--s-para);margin-bottom:var(--s-para);font-weight:600}
+.action{background:var(--action-bg);border:var(--m-border) solid var(--action-line);border-left:var(--m-action) solid var(--blue);padding:var(--s-block);color:var(--action-ink);font-size:var(--t-action)}
+.status{font-size:var(--t-status);color:var(--status-ink);background:var(--status-bg);padding:var(--s-small) var(--s-gap);display:inline-block;margin-bottom:var(--s-para)}
+.risk{background:var(--risk-bg);border:var(--m-border) solid var(--risk-line);border-left:var(--m-risk) solid var(--risk-ink);padding:var(--s-block);font-size:var(--t-risk);color:var(--risk-ink);margin-top:var(--s-block)}
+ul{padding-left:var(--s-indent);margin:var(--s-gap) 0 0}li+li{margin-top:var(--s-list)}
+.aside{font-size:var(--t-aside);color:var(--muted);margin-top:var(--s-para)}
+.review{background:var(--review-bg);color:var(--review-ink);border-top:var(--m-divider) solid var(--review-line)}
+.closing{font-size:var(--t-closing);font-weight:600;color:var(--ink);margin-top:var(--s-block)}
+footer{font-size:var(--t-foot);color:var(--foot-ink);padding:var(--s-footer) var(--s-shell);border-top:var(--m-divider) solid var(--line);line-height:1.8}
+@media(max-width:380px){:root{--s-page:8px;--s-shell:18px;--s-hero:28px;--s-section:26px;--t-display:31px;--t-deck:17px;--t-lead:19px;--t-h2:22px;--t-quote:20px}}
+@media(min-width:381px) and (max-width:639px){:root{--s-page:12px;--s-shell:24px;--s-hero:34px;--s-section:30px;--t-display:36px;--t-deck:18px;--t-lead:20px;--t-h2:23px;--t-quote:22px}}
+@media(min-width:640px) and (max-width:1023px){:root{--s-page:24px;--s-shell:42px;--t-display:48px;--s-section:36px}}
+@media(min-width:1280px){:root{--s-page:48px;--s-shell:64px;--s-hero:64px;--s-section:48px}}
+</style>
+</head>
+<body><main>
+<header>
+<p class="label">日省 · 本人感悟</p>
+<p class="date">归属 2026年10月13日 · 活动记录 10月12日至13日</p>
+<h1>即时快乐很近，<br>工作的回甘很远。</h1>
+<p class="deck">下午的躁动，让我开始回看恐慌、短视频与工作动力之间的关系。</p>
+<p class="lead">我有了一个解释，效果还没有证据。</p>
+<p class="caption">本轮两条新感悟。个人体验与原因判断分别保留。</p>
+</header>
+<section>
+<h2><span class="number">一</span>从下午躁动往前看</h2>
+<p class="argument">我说自己下午“没有持续的工作动力”，也说刷了短视频。再往前追溯，我提到牙齿问题带来的恐慌。</p>
+<div class="rule"><span class="sequence">本人归因：恐慌 → 寻求即时快乐 → 工作回报需要等待</span>这些先后联系是我的理解。短视频看了多久、实际工作损失多少、因果是否成立，仍未记录或验证。</div>
+<div class="quote"><blockquote>“工作的快乐需要先持续的‘痛苦’，然后才有回甘。”</blockquote><p class="quote-note">按上下文将原话中的“他”改为“工作”。这是本人体验，不是对所有工作的结论。</p></div>
+<p class="aside">“多巴胺驱动”“回归原始状态”属于个人解释，没有被核验为医学或神经机制。</p>
+</section>
+<section>
+<h2><span class="number">二</span>身边人的行为，让我尝试</h2>
+<p class="argument">我观察到身边人先干刷，自己模仿后，自觉刷牙时的干呕减轻很多。现在基本先干刷、不用水杯。</p>
+<p class="example">“我只是模仿了他们的行为以后，才发现了这样的好处。”<br>这是本人对刷牙变化的主观反馈，开始日期、持续时间、次数和医学因果仍未知。</p>
+<h3>我留下的经验片段</h3>
+<div class="rule"><span class="sequence">观察行为 → 模仿尝试 → 看自己的反馈 → 继续采用</span>“人们有时候总是不知不觉地会模仿身边的人。”我用这次经历表达了对日常相处环境的重视；没有据此安排“升级圈子”的任务。</div>
+<p class="aside">这里不把“干刷”推广为普遍健康建议；牙齿问题的具体症状与检查情况也没有给出。</p>
+</section>
+<section>
+<h2><span class="number">三</span>行动仍需要对象与证据</h2>
+<div class="action"><span class="status">明日唯一动作 · 待决定</span><p>本轮没有新的明确未来任务，也没有可直接写盒的动作。</p><p class="caption">发布、客户对话、报价、成交、业务反馈均未记录，不能填成零。</p></div>
+<h3>六项旧候选继续保留</h3>
+<p>案例发布、A代发、B账号、视频复刻仍缺对象或开展决定。员工投产比看板、十倍增长目标卡是AI建议，未获批准；没有写入任务。</p>
+<div class="risk"><strong>待核边界</strong><ul><li>牙齿情况、刷牙反馈的观察周期与可用容量未知。</li><li>短视频时长、实际工作产物和因果机制未验证。</li><li>转写残句与名人引言出处未核，不猜词、不放大结论。</li></ul></div>
+</section>
+<section class="review">
+<h2><span class="number">四</span>第三人称审视</h2>
+<p class="argument">他能观察变化，也愿意回溯情绪。本轮缺的是具体工作与产物记录；有解释，尚不能证明干扰已经得到控制。</p>
+<h3>最大的疑点</h3>
+<p>牙齿相关恐慌和注意力泄漏都有自述，但信息不足，不能替他决定哪个是最高约束。</p>
+<h3>建议 · 未获开展授权</h3>
+<p>下一次可以把恐慌自述、短视频行为、具体工作结果分开记录，再检查它们的先后关系。身体变化先保留为个人反馈。</p>
+<p class="closing">让解释对应到可核验的结果。</p>
+<p class="aside">本轮无新增不重复的可验收动作；建议没有自动变成任务、健康干预或长期规则。</p>
+</section>
+<footer>来源：2026年10月13日正式日省 · 两条本人感悟<br>视觉参考：Expo · 完整日省保持私有，公开卡片只保留提炼内容。</footer>
+</main></body>
+</html>
