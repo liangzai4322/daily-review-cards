@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026-10-14 · 看见任务，也看见结果</title>
+<style>
+:root{
+--c0-bg:#2b2622;--c0-ink:#f7f5f0;--c0-body:#c9c0ad;--c0-line:#5a5249;--c0-tag:#dad2c1;--c0-mark:#aea69c;
+--c1-bg:#383330;--c1-ink:#f5f2ea;--c1-body:#c8c0b1;--c1-line:#574f47;--c1-tag:#dbd1bd;--c1-mark:#b9af9d;
+--c2-bg:#322e29;--c2-ink:#f2eee4;--c2-body:#c5bdad;--c2-line:#514b41;--c2-tag:#d3c8b1;--c2-mark:#b0a591;
+--c3-bg:#3c342d;--c3-ink:#faf1e4;--c3-body:#dcc9ae;--c3-line:#6b5945;--c3-tag:#e3cda6;--c3-mark:#c2a982;
+--c4-bg:#302c29;--c4-ink:#ede8df;--c4-body:#c4bdb3;--c4-line:#514c46;--c4-tag:#d9d0c2;--c4-mark:#a99e8e;
+--c5-bg:#e8e0d2;--c5-ink:#2b2622;--c5-body:#554b3c;--c5-line:#b7a68d;--c5-tag:#62543d;--c5-mark:#79684d;
+--c6-bg:#292522;--c6-ink:#f7f0e5;--c6-body:#c2b6a4;--c6-line:#615548;--c6-tag:#d7c4a6;--c6-mark:#ac987c;
+--t-display:52px;--t-title:29px;--t-subtitle:21px;--t-lead:20px;--t-body:17px;--t-note:14px;--t-meta:12px;--t-quote:26px;--t-stat:32px;--t-label:13px;
+--t-weight-display:400;--t-weight-title:500;--t-weight-strong:600;--t-line-display:1.2;--t-line-body:1.8;--t-line-note:1.65;--t-track-display:-1.3px;--t-track-label:1.5px;--t-mono:ui-monospace,SFMono-Regular,Menlo,monospace;--t-serif:"Songti SC",STSong,Georgia,serif;
+--s-out:24px;--s-in:44px;--s-section:44px;--s-heading:20px;--s-paragraph:14px;--s-list:10px;--s-indent:22px;--s-rule:26px;--s-tag:7px;--s-small:4px;--s-footer:28px;--s-quote:24px;
+--m-line:1px;--m-number:30px;--m-rail:3px;--m-tag-border:1px;--m-rule-gap:16px;--m-step-indent:24px;--m-quote-line:2px;--m-risk-line:3px;--m-box-pad:22px;--m-separator:36px;
+}
+*{box-sizing:border-box}body{margin:0;background:var(--c0-bg);color:var(--c0-ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;padding:var(--s-out)}main{width:100%;max-width:900px;margin:auto;border:var(--m-line) solid var(--c0-line);border-radius:0}header{padding:var(--s-in);border-bottom:var(--m-line) solid var(--c0-line)}.meta{font-family:var(--t-mono);font-size:var(--t-meta);color:var(--c0-mark);line-height:var(--t-line-note)}.eyebrow{font-size:var(--t-label);letter-spacing:var(--t-track-label);color:var(--c0-tag);margin:var(--s-heading) 0}h1{font-size:var(--t-display);font-weight:var(--t-weight-display);line-height:var(--t-line-display);letter-spacing:var(--t-track-display);margin:0 0 var(--s-heading)}.lead{font-size:var(--t-lead);color:var(--c0-body);line-height:var(--t-line-body);margin:0}.header-rule{padding-top:var(--s-rule);margin-top:var(--s-rule);border-top:var(--m-line) solid var(--c0-line);font-size:var(--t-body);line-height:var(--t-line-body);color:var(--c0-ink)}.header-rule b{font-weight:var(--t-weight-strong)}section{padding:var(--s-section) var(--s-in);border-bottom:var(--m-line) solid var(--line);background:var(--bg);color:var(--ink)}.one{--bg:var(--c1-bg);--ink:var(--c1-ink);--body:var(--c1-body);--line:var(--c1-line);--tag:var(--c1-tag);--mark:var(--c1-mark)}.two{--bg:var(--c2-bg);--ink:var(--c2-ink);--body:var(--c2-body);--line:var(--c2-line);--tag:var(--c2-tag);--mark:var(--c2-mark)}.three{--bg:var(--c3-bg);--ink:var(--c3-ink);--body:var(--c3-body);--line:var(--c3-line);--tag:var(--c3-tag);--mark:var(--c3-mark)}.four{--bg:var(--c4-bg);--ink:var(--c4-ink);--body:var(--c4-body);--line:var(--c4-line);--tag:var(--c4-tag);--mark:var(--c4-mark)}.five{--bg:var(--c5-bg);--ink:var(--c5-ink);--body:var(--c5-body);--line:var(--c5-line);--tag:var(--c5-tag);--mark:var(--c5-mark)}.six{--bg:var(--c6-bg);--ink:var(--c6-ink);--body:var(--c6-body);--line:var(--c6-line);--tag:var(--c6-tag);--mark:var(--c6-mark)}.kicker{font-size:var(--t-label);font-family:var(--t-mono);letter-spacing:var(--t-track-label);color:var(--mark);margin-bottom:var(--s-heading)}.number{display:inline-block;min-width:var(--m-number);margin-right:var(--s-tag)}h2{font-size:var(--t-title);font-weight:var(--t-weight-title);line-height:1.45;margin:0 0 var(--s-heading)}h3{font-size:var(--t-subtitle);font-weight:var(--t-weight-title);margin:var(--s-rule) 0 var(--s-list)}p{font-size:var(--t-body);line-height:var(--t-line-body);color:var(--body);margin:0 0 var(--s-paragraph)}strong{font-weight:var(--t-weight-strong);color:var(--ink)}.tag{display:inline-block;color:var(--tag);font-size:var(--t-label);border:var(--m-tag-border) solid var(--line);padding:var(--s-small) var(--s-tag);margin-bottom:var(--s-list)}.argument{font-size:var(--t-lead);color:var(--ink);border-left:var(--m-rail) solid var(--mark);padding-left:var(--s-indent)}blockquote{margin:var(--s-quote) 0;padding:var(--s-quote) 0;border-top:var(--m-quote-line) solid var(--line);border-bottom:var(--m-line) solid var(--line);font:var(--t-quote)/1.6 var(--t-serif);color:var(--ink)}.quote-source{font:var(--t-note)/var(--t-line-note) sans-serif;color:var(--mark);margin-top:var(--s-list)}.steps{padding-left:var(--m-step-indent);color:var(--body);font-size:var(--t-body);line-height:var(--t-line-body);margin:var(--s-list) 0 var(--s-rule)}li{padding-left:var(--s-small);margin-bottom:var(--s-list)}.note{font-size:var(--t-note);line-height:var(--t-line-note);color:var(--mark)}.example{border:var(--m-line) solid var(--line);padding:var(--m-box-pad);margin:var(--s-rule) 0}.example-title{font-size:var(--t-label);color:var(--tag);letter-spacing:var(--t-track-label);margin:0 0 var(--s-list)}.risk{border-left:var(--m-risk-line) solid var(--mark);padding-left:var(--s-indent);margin-top:var(--s-rule)}.risk-title{font-size:var(--t-subtitle);color:var(--tag);font-weight:var(--t-weight-title);margin-bottom:var(--s-list)}.stat-line{display:block;padding:var(--m-rule-gap) 0;border-top:var(--m-line) solid var(--line);font-size:var(--t-body);line-height:var(--t-line-body);color:var(--body)}.stat-line b{font-size:var(--t-stat);font-weight:var(--t-weight-display);color:var(--ink);margin-right:var(--s-list)}.decision{font-size:var(--t-lead);color:var(--ink);margin-bottom:var(--s-heading)}.audit{font-family:var(--t-mono);font-size:var(--t-note);color:var(--mark);border-top:var(--m-line) solid var(--line);margin-top:var(--m-separator);padding-top:var(--s-rule);line-height:var(--t-line-note)}.closing{font-size:var(--t-lead);color:var(--ink);margin-bottom:0}footer{padding:var(--s-footer) var(--s-in);font-size:var(--t-meta);line-height:var(--t-line-note);color:var(--c0-body);background:var(--c0-bg)}
+@media(max-width:360px){:root{--s-out:8px;--s-in:18px;--s-section:28px;--t-display:30px;--t-title:24px;--t-body:16px;--t-quote:22px;--m-box-pad:16px}}
+@media(min-width:361px) and (max-width:600px){:root{--s-out:12px;--s-in:24px;--s-section:32px;--t-display:36px;--t-title:26px;--t-quote:23px;--m-box-pad:18px}}
+@media(min-width:601px) and (max-width:900px){:root{--s-out:24px;--s-in:34px;--t-display:44px;--s-section:38px}}
+@media(min-width:1200px){:root{--s-out:44px;--s-in:56px;--s-section:52px;--t-display:58px}}
+</style>
+</head>
+<body>
+<main>
+<header>
+<div class="meta">2026.10.14 · 日省认知卡片<br>来源覆盖 10 月 13–14 日 · 凌晨口述的实际活动日待核</div>
+<div class="eyebrow">今日复盘 · 看见的力量</div>
+<h1>看见任务，<br>也看见结果。</h1>
+<p class="lead">工作台上摆着主线任务，他觉得更容易开始。暂停一下再看获客链路，他也看见了组件入口和账号风险。</p>
+<div class="header-rule"><b>“今天表现很好”</b>是本人对状态的评价。发布、报价和成交尚未记录；这两类信息都要保留。</div>
+</header>
+<section class="one">
+<div class="kicker"><span class="number">01</span>把主线摆在眼前</div>
+<h2>先看见要做什么，<br>再开始做。</h2>
+<span class="tag">本人工作体验</span>
+<p class="argument">打开工作台就能看见正在做的任务，比坐下来再想今天干什么，更容易进入工作。</p>
+<p>他自述上午、下午更多围绕现金流和获客，觉得有干劲；任务拆开后交给 AI，离开时还派发了四平台调研。但开了会话、派发调研，还不能记为交付。</p>
+<h3>已经尝试的工作顺序</h3>
+<ol class="steps"><li>把主线相关任务提前放到工作台。</li><li>逐项跟进，给完成的会话打勾，减少反复点进去检查。</li><li>最后仍需核对实际产物与完成证据。</li></ol>
+<div class="example"><div class="example-title">主线、第二曲线、支线</div><p>他把现有业务和多平台获客放在现金流主线；投资与跨学科学习属于更长期的可能性；健康、娱乐、旅游与关系提供体验。这是本轮观点，尚未变成正式战略版本或资源分配。</p></div>
+<p class="note">会话上的勾是跟进标记，不能替代正式任务完成证据。四平台调研已派发，是否收到、读过、应用仍待核。</p>
+</section>
+<section class="two">
+<div class="kicker"><span class="number">02</span>反馈和休息一起进入工作</div>
+<h2>看得见，才更容易调整。</h2>
+<blockquote>“看见的力量：当我大脑看见了，并且觉得不好 就会主动去避免”<div class="quote-source">本人 flomo 原话</div></blockquote>
+<p>看到手环上的已睡时间，他会更快起床；抬手看时间、轻量佩戴和非强制站立提醒，也让他更愿意使用。这里只记录当次体验，不能据此确认精确睡眠时长或长期效果。</p>
+<h3>休息是工作流程的一环</h3>
+<p>本人说约每半小时休息五到十分钟，状态不好会更久；手环大约一小时提醒站立，实际间隔未核。猫咪提醒会占屏、强行打断正事，计时器又有时忘开，因此三种方式仍在过渡配合。</p>
+<p class="argument">“休息一定是工作中最重要的一个环节。”</p>
+<p>他希望反馈更及时，也承认反馈强可能让人短视或疲劳。“反馈是大脑的养料”是比喻；关于上瘾、阈值和大脑机制的解释仍是个人假设。</p>
+<p class="note">“8.30h”、八个多小时、八个半小时，以及深睡百分之九和“没有深睡”的表述，没有设备原始记录与准确夜晚对应，不能合成医学结论。</p>
+</section>
+<section class="three">
+<div class="kicker"><span class="number">03</span>获客链路的真实反馈</div>
+<h2>入口没跑通，<br>先别把估算当成绩。</h2>
+<div class="stat-line"><b>1</b>个真实运行反馈：私信测试后弹出实名及高危行为提示。</div>
+<p>本人自述向约三五个号发短链再撤回。最初说“封了”，随后纠正为弹出实名认证；因此本轮不记作永久封号，也没有确认限制何时解除。</p>
+<div class="example"><div class="example-title">组件与付款</div><p>B 站引流组件留微信后没人联系，组件仍未跑通。搜到约四十五元短链后，他一度准备付款，暂停、休息再分析时想到官方后台可能也能提供链接。没有购买成功证据，也不能记成已经节省四十五元。</p></div>
+<p class="argument">私信的成本，还包括账号风险。</p>
+<p>他原本用假设回复率和成交率算百分之三的转化；现在发现，发到足够多人之前就可能触发风控。这是对模型的修正，尚未成为实测转化率。</p>
+<div class="risk"><div class="risk-title">当前仍待核</div><p>同行评论量不等于精准客户，投流成本只是估算；实名号或官方组件能否降低风险没有验证。自己的发布、报价、成交没有记录，不能填零，也不能填成功。</p></div>
+<p class="note">免费模板、收费定制与部署是观察到的漏斗想法，尚无本人产品、定价或售后机制正式变更证据。</p>
+</section>
+<section class="four">
+<div class="kicker"><span class="number">04</span>午后的注意力去了哪里</div>
+<h2>换一种信息流，<br>仍要看当次结果。</h2>
+<p>本人自述吃汉堡、误选含糖可乐，回家取手环却发现没充上电，再等修 WiFi，约十六点多才出门。等待约十到三十分钟是估计，不能换算成精确泄漏时长。</p>
+<p>他觉得推特比短视频更能拓展知识，但也承认当天等待时没刷到太多有用信息。是否有效，需要回到当次体验。</p>
+<h3>提出过的调整想法</h3>
+<ol class="steps"><li>等待之前先想这段时间用来做什么。</li><li>离开前检查设备是否真的充上电。</li><li>午饭尝试专心吃、提前吃或和朋友一起吃；也可以考虑较长的娱乐形式。</li></ol>
+<p class="note">这些是讨论中的行为建议，未自动排期。他提到轻微脑雾、睡眠反馈和准备运动；没有运动完成证据。十月十三日的就诊沟通只证明现场交流，不能推定根管或牙冠已经完成。</p>
+<div class="example"><div class="example-title">关系与体验</div><p>本轮还回忆了泰国旅行与父母分歧，谈到各自课题。这是历史经历的提及，不是新旅行计划，也不形成对亲属的心理判断。</p></div>
+</section>
+<section class="five">
+<div class="kicker"><span class="number">05</span>动作与决定</div>
+<h2>唯一动作，仍待决定。</h2>
+<p class="decision">上一轮没有可执行唯一承诺，本轮不增加未完成次数。当前也没有足以确认的、二十四小时内能产生外部结果的已选动作。</p>
+<p>最接近外部结果的已有候选是案例上网站、AI 代发和账号运营，仍缺对象、权限或是否开展的决定；不能用维护、学习或系统优化填上主动作。</p>
+<h3>候选保留的边界</h3>
+<p>猫咪提醒可关闭是完整想法，是否实现还未决定。员工投产比看板、十倍目标卡、离开工作台后的 AI 交接方案都是待审批建议，没有自动开工。</p>
+<p class="argument">先明确一个对象，再明确一份完成证据。</p>
+<p>继续保留工作台预置任务、完成会话打勾和工作间隙休息的做法；同时保留真实外部结果。关于 AI 持续运行的愿望，不等于采购账户或无限运行授权。</p>
+<div class="audit">新写盒：零项。活动候选移除：一项运动即时打算，只保留事实待核。其余八项保留待裁决；没有删除真实任务。</div>
+</section>
+<section class="six">
+<div class="kicker"><span class="number">06</span>第三人称审视</div>
+<h2>状态很好，<br>结果证据仍要跟上。</h2>
+<span class="tag">基于本轮记录的建议</span>
+<p>这个人在看见主线任务时更容易开工，利用 AI 拆分和调研，开始注意反馈与休息。面对组件和账号风险，他暂停后重新分析；午后又被拿设备、等待与信息流分散。以上来自本轮自述，不能直接推断长期执行力或人格。</p>
+<h3>最大的问题</h3>
+<p><strong>工作状态与外部证据还没有连起来。</strong>他说这一天表现很好、开了很多会话，但发布、客户回应、报价和成交尚未记录。</p>
+<h3>最迫切与长期重要</h3>
+<p>建议先确认一个真实链路阻塞及其解除证据；长期持续让主线投入连到外部结果。这是建议，不是正式战略变更。</p>
+<div class="risk"><div class="risk-title">一项未批准的验收建议</div><p>为四平台调研分别标注“已派发、已收到、已读、已应用”的实际证据；缺证据保持未知，不把 AI 产物自动当市场反馈。</p></div>
+<p class="closing">把“状态很好”留下，<br>把“结果尚未记录”也留下。</p>
+</section>
+<footer>提炼自 2026-10-14 正式日省 · Warp 风格参考<br>事实、估算、想法与建议保留原状态。此页为公开提炼卡片；完整日省保存在私有文档。</footer>
+</main>
+</body>
+</html>
