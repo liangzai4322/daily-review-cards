@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>认知卡片 · 2026-10-17</title>
+<style>
+:root{
+--c0:#0a0a0a;--c1:#111216;--c2:#191919;--c3:#1a1c20;--c4:#24262b;--c5:#363a3f;--c6:#50545b;--c7:#7d8187;--c8:#a4a7ad;--c9:#dadbdf;--c10:#ffffff;--c11:#ff7a17;--c12:#ffc285;--c13:#7c3aed;--c14:#c4b5fd;--c15:#a0c3ec;--c16:#0d1726;--c17:#2b1a0b;--c18:#25173c;--c19:#10253a;--c20:#42200f;--c21:#321d4f;--c22:#182c3f;--c23:#17191d;--c24:#202227;--c25:#2e3136;--c26:#43474d;--c27:#5e636a;--c28:#8f949b;--c29:#b9bdc4;--c30:#e8e9ec;--c31:#f6f7f8;--c32:#17110c;--c33:#13101b;--c34:#0c1824;--c35:#0f0f10;--c36:#050505;--c37:#21150b;--c38:#171021;--c39:#0c1b2b;--c40:#292b30;--c41:#33363c;--c42:#4a4f56;--c43:#676c73;--c44:#979ca4;--c45:#c9ccd2;--c46:#f0f1f3;--c47:#fafafa;--c48:#ff9a4d;--c49:#8e67ed;
+--t0:12px;--t1:13px;--t2:14px;--t3:15px;--t4:16px;--t5:17px;--t6:18px;--t7:20px;--t8:22px;--t9:24px;--t10:28px;--t11:32px;--t12:38px;--t13:44px;--t14:48px;--t15:56px;--t16:64px;--t17:72px;--t18:14px;--t19:16px;--t20:18px;--lh0:16px;--lh1:18px;--lh2:20px;--lh3:22px;--lh4:24px;--lh5:26px;--lh6:28px;--lh7:32px;--lh8:36px;--lh9:44px;
+--s0:2px;--s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:20px;--s6:24px;--s7:28px;--s8:32px;--s9:40px;--s10:48px;--s11:64px;--s12:80px;
+--mark-line:3px solid var(--c11);--mark-number:28px;--mark-eyebrow:1px solid var(--c5);--mark-divider:1px solid var(--c4);--mark-label:1px solid var(--c7);--mark-core:1px solid var(--c11);--mark-method:1px solid var(--c13);--mark-risk:1px solid var(--c48);--mark-action:1px solid var(--c15);--mark-quote:4px solid var(--c14);
+}
+*{box-sizing:border-box}html,body{margin:0;background:var(--c0);color:var(--c10);font-family:Inter,system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif}body{padding:var(--s8)}.card-shell{max-width:960px;margin:0 auto}.cognitive-card{background:var(--c1);border:1px solid var(--c5);border-radius:0;overflow:hidden}.header{padding:var(--s10) var(--s9) var(--s8);border-bottom:var(--mark-divider);background:var(--c0)}.eyebrow{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:var(--t2);line-height:var(--lh2);letter-spacing:1.4px;color:var(--c12);text-transform:uppercase}.title{font-size:var(--t15);line-height:var(--lh9);font-weight:400;letter-spacing:-1.2px;margin:var(--s4) 0 var(--s2)}.meta{font-size:var(--t2);line-height:var(--lh2);color:var(--c7)}.core{margin:var(--s8) var(--s9);padding:var(--s7);border-left:var(--mark-line);border-top:var(--mark-core);background:var(--c32)}.core h2,.section h2{font-size:var(--t9);line-height:var(--lh7);font-weight:400;margin:0 0 var(--s4);letter-spacing:-.3px}.core p{font-size:var(--t7);line-height:var(--lh6);color:var(--c30);margin:0}.section{padding:var(--s7) var(--s9);border-top:var(--mark-divider)}.section-label{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:var(--t1);line-height:var(--lh1);letter-spacing:1.2px;color:var(--c7);margin-bottom:var(--s3)}.points{display:grid;gap:var(--s3);margin:0;padding:0;list-style:none}.points li{padding:var(--s4);border:1px solid var(--c4);background:var(--c2);font-size:var(--t4);line-height:var(--lh5);color:var(--c9)}.points li strong{color:var(--c10);font-weight:500}.quote{margin:var(--s7) var(--s9);padding:var(--s6) var(--s7);border-left:var(--mark-quote);background:var(--c33);font-size:var(--t8);line-height:var(--lh7);color:var(--c14)}.quote small{display:block;margin-top:var(--s3);font-size:var(--t1);line-height:var(--lh1);color:var(--c7)}.method{border-left:var(--mark-method);background:var(--c38)}.method li{border-color:var(--c13)}.risk{border-left:var(--mark-risk);background:var(--c37)}.action{border-left:var(--mark-action);background:var(--c34)}.empty{color:var(--c7);font-size:var(--t4);line-height:var(--lh5);margin:0}.footer{padding:var(--s6) var(--s9);border-top:var(--mark-divider);color:var(--c7);font-size:var(--t1);line-height:var(--lh3);background:var(--c0)}
+@media (max-width:767px){body{padding:var(--s3)}.header{padding:var(--s8) var(--s5)}.title{font-size:var(--t12);line-height:var(--lh8)}.core,.section,.quote{margin-left:var(--s4);margin-right:var(--s4)}.core,.section{padding:var(--s6) var(--s4)}.quote{padding:var(--s5)}.core p{font-size:var(--t5)}.section h2{font-size:var(--t8)}}
+@media (min-width:768px) and (max-width:1023px){body{padding:var(--s6)}.title{font-size:var(--t14)}}
+@media (min-width:1024px){body{padding:var(--s10)}.header{padding:var(--s11) var(--s10)}.core,.section,.quote{margin-left:var(--s10);margin-right:var(--s10)}.title{font-size:var(--t16)}}
+@media (min-width:1440px){.card-shell{max-width:1040px}.title{font-size:var(--t17)}}
+</style>
+</head>
+<body>
+<main class="card-shell">
+<article class="cognitive-card">
+<header class="header"><div class="eyebrow">DAILY REVIEW / 2026-10-17</div><h1 class="title">今天先保住输入边界</h1><div class="meta">正式日省没有可确认的个人增量；两份多人对谈已排除。</div></header>
+<section class="core"><div class="section-label">01 / 核心命题</div><h2>没有个人证据，就不替今天补结论</h2><p>本轮只确认了流程事实：最终增量拉取成功、妙记已完整核读、多人对谈不进入个人日省、handoff 已冻结并消费。外部结果、健康状态和明日动作保持未知或待用户决定。</p></section>
+<section class="section"><div class="section-label">02 / 三个判断</div><h2>把“没记录”保持为“没记录”</h2><ul class="points"><li><strong>来源判断：</strong>《大健康项目运营与流量获客讨论》《年轻人职业发展与生活选择讨论》都是多人对谈/学习材料，不变成个人任务或客户事实。</li><li><strong>任务判断：</strong>本轮没有 explicit task、candidate task 或 uncertain task，TaskBox 不新增。</li><li><strong>结果判断：</strong>发布、客户对话、报价、成交、健康容量均无可用个人证据，不能用对谈内容代填。</li></ul></section>
+<section class="section method"><div class="section-label">03 / 方法规则</div><h2>先分流，再复盘</h2><ul class="points"><li>完整核读新增来源，先判断是否属于个人输入。</li><li>属于聚会/学习的材料只留审计痕迹，交给相应流程，不重复并入日省。</li><li>正式日省只消费冻结 handoff，并让候选池跨日保存待决项目。</li></ul></section>
+<blockquote class="quote">“没有证据，不把别人的讨论写成我的结果。”<small>本轮日省的工作原则</small></blockquote>
+<section class="section action"><div class="section-label">04 / 下一步</div><h2>明日主动作仍待用户决定</h2><p class="empty">本轮没有通过投产比准入门槛的个人动作。候选决策池 11 项继续保持原状态；AI 推导项目仍为 proposed。</p></section>
+<section class="section risk"><div class="section-label">05 / 待核与风险</div><h2>记录一条可验证的个人行动</h2><p class="empty">下一次补充一项个人外部动作、真实反馈或明确阻塞原因即可；不需要补写被排除的多人对谈。</p></section>
+<footer class="footer">来源：2026-10-17 冻结 handoff 与正式日省 Markdown。视觉参考：xAI-Inspired-design-analysis · /Users/ylw/Documents/知识库/06-日常输入_输出/99_系统/design-md/x.ai/DESIGN.md</footer>
+</article>
+</main>
+</body>
+</html>
