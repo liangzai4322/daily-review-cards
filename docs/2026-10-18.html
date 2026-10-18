@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>认知卡片 · 2026-10-18</title>
+<style>
+:root {
+  --red:#e60000; --red-deep:#a90000; --red-soft:#ffe8e8; --red-wash:#fff5f5; --ink:#25282b; --ink-2:#3e4246; --ink-3:#5d6267; --body:#7e7e7e; --mute:#bebebe; --line:#d9dcdf; --line-dark:#676b70; --canvas:#fff; --canvas-soft:#f2f2f2; --canvas-blue:#f4f7fa; --dark:#25282b; --dark-2:#303438; --on-dark:#fff; --success:#2d6a4f; --success-soft:#e8f3ed; --warn:#9a6200; --warn-soft:#fff4d6; --danger:#b42318; --danger-soft:#fff0ee; --blue:#2855a6; --blue-soft:#ebf2ff; --purple:#5a3b8c; --purple-soft:#f3edff; --teal:#0f6b68; --teal-soft:#e7f7f5; --shadow:#25282b22; --shadow-strong:#25282b44; --white-88:#ffffffe0; --white-60:#ffffff99; --black-08:#00000014; --black-16:#00000029; --focus:#ff4d4d; --number:#e60000; --rule:#25282b; --quote:#e60000; --risk:#9a6200; --action:#2855a6; --meta:#7e7e7e;
+  --font-display:800; --font-heavy:700; --font-strong:600; --font-regular:400; --font-light:300; --size-hero:62px; --size-title:34px; --size-section:24px; --size-sub:18px; --size-lead:21px; --size-body:17px; --size-body-sm:15px; --size-caption:12px; --size-quote:23px; --size-number:15px; --size-label:11px; --lh-hero:0.98; --lh-title:1.08; --lh-section:1.18; --lh-body:1.65; --lh-caption:1.4; --track-tight:-1px; --track-wide:.12em; --track-label:.08em;
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:20px; --space-6:24px; --space-7:28px; --space-8:32px; --space-9:40px; --space-10:48px; --space-11:64px; --space-12:80px;
+  --mark-bar:5px; --mark-dot:10px; --mark-number:34px; --mark-rule:1px; --mark-chip:999px; --mark-panel:0px; --mark-quote:4px; --mark-step:44px; --mark-footer:6px; --mark-orb:48px;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--canvas-soft);color:var(--ink);font-family:Inter,"Helvetica Neue",Arial,"PingFang SC","Microsoft YaHei",sans-serif}
+.card-shell{width:min(100%,980px);margin:0 auto;padding:var(--space-8)}
+.cognitive-card{background:var(--canvas);border:var(--mark-rule) solid var(--ink);border-radius:0;overflow:hidden;box-shadow:12px 12px 0 var(--shadow);}
+.hero{background:var(--dark);color:var(--on-dark);padding:var(--space-10) var(--space-9) var(--space-8);position:relative}
+.hero:after{content:"";position:absolute;right:var(--space-8);top:var(--space-8);width:var(--mark-orb);height:var(--mark-orb);background:var(--red);border-radius:6px}
+.eyebrow{font-size:var(--size-label);font-weight:var(--font-display);letter-spacing:var(--track-wide);text-transform:uppercase;color:var(--white-60);margin:0 0 var(--space-4)}
+h1{font-size:var(--size-hero);line-height:var(--lh-hero);letter-spacing:var(--track-tight);font-weight:var(--font-display);margin:0;max-width:740px}
+.hero-sub{font-size:var(--size-lead);line-height:1.45;color:var(--white-88);max-width:700px;margin:var(--space-6) 0 0}
+.meta{display:flex;flex-wrap:wrap;gap:var(--space-2);margin-top:var(--space-7)}
+.chip{display:inline-block;padding:var(--space-1) var(--space-3);background:var(--canvas-soft);color:var(--ink);font-size:var(--size-label);font-weight:var(--font-strong);letter-spacing:var(--track-label);border-radius:var(--mark-chip)}
+.section{padding:var(--space-8) var(--space-9);border-top:var(--mark-rule) solid var(--line)}
+.section-head{display:flex;align-items:center;gap:var(--space-3);margin-bottom:var(--space-5)}
+.section-no{width:var(--mark-number);height:var(--mark-number);display:grid;place-items:center;background:var(--red);color:var(--on-dark);font-size:var(--size-number);font-weight:var(--font-display)}
+h2{font-size:var(--size-section);line-height:var(--lh-section);font-weight:var(--font-light);margin:0;letter-spacing:-.02em}
+.core{background:var(--red);color:var(--on-dark);border-top:0}
+.core h2{font-weight:var(--font-display);font-size:var(--size-title)}
+.core p{font-size:var(--size-quote);line-height:1.42;margin:0;max-width:770px}
+.argument-grid{display:grid;grid-template-columns:1fr;gap:var(--space-4)}
+.argument{border-left:var(--mark-bar) solid var(--red);padding:var(--space-4) var(--space-5);background:var(--canvas-blue)}
+.argument strong{display:block;font-size:var(--size-sub);line-height:1.35;margin-bottom:var(--space-2)}
+.argument p{font-size:var(--size-body);line-height:var(--lh-body);margin:0;color:var(--ink-2)}
+.quote{border-left:var(--mark-quote) solid var(--quote);padding:var(--space-5) var(--space-6);background:var(--red-wash);font-size:var(--size-quote);line-height:1.5;font-weight:var(--font-strong)}
+.quote small{display:block;margin-top:var(--space-3);font-size:var(--size-caption);font-weight:var(--font-regular);color:var(--body)}
+.method{display:grid;grid-template-columns:1fr;gap:var(--space-3)}
+.rule{display:grid;grid-template-columns:var(--mark-step) 1fr;gap:var(--space-3);align-items:start;padding:var(--space-3) 0;border-bottom:var(--mark-rule) solid var(--line)}
+.rule:last-child{border-bottom:0}.rule-no{font-size:var(--size-number);font-weight:var(--font-display);color:var(--red)}.rule p{margin:0;font-size:var(--size-body);line-height:var(--lh-body)}
+.action-risk{display:grid;grid-template-columns:1fr;gap:var(--space-5)}
+.action,.risk{padding:var(--space-5);border:var(--mark-rule) solid var(--line)}
+.action{border-top:var(--mark-bar) solid var(--action);background:var(--blue-soft)}.risk{border-top:var(--mark-bar) solid var(--risk);background:var(--warn-soft)}
+.panel-title{font-size:var(--size-sub);font-weight:var(--font-display);margin:0 0 var(--space-3)}
+ul{padding-left:1.2em;margin:0}li{font-size:var(--size-body-sm);line-height:1.65;margin:var(--space-2) 0}
+.footer{background:var(--dark);color:var(--on-dark);padding:var(--space-6) var(--space-9);font-size:var(--size-caption);line-height:var(--lh-caption)}
+.footer strong{color:var(--on-dark)}
+@media (max-width:599px){.card-shell{padding:0}.cognitive-card{box-shadow:none}.hero,.section,.footer{padding-left:var(--space-5);padding-right:var(--space-5)}h1{font-size:42px}.hero:after{right:var(--space-5);top:var(--space-5);width:36px;height:36px}.hero-sub{font-size:18px}.core h2{font-size:28px}.quote{font-size:20px}}
+@media (min-width:600px) and (max-width:1023px){h1{font-size:56px}.action-risk{grid-template-columns:1fr 1fr}}
+@media (min-width:1024px){.argument-grid{grid-template-columns:1fr 1fr}.action-risk{grid-template-columns:1fr 1fr}.hero{padding-top:var(--space-11);padding-bottom:var(--space-10)}}
+@media (min-width:1400px){.card-shell{padding-top:var(--space-11);padding-bottom:var(--space-11)}h1{font-size:68px}}
+</style>
+</head>
+<body>
+<main class="card-shell">
+<article class="cognitive-card">
+<header class="hero">
+<p class="eyebrow">DAILY REVIEW · 2026-10-18</p>
+<h1>把夜里的阻力，搬到白天解决</h1>
+<p class="hero-sub">今天的关键不是把计划切得更细，而是减少睡前必须启动的事情：白天完成结算，晚上只做收尾与记忆。</p>
+<div class="meta"><span class="chip">数据驱动行动</span><span class="chip">探索与验证</span><span class="chip">候选 · 待用户决定</span></div>
+</header>
+<section class="section core">
+<div class="section-head"><span class="section-no">01</span><h2>核心命题</h2></div>
+<p>持续性来自低启动成本。任务越晚越多，疲劳越容易把人推向低增量内容；把可提前的工作移到白天，才是在保护复盘和行动。</p>
+</section>
+<section class="section">
+<div class="section-head"><span class="section-no">02</span><h2>三条判断</h2></div>
+<div class="argument-grid">
+<div class="argument"><strong>数据能改变行为</strong><p>当一个动作有清晰数据，原本“可做可不做”会变得具体；但数据必须带来源、日期和时效。</p></div>
+<div class="argument"><strong>环境有影响，责任仍在自己</strong><p>身边的人会改变状态，却不能直接替自己决定。环境是变量，不是放弃行动的结论。</p></div>
+<div class="argument"><strong>探索与消费要分开</strong><p>探索能打开支线；剧情型短视频提供多巴胺，却未必带来同等的信息增量。</p></div>
+<div class="argument"><strong>先做最小验证</strong><p>简单可测试的知识先做小实验；暂时不能验证的内容保留待核，不急着奉为真理或立即推翻。</p></div>
+</div>
+</section>
+<section class="section">
+<div class="section-head"><span class="section-no">03</span><h2>记忆锚点</h2></div>
+<div class="quote">“时间维度来看，再过 10 天，这个问题就会变成一个非常微不足道。”<small>用时间尺度给小损失降权，避免一次漏记变成持续懊恼。</small></div>
+<div class="quote" style="margin-top:16px">“人生没有固定答案，所有的一切都可以你自己来编排。”<small>规则服务于行动，不替行动做决定。</small></div>
+</section>
+<section class="section">
+<div class="section-head"><span class="section-no">04</span><h2>一周小实验</h2></div>
+<div class="method">
+<div class="rule"><span class="rule-no">A</span><p><strong>白天：</strong>把一项结算前移到上午，完成后留存结算记录。</p></div>
+<div class="rule"><span class="rule-no">B</span><p><strong>晚上：</strong>只保留收尾工作和需要记忆的内容，复盘压缩成三句话。</p></div>
+<div class="rule"><span class="rule-no">C</span><p><strong>观察：</strong>连续一周记录完成情况与晚间短视频时长，再决定是否扩大规则。</p></div>
+</div>
+</section>
+<section class="section">
+<div class="section-head"><span class="section-no">05</span><h2>行动与待核</h2></div>
+<div class="action-risk">
+<div class="action"><p class="panel-title">候选行动</p><ul><li>上午完成一次结算，并写一份简短复盘。</li><li>将时间记录试改为上午 / 下午分块。</li><li>状态：AI 推导，尚未批准为 TaskBox 任务。</li></ul></div>
+<div class="risk"><p class="panel-title">保持谨慎</p><ul><li>鼻出血原因与鼻腔处理需求尚未核实。</li><li>防晒、美白、黑眼袋产品效果需要可靠来源验证。</li><li>睡眠检测与 9:30 起床效果需连续数据观察。</li></ul></div>
+</div>
+</section>
+<footer class="footer"><strong>来源：</strong>2026-10-17 个人日常事务与认知复盘；两份重复 Flomo 认知笔记。<br><strong>状态：</strong>正式日省已消费；候选保留 proposed；健康事实同步待身份修复。</footer>
+</article>
+</main>
+</body>
+</html>
