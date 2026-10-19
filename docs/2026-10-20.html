@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>认知卡片 · 2026-10-20</title>
+<style>
+:root{
+  --ink:#080808;--ink-strong:#222;--body:#363636;--body-mid:#5a5a5a;--mute:#898989;--mute-soft:#ababab;
+  --canvas:#fff;--canvas-soft:#f7f7f7;--hairline:#d8d8d8;--line-soft:#ececec;--shadow:#08080818;
+  --purple:#7a3dff;--pink:#ed52cb;--blue:#3b89ff;--blue-deep:#006acc;--blue-info:#146ef5;
+  --orange:#ff6b00;--green:#00d722;--yellow:#ffae13;--red:#ee1d36;--teal:#00a9a5;
+  --violet-soft:#f0eaff;--pink-soft:#fff0fa;--blue-soft:#edf5ff;--orange-soft:#fff3e8;--green-soft:#e9ffed;--yellow-soft:#fff8df;--red-soft:#fff0f1;--teal-soft:#e9fbfa;
+  --font-display:600;--font-section:500;--font-body:400;--font-label:550;--font-meta:500;
+  --size-hero:clamp(42px,7vw,80px);--size-title:32px;--size-section:24px;--size-sub:20px;--size-body:16px;--size-body-sm:14px;--size-caption:12px;--size-micro:11px;
+  --lh-hero:1.04;--lh-title:1.18;--lh-section:1.3;--lh-body:1.6;--lh-caption:1.35;--track-tight:-.04em;--track-wide:.1em;
+  --space-1:4px;--space-2:8px;--space-3:12px;--space-4:16px;--space-5:20px;--space-6:24px;--space-7:32px;--space-8:40px;--space-9:48px;--space-10:64px;--space-11:80px;--space-12:96px;
+  --mark-bar:4px;--mark-number:28px;--mark-rule:1px;--mark-label:2px;--mark-dot:8px;--mark-chip:4px;--mark-quote:6px;--mark-risk:3px;--mark-action:4px;--mark-grid:1px;
+}
+*{box-sizing:border-box}html{background:var(--canvas-soft)}body{margin:0;background:var(--canvas-soft);color:var(--body);font-family:Inter,"WF Visual Sans Variable",system-ui,-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;font-size:var(--size-body);line-height:var(--lh-body)}
+.card-shell{max-width:1080px;margin:0 auto;padding:var(--space-8) var(--space-6) var(--space-10)}
+.cognitive-card{background:var(--canvas);border:var(--mark-rule) solid var(--ink);border-radius:0;box-shadow:14px 14px 0 var(--ink);overflow:hidden}
+.card-header{padding:var(--space-9) var(--space-8) var(--space-7);background:var(--ink);color:var(--canvas);position:relative}.eyebrow{font-size:var(--size-caption);font-weight:var(--font-label);letter-spacing:var(--track-wide);text-transform:uppercase;color:#c9c9c9}.card-header h1{margin:var(--space-4) 0 var(--space-3);font-size:var(--size-hero);line-height:var(--lh-hero);letter-spacing:var(--track-tight);font-weight:var(--font-display);color:var(--canvas)}.card-header p{margin:0;max-width:720px;color:#d7d7d7;font-size:var(--size-body);line-height:var(--lh-body)}
+.meta-row{display:flex;flex-wrap:wrap;gap:var(--space-2);margin-top:var(--space-6)}.meta{border:1px solid #555;padding:var(--space-1) var(--space-2);font-size:var(--size-micro);letter-spacing:.04em;color:#eee}
+.section{padding:var(--space-8);border-top:var(--mark-rule) solid var(--hairline)}.section:first-of-type{border-top:0}.section-title{display:flex;align-items:center;gap:var(--space-3);margin:0 0 var(--space-5);color:var(--ink);font-size:var(--size-section);line-height:var(--lh-section);font-weight:var(--font-section)}.section-title::before{content:"";display:inline-block;width:var(--mark-bar);height:1.1em;background:var(--blue)}
+.core-insight{background:var(--blue-soft);border-left:var(--mark-quote) solid var(--blue-info);padding:var(--space-6);font-size:var(--size-sub);line-height:1.45;color:var(--ink-strong)}.core-insight strong{color:var(--blue-deep)}
+.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--space-5)}.panel{border:var(--mark-rule) solid var(--hairline);padding:var(--space-5);background:var(--canvas)}.panel h3{margin:0 0 var(--space-2);font-size:var(--size-body);font-weight:var(--font-section);color:var(--ink)}.panel p,.panel li{margin:0;font-size:var(--size-body-sm);line-height:1.6}.panel ul{padding-left:1.2em;margin:var(--space-2) 0 0}.panel.blue{border-top:var(--mark-label) solid var(--blue)}.panel.orange{border-top:var(--mark-label) solid var(--orange)}.panel.green{border-top:var(--mark-label) solid var(--green)}.panel.red{border-top:var(--mark-label) solid var(--red)}
+.rule-list{display:grid;gap:var(--space-3);margin:0;padding:0;list-style:none;counter-reset:rules}.rule-list li{counter-increment:rules;display:grid;grid-template-columns:var(--mark-number) 1fr;gap:var(--space-3);align-items:start;font-size:var(--size-body-sm)}.rule-list li::before{content:counter(rules,decimal-leading-zero);display:grid;place-items:center;width:var(--mark-number);height:var(--mark-number);background:var(--purple);color:var(--canvas);font-size:var(--size-caption);font-weight:var(--font-label)}
+.quote{margin:0;padding:var(--space-5) var(--space-6);border-left:var(--mark-quote) solid var(--pink);background:var(--pink-soft);font-size:var(--size-body);color:var(--ink-strong)}.quote small{display:block;margin-top:var(--space-2);font-size:var(--size-caption);color:var(--mute)}
+.action{display:flex;gap:var(--space-3);align-items:flex-start;padding:var(--space-4);background:var(--green-soft);border-left:var(--mark-action) solid var(--green)}.action::before{content:"→";font-weight:var(--font-display);color:var(--ink)}.risk{display:flex;gap:var(--space-3);align-items:flex-start;padding:var(--space-4);background:var(--yellow-soft);border-left:var(--mark-risk) solid var(--yellow)}.risk::before{content:"!";font-weight:var(--font-display);color:var(--red)}
+.footer{padding:var(--space-6) var(--space-8);border-top:var(--mark-rule) solid var(--hairline);display:flex;justify-content:space-between;gap:var(--space-4);flex-wrap:wrap;color:var(--mute);font-size:var(--size-caption)}
+@media(max-width:991px){.card-shell{padding:var(--space-7) var(--space-5) var(--space-9)}.card-header,.section{padding:var(--space-7)}.grid{grid-template-columns:1fr}}
+@media(max-width:767px){.card-shell{padding:var(--space-5) var(--space-3) var(--space-8)}.card-header,.section{padding:var(--space-6)}.card-header h1{font-size:42px}.section-title{font-size:22px}.cognitive-card{box-shadow:8px 8px 0 var(--ink)}}
+@media(max-width:479px){body{font-size:15px}.card-shell{padding:var(--space-3) var(--space-2) var(--space-7)}.card-header,.section{padding:var(--space-5)}.card-header h1{font-size:36px}.core-insight{font-size:18px;padding:var(--space-5)}.footer{padding:var(--space-5);display:block}.footer span{display:block;margin-top:var(--space-2)}}
+</style>
+</head>
+<body>
+<main class="card-shell">
+<article class="cognitive-card">
+<header class="card-header">
+<div class="eyebrow">DAILY REVIEW / 2026-10-20</div>
+<h1>没有新增输入，也要守住证据边界</h1>
+<p>今天的正式记录只有一个结论：增量为零。先核对、再收敛，不用旧材料填充当日事实。</p>
+<div class="meta-row"><span class="meta">飞书妙记 0</span><span class="meta">flomo 0</span><span class="meta">冻结事件 0</span><span class="meta">无历史重放</span></div>
+</header>
+<section class="section">
+<h2 class="section-title">核心判断</h2>
+<div class="core-insight"><strong>零增量不是空白许可。</strong>它只说明本轮没有新的可核验事实；计划仍是计划，候选仍是候选，下一步要等明确授权和完成证据。</div>
+</section>
+<section class="section">
+<h2 class="section-title">今天发生了什么</h2>
+<div class="grid"><div class="panel blue"><h3>输入核对</h3><p>最终拉取成功，飞书妙记与 flomo 均无新增内容。正式 handoff 记录 0 事件、0 sourceHash。</p></div><div class="panel green"><h3>边界保持</h3><p>生成零事件冻结交接，未读取或重放已消费历史；没有新的发布、客户、报价、成交或运行反馈证据。</p></div></div>
+</section>
+<section class="section">
+<h2 class="section-title">可复用规则</h2>
+<ol class="rule-list"><li>来源没有变化时，记录“无新增输入”，不要用旧材料制造今天的事实。</li><li>“待用户决定”保持原状态，不自动晋升为 TaskBox 任务。</li><li>下一次有明确事项时，先写对象、动作和完成证据，再决定是否进入主动作。</li></ol>
+</section>
+<section class="section">
+<h2 class="section-title">行动与待核</h2>
+<div class="grid"><div class="panel orange"><h3>明日动作</h3><div class="action">待用户决定一个可验收的主动作；本轮没有投产比达标任务。</div></div><div class="panel red"><h3>风险边界</h3><div class="risk">本轮没有足够输入判断业务推进、容量或情绪状态，不补写结论。</div></div></div>
+</section>
+<section class="section">
+<h2 class="section-title">一句话记忆</h2>
+<blockquote class="quote">“不把历史候选或旧事件当作本轮新增事实。”<small>今日正式日省的行为护栏</small></blockquote>
+</section>
+<footer class="footer"><span>来源：10-日省/2026-10-20.md</span><span>Webflow-inspired · 静态认知卡片</span></footer>
+</article>
+</main>
+</body>
+</html>
