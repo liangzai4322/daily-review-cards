@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>从备料走到发布 · 2026-10-21认知卡片</title>
+<style>
+:root{--blue:#0070d1;--deep:#004d8d;--sky:#53b1ff;--pale:#eaf5ff;--ice:#f5f9fc;--black:#000;--ink:#121314;--charcoal:#1f2024;--white:#fff;--paper:#f5f7fa;--muted:#65696e;--line:#dce3e9;--warning:#a51b35;--warn-bg:#fff3f5;--gold:#ffce21;--good:#155e44;--good-bg:#edf8f1;--hero:54px;--lead:24px;--heading:30px;--subhead:21px;--body:18px;--small:15px;--caption:13px;--light:300;--normal:400;--strong:600;--heavy:750;--body-leading:1.85;--title-leading:1.2;--tracking:.08em;--tight:-.03em;--pad:56px;--section:64px;--gap:26px;--paragraph:18px;--small-gap:10px;--indent:24px;--micro:6px;--frame:24px;--measure:850px;--rule:1px;--accent:5px;--marker:32px;--risk:3px;--quote:4px;--corner:0;--stage:48px;--tag:8px}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;font-size:var(--body);line-height:var(--body-leading)}main{max-width:var(--measure);margin:var(--frame) auto;border-radius:var(--corner);background:var(--white)}header,section,footer{padding:var(--pad)}header{background:var(--black);color:var(--white);padding-top:80px;padding-bottom:80px}.eyebrow{color:var(--sky);font-size:var(--caption);letter-spacing:var(--tracking);font-weight:var(--strong)}.date{color:#ccc;font-size:var(--small);margin-top:var(--paragraph)}h1{font-size:var(--hero);font-weight:var(--light);line-height:var(--title-leading);letter-spacing:var(--tight);margin:24px 0}.deck{font-size:var(--lead);font-weight:var(--light);color:#dce3e9;line-height:1.65}.status{border-top:var(--rule) solid #444;padding-top:var(--paragraph);margin-top:var(--gap);font-size:var(--small);color:#ccc}.status strong{color:var(--gold)}section{padding-top:var(--section);padding-bottom:var(--section)}h2{font-size:var(--heading);font-weight:var(--light);line-height:1.4;margin:0 0 var(--gap)}h3{font-size:var(--subhead);font-weight:var(--strong);margin:var(--gap) 0 var(--small-gap)}p{margin:0 0 var(--paragraph)}.n{font-size:var(--caption);color:var(--deep);font-weight:var(--heavy);letter-spacing:var(--tracking);display:block;margin-bottom:var(--small-gap)}.key{font-size:23px;font-weight:var(--strong);line-height:1.65}.proof{background:var(--ice);border-left:var(--accent) solid var(--blue);padding:var(--gap);font-size:var(--small)}.label{color:var(--muted);font-size:var(--caption);display:block}.rule{margin-top:var(--gap);border-top:var(--rule) solid var(--line);padding-top:var(--gap)}.quote{border-left:var(--quote) solid var(--blue);padding-left:var(--indent);font-size:25px;font-weight:var(--light);line-height:1.7;margin:var(--gap) 0}.flow{border-top:var(--rule) solid var(--line);border-bottom:var(--rule) solid var(--line);padding:var(--paragraph) 0;color:var(--deep);font-weight:var(--strong);font-size:var(--small)}.soft{background:var(--paper)}.risk{border-left:var(--risk) solid var(--warning);background:var(--warn-bg);padding:var(--gap)}.risk h3{margin-top:0;color:var(--warning)}.boundary{font-size:var(--caption);color:var(--muted);margin-top:var(--paragraph)}ul,ol{padding-left:var(--indent);margin:var(--paragraph) 0}li{padding-bottom:var(--small-gap)}.blue{background:var(--blue);color:var(--white)}.blue .n,.blue .boundary{color:#eaf5ff}.blue h2{font-size:35px}.action{font-size:22px;font-weight:var(--strong)}.check{border-top:var(--rule) solid #79b1e1;padding-top:var(--gap);margin-top:var(--gap)}.scope{font-size:var(--small);background:var(--white);color:var(--deep);padding:var(--small-gap) var(--paragraph);margin-top:var(--gap)}.review{background:var(--ink);color:var(--white)}.review .n{color:var(--sky)}.review .small{color:#ccc;font-size:var(--small)}.verdict{font-size:25px;line-height:1.6;font-weight:var(--light)}footer{padding-top:24px;padding-bottom:24px;border-top:var(--rule) solid var(--line);font-size:var(--caption);color:var(--muted)}.muted{color:var(--muted)}.fact{font-size:var(--small);background:var(--good-bg);border-left:var(--accent) solid var(--good);padding:var(--gap)}
+@media(max-width:1024px){:root{--measure:800px;--pad:48px;--section:56px}}
+@media(max-width:768px){:root{--hero:44px;--pad:36px;--section:48px;--frame:16px;--heading:28px}main{margin:var(--frame)}}
+@media(max-width:480px){:root{--hero:34px;--pad:25px;--section:40px;--lead:20px;--body:16px;--gap:22px;--frame:0}main{margin:0}header{padding-top:56px;padding-bottom:56px}.quote,.verdict{font-size:22px}.blue h2{font-size:29px}}
+@media(max-width:360px){:root{--hero:29px;--pad:20px;--heading:25px;--subhead:19px;--body:16px;--lead:18px}.key,.action{font-size:20px}}
+</style>
+</head>
+<body>
+<main>
+<header>
+<div class="eyebrow">今日复盘 · 从想法走向外部结果</div>
+<div class="date">2026年10月21日 · 活动范围：10月20日至21日</div>
+<h1>备料之后，<br>用真实发布验收。</h1>
+<p class="deck">有素材，有账号更新计划；本次记录还没有作品链接和真实反馈。下一步应当由可核验的结果来定义。</p>
+<div class="status"><strong>已记录任务</strong>：更新多个B站账号的内容。<br>主动作排序仍是建议，当前未获得批准。</div>
+</header>
+<section>
+<span class="n">第一层 · 事实与状态</span>
+<h2>素材数量，不能替代结果证据。</h2>
+<p>本人提到让GPT收集了1000多个开源项目并打包本地，计划参考不同对标，开始更新多个B站账号。前者是备料自述，后者是未来动作。</p>
+<div class="proof"><span class="label">目前知道什么</span>更新计划已形成TaskBox任务记录；本次没有实际发布链接，也没有客户回应、报价、成交或反馈样本。</div>
+<p class="boundary">数量、文件完整性、项目许可和可运行性未核验。“免费送源码可能吸引人”仍是预期，不能记成已获线索。</p>
+<div class="flow">备料 → 计划 → 发布 → 真实反馈</div>
+<p class="rule">本人发现推特时间上升、短剧消费增加，也有较多时间阅读模型故事。它们是否服务账号更新，要用实际作品来判断；额度使用率不是业务产出。</p>
+</section>
+<section class="soft">
+<span class="n">第二层 · 认知修正</span>
+<h2>批判一个选择，也比较它的反面。</h2>
+<p>朋友的提醒，让本人看到自己容易沿着A一路讨论，却没有同时考虑“不做A”或“做相反选择”的后果。</p>
+<blockquote class="quote">“当你去一直在讨论 A 的时候，你要去想一下 A 的反面。”</blockquote>
+<h3>把反面思考变成比较步骤</h3>
+<ol>
+<li>写清正在评价的选择，以及真正可行的替代方案。</li>
+<li>同时列出两边的收益、代价和可能的传导链条。</li>
+<li>分开已知事实、反事实假设与尚未验证的预测。</li>
+<li>回到证据，不因想出了另一种故事就认为它已被证明。</li>
+</ol>
+<p class="boundary">本次政策与人口讨论只是个人反事实推演，不能由此得出经过验证的历史因果。关于AI未来能力及控制方式的担忧也保留为设想。</p>
+</section>
+<section>
+<span class="n">第三层 · 注意力与安全</span>
+<h2>两次急避柱子，已经是具体风险。</h2>
+<div class="risk"><h3>骑行收屏，需要操作先停稳。</h3><p>本人记录回家时边骑车、边走路刷短剧，曾两次临近柱子才避开。没有发生碰撞的记录，但“反应够快”不能作为持续刷屏的安全依据。</p></div>
+<p class="boundary">这是基于本次险情提出的安全建议，未伪装成用户已批准任务；也不推广“非危险路段就可以一直看”的结论。</p>
+<div class="fact"><span class="label">容量只保留自述</span>本人说睡了8小时、约10:59起床，前夜约2至3点入睡；复盘时仍困。没有设备原始数据复核，不作健康诊断或因果推断。</div>
+</section>
+<section class="blue">
+<span class="n">第四层 · 下一步与验收</span>
+<h2>把更新计划，落到可打开的作品。</h2>
+<p class="action">建议主动作：更新多个B站账号的内容。</p>
+<p>只引用已有TaskBox任务，不再复制一份待办；本次没有代用户执行发布，也没有擅自设定具体日期。</p>
+<div class="check"><h3>开始前五分钟</h3><p>选定本次更新的账号与内容，核对拟用项目的来源和再分发许可。免费分发也需要尊重项目许可条件。</p><h3>如何判定完成</h3><p>保留实际更新的作品链接与账号清单。素材压缩包、对标列表和“打算更新”不能充当发布完成证据。</p></div>
+<div class="scope">系统建议锚点：当天第一个60–90分钟保护时段。尚未排期、尚未批准主动作排序。</div>
+</section>
+<section class="review">
+<span class="n">最后一层 · 第三人称审视</span>
+<h2>他能发现偏差，接下来需要留下结果。</h2>
+<p>他记录了对刷屏上升、移动险情和单向思考的觉察，也准备了业务素材。当前缺少的，是这些准备对应的外部结果证据。</p>
+<p class="verdict">最迫切：骑行收屏。<br>业务侧：让更新留下真实链接。<br>长期：比较备选代价，同时核查证据。</p>
+<p class="small">不必为花完额度继续造任务；不承诺素材数量必然换来获客。把个人事实、推测、建议和已完成结果分开，才能知道下一次究竟改进了什么。</p>
+</section>
+<footer>来源：2026年10月21日正式日省提炼 · 完整复盘私有保存 · 视觉参考：PlayStation 黑白蓝章节式排版</footer>
+</main>
+</body>
+</html>
