@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>周省 · 2026-10-05 至 2026-10-11</title>
+  <style>
+    :root {
+      --paper: #f3f7fb;
+      --ink: #10243e;
+      --muted: #60748b;
+      --line: #cad6e2;
+      --blue: #155eef;
+      --coral: #e85d4a;
+      --mint: #dff7ee;
+      --white: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { background: var(--paper); }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(90deg, transparent 0 47px, rgba(21, 94, 239, 0.08) 47px 48px, transparent 48px),
+        var(--paper);
+      font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+      line-height: 1.65;
+    }
+
+    .sheet {
+      width: min(1120px, calc(100% - 32px));
+      margin: 32px auto;
+      background: var(--white);
+      border: 1px solid var(--line);
+      box-shadow: 14px 14px 0 rgba(16, 36, 62, 0.08);
+    }
+
+    .masthead {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 28px;
+      align-items: end;
+      padding: 44px 48px 34px;
+      border-bottom: 4px solid var(--ink);
+    }
+
+    .eyebrow,
+    .meta,
+    .section-label,
+    .metric-label,
+    .threshold-label {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: "Songti SC", "STSong", serif;
+      font-size: clamp(44px, 7vw, 78px);
+      font-weight: 900;
+      line-height: 0.98;
+    }
+
+    .meta {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      text-align: right;
+    }
+
+    .verdict {
+      display: grid;
+      grid-template-columns: 116px minmax(0, 1fr);
+      gap: 28px;
+      padding: 38px 48px;
+      color: var(--white);
+      background: var(--ink);
+    }
+
+    .section-label {
+      margin: 5px 0 0;
+      color: #91b8ff;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+    }
+
+    .verdict p {
+      margin: 0;
+      font-family: "Songti SC", "STSong", serif;
+      font-size: clamp(24px, 3.4vw, 39px);
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .content { padding: 14px 48px 48px; }
+
+    .block {
+      display: grid;
+      grid-template-columns: 116px minmax(0, 1fr);
+      gap: 28px;
+      padding: 32px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .block:last-child { border-bottom: 0; }
+
+    .block .section-label { color: var(--blue); }
+
+    h2 {
+      margin: 0 0 16px;
+      font-size: 25px;
+      line-height: 1.3;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .metric {
+      min-height: 96px;
+      padding: 16px;
+      background: #edf3fa;
+      border-left: 3px solid var(--blue);
+    }
+
+    .metric-label {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .metric strong { font-size: 22px; }
+
+    .bottleneck {
+      padding: 24px;
+      background: #fff2ef;
+      border: 1px solid #f3b7ae;
+    }
+
+    .bottleneck h2 { color: #9e2f22; }
+
+    .root-cause {
+      margin: 14px 0 0;
+      color: #6f342d;
+    }
+
+    .experiment {
+      position: relative;
+      padding: 28px;
+      background: var(--mint);
+      border: 1px solid #9dddc7;
+    }
+
+    .experiment::before {
+      content: "NEXT";
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 5px 10px;
+      color: var(--white);
+      background: var(--blue);
+      font: 700 11px/1 "SFMono-Regular", Consolas, monospace;
+      letter-spacing: 0.1em;
+    }
+
+    .thresholds {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1px;
+      margin-top: 22px;
+      background: #a8d8c8;
+      border: 1px solid #a8d8c8;
+    }
+
+    .threshold {
+      padding: 14px;
+      background: #f7fffc;
+    }
+
+    .threshold-label {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+    }
+
+    .stop {
+      margin-bottom: 18px;
+      padding: 14px 16px;
+      color: #7b261c;
+      background: #fff2ef;
+      border-left: 4px solid var(--coral);
+    }
+
+    .scoreboard {
+      display: grid;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .scoreboard li {
+      position: relative;
+      padding: 10px 12px 10px 40px;
+      border: 1px solid var(--line);
+    }
+
+    .scoreboard li::before {
+      content: "";
+      position: absolute;
+      left: 14px;
+      top: 14px;
+      width: 13px;
+      height: 13px;
+      border: 2px solid var(--blue);
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 16px 48px;
+      color: var(--muted);
+      background: #edf3fa;
+      font-size: 12px;
+    }
+
+    @media (max-width: 760px) {
+      .sheet { width: min(100% - 16px, 1120px); margin: 8px auto; box-shadow: none; }
+      .masthead, .verdict, .block { grid-template-columns: 1fr; gap: 12px; }
+      .masthead, .verdict, .content { padding-left: 24px; padding-right: 24px; }
+      .meta { text-align: left; }
+      .metrics, .thresholds { grid-template-columns: 1fr; }
+      .footer { flex-direction: column; padding: 14px 24px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="sheet">
+    <header class="masthead">
+      <div>
+        <p class="eyebrow">Weekly operating review</p>
+        <h1>周省</h1>
+      </div>
+      <p class="meta">2026-10-05 至 2026-10-11<br>2026-10-22（历史补记）<br>数据覆盖 5 / 7；10-05、10-06缺交接</p>
+    </header>
+
+    <section class="verdict">
+      <p class="section-label">01 / 判决</p>
+      <p>旅行返程后，工作逐渐恢复：电脑恢复可用，抖音和B站两个平台有手动更新，三个合作方的对账被本人报告完成。这些是实际进展，但尚不能证明新增收入或获客改善。工具带来的兴奋、案例整理和恢复日程，需要连接到可回读结果，而不是再次扩平台与扩系统。</p>
+    </section>
+
+    <div class="content">
+      <section class="block">
+        <p class="section-label">02 / 结果</p>
+        <div>
+          <h2>外部世界留下了什么</h2>
+          <div class="metrics"><div class="metric"><span class="metric-label">发布数</span><strong>未精确计数</strong></div><div class="metric"><span class="metric-label">有效客户 / 合作对话数</span><strong>未记录</strong></div><div class="metric"><span class="metric-label">报价数</span><strong>未记录</strong></div></div>
+        </div>
+      </section>
+
+      <section class="block">
+        <p class="section-label">03 / 瓶颈</p>
+        <div class="bottleneck">
+          <h2>恢复工作与工具投入还没有对齐一个外部验收点</h2>
+          <p class="root-cause"><strong>根因：</strong>多种“看起来有进度”的活动共用一个完成感，缺少每条业务的最终证据。</p>
+        </div>
+      </section>
+
+      <section class="block">
+        <p class="section-label">04 / 实验</p>
+        <div class="experiment">
+          <h2>历史建议：选择已有平台上的一个案例，建立作品身份、咨询来源及下一步的最短证据链。</h2>
+          <div class="thresholds">
+            <div class="threshold"><span class="threshold-label">SUCCESS</span>能回读更新内容和观察结果，并据此作一次继续或调整判断。</div>
+            <div class="threshold"><span class="threshold-label">FAILURE</span>只有工具安装、研究或能力感，没有可核验的作品和观察窗口。</div>
+            <div class="threshold"><span class="threshold-label">DEADLINE</span>原建议窗口2026-10-18已过，不追溯执行。</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="block">
+        <p class="section-label">05 / 护栏</p>
+        <div>
+          <div class="stop"><strong>停止：</strong>把工具“很爽”当业务收益，把历史案例当新增订单，把对账当回款。</div>
+          <ul class="scoreboard"><li>一条平台内容回读记录</li><li>一份来源明确的咨询或真实观察空结果</li><li>对账、收款、新成交分列</li></ul>
+        </div>
+      </section>
+
+      <section class="block">
+        <p class="section-label">06 / 审视</p>
+        <div><h3>这个人这一周的行为模式和思维习惯</h3><p>他能在返程后恢复工具和内容动作，也愿意承认娱乐、休息和产物的不同价值。但AI的能力感仍容易挤占验证实际收益的注意力，复杂工具问题会让业务目标再次后移。</p><h3>最大的 Bug / 问题</h3><p>主要问题：不同层级进展混在一起，恢复可用不知不觉被当成经营改善。</p><p>最迫切需要解决：把平台更新与对账分别接到作品和款项证据。</p><p>长期最重要：持续按外部结果安排资源，同时保留必要休息与安全底线。</p><h3>给他的建议</h3><p>承认真实进步，但为每个“完成”补一句它改变了什么。办公去留按使用与成本决定，不让面子代替业务判断；休息不必伪装为生产力项目。</p><h3>行动清单</h3><p>□ 给既有对账标注“金额口径待核”和“收款状态未知”。</p><p>□ 以实际使用需求核对办公去留，不凭社交压力续费。</p></div>
+      </section>
+    </div>
+
+    <footer class="footer">
+      <span>缺失与待核：两平台更新的具体链接、内容数量与反馈；网站是否上线。；三个合作方“1w+”的对账范围、凭证与实际收款，不能补写为收入。；旅行支出包含哪些项目、币种是否一致；目前不足以计算完整预算。</span>
+      <span>瓶颈 → 根因 → 实验</span>
+    </footer>
+  </main>
+</body>
+</html>
