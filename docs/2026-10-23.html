@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>先看是不是想要的 · 2026-10-23认知卡片</title>
+<style>
+:root{--canvas:#f9f7f3;--paper:#fffefa;--bone:#f3f0e8;--ink:#202020;--body:#3a3a3a;--muted:#646464;--quiet:#706b63;--line:#dedbd3;--strong:#282623;--orange:#ea2804;--orange-deep:#c01f00;--orange-soft:#fff0e7;--on-orange:#fff;--dark:#202020;--on-dark:#fcfcfc;--dark-muted:#dedbd4;--dark-line:#55514c;--quote-bg:#eeebe2;--quote-ink:#26231e;--quote-edge:#9b9382;--fact-bg:#fff;--fact-title:#3c3931;--fact-line:#e6e2d8;--fact-detail:#625c50;--suggestion-bg:#f1eee6;--suggestion-ink:#39362e;--suggestion-line:#c4bdaf;--risk-bg:#fbf0e3;--risk-ink:#70471f;--risk-line:#d7b893;--pending-bg:#eae6dd;--pending-ink:#474136;--pending-line:#a79c8a;--footer-bg:#e7e2d6;--footer-ink:#585044;--number-ink:#c01f00;--badge-bg:#f2e2d5;--badge-ink:#7c3a20;--evidence-ink:#726858;--evidence-bg:#f6f2e9;--result-ink:#312d27;--result-line:#b9b0a0;
+--title-size:68px;--title-weight:800;--title-leading:1.08;--title-spacing:-2px;--subtitle-size:24px;--subtitle-leading:1.45;--heading-size:30px;--heading-weight:750;--subheading-size:21px;--subheading-leading:1.5;--body-size:18px;--body-leading:1.8;--caption-size:14px;--caption-leading:1.65;--quote-size:28px;--quote-leading:1.55;--meta-size:13px;--meta-spacing:1.2px;--number-size:17px;--emphasis-weight:700;--note-size:16px;
+--page-margin:32px;--card-padding:64px;--section-gap:42px;--paragraph-gap:14px;--list-gap:12px;--inset:28px;--small-inset:18px;--rule-gap:22px;--caption-gap:10px;--title-gap:24px;--quote-inset:30px;--footer-gap:32px;
+--accent-rule:6px;--section-rule:1px;--quote-rule:3px;--risk-rule:1px;--pending-rule:2px;--number-width:32px;--fact-rule:1px;--method-rule:2px;--footer-rule:1px;--result-rule:2px}
+*{box-sizing:border-box}body{margin:0;background:var(--canvas);color:var(--body);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;font-size:var(--body-size);line-height:var(--body-leading)}main{max-width:960px;margin:var(--page-margin) auto;background:var(--paper);border:var(--section-rule) solid var(--line);border-radius:0}header{padding:var(--card-padding);border-top:var(--accent-rule) solid var(--orange)}.meta{font-size:var(--meta-size);letter-spacing:var(--meta-spacing);color:var(--muted);margin:0 0 var(--title-gap)}h1{font-size:var(--title-size);font-weight:var(--title-weight);line-height:var(--title-leading);letter-spacing:var(--title-spacing);color:var(--ink);margin:0 0 var(--title-gap)}.subtitle{font-size:var(--subtitle-size);line-height:var(--subtitle-leading);margin:0;color:var(--strong)}.period{font-size:var(--caption-size);line-height:var(--caption-leading);color:var(--quiet);margin:var(--paragraph-gap) 0 0}.stamp{display:inline-block;background:var(--orange-soft);color:var(--orange-deep);font-size:var(--caption-size);padding:4px 10px;margin-top:var(--caption-gap)}section{padding:var(--section-gap) var(--card-padding);border-top:var(--section-rule) solid var(--line)}h2{font-size:var(--heading-size);font-weight:var(--heading-weight);line-height:1.35;margin:0 0 var(--rule-gap);color:var(--ink)}h3{font-size:var(--subheading-size);line-height:var(--subheading-leading);margin:0 0 var(--caption-gap)}p{margin:0 0 var(--paragraph-gap)}p:last-child{margin-bottom:0}strong{font-weight:var(--emphasis-weight)}.number{display:inline-block;min-width:var(--number-width);font-size:var(--number-size);color:var(--number-ink)}.dark{background:var(--dark);color:var(--on-dark)}.dark h2{color:var(--on-dark)}.dark .number{color:var(--on-orange)}.dark .support{color:var(--dark-muted);border-top:var(--section-rule) solid var(--dark-line);padding-top:var(--rule-gap);font-size:var(--note-size)}.quote{margin:var(--rule-gap) 0;background:var(--quote-bg);color:var(--quote-ink);padding:var(--quote-inset);border-left:var(--quote-rule) solid var(--quote-edge);font-size:var(--quote-size);line-height:var(--quote-leading)}.fact{background:var(--fact-bg);border:var(--fact-rule) solid var(--fact-line);padding:var(--inset);margin-top:var(--list-gap)}.fact h3{color:var(--fact-title)}.fact small{display:block;font-size:var(--caption-size);color:var(--fact-detail)}.evidence{color:var(--evidence-ink);background:var(--evidence-bg);font-size:var(--caption-size);padding:var(--small-inset);margin-top:var(--caption-gap)}.method{background:var(--suggestion-bg);color:var(--suggestion-ink);padding:var(--inset);border-left:var(--method-rule) solid var(--suggestion-line)}.method ol{margin:0;padding-left:24px}.method li+li{margin-top:var(--list-gap)}.label{font-size:var(--caption-size);background:var(--badge-bg);color:var(--badge-ink);padding:3px 8px;display:inline-block;margin-bottom:var(--caption-gap)}.risk{background:var(--risk-bg);color:var(--risk-ink);border:var(--risk-rule) solid var(--risk-line);padding:var(--inset);margin-top:var(--rule-gap)}.pending{background:var(--pending-bg);color:var(--pending-ink);border-left:var(--pending-rule) solid var(--pending-line);padding:var(--inset)}.result{color:var(--result-ink);border-bottom:var(--result-rule) solid var(--result-line);padding-bottom:var(--rule-gap);margin-bottom:var(--rule-gap)}.aside{font-size:var(--note-size);color:var(--muted)}.review{background:var(--bone)}footer{background:var(--footer-bg);color:var(--footer-ink);padding:var(--footer-gap) var(--card-padding);border-top:var(--footer-rule) solid var(--line);font-size:var(--caption-size);line-height:var(--caption-leading)}
+@media(max-width:425px){:root{--title-size:40px;--title-spacing:-1px;--body-size:16px;--heading-size:25px;--quote-size:22px;--card-padding:22px;--section-gap:30px;--page-margin:0px;--inset:20px;--quote-inset:20px}main{border-left:0;border-right:0}.subtitle{font-size:21px}}
+@media(min-width:426px) and (max-width:767px){:root{--title-size:50px;--card-padding:32px;--section-gap:34px;--page-margin:16px}main{margin:16px}}
+@media(min-width:768px) and (max-width:1023px){:root{--title-size:62px;--card-padding:52px;--page-margin:24px}main{margin:24px}}
+@media(min-width:1280px){:root{--title-size:76px;--card-padding:76px;--section-gap:48px;--page-margin:48px}}
+</style>
+</head>
+<body>
+<main>
+<header>
+<p class="meta">今日复盘 · 二〇二六年十月二十三日</p>
+<h1>先看，<br>是不是想要的。</h1>
+<p class="subtitle">界面已经可见，却等到额度用完后才对照目标，发现效果差了很多。</p>
+<p class="period">活动范围：十月二十二日至二十三日 · 来自两份个人复盘</p>
+<span class="stamp">本人反思，修复结果尚未记录</span>
+</header>
+<section class="dark">
+<h2><span class="number">一</span>先把前提搞清楚</h2>
+<p>这次究竟最在意什么？本人回头梳理，发现是好看的界面。功能也重要，但如果界面很丑，自己可能就不想用。</p>
+<p>与此同时，部分尝试也带着消耗即将重置额度的动机。过程持续在跑，最重要的效果却没有及时检查。</p>
+<p class="support">本次教训：先说清想要的结果，再检查实现是否朝它靠近。这是针对本次项目的反思，不能推出所有项目都应让视觉优先。</p>
+</section>
+<section>
+<h2><span class="number">二</span>协作体验与产物，分别看</h2>
+<div class="fact"><h3>实际尝试过的协作</h3><p>两个工具分工出方案、执行、合并产出，再互相评价。本人觉得体验很好。</p><small>没有项目链接、版本与测试回执；无法确认完成比例或量化效率提升。</small></div>
+<div class="fact"><h3>实际发现的差距</h3><p>本人已经看到界面，却没有详细对照。最后才发现视觉效果与目标相差明显。</p><small>识别出问题，不表示问题已经修好；继续调整还是重做仍待决定。</small></div>
+<blockquote class="quote">“我没有想到说跑的是不是我想要的。”</blockquote>
+<p class="evidence">原话来自个人当日经历与事项复盘。对工具能力的喜好仅是当日个人体验，不是普遍排名。</p>
+</section>
+<section>
+<h2><span class="number">三</span>把对照提前到第一版</h2>
+<div class="method"><span class="label">建议，尚未承诺执行</span><ol><li><strong>先留一个目标。</strong> 用目标截图和一个关键视觉指标说明“想要什么”。</li><li><strong>第一版可见就对照。</strong> 圈出最明显的一处差距，避免等全部跑完才检查。</li><li><strong>决定继续或调整。</strong> 先判断方向，再投入后续额度、功能与时间。</li></ol></div>
+<div class="risk"><h3>额度推算还没有核实</h3><p>立即重置约百分之六至七、等待可能多得百分之四十至六十，都是本人估计。有效期、服务时区与最终是否成功重置均未知，不能当成平台规则。</p></div>
+</section>
+<section>
+<h2><span class="number">四</span>今天的其他事实</h2>
+<p>陪朋友走过账号与工具使用流程，对方先自己试错，再围绕具体卡点求助。本人提供过指导，但没有对方验收回执。</p>
+<p>口述有回复客户消息，也参加过群友分享的比赛。没有具体客户下一步、发布、报价、成交或入选证据，外部业务结果保持“未记录”。</p>
+<p class="aside">海洋生物、器官系统与思维模型是当日学习线索；没有核验科学结论，不将类比当成已证实的方法。</p>
+<div class="risk"><h3>兴奋感不能证明已经恢复</h3><p>本人描述高强度使用、休息偏少，有点晕乎；短暂冥想后仍感觉没有很好恢复。总睡眠、精力评分与明日容量未知，不作健康诊断。</p></div>
+</section>
+<section>
+<h2><span class="number">五</span>明日承诺，先留空</h2>
+<p class="result"><strong>待用户决定。</strong> 本轮没有证据充分、通过投产比门槛的唯一动作；也没有新增明确维护承诺。</p>
+<div class="pending"><h3>最接近产物的三个候选</h3><p>协作中台：现有项目与继续修复范围待定。<br>案例站：选哪条案例、是否现在发布待定。<br>演示视频：作品、迁移范围和完成定义待定。</p><p>可选：写盒、删除、保留。现有十三条候选保留待决，本轮新增写盒为零。人工智能建议仍是提案。</p></div>
+<p class="aside" style="margin-top:22px">建议停止：为消耗额度推迟验收。建议继续：已有的分工与互评，同时分别记录最终效果。</p>
+</section>
+<section class="review">
+<h2><span class="number">六</span>第三人称审视</h2>
+<h3>他的检查，发生得太晚</h3>
+<p>他能够快速尝试协作，也能事后指出差距。今天最明显的问题，是没有在第一次看到界面时检查自己最在意的结果。</p>
+<p><strong>最迫切：</strong>若继续项目，先对齐一个可见、可验收的目标。<br><strong>长期建议：</strong>让时间投入对应产物、外部结果和真实恢复反馈，分别留下证据。</p>
+<p class="aside">以上是基于本轮记录的建议，不作人格判断。没有新增额外行动承诺。</p>
+</section>
+<footer>源自当日正式日省的提炼卡片。个人事实、主观体验、建议与待核状态分别保留；完整日省与原始材料保持私有。</footer>
+</main>
+</body>
+</html>
