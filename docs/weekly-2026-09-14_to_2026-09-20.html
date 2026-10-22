@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>周省 · 2026-09-14 至 2026-09-20</title>
+  <style>
+    :root {
+      --paper: #f3f7fb;
+      --ink: #10243e;
+      --muted: #60748b;
+      --line: #cad6e2;
+      --blue: #155eef;
+      --coral: #e85d4a;
+      --mint: #dff7ee;
+      --white: #ffffff;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { background: var(--paper); }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background:
+        linear-gradient(90deg, transparent 0 47px, rgba(21, 94, 239, 0.08) 47px 48px, transparent 48px),
+        var(--paper);
+      font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+      line-height: 1.65;
+    }
+
+    .sheet {
+      width: min(1120px, calc(100% - 32px));
+      margin: 32px auto;
+      background: var(--white);
+      border: 1px solid var(--line);
+      box-shadow: 14px 14px 0 rgba(16, 36, 62, 0.08);
+    }
+
+    .masthead {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 28px;
+      align-items: end;
+      padding: 44px 48px 34px;
+      border-bottom: 4px solid var(--ink);
+    }
+
+    .eyebrow,
+    .meta,
+    .section-label,
+    .metric-label,
+    .threshold-label {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+    }
+
+    .eyebrow {
+      margin: 0 0 10px;
+      color: var(--blue);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-family: "Songti SC", "STSong", serif;
+      font-size: clamp(44px, 7vw, 78px);
+      font-weight: 900;
+      line-height: 0.98;
+    }
+
+    .meta {
+      margin: 0;
+      color: var(--muted);
+      font-size: 12px;
+      text-align: right;
+    }
+
+    .verdict {
+      display: grid;
+      grid-template-columns: 116px minmax(0, 1fr);
+      gap: 28px;
+      padding: 38px 48px;
+      color: var(--white);
+      background: var(--ink);
+    }
+
+    .section-label {
+      margin: 5px 0 0;
+      color: #91b8ff;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+    }
+
+    .verdict p {
+      margin: 0;
+      font-family: "Songti SC", "STSong", serif;
+      font-size: clamp(24px, 3.4vw, 39px);
+      font-weight: 700;
+      line-height: 1.35;
+    }
+
+    .content { padding: 14px 48px 48px; }
+
+    .block {
+      display: grid;
+      grid-template-columns: 116px minmax(0, 1fr);
+      gap: 28px;
+      padding: 32px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .block:last-child { border-bottom: 0; }
+
+    .block .section-label { color: var(--blue); }
+
+    h2 {
+      margin: 0 0 16px;
+      font-size: 25px;
+      line-height: 1.3;
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .metric {
+      min-height: 96px;
+      padding: 16px;
+      background: #edf3fa;
+      border-left: 3px solid var(--blue);
+    }
+
+    .metric-label {
+      display: block;
+      margin-bottom: 7px;
+      color: var(--muted);
+      font-size: 11px;
+    }
+
+    .metric strong { font-size: 22px; }
+
+    .bottleneck {
+      padding: 24px;
+      background: #fff2ef;
+      border: 1px solid #f3b7ae;
+    }
+
+    .bottleneck h2 { color: #9e2f22; }
+
+    .root-cause {
+      margin: 14px 0 0;
+      color: #6f342d;
+    }
+
+    .experiment {
+      position: relative;
+      padding: 28px;
+      background: var(--mint);
+      border: 1px solid #9dddc7;
+    }
+
+    .experiment::before {
+      content: "NEXT";
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 5px 10px;
+      color: var(--white);
+      background: var(--blue);
+      font: 700 11px/1 "SFMono-Regular", Consolas, monospace;
+      letter-spacing: 0.1em;
+    }
+
+    .thresholds {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1px;
+      margin-top: 22px;
+      background: #a8d8c8;
+      border: 1px solid #a8d8c8;
+    }
+
+    .threshold {
+      padding: 14px;
+      background: #f7fffc;
+    }
+
+    .threshold-label {
+      display: block;
+      margin-bottom: 5px;
+      color: var(--muted);
+      font-size: 10px;
+      letter-spacing: 0.08em;
+    }
+
+    .stop {
+      margin-bottom: 18px;
+      padding: 14px 16px;
+      color: #7b261c;
+      background: #fff2ef;
+      border-left: 4px solid var(--coral);
+    }
+
+    .scoreboard {
+      display: grid;
+      gap: 8px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .scoreboard li {
+      position: relative;
+      padding: 10px 12px 10px 40px;
+      border: 1px solid var(--line);
+    }
+
+    .scoreboard li::before {
+      content: "";
+      position: absolute;
+      left: 14px;
+      top: 14px;
+      width: 13px;
+      height: 13px;
+      border: 2px solid var(--blue);
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 16px 48px;
+      color: var(--muted);
+      background: #edf3fa;
+      font-size: 12px;
+    }
+
+    @media (max-width: 760px) {
+      .sheet { width: min(100% - 16px, 1120px); margin: 8px auto; box-shadow: none; }
+      .masthead, .verdict, .block { grid-template-columns: 1fr; gap: 12px; }
+      .masthead, .verdict, .content { padding-left: 24px; padding-right: 24px; }
+      .meta { text-align: left; }
+      .metrics, .thresholds { grid-template-columns: 1fr; }
+      .footer { flex-direction: column; padding: 14px 24px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="sheet">
+    <header class="masthead">
+      <div>
+        <p class="eyebrow">Weekly operating review</p>
+        <h1>周省</h1>
+      </div>
+      <p class="meta">2026-09-14 至 2026-09-20<br>2026-10-22（历史补记）<br>数据覆盖 7 / 7（多份区间交接，非每日独立统计）</p>
+    </header>
+
+    <section class="verdict">
+      <p class="section-label">01 / 判决</p>
+      <p>本周从“研究B站、做样本”走到了至少一条AI视频发布，是有方向性的进步；但发布物身份、链接、反馈和咨询转化仍断开。真正的下一关不是把挑战目标再放大，而是让一条内容清楚地连接现有合规服务、明确受众和可核验的获客结果。没有这个闭环，更多平台和更难目标只会扩大不确定性。</p>
+    </section>
+
+    <div class="content">
+      <section class="block">
+        <p class="section-label">02 / 结果</p>
+        <div>
+          <h2>外部世界留下了什么</h2>
+          <div class="metrics"><div class="metric"><span class="metric-label">发布数</span><strong>至少一条（未精确计数）</strong></div><div class="metric"><span class="metric-label">有效客户 / 合作对话数</span><strong>未精确计数</strong></div><div class="metric"><span class="metric-label">报价数</span><strong>未记录</strong></div></div>
+        </div>
+      </section>
+
+      <section class="block">
+        <p class="section-label">03 / 瓶颈</p>
+        <div class="bottleneck">
+          <h2>作品产出没有绑定可追踪的市场检验</h2>
+          <p class="root-cause"><strong>根因：</strong>主线依据平台想象和制作能力选择，测量单位却停在制作进度；发布后没有固定回看动作。</p>
+        </div>
+      </section>
+
+      <section class="block">
+        <p class="section-label">04 / 实验</p>
+        <div class="experiment">
+          <h2>历史复盘建议：只追踪一条已发布作品，补作品身份、发布时间、首轮数据与合法咨询入口。</h2>
+          <div class="thresholds">
+            <div class="threshold"><span class="threshold-label">SUCCESS</span>证据能对应同一作品，并能判断保留选题或修改哪一环。</div>
+            <div class="threshold"><span class="threshold-label">FAILURE</span>没有发布物身份或无法追踪咨询来源。</div>
+            <div class="threshold"><span class="threshold-label">DEADLINE</span>原建议窗口2026-09-27已过；本次不追溯排期。</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="block">
+        <p class="section-label">05 / 护栏</p>
+        <div>
+          <div class="stop"><strong>停止：</strong>用不断重试桥接、追问意义或加大目标，代替给已发布作品补证据。</div>
+          <ul class="scoreboard"><li>作品身份与链接</li><li>首轮数据和来源口径</li><li>一项明确继续或停止的结论</li></ul>
+        </div>
+      </section>
+
+      <section class="block">
+        <p class="section-label">06 / 审视</p>
+        <div><h3>这个人这一周的行为模式和思维习惯</h3><p>他对新方法敏感，能把AI视频快速做出来，也会主动反思合作止损和注意力。但从创作兴奋转向枯燥的数据回看时，容易跳到更宏大的目标或技术桥接。强目标感存在，闭环颗粒度仍不够。</p><h3>最大的 Bug / 问题</h3><p>主要问题：产物身份不清、回看缺位、排障无边界。</p><p>最迫切需要解决：把已发布的那条视频真正找出来并追踪。</p><p>长期最重要：建立内容—信任—合法需求—服务结果的可验证链路。</p><h3>给他的建议</h3><p>不要用更大的目标掩盖缺字段；把“我做成了”改成“别人能打开、能核对、能判断下一步”。社交和户外可以恢复状态，但不冒充客户访谈。</p><h3>行动清单</h3><p>□ 将存量作品、旧订单和新增结果明确分栏。</p><p>□ 对合作与公开案例预先写清授权、隐私和退出边界。</p></div>
+      </section>
+    </div>
+
+    <footer class="footer">
+      <span>缺失与待核：发布视频是否等于上一承诺的B站视频，平台及真实咨询结果。；员工成本从前期约3800到约800的口述是否为同一费用范围；生活总成本不到3000未含其他支出。；合作终止的后续风险、既有款项与新增营收必须分开。</span>
+      <span>瓶颈 → 根因 → 实验</span>
+    </footer>
+  </main>
+</body>
+</html>
