@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>先看见结果，再扩大批量 · 2026-10-24认知卡片</title>
+<style>
+:root{--canvas:#000;--surface:#0d0d0d;--panel:#141414;--raised:#1f1f1f;--line:#262626;--edge:#3a3a3a;--ink:#fff;--strong:#e6e6e6;--body:#ccc;--muted:#aaa;--quiet:#999;--display:56px;--heading:28px;--subheading:20px;--lead:23px;--quote:30px;--body-size:17px;--small:14px;--caption:12px;--label:13px;--metric:38px;--weight:400;--rhythm:1.85;--tight:1.25;--tracking:2px;--micro-tracking:1px;--s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:24px;--s6:32px;--s7:40px;--s8:48px;--s9:64px;--s10:80px;--section:96px;--gutter:64px;--rule:1px solid var(--line);--strong-rule:1px solid var(--edge);--outline:1px solid var(--ink);--marker:2px solid var(--ink);--radius:0;--measure:850px;--reading:690px}
+*{box-sizing:border-box}body{margin:0;background:var(--canvas);color:var(--body);font:var(--weight) var(--body-size)/var(--rhythm) Georgia,"Songti SC","Noto Serif CJK SC",serif}main{max-width:var(--measure);margin:var(--s8) auto;padding:var(--gutter);border:var(--rule);border-radius:var(--radius)}header{padding:var(--s4) 0 var(--s9)}.date{font:var(--caption)/1.6 ui-monospace,monospace;letter-spacing:var(--tracking);color:var(--quiet)}h1,h2,h3{font-family:-apple-system,BlinkMacSystemFont,"PingFang SC",sans-serif;font-weight:var(--weight);color:var(--ink)}h1{font-size:var(--display);line-height:var(--tight);letter-spacing:var(--tracking);margin:var(--s6) 0}h2{font-size:var(--heading);line-height:1.4;letter-spacing:var(--micro-tracking);margin:var(--s3) 0 var(--s5)}h3{font-size:var(--subheading);line-height:1.6;margin:var(--s6) 0 var(--s3)}p{margin:var(--s4) 0}.lead{font-size:var(--lead);line-height:1.65;color:var(--strong);max-width:var(--reading)}.verdict{font-size:var(--small);color:var(--muted);border-left:var(--marker);padding-left:var(--s4);margin-top:var(--s7)}section{padding-top:var(--s7);margin-top:var(--section);border-top:var(--rule)}.section-number{font:var(--label)/1.4 ui-monospace,monospace;color:var(--quiet);letter-spacing:var(--tracking)}.core{background:var(--surface);padding:var(--s6);border:var(--strong-rule);margin:0}.thesis{font-size:var(--lead);color:var(--ink)}.evidence{font-size:var(--small);color:var(--muted);border-top:var(--rule);padding-top:var(--s4)}.quote{font-size:var(--quote);line-height:1.65;color:var(--ink);margin:var(--s8) 0;padding-left:var(--s5);border-left:var(--marker)}.attribution{display:block;font-size:var(--small);color:var(--quiet);margin-top:var(--s3)}.step{padding:var(--s5) 0;border-bottom:var(--rule)}.step-title{font-size:var(--subheading);color:var(--strong);margin:0}.step-detail{margin:var(--s2) 0;font-size:var(--body-size)}.fact{border:var(--rule);padding:var(--s5);margin:var(--s5) 0}.fact-title{font-size:var(--label);color:var(--quiet);letter-spacing:var(--micro-tracking)}.fact-value{font-size:var(--metric);line-height:1.4;color:var(--ink);margin-top:var(--s3)}.note{font-size:var(--small);color:var(--muted)}.action{border:var(--outline);padding:var(--s6)}.action-title{font-size:var(--lead);line-height:1.6;color:var(--ink);margin-top:0}.decision{font-size:var(--body-size);color:var(--strong)}.status{font:var(--caption)/1.6 ui-monospace,monospace;letter-spacing:var(--micro-tracking);color:var(--quiet)}ul{padding-left:var(--s5);margin:var(--s4) 0}li{margin:var(--s3) 0}.risk{background:var(--panel);padding:var(--s5);border-top:var(--strong-rule)}.audit{padding:var(--s5);background:var(--raised)}.final{font-size:var(--lead);line-height:1.6;color:var(--strong)}footer{padding-top:var(--s8);margin-top:var(--s9);border-top:var(--rule);font-size:var(--small);color:var(--quiet)}
+@media(max-width:374px){:root{--gutter:20px;--display:32px;--heading:23px;--lead:20px;--quote:24px;--section:56px}main{margin:0;border:0}.core,.action{padding:var(--s4)}}
+@media(min-width:375px) and (max-width:599px){:root{--gutter:26px;--display:38px;--heading:25px;--lead:21px;--quote:26px;--section:64px}main{margin:0;border:0}}
+@media(min-width:600px) and (max-width:899px){:root{--gutter:44px;--display:46px;--section:80px}main{margin:var(--s5)}}
+@media(min-width:900px) and (max-width:1199px){main{margin:var(--s7) auto}}
+@media(min-width:1200px){main{margin:var(--s9) auto}}
+</style>
+</head>
+<body>
+<main>
+<header>
+<div class="date">2026.10.24 ／ 日省认知卡片</div>
+<h1>先看见结果，<br>再扩大批量。</h1>
+<p class="lead">持续开发、学习、调用模型，仍可能离主线结果很远。今天的复盘落点：让第一份可验收产物尽早出现。</p>
+<p class="verdict">这是基于本轮自述的复盘建议，尚未成为已批准动作或经过实验验证的规则。</p>
+</header>
+<section class="core">
+<div class="section-number">核心判断</div>
+<h2>把验收点向前挪。</h2>
+<p class="thesis">等大量工作跑完才发现目标或环境疑问，返工成本已经发生。开工前核对目标，过程中看见最小结果，扩大批量前检查样本。</p>
+<p class="evidence">用户自述：发现模型选择与预期不同，想再次修改方案；同时说有效产出不多、主线未推进。真实模型差异与重做效果尚未核验。</p>
+</section>
+<section>
+<div class="section-number">01 ／ 今天的两组证据</div>
+<h2>忙碌、学习与结果分别看。</h2>
+<h3>局部有运行结果，主线仍有缺口</h3>
+<p>用户报告跑通了自动擦亮，也持续使用AI开发。但本轮没有发布、有效客户对话、报价、成交的可核实记录。这些指标应写“未记录”，不能填成零，也不能拿工具运行替代。</p>
+<h3>口述复习已发生，迁移效果待验证</h3>
+<p>换场地、等待AI的间隙被用于复习思维模型。复述是一个具体动作；是否帮助当前业务做出更好的决定，还需要观察。</p>
+<div class="quote">“如果这个事会失败，<br>会是因为什么？”<span class="attribution">本轮用户口述 · 事前验尸</span></div>
+<p>今天暴露的检查点很具体：预期产物是否清楚，实际工具环境是否匹配，什么时候能看到第一份结果。</p>
+</section>
+<section>
+<div class="section-number">02 ／ 一个可用的顺序</div>
+<h2>目标 → 环境 → 样本 → 批量</h2>
+<div class="step"><p class="step-title">先说清要交付什么</p><p class="step-detail">让结果可以被看到、被判断；“推进项目”和“消耗额度”都不能单独充当完成证据。</p></div>
+<div class="step"><p class="step-title">再核对真实运行环境</p><p class="step-detail">不凭模型名称或界面印象断言实际能力。具体版本、配置与输出对照需要真实证据。</p></div>
+<div class="step"><p class="step-title">尽早得到一个样本</p><p class="step-detail">先检查样本与预期的差距，再决定保留、修改或重做。这是AI建议，尚未被用户选为主动作。</p></div>
+<div class="step"><p class="step-title">有合格证据，再扩大规模</p><p class="step-detail">“1000多个视频”仍是未来方向。首条作品、验收标准和发布范围未定时，不把规模愿望记成执行承诺。</p></div>
+<p class="note">适用边界：重复工作可以先验证代表样本；特殊个例仍需单独验收，不能用一次通过证明全部可靠。</p>
+</section>
+<section>
+<div class="section-number">03 ／ 注意力护栏</div>
+<h2>入口要跟目标一致。</h2>
+<p>本轮看客源时被抖音与B站推荐流带走，是本人已经识别的泄漏。午间刷视频后，下午仍自评可工作；局部偏离不应被扩大为整天失控。</p>
+<p>本人提出的护栏是：攻克难题前先拆清要做什么，不先打开短视频或游戏。下一次要检查的是护栏是否帮助得到结果，而非给护栏本身再造一套系统。</p>
+<div class="fact"><div class="fact-title">时间证据的使用原则</div><div class="fact-value">不重复，不推算。</div><p class="note">不同视图可能重叠，同一活动的多次回述不累计；未记录不等于没有投入，冲突记录保留冲突。私有日程流水不在公开卡片复刻。</p></div>
+</section>
+<section>
+<div class="section-number">04 ／ 当前动作状态</div>
+<h2>唯一动作仍待决定。</h2>
+<div class="action"><p class="status">没有合格对象时，保留空位</p><p class="action-title">待用户决定<br>本轮无投产比达标任务</p><p class="decision">最接近外部结果的候选：选一个模型做B站样本、明确重改哪个方案、选现有案例发布。三者都还缺少对象或明确执行承诺。</p><p class="note">默认锚点只在动作确定后适用：当天第一个60–90分钟保护时段。尚未排期，未自动晋升主动作。</p></div>
+<p>3条明确生活事项已进入TaskBox，未被升级为唯一动作。16条活动候选审核后保持待决，AI历史建议仍保持proposed。</p>
+<div class="risk"><h3>仍然未知</h3><ul><li>真实模型差异、费用差异和重做是否有效。</li><li>视频首条样本与合格标准、完整项目范围。</li><li>全天健康容量与完整投入时长；个人解释不能直接成为专业结论。</li></ul></div>
+</section>
+<section>
+<div class="section-number">05 ／ 第三人称审视</div>
+<h2>他需要更早见到结果。</h2>
+<h3>行为模式和思维习惯</h3>
+<p>他持续学习、开发、复习，发现偏差后想调整方案；新案例又会带出批量制作的想法。等待AI可以成为学习时间，看客源也会成为信息流入口。这是本轮行为，不是人格定性。</p>
+<h3>最大的 Bug / 问题</h3>
+<div class="audit"><p>主要问题：大量投入与有效结果之间缺少中途验收。</p><p>最迫切需要解决：先明确下一次主线投入的具体样本和合格证据。</p><p>长期最重要：用发布、交付或可验证运行结果判断AI工作的价值。</p></div>
+<h3>给他的建议</h3>
+<p class="final">开工前问清三件事：<br>交付什么，环境是否匹配，何时看到第一份结果。</p>
+<h3>行动清单</h3>
+<p>未新增重复动作。先从前文候选中作决定，再按授权执行；建议本身不构成任务授权。</p>
+</section>
+<footer>来源：2026-10-24正式日省提炼 ／ 活动范围2026-10-23至24<br>视觉参考：Bugatti的黑白、留白与字距；单栏静态排版。原始时间流水与完整日省保持私有。</footer>
+</main>
+</body>
+</html>
