@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>认知卡片 · 2026-10-30</title>
+<style>
+:root{
+  --black:#000;--night:#0a0a0a;--teal:#1e2c31;--white:#fff;--cream:#fbfbf5;--mint:#c1fbd4;--pistachio:#d4f9e0;--ink:#000;--shade30:#d4d4d8;--shade40:#a1a1aa;--shade50:#71717a;--shade60:#52525b;--shade70:#3f3f46;--hair:#e4e4e7;--hairdark:#1e2c31;--cool1:#9dabad;--cool2:#9797a2;--cool3:#bdbdca;--linkmint:#99b3ad;--red:#ffb4ab;--amber:#f4d06f;--blue:#b7d8ff;--violet:#d5c2ff;--green:#2c6e49;--muted:#657276;--ink2:#202124;--canvas:#fbfbf5;--surface:#fff;--surface2:#f1f3ee;--line:#dfe4df;--line2:#bcc8c1;--focus:#163d2a;--quiet:#eef5ef;--danger:#7a2f2f;--shadow:rgba(0,0,0,.12);
+  --t-hero:clamp(42px,7vw,82px);--t-title:32px;--t-sub:24px;--t-section:20px;--t-body:17px;--t-body2:15px;--t-note:13px;--t-micro:11px;--t-quote:27px;--t-stat:48px;--t-label:12px;--t-strong:600;--t-normal:420;--t-light:330;--lh-tight:1.05;--lh-head:1.18;--lh-body:1.62;--lh-note:1.45;--ls-wide:1.8px;--ls-mid:.5px;--ls-tight:0;--font-display:Helvetica,Arial,sans-serif;--font-body:Inter,Helvetica,Arial,sans-serif;--font-mono:ui-monospace,SFMono-Regular,Menlo,monospace;
+  --s-1:2px;--s-2:4px;--s-3:8px;--s-4:12px;--s-5:16px;--s-6:20px;--s-7:24px;--s-8:32px;--s-9:40px;--s-10:48px;--s-11:64px;--s-12:88px;
+  --mark-bar:4px;--mark-num:28px;--mark-rule:1px;--mark-tag:9999px;--mark-band:8px;--mark-gap:12px;--mark-quote:3px;--mark-risk:2px;--mark-dash:1px;--mark-dot:6px;
+}
+*{box-sizing:border-box}body{margin:0;background:var(--black);color:var(--ink);font-family:var(--font-body);font-size:var(--t-body);line-height:var(--lh-body);font-feature-settings:"ss03";}
+.card-shell{max-width:980px;margin:0 auto;padding:var(--s-10) var(--s-7);background:var(--cream)}
+.cognitive-card{background:var(--surface);border:var(--mark-rule) solid var(--ink);box-shadow:0 8px 8px var(--shadow),0 4px 4px var(--shadow),0 2px 2px var(--shadow);}
+.card-header{background:var(--black);color:var(--white);padding:var(--s-11) var(--s-9) var(--s-9)}
+.eyebrow{font-size:var(--t-label);letter-spacing:var(--ls-wide);text-transform:uppercase;color:var(--mint);font-weight:var(--t-strong)}
+h1{font-family:var(--font-display);font-size:var(--t-hero);font-weight:var(--t-light);line-height:var(--lh-tight);letter-spacing:var(--ls-mid);margin:var(--s-5) 0 var(--s-6)}
+.header-note{color:var(--cool1);font-size:var(--t-body2);max-width:680px}
+.core-insight{padding:var(--s-9);background:var(--mint);border-bottom:var(--mark-rule) solid var(--ink)}
+.core-insight h2,.section h2{font-size:var(--t-section);line-height:var(--lh-head);margin:0 0 var(--s-4);font-weight:var(--t-strong)}
+.core-line{font-family:var(--font-display);font-size:var(--t-sub);line-height:1.35;max-width:760px}
+.content{padding:var(--s-9)}
+.section{border-top:var(--mark-rule) solid var(--ink);padding-top:var(--s-7);margin-top:var(--s-8)}
+.section:first-child{border-top:0;margin-top:0;padding-top:0}
+.numbered{display:grid;grid-template-columns:var(--mark-num) 1fr;gap:var(--s-5);margin:var(--s-6) 0}
+.num{width:var(--mark-num);height:var(--mark-num);background:var(--black);color:var(--white);display:grid;place-items:center;font-weight:var(--t-strong);font-size:var(--t-body2)}
+.numbered strong{display:block;font-size:var(--t-body);margin-bottom:var(--s-2)}
+.numbered p{margin:0;color:var(--shade60);font-size:var(--t-body2)}
+.quote-band{margin:var(--s-9) 0;background:var(--black);color:var(--white);padding:var(--s-8) var(--s-9);border-left:var(--mark-quote) solid var(--mint)}
+.quote-band p{font-family:var(--font-display);font-size:var(--t-quote);line-height:1.35;margin:0 0 var(--s-5);font-weight:var(--t-light)}
+.quote-band small{color:var(--cool1);font-size:var(--t-note)}
+.rule-box{background:var(--pistachio);padding:var(--s-7);border-left:var(--mark-bar) solid var(--green)}
+.rule-box ol{margin:var(--s-4) 0 0;padding-left:var(--s-7)}
+.rule-box li{padding:var(--s-2) 0}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--s-6)}
+.mini{border:var(--mark-rule) solid var(--line2);padding:var(--s-6);background:var(--quiet)}
+.mini h3{font-size:var(--t-body2);margin:0 0 var(--s-3);letter-spacing:var(--ls-mid)}
+.mini p{margin:0;font-size:var(--t-body2)}
+.action{border:var(--mark-risk) solid var(--black);padding:var(--s-7);background:var(--cream)}
+.action .status{font-family:var(--font-mono);font-size:var(--t-note);color:var(--shade60);margin-bottom:var(--s-3)}
+.action strong{font-size:var(--t-sub);font-weight:var(--t-strong)}
+.risk{border-left:var(--mark-risk) solid var(--danger);padding:var(--s-6);background:#fff4f2}
+.risk ul{margin:var(--s-3) 0 0;padding-left:var(--s-7)}
+.footer{background:var(--black);color:var(--cool1);padding:var(--s-8) var(--s-9);font-size:var(--t-note)}
+.footer strong{color:var(--white)}
+@media (max-width:1023px){.card-shell{padding:var(--s-8) var(--s-6)}.card-header{padding:var(--s-10) var(--s-8) var(--s-8)}.content{padding:var(--s-8)}h1{font-size:56px}.core-insight{padding:var(--s-8)}}
+@media (max-width:767px){body{font-size:16px}.card-shell{padding:0;background:var(--cream)}.card-header,.content,.core-insight,.footer{padding-left:var(--s-6);padding-right:var(--s-6)}h1{font-size:44px}.core-line{font-size:22px}.grid{grid-template-columns:1fr}.quote-band{margin-left:0;margin-right:0;padding:var(--s-7)}.quote-band p{font-size:22px}}
+@media (max-width:479px){.card-header{padding-top:var(--s-9);padding-bottom:var(--s-7)}h1{font-size:38px}.content{padding-top:var(--s-7);padding-bottom:var(--s-7)}.numbered{gap:var(--s-4)}.num{width:24px;height:24px;font-size:12px}.core-line{font-size:20px}.section{margin-top:var(--s-7);padding-top:var(--s-6)}}
+@media (min-width:1440px){.card-shell{max-width:1120px;padding-top:var(--s-12);padding-bottom:var(--s-12)}.card-header{padding-top:120px;padding-bottom:64px}}
+</style>
+</head>
+<body>
+<main class="card-shell">
+<article class="cognitive-card">
+<header class="card-header"><div class="eyebrow">日省认知卡片 · 2026.10.30</div><h1>把 AI 从“好玩”<br>拉回“有结果”</h1><div class="header-note">今天没有形成外部成交。真正出现的是一个判断：工具额度、硬件体验和朋友的潜在需求，都必须经过对象、边界与验收，才算业务。</div></header>
+<section class="core-insight"><h2>今日核心命题</h2><div class="core-line">先说清“为谁解决什么问题，完成后留下什么证据”，再决定查资料、买硬件或消耗额度。</div></section>
+<div class="content">
+<section class="section"><h2>三个判断</h2>
+<div class="numbered"><div class="num">01</div><div><strong>结论先行，降低理解成本</strong><p>本人重新理解了这个原则：先把结论放前面，再解释理由，信息更容易被接住。</p></div></div>
+<div class="numbered"><div class="num">02</div><div><strong>工具资源不是业务结果</strong><p>Claude、Codex 的额度、账号数量和代理体验，只说明资源或单点可用，不说明交付、成交或收益。</p></div></div>
+<div class="numbered"><div class="num">03</div><div><strong>机会要过四道门</strong><p>朋友是否愿意用、是否愿意付费、能否嵌入当前业务、最后如何验收，缺一项都只是候选。</p></div></div>
+</section>
+<section class="quote-band"><p>“AI 这种东西本身也没有办法带来很可直观的一个结果。”</p><small>— 本轮朋友业务改造讨论</small></section>
+<section class="section"><h2>可复用的工作法</h2><div class="rule-box"><ol><li>先写对象：谁的问题正在发生。</li><li>再写结果：完成后能观察到什么。</li><li>最后写投入：查什么、买什么、用多少额度。</li><li>没有验收证据，就保留为候选，不把可能性写成承诺。</li></ol></div></section>
+<section class="section"><h2>今天的行为反思</h2><div class="grid"><div class="mini"><h3>做得好</h3><p>能识别朋友业务改造的真实阻力；把路由器验货重点收敛到型号；意识到疲累与兴奋同时存在。</p></div><div class="mini"><h3>不够</h3><p>投资文章没有收藏，产生回找成本；工具、投资、硬件和合作话题同时打开，尚未收敛到外部结果。</p></div></div></section>
+<section class="section"><h2>明日驾驶舱</h2><div class="action"><div class="status">状态 · 待用户决定</div><strong>本轮无投产比达标的唯一动作</strong><p>候选仍包括：查 Claude 续费额度、找投资文章、核对路由器型号、朋友 AI 改造、一次冥想。它们都没有被自动排期或写入 TaskBox。</p></div></section>
+<section class="section"><h2>待核风险</h2><div class="risk"><ul><li>投资文章、股息和收益数字来自记忆或转述，未核来源。</li><li>Claude/Codex 重置时间、路由器功能和电脑代理能力未做实时验收。</li><li>日程接口返回 empty，只表示未记录，不等于零投入。</li></ul></div></section>
+</div>
+<footer class="footer"><strong>证据边界</strong>　来源为冻结日省交接与本人语料；公开卡片不包含时间流水。<br>视觉参考：Shopifi-inspired · `99_系统/design-md/shopify/DESIGN.md`</footer>
+</article>
+</main>
+</body>
+</html>
