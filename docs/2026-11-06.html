@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<title>先有自己的答案 · 2026-11-06 认知卡片</title>
+<style>
+:root{--blue:#024ad8;--blue-deep:#0e3191;--blue-pale:#eef4ff;--blue-line:#c9e0fc;--ink:#1a1a1a;--ink-soft:#292929;--body:#3d3d3d;--muted:#636363;--paper:#fff;--cloud:#f7f7f7;--line:#e8e8e8;--warning:#5a1313;--warning-bg:#fff5f4;--warning-line:#f9d4d2;--s1:4px;--s2:8px;--s3:12px;--s4:16px;--s5:20px;--s6:24px;--s7:32px;--s8:40px;--s9:48px;--s10:64px;--s11:72px;--s12:80px;--title:64px;--section:32px;--sub:22px;--lead:22px;--copy:18px;--small:15px;--micro:13px;--normal:400;--medium:500;--bold:700;--lh:1.8;--tight:1.15}
+*{box-sizing:border-box}html{background:var(--cloud);color:var(--ink)}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;font-size:var(--copy);line-height:var(--lh)}main{max-width:960px;margin:var(--s9) auto;background:var(--paper);border:1px solid var(--line)}header,section,footer{padding:var(--s9) var(--s10)}header{padding-top:var(--s11);padding-bottom:var(--s10);border-top:8px solid var(--blue)}.date{margin:0 0 var(--s7);font-size:var(--small);letter-spacing:.06em;color:var(--muted)}h1{font-size:var(--title);font-weight:var(--medium);line-height:var(--tight);letter-spacing:-.035em;margin:0 0 var(--s7)}.intro{font-size:var(--lead);color:var(--body);max-width:29em;margin:0}.signal{display:block;color:var(--blue);margin-top:var(--s3)}.core{background:var(--blue);color:var(--paper);padding:var(--s8) var(--s10)}.core p{font-size:28px;line-height:1.5;margin:0;font-weight:var(--medium)}.core small{display:block;color:var(--blue-line);font-size:var(--small);margin-top:var(--s4)}section{border-top:1px solid var(--line)}h2{font-size:var(--section);line-height:1.35;font-weight:var(--medium);margin:0 0 var(--s7);letter-spacing:-.02em}.num{font-size:var(--micro);color:var(--blue);font-weight:var(--bold);display:block;letter-spacing:.14em;margin-bottom:var(--s3)}h3{font-size:var(--sub);line-height:1.5;margin:0 0 var(--s3);font-weight:var(--medium)}p{margin:0 0 var(--s5);color:var(--body)}p:last-child{margin-bottom:0}.row{padding:var(--s6) 0;border-top:1px solid var(--line)}.row:first-of-type{padding-top:0;border-top:0}.row:last-of-type{padding-bottom:0}.emphasis{color:var(--blue-deep);font-weight:var(--medium)}.quote{background:var(--cloud);padding:var(--s7);margin:var(--s7) 0 0;border-left:4px solid var(--blue)}blockquote{margin:0;font-size:26px;line-height:1.6;font-weight:var(--medium)}.attribution{font-size:var(--small);color:var(--muted);margin-top:var(--s4)}.note{font-size:var(--small);color:var(--muted)}.method{padding:var(--s7);background:var(--blue-pale);border:1px solid var(--blue-line)}.step{position:relative;padding-left:var(--s8);padding-bottom:var(--s6);border-left:1px solid var(--blue-line);margin-left:var(--s3)}.step:last-child{padding-bottom:0;border-left-color:transparent}.step-index{position:absolute;left:-12px;top:4px;width:24px;height:24px;text-align:center;line-height:24px;font-size:var(--micro);font-weight:var(--bold);background:var(--blue);color:var(--paper)}.step-title{display:block;font-weight:var(--medium);color:var(--blue-deep);margin-bottom:var(--s1)}.step p{font-size:17px;margin-bottom:0}.example{background:var(--cloud);padding:var(--s6);margin-top:var(--s6)}.example-title{font-weight:var(--medium);color:var(--ink-soft);font-size:var(--small);margin-bottom:var(--s2)}.verdict{border-top:3px solid var(--blue);padding-top:var(--s6);margin-top:var(--s7)}.verdict strong{font-size:26px;line-height:1.45;font-weight:var(--medium);display:block;margin-bottom:var(--s3)}.risk{padding:var(--s6);background:var(--warning-bg);border:1px solid var(--warning-line);margin-top:var(--s7)}.risk h3{color:var(--warning);font-size:19px}.risk p{font-size:var(--small);color:var(--warning)}ul{margin:0;padding-left:var(--s6)}li{margin:var(--s3) 0;color:var(--body)}.status{border-bottom:1px solid var(--line);padding-bottom:var(--s6);margin-bottom:var(--s6)}.status strong{color:var(--blue-deep);font-size:var(--lead);font-weight:var(--medium)}.review{background:var(--ink);color:var(--paper)}.review h2{color:var(--paper)}.review h3{font-size:20px;color:var(--paper);margin-top:var(--s6)}.review p,.review li{color:#e8e8e8}.review .num{color:#9dc4ff}.review .advice{border-top:1px solid #4d4d4d;padding-top:var(--s6);margin-top:var(--s7)}.review .actions{padding-top:var(--s6);border-top:1px solid #4d4d4d;margin-top:var(--s7)}.review .actions ul{list-style-type:square}.review .actions li{font-size:17px}.footer{font-size:var(--micro);color:var(--muted);padding-top:var(--s6);padding-bottom:var(--s6);background:var(--paper)}
+@media(max-width:389px){:root{--title:37px;--section:26px;--lead:19px;--copy:16px;--sub:20px}main{margin:0;border-left:0;border-right:0}header,section,footer{padding:var(--s7) var(--s5)}header{padding-top:var(--s9)}.core{padding:var(--s7) var(--s5)}.core p{font-size:23px}.method,.quote{padding:var(--s5)}blockquote{font-size:22px}.verdict strong{font-size:23px}.step{padding-left:var(--s7)}}
+@media(min-width:390px) and (max-width:599px){:root{--title:44px;--section:28px;--lead:20px;--copy:17px;--sub:21px}main{margin:0;border-left:0;border-right:0}header,section,footer{padding:var(--s8) var(--s6)}header{padding-top:var(--s10)}.core{padding:var(--s7) var(--s6)}.core p{font-size:25px}.method,.quote{padding:var(--s6)}blockquote{font-size:24px}}
+@media(min-width:600px) and (max-width:899px){:root{--title:54px;--section:30px}main{margin:var(--s6)}header,section,footer{padding-left:var(--s8);padding-right:var(--s8)}.core{padding-left:var(--s8);padding-right:var(--s8)}}
+@media(min-width:900px){main{margin-top:var(--s9);margin-bottom:var(--s9)}header{padding-top:var(--s12)}.intro{max-width:30em}}
+@media print{html,body{background:#fff}main{margin:0;max-width:none;border:0}header,section,footer{padding:24px 28px}.core{padding:24px 28px}h1{font-size:44px}h2{break-after:avoid}h3,.row,.step,.quote,.risk{break-inside:avoid}body{-webkit-print-color-adjust:exact;print-color-adjust:exact}}
+</style>
+</head>
+<body>
+<main>
+<header>
+<p class="date">认知卡片 · 2026年11月6日<br>复盘活动：11月5日</p>
+<h1>先有自己的答案，<span class="signal">再让AI补角度。</span></h1>
+<p class="intro">今天最值得留下的，是一次具体的自我观察：在看AI答案以前，自己已经想出了一个小答案。让工具的便利，也成为判断力的训练入口。</p>
+</header>
+<div class="core">
+<p>“思考的能力来源于思考。”</p>
+<small>本人原话。方法值得尝试，长期效果仍需观察。</small>
+</div>
+<section>
+<span class="num">01 · 先分清两层</span>
+<h2>把一天记录下来，<br>也留住你怎样理解它。</h2>
+<div class="row"><h3>事实层：今天做了什么</h3><p>活动、顺序、结果与证据。自动记录能帮助还原时间线，但空记录仍然意味着未知。</p></div>
+<div class="row"><h3>反思层：你怎样看待它</h3><p>感受、判断、困惑、选择理由，需要本人表达。今天认为自由生活的节奏接近理想，同时仍在找一个愿意投入三到五年的事业方向。</p></div>
+<div class="quote"><blockquote>“第2层复盘才是我的感悟，我的感受，我的理解。”</blockquote><p class="attribution">本人原话，省略口吃；没有因此证明长期方向已经确定。</p></div>
+</section>
+<section>
+<span class="num">02 · 把比较留给自己</span>
+<h2>用一次提问，<br>看见自己漏掉的角度。</h2>
+<div class="method">
+<div class="step"><span class="step-index">一</span><span class="step-title">先写自己的答案</span><p>说出你认为原因是什么、依据是什么。暂时保留不确定。</p></div>
+<div class="step"><span class="step-index">二</span><span class="step-title">再看AI怎么想</span><p>比较它使用了哪些信息、提出了哪些不同解释。</p></div>
+<div class="step"><span class="step-index">三</span><span class="step-title">把差异补回判断</span><p>留下有用角度，继续检查依据。模型的流畅表达本身不增加证据。</p></div>
+</div>
+<div class="example"><p class="example-title">今天已经发生的一小步</p><p>本人描述，在没有先看AI答案时，已得到一个小答案。这个具体体验支持继续观察该方法；它没有证明思考能力已恢复，也没有证明此前的变化由AI造成。</p></div>
+<p class="note" style="margin-top:24px">多问一层为什么、再换一个维度，是本人提出的思路；尚未记录完整五层追问的应用结果。</p>
+</section>
+<section>
+<span class="num">03 · 方向需要往里走</span>
+<h2>打开更多门之前，<br>看看哪扇门里有下一步。</h2>
+<p>本人一面想把看到的业务都加入收入组合，一面又说：“我只选，我没有去往深的走。”网盘、工具、宠物、海外服务都是候选；候选数量不证明商业路径已经清楚。</p>
+<div class="verdict"><strong>复利要落在连续投入与反馈上。</strong><p>这是本次整理建议。业务面板可以提供视图，真实交付、客户回应和运行结果仍需单独留下证据。</p></div>
+<div class="example"><p class="example-title">工具之外的服务价值</p><p>今天讨论了自助上传减少客服对接，以及工具配合陪伴、社群和持续更新。它们是待验证的服务组合，尚无本轮客户支付证据，不能写成已找到护城河。</p></div>
+<div class="risk"><h3>读指标，先保留背景</h3><p>记录多、投诉多或报错多，可能受到规模、时间和监控程度影响；它们也不自动代表问题可以忽略。需要分母、结果与样本选择。该观点来自本轮笔记，原创归属未核。</p></div>
+</section>
+<section>
+<span class="num">04 · 让状态有证据</span>
+<h2>把便利、完成和验证，<br>分别记清楚。</h2>
+<div class="row"><h3>一次体验</h3><p>对一次安卓操作感到快、方便，是一个自用反馈样本。它不能替代所有设置验收、持续稳定性或客户结果。</p></div>
+<div class="row"><h3>一个提醒</h3><p>本人提出：提醒关闭而事项没做，就继续衔接下一次提醒。这个原则尚未证明交付已经完成，本轮也没有新增系统闹钟。</p></div>
+<div class="row"><h3>一项任务</h3><p>自动派单设计审阅已经记录；只授权审阅，不等于实施了新方案。旧交付没有对应发送或确认记录，完成状态继续待核。</p></div>
+<div class="status" style="margin-top:32px"><strong>下一主动作：待决定。</strong><p style="margin-top:8px">没有把学习、家务或泛泛维护硬填成唯一动作。业务面板、自助上传与商业视频仍缺具体范围；AI建议保持待批准。</p></div>
+<p class="note">时间记录缺失保留未知。完整日省和时间快照保持私有，卡片不公开原始流水。</p>
+</section>
+<section class="review">
+<span class="num">05 · 第三人称审视</span>
+<h2>他能看见很多可能，<br>还需要看清下一次验证。</h2>
+<h3>行为模式</h3><p>生活体验很快变成产品和收入方向。今天，他也明确看到了自己的另一面：打开新门很多，往里走得还不够深。这是本轮自述，不能推广为人格定性。</p>
+<h3>最大的问题</h3><p>候选扩张快，外部结果的对象和证据绑定慢。需要先分清旧交付的现实状态，再决定哪项新工作值得进入执行。</p>
+<div class="advice"><h3>给他的建议</h3><p>保留“先想、再比较”的步骤。增加一个业务前，先指出一个已有方向需要验证的外部结果；不让更多规划代替结果确认。此项仍是AI建议。</p></div>
+<div class="actions"><h3>建议行动清单 · 尚未批准执行</h3><ul><li>补齐现有交付的发送记录和客户状态，只核对原事项。</li><li>若决定做面板，先选一个已有业务、一个可验收节点。</li></ul></div>
+</section>
+<footer class="footer">源自当日正式日省的提炼。本人自述、方法设想、AI建议与已验证结果分别保留；本卡片不构成专业判断或任务授权。</footer>
+</main>
+</body>
+</html>
