@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>多周期判断、减仓与社群边界</title>
+  <meta name="description" content="DeBox双人语音整理：保留历史盘面的条件变化、讲者分歧、收益口径与社区商业关系。">
+  <!-- 风格来源：99_系统/design-md/claude/DESIGN.md；纯静态、自包含。 -->
+  <style>
+    :root {
+      color-scheme: light;
+      --canvas: #faf9f5;
+      --ink: #141413;
+      --body: #3d3d3a;
+      --body-strong: #252523;
+      --muted: #6c6a64;
+      --primary: #cc785c;
+      --primary-active: #a9583e;
+      --surface-soft: #f5f0e8;
+      --surface-card: #efe9de;
+      --hairline: #e6dfd8;
+      --surface-dark: #181715;
+      --on-dark: #faf9f5;
+      --on-dark-soft: #a09d96;
+      --display: "Copernicus", "Tiempos Headline", Georgia, "Songti SC", "STSong", "Noto Serif CJK SC", serif;
+      --sans: "StyreneB", Inter, -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--canvas);
+      color: var(--body);
+      font: 17px/1.85 var(--sans);
+      overflow-wrap: anywhere;
+    }
+    .page { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+    header, main, footer { max-width: 880px; margin-left: auto; margin-right: auto; }
+    header { padding: 96px 0 48px; border-bottom: 1px solid var(--hairline); }
+    header small { display: block; color: var(--muted); font-size: 13px; }
+    h1, h2 { color: var(--ink); font-family: var(--display); font-weight: 400; }
+    h1 { margin: 24px 0; font-size: clamp(36px, 5vw, 64px); line-height: 1.16; letter-spacing: -0.025em; }
+    header p { margin: 0; font-size: 19px; line-height: 1.8; color: var(--muted); }
+    main { padding-bottom: 64px; }
+    section { padding: 48px 0; border-bottom: 1px solid var(--hairline); scroll-margin-top: 24px; }
+    h2 { margin: 0 0 24px; font-size: 36px; line-height: 1.3; letter-spacing: -0.015em; }
+    h3 { margin: 32px 0 12px; color: var(--ink); font-size: 21px; font-weight: 500; line-height: 1.5; }
+    p { margin: 0 0 20px; }
+    section > :last-child { margin-bottom: 0; }
+    strong { color: var(--body-strong); font-weight: 600; }
+    .lead { font-size: 19px; color: var(--body-strong); }
+    a { color: var(--primary-active); text-underline-offset: 4px; }
+    a:focus-visible { outline: 2px solid var(--primary-active); outline-offset: 4px; border-radius: 4px; }
+    ul, ol { margin: 20px 0; padding-left: 26px; }
+    li { margin: 10px 0; padding-left: 2px; }
+    li::marker { color: var(--primary); }
+    .toc { margin: 32px 0 0; padding: 24px 32px; background: var(--surface-card); border: 0; border-radius: 12px; }
+    .toc h2, .toc h3 { margin: 0 0 12px; font: 500 16px/1.5 var(--sans); letter-spacing: 0; }
+    .toc ul, .toc ol { margin: 0; }
+    .toc a { display: inline-block; padding: 4px 0; color: var(--ink); text-decoration-color: var(--hairline); }
+    blockquote { margin: 32px 0; padding: 24px 28px; border-left: 3px solid var(--primary); border-radius: 0 12px 12px 0; background: var(--surface-soft); color: var(--body-strong); }
+    blockquote p:last-child { margin-bottom: 0; }
+    .card, .callout { margin: 24px 0; padding: 32px; background: var(--surface-card); border-radius: 12px; }
+    code { font: 0.88em/1.6 var(--mono); }
+    :not(pre) > code { padding: 2px 5px; border-radius: 4px; background: var(--surface-card); }
+    pre { max-width: 100%; margin: 28px 0; padding: 24px; overflow-x: auto; border-radius: 12px; background: var(--surface-dark); color: var(--on-dark); overflow-wrap: normal; }
+    pre code { font-size: 14px; }
+    table { display: block; width: 100%; max-width: 100%; margin: 28px 0; border-collapse: collapse; overflow-x: auto; font-size: 15px; }
+    th, td { padding: 12px 16px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--hairline); }
+    th { background: var(--surface-card); color: var(--ink); font-weight: 500; }
+    img, svg, video { max-width: 100%; height: auto; }
+    .source { color: var(--muted); font-size: 13px; }
+    footer { margin-bottom: 32px; padding: 24px 32px; border-radius: 12px; background: var(--surface-dark); color: var(--on-dark-soft); font-size: 13px; line-height: 1.8; }
+    footer a, footer strong, footer .source { color: var(--on-dark); }
+    @media (max-width: 767px) {
+      .page { padding: 0 22px; }
+      header { padding: 48px 0 32px; }
+      h1 { font-size: 36px; line-height: 1.25; }
+      h2 { font-size: 28px; }
+      header p, .lead { font-size: 18px; }
+      section { padding: 36px 0; }
+      .toc, .card, .callout, footer { padding: 24px; }
+      blockquote { padding: 20px; }
+      main { padding-bottom: 40px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <small>聚会 · 学习整理 / 2026-11-12</small>
+      <h1>多周期判断、减仓与社群边界</h1>
+      <p>DeBox双人语音整理：保留历史盘面的条件变化、讲者分歧、收益口径与社区商业关系。</p>
+    </header>
+    <main><nav class="toc" aria-label="主题目录"><h2>主题目录</h2><ol><li><a href="#structure">01 大周期方向、小周期执行与失效条件</a></li><li><a href="#sequence">02 减仓、重入和止损调整必须保留时间顺序</a></li><li><a href="#risk">03 先找失效位置，再检查收益空间是否值得承担风险</a></li><li><a href="#difference">04 同场对点位和反弹的判断也有阶段变化</a></li><li><a href="#news">05 消息叙事与资金数字都需要保留未核口径</a></li><li><a href="#community">06 免费分享、返佣与社区治理是不同关系</a></li><li><a href="#learning">07 收益自述要与亏损、回撤和生活节奏一起保存</a></li></ol></nav><section id="reading-scope"><h2>阅读范围</h2><p>主持人先复盘并回应社群问题，后邀请渔夫加入；转写标签从说话人2切到3，但引介与交接显示这一段为受邀分享，标签不作为新增人物的独立证据。全文有交接和结束语。以下点位全部属于当晚口述，不是当前交易指令。</p></section><section id="structure"><h2>01 大周期方向、小周期执行与失效条件</h2><p>主持人的主线是先看较大方向，再找日线支撑压力，在较小周期观察强弱并执行。其当晚观点偏空，但并没有说价格会直线下跌：即使主趋势偏空，仍可能出现反弹，空单也需要确认位置和及时处理。他提醒同时关注15分钟、1小时、4小时等不同级别，而不是只凭一根阳线改变结论。</p><p>受邀讲者用比特币日线的头肩顶解释压力区，提到“748—750”，又说如果收盘重新站上，就不应继续沿用原来的看空判断。原文使用省略位数的口述报价，未附图表与单位定义，不能擅自把每个三位数字补成精确现价。“731到735”“722”“727”“720”等也保留为同一历史口述体系。</p><p>受邀讲者讨论一种条件情形：若跌破“722”后出现长下影、放量并有连续大阳线，才更像“720—748”的区间震荡；而当时他认为反弹局部高点仅到“727”，还不满足自己期待的确认。主持人后来也强调收线能否守住，说明“触及”“瞬间越过”和“确认站稳”并非同一件事。</p><ul><li>分别保存标的、时间级别、观察位置和何种变化会使判断失效。</li><li>高周期判断不取消小周期反弹，反弹也不自动等于趋势反转。</li><li>“748—750”等简写与“7万到695”的FVG区间存在位数口径，保留疑点，不补成交易表。</li><li>盘感在讲者表述中依赖基础知识和多周期观察，不能当作无需证据的直觉。</li></ul></section><section id="sequence"><h2>02 减仓、重入和止损调整必须保留时间顺序</h2><p>主持人复盘一组以太坊附近的历史操作：早间进空，口述止损约2092，目标2020；到2020后改为减仓，随后约2014重新加仓，跌到1990附近再平掉一部分。他后面又把加仓口述为2015左右，并说2000多再次加仓，价格继续下跌时准备再减。首次入场只说“58”，具体位数不清，不能自行补成2058。</p><p>他的解释是，兑现部分利润后可以等待反弹，再根据原方向寻找重入机会；自己说的是加仓与减仓交替，不是无限累加仓位。第一波减仓后将止损移到保本，后续又举止损下移到2025为例。这是事后口述路径，缺少实际订单、仓位、杠杆、费用和完整权益曲线，不能验证风险确已下降。</p><p>主持人自称尽量实时告诉群友入场和止损，同时承认有一波下跌太快，提醒发出时价格已经下去了。跟随者拿到的信息因此可能与讲者实际执行不同；目标从“全部止盈”改成“减仓”，也应保留为一次修改，而不是倒写成始终一致的策略。</p><ul><li>区分最初计划、公开修改、实际执行与事后叙述。</li><li>2014/2015为口述近似，不用选择其一伪造精确成交价。</li><li>减仓后再次加仓会重新改变总暴露，不能只看已经兑现的部分。</li><li>消息传递有延迟，群里看到的方向与完整可执行策略不同。</li></ul></section><section id="risk"><h2>03 先找失效位置，再检查收益空间是否值得承担风险</h2><p>受邀讲者不赞成急跌后追空，更倾向于等待反弹受阻，以反弹高点作为判断失效的参考。他举例：若只打算吃20个点，却愿意承受50个点止损，即使一单盈利，也不能据此证明方法有优势。这里强调的是入场位置、止损位置和目标之间的关系，而非只判断涨跌。</p><p>主持人说自己通常把价格止损放在1%、有时2%以内，并举以太坊2000附近，位置较好可能10个点、较差可能40个点的例子；他也提到一小时交易参考四小时支撑压力、趋势线或清算地图。这些是个人习惯和工具举例，未说明统一测算方式，不能升级成任何仓位下都安全的规则。</p><p>价格变动百分比不等于账户损失百分比，止损计划也不保证按预定价格成交。讲者没有提供总仓位、相关持仓、实际滑点、清算距离或完整亏损样本。可复用的是把进入条件和退出条件写清楚，再看是否匹配自己的研究问题；录音本身没有证明策略正期望，也不构成真实资金试验的要求。</p><ul><li>20点目标、50点止损只是说明收益与损失空间不对称，不是回测。</li><li>1%—2%是讲者的价格止损习惯，不能当账户风险上限。</li><li>观察不到清晰失效位置时，讲者主张等待，而非为持仓找理由。</li><li>盈亏比还要结合胜率、费用与实际执行，单项指标不能证明盈利。</li></ul></section><section id="difference"><h2>04 同场对点位和反弹的判断也有阶段变化</h2><p>受邀讲者谈以太坊时先口误说头肩底，随即改为头肩顶；他以2300及曾冲2450后迅速跌回作偏空解释，认为未迅速回到2300上方前不宜轻易改看多。其后提到1960到1800是日线中枢区域，又特别讨论1950—1960若止跌反弹，只尝试20—30点的短反弹。这里是大范围与局部位置的不同层次，不压成一个精确支撑价。</p><p>他认为1987附近不宜追空，提到1980—2000区域以及下跌后反弹确认的等待思路。其对ETF卖出会分步挂单、不会一次砸完的解释，没有展示资金流或订单数据，只能作为对盘面节奏的一种推测。比特币“7万到695”的FVG也只保留为历史观察，不从转写残缺中补图。</p><p>主持人后段继续强调优先等待反弹做空，但又给出1960若强反弹可小级别观察、支撑不强则再看1900的条件情形；还口述1830—1920等下方范围。这些是随盘面变化给出的不同时间段意见，不合成为永远不变的指令。“偏空为主”与“有条件观察反弹”需要同时保留，不能只摘一句“不做多”或“埋伏1900”。</p><ul><li>把讲者、发言阶段、标的和周期分别记录，不用同场发言制造全员一致。</li><li>“头肩底”随后改口为“头肩顶”，保留改口后的归属。</li><li>1950—1960、1900与1830—1920不是同一个条件或同一确认。</li><li>“高空较安全”是主持人的相对表述，不是风险验证结果。</li></ul></section><section id="news"><h2>05 消息叙事与资金数字都需要保留未核口径</h2><p>两位讲者将当晚行情与美国政治、国际冲突、科技股等消息联系，主持人还自述在相关消息后加仓。录音没有展示原始新闻、发布时间和可对照的盘面序列；一些内容包含针对具体人物的传闻，本页不复述为事实。消息与价格接近发生，不足以证明唯一因果，也没有排除原有技术结构、流动性或其他资产变化。</p><p>受邀讲者自称正在查数据，说交易所稳定币约“2600个亿”、最近一周净流出4.8B，即约48个亿，并据此讨论缺少新增资金。原句没有明确币种；4.8B与48亿只是单位换算，不验证原始数据。统计对象究竟是发行、交易所余额还是跨场所流动，数据平台和时点是什么，录音均未给出，不能由交易所净流出直接断定总供应没有增发。</p><p>关于1月国会交接后的清算、科技股、AI建设、关税及相关平台业务受限，均为讲者的情景推演，不是已公布政策。其对选举、人物关系、日期和下一次PPI发布的口述没有独立核查，不据此建立事件日历，也不对当前市场给出判断。</p><ul><li>消息内容、讲者解释和实际市场反应分层保存。</li><li>4.8B=48亿不代表原数据已被核实，口径和窗口仍缺失。</li><li>交易所余额变化与稳定币总发行变化不能直接画等号。</li><li>历史政治叙事与未核传闻不升级为新闻事实、政策结论或交易信号。</li></ul></section><section id="community"><h2>06 免费分享、返佣与社区治理是不同关系</h2><p>主持人说社群不直接收取入群费用，同时公开承认自己从旗下交易客户、铁粉及大客户获得收入，并谈到给成员调整返佣比例。免费进入与不存在商业关系不是一回事；本次没有具体费率、合同或当前平台规则，不据口述替任何人开户、绑定或改费率。</p><p>他认为手续费优惠只能锦上添花，单笔交易的亏损可能远超多笔手续费差额。这个方向帮助区分交易结果与费用，但录音没有全成本核算，不能因此忽略频繁交易费用。主持人对未在其渠道交易、又长期在群内活动的成员表达不满并采取屏蔽；这里只保留治理与商业归属之间的张力，不把单方指控写成他人确实有恶意。</p><p>两位讲者强调关系支持、互相尊重与抱团交流，也承认自己和对方都有亏损单。主持人计划向官方了解投屏会议，方便受邀讲者用PPT分享，并建议消息提醒异常者查看手机、App设置或问客服。投屏、后续语音和逐个后台调整都仍是计划或自述，不能当作已完成的服务交付。</p><ul><li>判断作者、分析师、助理转发者与社区经营者的角色要区分。</li><li>返佣关系是分析分享的利益背景，不等于观点必错或必对。</li><li>社区秩序与特定成员行为只有单方叙述，不扩散人身指控。</li><li>计划提供更多内容与实际完成服务，分别核验。</li></ul></section><section id="learning"><h2>07 收益自述要与亏损、回撤和生活节奏一起保存</h2><p>主持人自报当晚以约1000的小资金赚了本金约6倍，随即提醒不要照学，因为自己亏起来也可能很快，或连续一段时间亏得很惨。币种、净入金、杠杆、费用和完整账户权益没有提供；这不是已经核验的收益率，更不能与片段入场价拼出可复制方法。</p><p>他另说从6月高点至今个人收益降低约一半，但日常生活与社区活动仍继续。这里的“收益降低”没有明确说明是收入、利润、净资产还是账户回撤，不能自行写成权益回撤50%。他描述最近数月更多时间用于游戏、健身、睡觉，交易关注较少，之后希望逐步恢复研究；这是个人节奏自述，不是用户健康或时间事实。</p><p>学习方面，主持人建议先理解支撑压力、趋势线和清算图等基础，再补AI工具、链上数据和宏观信息分析，多看资料并在理解中找到适合自己的表达和观察方式。他所说学完资料便超过90%—95%的人没有测量依据。能保存的是先分清概念、来源和条件，保留判断错的时候；不需要为了学习去承担真实资金损失。</p><ul><li>单晚高收益与连续亏损必须同读，不挑选成功片段证明能力。</li><li>小本金不等于小风险，亏后再次充值还会改变总投入。</li><li>坚持睡眠、饮食与运动是讲者经验，不因盈利或亏损打乱生活只是其主张。</li><li>原文、HTML及知识页属于同一场的派生资料，不累计为多次独立验证。</li></ul></section></main>
+    <footer><p class="source">来源：<a href="https://ycnmu5hgrzzu.feishu.cn/minutes/obcn7a53f9s5vq18zrhs44sg">完整原文入口（飞书妙记，需原有访问权限）</a>；时长 46:59。题名时间 2026-11-12 21:44:44；妙记创建时间 2026-11-12 22:32:21（北京时间），不据创建时间倒算开播时间。 整理日期：2026-11-13。原始转写保持原位，数字与观点按录音归属保留。</p> · 本页为来源观点的整理，未核实数据保留不确定性。</footer>
+  </div>
+</body>
+</html>
