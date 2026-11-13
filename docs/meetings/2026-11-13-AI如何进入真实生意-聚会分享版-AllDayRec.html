@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>AI 如何进入一门真实生意</title>
+  <meta name="description" content="围绕自助存储的一次交流：先验证客户、内容和经营链路，再扩大工具与资源。">
+  <!-- 风格来源：99_系统/design-md/claude/DESIGN.md；纯静态、自包含。 -->
+  <style>
+    :root {
+      color-scheme: light;
+      --canvas: #faf9f5;
+      --ink: #141413;
+      --body: #3d3d3a;
+      --body-strong: #252523;
+      --muted: #6c6a64;
+      --primary: #cc785c;
+      --primary-active: #a9583e;
+      --surface-soft: #f5f0e8;
+      --surface-card: #efe9de;
+      --hairline: #e6dfd8;
+      --surface-dark: #181715;
+      --on-dark: #faf9f5;
+      --on-dark-soft: #a09d96;
+      --display: "Copernicus", "Tiempos Headline", Georgia, "Songti SC", "STSong", "Noto Serif CJK SC", serif;
+      --sans: "StyreneB", Inter, -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--canvas);
+      color: var(--body);
+      font: 17px/1.85 var(--sans);
+      overflow-wrap: anywhere;
+    }
+    .page { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+    header, main, footer { max-width: 880px; margin-left: auto; margin-right: auto; }
+    header { padding: 96px 0 48px; border-bottom: 1px solid var(--hairline); }
+    header small { display: block; color: var(--muted); font-size: 13px; }
+    h1, h2 { color: var(--ink); font-family: var(--display); font-weight: 400; }
+    h1 { margin: 24px 0; font-size: clamp(36px, 5vw, 64px); line-height: 1.16; letter-spacing: -0.025em; }
+    header p { margin: 0; font-size: 19px; line-height: 1.8; color: var(--muted); }
+    main { padding-bottom: 64px; }
+    section { padding: 48px 0; border-bottom: 1px solid var(--hairline); scroll-margin-top: 24px; }
+    h2 { margin: 0 0 24px; font-size: 36px; line-height: 1.3; letter-spacing: -0.015em; }
+    h3 { margin: 32px 0 12px; color: var(--ink); font-size: 21px; font-weight: 500; line-height: 1.5; }
+    p { margin: 0 0 20px; }
+    section > :last-child { margin-bottom: 0; }
+    strong { color: var(--body-strong); font-weight: 600; }
+    .lead { font-size: 19px; color: var(--body-strong); }
+    a { color: var(--primary-active); text-underline-offset: 4px; }
+    a:focus-visible { outline: 2px solid var(--primary-active); outline-offset: 4px; border-radius: 4px; }
+    ul, ol { margin: 20px 0; padding-left: 26px; }
+    li { margin: 10px 0; padding-left: 2px; }
+    li::marker { color: var(--primary); }
+    .toc { margin: 32px 0 0; padding: 24px 32px; background: var(--surface-card); border: 0; border-radius: 12px; }
+    .toc h2, .toc h3 { margin: 0 0 12px; font: 500 16px/1.5 var(--sans); letter-spacing: 0; }
+    .toc ul, .toc ol { margin: 0; }
+    .toc a { display: inline-block; padding: 4px 0; color: var(--ink); text-decoration-color: var(--hairline); }
+    blockquote { margin: 32px 0; padding: 24px 28px; border-left: 3px solid var(--primary); border-radius: 0 12px 12px 0; background: var(--surface-soft); color: var(--body-strong); }
+    blockquote p:last-child { margin-bottom: 0; }
+    .card, .callout { margin: 24px 0; padding: 32px; background: var(--surface-card); border-radius: 12px; }
+    code { font: 0.88em/1.6 var(--mono); }
+    :not(pre) > code { padding: 2px 5px; border-radius: 4px; background: var(--surface-card); }
+    pre { max-width: 100%; margin: 28px 0; padding: 24px; overflow-x: auto; border-radius: 12px; background: var(--surface-dark); color: var(--on-dark); overflow-wrap: normal; }
+    pre code { font-size: 14px; }
+    table { display: block; width: 100%; max-width: 100%; margin: 28px 0; border-collapse: collapse; overflow-x: auto; font-size: 15px; }
+    th, td { padding: 12px 16px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--hairline); }
+    th { background: var(--surface-card); color: var(--ink); font-weight: 500; }
+    img, svg, video { max-width: 100%; height: auto; }
+    .source { color: var(--muted); font-size: 13px; }
+    footer { margin-bottom: 32px; padding: 24px 32px; border-radius: 12px; background: var(--surface-dark); color: var(--on-dark-soft); font-size: 13px; line-height: 1.8; }
+    footer a, footer strong, footer .source { color: var(--on-dark); }
+    @media (max-width: 767px) {
+      .page { padding: 0 22px; }
+      header { padding: 48px 0 32px; }
+      h1 { font-size: 36px; line-height: 1.25; }
+      h2 { font-size: 28px; }
+      header p, .lead { font-size: 18px; }
+      section { padding: 36px 0; }
+      .toc, .card, .callout, footer { padding: 24px; }
+      blockquote { padding: 20px; }
+      main { padding-bottom: 40px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <small>聚会 · 学习整理 / 2026-11-13 · 北京时间 11:00–22:30</small>
+      <h1>AI 如何进入一门真实生意</h1>
+      <p>围绕自助存储的一次交流：先验证客户、内容和经营链路，再扩大工具与资源。</p>
+    </header>
+    <main><nav class="toc" aria-label="主题目录"><h2>主题目录</h2><ol><li><a href="#opening">AI 落地，要从一个具体经营问题开始</a></li><li><a href="#customer">先选对客户，再讨论放大流量</a></li><li><a href="#creative">内容的质量与数量，要有不同的试验位置</a></li><li><a href="#production">把 AI 内容流程，拆成能检查的步骤</a></li><li><a href="#runtime">演示之后，日常运行才开始</a></li><li><a href="#acquisition">渠道试验：用真实理由承接，用及时回复留住需求</a></li><li><a href="#collaboration">合作先验证一小段，权利和承诺逐步明确</a></li><li><a href="#closing">行业、能力与长期节奏</a></li></ol></nav><section id="opening"><h2>AI 落地，要从一个具体经营问题开始</h2>
+<p class="lead">一次围绕自助存储业务的交流，把问题从“给电脑装上 AI”推进到了“如何带来合适的客户”。最重要的启发，是工具、内容、获客、成交与交付，需要分别验证。</p>
+<p>这类业务往往已经有门店、服务与销售，却缺少持续而经济的新客户。技术服务者可以降低找参考、写内容、剪辑和回复的成本，经营者则掌握真实需求、门店条件、报价和履约。两者互补的价值，必须通过一小段真实经营链路显现出来。</p>
+<p>这份分享提炼当日交流中的方法与反例，已去除身份、企业经营金额、招聘议价、个人合作条款、地址和门禁信息。现场关于平台算法、收入和工具能力的说法，没有在本次得到外部验证；文中的方法仍需结合具体服务与实际反馈判断。</p>
+<ul><li>安装完成，只说明工具能启动。</li><li>内容生成，只说明拿到一份产物。</li><li>提交发布，还需核审核与真实展示。</li><li>有人咨询，还要看需求与可服务范围。</li><li>最终经营结果，要看成交、成本、续约和交付。</li></ul></section>
+
+<section id="customer"><h2>先选对客户，再讨论放大流量</h2>
+<p>同样是存储服务，短期行李、小件寄存、搬家家具和经营用货物，其客单、租期、服务要求和空间配置可能完全不同。因此，“带来很多咨询”并不自动等于“带来更好的生意”。一个内容方向可能很容易吸引观看，却把客户带到原本并不擅长或利润薄的服务上。</p>
+<p>交流里出现过一个有价值的反例：某类内容带来大量短期需求，团队为此增加小隔间和服务投入；等新增空间准备好，流量已经变化，空置与成本留了下来。它说明内容供给的速度、客户的使用周期和线下产能调整，并不天然同步。</p>
+<p>持续经营还要分清新签与续约。已有客户复租和转介绍，可以支撑现金流，却不能证明拉新已经盈利。评估一个 AI 获客试验时，应把真实可服务的客户类型放在前面，而不是先把发帖量提到最高。</p>
+<ul>
+<li><strong>需求：</strong>客户想存什么、多大体积、多久、在哪个地区，是否需要搬运？</li>
+<li><strong>价值：</strong>首单金额、可预期的使用周期、续约与转介绍，应分别记录，不直接等同于利润。</li>
+<li><strong>成本：</strong>获客、优惠、提成、客服、空间、改造与售后都会影响结果。</li>
+<li><strong>匹配：</strong>内容吸引的人，与现有门店最能服务的人，是不是同一批？</li>
+<li><strong>证据：</strong>咨询量、可联系的有效线索、成交与贡献利润分开看。</li>
+<li><strong>近距离：</strong>本地服务不能忽略位置；泛流量再大，超出服务范围也难转化。</li>
+</ul></section>
+
+<section id="creative"><h2>内容的质量与数量，要有不同的试验位置</h2>
+<p>现场对短视频出现了两种主张：一种强调人物、生活情境和娱乐性，用较慢的节奏制作更完整的作品；另一种希望利用现有账号与素材，扩大图文和混剪的试验范围。它们未必需要由同一组账号、以同一种产能完成。</p>
+<p>少量账号可以承载较高投入的实拍，其他入口则测试不同需求、画面和表达。关键不是把所有内容都叫“高质量”，而是知道每条线要回答什么问题：某个开头能否吸引观看，某类客户是否会问询，某个区域的信息是否更好承接。</p>
+<p>投流也应有具体依据。讨论中有人主张先看自然表现，再适度放大；经营者则提醒低客单业务可能承担不起付费成本。自然数据好只是进一步试验的理由，不能保证付费后仍有同样转化，更不能用很高的播放量跳过客户质量。</p>
+<p>对标可以帮助发现结构，但“参考过爆款”“用 AI 做过二创”都不是再次爆发的保证。内容必须真实、可用、符合素材权限与平台要求。尤其面对线下服务，不能为了情节，把不允许的用途拍成真实可购买的服务。</p>
+<ul>
+<li><strong>先分业务：</strong>招商、品牌认知与当地消费者问询，不能共用一套获客成本假设。</li>
+<li><strong>看结构：</strong>人物处境、前三秒、信息推进、需求出现和下一步入口，比只复制一个标题更值得研究。</li>
+<li><strong>看产能：</strong>高投入实拍与批量素材加工，需要不同的人力与时间。</li>
+<li><strong>看重复：</strong>矩阵可以增加试验面，重复低质内容也可能只扩大无效工作。</li>
+<li><strong>看平台：</strong>发布频率、企业账号与生成内容规则要按当前平台核；现场经验不当官方结论。</li>
+<li><strong>看结果：</strong>不同内容不只比播放，也比较有效咨询与服务匹配。</li>
+</ul></section>
+
+<section id="production"><h2>把 AI 内容流程，拆成能检查的步骤</h2>
+<p>现场演示的思路是：搜参考，筛选，由人选择一条，生成图片与文案，预览与修改，再考虑提交。这种流程的价值，是把“给我做一个爆款”拆成几个可判断的环节。搜索结果是否相关、参考是否只是自家旧内容、画面是否像真实门店，都可以在提交前发现。</p>
+<p>两种图片路线也值得比较：纯生成图容易整洁，却可能缺少现场感；真实门店图更接近服务，但需要整理素材与权限。可以提出对照假设，再用实际反馈决定，而不是把个人审美或一次演示当作 A/B 测试完成。</p>
+<p>视频同样需要结构。先理解参考中的开头、节奏、镜头用途和内容顺序，再从原始拍摄中找对应片段，比让模型随意拼一堆素材更可检查。图片轮播、素材混剪与生成全新视频，能力和成本也不一样。</p>
+<p>当账号和内容量扩大，参考池会逐渐重复。把真实场景、人物动作、用户需求、服务特点当作不同元素来组织，可以为创作提供更多组合；但素材库不是文件越多越好，仍要让执行者知道每个素材为什么可用、用来解释什么。</p>
+<ol>
+<li><strong>确定问题：</strong>面向谁、解决哪一种需求、服务哪个范围。</li>
+<li><strong>查找并核参考：</strong>区分品牌词、行业词、区域词与用户问题词，核来源和可借鉴结构。</li>
+<li><strong>选择真实素材：</strong>门店、价格、场景、人物与服务承诺应相符，使用权限清楚。</li>
+<li><strong>生成与预览：</strong>看画面、文案、标题、定位、话题与入口是否一致。</li>
+<li><strong>人工修订：</strong>删掉无用机器说明，纠正事实；必要的适用条件与生成内容披露仍保留。</li>
+<li><strong>提交并看状态：</strong>生成、提交、审核、展示、咨询分层留证。</li>
+<li><strong>复盘再改规则：</strong>将真实错误和客户反馈转成下一轮规则，而不只追求更多提示词。</li>
+</ol></section>
+
+<section id="runtime"><h2>演示之后，日常运行才开始</h2>
+<p>现场遇到了额度不足、浏览器连接、扫码登录、定位误选和提交按钮等问题。这些很具体的摩擦说明，模型能完成某一步，并不等于整台电脑可以长期独立工作。首次搭建的耗时与日常每次执行的消耗，还应分开核算。</p>
+<p>发布链路尤其需要谨慎表达。“应该发出去了”“在审核”不能替代后台审核结果；没有收到违规提示，也不说明今后不会出现问题。定时任务设置成功，只是下一轮自然执行的前提，仍需看它是否真正按时产生了正确作品。</p>
+<p>对客户而言，成品应该简洁清楚。与服务无关的机器标签和冗长说明，可以在编辑中去掉；真实门店、适用范围、价格条件和必要披露则属于客户决策信息，不能为了干净一起删除。</p>
+<ul>
+<li><strong>运行条件：</strong>电源、网络、休眠、登录、浏览器连接和素材路径要满足真实工作需要。</li>
+<li><strong>额度：</strong>初次安装、首次生成与重复执行分别观察，不能凭一次低成本猜全天预算。</li>
+<li><strong>状态：</strong>草稿、提交、审核、展示和客资分别记录。</li>
+<li><strong>质量：</strong>定位到真实门店，热点和话题有实际关联，不误用同行信息。</li>
+<li><strong>频率：</strong>账号能稳定供给多少有用内容，比机械设定日更数量更重要。</li>
+<li><strong>成本：</strong>人工核对、返工和故障处理也算进自动化的实际成本。</li>
+</ul></section>
+
+<section id="acquisition"><h2>渠道试验：用真实理由承接，用及时回复留住需求</h2>
+<p>关于交易与本地搜索渠道，讨论中提出了一个可理解的思路：以一项真实能兑现的小额优惠，给本来就需要服务的人一个联系理由。优惠不是魔法；如果门店、有效期、叠加条件、核销和费用承担不清楚，它还可能让客服与客户产生新的误会。</p>
+<p>回复速度的实际价值，则在于客户可能同时询问多家。及时解释需求、回答能不能服务，并在必要时交给人工，可能减少本来可以避免的流失。它不意味着一个“秒回”标签就保证排名，也不意味着 AI 适合独立承诺价格、签约或处理所有异常。</p>
+<p>内容在搜索中是否可找到，也需要用普通用户的问题来检查。一次现场询问发现，用户说“附近存行李、不住宿”，返回的可能是旅社等相邻服务，而非预期的存储门店。这可以提示表达缺口，却不足以证明某种团购入口或发帖次数决定 AI 推荐。</p>
+<p>公开分享还应区分真实客户体验与人为制造评价。客户自愿讲述使用经历，可以成为好内容的来源；任何激励都应真实、符合规则并按要求披露。虚假好评、冒充身份、替换同行电话和未经许可转发个人资料，不是可迁移的经营方法。</p>
+<ul>
+<li><strong>首轮范围：</strong>先选一个最熟悉的平台、一类需求和一个可服务区域。</li>
+<li><strong>优惠：</strong>把适用门店、周期、金额、叠加和核销说清，再谈效果。</li>
+<li><strong>问询：</strong>理解地区、物品与租期，减少客户重复填写。</li>
+<li><strong>交接：</strong>标清渠道、时间、需求与负责人，及时传递。</li>
+<li><strong>质量：</strong>重复咨询、失联、超出服务范围与成交应分开，不把每条消息当一个新客。</li>
+<li><strong>投放：</strong>界面给出的咨询预估，不等于已获得有效客户；具体条款与真实成本另核。</li>
+<li><strong>多平台：</strong>在一条路径有效后适配相邻入口，不把全平台开通当作增长。</li>
+</ul></section>
+
+<section id="collaboration"><h2>合作先验证一小段，权利和承诺逐步明确</h2>
+<p>当一方有行业与资源，另一方有技术与流量，双方很容易在初见时谈到更大的团队、办公室、长期分成甚至股权。它们可以表达诚意和愿景，但应与已经到位的资源、已经完成的动作分开记录。</p>
+<p>更实际的顺序是：先在一个渠道做小范围试验，核客户质量、投入和双方协作，再扩大人员、设备和预算。若一个方法尚未跑通，一开始就要求更多人同时试错，可能只会放大不确定性。小范围试验也能帮助判断双方是否适合持续合作。</p>
+<p>线索合作尤其要约定时效、重复、独家范围、允许流转对象、结算和失效处理。单看“带来多少条”会忽略需求与成交，单看“我很信任你”也不能替代客户与账号的实际权利边界。</p>
+<p>在争论方法时，可以问“对业务有何利弊、用什么证据比较”。但数据也不能只选最好看的那一个；播放量、咨询数和净收益不同，团队贡献、成本和时间同样需要看见。</p>
+<ul>
+<li><strong>分角色：</strong>同一场交流中的面试、客户接待和合作谈判不混成一个承诺。</li>
+<li><strong>分状态：</strong>提出、同意、现场查看、实际到位与完成验收分开。</li>
+<li><strong>分费用：</strong>设备、软件、投流、优惠、人员、基本保障与收益结算分别明确。</li>
+<li><strong>分权利：</strong>账号、客户、素材、对外报价与签约权限不由一个“放开干”覆盖。</li>
+<li><strong>分未来：</strong>附条件的口头股权设想，不能写成已经获授的权益。</li>
+<li><strong>分经验：</strong>经营者自述、现场可见结果、AI 归纳与下一步建议分别表达。</li>
+</ul></section>
+
+<section id="closing"><h2>行业、能力与长期节奏</h2>
+<p>这场交流里，技术服务的价值不只在“会不会操作某个工具”，也在能否理解行业、客户和经营约束。真实客户的一次提问、门店的一次接待、内容的一次错误定位，往往比抽象地讨论 AI 全能更能推动改进。</p>
+<p>行业经验也不应变成拒绝新方法的理由。技术可以降低内容与沟通成本，经营者提供服务事实与结果判断，双方从具体问题中逐渐形成共同语言。信任可以从见面和演示开始，再由一次次交付与结果加深。</p>
+<p>长期投入还要允许休息、运动和生活差异。工作热情是资源，身体是约束，个人体验不应被写成健康诊断；投入很多时间也不自动意味着已经创造更多价值。更值得持续的，是不断留下真实反馈、逐步积累的方法与可信任的合作。</p>
+<blockquote><p>先把一个具体经营问题跑通，再让 AI 和资源放大它。</p></blockquote>
+<p>这句话是本次整理的归纳，不是原话，也不是已经验证的经营保证。本文没有代替任何参与者启动发布、投流、招聘、签约或股权安排。</p>
+</section>
+</main>
+    <footer>来源：2026-11-13 AllDayRec 交流转写的去隐私提炼。身份、经营金额、招聘与合作条款、地址及门禁信息未公开；个人原始转写不在本页。 · 本页为来源观点的整理，未核实数据保留不确定性。</footer>
+  </div>
+</body>
+</html>
