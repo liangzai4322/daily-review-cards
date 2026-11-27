@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>迷你仓经营讨论｜获客交接与网站分工</title>
+  <meta name="description" content="从客户询问仓型到销售确认报价，梳理交接为什么会慢，以及网站该承接哪一步。">
+  <!-- 风格来源：99_系统/design-md/claude/DESIGN.md；纯静态、自包含。 -->
+  <style>
+    :root {
+      color-scheme: light;
+      --canvas: #faf9f5;
+      --ink: #141413;
+      --body: #3d3d3a;
+      --body-strong: #252523;
+      --muted: #6c6a64;
+      --primary: #cc785c;
+      --primary-active: #a9583e;
+      --surface-soft: #f5f0e8;
+      --surface-card: #efe9de;
+      --hairline: #e6dfd8;
+      --surface-dark: #181715;
+      --on-dark: #faf9f5;
+      --on-dark-soft: #a09d96;
+      --display: "Copernicus", "Tiempos Headline", Georgia, "Songti SC", "STSong", "Noto Serif CJK SC", serif;
+      --sans: "StyreneB", Inter, -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--canvas);
+      color: var(--body);
+      font: 17px/1.85 var(--sans);
+      overflow-wrap: anywhere;
+    }
+    .page { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+    header, main, footer { max-width: 880px; margin-left: auto; margin-right: auto; }
+    header { padding: 96px 0 48px; border-bottom: 1px solid var(--hairline); }
+    header small { display: block; color: var(--muted); font-size: 13px; }
+    h1, h2 { color: var(--ink); font-family: var(--display); font-weight: 400; }
+    h1 { margin: 24px 0; font-size: clamp(36px, 5vw, 64px); line-height: 1.16; letter-spacing: -0.025em; }
+    header p { margin: 0; font-size: 19px; line-height: 1.8; color: var(--muted); }
+    main { padding-bottom: 64px; }
+    section { padding: 48px 0; border-bottom: 1px solid var(--hairline); scroll-margin-top: 24px; }
+    h2 { margin: 0 0 24px; font-size: 36px; line-height: 1.3; letter-spacing: -0.015em; }
+    h3 { margin: 32px 0 12px; color: var(--ink); font-size: 21px; font-weight: 500; line-height: 1.5; }
+    p { margin: 0 0 20px; }
+    section > :last-child { margin-bottom: 0; }
+    strong { color: var(--body-strong); font-weight: 600; }
+    .lead { font-size: 19px; color: var(--body-strong); }
+    a { color: var(--primary-active); text-underline-offset: 4px; }
+    a:focus-visible { outline: 2px solid var(--primary-active); outline-offset: 4px; border-radius: 4px; }
+    ul, ol { margin: 20px 0; padding-left: 26px; }
+    li { margin: 10px 0; padding-left: 2px; }
+    li::marker { color: var(--primary); }
+    .toc { margin: 32px 0 0; padding: 24px 32px; background: var(--surface-card); border: 0; border-radius: 12px; }
+    .toc h2, .toc h3 { margin: 0 0 12px; font: 500 16px/1.5 var(--sans); letter-spacing: 0; }
+    .toc ul, .toc ol { margin: 0; }
+    .toc a { display: inline-block; padding: 4px 0; color: var(--ink); text-decoration-color: var(--hairline); }
+    blockquote { margin: 32px 0; padding: 24px 28px; border-left: 3px solid var(--primary); border-radius: 0 12px 12px 0; background: var(--surface-soft); color: var(--body-strong); }
+    blockquote p:last-child { margin-bottom: 0; }
+    .card, .callout { margin: 24px 0; padding: 32px; background: var(--surface-card); border-radius: 12px; }
+    code { font: 0.88em/1.6 var(--mono); }
+    :not(pre) > code { padding: 2px 5px; border-radius: 4px; background: var(--surface-card); }
+    pre { max-width: 100%; margin: 28px 0; padding: 24px; overflow-x: auto; border-radius: 12px; background: var(--surface-dark); color: var(--on-dark); overflow-wrap: normal; }
+    pre code { font-size: 14px; }
+    table { display: block; width: 100%; max-width: 100%; margin: 28px 0; border-collapse: collapse; overflow-x: auto; font-size: 15px; }
+    th, td { padding: 12px 16px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--hairline); }
+    th { background: var(--surface-card); color: var(--ink); font-weight: 500; }
+    img, svg, video { max-width: 100%; height: auto; }
+    .source { color: var(--muted); font-size: 13px; }
+    footer { margin-bottom: 32px; padding: 24px 32px; border-radius: 12px; background: var(--surface-dark); color: var(--on-dark-soft); font-size: 13px; line-height: 1.8; }
+    footer a, footer strong, footer .source { color: var(--on-dark); }
+    @media (max-width: 767px) {
+      .page { padding: 0 22px; }
+      header { padding: 48px 0 32px; }
+      h1 { font-size: 36px; line-height: 1.25; }
+      h2 { font-size: 28px; }
+      header p, .lead { font-size: 18px; }
+      section { padding: 36px 0; }
+      .toc, .card, .callout, footer { padding: 24px; }
+      blockquote { padding: 20px; }
+      main { padding-bottom: 40px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <small>聚会 · 学习整理 / 2026-11-27</small>
+      <h1>迷你仓经营讨论｜获客交接与网站分工</h1>
+      <p>从客户询问仓型到销售确认报价，梳理交接为什么会慢，以及网站该承接哪一步。</p>
+    </header>
+    <main><nav class="toc" aria-label="目录"><h2>目录</h2><ul><li><a href="#handoff">一次咨询转交两次，就多两处等待</a></li><li><a href="#qualification">先问存什么、租多久，再给可用方案</a></li><li><a href="#site">网站先回答谁能服务、怎么继续</a></li></ul></nav>
+<section id="handoff">
+<h2>一次咨询转交两次，就多两处等待</h2>
+<p>讨论里，线索从渠道方先送到业务联系人，再由联系人转给销售。每个人都要先看到消息，再把信息交给下一个人。只要某处暂时无人承接，客户就可能在等待期间去问下一家。现场关心的是这种延迟是否影响转化，实际转化率有待核对。</p><p>可以把首次进入、指派、销售接手、首次有效答复和下一步分别记时。通过同口径比较，找到延迟主要发生在转交前、转交中还是第一次实质回复。若有业务权限和合规入口，可试把线索交给能直接回答的人，观察有效询单、预约和实付有没有同向变化。</p>
+<ul><li>首次有效答复以能推动下一步为标准，例如确认仓型、给明确可报范围或约看仓。</li><li>查看平均用时的同时，回看最久的一批，判断是否集中在交接或无库存答复。</li><li>分清咨询、有效线索、预约和订单。相同的兴趣提示可能没有同样的租用意向。</li><li>按相同客群和时段比较不同转交路径，并按必需范围传递客户信息。</li></ul>
+</section>
+<section id="qualification">
+<h2>先问存什么、租多久，再给可用方案</h2>
+<p>现场的客服对话反复遇到同一个问题，客户只问价时，业务还缺空间大小和租期。销售需要知道存放物的大致体量、期望区域、起租日期和租多久，再看现有空仓、容量和收费口径。代收、代发和搬运等附加服务也要各自说明可提供的范围。</p><p>有了这些信息，网站、私信和线下门店可以复用同一套问法。客户只需描述大概尺寸和件数，销售就能先给出两档仓型或下一步看仓安排。报价时要说明库存时间和计费周期。页面上的参考价与最终报价一起注明相应条件。</p>
+<ul><li>以物品和尺寸估计所需空间，用户不清楚仓型时给两档易比较的选择。</li><li>在报价处写明租期、价格对应的单位、空仓确认时间与下一步。</li><li>让首次承接的人看得到已问的字段，降低重复提问和丢线索的机会。</li><li>将公开浏览、咨询与已付款分开观察，便于查哪种答复能实际推动预约。</li></ul>
+</section>
+<section id="site">
+<h2>网站先回答谁能服务、怎么继续</h2>
+<p>桌面站、移动站和小程序都被提到，三份界面占用搭建和维护时间，讨论最终回到各入口怎样带来能跟进的客户。桌面侧可先给仓型、用途、营业范围与询价入口。移动侧可优先提供门店选择和直接联系。这样可以先通过一条有结果的路径判断新增入口的价值。</p><p>托管建站在讨论中的价值是集中维护、续费和发布方便。签服务时同时要核对域名、账号权限、线索导出、迁移安排和续费责任。外包获客或代运营也有类似边界，要明确外部团队管到咨询、预约还是完整履约，门店怎样接手及怎样反馈。</p><p>谈话里也试用了 AI 辅助建站。页面能生成以后，门店信息和服务选项仍需逐项校对。复用同一份经授权的服务资料，用原创或获授权的图片和文字做页面，发布前实际提交一次咨询，确认有接收人、回复路径和对应的门店信息。</p>
+<ul><li>按来访者的顺序排首屏信息，先判断服务范围和适用仓型，再咨询或预约。</li><li>对照每个入口的有效咨询、后续动作和维护时间，决定继续投入哪些入口。</li><li>把门店资料集中在一处校验，再同步给获授权的建站和接单人员。</li><li>上线验收包含一次真实路径测试和两个端的常用页面浏览，避免表单成功但业务接不到线索。</li></ul>
+</section></main>
+    <footer>整理自 2026 年 11 月 27 日的迷你仓经营讨论，案例已匿名化 · 本页为来源观点的整理，未核实数据保留不确定性。</footer>
+  </div>
+</body>
+</html>

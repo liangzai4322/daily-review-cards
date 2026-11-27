@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>直播答疑｜如何检验只展示成功的预测</title>
+  <meta name="description" content="当复盘只挑命中的几次，先找原始预测、完整样本与对照，再看这些信息能否改变决策。">
+  <!-- 风格来源：99_系统/design-md/claude/DESIGN.md；纯静态、自包含。 -->
+  <style>
+    :root {
+      color-scheme: light;
+      --canvas: #faf9f5;
+      --ink: #141413;
+      --body: #3d3d3a;
+      --body-strong: #252523;
+      --muted: #6c6a64;
+      --primary: #cc785c;
+      --primary-active: #a9583e;
+      --surface-soft: #f5f0e8;
+      --surface-card: #efe9de;
+      --hairline: #e6dfd8;
+      --surface-dark: #181715;
+      --on-dark: #faf9f5;
+      --on-dark-soft: #a09d96;
+      --display: "Copernicus", "Tiempos Headline", Georgia, "Songti SC", "STSong", "Noto Serif CJK SC", serif;
+      --sans: "StyreneB", Inter, -apple-system, BlinkMacSystemFont, "PingFang SC", "Microsoft YaHei", sans-serif;
+      --mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Consolas, monospace;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--canvas);
+      color: var(--body);
+      font: 17px/1.85 var(--sans);
+      overflow-wrap: anywhere;
+    }
+    .page { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
+    header, main, footer { max-width: 880px; margin-left: auto; margin-right: auto; }
+    header { padding: 96px 0 48px; border-bottom: 1px solid var(--hairline); }
+    header small { display: block; color: var(--muted); font-size: 13px; }
+    h1, h2 { color: var(--ink); font-family: var(--display); font-weight: 400; }
+    h1 { margin: 24px 0; font-size: clamp(36px, 5vw, 64px); line-height: 1.16; letter-spacing: -0.025em; }
+    header p { margin: 0; font-size: 19px; line-height: 1.8; color: var(--muted); }
+    main { padding-bottom: 64px; }
+    section { padding: 48px 0; border-bottom: 1px solid var(--hairline); scroll-margin-top: 24px; }
+    h2 { margin: 0 0 24px; font-size: 36px; line-height: 1.3; letter-spacing: -0.015em; }
+    h3 { margin: 32px 0 12px; color: var(--ink); font-size: 21px; font-weight: 500; line-height: 1.5; }
+    p { margin: 0 0 20px; }
+    section > :last-child { margin-bottom: 0; }
+    strong { color: var(--body-strong); font-weight: 600; }
+    .lead { font-size: 19px; color: var(--body-strong); }
+    a { color: var(--primary-active); text-underline-offset: 4px; }
+    a:focus-visible { outline: 2px solid var(--primary-active); outline-offset: 4px; border-radius: 4px; }
+    ul, ol { margin: 20px 0; padding-left: 26px; }
+    li { margin: 10px 0; padding-left: 2px; }
+    li::marker { color: var(--primary); }
+    .toc { margin: 32px 0 0; padding: 24px 32px; background: var(--surface-card); border: 0; border-radius: 12px; }
+    .toc h2, .toc h3 { margin: 0 0 12px; font: 500 16px/1.5 var(--sans); letter-spacing: 0; }
+    .toc ul, .toc ol { margin: 0; }
+    .toc a { display: inline-block; padding: 4px 0; color: var(--ink); text-decoration-color: var(--hairline); }
+    blockquote { margin: 32px 0; padding: 24px 28px; border-left: 3px solid var(--primary); border-radius: 0 12px 12px 0; background: var(--surface-soft); color: var(--body-strong); }
+    blockquote p:last-child { margin-bottom: 0; }
+    .card, .callout { margin: 24px 0; padding: 32px; background: var(--surface-card); border-radius: 12px; }
+    code { font: 0.88em/1.6 var(--mono); }
+    :not(pre) > code { padding: 2px 5px; border-radius: 4px; background: var(--surface-card); }
+    pre { max-width: 100%; margin: 28px 0; padding: 24px; overflow-x: auto; border-radius: 12px; background: var(--surface-dark); color: var(--on-dark); overflow-wrap: normal; }
+    pre code { font-size: 14px; }
+    table { display: block; width: 100%; max-width: 100%; margin: 28px 0; border-collapse: collapse; overflow-x: auto; font-size: 15px; }
+    th, td { padding: 12px 16px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--hairline); }
+    th { background: var(--surface-card); color: var(--ink); font-weight: 500; }
+    img, svg, video { max-width: 100%; height: auto; }
+    .source { color: var(--muted); font-size: 13px; }
+    footer { margin-bottom: 32px; padding: 24px 32px; border-radius: 12px; background: var(--surface-dark); color: var(--on-dark-soft); font-size: 13px; line-height: 1.8; }
+    footer a, footer strong, footer .source { color: var(--on-dark); }
+    @media (max-width: 767px) {
+      .page { padding: 0 22px; }
+      header { padding: 48px 0 32px; }
+      h1 { font-size: 36px; line-height: 1.25; }
+      h2 { font-size: 28px; }
+      header p, .lead { font-size: 18px; }
+      section { padding: 36px 0; }
+      .toc, .card, .callout, footer { padding: 24px; }
+      blockquote { padding: 20px; }
+      main { padding-bottom: 40px; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <small>聚会 · 学习整理 / 2026-11-27</small>
+      <h1>直播答疑｜如何检验只展示成功的预测</h1>
+      <p>当复盘只挑命中的几次，先找原始预测、完整样本与对照，再看这些信息能否改变决策。</p>
+    </header>
+    <main><nav class="toc" aria-label="目录"><h2>目录</h2><ul><li><a href="#selection">一千个账号，最后只看留下的赢家</a></li><li><a href="#expertise">能说清过程，也要接受事前检验</a></li><li><a href="#decision">先说清预测的结果会改变哪一步</a></li></ul></nav>
+<section id="selection">
+<h2>一千个账号，最后只看留下的赢家</h2>
+<p>讲者假设有一千个账号对同一个二选一事件作预测，五百个发 A，五百个发 B。结果公布后，观察者如果只看到猜中的五百个，正确的一方看起来就很一致。用同样的方式继续分组，再只展示连中的少数账号，展示记录会越来越亮眼。</p><p>这个算例说的是筛选口径。想评价某个账号的预测能力，需要固定一个集合，拿到该集合事前公布的全部预测，并把错过、删除、改口和无法核验的条目一并列出来。一条命中截图只能说明曾经有一条命中，完整分母才支持比较。</p>
+<ul><li>区分事前公开的预测和结果发布后的复盘，核对发布时间与是否编辑。</li><li>将每次预测的判定条件、追踪窗口和最终结果事先固定。</li><li>核对同一账号是否长期用同一口径，以及未公开或丢失的记录有多少。</li></ul>
+</section>
+<section id="expertise">
+<h2>能说清过程，也要接受事前检验</h2>
+<p>讲者把预测命中和专业解释放在一起比较。以一条流量很好的视频为例，熟悉业务的人可能拿出开头为何留人、哪一段提供信息，以及受众原本在找什么。沿着这些证据，可以判断这套解释能否用于下一条视频。</p><p>回看解释的同时也可以记录一种简单对照，例如永远猜最常发生的结果。再看明确的事前预测是否在多次相同条件下超过对照。解释能够指出现象，稳定的预测能力仍取决于后续记录。在窗口很短、条件变化或公开样本不全时，分开写已核查和待核查的项目。</p>
+<ul><li>请判断者说清用了什么信息、什么情况会改结论，以及何时回来看。</li><li>在同一批次比较命中、漏判和未给出判断的次数，再与简单对照比较。</li><li>把同一条预测的多次转发当作同一个证据，避免重复计数。</li></ul>
+</section>
+<section id="decision">
+<h2>先说清预测的结果会改变哪一步</h2>
+<p>直播还追问，即使某个方向猜中了，听众究竟会做什么。一次结果没有给出合适的行动时间、触发条件和所需成本。判断是否可用，要把两种结果各自对应的动作写出来，再检查有没有能力执行以及失败时能否恢复。</p><p>例如，若某项需求预测用来安排服务排期，可以事前定好达到多少预约才增加班次。实际预约低于预期便保留原排期。这个例子保留了预测质量和行动质量两次检验，命中事件与最终经营成效分别记录。</p>
+<ul><li>先写明要改变的决定、需要的数据和可接受的误差。</li><li>为两种结果各写一个行动，其中至少记录行动时间和最大承担。</li><li>事后分别检查预测、执行和结果，保留中途条件变化的记录。</li></ul>
+</section></main>
+    <footer>整理自 2026 年 11 月 27 日晚间公开直播中的预测证据问答 · 本页为来源观点的整理，未核实数据保留不确定性。</footer>
+  </div>
+</body>
+</html>
